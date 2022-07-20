@@ -1,0 +1,466 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA45B7CE2885155B002A9654 /* HeaderView.swift */; };
+		FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */; };
+		FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEADE422884BDC9004535CE /* Assets.xcassets */; };
+		FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEADE452884BDC9004535CE /* Preview Assets.xcassets */; };
+		FAEADE502884C064004535CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE4F2884C064004535CE /* SplashView.swift */; };
+		FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE6E2884C803004535CE /* TabBarView.swift */; };
+		FAEADEAD2884D3D0004535CE /* SFUIText-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA12884D3CF004535CE /* SFUIText-LightItalic.ttf */; };
+		FAEADEAE2884D3D0004535CE /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA22884D3CF004535CE /* SFUIText-Medium.ttf */; };
+		FAEADEAF2884D3D0004535CE /* SFUIText-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA32884D3CF004535CE /* SFUIText-BoldItalic.ttf */; };
+		FAEADEB02884D3D0004535CE /* SFUIText-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA42884D3CF004535CE /* SFUIText-Light.ttf */; };
+		FAEADEB12884D3D0004535CE /* SFUIText-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA52884D3CF004535CE /* SFUIText-SemiboldItalic.ttf */; };
+		FAEADEB22884D3D0004535CE /* SFUIText-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA62884D3CF004535CE /* SFUIText-Heavy.ttf */; };
+		FAEADEB32884D3D0004535CE /* SFUIText-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA72884D3CF004535CE /* SFUIText-MediumItalic.ttf */; };
+		FAEADEB42884D3D0004535CE /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA82884D3CF004535CE /* SFUIText-Regular.ttf */; };
+		FAEADEB52884D3D0004535CE /* SFUIText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA92884D3D0004535CE /* SFUIText-Semibold.ttf */; };
+		FAEADEB62884D3D0004535CE /* SFUIText-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEAA2884D3D0004535CE /* SFUIText-RegularItalic.ttf */; };
+		FAEADEB72884D3D0004535CE /* SFUIText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEAB2884D3D0004535CE /* SFUIText-Bold.ttf */; };
+		FAEADEB82884D3D0004535CE /* SFUIText-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEAC2884D3D0004535CE /* SFUIText-HeavyItalic.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FA45B7CE2885155B002A9654 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		FAEADE3B2884BDC7004535CE /* Camel Gate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camel Gate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camel_GateApp.swift; sourceTree = "<group>"; };
+		FAEADE422884BDC9004535CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAEADE452884BDC9004535CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FAEADE4F2884C064004535CE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		FAEADE6E2884C803004535CE /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		FAEADEA12884D3CF004535CE /* SFUIText-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-LightItalic.ttf"; sourceTree = "<group>"; };
+		FAEADEA22884D3CF004535CE /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
+		FAEADEA32884D3CF004535CE /* SFUIText-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-BoldItalic.ttf"; sourceTree = "<group>"; };
+		FAEADEA42884D3CF004535CE /* SFUIText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Light.ttf"; sourceTree = "<group>"; };
+		FAEADEA52884D3CF004535CE /* SFUIText-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		FAEADEA62884D3CF004535CE /* SFUIText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Heavy.ttf"; sourceTree = "<group>"; };
+		FAEADEA72884D3CF004535CE /* SFUIText-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-MediumItalic.ttf"; sourceTree = "<group>"; };
+		FAEADEA82884D3CF004535CE /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
+		FAEADEA92884D3D0004535CE /* SFUIText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Semibold.ttf"; sourceTree = "<group>"; };
+		FAEADEAA2884D3D0004535CE /* SFUIText-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-RegularItalic.ttf"; sourceTree = "<group>"; };
+		FAEADEAB2884D3D0004535CE /* SFUIText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Bold.ttf"; sourceTree = "<group>"; };
+		FAEADEAC2884D3D0004535CE /* SFUIText-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-HeavyItalic.ttf"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAEADE382884BDC7004535CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FA45B7CD28851544002A9654 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FA45B7CE2885155B002A9654 /* HeaderView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FAE2F1912884FC610081177C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FAEADEA02884D3C0004535CE /* Fonts */,
+				FAEADE422884BDC9004535CE /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FAEADE322884BDC7004535CE = {
+			isa = PBXGroup;
+			children = (
+				FAEADE3D2884BDC7004535CE /* Camel Gate */,
+				FAEADE3C2884BDC7004535CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAEADE3C2884BDC7004535CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAEADE3B2884BDC7004535CE /* Camel Gate.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAEADE3D2884BDC7004535CE /* Camel Gate */ = {
+			isa = PBXGroup;
+			children = (
+				FA45B7CD28851544002A9654 /* Components */,
+				FAE2F1912884FC610081177C /* Resources */,
+				FAEADE4C2884C011004535CE /* AppFlow */,
+				FAEADE512884C094004535CE /* Support */,
+				FAEADE442884BDC9004535CE /* Preview Content */,
+			);
+			path = "Camel Gate";
+			sourceTree = "<group>";
+		};
+		FAEADE442884BDC9004535CE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FAEADE452884BDC9004535CE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FAEADE4C2884C011004535CE /* AppFlow */ = {
+			isa = PBXGroup;
+			children = (
+				FAEADE6D2884C6F7004535CE /* TabBar */,
+				FAEADE4E2884C04C004535CE /* Splash */,
+				FAEADE4D2884C044004535CE /* App */,
+			);
+			path = AppFlow;
+			sourceTree = "<group>";
+		};
+		FAEADE4D2884C044004535CE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FAEADE4E2884C04C004535CE /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				FAEADE4F2884C064004535CE /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		FAEADE512884C094004535CE /* Support */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		FAEADE6D2884C6F7004535CE /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FAEADE6E2884C803004535CE /* TabBarView.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		FAEADEA02884D3C0004535CE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FAEADEAB2884D3D0004535CE /* SFUIText-Bold.ttf */,
+				FAEADEA32884D3CF004535CE /* SFUIText-BoldItalic.ttf */,
+				FAEADEA62884D3CF004535CE /* SFUIText-Heavy.ttf */,
+				FAEADEAC2884D3D0004535CE /* SFUIText-HeavyItalic.ttf */,
+				FAEADEA42884D3CF004535CE /* SFUIText-Light.ttf */,
+				FAEADEA12884D3CF004535CE /* SFUIText-LightItalic.ttf */,
+				FAEADEA22884D3CF004535CE /* SFUIText-Medium.ttf */,
+				FAEADEA72884D3CF004535CE /* SFUIText-MediumItalic.ttf */,
+				FAEADEA82884D3CF004535CE /* SFUIText-Regular.ttf */,
+				FAEADEAA2884D3D0004535CE /* SFUIText-RegularItalic.ttf */,
+				FAEADEA92884D3D0004535CE /* SFUIText-Semibold.ttf */,
+				FAEADEA52884D3CF004535CE /* SFUIText-SemiboldItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAEADE3A2884BDC7004535CE /* Camel Gate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAEADE492884BDC9004535CE /* Build configuration list for PBXNativeTarget "Camel Gate" */;
+			buildPhases = (
+				FAEADE372884BDC7004535CE /* Sources */,
+				FAEADE382884BDC7004535CE /* Frameworks */,
+				FAEADE392884BDC7004535CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Camel Gate";
+			productName = "Camel Gate";
+			productReference = FAEADE3B2884BDC7004535CE /* Camel Gate.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAEADE332884BDC7004535CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					FAEADE3A2884BDC7004535CE = {
+						CreatedOnToolsVersion = 13.1;
+					};
+				};
+			};
+			buildConfigurationList = FAEADE362884BDC7004535CE /* Build configuration list for PBXProject "Camel Gate" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAEADE322884BDC7004535CE;
+			productRefGroup = FAEADE3C2884BDC7004535CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAEADE3A2884BDC7004535CE /* Camel Gate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAEADE392884BDC7004535CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAEADEB52884D3D0004535CE /* SFUIText-Semibold.ttf in Resources */,
+				FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */,
+				FAEADEB42884D3D0004535CE /* SFUIText-Regular.ttf in Resources */,
+				FAEADEB02884D3D0004535CE /* SFUIText-Light.ttf in Resources */,
+				FAEADEAE2884D3D0004535CE /* SFUIText-Medium.ttf in Resources */,
+				FAEADEAF2884D3D0004535CE /* SFUIText-BoldItalic.ttf in Resources */,
+				FAEADEB22884D3D0004535CE /* SFUIText-Heavy.ttf in Resources */,
+				FAEADEB62884D3D0004535CE /* SFUIText-RegularItalic.ttf in Resources */,
+				FAEADEB12884D3D0004535CE /* SFUIText-SemiboldItalic.ttf in Resources */,
+				FAEADEB72884D3D0004535CE /* SFUIText-Bold.ttf in Resources */,
+				FAEADEB32884D3D0004535CE /* SFUIText-MediumItalic.ttf in Resources */,
+				FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */,
+				FAEADEB82884D3D0004535CE /* SFUIText-HeavyItalic.ttf in Resources */,
+				FAEADEAD2884D3D0004535CE /* SFUIText-LightItalic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAEADE372884BDC7004535CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */,
+				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
+				FAEADE502884C064004535CE /* SplashView.swift in Sources */,
+				FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FAEADE472884BDC9004535CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FAEADE482884BDC9004535CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAEADE4A2884BDC9004535CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
+				DEVELOPMENT_TEAM = 23H4SBD5QL;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Camel-Gate";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FAEADE4B2884BDC9004535CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
+				DEVELOPMENT_TEAM = 23H4SBD5QL;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Camel-Gate";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAEADE362884BDC7004535CE /* Build configuration list for PBXProject "Camel Gate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAEADE472884BDC9004535CE /* Debug */,
+				FAEADE482884BDC9004535CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAEADE492884BDC9004535CE /* Build configuration list for PBXNativeTarget "Camel Gate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAEADE4A2884BDC9004535CE /* Debug */,
+				FAEADE4B2884BDC9004535CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAEADE332884BDC7004535CE /* Project object */;
+}
