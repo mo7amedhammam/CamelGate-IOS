@@ -27,6 +27,7 @@ struct SplashView: View {
                 .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
                 .first { $0.isKeyWindow }
             window?.rootViewController = UIHostingController(rootView: TabBarView())
+            //if loged in open tabBarView else open loginView
             window?.makeKeyAndVisible()
         }
     }

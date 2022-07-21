@@ -48,3 +48,9 @@ struct HeaderView: View {
         .padding()
     }
 }
+
+struct HeaderView_Previews: PreviewProvider {
+    static var previews: some View {
+        HeaderView()
+    }
+}
