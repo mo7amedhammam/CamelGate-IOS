@@ -7,9 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C8C9494128895A360057EE7E /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494028895A360057EE7E /* WalletView.swift */; };
+		C8C9494128895A360057EE7E /* WalletIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494028895A360057EE7E /* WalletIcon.swift */; };
 		C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494328895B7B0057EE7E /* HomeView.swift */; };
 		C8C9494828895C3F0057EE7E /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494728895C3F0057EE7E /* TabButton.swift */; };
+		C8C9494B2889772B0057EE7E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494A2889772B0057EE7E /* ProfileView.swift */; };
+		C8C949622889791F0057EE7E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9495B2889791F0057EE7E /* Strings.swift */; };
+		C8C949632889791F0057EE7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8C9495C2889791F0057EE7E /* Localizable.strings */; };
+		C8C949642889791F0057EE7E /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9495F2889791F0057EE7E /* Language.swift */; };
+		C8C949652889791F0057EE7E /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C949602889791F0057EE7E /* LocalizationService.swift */; };
+		C8C9496728897D110057EE7E /* TitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9496628897D110057EE7E /* TitleBar.swift */; };
+		C8C94969288980AB0057EE7E /* BackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C94968288980AB0057EE7E /* BackButtonView.swift */; };
+		C8C9496B2889867D0057EE7E /* FilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9496A2889867D0057EE7E /* FilterButtonView.swift */; };
+		C8C9496E28898D030057EE7E /* ShipmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9496D28898D030057EE7E /* ShipmentsView.swift */; };
+		C8C94970288992260057EE7E /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9496F288992260057EE7E /* EditButtonView.swift */; };
+		C8C94972288992E30057EE7E /* ShareButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C94971288992E30057EE7E /* ShareButtonView.swift */; };
+		C8C949752889935B0057EE7E /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C949742889935B0057EE7E /* GarageView.swift */; };
+		C8C94977288994B20057EE7E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C94976288994B20057EE7E /* Helper.swift */; };
+		C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9497928899DA80057EE7E /* WalletTabView.swift */; };
 		FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA45B7CE2885155B002A9654 /* HeaderView.swift */; };
 		FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */; };
 		FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEADE422884BDC9004535CE /* Assets.xcassets */; };
@@ -31,9 +45,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C8C9494028895A360057EE7E /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		C8C9494028895A360057EE7E /* WalletIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletIcon.swift; sourceTree = "<group>"; };
 		C8C9494328895B7B0057EE7E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C8C9494728895C3F0057EE7E /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
+		C8C9494A2889772B0057EE7E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C8C9495B2889791F0057EE7E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		C8C9495D2889791F0057EE7E /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C8C9495E2889791F0057EE7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C8C9495F2889791F0057EE7E /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		C8C949602889791F0057EE7E /* LocalizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
+		C8C9496628897D110057EE7E /* TitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBar.swift; sourceTree = "<group>"; };
+		C8C94968288980AB0057EE7E /* BackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonView.swift; sourceTree = "<group>"; };
+		C8C9496A2889867D0057EE7E /* FilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonView.swift; sourceTree = "<group>"; };
+		C8C9496D28898D030057EE7E /* ShipmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentsView.swift; sourceTree = "<group>"; };
+		C8C9496F288992260057EE7E /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
+		C8C94971288992E30057EE7E /* ShareButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButtonView.swift; sourceTree = "<group>"; };
+		C8C949742889935B0057EE7E /* GarageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
+		C8C94976288994B20057EE7E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		C8C9497928899DA80057EE7E /* WalletTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTabView.swift; sourceTree = "<group>"; };
 		FA45B7CE2885155B002A9654 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		FAEADE3B2884BDC7004535CE /* Camel Gate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camel Gate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camel_GateApp.swift; sourceTree = "<group>"; };
@@ -79,6 +108,7 @@
 		C8C94937288958DC0057EE7E /* Shipments */ = {
 			isa = PBXGroup;
 			children = (
+				C8C9496C28898CEA0057EE7E /* View */,
 			);
 			path = Shipments;
 			sourceTree = "<group>";
@@ -86,6 +116,7 @@
 		C8C94938288959080057EE7E /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				C8C94949288977160057EE7E /* View */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -93,6 +124,7 @@
 		C8C949392889590E0057EE7E /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				C8C9497828899D920057EE7E /* View */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -100,6 +132,7 @@
 		C8C9493A288959140057EE7E /* Garage */ = {
 			isa = PBXGroup;
 			children = (
+				C8C94973288993490057EE7E /* View */,
 			);
 			path = Garage;
 			sourceTree = "<group>";
@@ -131,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				FA45B7CE2885155B002A9654 /* HeaderView.swift */,
-				C8C9494028895A360057EE7E /* WalletView.swift */,
+				C8C9494028895A360057EE7E /* WalletIcon.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -153,9 +186,57 @@
 			name = SubViews;
 			sourceTree = "<group>";
 		};
+		C8C94949288977160057EE7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8C9494A2889772B0057EE7E /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8C9495A2889791F0057EE7E /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				C8C9495B2889791F0057EE7E /* Strings.swift */,
+				C8C9495C2889791F0057EE7E /* Localizable.strings */,
+				C8C9495F2889791F0057EE7E /* Language.swift */,
+				C8C949602889791F0057EE7E /* LocalizationService.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		C8C9496C28898CEA0057EE7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8C9496D28898D030057EE7E /* ShipmentsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8C94973288993490057EE7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8C949742889935B0057EE7E /* GarageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8C9497828899D920057EE7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8C9497928899DA80057EE7E /* WalletTabView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FA45B7CD28851544002A9654 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C8C9496628897D110057EE7E /* TitleBar.swift */,
+				C8C94968288980AB0057EE7E /* BackButtonView.swift */,
+				C8C9496A2889867D0057EE7E /* FilterButtonView.swift */,
+				C8C94971288992E30057EE7E /* ShareButtonView.swift */,
+				C8C9496F288992260057EE7E /* EditButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -237,6 +318,8 @@
 		FAEADE512884C094004535CE /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				C8C94976288994B20057EE7E /* Helper.swift */,
+				C8C9495A2889791F0057EE7E /* Localization */,
 				FA45B7CD28851544002A9654 /* Components */,
 				FAE2F1912884FC610081177C /* Resources */,
 			);
@@ -312,6 +395,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = FAEADE322884BDC7004535CE;
 			productRefGroup = FAEADE3C2884BDC7004535CE /* Products */;
@@ -338,6 +422,7 @@
 				FAEADEB62884D3D0004535CE /* SFUIText-RegularItalic.ttf in Resources */,
 				FAEADEB12884D3D0004535CE /* SFUIText-SemiboldItalic.ttf in Resources */,
 				FAEADEB72884D3D0004535CE /* SFUIText-Bold.ttf in Resources */,
+				C8C949632889791F0057EE7E /* Localizable.strings in Resources */,
 				FAEADEB32884D3D0004535CE /* SFUIText-MediumItalic.ttf in Resources */,
 				FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */,
 				FAEADEB82884D3D0004535CE /* SFUIText-HeavyItalic.ttf in Resources */,
@@ -352,17 +437,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C9494B2889772B0057EE7E /* ProfileView.swift in Sources */,
+				C8C94969288980AB0057EE7E /* BackButtonView.swift in Sources */,
 				FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */,
+				C8C94970288992260057EE7E /* EditButtonView.swift in Sources */,
+				C8C949652889791F0057EE7E /* LocalizationService.swift in Sources */,
+				C8C9496E28898D030057EE7E /* ShipmentsView.swift in Sources */,
+				C8C949752889935B0057EE7E /* GarageView.swift in Sources */,
+				C8C94972288992E30057EE7E /* ShareButtonView.swift in Sources */,
+				C8C94977288994B20057EE7E /* Helper.swift in Sources */,
+				C8C949622889791F0057EE7E /* Strings.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
+				C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */,
+				C8C9496B2889867D0057EE7E /* FilterButtonView.swift in Sources */,
+				C8C9496728897D110057EE7E /* TitleBar.swift in Sources */,
 				FAEADE502884C064004535CE /* SplashView.swift in Sources */,
 				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
 				FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */,
-				C8C9494128895A360057EE7E /* WalletView.swift in Sources */,
+				C8C9494128895A360057EE7E /* WalletIcon.swift in Sources */,
 				C8C9494828895C3F0057EE7E /* TabButton.swift in Sources */,
+				C8C949642889791F0057EE7E /* Language.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C8C9495C2889791F0057EE7E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C8C9495D2889791F0057EE7E /* ar */,
+				C8C9495E2889791F0057EE7E /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FAEADE472884BDC9004535CE /* Debug */ = {

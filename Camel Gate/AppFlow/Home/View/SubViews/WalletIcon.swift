@@ -1,5 +1,5 @@
 //
-//  WalletView.swift
+//  WalletIcon.swift
 //  Camel Gate
 //
 //  Created by wecancity on 21/07/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WalletView: View {
+struct WalletIcon: View {
     var body: some View {
         HStack{
             ZStack(alignment: .leading ){
@@ -61,8 +61,8 @@ struct WalletView: View {
     }
 }
 
-struct WalletView_Previews: PreviewProvider {
+struct WalletIcon_Previews: PreviewProvider {
     static var previews: some View {
-        WalletView()
+        WalletIcon()
     }
 }
