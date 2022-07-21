@@ -16,7 +16,7 @@ struct HomeView: View {
                     .offset( y: -30)
             VStack {
                 HeaderView()
-                WalletView()
+                WalletIcon()
             }
             .offset( y: 30)
 
