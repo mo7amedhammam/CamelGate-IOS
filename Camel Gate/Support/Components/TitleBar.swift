@@ -17,13 +17,13 @@ struct TitleBar: View {
     @State var subText: String? = "45"
     
     var trailingAction : () -> Void
-    
     var body: some View {
         VStack {
             ZStack{
-                Image("homeTopMask")
+                Image("TopBarImage")
                     .resizable()
-                    .frame(height: 150)
+                    .frame(height: 160)
+                    .padding(.leading,-1)
                 
                 VStack {
                     HStack(){
@@ -59,12 +59,13 @@ struct TitleBar: View {
                     //                            .font(.custom("SFUIText", fixedSize: 14))
                         .foregroundColor(Color.white)
                         .padding(.horizontal)
+                        .padding(.vertical,5)
                         .background(applyStatus == .applyed ? .green:  .white.opacity(0.35))
                         .cornerRadius(8)
                         .padding(.top,-20)
                 }
             }
-            
+
             Spacer()
         }.ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
