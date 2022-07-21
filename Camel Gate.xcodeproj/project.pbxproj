@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C8C9494128895A360057EE7E /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494028895A360057EE7E /* WalletView.swift */; };
+		C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494328895B7B0057EE7E /* HomeView.swift */; };
+		C8C9494828895C3F0057EE7E /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494728895C3F0057EE7E /* TabButton.swift */; };
 		FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA45B7CE2885155B002A9654 /* HeaderView.swift */; };
 		FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */; };
 		FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEADE422884BDC9004535CE /* Assets.xcassets */; };
@@ -28,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C8C9494028895A360057EE7E /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		C8C9494328895B7B0057EE7E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C8C9494728895C3F0057EE7E /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
 		FA45B7CE2885155B002A9654 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		FAEADE3B2884BDC7004535CE /* Camel Gate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camel Gate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camel_GateApp.swift; sourceTree = "<group>"; };
@@ -60,10 +66,96 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FA45B7CD28851544002A9654 /* Components */ = {
+		C8C94936288958C50057EE7E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C8C9493B288959510057EE7E /* View */,
+				C8C9493D2889595F0057EE7E /* ViewModel */,
+				C8C9493C2889595A0057EE7E /* Model */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C8C94937288958DC0057EE7E /* Shipments */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shipments;
+			sourceTree = "<group>";
+		};
+		C8C94938288959080057EE7E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C8C949392889590E0057EE7E /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		C8C9493A288959140057EE7E /* Garage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Garage;
+			sourceTree = "<group>";
+		};
+		C8C9493B288959510057EE7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8C9494328895B7B0057EE7E /* HomeView.swift */,
+				C8C9494228895B620057EE7E /* SubViews */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8C9493C2889595A0057EE7E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C8C9493D2889595F0057EE7E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C8C9494228895B620057EE7E /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
 				FA45B7CE2885155B002A9654 /* HeaderView.swift */,
+				C8C9494028895A360057EE7E /* WalletView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C8C9494528895C010057EE7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FAEADE6E2884C803004535CE /* TabBarView.swift */,
+				C8C9494628895C0F0057EE7E /* SubViews */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C8C9494628895C0F0057EE7E /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C8C9494728895C3F0057EE7E /* TabButton.swift */,
+			);
+			name = SubViews;
+			sourceTree = "<group>";
+		};
+		FA45B7CD28851544002A9654 /* Components */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -96,10 +188,10 @@
 		FAEADE3D2884BDC7004535CE /* Camel Gate */ = {
 			isa = PBXGroup;
 			children = (
-				FA45B7CD28851544002A9654 /* Components */,
-				FAE2F1912884FC610081177C /* Resources */,
-				FAEADE4C2884C011004535CE /* AppFlow */,
 				FAEADE512884C094004535CE /* Support */,
+				FAEADE4D2884C044004535CE /* App */,
+				FAEADE4E2884C04C004535CE /* Splash */,
+				FAEADE4C2884C011004535CE /* AppFlow */,
 				FAEADE442884BDC9004535CE /* Preview Content */,
 			);
 			path = "Camel Gate";
@@ -117,8 +209,11 @@
 			isa = PBXGroup;
 			children = (
 				FAEADE6D2884C6F7004535CE /* TabBar */,
-				FAEADE4E2884C04C004535CE /* Splash */,
-				FAEADE4D2884C044004535CE /* App */,
+				C8C94936288958C50057EE7E /* Home */,
+				C8C94937288958DC0057EE7E /* Shipments */,
+				C8C9493A288959140057EE7E /* Garage */,
+				C8C949392889590E0057EE7E /* Wallet */,
+				C8C94938288959080057EE7E /* Profile */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -142,6 +237,8 @@
 		FAEADE512884C094004535CE /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				FA45B7CD28851544002A9654 /* Components */,
+				FAE2F1912884FC610081177C /* Resources */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -149,7 +246,7 @@
 		FAEADE6D2884C6F7004535CE /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				FAEADE6E2884C803004535CE /* TabBarView.swift */,
+				C8C9494528895C010057EE7E /* View */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -258,7 +355,10 @@
 				FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
 				FAEADE502884C064004535CE /* SplashView.swift in Sources */,
+				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
 				FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */,
+				C8C9494128895A360057EE7E /* WalletView.swift in Sources */,
+				C8C9494828895C3F0057EE7E /* TabButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
