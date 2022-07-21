@@ -30,7 +30,6 @@ struct MainTabBar : View {
                     .aspectRatio(contentMode: .fit)
                 HeaderView()
                 WalletView()
-                
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .opacity(selectedTab == "Home" ? 1 : 0)
@@ -107,6 +106,7 @@ struct TabButton : View {
     }
   }
 }
+
 // Custom Shape..
 struct CustomShape : Shape {
   func path(in rect: CGRect) -> Path {
@@ -120,7 +120,6 @@ struct TabBarView_Previews: PreviewProvider {
         TabBarView()
     }
 }
-
 
 struct WalletView: View {
     var body: some View {
