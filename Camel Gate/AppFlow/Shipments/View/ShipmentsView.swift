@@ -15,7 +15,6 @@ struct ShipmentsView: View {
         ZStack{
             VStack{
                 Spacer().frame(height:160)
-                
                 HStack{
                     ForEach(shipmentsCategory,id:\.self){ Category in
                         Button(action: {

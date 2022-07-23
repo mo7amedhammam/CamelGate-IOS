@@ -48,7 +48,6 @@ struct ProfileView: View {
                                 })
                                 
                                 Button(action: {
-                                    //                                    TermsAndConditions = true
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "star.fill")
@@ -95,7 +94,6 @@ struct ProfileView: View {
                                             .font(.system(size:18))
                                     }
                                     HStack{
-                                        //                                LanguageView(selection: $patientCreatedVM.GenderId)
                                     }
                                 }
                                 
