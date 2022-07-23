@@ -8,183 +8,198 @@
 import SwiftUI
 
 struct ProfileInfoView: View {
-    
+    let columns =
+    [
+        //    GridItem(.adaptive(minimum: 200),spacing: 0, alignment: .leading),
+        ////    GridItem(.adaptive(minimum: 150),alignment: .center),
+        //    GridItem(.adaptive(minimum: 200),alignment: .leading),
+        
+//        GridItem(.flexible(minimum: 120, maximum: UIScreen.main.bounds.width),alignment: .center),
+//        GridItem(.flexible(minimum: 120, maximum: UIScreen.main.bounds.width),alignment: .center)
+//        //    GridItem(.flexible(),spacing: 2)
+        
+        //    GridItem(.adaptive(minimum: 50),spacing: 2),
+            GridItem(.adaptive(minimum: UIScreen.main.bounds.width)),
+            GridItem(.adaptive(minimum: UIScreen.main.bounds.width))
+        
+    ]
+    var Cargo = ["Metals","Cleaning materials","Wood","Cleaning materials1","Wood1","Wood2","Metals1","Cleaning materials2","Wood3","Cleaning materials3",]
     var body: some View {
         ZStack {
             ScrollView{
-            //MARK:  --- Driver info
-            VStack(spacing:10){
-                HStack {
-                    Text("Driver_info".localized(language))
-                        .bold()
-                        .foregroundColor(.gray)
-                    Spacer()
-                }
-                .padding(.leading)
-                .padding(.vertical,10)
-                .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
-                
-                HStack(){
-                    Image(systemName: "person.fill")
-                        .font(.system(size:25))
-                        .foregroundColor(Color("blueColor"))
-                        .padding(.leading)
-
+                //MARK:  --- Driver info
+                VStack(spacing:10){
+                    HStack {
+                        Text("Driver_info".localized(language))
+                            .bold()
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    .padding(.leading)
+                    .padding(.vertical,10)
+                    .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+                    
+                    HStack(){
+                        Image(systemName: "person.fill")
+                            .font(.system(size:25))
+                            .foregroundColor(Color("blueColor"))
+                            .padding(.leading)
+                        
+                        HStack{
+                            Text("User_Name_:".localized(language))
+                                .foregroundColor(Color("blueColor"))
+                            Text(  Helper.getpatientName() )
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        .padding(.trailing)
+                        Spacer()
+                    }.padding(.leading)
+                    
                     HStack{
-                        Text("User_Name_:".localized(language))
+                        Image(systemName: "phone.fill")
+                            .font(.system(size:25))
                             .foregroundColor(Color("blueColor"))
-                        Text(  Helper.getpatientName() )
-                            .foregroundColor(.secondary)
-                    }
+                            .padding(.leading)
+                        
+                        HStack(){
+                            Text("Patient_Number_:".localized(language))
+                                .foregroundColor(Color("blueColor"))
+                            Text("\(Helper.getUserPhone() )" )
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.trailing)
+                        Spacer()
+                    }.padding(.leading)
                     
-                    .padding(.trailing)
-                    Spacer()
-                }.padding(.leading)
-                
-                HStack{
-                    Image(systemName: "phone.fill")
-                        .font(.system(size:25))
-                        .foregroundColor(Color("blueColor"))
-                        .padding(.leading)
-                    
-                    HStack(){
-                        Text("Patient_Number_:".localized(language))
-                            .foregroundColor(Color("blueColor"))
-                        Text("\(Helper.getUserPhone() )" )
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.trailing)
-                    Spacer()
-                }.padding(.leading)
-                
-                HStack{
-                    Image("x321")
-                        .resizable()
-                        .frame(width: 35, height: 25)
-                        .scaledToFit()
-                        .foregroundColor(Color("blueColor"))
-                        .padding(.leading)
-                    
-                    HStack(){
-                        Text("Driver_barcode_:".localized(language))
-                            .foregroundColor(Color("blueColor"))
-                        Text("\(Helper.getUserPhone() )" )
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.trailing)
-                    Spacer()
-                }.padding(.leading)
-
-                HStack{
-                    Image("x321")
-                        .resizable()
-                        .frame(width: 35, height: 25)
-                        .scaledToFit()
-                        .foregroundColor(Color("blueColor"))
-                        .padding(.leading)
-                    
-                    HStack(){
-                        Text("CamelGate_Number_:".localized(language))
-                            .foregroundColor(Color("blueColor"))
-                        Text("\(Helper.getUserPhone() )" )
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.trailing)
-                    Spacer()
-                }.padding(.leading)
-
-            }
-            .padding(.bottom,20)
-            .padding(.top,110)
-
-            //MARK:  --- Truck info
-            VStack(spacing:10){
-                HStack {
-                    Text("Truck_info".localized(language))
-                        .bold()
-                        .foregroundColor(.gray)
-                    Spacer()
-                }
-                .padding(.leading)
-                .padding(.vertical,10)
-                .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
-                
-                HStack(){
-                    Image("x321")
-                        .resizable()
-                        .frame(width: 35, height: 25)
-                        .scaledToFit()
-                        .foregroundColor(Color("blueColor"))
-                        .padding(.leading)
-
                     HStack{
-                        Text("Truck_Number:".localized(language))
+                        Image("x321")
+                            .resizable()
+                            .frame(width: 35, height: 25)
+                            .scaledToFit()
                             .foregroundColor(Color("blueColor"))
-                        Text(  Helper.getpatientName() )
-                            .foregroundColor(.secondary)
-                    }
+                            .padding(.leading)
+                        
+                        HStack(){
+                            Text("Driver_barcode_:".localized(language))
+                                .foregroundColor(Color("blueColor"))
+                            Text("\(Helper.getUserPhone() )" )
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.trailing)
+                        Spacer()
+                    }.padding(.leading)
                     
-                    .padding(.trailing)
-                    Spacer()
-                }.padding(.leading)
+                    HStack{
+                        Image("x321")
+                            .resizable()
+                            .frame(width: 35, height: 25)
+                            .scaledToFit()
+                            .foregroundColor(Color("blueColor"))
+                            .padding(.leading)
+                        
+                        HStack(){
+                            Text("CamelGate_Number_:".localized(language))
+                                .foregroundColor(Color("blueColor"))
+                            Text("\(Helper.getUserPhone() )" )
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.trailing)
+                        Spacer()
+                    }.padding(.leading)
+                    
+                }
+                .padding(.bottom,20)
+                .padding(.top,110)
                 
-                HStack{
-                    Image("truck")
-                        .resizable()
-                        .frame(width: 35, height: 25)
-                        .scaledToFit()
-                        .foregroundColor(Color("blueColor"))
-                        .padding(.leading)
+                //MARK:  --- Truck info
+                VStack(spacing:10){
+                    HStack {
+                        Text("Truck_info".localized(language))
+                            .bold()
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    .padding(.leading)
+                    .padding(.vertical,10)
+                    .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
                     
                     HStack(){
-                        Text("Patient_Type_:".localized(language))
+                        Image("x321")
+                            .resizable()
+                            .frame(width: 35, height: 25)
+                            .scaledToFit()
                             .foregroundColor(Color("blueColor"))
-                        Text("\(Helper.getUserPhone() )" )
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.trailing)
-                    Spacer()
-                }.padding(.leading)
+                            .padding(.leading)
+                        
+                        HStack{
+                            Text("Truck_Number:".localized(language))
+                                .foregroundColor(Color("blueColor"))
+                            Text(  Helper.getpatientName() )
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        .padding(.trailing)
+                        Spacer()
+                    }.padding(.leading)
+                    
+                    HStack{
+                        Image("truck")
+                            .resizable()
+                            .frame(width: 35, height: 25)
+                            .scaledToFit()
+                            .foregroundColor(Color("blueColor"))
+                            .padding(.leading)
+                        
+                        HStack(){
+                            Text("Patient_Type_:".localized(language))
+                                .foregroundColor(Color("blueColor"))
+                            Text("\(Helper.getUserPhone() )" )
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.trailing)
+                        Spacer()
+                    }.padding(.leading)
+                    
+                    HStack{
+                        Image("x321")
+                            .resizable()
+                            .frame(width: 35, height: 25)
+                            .scaledToFit()
+                            .foregroundColor(Color("blueColor"))
+                            .padding(.leading)
+                        
+                        HStack(){
+                            Text("Driving_license_:".localized(language))
+                                .foregroundColor(Color("blueColor"))
+                            Text("\(Helper.getUserPhone() )" )
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.trailing)
+                        Spacer()
+                    }.padding(.leading)
+                    
+                    HStack{
+                        Image("x321")
+                            .resizable()
+                            .frame(width: 35, height: 25)
+                            .scaledToFit()
+                            .foregroundColor(Color("blueColor"))
+                            .padding(.leading)
+                        
+                        HStack(){
+                            Text("Expired_at_:".localized(language))
+                                .foregroundColor(Color("blueColor"))
+                            Text("\(Helper.getUserPhone() )" )
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.trailing)
+                        Spacer()
+                    }.padding(.leading)
+                    
+                }
+                .padding(.bottom,20)
                 
-                HStack{
-                    Image("x321")
-                        .resizable()
-                        .frame(width: 35, height: 25)
-                        .scaledToFit()
-                        .foregroundColor(Color("blueColor"))
-                        .padding(.leading)
-                    
-                    HStack(){
-                        Text("Driving_license_:".localized(language))
-                            .foregroundColor(Color("blueColor"))
-                        Text("\(Helper.getUserPhone() )" )
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.trailing)
-                    Spacer()
-                }.padding(.leading)
-
-                HStack{
-                    Image("x321")
-                        .resizable()
-                        .frame(width: 35, height: 25)
-                        .scaledToFit()
-                        .foregroundColor(Color("blueColor"))
-                        .padding(.leading)
-                    
-                    HStack(){
-                        Text("Expired_at_:".localized(language))
-                            .foregroundColor(Color("blueColor"))
-                        Text("\(Helper.getUserPhone() )" )
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.trailing)
-                    Spacer()
-                }.padding(.leading)
-
-            }
-            .padding(.bottom,20)
-
                 //MARK:  --- cargo Type
                 VStack(spacing:10){
                     HStack {
@@ -204,21 +219,28 @@ struct ProfileInfoView: View {
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
                             .padding(.leading)
-
+                        
                         HStack{
                             Text("Cargo_I_can_handel_:".localized(language))
                                 .foregroundColor(Color("blueColor"))
-                            Text(  Helper.getpatientName() )
-                                .foregroundColor(.secondary)
                         }
-                        
                         .padding(.trailing)
                         Spacer()
                     }.padding(.leading)
                     
-                    // cargo grid view is here 
+                    LazyVGrid(columns: columns) {
+                        ForEach(Cargo, id: \.self) { item in
+                            Text(item)
+                                .frame(minWidth:(UIScreen.main.bounds.width/2)-40)
+                                .frame(height:40)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 10)
+                                .background(.gray.opacity(0.2))
+                                .cornerRadius(10)
+                        }
+                    }
+                    .padding(.horizontal)
                 }
-                .padding(.bottom,20)
             }
             TitleBar(Title: "Profile_info", navBarHidden: true, leadingButton: .backButton, trailingButton: .editButton, subText: "90%", trailingAction: {
                 
