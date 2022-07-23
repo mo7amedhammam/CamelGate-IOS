@@ -38,12 +38,40 @@ struct ShipmentsView: View {
                                     .stroke(.blue, lineWidth:self.selected == Category ? 1:0))
                         
                     }}
-                ScrollView{
-                }
+                List() {
+                    
+//                    if  true{ // if empty
+//                        Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
+//                            .multilineTextAlignment(.center)
+//                        .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
+//                    }
+                        ForEach(0 ..< 5) { tripItem in
+                            tripCellView()
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
+
+                    }
+                    ZStack{}
+                    .frame( maxHeight: 2)
+                    .foregroundColor(.black)
+                    .onAppear(perform: {
+                       // pagination
+                    })
+                }.refreshable(action: {
+//                    getAllDoctors()
+                })
+                .frame(width: UIScreen.main.bounds.width)
+                .listStyle(.plain)
+                .padding(.vertical,0)
+//                .edgesIgnoringSafeArea(.bottom)
+
             }
+                            .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+
             TitleBar(Title: "Shipments", navBarHidden: true, trailingButton: .filterButton, subText: "55" ,trailingAction: {
             })
         }
+
     }
 }
 

@@ -126,7 +126,7 @@ struct tripCellView: View {
                 .stroke(Color(#colorLiteral(red: 0.6138994098, green: 0.6338609457, blue: 0.6889666915, alpha: 1)), lineWidth: 2.0)
         )
         .cornerRadius(10)
-        .padding()
+//        .padding()
     }
 }
 

@@ -43,7 +43,6 @@ struct HomeView: View {
                         }
                     }
                 }
-//                .offset( y: 30)
             }.padding(.top,30)
         }.navigationBarHidden(true)
     }
