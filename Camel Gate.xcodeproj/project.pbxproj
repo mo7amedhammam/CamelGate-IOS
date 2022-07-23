@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C84EAC7C288C3392000AB6AD /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC7B288C3392000AB6AD /* CircularButton.swift */; };
+		C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */; };
+		C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */; };
 		C8C9494128895A360057EE7E /* WalletIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494028895A360057EE7E /* WalletIcon.swift */; };
 		C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494328895B7B0057EE7E /* HomeView.swift */; };
 		C8C9494828895C3F0057EE7E /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9494728895C3F0057EE7E /* TabButton.swift */; };
@@ -47,6 +49,8 @@
 
 /* Begin PBXFileReference section */
 		C84EAC7B288C3392000AB6AD /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
+		C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		C8C9494028895A360057EE7E /* WalletIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletIcon.swift; sourceTree = "<group>"; };
 		C8C9494328895B7B0057EE7E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C8C9494728895C3F0057EE7E /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
@@ -97,6 +101,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C84EAC7F288C4600000AB6AD /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		C84EAC80288C460A000AB6AD /* RatingAndReviews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RatingAndReviews;
+			sourceTree = "<group>";
+		};
+		C84EAC81288C461B000AB6AD /* ProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C84EAC83288C46B6000AB6AD /* View */,
+				C84EAC82288C4698000AB6AD /* EditProfileInfo */,
+			);
+			path = ProfileInfo;
+			sourceTree = "<group>";
+		};
+		C84EAC82288C4698000AB6AD /* EditProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = EditProfileInfo;
+			sourceTree = "<group>";
+		};
+		C84EAC83288C46B6000AB6AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C8C94936288958C50057EE7E /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +161,9 @@
 			isa = PBXGroup;
 			children = (
 				C8C94949288977160057EE7E /* View */,
+				C84EAC81288C461B000AB6AD /* ProfileInfo */,
+				C84EAC80288C460A000AB6AD /* RatingAndReviews */,
+				C84EAC7F288C4600000AB6AD /* ChangePassword */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -192,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				C8C9494A2889772B0057EE7E /* ProfileView.swift */,
+				C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -450,12 +496,14 @@
 				C8C94972288992E30057EE7E /* ShareButtonView.swift in Sources */,
 				C8C94977288994B20057EE7E /* Helper.swift in Sources */,
 				C8C949622889791F0057EE7E /* Strings.swift in Sources */,
+				C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
 				C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */,
 				C8C9496B2889867D0057EE7E /* FilterButtonView.swift in Sources */,
 				C8C9496728897D110057EE7E /* TitleBar.swift in Sources */,
 				FAEADE502884C064004535CE /* SplashView.swift in Sources */,
 				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
+				C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */,
 				FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */,
 				C8C9494128895A360057EE7E /* WalletIcon.swift in Sources */,
 				C8C9494828895C3F0057EE7E /* TabButton.swift in Sources */,

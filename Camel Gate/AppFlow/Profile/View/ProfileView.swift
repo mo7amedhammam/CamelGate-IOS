@@ -11,14 +11,11 @@ struct ProfileView: View {
     @State var islogout:Bool = false
     @State var goToLogin:Bool = false
     
-    @State var goingToPatientUpdate = false
+    @State var goingToProfileInfo = false
     @State var goingToResetPassword = false
     @State var aboutApp = false
     @State var TermsAndConditions = false
-    
-    @State var name : String?
-    @State var rate : String?
-    @State var tolatrate : String?
+
     var language = LocalizationService.shared.language
     
     var body: some View {
@@ -29,7 +26,7 @@ struct ProfileView: View {
                         VStack(alignment: .leading,spacing:12){
                             Group{
                                 Button(action: {
-                                    self.goingToPatientUpdate.toggle()
+                                    self.goingToProfileInfo.toggle()
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "person.fill")
@@ -49,8 +46,6 @@ struct ProfileView: View {
                                             .font(.system(size:18))
                                     }
                                 })
-                                //                                    .opacity(Helper.userExist() ? 1 : 0.6)
-                                //                                    .disabled(!Helper.userExist())
                                 
                                 Button(action: {
                                     //                                    TermsAndConditions = true
@@ -85,8 +80,6 @@ struct ProfileView: View {
                                             .font(.system(size:18))
                                     }
                                 })
-                                //                                    .opacity(Helper.userExist() ? 1 : 0.6)
-                                //                                .disabled(!Helper.userExist())
                                 
                                 VStack{
                                     HStack(spacing: 10){
@@ -175,65 +168,10 @@ struct ProfileView: View {
                 .background(Color.clear)
 //                .padding(.bottom,20)
                 .padding(.top,260)
-                                VStack{
-                                    ZStack (){
-                                        Image("ProfileBackground")
-                                            .resizable()
-                                            .frame(height:280)
-                                            .padding(.leading,-1)
-                                            .shadow(color: .black.opacity(0.5), radius: 7)
-                                        VStack {
-                                            ZStack(alignment:.bottomTrailing){
-                                                Button(action: {
-                                                    // here if you want to preview image
-                                                }, label: {
-                                                    AsyncImage(url: URL(string:  Helper.getUserimage())) { image in
-                                                        image.resizable()
-                                                    } placeholder: {
-                                                        Color("lightGray").opacity(0.2)
-                                                    }
-                                                    .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
-                                                })
-                                                    .clipShape(Circle())
-                                                    .frame(width: 95, height: 95, alignment: .center)
-                                                    .cornerRadius(10)
-                                                
-                                                CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
-//                                                    self.showImageSheet = true
-                                                }
-                                            }
-                                            
-                                            Text(name ?? "mohamed hammam")
-                                                .font(.title)
-                                                .bold()
-                                                .foregroundColor(.white)
-                                            
-                                            HStack(){
-                                                HStack(){
-                                                Image(systemName:"star.fill").foregroundColor(.orange)
-                                                Text(rate ?? "4.5")
-                                                    .fontWeight(.regular)
-                                                    .foregroundColor(Color.white)
-                                                
-                                            } .padding(.horizontal)
-                                                .padding(.vertical,5)
-                                                .background(.white.opacity(0.35))
-                                                .cornerRadius(8)
-
-                                                Text(tolatrate ?? "(250 Reviews)")
-                                                    .fontWeight(.regular)
-                                                    .foregroundColor(Color.white)
-                                            }
-                                            .padding(.top,-10)
-                                        }
-                                    }
-                                        Spacer()
-                                }
+                ProfileHeader()
             }
             .edgesIgnoringSafeArea(.vertical)
-//            .background(.red)
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
-
             
         }
         .navigationBarHidden(true)
@@ -245,6 +183,10 @@ struct ProfileView: View {
                 islogout = false
             }))
         })
+        
+        NavigationLink(destination: ProfileInfoView(),isActive:$goingToProfileInfo , label: {
+        })
+
     }
 }
 
@@ -255,5 +197,4 @@ struct ProfileView_Previews: PreviewProvider {
         }
     }
 }
-
 

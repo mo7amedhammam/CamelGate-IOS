@@ -9,13 +9,11 @@ import SwiftUI
 
 struct TitleBar: View {
     @State var Title: String?
-    @State var SubTitle: String?
     @State var navBarHidden: Bool?
     @State var leadingButton: TopButtons? = TopButtons.none
     @State var trailingButton: TopButtons? = TopButtons.none
     @State var applyStatus: ApplyStatus? = ApplyStatus.none
     @State var subText: String? = "45"
-    
     var trailingAction : () -> Void
     var body: some View {
         VStack {
@@ -76,7 +74,7 @@ struct TitleBar: View {
 
 struct TitleBar_Previews: PreviewProvider {
     static var previews: some View {
-        TitleBar(Title: "Shipments", SubTitle: "current step", trailingAction: {})
+        TitleBar(Title: "Shipments", trailingAction: {})
     }
 }
 
