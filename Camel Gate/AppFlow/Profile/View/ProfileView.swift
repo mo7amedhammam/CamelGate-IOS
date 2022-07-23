@@ -172,7 +172,8 @@ struct ProfileView: View {
                         .padding()
                     }
                 }
-                .padding(.bottom,20)
+                .background(Color.clear)
+//                .padding(.bottom,20)
                 .padding(.top,260)
                                 VStack{
                                     ZStack (){
@@ -230,7 +231,9 @@ struct ProfileView: View {
                                 }
             }
             .edgesIgnoringSafeArea(.vertical)
-            .background(Color("CLVBG"))
+//            .background(.red)
+            .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+
             
         }
         .navigationBarHidden(true)

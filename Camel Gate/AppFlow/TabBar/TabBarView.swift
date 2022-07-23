@@ -38,7 +38,7 @@ struct MainTabBar : View {
                         
                     }else if selectedTab == "Profile"{
                         ProfileView()
-                        
+
                     }
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
@@ -52,6 +52,7 @@ struct MainTabBar : View {
                     }
                 }
             }
+            
             .padding(.horizontal , 30)
             .padding(.bottom,edges!.bottom == 0 ? 15 : edges!.bottom)
             .background(Color.white)
