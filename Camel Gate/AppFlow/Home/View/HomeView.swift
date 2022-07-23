@@ -19,10 +19,11 @@ struct HomeView: View {
                 }.frame(maxWidth: .infinity, maxHeight: 240).background(Color.clear)
                 Spacer()
             }.edgesIgnoringSafeArea(.all)
+
+            VStack(spacing: 0){
+                HeaderView()
+                WalletIcon()
             ScrollView {
-                VStack(spacing: 0){
-                    HeaderView()
-                    WalletIcon()
                     ShipView()
                     FilterHeaderView()
                     ScrollView(.horizontal , showsIndicators : false) {
@@ -42,8 +43,8 @@ struct HomeView: View {
                         }
                     }
                 }
-                .offset( y: 30)
-            }
+//                .offset( y: 30)
+            }.padding(.top,30)
         }.navigationBarHidden(true)
     }
 }
