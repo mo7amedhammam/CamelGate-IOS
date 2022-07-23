@@ -49,11 +49,7 @@ struct ProfileView: View {
                                             .font(.system(size:18))
                                     }
                                 })
-                                //                                    .opacity(Helper.userExist() ? 1 : 0.6)
-                                //                                    .disabled(!Helper.userExist())
-                                
                                 Button(action: {
-                                    //                                    TermsAndConditions = true
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "star.fill")
@@ -85,9 +81,6 @@ struct ProfileView: View {
                                             .font(.system(size:18))
                                     }
                                 })
-                                //                                    .opacity(Helper.userExist() ? 1 : 0.6)
-                                //                                .disabled(!Helper.userExist())
-                                
                                 VStack{
                                     HStack(spacing: 10){
                                         Image(systemName: "network")
@@ -102,7 +95,6 @@ struct ProfileView: View {
                                             .font(.system(size:18))
                                     }
                                     HStack{
-                                        //                                LanguageView(selection: $patientCreatedVM.GenderId)
                                     }
                                 }
                                 
