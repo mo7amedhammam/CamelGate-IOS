@@ -24,7 +24,7 @@ struct HomeView: View {
                 HeaderView()
                 WalletIcon()
             ScrollView {
-                    ShipView()
+                ShipView().shadow(radius: 5)
                     FilterHeaderView()
                     ScrollView(.horizontal , showsIndicators : false) {
                         HStack {
@@ -39,6 +39,7 @@ struct HomeView: View {
                         VStack{
                             ForEach(0 ..< 5) { tripItem in
                                 tripCellView()
+                                    .padding(.horizontal)
                             }
                         }
                     }

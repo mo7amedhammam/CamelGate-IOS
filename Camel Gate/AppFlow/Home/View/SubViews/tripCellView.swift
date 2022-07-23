@@ -40,20 +40,23 @@ struct tripCellView: View {
                                     VStack(spacing: 3){
                                         HStack(spacing: 3){
                                             Text("1,200").foregroundColor(Color.white)
-                                            Text("SAR").foregroundColor(Color.white).fontWeight(.bold)
+                                                .font(Font.camelfonts.Reg16)
+
+                                            Text("SAR").foregroundColor(Color.white)
+                                                .font(Font.camelfonts.Bold16)
                                         }
                                         Text("Lowest Offer").foregroundColor(Color.white)
-                                            .font(.custom("SFUIText-Medium", fixedSize: 12))
+                                            .font(Font.camelfonts.Med14)
                                     }.padding()
                                 }
                             }.frame(height: 109)
                             Spacer()
                             HStack{
                                 Text("240").foregroundColor(Color.black)
-                                    .font(.custom("SFUIText-Medium", fixedSize: 12))
                                 Text("Offers").foregroundColor(Color.gray)
-                                    .font(.custom("SFUIText-Medium", fixedSize: 12))
                             }
+                            .font(Font.camelfonts.Med14)
+
                         }.frame(height: 150)
                         Spacer()
                         VStack{
@@ -61,10 +64,10 @@ struct tripCellView: View {
                                 Image("ic_dark_truck")
                                 Text("Distance : ")
                                     .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
-                                    .font(.custom("SFUIText-Regular", fixedSize: 11.0))
+                                    .font(Font.camelfonts.Reg14)
                                 Text("240 KM")
                                     .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
-                                    .font(.custom("SFUIText-Medium", fixedSize: 12.0))
+                                    .font(Font.camelfonts.Reg14)
                                 Spacer()
                                 Button(action: {}) {
                                     Image("ic_share")
@@ -81,17 +84,20 @@ struct tripCellView: View {
                                         VStack(alignment: .leading){
                                             Text("Giza").foregroundColor(Color("Base_Color"))
                                             HStack{
-                                                Text("22/05/2022").font(.custom("SFUIText-Regular", fixedSize: 11.0))
-                                                Text(".  1:30 AM").font(.custom("SFUIText-Regular", fixedSize: 11.0))
+                                                Text("22/05/2022")
+                                                Text(".  1:30 AM")
                                             }
+                                            .font(Font.camelfonts.Reg14)
+
                                         }
                                         VStack(alignment: .leading){
                                             Text("Alexandria").foregroundColor(Color("Second_Color"))
                                             HStack{
-                                                Text("23/05/2022").font(.custom("SFUIText-Regular", fixedSize: 11.0))
+                                                Text("23/05/2022")
                                                 Text(".  4:30 PM")
-                                                    .font(.custom("SFUIText-Regular", fixedSize: 11.0))
                                             }
+                                            .font(Font.camelfonts.Reg14)
+
                                         }
                                     }
                                 }
@@ -108,12 +114,11 @@ struct tripCellView: View {
                         Image("ic_box")
                         HStack{
                             Text("6").foregroundColor(Color.black)
-                                .font(.custom("SFUIText-Medium", fixedSize: 12))
                             Text("Tons  .").foregroundColor(Color.gray)
-                                .font(.custom("SFUIText-Medium", fixedSize: 12))
                             Text("Cleaning Materials").foregroundColor(Color.gray)
-                                .font(.custom("SFUIText-Medium", fixedSize: 12))
                         }
+                        .font(Font.camelfonts.Med14)
+
                         Spacer()
                     }.padding()
                 }

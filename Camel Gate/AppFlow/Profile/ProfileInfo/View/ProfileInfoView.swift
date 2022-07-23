@@ -10,18 +10,8 @@ import SwiftUI
 struct ProfileInfoView: View {
     let columns =
     [
-        //    GridItem(.adaptive(minimum: 200),spacing: 0, alignment: .leading),
-        ////    GridItem(.adaptive(minimum: 150),alignment: .center),
-        //    GridItem(.adaptive(minimum: 200),alignment: .leading),
-        
-//        GridItem(.flexible(minimum: 120, maximum: UIScreen.main.bounds.width),alignment: .center),
-//        GridItem(.flexible(minimum: 120, maximum: UIScreen.main.bounds.width),alignment: .center)
-//        //    GridItem(.flexible(),spacing: 2)
-        
-        //    GridItem(.adaptive(minimum: 50),spacing: 2),
             GridItem(.adaptive(minimum: UIScreen.main.bounds.width)),
             GridItem(.adaptive(minimum: UIScreen.main.bounds.width))
-        
     ]
     var Cargo = ["Metals","Cleaning materials","Wood","Cleaning materials1","Wood1","Wood2","Metals1","Cleaning materials2","Wood3","Cleaning materials3",]
     var body: some View {
@@ -47,9 +37,11 @@ struct ProfileInfoView: View {
                         
                         HStack{
                             Text("User_Name_:".localized(language))
+                                .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text(  Helper.getpatientName() )
-                                .foregroundColor(.secondary)
+                                .font(Font.camelfonts.Reg16)
+                                .foregroundColor(.black.opacity(0.8))
                         }
                         
                         .padding(.trailing)
@@ -63,10 +55,12 @@ struct ProfileInfoView: View {
                             .padding(.leading)
                         
                         HStack(){
-                            Text("Patient_Number_:".localized(language))
+                            Text("User_Number_:".localized(language))
+                                .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("\(Helper.getUserPhone() )" )
-                                .foregroundColor(.secondary)
+                                .font(Font.camelfonts.Reg16)
+                                .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.trailing)
                         Spacer()
@@ -82,9 +76,11 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("Driver_barcode_:".localized(language))
+                                .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("\(Helper.getUserPhone() )" )
-                                .foregroundColor(.secondary)
+                                .font(Font.camelfonts.Reg16)
+                                .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.trailing)
                         Spacer()
@@ -100,9 +96,11 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("CamelGate_Number_:".localized(language))
+                                .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("\(Helper.getUserPhone() )" )
-                                .foregroundColor(.secondary)
+                                .font(Font.camelfonts.Reg16)
+                                .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.trailing)
                         Spacer()
@@ -134,9 +132,11 @@ struct ProfileInfoView: View {
                         
                         HStack{
                             Text("Truck_Number:".localized(language))
+                                .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text(  Helper.getpatientName() )
-                                .foregroundColor(.secondary)
+                                .font(Font.camelfonts.Reg16)
+                                .foregroundColor(.black.opacity(0.8))
                         }
                         
                         .padding(.trailing)
@@ -153,9 +153,11 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("Patient_Type_:".localized(language))
+                                .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("\(Helper.getUserPhone() )" )
-                                .foregroundColor(.secondary)
+                                .font(Font.camelfonts.Reg16)
+                                .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.trailing)
                         Spacer()
@@ -171,9 +173,11 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("Driving_license_:".localized(language))
+                                .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("\(Helper.getUserPhone() )" )
-                                .foregroundColor(.secondary)
+                                .font(Font.camelfonts.Reg16)
+                                .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.trailing)
                         Spacer()
@@ -189,9 +193,11 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("Expired_at_:".localized(language))
+                                .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("\(Helper.getUserPhone() )" )
-                                .foregroundColor(.secondary)
+                                .font(Font.camelfonts.Reg16)
+                                .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.trailing)
                         Spacer()
@@ -222,6 +228,7 @@ struct ProfileInfoView: View {
                         
                         HStack{
                             Text("Cargo_I_can_handel_:".localized(language))
+                                .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                         }
                         .padding(.trailing)
@@ -232,9 +239,11 @@ struct ProfileInfoView: View {
                         ForEach(Cargo, id: \.self) { item in
                             Text(item)
                                 .frame(minWidth:(UIScreen.main.bounds.width/2)-40)
-                                .frame(height:40)
+                                .frame(height:15)
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 10)
+                                .font(Font.camelfonts.Reg16)
+                                .foregroundColor(.black.opacity(0.6))
                                 .background(.gray.opacity(0.2))
                                 .cornerRadius(10)
                         }

@@ -27,6 +27,7 @@
 		C8C949752889935B0057EE7E /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C949742889935B0057EE7E /* GarageView.swift */; };
 		C8C94977288994B20057EE7E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C94976288994B20057EE7E /* Helper.swift */; };
 		C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9497928899DA80057EE7E /* WalletTabView.swift */; };
+		C8DB51A9288CB45F004521C8 /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB51A8288CB45F004521C8 /* FontsExtension.swift */; };
 		FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA45B7CE2885155B002A9654 /* HeaderView.swift */; };
 		FA4E27AD288C537E0047265D /* ShipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AC288C537E0047265D /* ShipView.swift */; };
 		FA4E27AF288C53A20047265D /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AE288C53A20047265D /* FilterHeaderView.swift */; };
@@ -73,6 +74,8 @@
 		C8C949742889935B0057EE7E /* GarageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
 		C8C94976288994B20057EE7E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		C8C9497928899DA80057EE7E /* WalletTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTabView.swift; sourceTree = "<group>"; };
+		C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Camel-Gate-Info.plist"; sourceTree = SOURCE_ROOT; };
+		C8DB51A8288CB45F004521C8 /* FontsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
 		FA45B7CE2885155B002A9654 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		FA4E27AC288C537E0047265D /* ShipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipView.swift; sourceTree = "<group>"; };
 		FA4E27AE288C53A20047265D /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
@@ -330,6 +333,7 @@
 		FAEADE3D2884BDC7004535CE /* Camel Gate */ = {
 			isa = PBXGroup;
 			children = (
+				C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */,
 				FAEADE512884C094004535CE /* Support */,
 				FAEADE4D2884C044004535CE /* App */,
 				FAEADE4E2884C04C004535CE /* Splash */,
@@ -410,6 +414,7 @@
 				FAEADEAA2884D3D0004535CE /* SFUIText-RegularItalic.ttf */,
 				FAEADEA92884D3D0004535CE /* SFUIText-Semibold.ttf */,
 				FAEADEA52884D3CF004535CE /* SFUIText-SemiboldItalic.ttf */,
+				C8DB51A8288CB45F004521C8 /* FontsExtension.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -516,6 +521,7 @@
 				C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */,
 				C8C9496B2889867D0057EE7E /* FilterButtonView.swift in Sources */,
 				C8C9496728897D110057EE7E /* TitleBar.swift in Sources */,
+				C8DB51A9288CB45F004521C8 /* FontsExtension.swift in Sources */,
 				FAEADE502884C064004535CE /* SplashView.swift in Sources */,
 				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
 				C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */,
@@ -670,6 +676,7 @@
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Camel-Gate-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -699,6 +706,7 @@
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Camel-Gate-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

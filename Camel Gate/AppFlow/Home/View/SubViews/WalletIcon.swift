@@ -17,6 +17,8 @@ struct WalletIcon: View {
                     Text("Wallet").foregroundColor(Color.white.opacity(0.7))
                     Text("12,400").foregroundColor(Color.white)
                 }.padding()
+                    .font(Font.camelfonts.Reg16)
+
             }.frame(height: 140)
             ZStack(alignment: .leading ){
                 VStack(spacing: 0 ){
@@ -24,10 +26,10 @@ struct WalletIcon: View {
                         Image("ic_car_track")
                         VStack(alignment: .leading ){
                             Text("21").foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
-                                .font(.custom("SFUIText-Bold", fixedSize: 20))
+                                .font(Font.camelfonts.Bold20)
                             Text("Upcoming Trips")
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
-                                .font(.custom("SFUIText-Medium", fixedSize: 12))
+                                .font(Font.camelfonts.Med11)
                         }
                         Spacer()
                     }
@@ -38,10 +40,10 @@ struct WalletIcon: View {
                         Image("ic_money")
                         VStack(alignment: .leading ){
                             Text("6,700").foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
-                                .font(.custom("SFUIText-Bold", fixedSize: 20))
+                                .font(Font.camelfonts.Bold20)
                             Text("This Month Money")
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
-                                .font(.custom("SFUIText-Medium", fixedSize: 12))
+                            .font(Font.camelfonts.Med11)
                         }
                         Spacer()
                     }

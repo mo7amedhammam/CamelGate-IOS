@@ -31,7 +31,8 @@ struct TitleBar: View {
                             Spacer().frame(width: 60)
                         }
                         Spacer()
-                        Text(Title ?? "").font(.title2)
+                        Text(Title ?? "")
+                            .font(.custom("SFUIText", fixedSize: 24))
                             .foregroundColor(.white)
                         
                         Spacer()
@@ -53,8 +54,7 @@ struct TitleBar: View {
                     .frame(height: 80)
                     
                     Text(subText ?? "")
-                        .fontWeight(.regular)
-                    //                            .font(.custom("SFUIText", fixedSize: 14))
+                        .font(.custom("SFUIText", fixedSize: 14))
                         .foregroundColor(Color.white)
                         .padding(.horizontal)
                         .padding(.vertical,5)

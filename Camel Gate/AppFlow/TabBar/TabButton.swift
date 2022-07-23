@@ -40,9 +40,8 @@ struct TabButton : View {
           .frame(width: 24, height: 24)
 
         Text(title)
-          .font(.caption)
-          .fontWeight(.bold)
-          .foregroundColor(Color("Base_Color").opacity(selectedTab == title ? 1.0 : 0.2))
+              .font(Font.camelfonts.SemiBold14)
+              .foregroundColor(Color("Base_Color").opacity(selectedTab == title ? 1.0 : 0.2))
       }
     }
   }
