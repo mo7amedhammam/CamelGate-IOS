@@ -11,7 +11,7 @@ struct WalletView: View {
     var body: some View {
         ZStack{
          
-            TitleBar(Title: "Wallet", SubTitle: "", navBarHidden: true, trailingButton: .filterButton ,trailingAction: {
+            TitleBar(Title: "Wallet", navBarHidden: true, trailingButton: .filterButton ,trailingAction: {
             })
         }
     }

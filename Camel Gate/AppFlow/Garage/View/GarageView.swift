@@ -11,7 +11,7 @@ struct GarageView: View {
     var body: some View {
         ZStack{
          
-            TitleBar(Title: "Garage Shipments", SubTitle: "", navBarHidden: true, trailingButton: .filterButton, applyStatus: .applyed,subText: "Applied"  ,trailingAction: {
+            TitleBar(Title: "Garage Shipments", navBarHidden: true, trailingButton: .filterButton, applyStatus: .applyed,subText: "Applied"  ,trailingAction: {
             })
         }
     }

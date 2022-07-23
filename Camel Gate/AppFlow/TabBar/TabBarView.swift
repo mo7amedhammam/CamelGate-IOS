@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+var language = LocalizationService.shared.language
 
 var tabs = ["Home","Shipments","Garage","Wallet","Profile"]
 struct TabBarView: View {
@@ -52,7 +53,6 @@ struct MainTabBar : View {
                     }
                 }
             }
-            
             .padding(.horizontal , 30)
             .padding(.bottom,edges!.bottom == 0 ? 15 : edges!.bottom)
             .background(Color.white)

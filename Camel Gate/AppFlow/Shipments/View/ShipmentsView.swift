@@ -41,7 +41,7 @@ struct ShipmentsView: View {
                 ScrollView{
                 }
             }
-            TitleBar(Title: "Shipments", SubTitle: "", navBarHidden: true, trailingButton: .filterButton, subText: "55" ,trailingAction: {
+            TitleBar(Title: "Shipments", navBarHidden: true, trailingButton: .filterButton, subText: "55" ,trailingAction: {
             })
         }
     }
