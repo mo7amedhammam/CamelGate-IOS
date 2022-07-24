@@ -74,7 +74,7 @@
 		C8C949742889935B0057EE7E /* GarageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
 		C8C94976288994B20057EE7E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		C8C9497928899DA80057EE7E /* WalletTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTabView.swift; sourceTree = "<group>"; };
-		C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Camel-Gate-Info.plist"; sourceTree = SOURCE_ROOT; };
+		C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Camel-Gate-Info.plist"; path = "../Camel-Gate-Info.plist"; sourceTree = "<group>"; };
 		C8DB51A8288CB45F004521C8 /* FontsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
 		FA45B7CE2885155B002A9654 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		FA4E27AC288C537E0047265D /* ShipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipView.swift; sourceTree = "<group>"; };
