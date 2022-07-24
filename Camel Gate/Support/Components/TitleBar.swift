@@ -13,6 +13,8 @@ struct TitleBar: View {
     @State var leadingButton: TopButtons? = TopButtons.none
     @State var trailingButton: TopButtons? = TopButtons.none
     @State var applyStatus: ApplyStatus? = ApplyStatus.none
+    @State var IsSubTextRate: Bool? = false
+
     @State var subText: String? = "45"
     var trailingAction : () -> Void
     var body: some View {
@@ -32,7 +34,7 @@ struct TitleBar: View {
                         }
                         Spacer()
                         Text(Title ?? "")
-                            .font(.custom("SFUIText", fixedSize: 24))
+                            .font(Font.camelfonts.Med22)
                             .foregroundColor(.white)
                         
                         Spacer()
@@ -53,14 +55,23 @@ struct TitleBar: View {
                     .padding(.horizontal)
                     .frame(height: 80)
                     
-                    Text(subText ?? "")
-                        .font(.custom("SFUIText", fixedSize: 14))
-                        .foregroundColor(Color.white)
-                        .padding(.horizontal)
-                        .padding(.vertical,5)
-                        .background(applyStatus == .applyed ? .green:  .white.opacity(0.35))
-                        .cornerRadius(8)
+                    HStack {
+                        if IsSubTextRate == true {
+                            Image(systemName: "star.fill")
+                                .font(.system(size:15))
+                                .foregroundColor(.orange)
+                        }
+                        
+                        Text(subText ?? "")
+                            .font(Font.camelfonts.Reg16)
+                    }
+                            .foregroundColor(Color.white)
+                            .padding(.horizontal)
+                            .padding(.vertical,5)
+                            .background(applyStatus == .applyed ? .green:  .white.opacity(0.35))
+                            .cornerRadius(8)
                         .padding(.top,-20)
+                    
                 }
             }
 
