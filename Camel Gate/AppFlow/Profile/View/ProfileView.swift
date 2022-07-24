@@ -12,6 +12,8 @@ struct ProfileView: View {
     @State var goToLogin:Bool = false
     
     @State var goingToProfileInfo = false
+    @State var goingToRating = false
+
     @State var goingToResetPassword = false
     @State var aboutApp = false
     @State var TermsAndConditions = false
@@ -48,6 +50,7 @@ struct ProfileView: View {
                                 })
                                 
                                 Button(action: {
+                                    goingToRating = true
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "star.fill")
@@ -183,6 +186,9 @@ struct ProfileView: View {
         })
         
         NavigationLink(destination: ProfileInfoView(),isActive:$goingToProfileInfo , label: {
+        })
+
+        NavigationLink(destination: RatingView(),isActive:$goingToRating , label: {
         })
 
     }

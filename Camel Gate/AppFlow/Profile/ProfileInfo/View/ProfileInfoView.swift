@@ -13,15 +13,34 @@ struct ProfileInfoView: View {
             GridItem(.adaptive(minimum: UIScreen.main.bounds.width)),
             GridItem(.adaptive(minimum: UIScreen.main.bounds.width))
     ]
-    var Cargo = ["Metals","Cleaning materials","Wood","Cleaning materials1","Wood1","Wood2","Metals1","Cleaning materials2","Wood3","Cleaning materials3",]
+    var Cargo = ["Metals","Cleaning materials","Wood","Cleaning materials1","Wood1","Wood2","Metals1","Cleaning materials2","Wood3","Cleaning materials3"]
+    @State var goingToEditProfileInfo = false
+
     var body: some View {
         ZStack {
             ScrollView{
                 //MARK:  --- Driver info
                 VStack(spacing:10){
+                    
+                    HStack {
+                        Text("Driver_barCode".localized(language))
+                            .font(Font.camelfonts.SemiBold16)
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    .padding(.leading)
+                    .padding(.vertical,10)
+                    .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+                    
+                        Image("driver-barcode")
+                        .resizable()
+                        .frame(height:40)
+                        .padding(.vertical,5)
+                        .padding(.horizontal,40)
+                  
                     HStack {
                         Text("Driver_info".localized(language))
-                            .bold()
+                            .font(Font.camelfonts.SemiBold16)
                             .foregroundColor(.gray)
                         Spacer()
                     }
@@ -31,7 +50,7 @@ struct ProfileInfoView: View {
                     
                     HStack(){
                         Image(systemName: "person.fill")
-                            .font(.system(size:25))
+                            .font(.system(size:20))
                             .foregroundColor(Color("blueColor"))
                             .padding(.leading)
                         
@@ -50,7 +69,7 @@ struct ProfileInfoView: View {
                     
                     HStack{
                         Image(systemName: "phone.fill")
-                            .font(.system(size:25))
+                            .font(.system(size:20))
                             .foregroundColor(Color("blueColor"))
                             .padding(.leading)
                         
@@ -69,7 +88,7 @@ struct ProfileInfoView: View {
                     HStack{
                         Image("x321")
                             .resizable()
-                            .frame(width: 35, height: 25)
+                            .frame(width: 30, height: 20)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
                             .padding(.leading)
@@ -89,7 +108,7 @@ struct ProfileInfoView: View {
                     HStack{
                         Image("x321")
                             .resizable()
-                            .frame(width: 35, height: 25)
+                            .frame(width: 30, height: 20)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
                             .padding(.leading)
@@ -114,7 +133,7 @@ struct ProfileInfoView: View {
                 VStack(spacing:10){
                     HStack {
                         Text("Truck_info".localized(language))
-                            .bold()
+                            .font(Font.camelfonts.SemiBold16)
                             .foregroundColor(.gray)
                         Spacer()
                     }
@@ -125,7 +144,7 @@ struct ProfileInfoView: View {
                     HStack(){
                         Image("x321")
                             .resizable()
-                            .frame(width: 35, height: 25)
+                            .frame(width: 30, height: 20)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
                             .padding(.leading)
@@ -146,7 +165,7 @@ struct ProfileInfoView: View {
                     HStack{
                         Image("truck")
                             .resizable()
-                            .frame(width: 35, height: 25)
+                            .frame(width: 30, height: 20)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
                             .padding(.leading)
@@ -166,7 +185,7 @@ struct ProfileInfoView: View {
                     HStack{
                         Image("x321")
                             .resizable()
-                            .frame(width: 35, height: 25)
+                            .frame(width: 30, height: 20)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
                             .padding(.leading)
@@ -186,7 +205,7 @@ struct ProfileInfoView: View {
                     HStack{
                         Image("x321")
                             .resizable()
-                            .frame(width: 35, height: 25)
+                            .frame(width: 30, height: 20)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
                             .padding(.leading)
@@ -210,7 +229,7 @@ struct ProfileInfoView: View {
                 VStack(spacing:10){
                     HStack {
                         Text("Cargo_Type".localized(language))
-                            .bold()
+                            .font(Font.camelfonts.SemiBold16)
                             .foregroundColor(.gray)
                         Spacer()
                     }
@@ -221,7 +240,7 @@ struct ProfileInfoView: View {
                     HStack(){
                         Image("Cargo")
                             .resizable()
-                            .frame(width: 25, height: 25)
+                            .frame(width: 20, height: 20)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
                             .padding(.leading)
@@ -252,9 +271,11 @@ struct ProfileInfoView: View {
                 }
             }
             TitleBar(Title: "Profile_info", navBarHidden: true, leadingButton: .backButton, trailingButton: .editButton, subText: "90%", trailingAction: {
-                
+                goingToEditProfileInfo = true
             })
         }
+        NavigationLink(destination: EditProfileInfoView(),isActive:$goingToEditProfileInfo , label: {
+        })
     }
 }
 
