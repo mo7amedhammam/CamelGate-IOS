@@ -18,6 +18,7 @@ struct ShipView: View {
                         .foregroundColor(Color.white)
                     Spacer()
                 }
+                .font(Font.camelfonts.Med16)
                 .padding(.leading)
             }
             .frame(height: 50)
@@ -32,12 +33,17 @@ struct ShipView: View {
                                 Text(".")
                                 Text("1:30 AM")
                             }
+                            
                         }
+                        .font(Font.camelfonts.Reg16)
+
                         Spacer()
                         Button(action: {}) {
                             ZStack{
                                 Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
                                 Text("Location").foregroundColor(Color(#colorLiteral(red: 0.2833708227, green: 0.149017632, blue: 0.4966977239, alpha: 1)))
+                                    .font(Font.camelfonts.Reg16)
+
                             }.cornerRadius(8)
                         }
                     }
@@ -47,6 +53,7 @@ struct ShipView: View {
                         .frame(height: 40 )
                     HStack {
                         Text("On the Way to Upload")
+                            .font(Font.camelfonts.Reg16)
                             .foregroundColor(Color.gray)
                             .frame(height: 20)
                         Spacer()
@@ -54,8 +61,12 @@ struct ShipView: View {
                 }
             }
             ZStack{
-                Image("ic_ship_orange").resizable()
+                Image("ic_ship_orange")
+                    .resizable()
+                    .padding(.horizontal,-20)
                 Text("Uploaded").foregroundColor(Color.white)
+                    .font(Font.camelfonts.Reg16)
+
             }
             .frame(height: 50)
         }

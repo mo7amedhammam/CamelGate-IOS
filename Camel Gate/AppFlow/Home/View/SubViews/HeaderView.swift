@@ -14,17 +14,13 @@ struct HeaderView: View {
             VStack(alignment: .leading ){
                 HStack{
                     Text("Tawfiq Sweedy")
-                        .font(.custom(
-                            "SFUIText",
-                            fixedSize: 19))
-                        .fontWeight(.bold)
+                        .font(Font.camelfonts.Bold18)
                         .foregroundColor(Color.white)
                     HStack{
                         Text("")
                         Image("ic_star")
                         Text("4.5  ")
-                            .font(.custom("SFUIText", fixedSize: 11))
-                            .fontWeight(.regular)
+                            .font(Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)
                     }
                     .padding(3.0)
@@ -34,9 +30,7 @@ struct HeaderView: View {
                 HStack{
                     Image("ic_location")
                     Text("2nd department, October, Giza")
-                        .font(.custom(
-                            "SFUIText",
-                            fixedSize: 12))
+                        .font(Font.camelfonts.Reg14)
                         .foregroundColor(Color.white)
                 }
             }

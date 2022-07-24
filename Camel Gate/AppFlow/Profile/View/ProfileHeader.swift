@@ -41,16 +41,15 @@ struct ProfileHeader: View {
                         }
                     }
                     
-                    Text(name ?? "mohamed hammam")
-                        .font(.title)
-                        .bold()
+                    Text(name ?? "Mohamed Hammam")
+                        .font(Font.camelfonts.Bold20)
                         .foregroundColor(.white)
                     
                     HStack(){
                         HStack(){
                             Image(systemName:"star.fill").foregroundColor(.orange)
                             Text(rate ?? "4.5")
-                                .fontWeight(.regular)
+                                .font(Font.camelfonts.Reg14)
                                 .foregroundColor(Color.white)
                             
                         } .padding(.horizontal)
@@ -58,8 +57,8 @@ struct ProfileHeader: View {
                             .background(.white.opacity(0.35))
                             .cornerRadius(8)
                         
-                        Text(tolatrate ?? "(250 Reviews)")
-                            .fontWeight(.regular)
+                        Text(tolatrate ?? "( 250 Reviews )")
+                            .font(Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)
                     }
                     .padding(.top,-10)

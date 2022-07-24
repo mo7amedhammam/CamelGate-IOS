@@ -149,7 +149,7 @@ struct ProfileView: View {
                                 })
                             }
                             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                            .font(.system(size: 13))
+                            .font(Font.camelfonts.Reg14)
                             .padding(12)
                             .disableAutocorrection(true)
                             .background(

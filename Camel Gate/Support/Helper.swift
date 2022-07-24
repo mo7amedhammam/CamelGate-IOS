@@ -50,7 +50,7 @@ final class Helper{
         return userDef.string(forKey: "PhoneNumber") ?? ""
     }
     class func getpatientName() ->String {
-        return userDef.string(forKey: "patientName") ?? ""
+        return userDef.string(forKey: "patientName") ?? "Mohamed Hammam"
     }
     
     class func setUserimage(userImage : String) {
