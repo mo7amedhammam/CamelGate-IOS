@@ -17,7 +17,7 @@ struct BackButtonView: View {
                 .renderingMode(.original)
                 .foregroundColor(.white)
                 .padding()
-                .font(.system(size: 22, weight: .bold))
+                .font(.system(size: 17, weight: .bold))
                 .background(
                     Rectangle()
                         .fill(LinearGradient(gradient:Gradient(colors: [Color.gray, Color.gray ]),startPoint: .center,endPoint: .trailing)

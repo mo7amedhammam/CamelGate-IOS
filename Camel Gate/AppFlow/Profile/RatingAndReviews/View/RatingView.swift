@@ -17,7 +17,6 @@ struct RatingView: View {
                 .padding(.top)
             }.padding(.top,100)
             
-            
             TitleBar(Title: "Rating_&_Reviews".localized(language), navBarHidden: true, leadingButton: .backButton, IsSubTextRate: true,subText: "4.5", trailingAction: {})
 
         }.background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))

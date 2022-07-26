@@ -11,15 +11,13 @@ struct ProfileView: View {
     @State var islogout:Bool = false
     @State var goToLogin:Bool = false
     
-    @State var goingToProfileInfo = false
-    @State var goingToRating = false
-
-    @State var goingToResetPassword = false
     @State var aboutApp = false
     @State var TermsAndConditions = false
+    
+    @State var active = false
+    @State var destination = AnyView(ProfileInfoView())
 
     var language = LocalizationService.shared.language
-    
     var body: some View {
         NavigationView {
             ZStack{
@@ -28,11 +26,12 @@ struct ProfileView: View {
                         VStack(alignment: .leading,spacing:12){
                             Group{
                                 Button(action: {
-                                    self.goingToProfileInfo.toggle()
+                                    active = true
+                                    destination = AnyView(ProfileInfoView())
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "person.fill")
-                                            .font(.system(size:25))
+                                            .font(.system(size:20))
                                             .foregroundColor(Color("blueColor"))
                                         
                                         Text("Profile_info".localized(language))
@@ -45,16 +44,17 @@ struct ProfileView: View {
                                         
                                         Image(systemName: "chevron.forward")
                                             .foregroundColor(Color("lightGray"))
-                                            .font(.system(size:18))
+                                            .font(.system(size:15))
                                     }
                                 })
                                 
                                 Button(action: {
-                                    goingToRating = true
+                                    active = true
+                                    destination = AnyView(RatingView())
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "star.fill")
-                                            .font(.system(size:25))
+                                            .font(.system(size:20))
                                             .foregroundColor(Color("blueColor"))
                                         
                                         Text("Rating_and_Reviews".localized(language))
@@ -62,16 +62,17 @@ struct ProfileView: View {
                                         Spacer()
                                         Image(systemName: "chevron.forward")
                                             .foregroundColor(Color("lightGray"))
-                                            .font(.system(size:18))
+                                            .font(.system(size:15))
                                     }
                                 })
                                 
                                 Button(action: {
-                                    self.goingToResetPassword.toggle()
+                                    active = true
+                                    destination = AnyView(NoteScreenView())
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "lock.fill")
-                                            .font(.system(size:25))
+                                            .font(.system(size:20))
                                             .foregroundColor(Color("blueColor"))
                                         
                                         Text("Change_Password".localized(language))
@@ -79,14 +80,14 @@ struct ProfileView: View {
                                         Spacer()
                                         Image(systemName: "chevron.forward")
                                             .foregroundColor(Color("lightGray"))
-                                            .font(.system(size:18))
+                                            .font(.system(size:15))
                                     }
                                 })
                                 
                                 VStack{
                                     HStack(spacing: 10){
                                         Image(systemName: "network")
-                                            .font(.system(size:25))
+                                            .font(.system(size:20))
                                             .foregroundColor(Color("blueColor"))
                                         
                                         Text("Change_Language".localized(language))
@@ -94,7 +95,7 @@ struct ProfileView: View {
                                         Spacer()
                                         Image(systemName: "chevron.forward")
                                             .foregroundColor(Color("lightGray"))
-                                            .font(.system(size:18))
+                                            .font(.system(size:15))
                                     }
                                     HStack{
                                     }
@@ -105,7 +106,7 @@ struct ProfileView: View {
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "phone.fill")
-                                            .font(.system(size:25))
+                                            .font(.system(size:20))
                                             .foregroundColor(Color("blueColor"))
                                         
                                         Text("Get_in_Touch".localized(language))
@@ -113,7 +114,7 @@ struct ProfileView: View {
                                         Spacer()
                                         Image(systemName: "chevron.forward")
                                             .foregroundColor(Color("lightGray"))
-                                            .font(.system(size:18))
+                                            .font(.system(size:15))
                                     }
                                 })
                                 
@@ -121,7 +122,7 @@ struct ProfileView: View {
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "exclamationmark.circle.fill")
-                                            .font(.system(size:25))
+                                            .font(.system(size:20))
                                             .foregroundColor(Color("blueColor"))
                                         
                                         Text("Help".localized(language))
@@ -129,7 +130,7 @@ struct ProfileView: View {
                                         Spacer()
                                         Image(systemName: "chevron.forward")
                                             .foregroundColor(Color("lightGray"))
-                                            .font(.system(size:18))
+                                            .font(.system(size:15))
                                     }
                                 })
                                 Button(action: {
@@ -142,7 +143,7 @@ struct ProfileView: View {
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "arrow.left.square.fill")
-                                            .font(.system(size:25))
+                                            .font(.system(size:20))
                                             .foregroundColor(.red.opacity(0.7))
                                         
                                         Text( "Logout".localized(language))
@@ -173,22 +174,18 @@ struct ProfileView: View {
             }
             .edgesIgnoringSafeArea(.vertical)
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
-            
+
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
-        
         .alert(isPresented: $islogout, content: {
             Alert(title: Text("you_signed_out".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                 islogout = false
             }))
         })
         
-        NavigationLink(destination: ProfileInfoView(),isActive:$goingToProfileInfo , label: {
-        })
-
-        NavigationLink(destination: RatingView(),isActive:$goingToRating , label: {
+        NavigationLink(destination: destination,isActive:$active , label: {
         })
 
     }

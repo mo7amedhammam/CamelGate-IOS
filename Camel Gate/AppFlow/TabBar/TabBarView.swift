@@ -26,18 +26,18 @@ struct MainTabBar : View {
         VStack(spacing: 0){
             GeometryReader{_ in
                 ZStack{
-                    if selectedTab == "Home"{
+                    if self.selectedTab == "Home"{
                         HomeView()
-                    } else if selectedTab == "Shipments"{
+                    } else if self.selectedTab == "Shipments"{
                         ShipmentsView()
                         
-                    }  else if selectedTab == "Garage"{
+                    }  else if self.selectedTab == "Garage"{
                         GarageView()
                         
-                    } else if selectedTab == "Wallet"{
+                    } else if self.selectedTab == "Wallet"{
                         WalletView()
                         
-                    }else if selectedTab == "Profile"{
+                    }else if self.selectedTab == "Profile"{
                         ProfileView()
 
                     }

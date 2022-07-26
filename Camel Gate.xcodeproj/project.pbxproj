@@ -35,6 +35,10 @@
 		C8C94977288994B20057EE7E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C94976288994B20057EE7E /* Helper.swift */; };
 		C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9497928899DA80057EE7E /* WalletTabView.swift */; };
 		C8DB51A9288CB45F004521C8 /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB51A8288CB45F004521C8 /* FontsExtension.swift */; };
+		C8E4C309288F0406005FDB7C /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C308288F0406005FDB7C /* PhoneVerificationView.swift */; };
+		C8E4C30B288F0429005FDB7C /* NewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C30A288F0429005FDB7C /* NewPasswordView.swift */; };
+		C8E4C30E288F1C7E005FDB7C /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C30D288F1C7D005FDB7C /* OTPViewModel.swift */; };
+		C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C30F288F729B005FDB7C /* NoteScreenView.swift */; };
 		FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA45B7CE2885155B002A9654 /* HeaderView.swift */; };
 		FA4E27AD288C537E0047265D /* ShipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AC288C537E0047265D /* ShipView.swift */; };
 		FA4E27AF288C53A20047265D /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AE288C53A20047265D /* FilterHeaderView.swift */; };
@@ -90,6 +94,10 @@
 		C8C9497928899DA80057EE7E /* WalletTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTabView.swift; sourceTree = "<group>"; };
 		C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Camel-Gate-Info.plist"; path = "../Camel-Gate-Info.plist"; sourceTree = "<group>"; };
 		C8DB51A8288CB45F004521C8 /* FontsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
+		C8E4C308288F0406005FDB7C /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationView.swift; sourceTree = "<group>"; };
+		C8E4C30A288F0429005FDB7C /* NewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordView.swift; sourceTree = "<group>"; };
+		C8E4C30D288F1C7D005FDB7C /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
+		C8E4C30F288F729B005FDB7C /* NoteScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteScreenView.swift; sourceTree = "<group>"; };
 		FA45B7CE2885155B002A9654 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		FA4E27AC288C537E0047265D /* ShipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipView.swift; sourceTree = "<group>"; };
 		FA4E27AE288C53A20047265D /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
@@ -129,6 +137,9 @@
 		C84EAC7F288C4600000AB6AD /* ChangePassword */ = {
 			isa = PBXGroup;
 			children = (
+				C8E4C302288F0256005FDB7C /* NoteScreen */,
+				C8E4C304288F02F4005FDB7C /* PhoneVerification */,
+				C8E4C303288F02F1005FDB7C /* NewPassword */,
 			);
 			path = ChangePassword;
 			sourceTree = "<group>";
@@ -370,6 +381,47 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C8E4C302288F0256005FDB7C /* NoteScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C8E4C30F288F729B005FDB7C /* NoteScreenView.swift */,
+			);
+			path = NoteScreen;
+			sourceTree = "<group>";
+		};
+		C8E4C303288F02F1005FDB7C /* NewPassword */ = {
+			isa = PBXGroup;
+			children = (
+				C8E4C30A288F0429005FDB7C /* NewPasswordView.swift */,
+			);
+			path = NewPassword;
+			sourceTree = "<group>";
+		};
+		C8E4C304288F02F4005FDB7C /* PhoneVerification */ = {
+			isa = PBXGroup;
+			children = (
+				C8E4C307288F03EA005FDB7C /* View */,
+				C8E4C30C288F1C5B005FDB7C /* ViewModel */,
+			);
+			path = PhoneVerification;
+			sourceTree = "<group>";
+		};
+		C8E4C307288F03EA005FDB7C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8E4C308288F0406005FDB7C /* PhoneVerificationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8E4C30C288F1C5B005FDB7C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C8E4C30D288F1C7D005FDB7C /* OTPViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		FA45B7CD28851544002A9654 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -586,10 +638,13 @@
 				C8C94969288980AB0057EE7E /* BackButtonView.swift in Sources */,
 				FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */,
 				FA4E27B1288C53D10047265D /* FilterView.swift in Sources */,
+				C8E4C309288F0406005FDB7C /* PhoneVerificationView.swift in Sources */,
 				C8C94970288992260057EE7E /* EditButtonView.swift in Sources */,
 				C8C949652889791F0057EE7E /* LocalizationService.swift in Sources */,
 				FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */,
 				C8C9496E28898D030057EE7E /* ShipmentsView.swift in Sources */,
+				C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */,
+				C8E4C30B288F0429005FDB7C /* NewPasswordView.swift in Sources */,
 				C8C949752889935B0057EE7E /* GarageView.swift in Sources */,
 				C8A07814288D61140084C0A6 /* InputTextField.swift in Sources */,
 				C8C94972288992E30057EE7E /* ShareButtonView.swift in Sources */,
@@ -615,6 +670,7 @@
 				C84EAC7C288C3392000AB6AD /* CircularButton.swift in Sources */,
 				FA4E27AF288C53A20047265D /* FilterHeaderView.swift in Sources */,
 				C8A07816288D61610084C0A6 /* SecureInputTextField.swift in Sources */,
+				C8E4C30E288F1C7E005FDB7C /* OTPViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
