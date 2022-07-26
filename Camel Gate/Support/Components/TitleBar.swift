@@ -15,7 +15,7 @@ struct TitleBar: View {
     @State var applyStatus: ApplyStatus? = ApplyStatus.none
     @State var IsSubTextRate: Bool? = false
 
-    @State var subText: String? = "45"
+    @State var subText: String?
     var trailingAction : () -> Void
     var body: some View {
         VStack {
@@ -23,7 +23,7 @@ struct TitleBar: View {
                 Image("TopBarImage")
                     .resizable()
                     .frame(height: 160)
-                    .padding(.leading,-1)
+                    .padding(.leading,-2)
                 
                 VStack {
                     HStack(){
@@ -68,9 +68,10 @@ struct TitleBar: View {
                             .foregroundColor(Color.white)
                             .padding(.horizontal)
                             .padding(.vertical,5)
-                            .background(applyStatus == .applyed ? .green:  .white.opacity(0.35))
+                            .background(applyStatus == .applyed ? .green:  subText == nil ? .clear:.white.opacity(0.35))
                             .cornerRadius(8)
                         .padding(.top,-20)
+                    
                     
                 }
             }

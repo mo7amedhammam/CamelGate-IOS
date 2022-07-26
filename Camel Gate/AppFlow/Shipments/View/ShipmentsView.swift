@@ -63,7 +63,6 @@ struct ShipmentsView: View {
                 .frame(width: UIScreen.main.bounds.width)
                 .listStyle(.plain)
                 .padding(.vertical,0)
-//                .edgesIgnoringSafeArea(.bottom)
 
             }
                             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))

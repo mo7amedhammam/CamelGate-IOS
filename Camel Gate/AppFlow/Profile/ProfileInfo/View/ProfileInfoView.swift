@@ -34,9 +34,9 @@ struct ProfileInfoView: View {
                     
                         Image("driver-barcode")
                         .resizable()
-                        .frame(height:40)
+                        .frame(height:30)
                         .padding(.vertical,5)
-                        .padding(.horizontal,40)
+                        .padding(.horizontal,45)
                   
                     HStack {
                         Text("Driver_info".localized(language))
@@ -48,11 +48,11 @@ struct ProfileInfoView: View {
                     .padding(.vertical,10)
                     .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
                     
-                    HStack(){
+                    HStack(spacing:0){
                         Image(systemName: "person.fill")
-                            .font(.system(size:20))
+                            .font(.system(size:16))
                             .foregroundColor(Color("blueColor"))
-                            .padding(.leading)
+                            .padding(.trailing)
                         
                         HStack{
                             Text("User_Name_:".localized(language))
@@ -62,36 +62,38 @@ struct ProfileInfoView: View {
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
-                        
+                        .padding(.leading,-5)
                         .padding(.trailing)
                         Spacer()
                     }.padding(.leading)
                     
-                    HStack{
+                    HStack(spacing:0){
                         Image(systemName: "phone.fill")
-                            .font(.system(size:20))
+                            .font(.system(size:17))
                             .foregroundColor(Color("blueColor"))
-                            .padding(.leading)
+                            .padding(.trailing)
                         
                         HStack(){
-                            Text("User_Number_:".localized(language))
+                            Text("Phone_Number_:".localized(language))
                                 .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("\(Helper.getUserPhone() )" )
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
+                        .padding(.leading,-5)
+
                         .padding(.trailing)
                         Spacer()
                     }.padding(.leading)
                     
-                    HStack{
+                    HStack(spacing:0){
                         Image("x321")
                             .resizable()
-                            .frame(width: 30, height: 20)
+                            .frame(width: 22, height: 16)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
-                            .padding(.leading)
+                            .padding(.trailing)
                         
                         HStack(){
                             Text("Driver_barcode_:".localized(language))
@@ -101,17 +103,18 @@ struct ProfileInfoView: View {
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
+                        .padding(.leading,-7)
                         .padding(.trailing)
                         Spacer()
                     }.padding(.leading)
                     
-                    HStack{
+                    HStack(spacing:0){
                         Image("x321")
                             .resizable()
-                            .frame(width: 30, height: 20)
+                            .frame(width: 22, height: 16)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
-                            .padding(.leading)
+                            .padding(.trailing)
                         
                         HStack(){
                             Text("CamelGate_Number_:".localized(language))
@@ -121,6 +124,7 @@ struct ProfileInfoView: View {
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
+                        .padding(.leading,-7)
                         .padding(.trailing)
                         Spacer()
                     }.padding(.leading)
@@ -141,13 +145,13 @@ struct ProfileInfoView: View {
                     .padding(.vertical,10)
                     .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
                     
-                    HStack(){
+                    HStack(spacing:0){
                         Image("x321")
                             .resizable()
-                            .frame(width: 30, height: 20)
+                            .frame(width: 22, height: 16)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
-                            .padding(.leading)
+                            .padding(.trailing)
                         
                         HStack{
                             Text("Truck_Number:".localized(language))
@@ -157,18 +161,18 @@ struct ProfileInfoView: View {
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
-                        
+                        .padding(.leading,-5)
                         .padding(.trailing)
                         Spacer()
                     }.padding(.leading)
                     
-                    HStack{
+                    HStack(spacing:0){
                         Image("truck")
                             .resizable()
-                            .frame(width: 30, height: 20)
+                            .frame(width: 22, height: 16)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
-                            .padding(.leading)
+                            .padding(.trailing)
                         
                         HStack(){
                             Text("Patient_Type_:".localized(language))
@@ -178,17 +182,18 @@ struct ProfileInfoView: View {
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
+                        .padding(.leading,-5)
                         .padding(.trailing)
                         Spacer()
                     }.padding(.leading)
                     
-                    HStack{
+                    HStack(spacing:0){
                         Image("x321")
                             .resizable()
-                            .frame(width: 30, height: 20)
+                            .frame(width: 22, height: 16)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
-                            .padding(.leading)
+                            .padding(.trailing)
                         
                         HStack(){
                             Text("Driving_license_:".localized(language))
@@ -198,17 +203,18 @@ struct ProfileInfoView: View {
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
+                        .padding(.leading,-5)
                         .padding(.trailing)
                         Spacer()
                     }.padding(.leading)
                     
-                    HStack{
+                    HStack(spacing:0){
                         Image("x321")
                             .resizable()
-                            .frame(width: 30, height: 20)
+                            .frame(width: 22, height: 16)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
-                            .padding(.leading)
+                            .padding(.trailing)
                         
                         HStack(){
                             Text("Expired_at_:".localized(language))
@@ -218,6 +224,7 @@ struct ProfileInfoView: View {
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
+                        .padding(.leading,-5)
                         .padding(.trailing)
                         Spacer()
                     }.padding(.leading)
@@ -237,19 +244,20 @@ struct ProfileInfoView: View {
                     .padding(.vertical,10)
                     .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
                     
-                    HStack(){
+                    HStack(spacing:0){
                         Image("Cargo")
                             .resizable()
                             .frame(width: 20, height: 20)
                             .scaledToFit()
                             .foregroundColor(Color("blueColor"))
-                            .padding(.leading)
+                            .padding(.trailing)
                         
                         HStack{
                             Text("Cargo_I_can_handel_:".localized(language))
                                 .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                         }
+                        .padding(.leading,-5)
                         .padding(.trailing)
                         Spacer()
                     }.padding(.leading)
