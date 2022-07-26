@@ -103,9 +103,6 @@ final class Helper{
         return UserDefaults.standard.bool(forKey: onBoardKey)
     }
     
-    
-    
-    
     class func changeLang() {
         userDef.removeObject(forKey:"currentLanguage"  )
     }
