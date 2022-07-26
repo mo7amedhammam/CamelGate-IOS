@@ -116,35 +116,50 @@ struct PopUpView <Content: View>: View {
         self.withcapsule = withcapsule
     }
     var body: some View {
-        VStack {
-            Spacer()
-            ZStack {
-                VStack {
-                    if withcapsule{
-                    Capsule()
-                        .frame(width: 50, height: 4)
-                        .foregroundColor(.gray)
-                        .padding(.top ,10)
-                        .padding(.bottom,20)
-                    }
-                    VStack {
-                        self.content
-                            .padding(.vertical)
-                    }
-                    }.background(
-                    RoundedCornersShape(radius: 25, corners: [.topLeft,.topRight])
-                        .foregroundColor(.white)
-                        .ignoresSafeArea()
-                        .opacity(1.5)
-                        .shadow(radius: 15)
-                        .frame(width: UIScreen.main.bounds.width)
-                )
-            }
+        ZStack {
         }
-        .edgesIgnoringSafeArea(.bottom)
+        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        .background(
+            Color.black.opacity(0.2)
+        )
+        .blur(radius: IsPresented.wrappedValue == true ? 5:0)
+
         .onTapGesture(perform: {
             IsPresented.wrappedValue.toggle()
-            
+    })
+        
+        .overlay(content: {
+            VStack {
+                Spacer()
+                    .onTapGesture(perform: {
+                        IsPresented.wrappedValue.toggle()
+                    })
+
+                ZStack {
+                    VStack {
+                        if withcapsule{
+                        Capsule()
+                            .frame(width: 50, height: 4)
+                            .foregroundColor(.gray)
+                            .padding(.top ,10)
+    //                        .padding(.bottom,20)
+                        }
+                        VStack {
+                            self.content
+                                .padding(.vertical)
+                        }
+                        }.background(
+                        RoundedCornersShape(radius: 25, corners: [.topLeft,.topRight])
+                            .foregroundColor(.white)
+                            .ignoresSafeArea()
+                            .opacity(1.5)
+                            .shadow(radius: 15)
+                            .frame(width: UIScreen.main.bounds.width)
+                    )
+                }
+            }
+            .edgesIgnoringSafeArea(.bottom)
+
         })
         
     }
