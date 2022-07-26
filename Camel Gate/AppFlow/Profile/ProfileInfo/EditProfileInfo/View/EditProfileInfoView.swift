@@ -47,7 +47,7 @@ struct EditProfileInfoView: View {
             
             TitleBar(Title: "Profile_info", navBarHidden: true, leadingButton: .backButton, subText: "70%", trailingAction: {})
         
-            PopUpView(IsPresented: .constant(true), withcapsule: false, content: {
+            BottomSheetView(IsPresented: .constant(true), withcapsule: false, content: {
                 Button(action: {
                     DispatchQueue.main.async{
 // Action

@@ -11,7 +11,7 @@ struct NewPasswordView: View {
 
     @State var newpass = ""
     @State var Confirmnewpass = ""
-    @State var showpopup = false
+    @State var showBottomSheet = false
 
     var body: some View {
         ZStack{
@@ -53,12 +53,12 @@ struct NewPasswordView: View {
                 }.onTapGesture(perform: {
                     hideKeyboard()
                     withAnimation{
-                        showpopup.toggle()
+                        showBottomSheet.toggle()
                     }
                 })
                 
                 Button(action: {
-                 showpopup = true
+                 showBottomSheet = true
                 }, label: {
                     HStack {
                         Text("Confirm".localized(language))
@@ -86,24 +86,26 @@ struct NewPasswordView: View {
             TitleBar(Title: "Change_Password", navBarHidden: true, leadingButton: .backButton ,trailingAction: {
             })
         }
-            .blur(radius: showpopup ? 5:0)            
-            if showpopup{
-                    PopUpView(IsPresented: $showpopup, withcapsule: true, content: {
-                        
+            .blur(radius: showBottomSheet ? 5:0)
+            
+            if showBottomSheet{
+                
+                    BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, content: {
+
                         Text("Password_Changed".localized(language))
                             .font(Font.camelfonts.Reg20)
-                     
+
                         Image("success-orange")
-                        
+
                         Text("You_just_changed_your_password".localized(language))
                             .font(Font.camelfonts.Reg16)
                             .foregroundColor(.black.opacity(0.8))
                             .padding(.bottom,50)
-                        
+
                         Button(action: {
                             DispatchQueue.main.async{
             // Action
-                                showpopup.toggle()
+                                showBottomSheet.toggle()
                             }
                         }, label: {
                             HStack {
@@ -127,7 +129,6 @@ struct NewPasswordView: View {
                     })
                         .transition(.move(edge: .bottom))
             }
-            
         }
 
         
