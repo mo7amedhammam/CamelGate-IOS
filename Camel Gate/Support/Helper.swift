@@ -22,7 +22,7 @@ final class Helper{
     var CurrentLongtude = ""
     var CurrentAddress = ""
     var currentLanguage = ""
-
+    private static let onBoardKey = "onBoard"
     
     class func setUserData(
         Id : Int,
@@ -94,6 +94,18 @@ final class Helper{
         userDef.removeObject(forKey:"access_token"  )
         userDef.removeObject(forKey: "clinicId")
     }
+    
+    static func onBoardOpened() {
+        UserDefaults.standard.set(true, forKey: onBoardKey)
+    }
+
+    static func checkOnBoard() -> Bool {
+        return UserDefaults.standard.bool(forKey: onBoardKey)
+    }
+    
+    
+    
+    
     class func changeLang() {
         userDef.removeObject(forKey:"currentLanguage"  )
     }
