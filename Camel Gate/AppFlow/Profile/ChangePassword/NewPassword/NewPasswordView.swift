@@ -12,6 +12,7 @@ struct NewPasswordView: View {
     @State var newpass = ""
     @State var Confirmnewpass = ""
     @State var showBottomSheet = false
+//    @ObservedObject private var keyboard = KeyboardResponder()
 
     var body: some View {
         ZStack{
@@ -28,10 +29,10 @@ struct NewPasswordView: View {
                     
                     Group{
                     SecureInputTextField("new_Password".localized(language), text: $newpass)
-                    SecureInputTextField("Confirm_new_Password".localized(language), text: $newpass)
-                        
+                    SecureInputTextField("Confirm_new_Password".localized(language), text: $Confirmnewpass)
                     }
                     .font(Font.camelfonts.Reg16)
+                    .ignoresSafeArea(.keyboard)
                     if (Confirmnewpass != "" && (newpass != Confirmnewpass )){
                     HStack {
                         Text("Passwords_does_not_match".localized(language) )
@@ -49,16 +50,17 @@ struct NewPasswordView: View {
                     //                })
                     
                     
-                    Spacer()
-                }.onTapGesture(perform: {
+//                    Spacer().frame(minHeight:30)
+                }
+
+                .onTapGesture(perform: {
                     hideKeyboard()
-                    withAnimation{
-                        showBottomSheet.toggle()
-                    }
                 })
                 
                 Button(action: {
-                 showBottomSheet = true
+                    withAnimation{
+                        showBottomSheet.toggle()
+                    }
                 }, label: {
                     HStack {
                         Text("Confirm".localized(language))
@@ -78,9 +80,11 @@ struct NewPasswordView: View {
                     )
                     .cornerRadius(12)
                     .padding(.horizontal, 25)
-                }).padding(.top, 120)
+                })
+//                    .padding(.top, 120)
                 .disabled((Confirmnewpass == "" || (newpass != Confirmnewpass )))
-            }.padding(.bottom,0)
+            }
+            .padding(.bottom)
                     
             
             TitleBar(Title: "Change_Password", navBarHidden: true, leadingButton: .backButton ,trailingAction: {
@@ -90,7 +94,7 @@ struct NewPasswordView: View {
             
             if showBottomSheet{
                 
-                    BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, content: {
+                BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true, content: {
 
                         Text("Password_Changed".localized(language))
                             .font(Font.camelfonts.Reg20)
@@ -130,11 +134,8 @@ struct NewPasswordView: View {
                         .transition(.move(edge: .bottom))
             }
         }
-
-        
+//        .padding(.bottom, keyboard.currentHeight)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
-        
-        
     }
 }
 
@@ -143,3 +144,4 @@ struct NewPasswordView_Previews: PreviewProvider {
         NewPasswordView()
     }
 }
+
