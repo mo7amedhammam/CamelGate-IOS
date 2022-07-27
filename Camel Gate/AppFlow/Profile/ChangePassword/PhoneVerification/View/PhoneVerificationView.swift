@@ -127,7 +127,8 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                                 .fill(Color.black)
                                 .opacity(0.2)
                         )
-                    
+                        .keyboardSpace()
+
                     Button(action: {
                         // resend code action
                         //                    RegisterUserVM.startFetchUserRegisteration()
@@ -153,6 +154,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                 
                 Button(action: {
                     // send code action
+                    gotonewpassword = true
                     let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
                     if checkOTP(sentOTP: 1234, TypedOTP: Int(otp) ?? 0000){
                         self.matchedOTP.toggle()
@@ -181,9 +183,11 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                     )
                     .cornerRadius(12)
                     .padding(.horizontal, 25)
-                }).padding(.top, 120)
+                })
+//                    .padding(.top, 120)
                     .disabled(viewModel.otp4 == "" || (minutes == 00 && seconds == 00))
-            }.padding(.bottom,0)
+            }
+            .padding(.bottom)
             
             TitleBar(Title: "Change_Password", navBarHidden: true, leadingButton: .backButton ,trailingAction: {
             })
@@ -217,13 +221,13 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                 isfocused = false
             }
         })
-        
-        
         .onTapGesture(perform: {
             isfocused = false
             hideKeyboard()
         })
         
+        NavigationLink(destination: NewPasswordView(),isActive:$gotonewpassword , label: {
+        })
         // Alert with no internet connection
         //        .alert(isPresented: $CreateUserVM.isAlert, content: {
         //            Alert(title: Text(CreateUserVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
@@ -276,8 +280,13 @@ struct PhoneVerificationView_Previews: PreviewProvider {
         ZStack {
             PhoneVerificationView<OTPViewModel>()
         }
+    
+        ZStack {
+            PhoneVerificationView<OTPViewModel>()
+        }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }
+
 
 
 

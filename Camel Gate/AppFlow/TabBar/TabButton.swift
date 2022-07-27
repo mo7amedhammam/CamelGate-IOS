@@ -28,7 +28,7 @@ struct TabButton : View {
               .fill(Color("Base_Color"))
               .frame(width: 60, height: 6)
               .matchedGeometryEffect(id: "Tab_Change", in: animation)
-              .shadow(color: Color("Base_Color"), radius: 10, x: 0, y: 0)
+              .shadow(color: Color("Base_Color").opacity(0.5), radius: 8, x: 0, y: 5)
           }
         }
         .padding(.bottom,10)
@@ -40,8 +40,9 @@ struct TabButton : View {
           .frame(width: 24, height: 24)
 
         Text(title)
-              .font(Font.camelfonts.SemiBold14)
-              .foregroundColor(Color("Base_Color").opacity(selectedTab == title ? 1.0 : 0.2))
+              .font(Font.camelfonts.Reg14)
+              .foregroundColor(Color("Base_Color")
+                                .opacity(selectedTab == title ? 1.0 : 0.2))
       }
     }
   }

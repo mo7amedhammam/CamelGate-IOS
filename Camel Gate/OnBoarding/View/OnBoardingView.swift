@@ -71,18 +71,30 @@ struct OnBoardingView: View {
                                 print("")
                             }
                         }) {
-                            ZStack {
-                                Image("ic_back_button").resizable().scaledToFill()
+//                            ZStack {
+//                                Image("ic_back_button")
+////                                    .resizable()
+//                                    .scaledToFill()
+
                                 HStack{
                                     Text(currentIndex == 2 ? "Geting Started" : "Next").font(Font.camelfonts.Med16)
                                         .foregroundColor(Color.white)
                                     Image("ic_next_arrow")
                                 }
-                            }
+                                .frame(height: 50)
+                                .padding(.horizontal, 80)
+//                            }
+                            .background(
+                                LinearGradient(
+                                    gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
+                                    startPoint: .trailing,
+                                    endPoint: .leading
+                                ))                                .cornerRadius(radius: 8)
+
                         }
-                        .frame(width: 120, height: 50)
                     }.padding()
-                }.frame(maxWidth: .infinity, maxHeight: 340).background(Color.clear)
+                }.frame(maxWidth: .infinity, maxHeight: 340)
+                    .background(Color.clear)
             }.edgesIgnoringSafeArea(.all)
         }.ignoresSafeArea()
     }
@@ -91,5 +103,8 @@ struct OnBoardingView: View {
 struct OnBoardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnBoardingView()
+        OnBoardingView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+
     }
 }

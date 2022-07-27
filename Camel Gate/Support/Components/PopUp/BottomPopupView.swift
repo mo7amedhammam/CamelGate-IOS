@@ -13,21 +13,23 @@ struct BottomSheetView <Content: View>: View {
     var language : Language
     var IsPresented: Binding<Bool>
     var withcapsule: Bool
+    var bluryBackground: Bool
 
-    init(  IsPresented:Binding<Bool>,withcapsule:Bool, @ViewBuilder content: () -> Content) {
+    init(  IsPresented:Binding<Bool>,withcapsule:Bool,bluryBackground:Bool, @ViewBuilder content: () -> Content) {
         self.language = LocalizationService.shared.language
         self.IsPresented = IsPresented
         self.content = content()
         self.withcapsule = withcapsule
+        self.bluryBackground = bluryBackground
     }
     var body: some View {
         ZStack {
         }
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        .background(
-            Color.black.opacity(0.2)
+        .background(bluryBackground ?
+                    Color.black.opacity(0.2):.clear
         )
-        .blur(radius: IsPresented.wrappedValue == true ? 5:0)
+        .blur(radius: IsPresented.wrappedValue == true ? bluryBackground ? 5:0:0)
         .transition(.move(edge: .bottom))
         .onTapGesture(perform: {
             IsPresented.wrappedValue.toggle()
@@ -70,7 +72,7 @@ struct BottomSheetView <Content: View>: View {
 
 struct PopUpView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheetView(IsPresented: .constant(true), withcapsule: true, content: {})
+        BottomSheetView(IsPresented: .constant(true), withcapsule: true, bluryBackground: true, content: {})
     }
 }
 
