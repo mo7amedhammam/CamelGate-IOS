@@ -13,7 +13,7 @@ struct ChatsListView: View {
     var body: some View {
         ZStack{
             ChatHeader()
-
+            
             VStack{
                 VStack{
                     Text("Start_a_conversation".localized(language))
@@ -33,6 +33,7 @@ struct ChatsListView: View {
                                 .foregroundColor(.black.opacity(0.8))
                                 .font(Font.camelfonts.Reg14)
                                 .fontWeight(.thin)
+                                .padding(.bottom,5)
                             
                             HStack{
                                 Image(systemName: "clock")
@@ -40,14 +41,14 @@ struct ChatsListView: View {
                             }
                             .foregroundColor(.black)
                         }
-
+                        
                         .padding(.leading,30)
                     }
                     .padding(.vertical)
                     
                     Button(action: {
                         DispatchQueue.main.async{
-        // Action
+                            // Action
                         }
                     }, label: {
                         HStack {
@@ -87,65 +88,61 @@ struct ChatsListView: View {
                         Spacer()
                     }
                     .foregroundColor(.secondary)
-
+                    
                 }).padding(.vertical)
                 if isexpanded{
-                    
-                List() {
-                    
-//                    if  true{ // if empty
-//                        Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
-//                            .multilineTextAlignment(.center)
-//                        .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
-//                    }
-                        ForEach(0 ..< 5) { tripItem in
-                            HStack{
-                                Image("face_vector")
-                                VStack{
-                                    HStack{
-                                        Text("Mahmoud")
-                                            .font(Font.camelfonts.Med14)
-                                        Spacer()
-                                        Text("12 hours ago")
-
-
+                    List() {
+                        //                    if  true{ // if empty
+                        //                        Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
+                        //                            .multilineTextAlignment(.center)
+                        //                        .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
+                        //                    }
+                        Group{
+                            ForEach(0 ..< 5) { tripItem in
+                                HStack{
+                                    Image("face_vector")
+                                    VStack{
+                                        HStack{
+                                            Text("Mahmoud")
+                                                .font(Font.camelfonts.Med14)
+                                            Spacer()
+                                            Text("12 hours ago")
+                                                .font(Font.camelfonts.Reg14)
+                                                .fontWeight(.thin)
+                                        }.foregroundColor(.gray)
+                                        
+                                        Text("Thanks_for_using_CamelGate,_Ahmed_we...")
                                             .font(Font.camelfonts.Reg14)
-                                            .fontWeight(.thin)
-                                    }.foregroundColor(.gray)
-                                    
-                                    Text("Thanks_for_using_CamelGate,_Ahmed_we...")
-                                        .font(Font.camelfonts.Reg14)
+                                    }
                                 }
-                            }.padding()
+                                .padding()
                                 .background(Color.white)
-
-                                .padding(.horizontal,-30)
-                                .listRowSeparator(.hidden)
-                                .listRowBackground(Color.clear)
-
-                    }
-                    ZStack{}
-                    .frame( maxHeight: 2)
-                    .foregroundColor(.black)
-                    .onAppear(perform: {
-                       // pagination
+                            }
+                            ZStack{}
+                            .frame(maxHeight:1)
+                            .onAppear(perform: {
+                                // pagination
+                            })
+                        }
+                        .padding(.horizontal,-30)
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
+                        
+                    }.refreshable(action: {
+                        //                    getAllDoctors()
                     })
-                }.refreshable(action: {
-//                    getAllDoctors()
-                })
-//                .frame(width: UIScreen.main.bounds.width)
-                .listStyle(.plain)
-                .padding(.vertical,0)
-                
+                    //                .frame(width: UIScreen.main.bounds.width)
+                        .listStyle(.plain)
+                        .padding(.vertical,0)
                 }
                 Spacer()
             }
             .padding(.horizontal,20)
-                .padding(.top, hasNotch ? 150:160)
+            .padding(.top, hasNotch ? 150:160)
         }
-        
+        .navigationBarHidden(true)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
-
+        
     }
 }
 
