@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB62892AEA000B803FD /* ChatHeader.swift */; };
+		C845FAB92892B99000B803FD /* XButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB82892B99000B803FD /* XButton.swift */; };
+		C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FABC2892BB6D00B803FD /* ChatsListView.swift */; };
 		C84EAC7C288C3392000AB6AD /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC7B288C3392000AB6AD /* CircularButton.swift */; };
 		C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */; };
 		C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */; };
@@ -68,6 +71,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C845FAB62892AEA000B803FD /* ChatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeader.swift; sourceTree = "<group>"; };
+		C845FAB82892B99000B803FD /* XButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButton.swift; sourceTree = "<group>"; };
+		C845FABC2892BB6D00B803FD /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		C84EAC7B288C3392000AB6AD /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
@@ -142,6 +148,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C845FAB42892AB9900B803FD /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C845FAB52892ABBF00B803FD /* View */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		C845FAB52892ABBF00B803FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C845FAB62892AEA000B803FD /* ChatHeader.swift */,
+				C845FABC2892BB6D00B803FD /* ChatsListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C84EAC7F288C4600000AB6AD /* ChangePassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +264,7 @@
 				C8C94971288992E30057EE7E /* ShareButtonView.swift */,
 				C8C9496F288992260057EE7E /* EditButtonView.swift */,
 				C84EAC7B288C3392000AB6AD /* CircularButton.swift */,
+				C845FAB82892B99000B803FD /* XButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -541,6 +565,7 @@
 				C8C9493A288959140057EE7E /* Garage */,
 				C8C949392889590E0057EE7E /* Wallet */,
 				C8C94938288959080057EE7E /* Profile */,
+				C845FAB42892AB9900B803FD /* Chat */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -694,6 +719,7 @@
 				C8C94970288992260057EE7E /* EditButtonView.swift in Sources */,
 				C8C949652889791F0057EE7E /* LocalizationService.swift in Sources */,
 				FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */,
+				C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */,
 				C8C9496E28898D030057EE7E /* ShipmentsView.swift in Sources */,
 				C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */,
 				C8E4C30B288F0429005FDB7C /* NewPasswordView.swift in Sources */,
@@ -702,12 +728,14 @@
 				C8A07814288D61140084C0A6 /* InputTextField.swift in Sources */,
 				C8C94972288992E30057EE7E /* ShareButtonView.swift in Sources */,
 				C8C94977288994B20057EE7E /* Helper.swift in Sources */,
+				C845FAB92892B99000B803FD /* XButton.swift in Sources */,
 				C8C949622889791F0057EE7E /* Strings.swift in Sources */,
 				C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */,
 				C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */,
 				C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
 				C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */,
+				C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */,
 				C8C9496B2889867D0057EE7E /* FilterButtonView.swift in Sources */,
 				C8A07822288DA4CD0084C0A6 /* StarsView.swift in Sources */,
 				C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */,
