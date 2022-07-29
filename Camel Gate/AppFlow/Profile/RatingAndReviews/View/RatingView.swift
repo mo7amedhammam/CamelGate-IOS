@@ -15,7 +15,7 @@ struct RatingView: View {
                 ShipmentRateCell()
                 }
                 .padding(.top)
-            }.padding(.top,100)
+            }.padding(.top,hasNotch ? 100:115)
             
             TitleBar(Title: "Rating_&_Reviews".localized(language), navBarHidden: true, leadingButton: .backButton, IsSubTextRate: true,subText: "4.5", trailingAction: {})
 
@@ -25,7 +25,12 @@ struct RatingView: View {
 
 struct RatingView_Previews: PreviewProvider {
     static var previews: some View {
-        RatingView()
+        ZStack {
+            RatingView()
+        }
+        ZStack {
+            RatingView()
+        }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }
 

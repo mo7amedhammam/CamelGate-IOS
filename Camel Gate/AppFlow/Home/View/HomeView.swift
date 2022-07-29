@@ -11,6 +11,10 @@ struct HomeView: View {
     @State private var selectedFilterId : Int?
     @State var goToShipmentDetails:Bool = false
     private var filterArray = ["Ciro to Alex" , "6K to 10k SAR" , "Cairo to Alex" ,  "6K to 10k SAR" , "Ciro to Alex"]
+    
+    @State var active = false
+    @State var destination = AnyView(ChatsListView())
+
     var body: some View {
         ZStack{
             VStack {
@@ -48,15 +52,29 @@ struct HomeView: View {
                     }
                 }
             }.padding(.top,30)
+            
+            HStack{
+                Spacer()
+                Button(action: {
+                    active = true
+                    destination = AnyView (ChatsListView())
+                }, label: {
+                    Image("floatingchat")
+                })
+            }.padding()
         }.navigationBarHidden(true)
+        NavigationLink(destination: destination,isActive:$active , label: {
         
         NavigationLink(destination: DetailsView(),isActive:$goToShipmentDetails , label: {
         })
+
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+        HomeView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }

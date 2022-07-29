@@ -42,12 +42,14 @@ struct EditProfileInfoView: View {
                 
                 InputTextField(imagename: "ic_box", placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
                 
-            }.padding(.top,120)
+            }.padding(.top,hasNotch ? 140:130)
                 .padding(.horizontal)
-            
+                .onTapGesture(perform: {
+                    hideKeyboard()
+                })
             TitleBar(Title: "Profile_info", navBarHidden: true, leadingButton: .backButton, subText: "70%", trailingAction: {})
         
-            BottomSheetView(IsPresented: .constant(true), withcapsule: false, content: {
+            BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, content: {
                 Button(action: {
                     DispatchQueue.main.async{
 // Action
@@ -81,5 +83,7 @@ struct EditProfileInfoView: View {
 struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
         EditProfileInfoView()
+        EditProfileInfoView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }

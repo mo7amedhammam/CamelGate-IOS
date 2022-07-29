@@ -63,6 +63,7 @@ struct ProfileHeader: View {
                     }
                     .padding(.top,-10)
                 }
+                
             }
             Spacer()
         }.ignoresSafeArea()
@@ -72,5 +73,7 @@ struct ProfileHeader: View {
 struct ProfileHeader_Previews: PreviewProvider {
     static var previews: some View {
         ProfileHeader()
+        ProfileHeader().previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+
     }
 }

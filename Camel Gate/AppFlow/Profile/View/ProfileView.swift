@@ -84,22 +84,28 @@ struct ProfileView: View {
                                     }
                                 })
                                 
-                                VStack{
-                                    HStack(spacing: 10){
-                                        Image(systemName: "network")
-                                            .font(.system(size:20))
-                                            .foregroundColor(Color("blueColor"))
-                                        
-                                        Text("Change_Language".localized(language))
-                                            .foregroundColor(Color("lightGray"))
-                                        Spacer()
-                                        Image(systemName: "chevron.forward")
-                                            .foregroundColor(Color("lightGray"))
-                                            .font(.system(size:15))
+                                Button(action:{
+                                    active = true
+                                    destination = AnyView(ChangeLanguageView())
+                                },label:{
+                                    VStack{
+                                        HStack(spacing: 10){
+                                            Image(systemName: "network")
+                                                .font(.system(size:20))
+                                                .foregroundColor(Color("blueColor"))
+                                            
+                                            Text("Change_Language".localized(language))
+                                                .foregroundColor(Color("lightGray"))
+                                            Spacer()
+                                            Image(systemName: "chevron.forward")
+                                                .foregroundColor(Color("lightGray"))
+                                                .font(.system(size:15))
+                                        }
+                                        HStack{
+                                        }
                                     }
-                                    HStack{
-                                    }
-                                }
+                                })
+                                
                                 
                                 Button(action: {
                                     Helper.MakePhoneCall(PhoneNumber: "0221256299")
@@ -169,8 +175,9 @@ struct ProfileView: View {
                 }
                 .background(Color.clear)
 //                .padding(.bottom,20)
-                .padding(.top,260)
+                .padding(.top,hasNotch ? 240:230 )
                 ProfileHeader()
+                    .padding(.top,hasNotch ? -20:-30 )
             }
             .edgesIgnoringSafeArea(.vertical)
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
@@ -196,6 +203,9 @@ struct ProfileView_Previews: PreviewProvider {
         ZStack {
             ProfileView()
         }
+        ZStack {
+            ProfileView()
+        }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }
 
