@@ -210,6 +210,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C851C29D28936F2700A5C757 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C8C9493B288959510057EE7E /* View */,
+				C8C9493D2889595F0057EE7E /* ViewModel */,
+				C8C9493C2889595A0057EE7E /* Model */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		C851C29E28936F4E00A5C757 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA7077FC28935B9300879399 /* DetailsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C870F89528901D4100CCFD9B /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,9 +334,8 @@
 		C8C94936288958C50057EE7E /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C8C9493B288959510057EE7E /* View */,
-				C8C9493D2889595F0057EE7E /* ViewModel */,
-				C8C9493C2889595A0057EE7E /* Model */,
+				C851C29D28936F2700A5C757 /* HomeScreen */,
+				FA7077FB28935B6F00879399 /* DetailsScreen */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -511,12 +528,12 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		FA7077FB28935B6F00879399 /* Details */ = {
+		FA7077FB28935B6F00879399 /* DetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
-				FA7077FC28935B9300879399 /* DetailsView.swift */,
+				C851C29E28936F4E00A5C757 /* View */,
 			);
-			path = Details;
+			path = DetailsScreen;
 			sourceTree = "<group>";
 		};
 		FAE2F1912884FC610081177C /* Resources */ = {
@@ -576,7 +593,6 @@
 				C8C949392889590E0057EE7E /* Wallet */,
 				C8C94938288959080057EE7E /* Profile */,
 				C845FAB42892AB9900B803FD /* Chat */,
-				FA7077FB28935B6F00879399 /* Details */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
