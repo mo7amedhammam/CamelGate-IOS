@@ -86,17 +86,6 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                             .keyboardType(.numberPad)
                     }
                     .padding(.vertical, 22)
-                    
-                    //                    if hideIncorrectCode == false || (minutes == 0 && seconds == 0 ) {
-                    //                        Text("PhoneVerfication_Screen_codeMessage".localized(language))
-                    //                            .font(Font.camelfonts.Reg16)
-                    //                            .fontWeight(.light)
-                    //                            .foregroundColor(.red)
-                    //                            .frame( alignment: .center)
-                    //                            .multilineTextAlignment(.center)
-                    //                    }
-                    
-                    
                     Group{
                         HStack {
                             Text("Code_sent_to_+2".localized(language))
@@ -139,10 +128,6 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                             .padding()
                             .foregroundColor( (minutes == 00 && seconds == 00) ? Color("blueColor") : Color(uiColor: .lightGray))
                     }).disabled(minutes != 00 && seconds != 00)
-                    
-                    //                NavigationLink(destination: PersonalDataView(),isActive: $matchedOTP, label: {
-                    //                })
-                    
                     // Alert with no internet connection
                         .alert(isPresented: $isErrorCode, content: {
                             Alert(title: Text("Error_Code".localized(language)), message: nil, dismissButton: .cancel())
@@ -154,9 +139,10 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                 Button(action: {
                     // send code action
                     let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
-                    if checkOTP(sentOTP: 1234, TypedOTP: Int(otp) ?? 0000){
+                    if checkOTP(sentOTP: 1234 , TypedOTP: Int(otp) ?? 0000){
                         self.matchedOTP.toggle()
                         // action
+                        gotonewpassword = true
                         //                        CreateUserVM.startFetchUserCreation()
                     }else{
                         hideIncorrectCode =  false
@@ -199,6 +185,10 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                         }
                     }
                 }
+            
+            NavigationLink(destination: NewPasswordView(),isActive:$gotonewpassword , label: {
+            })
+            
         }
         .onAppear(perform: {
             DynamicTimer(sentTimer: 120)

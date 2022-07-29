@@ -43,12 +43,6 @@ struct NewPasswordView: View {
                         Spacer()
                     }
                     }
-                    
-                
-                    //                NavigationLink(destination: PersonalDataView(),isActive: $matchedOTP, label: {
-                    //                })
-                    
-                    
                     Spacer()
                 }.onTapGesture(perform: {
                     hideKeyboard()

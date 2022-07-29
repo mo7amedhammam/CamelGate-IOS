@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var selectedFilterId : Int?
+    @State var goToShipmentDetails:Bool = false
     private var filterArray = ["Ciro to Alex" , "6K to 10k SAR" , "Cairo to Alex" ,  "6K to 10k SAR" , "Ciro to Alex"]
     var body: some View {
         ZStack{
@@ -40,12 +41,17 @@ struct HomeView: View {
                             ForEach(0 ..< 5) { tripItem in
                                 tripCellView()
                                     .padding(.horizontal)
+                            }.onTapGesture {
+                                goToShipmentDetails = true
                             }
                         }
                     }
                 }
             }.padding(.top,30)
         }.navigationBarHidden(true)
+        
+        NavigationLink(destination: DetailsView(),isActive:$goToShipmentDetails , label: {
+        })
     }
 }
 
