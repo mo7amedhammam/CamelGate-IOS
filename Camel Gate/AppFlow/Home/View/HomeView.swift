@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var selectedFilterId : Int?
-    @State var goToShipmentDetails:Bool = false
     private var filterArray = ["Ciro to Alex" , "6K to 10k SAR" , "Cairo to Alex" ,  "6K to 10k SAR" , "Ciro to Alex"]
     
     @State var active = false
@@ -46,7 +45,8 @@ struct HomeView: View {
                                 tripCellView()
                                     .padding(.horizontal)
                             }.onTapGesture {
-                                goToShipmentDetails = true
+                                active = true
+                               destination = AnyView(DetailsView())
                             }
                         }
                     }
@@ -64,8 +64,6 @@ struct HomeView: View {
             }.padding()
         }.navigationBarHidden(true)
         NavigationLink(destination: destination,isActive:$active , label: {
-        
-        NavigationLink(destination: DetailsView(),isActive:$goToShipmentDetails , label: {
         })
 
     }
