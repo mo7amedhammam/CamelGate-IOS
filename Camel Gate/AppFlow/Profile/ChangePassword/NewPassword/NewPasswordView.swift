@@ -45,14 +45,6 @@ struct NewPasswordView: View {
                     }
                     }
                     Spacer()
-                }.onTapGesture(perform: {
-                    
-                
-                    //                NavigationLink(destination: PersonalDataView(),isActive: $matchedOTP, label: {
-                    //                })
-                    
-                    
-//                    Spacer().frame(minHeight:30)
                 }
 
                 .onTapGesture(perform: {
