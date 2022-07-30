@@ -53,11 +53,14 @@ struct MainTabBar : View {
                     }
                 }
             }
-            .padding(.horizontal , 30)
-            .padding(.bottom,edges!.bottom == 0 ? 15 : edges!.bottom)
-            .background(Color.white)
-            .cornerRadius(30)
-            .shadow(color: Color.black, radius: 0.3, x: 0, y: 4)
+            .padding(.horizontal , 20)
+            .padding(.bottom,edges!.bottom == 0 ? 15 : edges!.bottom-15)
+            .background(
+                RoundedCornersShape(radius: 30, corners: [.topLeft,.topRight])
+                    .foregroundColor(.white)
+            )
+//            .cornerRadius(30)
+            .shadow(color: Color.black.opacity(0.5), radius: 5)
         }
         .ignoresSafeArea(.all, edges: .bottom)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
@@ -66,7 +69,12 @@ struct MainTabBar : View {
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView()
+        ZStack {
+            TabBarView()
+        }
+        ZStack {
+            TabBarView()
+        }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }
 

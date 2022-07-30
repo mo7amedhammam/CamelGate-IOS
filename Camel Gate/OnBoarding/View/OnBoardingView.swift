@@ -11,12 +11,17 @@ struct OnBoardingView: View {
     @State private var currentIndex = 0
     @State private var HeadLineTitle = "Apply Easily On Shipments!"
     @State private var bodyTitle = "You can easily Apply on more than 3,500 shipments and set your own offer"
+    
     var body: some View {
         ZStack{
             Color("Base_Color")
             Image("onoarding_backMask")
                 .resizable()
                 .ignoresSafeArea()
+            
+            Image(currentIndex == 0 ? "onboard1":currentIndex == 1 ? "onboard2":"onboard3")
+                .padding(.vertical, hasNotch ? 30:70)
+                .aspectRatio( contentMode: .fit)
             VStack {
                 Spacer()
                 ZStack {
@@ -71,18 +76,30 @@ struct OnBoardingView: View {
                                 print("")
                             }
                         }) {
-                            ZStack {
-                                Image("ic_back_button").resizable().scaledToFill()
+//                            ZStack {
+//                                Image("ic_back_button")
+////                                    .resizable()
+//                                    .scaledToFill()
+
                                 HStack{
                                     Text(currentIndex == 2 ? "Geting Started" : "Next").font(Font.camelfonts.Med16)
                                         .foregroundColor(Color.white)
                                     Image("ic_next_arrow")
                                 }
-                            }
+                                .frame(height: 50)
+                                .padding(.horizontal, 80)
+//                            }
+                            .background(
+                                LinearGradient(
+                                    gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
+                                    startPoint: .trailing,
+                                    endPoint: .leading
+                                ))                                .cornerRadius(radius: 8)
+
                         }
-                        .frame(width: 120, height: 50)
                     }.padding()
-                }.frame(maxWidth: .infinity, maxHeight: 340).background(Color.clear)
+                }.frame(maxWidth: .infinity, maxHeight: 340)
+                    .background(Color.clear)
             }.edgesIgnoringSafeArea(.all)
         }.ignoresSafeArea()
     }
@@ -91,5 +108,8 @@ struct OnBoardingView: View {
 struct OnBoardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnBoardingView()
+        OnBoardingView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+
     }
 }

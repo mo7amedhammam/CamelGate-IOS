@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB62892AEA000B803FD /* ChatHeader.swift */; };
+		C845FAB92892B99000B803FD /* XButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB82892B99000B803FD /* XButton.swift */; };
+		C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FABC2892BB6D00B803FD /* ChatsListView.swift */; };
 		C84EAC7C288C3392000AB6AD /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC7B288C3392000AB6AD /* CircularButton.swift */; };
 		C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */; };
 		C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */; };
 		C870F89828901D9100CCFD9B /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89728901D9100CCFD9B /* OnBoardingView.swift */; };
 		C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */; };
+		C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21428915519002D115A /* KeyboardHandler.swift */; };
+		C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21828917AC1002D115A /* ChangeLanguageView.swift */; };
 		C8A07810288D5CDA0084C0A6 /* EditProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0780F288D5CDA0084C0A6 /* EditProfileInfoView.swift */; };
 		C8A07814288D61140084C0A6 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07813288D61140084C0A6 /* InputTextField.swift */; };
 		C8A07816288D61610084C0A6 /* SecureInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07815288D61610084C0A6 /* SecureInputTextField.swift */; };
@@ -67,11 +72,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C845FAB62892AEA000B803FD /* ChatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeader.swift; sourceTree = "<group>"; };
+		C845FAB82892B99000B803FD /* XButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButton.swift; sourceTree = "<group>"; };
+		C845FABC2892BB6D00B803FD /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		C84EAC7B288C3392000AB6AD /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		C870F89728901D9100CCFD9B /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtenstions.swift; sourceTree = "<group>"; };
+		C87BD21428915519002D115A /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
+		C87BD21828917AC1002D115A /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageView.swift; sourceTree = "<group>"; };
 		C8A0780F288D5CDA0084C0A6 /* EditProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileInfoView.swift; sourceTree = "<group>"; };
 		C8A07813288D61140084C0A6 /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		C8A07815288D61610084C0A6 /* SecureInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputTextField.swift; sourceTree = "<group>"; };
@@ -140,6 +150,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C845FAB42892AB9900B803FD /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C845FAB52892ABBF00B803FD /* View */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		C845FAB52892ABBF00B803FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C845FAB62892AEA000B803FD /* ChatHeader.swift */,
+				C845FABC2892BB6D00B803FD /* ChatsListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C84EAC7F288C4600000AB6AD /* ChangePassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +210,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C851C29D28936F2700A5C757 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C8C9493B288959510057EE7E /* View */,
+				C8C9493D2889595F0057EE7E /* ViewModel */,
+				C8C9493C2889595A0057EE7E /* Model */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		C851C29E28936F4E00A5C757 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA7077FC28935B9300879399 /* DetailsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C870F89528901D4100CCFD9B /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +252,22 @@
 			path = Extenstions;
 			sourceTree = "<group>";
 		};
+		C87BD21628917A85002D115A /* ChangeLanguage */ = {
+			isa = PBXGroup;
+			children = (
+				C87BD21728917A95002D115A /* View */,
+			);
+			path = ChangeLanguage;
+			sourceTree = "<group>";
+		};
+		C87BD21728917A95002D115A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C87BD21828917AC1002D115A /* ChangeLanguageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C8A0780E288D5CAA0084C0A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +284,7 @@
 				C8C94971288992E30057EE7E /* ShareButtonView.swift */,
 				C8C9496F288992260057EE7E /* EditButtonView.swift */,
 				C84EAC7B288C3392000AB6AD /* CircularButton.swift */,
+				C845FAB82892B99000B803FD /* XButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -272,9 +334,8 @@
 		C8C94936288958C50057EE7E /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C8C9493B288959510057EE7E /* View */,
-				C8C9493D2889595F0057EE7E /* ViewModel */,
-				C8C9493C2889595A0057EE7E /* Model */,
+				C851C29D28936F2700A5C757 /* HomeScreen */,
+				FA7077FB28935B6F00879399 /* DetailsScreen */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -294,6 +355,7 @@
 				C84EAC81288C461B000AB6AD /* ProfileInfo */,
 				C84EAC80288C460A000AB6AD /* RatingAndReviews */,
 				C84EAC7F288C4600000AB6AD /* ChangePassword */,
+				C87BD21628917A85002D115A /* ChangeLanguage */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -461,16 +523,17 @@
 				C8A07812288D60E30084C0A6 /* InputTextFields */,
 				C8A07811288D60CF0084C0A6 /* Buttons */,
 				C8A07820288DA4A80084C0A6 /* others */,
+				C87BD21428915519002D115A /* KeyboardHandler.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		FA7077FB28935B6F00879399 /* Details */ = {
+		FA7077FB28935B6F00879399 /* DetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
-				FA7077FC28935B9300879399 /* DetailsView.swift */,
+				C851C29E28936F4E00A5C757 /* View */,
 			);
-			path = Details;
+			path = DetailsScreen;
 			sourceTree = "<group>";
 		};
 		FAE2F1912884FC610081177C /* Resources */ = {
@@ -529,7 +592,7 @@
 				C8C9493A288959140057EE7E /* Garage */,
 				C8C949392889590E0057EE7E /* Wallet */,
 				C8C94938288959080057EE7E /* Profile */,
-				FA7077FB28935B6F00879399 /* Details */,
+				C845FAB42892AB9900B803FD /* Chat */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -683,6 +746,7 @@
 				C8C94970288992260057EE7E /* EditButtonView.swift in Sources */,
 				C8C949652889791F0057EE7E /* LocalizationService.swift in Sources */,
 				FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */,
+				C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */,
 				C8C9496E28898D030057EE7E /* ShipmentsView.swift in Sources */,
 				C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */,
 				C8E4C30B288F0429005FDB7C /* NewPasswordView.swift in Sources */,
@@ -691,13 +755,17 @@
 				C8A07814288D61140084C0A6 /* InputTextField.swift in Sources */,
 				C8C94972288992E30057EE7E /* ShareButtonView.swift in Sources */,
 				C8C94977288994B20057EE7E /* Helper.swift in Sources */,
+				C845FAB92892B99000B803FD /* XButton.swift in Sources */,
 				C8C949622889791F0057EE7E /* Strings.swift in Sources */,
 				C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */,
 				C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */,
+				C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
 				C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */,
+				C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */,
 				C8C9496B2889867D0057EE7E /* FilterButtonView.swift in Sources */,
 				C8A07822288DA4CD0084C0A6 /* StarsView.swift in Sources */,
+				C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */,
 				C8C9496728897D110057EE7E /* TitleBar.swift in Sources */,
 				C8A07810288D5CDA0084C0A6 /* EditProfileInfoView.swift in Sources */,
 				C8A07819288D8A4C0084C0A6 /* BottomPopupView.swift in Sources */,
