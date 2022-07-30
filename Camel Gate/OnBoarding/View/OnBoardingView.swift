@@ -11,12 +11,17 @@ struct OnBoardingView: View {
     @State private var currentIndex = 0
     @State private var HeadLineTitle = "Apply Easily On Shipments!"
     @State private var bodyTitle = "You can easily Apply on more than 3,500 shipments and set your own offer"
+    
     var body: some View {
         ZStack{
             Color("Base_Color")
             Image("onoarding_backMask")
                 .resizable()
                 .ignoresSafeArea()
+            
+            Image(currentIndex == 0 ? "onboard1":currentIndex == 1 ? "onboard2":"onboard3")
+                .padding(.vertical, hasNotch ? 30:70)
+                .aspectRatio( contentMode: .fit)
             VStack {
                 Spacer()
                 ZStack {
@@ -104,7 +109,7 @@ struct OnBoardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnBoardingView()
         OnBoardingView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
 
     }
 }
