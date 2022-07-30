@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ShipmentsView: View {
+    
+    @State var goToShipmentDetails:Bool = false
     @State var shipmentsCategory = ["Current","Upcoming","Applied"]
     @State var selected = "Applied"
     
@@ -50,6 +52,8 @@ struct ShipmentsView: View {
                                 .listRowSeparator(.hidden)
                                 .listRowBackground(Color.clear)
 
+                    }.onTapGesture {
+                        goToShipmentDetails = true
                     }
                     ZStack{}
                     .frame( maxHeight: 2)
@@ -71,6 +75,9 @@ struct ShipmentsView: View {
             })
         }
 
+        NavigationLink(destination: DetailsView(),isActive:$goToShipmentDetails , label: {
+        })
+        
     }
 }
 
