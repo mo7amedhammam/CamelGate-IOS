@@ -17,6 +17,9 @@
 		C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */; };
 		C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21428915519002D115A /* KeyboardHandler.swift */; };
 		C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21828917AC1002D115A /* ChangeLanguageView.swift */; };
+		C88F948328969317008B6AD0 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F948228969317008B6AD0 /* SignUpView.swift */; };
+		C88F94852896946D008B6AD0 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F94842896946D008B6AD0 /* GradientButton.swift */; };
+		C88F94882896C67D008B6AD0 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F94872896C67D008B6AD0 /* SignInView.swift */; };
 		C8A07810288D5CDA0084C0A6 /* EditProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0780F288D5CDA0084C0A6 /* EditProfileInfoView.swift */; };
 		C8A07814288D61140084C0A6 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07813288D61140084C0A6 /* InputTextField.swift */; };
 		C8A07816288D61610084C0A6 /* SecureInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07815288D61610084C0A6 /* SecureInputTextField.swift */; };
@@ -82,6 +85,9 @@
 		C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtenstions.swift; sourceTree = "<group>"; };
 		C87BD21428915519002D115A /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		C87BD21828917AC1002D115A /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageView.swift; sourceTree = "<group>"; };
+		C88F948228969317008B6AD0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		C88F94842896946D008B6AD0 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		C88F94872896C67D008B6AD0 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		C8A0780F288D5CDA0084C0A6 /* EditProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileInfoView.swift; sourceTree = "<group>"; };
 		C8A07813288D61140084C0A6 /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		C8A07815288D61610084C0A6 /* SecureInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputTextField.swift; sourceTree = "<group>"; };
@@ -268,6 +274,47 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C88F947E28969251008B6AD0 /* Authontication */ = {
+			isa = PBXGroup;
+			children = (
+				C88F94802896926A008B6AD0 /* SignUp */,
+				C88F947F28969262008B6AD0 /* Login */,
+			);
+			path = Authontication;
+			sourceTree = "<group>";
+		};
+		C88F947F28969262008B6AD0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C88F94862896C66E008B6AD0 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C88F94802896926A008B6AD0 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				C88F9481289692FC008B6AD0 /* View */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		C88F9481289692FC008B6AD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C88F948228969317008B6AD0 /* SignUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C88F94862896C66E008B6AD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C88F94872896C67D008B6AD0 /* SignInView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C8A0780E288D5CAA0084C0A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +332,7 @@
 				C8C9496F288992260057EE7E /* EditButtonView.swift */,
 				C84EAC7B288C3392000AB6AD /* CircularButton.swift */,
 				C845FAB82892B99000B803FD /* XButton.swift */,
+				C88F94842896946D008B6AD0 /* GradientButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -564,6 +612,7 @@
 		FAEADE3D2884BDC7004535CE /* Camel Gate */ = {
 			isa = PBXGroup;
 			children = (
+				C88F947E28969251008B6AD0 /* Authontication */,
 				C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */,
 				FAEADE512884C094004535CE /* Support */,
 				FAEADE4D2884C044004535CE /* App */,
@@ -764,10 +813,13 @@
 				C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */,
 				C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */,
 				C8C9496B2889867D0057EE7E /* FilterButtonView.swift in Sources */,
+				C88F94852896946D008B6AD0 /* GradientButton.swift in Sources */,
+				C88F948328969317008B6AD0 /* SignUpView.swift in Sources */,
 				C8A07822288DA4CD0084C0A6 /* StarsView.swift in Sources */,
 				C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */,
 				C8C9496728897D110057EE7E /* TitleBar.swift in Sources */,
 				C8A07810288D5CDA0084C0A6 /* EditProfileInfoView.swift in Sources */,
+				C88F94882896C67D008B6AD0 /* SignInView.swift in Sources */,
 				C8A07819288D8A4C0084C0A6 /* BottomPopupView.swift in Sources */,
 				C8DB51A9288CB45F004521C8 /* FontsExtension.swift in Sources */,
 				FA7077FD28935B9300879399 /* DetailsView.swift in Sources */,
