@@ -20,8 +20,8 @@ struct EditProfileInfoView: View {
                     Spacer()
                 }
                 
-                InputTextField(imagename: "person", placeholder: "Name".localized(language), text: $name)
-                InputTextField(imagename: "Phone", placeholder: "Phone_Number".localized(language), text: .constant("01101201322"))
+                InputTextField(iconName: "person", placeholder: "Name".localized(language), text: $name)
+                InputTextField(iconName: "Phone", placeholder: "Phone_Number".localized(language), text: .constant("01101201322"))
                 
                 HStack{
                     Text("Truck_Info".localized(language))
@@ -30,8 +30,8 @@ struct EditProfileInfoView: View {
                     Spacer()
                 }.padding(.top)
                 
-                InputTextField(imagename: "x321gray", placeholder: "Plate_Number".localized(language), text: .constant("GTA123"))
-                InputTextField(imagename: "truckgray", placeholder: "Truck_Type".localized(language), text: .constant("Open jumbo truck"))
+                InputTextField(iconName: "x321gray", placeholder: "Plate_Number".localized(language), text: .constant("GTA123"))
+                InputTextField(iconName: "truckgray", placeholder: "Truck_Type".localized(language), text: .constant("Open jumbo truck"))
                
                 HStack{
                     Text("Cargo_types".localized(language))
@@ -40,7 +40,7 @@ struct EditProfileInfoView: View {
                     Spacer()
                 }.padding(.top)
                 
-                InputTextField(imagename: "ic_box", placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
+                InputTextField(iconName: "ic_box", placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
                 
             }.padding(.top,hasNotch ? 140:130)
                 .padding(.horizontal)
@@ -49,7 +49,7 @@ struct EditProfileInfoView: View {
                 })
             TitleBar(Title: "Profile_info", navBarHidden: true, leadingButton: .backButton, subText: "70%", trailingAction: {})
         
-            BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, content: {
+            BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .white, content: {
                 Button(action: {
                     DispatchQueue.main.async{
 // Action

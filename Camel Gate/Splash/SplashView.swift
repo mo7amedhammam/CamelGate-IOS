@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct SplashView: View {
-    @State private var loggedin = true
+//    @State private var loggedin = true
     var body: some View {
-        ZStack {
-            ZStack {}
-            .frame( maxWidth: .infinity, maxHeight: .infinity)
-            .background(Image("splashScreen").resizable())
-            .ignoresSafeArea()
-        }.onAppear {
-            delaySegue()
+            ZStack {
+                ZStack {}
+                .frame( maxWidth: .infinity, maxHeight: .infinity)
+                .background(Image("splashScreen").resizable())
+                .ignoresSafeArea()
+            }.onAppear {
+                delaySegue()
         }
     }
     private func delaySegue() {
@@ -28,11 +28,11 @@ struct SplashView: View {
                 return
             }
             // second check if user is logedin or not
-            //        let authStatus = BGLoginManger.checkUser()
-            //        guard authStatus else{
-            //            navigationToAuth()
-            //            return
-            //        }
+            let authStatus = Helper.userExist()
+                    guard authStatus else{
+                        navigationToAuth()
+                        return
+                    }
             // finally
             navigationToHome()
         }
@@ -54,6 +54,16 @@ struct SplashView: View {
             .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
             .first { $0.isKeyWindow }
         window?.rootViewController = UIHostingController(rootView: TabBarView())
+        //if loged in open tabBarView else open loginView
+        window?.makeKeyAndVisible()
+    }
+    private func navigationToAuth(){
+        let window = UIApplication
+            .shared
+            .connectedScenes
+            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+            .first { $0.isKeyWindow }
+        window?.rootViewController = UIHostingController(rootView: SignInView())
         //if loged in open tabBarView else open loginView
         window?.makeKeyAndVisible()
     }

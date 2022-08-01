@@ -14,13 +14,16 @@ struct BottomSheetView <Content: View>: View {
     var IsPresented: Binding<Bool>
     var withcapsule: Bool
     var bluryBackground: Bool
+    var forgroundColor: Color
 
-    init(  IsPresented:Binding<Bool>,withcapsule:Bool,bluryBackground:Bool, @ViewBuilder content: () -> Content) {
+    init(  IsPresented:Binding<Bool>,withcapsule:Bool,bluryBackground:Bool,forgroundColor:Color, @ViewBuilder content: () -> Content) {
         self.language = LocalizationService.shared.language
         self.IsPresented = IsPresented
         self.content = content()
         self.withcapsule = withcapsule
         self.bluryBackground = bluryBackground
+        self.forgroundColor = forgroundColor
+
     }
     var body: some View {
         ZStack {
@@ -56,7 +59,7 @@ struct BottomSheetView <Content: View>: View {
                         }
                         }.background(
                         RoundedCornersShape(radius: 25, corners: [.topLeft,.topRight])
-                            .foregroundColor(.white)
+                            .foregroundColor(forgroundColor)
                             .ignoresSafeArea()
                             .opacity(1.5)
                             .shadow(radius: 15)
@@ -72,7 +75,7 @@ struct BottomSheetView <Content: View>: View {
 
 struct PopUpView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheetView(IsPresented: .constant(true), withcapsule: true, bluryBackground: true, content: {})
+        BottomSheetView(IsPresented: .constant(true), withcapsule: true, bluryBackground: true, forgroundColor: .white, content: {})
     }
 }
 

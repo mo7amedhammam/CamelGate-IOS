@@ -27,7 +27,7 @@ struct SecureInputTextField: View {
                 if iconName != "" || iconName.isEmpty {
                 Image(iconName)
                     .foregroundColor(Color("blueColor"))
-                    .font(.system(size: 18))
+                    .font(.system(size: 15))
                 }
                 Group{
                 if isSecured {

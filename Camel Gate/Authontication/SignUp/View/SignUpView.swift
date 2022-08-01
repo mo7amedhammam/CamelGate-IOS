@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SignUpView: View {
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     var body: some View {
         ZStack{
          
@@ -17,7 +20,6 @@ struct SignUpView: View {
 //                    .frame(width:500)
                 
                     .padding(.top,-50)
-                    
                     .frame(height:320)
                 
                 ScrollView{
@@ -25,45 +27,59 @@ struct SignUpView: View {
                         .padding(.horizontal,90)
                     
                     Group{
-                        
-                        InputTextField(imagename: "Phone", placeholder: "Enter_your_phone_number".localized(language), text: .constant(""))
+                        InputTextField(iconName: "person",iconColor: Color("blueColor"), placeholder: "Enter_your_name".localized(language), text: .constant(""))
 
-                        SecureInputTextField("Enter_your_password".localized(language), text: .constant(""), iconName: "")
-                        SecureInputTextField("Confirm_your_password".localized(language), text: .constant(""), iconName: "")
+                        InputTextField(iconName: "phoneBlue", placeholder: "Enter_your_phone_number".localized(language), text: .constant(""))
+
+                        SecureInputTextField("Enter_your_password".localized(language), text: .constant(""), iconName: "lockBlue")
+                        SecureInputTextField("Confirm_your_password".localized(language), text: .constant(""), iconName: "lockBlue")
 
                     }
                     .font(Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
                     
-                    
+                  
+
                 }
                 
-                    
+
                 Spacer()
             }
+            .edgesIgnoringSafeArea(.bottom)
+            .onTapGesture(perform: {
+                hideKeyboard()
+            })
 //            .padding(.horizontal,-30)
-            BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, content: {
-                GradientButton(action: {
-                }, Title: "Create_account".localized(language))
-                
-                HStack {
-                    Text("have_an_Account? ".localized(language)).foregroundColor(.secondary)
-                    
-                    Button("Sign_In".localized(language)) {
-  
+            BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .clear, content: {
+                VStack{
+                    GradientButton(action: {
+                    }, Title: "Create_account".localized(language))
+                    .padding(.top)
+                    HStack {
+                        Text("have_an_Account? ".localized(language)).foregroundColor(.secondary)
+                        
+                        Button("Sign_In".localized(language)) {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                        .font(.system(size: 13, weight: .bold))
+                        .foregroundColor(Color("blueColor"))
+                        
                     }
-                    .font(.system(size: 13, weight: .bold))
-                    .foregroundColor(Color("blueColor"))
-                    
-                }.padding(.top,-30)
-                    .padding(.bottom)
-                
+                    .padding(.top,-10)
+                }
+                .padding(.bottom,30)
+                .background(
+                    Image("bottomBackimg")
+                        .resizable()
+                        .padding(.horizontal, -30)
+                        .padding(.bottom,-250)
+                )
+
             })
             
         }
         .overlay(content: {
             VStack{
-                
                 HStack{
                     BackButtonView()
                     Spacer()
@@ -73,12 +89,14 @@ struct SignUpView: View {
                        Spacer()
                     Spacer().frame(width:50)
                 }
-                .padding()
-                .padding(.top,10)
+                .padding(.horizontal)
+                .padding(.top,20)
                 Spacer()
             }
         })
         
+        
+        .navigationBarHidden(true)
     }
 }
 
