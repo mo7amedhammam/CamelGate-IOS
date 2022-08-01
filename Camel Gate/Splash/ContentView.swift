@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct SplashView: View {
+struct ContentView: View {
     //    @State private var loggedin = true
-    @State var contentView = AnyView(SplashScreenView())
+    @State var displayedView = AnyView(SplashScreenView())
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         ZStack {
-            contentView
+            displayedView
         }
         .onAppear {
             delaySegue()
@@ -38,22 +38,22 @@ struct SplashView: View {
         // Delay of 3 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             // first check in its the first time
-            guard !Helper.checkOnBoard() else {
+            guard Helper.checkOnBoard() else {
                 withAnimation{
-                    contentView = AnyView(OnBoardingView())
+                    displayedView = AnyView(OnBoardingView())
                 }
                 return
             }
             // second check if user is logedin or not
             guard Helper.userExist() else{
                 withAnimation{
-                contentView = AnyView(SignInView())
+                    displayedView = AnyView(SignInView())
                 }
                 return
             }
             // finally
             withAnimation{
-            contentView = AnyView(TabBarView())
+                displayedView = AnyView(TabBarView())
             }
         }
     }
@@ -61,7 +61,7 @@ struct SplashView: View {
 
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
-        SplashView()
+        ContentView()
     }
 }
 

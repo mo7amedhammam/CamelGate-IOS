@@ -12,7 +12,7 @@ struct Camel_GateApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                SplashView()
+                ContentView()
             }
         }
     }

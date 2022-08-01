@@ -59,7 +59,7 @@
 		FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */; };
 		FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEADE422884BDC9004535CE /* Assets.xcassets */; };
 		FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEADE452884BDC9004535CE /* Preview Assets.xcassets */; };
-		FAEADE502884C064004535CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE4F2884C064004535CE /* SplashView.swift */; };
+		FAEADE502884C064004535CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE4F2884C064004535CE /* ContentView.swift */; };
 		FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE6E2884C803004535CE /* TabBarView.swift */; };
 		FAEADEAD2884D3D0004535CE /* SFUIText-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA12884D3CF004535CE /* SFUIText-LightItalic.ttf */; };
 		FAEADEAE2884D3D0004535CE /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEA22884D3CF004535CE /* SFUIText-Medium.ttf */; };
@@ -131,7 +131,7 @@
 		FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camel_GateApp.swift; sourceTree = "<group>"; };
 		FAEADE422884BDC9004535CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAEADE452884BDC9004535CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FAEADE4F2884C064004535CE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		FAEADE4F2884C064004535CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FAEADE6E2884C803004535CE /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		FAEADEA12884D3CF004535CE /* SFUIText-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-LightItalic.ttf"; sourceTree = "<group>"; };
 		FAEADEA22884D3CF004535CE /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
@@ -659,7 +659,7 @@
 		FAEADE4E2884C04C004535CE /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				FAEADE4F2884C064004535CE /* SplashView.swift */,
+				FAEADE4F2884C064004535CE /* ContentView.swift */,
 				C8C5583E2898118300D46777 /* SplashScreenView.swift */,
 			);
 			path = Splash;
@@ -827,7 +827,7 @@
 				C8A07819288D8A4C0084C0A6 /* BottomPopupView.swift in Sources */,
 				C8DB51A9288CB45F004521C8 /* FontsExtension.swift in Sources */,
 				FA7077FD28935B9300879399 /* DetailsView.swift in Sources */,
-				FAEADE502884C064004535CE /* SplashView.swift in Sources */,
+				FAEADE502884C064004535CE /* ContentView.swift in Sources */,
 				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
 				C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */,
 				C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */,
