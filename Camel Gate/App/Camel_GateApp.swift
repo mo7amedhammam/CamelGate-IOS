@@ -11,7 +11,9 @@ import SwiftUI
 struct Camel_GateApp: App {
     var body: some Scene {
         WindowGroup {
-            SplashView()
+            NavigationView {
+                SplashView()
+            }
         }
     }
 }

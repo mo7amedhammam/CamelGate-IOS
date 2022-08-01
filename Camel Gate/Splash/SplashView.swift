@@ -8,69 +8,61 @@
 import SwiftUI
 
 struct SplashView: View {
-//    @State private var loggedin = true
+    //    @State private var loggedin = true
+    @State var contentView = AnyView(SplashScreenView())
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.scenePhase) var scenePhase
+    
     var body: some View {
-            ZStack {
-                ZStack {}
-                .frame( maxWidth: .infinity, maxHeight: .infinity)
-                .background(Image("splashScreen").resizable())
-                .ignoresSafeArea()
-            }.onAppear {
-                delaySegue()
+        ZStack {
+            contentView
         }
+        .onAppear {
+            delaySegue()
+        }
+        
+        .onChange(of: scenePhase, perform: { newPhase in
+            if newPhase == .active {
+                print("Active")
+            } else if newPhase == .inactive {
+                print("InActive")
+            } else if newPhase == .background {
+                print("BackGround")
+            }
+        })
+        .navigationViewStyle(StackNavigationViewStyle())
+        .preferredColorScheme(.light)
     }
+    
     private func delaySegue() {
         // Delay of 3 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             // first check in its the first time
-            guard Helper.checkOnBoard() else {
-                navigationToBoard()
+            guard !Helper.checkOnBoard() else {
+                withAnimation{
+                    contentView = AnyView(OnBoardingView())
+                }
                 return
             }
             // second check if user is logedin or not
-            let authStatus = Helper.userExist()
-                    guard authStatus else{
-                        navigationToAuth()
-                        return
-                    }
+            guard Helper.userExist() else{
+                withAnimation{
+                contentView = AnyView(SignInView())
+                }
+                return
+            }
             // finally
-            navigationToHome()
+            withAnimation{
+            contentView = AnyView(TabBarView())
+            }
         }
     }
-    private func navigationToBoard(){
-        let window = UIApplication
-            .shared
-            .connectedScenes
-            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
-            .first { $0.isKeyWindow }
-        window?.rootViewController = UIHostingController(rootView: OnBoardingView())
-        //if loged in open tabBarView else open loginView
-        window?.makeKeyAndVisible()
-    }
-    private func navigationToHome(){
-        let window = UIApplication
-            .shared
-            .connectedScenes
-            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
-            .first { $0.isKeyWindow }
-        window?.rootViewController = UIHostingController(rootView: TabBarView())
-        //if loged in open tabBarView else open loginView
-        window?.makeKeyAndVisible()
-    }
-    private func navigationToAuth(){
-        let window = UIApplication
-            .shared
-            .connectedScenes
-            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
-            .first { $0.isKeyWindow }
-        window?.rootViewController = UIHostingController(rootView: SignInView())
-        //if loged in open tabBarView else open loginView
-        window?.makeKeyAndVisible()
-    }
 }
-    
+
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
         SplashView()
     }
 }
+
+

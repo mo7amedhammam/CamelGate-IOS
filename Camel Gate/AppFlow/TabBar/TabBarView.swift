@@ -59,8 +59,6 @@ struct MainTabBar : View {
                 RoundedCornersShape(radius: 30, corners: [.topLeft,.topRight])
                     .foregroundColor(.white)
             )
-//            .cornerRadius(30)
-            .shadow(color: Color.black.opacity(0.5), radius: 5)
         }
         .ignoresSafeArea(.all, edges: .bottom)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))

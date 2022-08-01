@@ -13,7 +13,6 @@ struct SignInView: View {
     @State var destination = AnyView(SignUpView())
 
     var body: some View {
-        NavigationView{
             ZStack{
                 VStack{
                     Image("signupheaderpng")
@@ -107,9 +106,6 @@ struct SignInView: View {
            
             NavigationLink(destination: destination,isActive:$active , label: {
             })
-
-        }
-        
     }
 }
 
