@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SignInView: View {
     
+    @StateObject var SignInVM = SignInViewModel()
+
     @State var active = false
     @State var destination = AnyView(SignUpView())
 
@@ -26,10 +28,22 @@ struct SignInView: View {
                         
                         Group{
                             
-                            InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"), placeholder: "Enter_your_phone_number".localized(language), text: .constant(""))
+                            InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"), placeholder: "Enter_your_phone_number".localized(language), text: $SignInVM.phoneNumber)
+                                .keyboardType(.numberPad)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(.red, lineWidth:SignInVM.validations == .PhoneNumber ? 1:0))
+                            if SignInVM.validations == .PhoneNumber{
+                                HStack{
+                                    Text(SignInVM.ValidationMessage.localized(language))
+                                        .foregroundColor(.red)
+                                        .font(Font.camelfonts.Reg14)
+                                    Spacer()
+                                }.padding(.horizontal)
+                            }
                             
 
-                            SecureInputTextField("Enter_your_password".localized(language), text: .constant(""),iconName:"lockBlue")
+                            SecureInputTextField("Enter_your_password".localized(language), text: $SignInVM.password,iconName:"lockBlue")
                         }
                         .font(Font.camelfonts.Reg16)
                         .ignoresSafeArea(.keyboard)
@@ -56,6 +70,8 @@ struct SignInView: View {
                     VStack{
     //                    Spacer()
                         GradientButton(action: {
+                            print(SignInVM.phoneNumber)
+                            print(SignInVM.password)
                         }, Title: "Create_account".localized(language))
                         
                         HStack {

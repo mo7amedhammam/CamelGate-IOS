@@ -39,6 +39,7 @@ struct SecureInputTextField: View {
                 }
             }
                 .autocapitalization(.none)
+                .textInputAutocapitalization(.never)
                     .frame(width: screenWidth, height: 30 , alignment: .trailing)
                     .font(.system(size: 13))
                     .padding(12)

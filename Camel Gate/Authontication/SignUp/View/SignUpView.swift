@@ -10,6 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @StateObject var SignUpVM = SignUpViewModel()
 
     var body: some View {
         ZStack{
@@ -27,12 +28,35 @@ struct SignUpView: View {
                         .padding(.horizontal,90)
                     
                     Group{
-                        InputTextField(iconName: "person",iconColor: Color("blueColor"), placeholder: "Enter_your_name".localized(language), text: .constant(""))
+                        InputTextField(iconName: "person",iconColor: Color("blueColor"), placeholder: "Enter_your_name".localized(language), text: $SignUpVM.Drivername)
 
-                        InputTextField(iconName: "phoneBlue", placeholder: "Enter_your_phone_number".localized(language), text: .constant(""))
+                        InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"), placeholder: "Enter_your_phone_number".localized(language), text: $SignUpVM.phoneNumber)
+                            .keyboardType(.numberPad)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(.red, lineWidth:SignUpVM.validations == .PhoneNumber ? 1:0))
+                        if SignUpVM.validations == .PhoneNumber{
+                            HStack{
+                                Text(SignUpVM.ValidationMessage.localized(language))
+                                    .foregroundColor(.red)
+                                    .font(Font.camelfonts.Reg14)
+                                Spacer()
+                            }
+                        }
 
-                        SecureInputTextField("Enter_your_password".localized(language), text: .constant(""), iconName: "lockBlue")
-                        SecureInputTextField("Confirm_your_password".localized(language), text: .constant(""), iconName: "lockBlue")
+                        SecureInputTextField("Enter_your_password".localized(language), text: $SignUpVM.password, iconName: "lockBlue")
+                        SecureInputTextField("Confirm_your_password".localized(language), text: $SignUpVM.confirmpassword, iconName: "lockBlue")
+                            .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(.red, lineWidth:SignUpVM.validations == .ConfirmPassword ? 1:0))
+                    if SignUpVM.validations == .ConfirmPassword{
+                        HStack{
+                            Text(SignUpVM.ValidationMessage.localized(language))
+                                .foregroundColor(.red)
+                                .font(Font.camelfonts.Reg14)
+                            Spacer()
+                        }.padding(.horizontal)
+                    }
 
                     }
                     .font(Font.camelfonts.Reg16)

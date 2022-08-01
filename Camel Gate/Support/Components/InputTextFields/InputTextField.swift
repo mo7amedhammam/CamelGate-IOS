@@ -38,7 +38,7 @@ struct InputTextField: View {
                 TextField("",text:$text)
                     .font(Font.camelfonts.Reg16)
                     .autocapitalization(.none)
-                    .textInputAutocapitalization(.none)
+                    .textInputAutocapitalization(.never)
             }
         }
         .frame(width: screenWidth, height: 30)
