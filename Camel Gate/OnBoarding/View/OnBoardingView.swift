@@ -76,11 +76,6 @@ struct OnBoardingView: View {
                                 print("")
                             }
                         }) {
-//                            ZStack {
-//                                Image("ic_back_button")
-////                                    .resizable()
-//                                    .scaledToFill()
-
                                 HStack{
                                     Text(currentIndex == 2 ? "Geting Started" : "Next").font(Font.camelfonts.Med16)
                                         .foregroundColor(Color.white)
@@ -88,7 +83,6 @@ struct OnBoardingView: View {
                                 }
                                 .frame(height: 50)
                                 .padding(.horizontal, 80)
-//                            }
                             .background(
                                 LinearGradient(
                                     gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
