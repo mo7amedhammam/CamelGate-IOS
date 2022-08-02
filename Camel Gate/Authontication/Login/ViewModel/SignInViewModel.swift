@@ -8,12 +8,15 @@
 import Foundation
 import SwiftUI
 import Combine
+import Moya
+import PromiseKit
 
 
 class SignInViewModel: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
 //    let passthroughModelSubject = PassthroughSubject<BaseResponse<LoginModel>, Error>()
+    private let authServices = MoyaProvider<AuthServices>()
     private var cancellables: Set<AnyCancellable> = []
     let characterLimit: Int = 14
     
@@ -79,6 +82,30 @@ class SignInViewModel: ObservableObject {
 //        }.store(in: &cancellables)
         
     }
+
+  // MARK: - API Services
+      func Login(){
+          let params : [String : Any] =
+          [
+              "phone"                       : phoneNumber ,
+              "password"                    : password ,
+          ]
+          firstly { () -> Promise<Any> in
+//              self.startProgress()
+              return BGServicesManager.CallApi(self.authServices,AuthServices.Login(parameters: params))
+          }.done({ response in
+              let result = response as! Response
+              guard BGNetworkHelper.validateResponse(response: result) else{return}
+              let data : LoginModel = try BGDecoder.decode(data: result.data)
+              print(data)
+          }).ensure {
+//              self.stopProgress()
+          }.catch { (error) in
+              print(error)
+
+//              BGAlertPresenter.displayToast(title: "" , message: "\(error)", type: .error)
+          }
+      }
 }
 
 

@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0125B07289934D1004B65E5 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B06289934D1004B65E5 /* LoginModel.swift */; };
+		C0125B0A28993594004B65E5 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B0928993594004B65E5 /* URLRequestBuilder.swift */; };
+		C0125B0C289935C5004B65E5 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B0B289935C5004B65E5 /* AuthServices.swift */; };
+		C0125B0E2899363D004B65E5 /* BGNetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B0D2899363D004B65E5 /* BGNetworkHelper.swift */; };
+		C0125B102899369C004B65E5 /* BGServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B0F2899369C004B65E5 /* BGServicesManager.swift */; };
+		C0125B12289936B5004B65E5 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B11289936B5004B65E5 /* EndPoints.swift */; };
+		C0125B142899384C004B65E5 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B132899384C004B65E5 /* ResponseModel.swift */; };
+		C0125B162899390B004B65E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B152899390B004B65E5 /* Constants.swift */; };
+		C0125B1828993991004B65E5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B1728993991004B65E5 /* Decoder.swift */; };
 		C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB62892AEA000B803FD /* ChatHeader.swift */; };
 		C845FAB92892B99000B803FD /* XButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB82892B99000B803FD /* XButton.swift */; };
 		C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FABC2892BB6D00B803FD /* ChatsListView.swift */; };
@@ -83,6 +92,15 @@
 		3FF2C598AE9DC61C2869B627 /* Pods-Camel Gate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camel Gate.debug.xcconfig"; path = "Target Support Files/Pods-Camel Gate/Pods-Camel Gate.debug.xcconfig"; sourceTree = "<group>"; };
 		6981EFE87114E4A9DDB2A0CE /* Pods_Camel_Gate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Camel_Gate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B85608AFEF5CE600792E1847 /* Pods-Camel Gate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camel Gate.release.xcconfig"; path = "Target Support Files/Pods-Camel Gate/Pods-Camel Gate.release.xcconfig"; sourceTree = "<group>"; };
+		C0125B06289934D1004B65E5 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		C0125B0928993594004B65E5 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
+		C0125B0B289935C5004B65E5 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
+		C0125B0D2899363D004B65E5 /* BGNetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGNetworkHelper.swift; sourceTree = "<group>"; };
+		C0125B0F2899369C004B65E5 /* BGServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGServicesManager.swift; sourceTree = "<group>"; };
+		C0125B11289936B5004B65E5 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
+		C0125B132899384C004B65E5 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		C0125B152899390B004B65E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C0125B1728993991004B65E5 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		C845FAB62892AEA000B803FD /* ChatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeader.swift; sourceTree = "<group>"; };
 		C845FAB82892B99000B803FD /* XButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButton.swift; sourceTree = "<group>"; };
 		C845FABC2892BB6D00B803FD /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
@@ -175,7 +193,6 @@
 				3FF2C598AE9DC61C2869B627 /* Pods-Camel Gate.debug.xcconfig */,
 				B85608AFEF5CE600792E1847 /* Pods-Camel Gate.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -185,6 +202,28 @@
 				6981EFE87114E4A9DDB2A0CE /* Pods_Camel_Gate.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0125B05289934C1004B65E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C0125B06289934D1004B65E5 /* LoginModel.swift */,
+				C0125B132899384C004B65E5 /* ResponseModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C0125B082899356E004B65E5 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C0125B0928993594004B65E5 /* URLRequestBuilder.swift */,
+				C0125B0B289935C5004B65E5 /* AuthServices.swift */,
+				C0125B0D2899363D004B65E5 /* BGNetworkHelper.swift */,
+				C0125B0F2899369C004B65E5 /* BGServicesManager.swift */,
+				C0125B11289936B5004B65E5 /* EndPoints.swift */,
+				C0125B1728993991004B65E5 /* Decoder.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		C845FAB42892AB9900B803FD /* Chat */ = {
@@ -317,6 +356,7 @@
 		C88F947F28969262008B6AD0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				C0125B05289934C1004B65E5 /* Model */,
 				C8C5584028981E6700D46777 /* ViewModel */,
 				C88F94862896C66E008B6AD0 /* View */,
 			);
@@ -681,6 +721,7 @@
 			isa = PBXGroup;
 			children = (
 				C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */,
+				C0125B082899356E004B65E5 /* Networking */,
 				FAEADE512884C094004535CE /* Support */,
 				FAEADE4D2884C044004535CE /* App */,
 				FAEADE4E2884C04C004535CE /* Splash */,
@@ -735,6 +776,7 @@
 			isa = PBXGroup;
 			children = (
 				C8C94976288994B20057EE7E /* Helper.swift */,
+				C0125B152899390B004B65E5 /* Constants.swift */,
 				C8C9495A2889791F0057EE7E /* Localization */,
 				FA45B7CD28851544002A9654 /* Components */,
 				FAE2F1912884FC610081177C /* Resources */,
@@ -902,27 +944,34 @@
 				FA4E27AD288C537E0047265D /* ShipView.swift in Sources */,
 				C8C9494B2889772B0057EE7E /* ProfileView.swift in Sources */,
 				C8C94969288980AB0057EE7E /* BackButtonView.swift in Sources */,
+				C0125B1828993991004B65E5 /* Decoder.swift in Sources */,
 				C8C5584228981E9800D46777 /* SignInViewModel.swift in Sources */,
 				FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */,
 				FA4E27B1288C53D10047265D /* FilterView.swift in Sources */,
 				C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */,
 				C8E4C309288F0406005FDB7C /* PhoneVerificationView.swift in Sources */,
+				C0125B162899390B004B65E5 /* Constants.swift in Sources */,
+				C0125B142899384C004B65E5 /* ResponseModel.swift in Sources */,
 				C8C94970288992260057EE7E /* EditButtonView.swift in Sources */,
 				C8C949652889791F0057EE7E /* LocalizationService.swift in Sources */,
 				FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */,
 				C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */,
 				C8C9496E28898D030057EE7E /* ShipmentsView.swift in Sources */,
 				C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */,
+				C0125B0C289935C5004B65E5 /* AuthServices.swift in Sources */,
 				C8E4C30B288F0429005FDB7C /* NewPasswordView.swift in Sources */,
 				C870F89828901D9100CCFD9B /* OnBoardingView.swift in Sources */,
 				C8C949752889935B0057EE7E /* GarageView.swift in Sources */,
 				C8A07814288D61140084C0A6 /* InputTextField.swift in Sources */,
 				C8C5583F2898118300D46777 /* SplashScreenView.swift in Sources */,
 				C8C94972288992E30057EE7E /* ShareButtonView.swift in Sources */,
+				C0125B0A28993594004B65E5 /* URLRequestBuilder.swift in Sources */,
 				C8C94977288994B20057EE7E /* Helper.swift in Sources */,
 				C845FAB92892B99000B803FD /* XButton.swift in Sources */,
 				C8C949622889791F0057EE7E /* Strings.swift in Sources */,
+				C0125B102899369C004B65E5 /* BGServicesManager.swift in Sources */,
 				C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */,
+				C0125B07289934D1004B65E5 /* LoginModel.swift in Sources */,
 				C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */,
 				FA7078012895FD9500879399 /* NotificationsView.swift in Sources */,
 				C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */,
@@ -936,9 +985,11 @@
 				C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */,
 				C8C9496728897D110057EE7E /* TitleBar.swift in Sources */,
 				C8A07810288D5CDA0084C0A6 /* EditProfileInfoView.swift in Sources */,
+				C0125B0E2899363D004B65E5 /* BGNetworkHelper.swift in Sources */,
 				C88F94882896C67D008B6AD0 /* SignInView.swift in Sources */,
 				C8A07819288D8A4C0084C0A6 /* BottomPopupView.swift in Sources */,
 				C8DB51A9288CB45F004521C8 /* FontsExtension.swift in Sources */,
+				C0125B12289936B5004B65E5 /* EndPoints.swift in Sources */,
 				FA7077FD28935B9300879399 /* DetailsView.swift in Sources */,
 				FAEADE502884C064004535CE /* ContentView.swift in Sources */,
 				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
