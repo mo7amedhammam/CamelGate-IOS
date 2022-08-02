@@ -58,6 +58,7 @@
 		FA4E27B1288C53D10047265D /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27B0288C53D10047265D /* FilterView.swift */; };
 		FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27B2288C540F0047265D /* tripCellView.swift */; };
 		FA7077FD28935B9300879399 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077FC28935B9300879399 /* DetailsView.swift */; };
+		FA7078012895FD9500879399 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7078002895FD9500879399 /* NotificationsView.swift */; };
 		FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */; };
 		FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEADE422884BDC9004535CE /* Assets.xcassets */; };
 		FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEADE452884BDC9004535CE /* Preview Assets.xcassets */; };
@@ -131,6 +132,7 @@
 		FA4E27B0288C53D10047265D /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		FA4E27B2288C540F0047265D /* tripCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripCellView.swift; sourceTree = "<group>"; };
 		FA7077FC28935B9300879399 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		FA7078002895FD9500879399 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		FAEADE3B2884BDC7004535CE /* Camel Gate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camel Gate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camel_GateApp.swift; sourceTree = "<group>"; };
 		FAEADE422884BDC9004535CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			children = (
 				C851C29D28936F2700A5C757 /* HomeScreen */,
 				FA7077FB28935B6F00879399 /* DetailsScreen */,
+				FA7077FE2895FD6800879399 /* Notifications */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -606,6 +609,22 @@
 				C851C29E28936F4E00A5C757 /* View */,
 			);
 			path = DetailsScreen;
+			sourceTree = "<group>";
+		};
+		FA7077FE2895FD6800879399 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				FA7077FF2895FD8500879399 /* View */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		FA7077FF2895FD8500879399 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA7078002895FD9500879399 /* NotificationsView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FAE2F1912884FC610081177C /* Resources */ = {
@@ -836,6 +855,7 @@
 				C8C949622889791F0057EE7E /* Strings.swift in Sources */,
 				C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */,
 				C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */,
+				FA7078012895FD9500879399 /* NotificationsView.swift in Sources */,
 				C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
 				C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */,
