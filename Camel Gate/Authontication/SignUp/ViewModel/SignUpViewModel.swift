@@ -24,7 +24,7 @@ class SignUpViewModel: ObservableObject {
             if phoneNumber != filtered {
                 phoneNumber = filtered
             }
-            if self.phoneNumber != "" && ( self.phoneNumber.count < 11 || self.phoneNumber.count > 11) {
+            if self.phoneNumber != "" && ( self.phoneNumber.count < 14 || self.phoneNumber.count > 14) {
                 validations = .PhoneNumber
                 self.ValidationMessage = "Enter_a_valid_Phone_number"
             }
@@ -32,7 +32,7 @@ class SignUpViewModel: ObservableObject {
 //                validations = .PhoneNumber
 //                self.ValidationMessage = "*"
 //            }
-            else if self.phoneNumber.count == 11 {
+            else if self.phoneNumber.count == 14 {
                 validations = .none
                 self.ValidationMessage = ""
             }
@@ -71,7 +71,7 @@ class SignUpViewModel: ObservableObject {
 
     
     @Published var destination = AnyView(TabBarView())
-    init(limit: Int = 11) {
+    init(limit: Int =  14) {
         characterLimit = limit
 
 //        passthroughModelSubject.sink { (completion) in
