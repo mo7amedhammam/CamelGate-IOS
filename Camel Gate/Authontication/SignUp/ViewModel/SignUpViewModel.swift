@@ -14,7 +14,7 @@ class SignUpViewModel: ObservableObject {
     let passthroughSubject = PassthroughSubject<String, Error>()
 //    let passthroughModelSubject = PassthroughSubject<BaseResponse<LoginModel>, Error>()
     private var cancellables: Set<AnyCancellable> = []
-    let characterLimit: Int
+    let characterLimit: Int = 14
     
     // ------- input
     @Published  var Drivername: String = ""
@@ -24,7 +24,7 @@ class SignUpViewModel: ObservableObject {
             if phoneNumber != filtered {
                 phoneNumber = filtered
             }
-            if self.phoneNumber != "" && ( self.phoneNumber.count < 14 || self.phoneNumber.count > 14) {
+            if self.phoneNumber != "" && ( self.phoneNumber.count < characterLimit || self.phoneNumber.count > characterLimit) {
                 validations = .PhoneNumber
                 self.ValidationMessage = "Enter_a_valid_Phone_number"
             }
@@ -32,7 +32,7 @@ class SignUpViewModel: ObservableObject {
 //                validations = .PhoneNumber
 //                self.ValidationMessage = "*"
 //            }
-            else if self.phoneNumber.count == 14 {
+            else if self.phoneNumber.count == characterLimit {
                 validations = .none
                 self.ValidationMessage = ""
             }
@@ -71,8 +71,7 @@ class SignUpViewModel: ObservableObject {
 
     
     @Published var destination = AnyView(TabBarView())
-    init(limit: Int =  14) {
-        characterLimit = limit
+    init() {
 
 //        passthroughModelSubject.sink { (completion) in
 //        } receiveValue: { [self](modeldata) in

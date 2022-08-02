@@ -33,6 +33,10 @@ struct SignInView: View {
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
                                         .stroke(.red, lineWidth:SignInVM.validations == .PhoneNumber ? 1:0))
+                                .onChange(of: SignInVM.phoneNumber){ newval in
+                                    SignInVM.phoneNumber =  String(newval.prefix(SignInVM.characterLimit))
+                                }
+
                             if SignInVM.validations == .PhoneNumber{
                                 HStack{
                                     Text(SignInVM.ValidationMessage.localized(language))
