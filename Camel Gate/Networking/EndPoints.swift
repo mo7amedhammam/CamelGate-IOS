@@ -10,5 +10,5 @@ import Foundation
 enum EndPoints: String {
     // MARK: - Auth
     case Intro = "tutorials"
-    case Login = "login"
+    case Login = "User/Login"
 }

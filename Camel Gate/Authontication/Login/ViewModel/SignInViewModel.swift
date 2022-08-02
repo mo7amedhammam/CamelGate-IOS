@@ -87,8 +87,8 @@ class SignInViewModel: ObservableObject {
       func Login(){
           let params : [String : Any] =
           [
-              "phone"                       : phoneNumber ,
-              "password"                    : password ,
+              "mobile"                       : phoneNumber ,
+              "password"                    : password
           ]
           firstly { () -> Promise<Any> in
 //              self.startProgress()
@@ -96,12 +96,16 @@ class SignInViewModel: ObservableObject {
           }.done({ response in
               let result = response as! Response
               guard BGNetworkHelper.validateResponse(response: result) else{return}
-              let data : LoginModel = try BGDecoder.decode(data: result.data)
+              let data : BaseResponse<LoginModel> = try BGDecoder.decode(data: result.data)
+              self.message = data.message ?? ""
+             print(data.message ?? "")
               print(data)
           }).ensure {
 //              self.stopProgress()
           }.catch { (error) in
               print(error)
+              print(error.localizedDescription)
+
 
 //              BGAlertPresenter.displayToast(title: "" , message: "\(error)", type: .error)
           }

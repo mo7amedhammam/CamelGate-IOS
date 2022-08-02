@@ -31,7 +31,7 @@ struct Constants {
 
     // MARK: - APIs Constants
 
-    static var baseURL:String {return "https://lamh.online/"}
-    static var apiURL:String {return "\(baseURL)api/"}
+    static var baseURL:String {return "https://camelgateapi.wecancity.com/"}
+    static var apiURL:String {return "\(baseURL)api/\(Helper.getLanguage())"}
     static var imagesURL:String {return baseURL + "storage/"}
 }

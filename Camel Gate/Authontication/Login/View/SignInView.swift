@@ -76,6 +76,7 @@ struct SignInView: View {
                         GradientButton(action: {
                             print(SignInVM.phoneNumber)
                             print(SignInVM.password)
+                            SignInVM.Login()
                         }, Title: "Create_account".localized(language))
                         
                         HStack {
