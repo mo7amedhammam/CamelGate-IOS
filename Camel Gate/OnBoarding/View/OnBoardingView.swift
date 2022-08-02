@@ -11,7 +11,8 @@ struct OnBoardingView: View {
     @State private var currentIndex = 0
     @State private var HeadLineTitle = "Apply Easily On Shipments!"
     @State private var bodyTitle = "You can easily Apply on more than 3,500 shipments and set your own offer"
-    
+    @State var active = false
+    @State var destination = AnyView(TabBarView())
     var body: some View {
         ZStack{
             Color("Base_Color")
@@ -65,13 +66,9 @@ struct OnBoardingView: View {
                                 bodyTitle = "You can easily check your balance along time and transitions made in/out"
                             case 2 :
                                     Helper.onBoardOpened()
-                                let window = UIApplication
-                                    .shared
-                                    .connectedScenes
-                                    .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
-                                    .first { $0.isKeyWindow }
-                                window?.rootViewController = UIHostingController(rootView: TabBarView())
-                                window?.makeKeyAndVisible()
+                               active = true
+                                destination = AnyView(TabBarView()        .navigationBarHidden(true)
+)
                             default :
                                 print("")
                             }
@@ -96,6 +93,9 @@ struct OnBoardingView: View {
                     .background(Color.clear)
             }.edgesIgnoringSafeArea(.all)
         }.ignoresSafeArea()
+            .navigationBarHidden(true)
+        NavigationLink(destination: destination,isActive:$active , label: {
+        })
     }
 }
 

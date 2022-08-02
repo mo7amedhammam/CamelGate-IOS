@@ -12,37 +12,50 @@ struct SecureInputTextField: View {
     @Binding private var text: String
     @State private var isSecured: Bool = true
     let screenWidth = UIScreen.main.bounds.size.width - 50
-    
-    init(_ title: String, text: Binding<String>) {
+    var iconName = ""
+
+    init(_ title: String, text: Binding<String>,iconName:String) {
         self.placeholder = title
         self._text = text
+        self.iconName =  iconName
     }
     
     var body: some View {
         ZStack(alignment: .trailing) {
-            Group{
-            if isSecured {
-                SecureField(placeholder, text: $text)
-                
-            } else {
-                TextField(placeholder, text: $text)
-            }
-            }    .autocapitalization(.none)
-                .frame(width: screenWidth, height: 30 , alignment: .trailing)
-                .font(.system(size: 13))
-                .padding(12)
-                .disableAutocorrection(true)
-                .background(
-                    Color.white
-                )
-                .cornerRadius(5)
-                .shadow(color: Color.gray.opacity(0.099), radius: 3)
             
+            HStack {
+                if iconName != "" || iconName.isEmpty {
+                Image(iconName)
+                    .foregroundColor(Color("blueColor"))
+                    .font(.system(size: 15))
+                }
+                Group{
+                if isSecured {
+                    SecureField(placeholder, text: $text)
+                    
+                } else {
+                    TextField(placeholder, text: $text)
+                }
+                }
+            }
+                .autocapitalization(.none)
+                .textInputAutocapitalization(.never)
+                    .frame(width: screenWidth, height: 30 , alignment: .trailing)
+                    .font(.system(size: 13))
+                    .padding(12)
+                    .disableAutocorrection(true)
+                    .background(
+                        Color.white
+                    )
+                    .cornerRadius(5)
+                .shadow(color: Color.black.opacity(0.099), radius: 3)
+            
+
             Button(action: {
                 isSecured.toggle()
             }) {
                 Image(systemName: self.isSecured ? "eye.slash" : "eye")
-                    .accentColor(.gray)
+                    .accentColor(.gray.opacity(0.5))
                     .padding()
             }
         }
@@ -51,7 +64,7 @@ struct SecureInputTextField: View {
 
 struct SecureInputTextField_Previews: PreviewProvider {
     static var previews: some View {
-        SecureInputTextField("Password", text: .constant(""))
+        SecureInputTextField("Password", text: .constant(""), iconName: "")
     }
 }
 

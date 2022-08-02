@@ -28,8 +28,8 @@ struct NewPasswordView: View {
                         .padding(.vertical,30)
                     
                     Group{
-                    SecureInputTextField("new_Password".localized(language), text: $newpass)
-                    SecureInputTextField("Confirm_new_Password".localized(language), text: $Confirmnewpass)
+                        SecureInputTextField("new_Password".localized(language), text: $newpass, iconName: "")
+                        SecureInputTextField("Confirm_new_Password".localized(language), text: $Confirmnewpass, iconName: "")
                     }
                     .font(Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
@@ -88,7 +88,7 @@ struct NewPasswordView: View {
             
             if showBottomSheet{
                 
-                BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true, content: {
+                BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true, forgroundColor: .white, content: {
 
                         Text("Password_Changed".localized(language))
                             .font(Font.camelfonts.Reg20)

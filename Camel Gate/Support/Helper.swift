@@ -233,3 +233,11 @@ func ConvertDateFormat(inp:Date, FormatTo:String) -> Date {
         }
     }
 //}
+
+enum ActiveAlert {
+    case NetworkError, serverError, success, unauthorized
+}
+
+enum InvalidFields {
+    case none, PhoneNumber, Password, ConfirmPassword, Name, unauthorized
+}

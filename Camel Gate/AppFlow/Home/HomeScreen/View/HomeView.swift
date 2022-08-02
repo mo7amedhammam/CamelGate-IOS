@@ -62,7 +62,7 @@ struct HomeView: View {
                     Image("floatingchat")
                 })
             }.padding()
-        }.navigationBarHidden(true)
+        }
         NavigationLink(destination: destination,isActive:$active , label: {
         })
 

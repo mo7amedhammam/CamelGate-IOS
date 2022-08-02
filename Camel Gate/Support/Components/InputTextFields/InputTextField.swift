@@ -7,7 +7,9 @@
 import SwiftUI
 
 struct InputTextField: View {
-    @State var imagename : String? = "cargo"
+    @State var iconName : String? = ""
+    @State var iconColor : Color? = .clear
+
     var placeholder : String
 
     @Binding var text: String
@@ -15,26 +17,28 @@ struct InputTextField: View {
     var body: some View {
         
         HStack{
-            if imagename != "" || imagename != nil{
-                Image(imagename ?? "")
-//                    .renderingMode(.template)
+            if iconName != "" || iconName != nil{
+                Image(iconName ?? "")
+                    .renderingMode( iconColor != .clear ? .template:.original)
 //                    .foregroundColor(.secondary)
 //                    .tint(.gray)
 //                    .background(Color.white)
+                    .foregroundColor(iconColor == .clear ? .clear:iconColor)
+                    .font(.system(size: 15))
             }else{
             }
             
             ZStack (alignment:.leading){
                 Text(placeholder)
                     .font(Font.camelfonts.Reg14)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.gray.opacity(0.5))
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
                 
                 TextField("",text:$text)
                     .font(Font.camelfonts.Reg16)
                     .autocapitalization(.none)
-                    .textInputAutocapitalization(.none)
+                    .textInputAutocapitalization(.never)
             }
         }
         .frame(width: screenWidth, height: 30)
@@ -50,7 +54,7 @@ struct InputTextField: View {
 }
 struct InputTextField_Previews: PreviewProvider {
     static var previews: some View {
-        InputTextField(imagename:"x321gray",placeholder: "Name", text: .constant("Mohamed Hammam"))
+        InputTextField(iconName:"x321gray",placeholder: "Name", text: .constant("Mohamed Hammam"))
         
     }
 }
