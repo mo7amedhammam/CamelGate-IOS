@@ -18,7 +18,7 @@ struct Constants {
     static var created:Int {return 201}
     static var unprocessableEntity : Int {return 401}
     static var notActive : Int {return 401}
-    static var unauthenticated : Int {return 403}
+    static var unauthenticated : Int {return 401}
     static var notAcceptable : Int {return 401}
     static var notFound : Int {return 404}
     static var userType : Int {return 1}

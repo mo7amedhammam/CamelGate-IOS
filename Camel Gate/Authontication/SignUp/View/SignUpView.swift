@@ -61,16 +61,12 @@ struct SignUpView: View {
                             Spacer()
                         }.padding(.horizontal)
                     }
-
                     }
+                    .padding(.horizontal)
                     .font(Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
-                    
-                  
 
                 }
-                
-
                 Spacer()
             }
             .edgesIgnoringSafeArea(.bottom)
@@ -81,6 +77,7 @@ struct SignUpView: View {
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .clear, content: {
                 VStack{
                     GradientButton(action: {
+                        SignUpVM.CreateAccount()
                     }, Title: "Create_account".localized(language))
                     .padding(.top)
                     HStack {
@@ -105,7 +102,7 @@ struct SignUpView: View {
 
             })
             
-        }
+        }.navigationBarHidden(true)
         .overlay(content: {
             VStack{
                 HStack{
@@ -122,9 +119,20 @@ struct SignUpView: View {
                 Spacer()
             }
         })
+        .overlay(content: {
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $SignUpVM.isLoading)
+        })
         
-        
-        .navigationBarHidden(true)
+        NavigationLink(destination: EditProfileInfoView(taskStatus: .create) .navigationBarHidden(true),isActive:$SignUpVM.UserCreated , label: {
+        })
+
+    // Alert with no internet connection
+        .alert(isPresented: $SignUpVM.isAlert, content: {
+            Alert(title: Text(SignUpVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                SignUpVM.isAlert = false
+            }))
+        })
     }
 }
 

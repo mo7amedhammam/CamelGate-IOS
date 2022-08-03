@@ -41,7 +41,7 @@ struct InputTextField: View {
                     .textInputAutocapitalization(.never)
             }
         }
-        .frame(width: screenWidth, height: 30)
+        .frame( height: 30)
         .padding(12)
         .disableAutocorrection(true)
         .background(

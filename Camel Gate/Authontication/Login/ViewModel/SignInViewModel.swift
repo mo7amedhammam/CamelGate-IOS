@@ -60,22 +60,25 @@ class SignInViewModel: ObservableObject {
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
     
-    @Published var destination = AnyView(TabBarView())
+    @Published var destination = AnyView(EditProfileInfoView(taskStatus: .create))
     init() {
         
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
             publishedUserLogedInModel = modeldata.data
             if publishedUserLogedInModel?.statusId == 1 {
-                //                destination = AnyView(driverinfoView())
-                message =  "complete your prifile first"
+//                destination = AnyView(EditProfileInfoView(taskStatus: .create)
+//                                        .navigationBarHidden(true))
+                destination = AnyView(TabBarView()
+                                        .navigationBarHidden(true))
+
             }else if publishedUserLogedInModel?.statusId == 2{
-                destination = AnyView(TabBarView().navigationBarHidden(true))
+                destination = AnyView(TabBarView()
+                                        .navigationBarHidden(true))
             }
             Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
             isLogedin = true
         }.store(in: &cancellables)
-        
     }
     
     // MARK: - API Services
@@ -96,7 +99,7 @@ class SignInViewModel: ObservableObject {
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
-                    isLogedin = true
+//                    isLogedin = true
                 }
             }else {
                 if data.messageCode == 400{

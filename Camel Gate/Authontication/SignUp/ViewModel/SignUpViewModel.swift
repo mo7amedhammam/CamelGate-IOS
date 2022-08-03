@@ -8,11 +8,14 @@
 import Foundation
 import SwiftUI
 import Combine
+import Moya
+import PromiseKit
 
 class SignUpViewModel: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-//    let passthroughModelSubject = PassthroughSubject<BaseResponse<LoginModel>, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<SignUpModel>, Error>()
+    private let authServices = MoyaProvider<AuthServices>()
     private var cancellables: Set<AnyCancellable> = []
     let characterLimit: Int = 14
     
@@ -61,8 +64,8 @@ class SignUpViewModel: ObservableObject {
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
 //    @Published var inlineErrorPassword = ""
-//    @Published var publishedUserLogedInModel: LoginModel? = nil
-    @Published var isLogedin = false
+    @Published var publishedUserLogedInModel: SignUpModel? = nil
+    @Published var UserCreated = false
 
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -73,10 +76,12 @@ class SignUpViewModel: ObservableObject {
     @Published var destination = AnyView(TabBarView())
     init() {
 
-//        passthroughModelSubject.sink { (completion) in
-//        } receiveValue: { [self](modeldata) in
-//            publishedUserLogedInModel = modeldata.data
-//            if publishedUserLogedInModel?.ProfileStatus == 0 {
+        passthroughModelSubject.sink { (completion) in
+        } receiveValue: { [self](modeldata) in
+            publishedUserLogedInModel = modeldata.data
+            UserCreated = true
+            
+//            if publishedUserLogedInModel?.statusId == 1 {
 //                destination = AnyView(PersonalDataView())
 //            }else if publishedUserLogedInModel?.ProfileStatus == 1{
 //                destination = AnyView(MedicalStateView())
@@ -86,9 +91,54 @@ class SignUpViewModel: ObservableObject {
 //                Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserLogedInModel?.Image ?? "")")
 //                destination = AnyView(TabBarView())
 //            }
-//            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.Token ?? "")" )
+            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
 //
-//        }.store(in: &cancellables)
+        }.store(in: &cancellables)
         
     }
+
+    // MARK: - API Services
+    func CreateAccount(){
+        let params : [String : Any] =
+        [
+            "roleId"                       : 8,
+            "name"                          : Drivername,
+            "mobile"                       : phoneNumber ,
+            "password"                    : password
+        ]
+        firstly { () -> Promise<Any> in
+            isLoading = true
+            return BGServicesManager.CallApi(self.authServices,AuthServices.createAccount(parameters: params))
+        }.done({ [self] response in
+            let result = response as! Response
+
+//            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<SignUpModel> = try BGDecoder.decode(data: result.data )
+            print(params)
+            print(data)
+            if data.success == true {
+                DispatchQueue.main.async {
+                    passthroughModelSubject.send(data)
+                    UserCreated = true
+                }
+            }else {
+                if data.messageCode == 400{
+                message = data.message ?? "error 400"
+                }else if data.messageCode == 401{
+                    message = "unauthorized"
+                }else{
+                    message = "Bad Request"
+                }
+                isAlert = true
+            }
+
+
+        }).ensure { [self] in
+            isLoading = false
+        }.catch { [self] (error) in
+            isAlert = true
+            message = "\(error)"
+        }
+    }
 }
+

@@ -37,6 +37,7 @@
 		C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0781E288DA3030084C0A6 /* ShipmentRateCell.swift */; };
 		C8A07822288DA4CD0084C0A6 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07821288DA4CD0084C0A6 /* StarsView.swift */; };
 		C8BB855E289AA8210099DE1F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */; };
+		C8BB8561289AAB580099DE1F /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB8560289AAB580099DE1F /* SignUpModel.swift */; };
 		C8C5583F2898118300D46777 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5583E2898118300D46777 /* SplashScreenView.swift */; };
 		C8C5584228981E9800D46777 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5584128981E9800D46777 /* SignInViewModel.swift */; };
 		C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C558442898322000D46777 /* SignUpViewModel.swift */; };
@@ -123,6 +124,7 @@
 		C8A0781E288DA3030084C0A6 /* ShipmentRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentRateCell.swift; sourceTree = "<group>"; };
 		C8A07821288DA4CD0084C0A6 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
 		C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		C8BB8560289AAB580099DE1F /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		C8C5583E2898118300D46777 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		C8C5584128981E9800D46777 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		C8C558442898322000D46777 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 		C88F94802896926A008B6AD0 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				C8BB855F289AAB380099DE1F /* Model */,
 				C8C558432898320A00D46777 /* ViewModel */,
 				C88F9481289692FC008B6AD0 /* View */,
 			);
@@ -453,6 +456,14 @@
 				C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */,
 			);
 			path = others;
+			sourceTree = "<group>";
+		};
+		C8BB855F289AAB380099DE1F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8BB8560289AAB580099DE1F /* SignUpModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C8C5584028981E6700D46777 /* ViewModel */ = {
@@ -1000,6 +1011,7 @@
 				C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */,
 				FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */,
 				C8C9494128895A360057EE7E /* WalletIcon.swift in Sources */,
+				C8BB8561289AAB580099DE1F /* SignUpModel.swift in Sources */,
 				C8C9494828895C3F0057EE7E /* TabButton.swift in Sources */,
 				C8C949642889791F0057EE7E /* Language.swift in Sources */,
 				C8BB855E289AA8210099DE1F /* ActivityIndicatorView.swift in Sources */,

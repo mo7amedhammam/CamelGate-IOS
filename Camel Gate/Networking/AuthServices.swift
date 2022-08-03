@@ -8,37 +8,37 @@
 import Foundation
 import Moya
 
-
 enum AuthServices {
-//    case Intro
     case Login(parameters : [String:Any])
+    case createAccount(parameters : [String:Any])
+
 }
 extension AuthServices : URLRequestBuilder {
     var path: String {
         switch self {
-//        case .Intro:
-//            return EndPoints.Intro.rawValue
         case .Login:
             return EndPoints.Login.rawValue
+        case .createAccount:
+            return EndPoints.CreateAccount.rawValue
         }
     }
     var method: Moya.Method {
         switch self {
-//        case  .Intro  :
-//            return .get
         case  .Login  :
             return .post
-      }
+        case .createAccount:
+            return .post
+        }
     }
     var sampleData: Data {
         return Data()
     }
     var task: Task {
         switch self {
-//        case .Intro :
-//            return .requestPlain
         case .Login(let param) :
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .createAccount(parameters: let parameters):
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
 }

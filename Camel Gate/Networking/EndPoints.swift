@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum EndPoints: String {
     // MARK: - Auth
-    case Intro = "tutorials"
     case Login = "User/Login"
+    case CreateAccount = "User/SignUp"
 }
