@@ -25,14 +25,14 @@ struct LoginModel : Codable{
         case statusId = "statusId"
     }
 
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        token = try values.decodeIfPresent(String.self, forKey: .token)
-        name = try values.decodeIfPresent(String.self, forKey: .name)
-        image = try values.decodeIfPresent(String.self, forKey: .image)
-        roleId = try values.decodeIfPresent(Int.self, forKey: .roleId)
-        companyId = try values.decodeIfPresent(Int.self, forKey: .companyId)
-        statusId = try values.decodeIfPresent(Int.self, forKey: .statusId)
-    }
+//    init(from decoder: Decoder) throws {
+//        let values = try decoder.container(keyedBy: CodingKeys.self)
+//        token = try values.decodeIfPresent(String.self, forKey: .token)
+//        name = try values.decodeIfPresent(String.self, forKey: .name)
+//        image = try values.decodeIfPresent(String.self, forKey: .image)
+//        roleId = try values.decodeIfPresent(Int.self, forKey: .roleId)
+//        companyId = try values.decodeIfPresent(Int.self, forKey: .companyId)
+//        statusId = try values.decodeIfPresent(Int.self, forKey: .statusId)
+//    }
 
 }

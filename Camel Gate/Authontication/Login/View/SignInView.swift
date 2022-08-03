@@ -69,13 +69,12 @@ struct SignInView: View {
                 hideKeyboard()
             })
             
+            
             //            .padding(.horizontal,-30)
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .clear, content: {
                 VStack{
                     //                    Spacer()
                     GradientButton(action: {
-                        print(SignInVM.phoneNumber)
-                        print(SignInVM.password)
                         SignInVM.Login()
                     }, Title: "Create_account".localized(language))
                     
@@ -103,13 +102,6 @@ struct SignInView: View {
                 
             })
             
-            // Alert with no internet connection
-            .alert(isPresented: $SignInVM.isAlert, content: {
-                Alert(title: Text(SignInVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    SignInVM.isAlert = false
-                }))
-            })
-        }
         .overlay(content: {
             VStack{
                 HStack{
@@ -126,13 +118,30 @@ struct SignInView: View {
                 Spacer()
             }
         })
+        
+        .overlay(content: {
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $SignInVM.isLoading)
+
+        })
    
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(true)
         
-        NavigationLink(destination: destination,isActive:$active , label: {
+            NavigationLink(destination: destination.navigationBarHidden(true),isActive:$active , label: {
+        })
+            NavigationLink(destination: SignInVM.destination.navigationBarHidden(true),isActive:$SignInVM.isLogedin , label: {
+        })
+        }
+        
+        // Alert with no internet connection
+        .alert(isPresented: $SignInVM.isAlert, content: {
+            Alert(title: Text(SignInVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                SignInVM.isAlert = false
+            }))
         })
     }
+
 }
 
 struct SignInView_Previews: PreviewProvider {

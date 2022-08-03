@@ -34,23 +34,22 @@ struct BGNetworkHelper {
         guard response.statusCode == Constants.success else{
             if response.statusCode == 401 {
 //                BGLoginManger.logout()
+            }else if response.statusCode == 400 {
+                return true
             }
             return false
+            
         }
         let decoder = JSONDecoder()
         do {
-            let responseModel = try decoder.decode(ResponseModel.self, from: response.data)
-          switch responseModel.status {
+            let responseModel = try decoder.decode(CoreBaseResponse.self, from: response.data)
+          switch responseModel.messageCode {
             case Constants.success? :
                 return true
             case Constants.added? , Constants.created?:
 
-
-
 // Show Alert ya Hammam 3la 7asab el Error Status
-
-
-
+              
 
 //            BGAlertPresenter.displayToast(title: "",message: responseModel.message ?? "", type: .success)
                 return true

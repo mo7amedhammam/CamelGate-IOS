@@ -36,6 +36,7 @@
 		C8A0781C288D9B670084C0A6 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0781B288D9B670084C0A6 /* RatingView.swift */; };
 		C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0781E288DA3030084C0A6 /* ShipmentRateCell.swift */; };
 		C8A07822288DA4CD0084C0A6 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07821288DA4CD0084C0A6 /* StarsView.swift */; };
+		C8BB855E289AA8210099DE1F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */; };
 		C8C5583F2898118300D46777 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5583E2898118300D46777 /* SplashScreenView.swift */; };
 		C8C5584228981E9800D46777 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5584128981E9800D46777 /* SignInViewModel.swift */; };
 		C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C558442898322000D46777 /* SignUpViewModel.swift */; };
@@ -121,6 +122,7 @@
 		C8A0781B288D9B670084C0A6 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		C8A0781E288DA3030084C0A6 /* ShipmentRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentRateCell.swift; sourceTree = "<group>"; };
 		C8A07821288DA4CD0084C0A6 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
+		C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		C8C5583E2898118300D46777 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		C8C5584128981E9800D46777 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		C8C558442898322000D46777 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				C8A07821288DA4CD0084C0A6 /* StarsView.swift */,
+				C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */,
 			);
 			path = others;
 			sourceTree = "<group>";
@@ -999,6 +1002,7 @@
 				C8C9494128895A360057EE7E /* WalletIcon.swift in Sources */,
 				C8C9494828895C3F0057EE7E /* TabButton.swift in Sources */,
 				C8C949642889791F0057EE7E /* Language.swift in Sources */,
+				C8BB855E289AA8210099DE1F /* ActivityIndicatorView.swift in Sources */,
 				C84EAC7C288C3392000AB6AD /* CircularButton.swift in Sources */,
 				FA4E27AF288C53A20047265D /* FilterHeaderView.swift in Sources */,
 				C8A07816288D61610084C0A6 /* SecureInputTextField.swift in Sources */,

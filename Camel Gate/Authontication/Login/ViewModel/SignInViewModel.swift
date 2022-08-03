@@ -10,6 +10,7 @@ import SwiftUI
 import Combine
 import Moya
 import PromiseKit
+import Alamofire
 
 
 class SignInViewModel: ObservableObject {
@@ -69,15 +70,10 @@ class SignInViewModel: ObservableObject {
                 //                destination = AnyView(driverinfoView())
                 message =  "complete your prifile first"
             }else if publishedUserLogedInModel?.statusId == 2{
-                destination = AnyView(TabBarView())
-                
+                destination = AnyView(TabBarView().navigationBarHidden(true))
             }
-            //                Helper.setUserData(Id: publishedUserLogedInModel?.companyId ?? 0, PhoneNumber: publishedUserLogedInModel?.Phone ?? "", patientName: publishedUserLogedInModel?.Name ?? "" )
-            //                Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserLogedInModel?.Image ?? "")")
-            //                destination = AnyView(TabBarView())
-            
             Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
-            //
+            isLogedin = true
         }.store(in: &cancellables)
         
     }
@@ -90,35 +86,35 @@ class SignInViewModel: ObservableObject {
             "password"                    : password
         ]
         firstly { () -> Promise<Any> in
-            //              self.startProgress()
             isLoading = true
             return BGServicesManager.CallApi(self.authServices,AuthServices.Login(parameters: params))
         }.done({ [self] response in
             let result = response as! Response
-            guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<LoginModel> = try BGDecoder.decode(data: result.data)
-            if data.messageCode == 200{
+
+//            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<LoginModel> = try BGDecoder.decode(data: result.data )
+            if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
                     isLogedin = true
                 }
-            }else if data.messageCode == 400 {
-//                print(data.message ?? "Bad Request")
-                message = data.message ?? "Bad Request"
+            }else {
+                if data.messageCode == 400{
+                message = data.message ?? "error 400"
+                }else if data.messageCode == 401{
+                    message = "unauthorized"
+                }else{
+                    message = "Bad Request"
+                }
                 isAlert = true
             }
-            message = data.message ?? "Bad Request"
-            isAlert = true
+
 
         }).ensure { [self] in
             isLoading = false
-            //              self.stopProgress()
         }.catch { [self] (error) in
-//            print(error)
-//            print(error.localizedDescription)
             isAlert = true
             message = "\(error)"
-            //              BGAlertPresenter.displayToast(title: "" , message: "\(error)", type: .error)
         }
     }
 }

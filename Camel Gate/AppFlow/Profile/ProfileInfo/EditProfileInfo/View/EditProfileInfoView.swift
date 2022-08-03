@@ -8,45 +8,11 @@
 import SwiftUI
 
 struct EditProfileInfoView: View {
-    @State var name = ""
+
     var body: some View {
         ZStack{
             
-            ScrollView{
-                HStack{
-                    Text("Driver_Info".localized(language))
-                        .font(Font.camelfonts.Reg14)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }
-                
-                InputTextField(iconName: "person", placeholder: "Name".localized(language), text: $name)
-                InputTextField(iconName: "Phone", placeholder: "Phone_Number".localized(language), text: .constant("01101201322"))
-                
-                HStack{
-                    Text("Truck_Info".localized(language))
-                        .font(Font.camelfonts.Reg14)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }.padding(.top)
-                
-                InputTextField(iconName: "x321gray", placeholder: "Plate_Number".localized(language), text: .constant("GTA123"))
-                InputTextField(iconName: "truckgray", placeholder: "Truck_Type".localized(language), text: .constant("Open jumbo truck"))
-               
-                HStack{
-                    Text("Cargo_types".localized(language))
-                        .font(Font.camelfonts.Reg14)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }.padding(.top)
-                
-                InputTextField(iconName: "ic_box", placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
-                
-            }.padding(.top,hasNotch ? 140:130)
-                .padding(.horizontal)
-                .onTapGesture(perform: {
-                    hideKeyboard()
-                })
+            ProfileInfo()
             TitleBar(Title: "Profile_info", navBarHidden: true, leadingButton: .backButton, subText: "70%", trailingAction: {})
         
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .white, content: {
@@ -85,5 +51,46 @@ struct EditProfileInfoView_Previews: PreviewProvider {
         EditProfileInfoView()
         EditProfileInfoView()
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+    }
+}
+
+struct ProfileInfo: View {
+    
+    var body: some View {
+        ScrollView{
+            HStack{
+                Text("Driver_Info".localized(language))
+                    .font(Font.camelfonts.Reg14)
+                    .foregroundColor(.secondary)
+                Spacer()
+            }
+            
+            InputTextField(iconName: "person", placeholder: "Name".localized(language), text: .constant("mohamed"))
+            InputTextField(iconName: "Phone", placeholder: "Phone_Number".localized(language), text: .constant("01101201322"))
+            
+            HStack{
+                Text("Truck_Info".localized(language))
+                    .font(Font.camelfonts.Reg14)
+                    .foregroundColor(.secondary)
+                Spacer()
+            }.padding(.top)
+            
+            InputTextField(iconName: "x321gray", placeholder: "Plate_Number".localized(language), text: .constant("GTA123"))
+            InputTextField(iconName: "truckgray", placeholder: "Truck_Type".localized(language), text: .constant("Open jumbo truck"))
+            
+            HStack{
+                Text("Cargo_types".localized(language))
+                    .font(Font.camelfonts.Reg14)
+                    .foregroundColor(.secondary)
+                Spacer()
+            }.padding(.top)
+            
+            InputTextField(iconName: "ic_box", placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
+            
+        }.padding(.top,hasNotch ? 140:130)
+            .padding(.horizontal)
+            .onTapGesture(perform: {
+                hideKeyboard()
+            })
     }
 }
