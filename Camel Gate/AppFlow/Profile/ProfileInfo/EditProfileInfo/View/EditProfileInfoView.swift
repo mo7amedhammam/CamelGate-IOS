@@ -92,6 +92,7 @@ struct EditProfileInfoView: View {
                     
                     InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: .constant("Male"))
                             .frame(width:130)
+                            .disabled(true)
                         .overlay(content: {
                             Menu {
                                 Button("Male", action: {})
@@ -172,8 +173,28 @@ struct EditProfileInfoView: View {
                         .padding(.vertical,10)
 
                     InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: .constant("Open jumbo truck"))
+                        .disabled(true)
+                        .overlay(content: {
+                            Menu {
+                                Button("Jumbo", action: {})
+                                Button("Jumbo 1", action: {})
+                                Button("Jumbo 2", action: {})
 
-                InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: .constant("GTA123"))
+                            } label: {
+                                HStack{
+                                    Spacer()
+                                    Image(systemName: "chevron.down")
+                                }
+                                .padding(.trailing)
+                                
+                            }.padding()
+
+                           
+                            
+                        })
+
+                    InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text: .constant("12345"))
+                    InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: .constant("GTA123"))
                 
                 InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: .constant("254158881848292474"))
                     HStack{
