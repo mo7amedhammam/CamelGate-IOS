@@ -56,11 +56,15 @@ extension AuthServices : URLRequestBuilder {
             
             var formData = [Moya.MultipartFormData]()
 //                          append image to request
+//            if !images.isEmpty || images == [:]{
                          for (key , image) in images {
-                             if let selectedImage = image {
+                             if let selectedImage = image,image?.size.width ?? 0 > 0 {
                                  formData.append(Moya.MultipartFormData(provider: .data(selectedImage.fixOrientation().jpegData(.lowest)!), name: "\(key)", fileName: "image_\(Int(Date().timeIntervalSince1970))"+".jpeg", mimeType: "image/jpeg"))
-                             }
+                         }else{
+                             print("no image")
                          }
+                         }
+//            }
                          // append parameters to request
                          for (key, value) in param {
                              formData.append(Moya.MultipartFormData(provider: .data((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!), name: key))

@@ -112,8 +112,8 @@ class DriverInfoViewModel: ObservableObject {
             "CreateTruckDto.License"   : "\(Int(TruckLicense) ?? 0)",
             "CreateTruckDto.LicenseIssueDate"                       :ChangeFormate(NewFormat: "yyy-MM-ddTHH:mm:ss.sssZ").string(from:  TruckLicenseIssueDate ?? Date()),
             "CreateTruckDto.LicenseExpirationDate"                  :ChangeFormate(NewFormat: "yyy-MM-ddTHH:mm:ss.sssZ").string(from:  TruckLicenseExpirationDate ?? Date()) ,
-            "CreateTruckDto.NumberofAxe"                       :Int( NumberofAxe ) ?? 0,
-            "CreateTruckDto.TruckTypeId"                       : Int( TruckTypeId ) ?? 0,
+            "CreateTruckDto.NumberofAxe"                       :"\(Int( NumberofAxe ) ?? 0)",
+            "CreateTruckDto.TruckTypeId"                       : "\(Int( TruckTypeId ) ?? 0)",
             "DrivingLicenseExpirationDate"                    :ChangeFormate(NewFormat: "yyy-MM-ddTHH:mm:ss.sssZ").string(from:  LicenseExpireDate ?? Date())
             
         ]
