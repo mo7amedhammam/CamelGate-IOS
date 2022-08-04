@@ -103,13 +103,13 @@ class DriverInfoViewModel: ObservableObject {
     func CompleteProfile(){
         var params : [String : Any] =
         [
-            "roleId"                       : 8,
-            "DrivingLicense"                  : LicenseNumber,
-            "Email"                       : Email,
+            "roleId"                       : "\(8)",
+            "DrivingLicense"                  : "\(LicenseNumber)",
+            "Email"                       : "\(Email)",
             "Birthdate"    : ChangeFormate(NewFormat: "yyy-MM-ddTHH:mm:ss.sssZ").string(from: Birthdate ?? Date()),
-            "Gender"                       : gender,
-            "CreateTruckDto.Plate"      : Int(TruckPlate) ?? 0,
-            "CreateTruckDto.License"   : Int(TruckLicense) ?? 0,
+            "Gender"                       : "\(gender)",
+            "CreateTruckDto.Plate"      : "\(Int(TruckPlate) ?? 0)",
+            "CreateTruckDto.License"   : "\(Int(TruckLicense) ?? 0)",
             "CreateTruckDto.LicenseIssueDate"                       :ChangeFormate(NewFormat: "yyy-MM-ddTHH:mm:ss.sssZ").string(from:  TruckLicenseIssueDate ?? Date()),
             "CreateTruckDto.LicenseExpirationDate"                  :ChangeFormate(NewFormat: "yyy-MM-ddTHH:mm:ss.sssZ").string(from:  TruckLicenseExpirationDate ?? Date()) ,
             "CreateTruckDto.NumberofAxe"                       :Int( NumberofAxe ) ?? 0,
@@ -119,13 +119,13 @@ class DriverInfoViewModel: ObservableObject {
         ]
         // optional
         if citizenId != ""{
-            params["CitizenId"] = citizenId
+            params["CitizenId"] = "\(citizenId)"
         }
         if residentId != ""{
-            params["ResidentId"] = residentId
+            params["ResidentId"] = "\(residentId)"
         }
         if borderId != ""{
-            params["BorderId"] = borderId
+            params["BorderId"] = "\(borderId)"
         }
         
 

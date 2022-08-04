@@ -64,6 +64,7 @@ extension AuthServices : URLRequestBuilder {
                          // append parameters to request
                          for (key, value) in param {
                              formData.append(Moya.MultipartFormData(provider: .data((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!), name: key))
+                             
                          }
                      return .uploadMultipart(formData)
         }
