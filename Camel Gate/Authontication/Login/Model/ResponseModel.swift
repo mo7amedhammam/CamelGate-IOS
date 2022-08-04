@@ -30,7 +30,7 @@ struct BaseResponse<T:Codable> : Codable {
     enum CodingKeys: String, CodingKey {
         case message = "message"
         case messageCode = "messageCode"
-        case data = "sata"
+        case data = "data"
         case success = "success"
     }
     

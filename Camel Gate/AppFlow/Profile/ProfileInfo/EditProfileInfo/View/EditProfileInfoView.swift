@@ -14,6 +14,12 @@ enum ProfileStep{
 struct EditProfileInfoView: View {
     @StateObject var profileVM = DriverInfoViewModel()
      var taskStatus:ProfileStep
+    
+    @State private var image = UIImage()
+    @State private var showImageSheet = false
+    @State private var startPicking = false
+    @State private var imgsource = ""
+    
     @State var ageeTerms = false
     @State var showsheet = false
     @State var ShowCalendar  = false
@@ -40,7 +46,7 @@ struct EditProfileInfoView: View {
                         .cornerRadius(10)
                     
                     CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
-                        //                                                    self.showImageSheet = true
+                        self.showImageSheet = true
                     }
                 }
 
@@ -164,9 +170,10 @@ struct EditProfileInfoView: View {
                         .font(Font.camelfonts.Med16)
                         .foregroundColor(Color("blueColor"))
                         .padding(.vertical,10)
-                
+
+                    InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: .constant("Open jumbo truck"))
+
                 InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: .constant("GTA123"))
-                InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: .constant("Open jumbo truck"))
                 
                 InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: .constant("254158881848292474"))
                     HStack{
@@ -255,7 +262,22 @@ struct EditProfileInfoView: View {
 
         }.background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         
+        //MARK: -------- imagePicker From Camera and Library ------
+        .confirmationDialog("Choose Image From ?", isPresented: $showImageSheet) {
+            Button("photo Library") { self.imgsource = "Library";   self.showImageSheet = false; self.startPicking = true }
+            Button("Camera") {self.imgsource = "Cam" ;    self.showImageSheet = false; self.startPicking = true}
+            Button("Cancel", role: .cancel) { }
+        } message: {Text("Select Image From")}
         
+        .sheet(isPresented: $startPicking) {
+            if imgsource == "Library"{
+                // Pick an image from the photo library:
+                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$profileVM.DriverImage)
+            }else{
+                //  If you wish to take a photo from camera instead:
+                ImagePicker(sourceType: .camera, selectedImage: self.$profileVM.DriverImage)
+            }
+        }
     }
 }
 

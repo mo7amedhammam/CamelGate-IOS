@@ -24,6 +24,8 @@
 		C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */; };
 		C85D7D9C289B66D80088227D /* calendarPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7D9B289B66D80088227D /* calendarPopUp.swift */; };
 		C85D7D9F289B74C90088227D /* DriverInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7D9E289B74C90088227D /* DriverInfoViewModel.swift */; };
+		C85D7DA1289BCB460088227D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA0289BCB460088227D /* ImagePicker.swift */; };
+		C85D7DA3289BD2F60088227D /* ImageDataExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */; };
 		C870F89828901D9100CCFD9B /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89728901D9100CCFD9B /* OnBoardingView.swift */; };
 		C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */; };
 		C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21428915519002D115A /* KeyboardHandler.swift */; };
@@ -114,6 +116,8 @@
 		C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		C85D7D9B289B66D80088227D /* calendarPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarPopUp.swift; sourceTree = "<group>"; };
 		C85D7D9E289B74C90088227D /* DriverInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoViewModel.swift; sourceTree = "<group>"; };
+		C85D7DA0289BCB460088227D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataExtenstion.swift; sourceTree = "<group>"; };
 		C870F89728901D9100CCFD9B /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtenstions.swift; sourceTree = "<group>"; };
 		C87BD21428915519002D115A /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
@@ -343,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */,
+				C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */,
 			);
 			path = Extenstions;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 				C8A07821288DA4CD0084C0A6 /* StarsView.swift */,
 				C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */,
 				C85D7D9B289B66D80088227D /* calendarPopUp.swift */,
+				C85D7DA0289BCB460088227D /* ImagePicker.swift */,
 			);
 			path = others;
 			sourceTree = "<group>";
@@ -983,6 +989,7 @@
 				C8C94969288980AB0057EE7E /* BackButtonView.swift in Sources */,
 				C0125B1828993991004B65E5 /* Decoder.swift in Sources */,
 				C8C5584228981E9800D46777 /* SignInViewModel.swift in Sources */,
+				C85D7DA3289BD2F60088227D /* ImageDataExtenstion.swift in Sources */,
 				FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */,
 				FA4E27B1288C53D10047265D /* FilterView.swift in Sources */,
 				C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */,
@@ -1013,6 +1020,7 @@
 				FA7078012895FD9500879399 /* NotificationsView.swift in Sources */,
 				C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
+				C85D7DA1289BCB460088227D /* ImagePicker.swift in Sources */,
 				C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */,
 				C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */,
 				C8C9496B2889867D0057EE7E /* FilterButtonView.swift in Sources */,
@@ -1190,6 +1198,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Camel-Gate-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camel Gate user Your Camera to Take Profile Image";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Camel Gate user Your Camera to Select Profile Image";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1221,6 +1231,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Camel-Gate-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camel Gate user Your Camera to Take Profile Image";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Camel Gate user Your Camera to Select Profile Image";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

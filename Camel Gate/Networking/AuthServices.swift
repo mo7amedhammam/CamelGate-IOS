@@ -12,7 +12,7 @@ enum AuthServices {
     case Login(parameters : [String:Any])
     case createAccount(parameters : [String:Any])
     case GetDriverinfo
-    case UpdateDriverInfo(image : UIImage ,parameters : [String:Any])
+    case UpdateDriverInfo(images : [String : Image?] ,parameters : [String:Any])
 
 }
 extension AuthServices : URLRequestBuilder {
@@ -52,14 +52,20 @@ extension AuthServices : URLRequestBuilder {
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .GetDriverinfo:
             return .requestPlain
-        case .UpdateDriverInfo(image: let image,parameters: let parameters):
+        case .UpdateDriverInfo(let param,let images):
             
-            let imageData = image.pngData() ?? Data()
-//                        let userIdData = parameters.userId.string.data(using: String.Encoding.utf8) ?? Data()
-            let imageMultipartFormData = MultipartFormData(provider: .data(imageData), name: "Image", fileName: "user_avatar.jpeg", mimeType: "image/jpeg")
-//            let userIdMultipartFormData = MultipartFormData(provider: .data(userIdData), name: "cusId")
-            
-            return .uploadCompositeMultipart([imageMultipartFormData], urlParameters: parameters)
+            var formData = [Moya.MultipartFormData]()
+                         // append image to request
+                         for (key , image) in images {
+                             if let selectedImage = image {
+                                 formData.append(Moya.MultipartFormData(provider: .data(selectedImage.fixOrientation().jpegData(.lowest)!), name: "\(key)", fileName: "image_\(Int(Date().timeIntervalSince1970))"+".jpeg", mimeType: "image/jpeg"))
+                             }
+                         }
+                         // append parameters to request
+                         for (key, value) in param {
+                             formData.append(Moya.MultipartFormData(provider: .data((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!), name: key))
+                         }
+                     return .uploadMultipart(formData)
         }
     }
 }

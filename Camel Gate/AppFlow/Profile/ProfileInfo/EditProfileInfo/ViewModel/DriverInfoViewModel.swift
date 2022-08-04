@@ -45,6 +45,8 @@ class DriverInfoViewModel: ObservableObject {
             }
         }
     }
+    @Published  var DriverImage = UIImage()
+
     
     @Published  var password = ""
     @Published  var confirmpassword = "" {

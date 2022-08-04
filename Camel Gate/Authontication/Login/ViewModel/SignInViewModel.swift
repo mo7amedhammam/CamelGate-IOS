@@ -67,9 +67,9 @@ class SignInViewModel: ObservableObject {
         } receiveValue: { [self](modeldata) in
             publishedUserLogedInModel = modeldata.data
             if publishedUserLogedInModel?.statusId == 1 {
-//                destination = AnyView(EditProfileInfoView(taskStatus: .create)
-//                                        .navigationBarHidden(true))
-                destination = AnyView(TabBarView()
+                destination = AnyView(EditProfileInfoView(taskStatus: .create)
+//
+//                destination = AnyView(TabBarView()
                                         .navigationBarHidden(true))
 
             }else if publishedUserLogedInModel?.statusId == 2{
@@ -96,6 +96,7 @@ class SignInViewModel: ObservableObject {
 
 //            guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<LoginModel> = try BGDecoder.decode(data: result.data )
+            print(data)
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
