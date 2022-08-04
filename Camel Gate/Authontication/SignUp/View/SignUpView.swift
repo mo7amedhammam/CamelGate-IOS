@@ -124,7 +124,7 @@ struct SignUpView: View {
             ActivityIndicatorView(isPresented: $SignUpVM.isLoading)
         })
         
-        NavigationLink(destination: EditProfileInfoView(taskStatus: .create) .navigationBarHidden(true),isActive:$SignUpVM.UserCreated , label: {
+        NavigationLink(destination: EditProfileInfoView(taskStatus: .create, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.UserCreated , label: {
         })
 
     // Alert with no internet connection

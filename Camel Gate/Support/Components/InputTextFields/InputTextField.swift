@@ -58,3 +58,49 @@ struct InputTextField_Previews: PreviewProvider {
         
     }
 }
+
+
+
+struct DInputTextField: View {
+    @State var iconName : String? = ""
+    @State var iconColor : Color? = .clear
+
+    var placeholder : String
+
+    @Binding var text: Date?
+    let screenWidth = UIScreen.main.bounds.size.width - 55
+    var body: some View {
+        
+        HStack{
+            if iconName != "" || iconName != nil{
+                Image(iconName ?? "")
+                    .renderingMode( iconColor != .clear ? .template:.original)
+//                    .foregroundColor(.secondary)
+//                    .tint(.gray)
+//                    .background(Color.white)
+                    .foregroundColor(iconColor == .clear ? .clear:iconColor)
+                    .font(.system(size: 15))
+            }else{
+            }
+            
+            ZStack (alignment:.leading){
+            }
+        }
+        .frame( height: 30)
+        .padding(12)
+        .disableAutocorrection(true)
+        .background(
+            Color.white
+        )
+            .cornerRadius(5)
+            .shadow(color: Color.black.opacity(0.099), radius: 3)
+        
+    }
+}
+struct DInputTextField_Previews: PreviewProvider {
+    static var previews: some View {
+        DInputTextField(iconName:"x321gray",placeholder: "Name", text: .constant(Date()))
+        
+    }
+}
+

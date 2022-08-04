@@ -12,4 +12,8 @@ enum EndPoints: String {
     // MARK: - Auth
     case Login = "User/Login"
     case CreateAccount = "User/SignUp"
+    
+    case GetDriverInfoById = "Driver/GetById"
+    case UpdateDriverInfo = "Driver/Update"
+
 }

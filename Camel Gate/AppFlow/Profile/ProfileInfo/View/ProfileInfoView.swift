@@ -282,7 +282,7 @@ struct ProfileInfoView: View {
                 goingToEditProfileInfo = true
             })
         }
-        NavigationLink(destination: EditProfileInfoView(taskStatus: .update),isActive:$goingToEditProfileInfo , label: {
+        NavigationLink(destination: EditProfileInfoView(taskStatus: .update, selectedDate: Date()),isActive:$goingToEditProfileInfo , label: {
         })
     }
 }
