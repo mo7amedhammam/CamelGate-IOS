@@ -68,6 +68,7 @@
 		FA4E27AF288C53A20047265D /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AE288C53A20047265D /* FilterHeaderView.swift */; };
 		FA4E27B1288C53D10047265D /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27B0288C53D10047265D /* FilterView.swift */; };
 		FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27B2288C540F0047265D /* tripCellView.swift */; };
+		FA5DBAE3289B4EE700C62105 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = FA5DBAE2289B4EE700C62105 /* SwiftUICharts */; };
 		FA7077FD28935B9300879399 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077FC28935B9300879399 /* DetailsView.swift */; };
 		FA7078012895FD9500879399 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7078002895FD9500879399 /* NotificationsView.swift */; };
 		FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */; };
@@ -185,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBEC1DE8FACEF97DC7759D67 /* Pods_Camel_Gate.framework in Frameworks */,
+				FA5DBAE3289B4EE700C62105 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +846,9 @@
 			dependencies = (
 			);
 			name = "Camel Gate";
+			packageProductDependencies = (
+				FA5DBAE2289B4EE700C62105 /* SwiftUICharts */,
+			);
 			productName = "Camel Gate";
 			productReference = FAEADE3B2884BDC7004535CE /* Camel Gate.app */;
 			productType = "com.apple.product-type.application";
@@ -873,6 +878,9 @@
 				ar,
 			);
 			mainGroup = FAEADE322884BDC7004535CE;
+			packageReferences = (
+				FA5DBAE1289B4EE700C62105 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+			);
 			productRefGroup = FAEADE3C2884BDC7004535CE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1237,6 +1245,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA5DBAE1289B4EE700C62105 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/willdale/SwiftUICharts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA5DBAE2289B4EE700C62105 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA5DBAE1289B4EE700C62105 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FAEADE332884BDC7004535CE /* Project object */;
 }

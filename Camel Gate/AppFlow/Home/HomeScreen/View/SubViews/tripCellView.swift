@@ -49,7 +49,7 @@ struct tripCellView: View {
                                             .font(Font.camelfonts.Med14)
                                     }.padding()
                                 }
-                            }.frame(height: 109)
+                            }.frame(height: 100)
                             Spacer()
                             HStack{
                                 Text("240").foregroundColor(Color.black)
@@ -60,17 +60,29 @@ struct tripCellView: View {
                         }.frame(height: 150)
                         Spacer()
                         VStack{
-                            HStack{
-                                Image("ic_dark_truck")
-                                Text("Distance : ")
-                                    .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
-                                    .font(Font.camelfonts.Reg14)
-                                Text("240 KM")
-                                    .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
-                                    .font(Font.camelfonts.Reg14)
-                                Spacer()
-                                Button(action: {}) {
-                                    Image("ic_share")
+                            VStack {
+                                HStack{
+                                    Image("ic_dark_truck")
+                                    Text("Distance : ")
+                                        .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
+                                        .font(Font.camelfonts.Reg14)
+                                    Text("240 KM")
+                                        .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
+                                        .font(Font.camelfonts.Reg14)
+                                    Spacer()
+                                    Button(action: {}) {
+                                        Image("ic_share")
+                                    }
+                                }
+                                HStack{
+                                    Image("stargray")
+                                    Text("Company Rate : ")
+                                        .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
+                                        .font(Font.camelfonts.Reg14)
+                                    Text("4.5/5")
+                                        .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
+                                        .font(Font.camelfonts.Reg14)
+                                    Spacer()
                                 }
                             }
                             HStack {
@@ -104,18 +116,21 @@ struct tripCellView: View {
                                 Spacer()
                                 Text("")
                             }
-                        }.padding(.top , -40)
+                        }.padding(.top , -10)
                     }.padding()
                 }
                 Color(#colorLiteral(red: 0.6138994098, green: 0.6338609457, blue: 0.6889666915, alpha: 1)).frame(height: 1)
                 ZStack{
                     Color(#colorLiteral(red: 0.6920476556, green: 0.7039827704, blue: 0.747436285, alpha: 1)).opacity(0.16)
                     HStack(spacing: 10){
-                        Image("ic_box")
+                        Image("stargray")
                         HStack{
-                            Text("6").foregroundColor(Color.black)
-                            Text("Tons  .").foregroundColor(Color.gray)
-                            Text("Cleaning Materials").foregroundColor(Color.gray)
+//                            Text("6").foregroundColor(Color.black)
+                            Text("Driver Rate : ").foregroundColor(Color.gray)
+                            Text("4.5/5").foregroundColor(Color.gray)
+                            Spacer()
+                            Text("240").foregroundColor(Color.black)
+                            Text("Offers").foregroundColor(Color.gray)
                         }
                         .font(Font.camelfonts.Med14)
 
@@ -125,7 +140,7 @@ struct tripCellView: View {
                 .frame(height: 40)
             }
         }
-        .frame(height: 231)
+        .frame(height: 240)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(#colorLiteral(red: 0.6138994098, green: 0.6338609457, blue: 0.6889666915, alpha: 1)), lineWidth: 2.0)

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HeaderView: View {
+    @State var destination = AnyView(NotificationsView())
     var body: some View {
         HStack {
             Image("face_vector")
@@ -35,7 +36,9 @@ struct HeaderView: View {
                 }
             }
             Spacer()
-            Button(action: {}) {
+            Button(action: {
+                destination = AnyView(NotificationsView())
+            }) {
                 Image("ic_big_notification")
             }
         }
