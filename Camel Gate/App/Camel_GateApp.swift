@@ -18,8 +18,6 @@ struct Camel_GateApp: App {
     }
 }
 
-
-
 #if canImport(UIKit)
 extension View {
     func hideKeyboard() {

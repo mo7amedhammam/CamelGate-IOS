@@ -12,7 +12,7 @@ enum AuthServices {
     case Login(parameters : [String:Any])
     case createAccount(parameters : [String:Any])
     case GetDriverinfo
-    case UpdateDriverInfo(images : [String : Image?] ,parameters : [String:Any])
+    case UpdateDriverInfo(parameters : [String:Any] , images : [String : Image?])
 
 }
 extension AuthServices : URLRequestBuilder {
@@ -55,12 +55,12 @@ extension AuthServices : URLRequestBuilder {
         case .UpdateDriverInfo(let param,let images):
             
             var formData = [Moya.MultipartFormData]()
-                         // append image to request
-//                         for (key , image) in images {
-//                             if let selectedImage = image {
-//                                 formData.append(Moya.MultipartFormData(provider: .data(selectedImage.fixOrientation().jpegData(.lowest)!), name: "\(key)", fileName: "image_\(Int(Date().timeIntervalSince1970))"+".jpeg", mimeType: "image/jpeg"))
-//                             }
-//                         }
+//                          append image to request
+                         for (key , image) in images {
+                             if let selectedImage = image {
+                                 formData.append(Moya.MultipartFormData(provider: .data(selectedImage.fixOrientation().jpegData(.lowest)!), name: "\(key)", fileName: "image_\(Int(Date().timeIntervalSince1970))"+".jpeg", mimeType: "image/jpeg"))
+                             }
+                         }
                          // append parameters to request
                          for (key, value) in param {
                              formData.append(Moya.MultipartFormData(provider: .data((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!), name: key))

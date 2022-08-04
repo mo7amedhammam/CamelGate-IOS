@@ -15,7 +15,7 @@ struct EditProfileInfoView: View {
     @StateObject var profileVM = DriverInfoViewModel()
      var taskStatus:ProfileStep
     
-    @State private var image = UIImage()
+//    @State private var image = UIImage()
     @State private var showImageSheet = false
     @State private var startPicking = false
     @State private var imgsource = ""
@@ -34,16 +34,23 @@ struct EditProfileInfoView: View {
                     Button(action: {
                         // here if you want to preview image
                     }, label: {
+                        if profileVM.DriverImage.size.width == 0 {
+                        
                         AsyncImage(url: URL(string:  Helper.getUserimage())) { image in
                             image.resizable()
                         } placeholder: {
                             Color("lightGray").opacity(0.2)
                         }
                         .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
+
+                        }else{
+                            Image(uiImage: profileVM.DriverImage)
+                                .resizable()
+                        .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
+                        }
                     })
                         .clipShape(Circle())
                         .frame(width: 95, height: 95, alignment: .center)
-                        .cornerRadius(10)
                     
                     CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
                         self.showImageSheet = true
@@ -73,15 +80,11 @@ struct EditProfileInfoView: View {
 //                            DatePicker(selection: $selectedDate, in: Date()..., displayedComponents: .date) {
 //                                           Text("Select a date")
 //                            }.labelsHidden()
-                            
 
-
-                            
-                            
                             InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "".localized(language), text: .constant(""))
                                 .disabled(true)
                                 .overlay(content: {
-                                    DatePickerTextField(placeholder: "BirthDate".localized(language), date:$selectedDate)
+                                    DatePickerTextField(placeholder: "BirthDate".localized(language), date:$profileVM.Birthdate)
                                         .padding(.leading,60)
                                 }
                                 )
@@ -90,13 +93,13 @@ struct EditProfileInfoView: View {
                             .buttonStyle(.plain)
                        
                     
-                    InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: .constant("Male"))
+                        InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male"):.constant("Female"))
                             .frame(width:130)
                             .disabled(true)
                         .overlay(content: {
                             Menu {
-                                Button("Male", action: {})
-                                Button("Female", action: {})
+                                Button("Male", action: {profileVM.gender = 1})
+                                Button("Female", action: {profileVM.gender = 2})
                             } label: {
                                 HStack{
                                     Spacer()
@@ -109,14 +112,14 @@ struct EditProfileInfoView: View {
 
                     HStack{
     
-                        InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text: .constant("resident"))
+                        InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text: .constant("") )
                             .frame(width:130)
                             .disabled(true)
                             .overlay(content: {
                                 Menu {
-                                    Button("Citizen Id", action: {})
-                                    Button("Resident Id", action: {})
-                                    Button("Border Id", action: {})
+                                    Button("Citizen Id", action: {profileVM.RedisentOptions = 1 })
+                                    Button("Resident Id", action: {profileVM.RedisentOptions = 2})
+                                    Button("Border Id", action: {profileVM.RedisentOptions = 3})
 
                                 } label: {
                                     HStack{
@@ -126,22 +129,22 @@ struct EditProfileInfoView: View {
                                     .padding(.trailing)
                                     
                                 }
-
-                               
-                                
                             })
                             
-
-                        InputTextField(iconName: "", placeholder: "Id".localized(language), text: .constant("123456789101112"))
+                        InputTextField(iconName: "", placeholder: "Id".localized(language), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
                     }
                     
-                    InputTextField(iconName: "Shipments",iconColor: Color("OrangColor"), placeholder: "Email".localized(language), text: .constant("email@mail.com"))
-                    
-                    
+                    InputTextField(iconName: "Shipments",iconColor: Color("OrangColor"), placeholder: "Email".localized(language), text:$profileVM.Email)
 
-                InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: .constant("254158881848292474"))
+                    InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber)
                     
-                    InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: .constant("01 / 01 / 1111"))
+                    InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: .constant(""))
+                        .disabled(true)
+                        .overlay(content: {
+                            DatePickerTextField(placeholder: "BirthDate".localized(language), date:$profileVM.LicenseExpireDate)
+                                .padding(.leading,60)
+                        }
+                        )
                     
 //                    InputTextField(iconName: "ic_pin_orange",iconColor: Color("OrangColor"), placeholder: "Location".localized(language), text: .constant("25 ehsan st., Aggamy, Alexandria"))
 //                        .overlay(content: {
@@ -172,13 +175,13 @@ struct EditProfileInfoView: View {
                         .foregroundColor(Color("blueColor"))
                         .padding(.vertical,10)
 
-                    InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: .constant("Open jumbo truck"))
+                    InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: $profileVM.TruckTypeId)
                         .disabled(true)
                         .overlay(content: {
                             Menu {
-                                Button("Jumbo", action: {})
-                                Button("Jumbo 1", action: {})
-                                Button("Jumbo 2", action: {})
+                                Button("Jumbo 1", action: {profileVM.TruckTypeId = "1"})
+                                Button("Jumbo 2", action: {profileVM.TruckTypeId = "2"})
+                                Button("Jumbo 3", action: {profileVM.TruckTypeId = "3"})
 
                             } label: {
                                 HStack{
@@ -193,14 +196,27 @@ struct EditProfileInfoView: View {
                             
                         })
 
-                    InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text: .constant("12345"))
-                    InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: .constant("GTA123"))
+                    InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text: $profileVM.NumberofAxe)
+                    InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: $profileVM.TruckPlate)
                 
-                InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: .constant("254158881848292474"))
+                    InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
                     HStack{
-                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Start_Date".localized(language), text: .constant("01 / 01 / 1111"))
+                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Start_Date".localized(language), text: .constant(""))
+                            .disabled(true)
+                            .overlay(content: {
+                                DatePickerTextField(placeholder: "BirthDate".localized(language), date:$profileVM.TruckLicenseIssueDate)
+                                    .padding(.leading,60)
+                            }
+                            )
 
-                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Expiration_Date".localized(language), text: .constant("01 / 01 / 1111"))
+
+                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Expiration_Date".localized(language), text: .constant(""))
+                            .disabled(true)
+                            .overlay(content: {
+                                DatePickerTextField(placeholder: "BirthDate".localized(language), date:$profileVM.TruckLicenseExpirationDate)
+                                    .padding(.leading,60)
+                            }
+                            )
 
                     }
                 
@@ -249,10 +265,11 @@ struct EditProfileInfoView: View {
                     DispatchQueue.main.async{
 //                        switch taskStatus {
 //                        case .create:
-//                            <#code#>
+//
 //                        case .update:
-//                            <#code#>
+//
 //                        }
+                        profileVM.CompleteProfile()
                     }
                 }, label: {
                     HStack {
@@ -350,12 +367,12 @@ extension Binding where Value: Equatable {
 }
 
 
-extension Binding where Value == String {
+extension Binding where Value == Int {
     public func string() -> Binding<String> {
         return Binding<String>(get:{ "\(self.wrappedValue)" },
                                set: {
             guard $0.count > 0 else { return }
-            self.wrappedValue = String(String($0) )
+            self.wrappedValue = Int(Double($0) ?? 0 )
         })
     }
 }
