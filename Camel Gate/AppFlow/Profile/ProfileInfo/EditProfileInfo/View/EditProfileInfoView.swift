@@ -317,6 +317,23 @@ struct EditProfileInfoView: View {
                 ImagePicker(sourceType: .camera, selectedImage: self.$profileVM.DriverImage)
             }
         }
+        
+        
+        
+        .overlay(content: {
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $profileVM.isLoading)
+        })
+    // Alert with no internet connection
+        .alert(isPresented: $profileVM.isAlert, content: {
+            Alert(title: Text(profileVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                profileVM.isAlert = false
+            }))
+        })
+        
+        NavigationLink(destination: TabBarView().navigationBarHidden(true),isActive:$profileVM.UserCreated , label: {
+        })
+
     }
 }
 

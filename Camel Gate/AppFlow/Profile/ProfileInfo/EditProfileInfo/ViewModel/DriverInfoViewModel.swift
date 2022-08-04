@@ -14,7 +14,7 @@ import PromiseKit
 class DriverInfoViewModel: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<BaseResponse<SignUpModel>, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<DriverInfoModel>, Error>()
     private let authServices = MoyaProvider<AuthServices>()
     private var cancellables: Set<AnyCancellable> = []
     let characterLimit: Int = 14
@@ -66,7 +66,7 @@ class DriverInfoViewModel: ObservableObject {
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
-    @Published var publishedUserLogedInModel: SignUpModel? = nil
+    @Published var publishedUserLogedInModel: DriverInfoModel? = nil
     @Published var UserCreated = false
     
     @Published var isLoading:Bool? = false
@@ -93,7 +93,7 @@ class DriverInfoViewModel: ObservableObject {
             //                Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserLogedInModel?.Image ?? "")")
             //                destination = AnyView(TabBarView())
             //            }
-            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
+//            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
             //
         }.store(in: &cancellables)
         
@@ -103,29 +103,29 @@ class DriverInfoViewModel: ObservableObject {
     func CompleteProfile(){
         var params : [String : Any] =
         [
-            "roleId"                       : "\(8)",
-            "DrivingLicense"                  : "\(LicenseNumber)",
-            "Email"                       : "\(Email)",
+            "roleId"                       : 8,
+            "DrivingLicense"                  : LicenseNumber,
+            "Email"                       : Email,
             "Birthdate"    : ChangeFormate(NewFormat: "yyy-MM-ddTHH:mm:ss.sssZ").string(from: Birthdate ?? Date()),
-            "Gender"                       : "\(gender)",
-            "CreateTruckDto.Plate"      : "\(Int(TruckPlate) ?? 0)",
-            "CreateTruckDto.License"   : "\(Int(TruckLicense) ?? 0)",
+            "Gender"                       : gender,
+            "CreateTruckDto.Plate"      : Int(TruckPlate) ?? 0,
+            "CreateTruckDto.License"   : Int(TruckLicense) ?? 0,
             "CreateTruckDto.LicenseIssueDate"                       :ChangeFormate(NewFormat: "yyy-MM-ddTHH:mm:ss.sssZ").string(from:  TruckLicenseIssueDate ?? Date()),
             "CreateTruckDto.LicenseExpirationDate"                  :ChangeFormate(NewFormat: "yyy-MM-ddTHH:mm:ss.sssZ").string(from:  TruckLicenseExpirationDate ?? Date()) ,
-            "CreateTruckDto.NumberofAxe"                       :"\(Int( NumberofAxe ) ?? 0)",
-            "CreateTruckDto.TruckTypeId"                       : "\(Int( TruckTypeId ) ?? 0)",
+            "CreateTruckDto.NumberofAxe"                       :Int( NumberofAxe ) ?? 0,
+            "CreateTruckDto.TruckTypeId"                       : Int( TruckTypeId ) ?? 0,
             "DrivingLicenseExpirationDate"                    :ChangeFormate(NewFormat: "yyy-MM-ddTHH:mm:ss.sssZ").string(from:  LicenseExpireDate ?? Date())
             
         ]
         // optional
         if citizenId != ""{
-            params["CitizenId"] = "\(citizenId)"
+            params["CitizenId"] = citizenId
         }
         if residentId != ""{
-            params["ResidentId"] = "\(residentId)"
+            params["ResidentId"] = residentId
         }
         if borderId != ""{
-            params["BorderId"] = "\(borderId)"
+            params["BorderId"] = borderId
         }
         
 
@@ -137,8 +137,8 @@ class DriverInfoViewModel: ObservableObject {
         }.done({ [self] response in
             let result = response as! Response
             
-            //            guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<SignUpModel> = try BGDecoder.decode(data: result.data )
+                        guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<DriverInfoModel> = try BGDecoder.decode(data: result.data )
             print(params)
             print(data)
             if data.success == true {
