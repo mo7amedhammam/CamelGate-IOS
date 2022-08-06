@@ -91,28 +91,20 @@ class DriverInfoViewModel: ObservableObject {
     func CompleteProfile(){
         var params : [String : Any] =
         [
-            "roleId"                       : 8,
-            "DrivingLicense"                  : LicenseNumber,
-            "Email"                       : Email,
-            "Birthdate"    :
-            ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS").string(from: Birthdate ?? Date())
-            ,
-            "Gender"                       : gender,
-            "CreateTruckDto.Plate"      : Int(TruckPlate) ?? 0,
-            "CreateTruckDto.License"   : Int(TruckLicense) ?? 0,
-            "CreateTruckDto.LicenseIssueDate"                       :
-            ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS").string(from: TruckLicenseIssueDate ?? Date())
-            ,
-            "CreateTruckDto.LicenseExpirationDate"                  :
-            ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss.SSz").string(from: TruckLicenseExpirationDate ?? Date())
-            ,
-            "CreateTruckDto.NumberofAxe"                       :Int(NumberofAxe) ?? 0,
-            "CreateTruckDto.TruckTypeId"                       : Int(TruckTypeId) ?? 0,
-            "DrivingLicenseExpirationDate"                    :
-            ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS").string(from: LicenseExpireDate ?? Date())
-            ,
-            "CreateTruckDto.ProductionYear" : 2020,
-            "CreateTruckDto.TruckManufacturerId":2
+            "Id"                                   : "\(8)" ,
+            "DrivingLicense"                       : "\(LicenseNumber)",
+            "Email"                                : "\(Email)",
+            "Birthdate"                            : "\(ConvertDateFormat(inp: Birthdate ?? Date(), FormatTo: "yyy-MM-ddTHH:mm:ss.sss"))",
+            "Gender"                               : "\(gender)",
+            "CreateTruckDto.Plate"                 : "\(Int(TruckPlate) ?? 0)",
+            "CreateTruckDto.License"               : "\(Int(TruckLicense) ?? 0)",
+            "CreateTruckDto.LicenseIssueDate"      : "\(ConvertDateFormat(inp:  TruckLicenseIssueDate ?? Date(), FormatTo: "yyy-MM-ddTHH:mm:ss.sss"))",
+            "CreateTruckDto.LicenseExpirationDate" : "\(ConvertDateFormat(inp:  TruckLicenseExpirationDate ?? Date(), FormatTo: "yyy-MM-ddTHH:mm:ss.sss"))" ,
+            "CreateTruckDto.NumberofAxe"           : "\(Int( NumberofAxe ) ?? 0)",
+            "CreateTruckDto.TruckTypeId"           : "\(Int( TruckTypeId ) ?? 0)",
+            "DrivingLicenseExpirationDate"         : "\(ConvertDateFormat(inp: LicenseExpireDate ?? Date(), FormatTo: "yyy-MM-ddTHH:mm:ss.sss"))",
+            "CreateTruckDto.ProductionYear"        : "\(2020)",
+            "CreateTruckDto.TruckManufacturerId"   : "\(2)"
         ]
         // optional
         if citizenId != ""{
@@ -129,11 +121,10 @@ class DriverInfoViewModel: ObservableObject {
         firstly { () -> Promise<Any> in
             isLoading = true
             print(params)
-            return BGServicesManager.CallApi(self.authServices,AuthServices.UpdateDriverInfo(parameters: params, images: imgs))
+            return BGServicesManager.CallApi(self.authServices,AuthServices.UpdateDriverInfo(parameters: params, images: ["Image" : DriverImage ]))
         }.done({ [self] response in
             let result = response as! Response
-            
-//                        guard BGNetworkHelper.validateResponse(response: result) else{return}
+            guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<DriverInfoModel> = try BGDecoder.decode(data: result.data )
             print(result)
             print(data)
@@ -153,8 +144,6 @@ class DriverInfoViewModel: ObservableObject {
                 }
                 isAlert = true
             }
-            
-            
         }).ensure { [self] in
             isLoading = false
         }.catch { [self] (error) in

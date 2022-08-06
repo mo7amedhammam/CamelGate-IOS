@@ -105,6 +105,7 @@ class SignInViewModel: ObservableObject {
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
+                    LoginManger.saveUser(data.data)
 //                    isLogedin = true
                 }
             }else {

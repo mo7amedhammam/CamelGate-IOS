@@ -34,15 +34,9 @@ extension AuthServices : URLRequestBuilder {
     }
     var method: Moya.Method {
         switch self {
-        case  .Login  :
+        case  .Login , .createAccount , .UpdateDriverInfo :
             return .post
-        case .createAccount:
-            return .post
-        case .GetDriverinfo:
-            return .get
-        case .UpdateDriverInfo:
-            return .post
-        case .GetApprovedShipment:
+        case .GetDriverinfo , .GetApprovedShipment:
             return .get
         }
     }
@@ -58,38 +52,48 @@ extension AuthServices : URLRequestBuilder {
         case .GetDriverinfo:
             return .requestPlain
         case .UpdateDriverInfo(let param,let images):
-            
             var formData = [Moya.MultipartFormData]()
-            //                          append image to request
+            // append image to request
             for (key , image) in images {
-                if let selectedImage = image,image?.size.width ?? 0 > 0 {
-                    formData.append(Moya.MultipartFormData(provider: .data(selectedImage.fixOrientation().jpegData(.lowest)!), name: "\(key)", fileName: "image_\(Int(Date().timeIntervalSince1970))"+".jpeg", mimeType: "image/jpeg"))
-                }else{
-                    print("no image")
+                if let selectedImage = image {
+                    formData.append(Moya.MultipartFormData(provider: .data(selectedImage.fixOrientation().jpegData(.lowest)!), name: "\(key)", fileName: "Image_\(Int(Date().timeIntervalSince1970))"+".jpeg", mimeType: "image/jpeg"))
                 }
             }
             // append parameters to request
             for (key, value) in param {
-                
-                if let temp = value as? String {
-                    formData.append(Moya.MultipartFormData(provider: .data(temp.data(using: .utf8)!), name: key))
-                }
-                if let temp = value as? Int {
-                    formData.append(Moya.MultipartFormData(provider: .data("\(temp)".data(using: .utf8)!), name: key))
-                }
-                if let temp = value as? NSArray{
-                    temp.forEach({ element in
-                        let keyObj = key + "[]"
-                        if let string = element as? String {
-                            formData.append(Moya.MultipartFormData(provider: .data(string.data(using: .utf8)!), name: keyObj))
-                        } else
-                        if let num = element as? Int {
-                            let value = "\(num)"
-                            formData.append(Moya.MultipartFormData(provider: .data(value.data(using: .utf8)!), name: keyObj))
-                        }
-                    })
-                }
+                formData.append(Moya.MultipartFormData(provider: .data((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!), name: key))
             }
+//            var formData = [Moya.MultipartFormData]()
+//            //                          append image to request
+//            for (key , image) in images {
+//                if let selectedImage = image,image?.size.width ?? 0 > 0 {
+//                    formData.append(Moya.MultipartFormData(provider: .data(selectedImage.fixOrientation().jpegData(.lowest)!), name: "\(key)", fileName: "image_\(Int(Date().timeIntervalSince1970))"+".jpeg", mimeType: "image/jpeg"))
+//                }else{
+//                    print("no image")
+//                }
+//            }
+//            // append parameters to request
+//            for (key, value) in param {
+//
+//                if let temp = value as? String {
+//                    formData.append(Moya.MultipartFormData(provider: .data(temp.data(using: .utf8)!), name: key))
+//                }
+//                if let temp = value as? Int {
+//                    formData.append(Moya.MultipartFormData(provider: .data("\(temp)".data(using: .utf8)!), name: key))
+//                }
+//                if let temp = value as? NSArray{
+//                    temp.forEach({ element in
+//                        let keyObj = key + "[]"
+//                        if let string = element as? String {
+//                            formData.append(Moya.MultipartFormData(provider: .data(string.data(using: .utf8)!), name: keyObj))
+//                        } else
+//                        if let num = element as? Int {
+//                            let value = "\(num)"
+//                            formData.append(Moya.MultipartFormData(provider: .data(value.data(using: .utf8)!), name: keyObj))
+//                        }
+//                    })
+//                }
+//            }
             return .uploadMultipart(formData)
         case .GetApprovedShipment:
             return .requestPlain

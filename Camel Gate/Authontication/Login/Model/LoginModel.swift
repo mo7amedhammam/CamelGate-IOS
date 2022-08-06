@@ -17,7 +17,6 @@ struct LoginModel : Codable{
     let profileStatusId :Int?
 
     enum CodingKeys: String, CodingKey {
-
         case token = "token"
         case name = "name"
         case image = "image"
@@ -27,15 +26,4 @@ struct LoginModel : Codable{
         case profileStatusId = "profileStatusId"
         
     }
-
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        token = try values.decodeIfPresent(String.self, forKey: .token)
-//        name = try values.decodeIfPresent(String.self, forKey: .name)
-//        image = try values.decodeIfPresent(String.self, forKey: .image)
-//        roleId = try values.decodeIfPresent(Int.self, forKey: .roleId)
-//        companyId = try values.decodeIfPresent(Int.self, forKey: .companyId)
-//        statusId = try values.decodeIfPresent(Int.self, forKey: .statusId)
-//    }
-
 }
