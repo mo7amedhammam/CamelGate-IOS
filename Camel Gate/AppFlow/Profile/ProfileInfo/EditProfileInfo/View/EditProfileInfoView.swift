@@ -42,7 +42,7 @@ struct EditProfileInfoView: View {
                     }, label: {
                         if profileVM.DriverImage.size.width == 0 {
                         
-                        AsyncImage(url: URL(string:  Helper.getUserimage())) { image in
+                        AsyncImage(url: URL(string:  Helper.getDriverimage())) { image in
                             image.resizable()
                         } placeholder: {
                             Color("lightGray").opacity(0.2)

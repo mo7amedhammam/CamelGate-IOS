@@ -15,8 +15,8 @@ final class Helper{
     
     var Id           = 0
     var clinicId     = 0
-    var PhoneNumber = ""
-    var patientName = ""
+    var DriverName = ""
+    var DriverImage = ""
     var Image = ""
     var CurrentLatitude = ""
     var CurrentLongtude = ""
@@ -25,13 +25,13 @@ final class Helper{
     private static let onBoardKey = "onBoard"
     
     class func setUserData(
-        Id : Int,
-        PhoneNumber : String,
-        patientName : String
+//        Id : Int,
+    DriverName : String,
+        DriverImage : String
     ){
-        userDef.set(  Id             , forKey:  "Id" )
-        userDef.set(  PhoneNumber         , forKey: "PhoneNumber"  )
-        userDef.set(  patientName         , forKey: "patientName"  )
+//        userDef.set(  Id             , forKey:  "Id" )
+        userDef.set(  DriverName         , forKey: "DriverName"  )
+        userDef.set(  DriverImage         , forKey: "DriverImage"  )
 
         userDef.synchronize()
     }
@@ -39,26 +39,26 @@ final class Helper{
     
     //for checking if user exist
     class func userExist()->Bool{
-        return userDef.string(forKey: "Id") != nil
+        return userDef.string(forKey: "DriverName") != nil
     }
     
-    class func getUserID() ->Int {
-        return userDef.integer(forKey: "Id")
+//    class func getUserID() ->Int {
+//        return userDef.integer(forKey: "Id")
+//    }
+    
+//    class func getUserPhone() ->String {
+//        return userDef.string(forKey: "PhoneNumber") ?? ""
+//    }
+    class func getDriverName() ->String {
+        return userDef.string(forKey: "DriverName") ?? "Mohamed Hammam"
     }
     
-    class func getUserPhone() ->String {
-        return userDef.string(forKey: "PhoneNumber") ?? ""
-    }
-    class func getpatientName() ->String {
-        return userDef.string(forKey: "patientName") ?? "Mohamed Hammam"
-    }
-    
-    class func setUserimage(userImage : String) {
-        userDef.set(userImage, forKey: "Image")
-        userDef.synchronize()
-    }
-    class func getUserimage() ->String {
-        return userDef.string(forKey: "Image") ?? ""
+//    class func setUserimage(userImage : String) {
+//        userDef.set(userImage, forKey: "Image")
+//        userDef.synchronize()
+//    }
+    class func getDriverimage() ->String {
+        return userDef.string(forKey: "DriverImage") ?? ""
     }
     
         class func setClinicId(clinicId: Int) {
@@ -87,9 +87,9 @@ final class Helper{
     }
     //remove data then logout
     class func logout() {
-        userDef.removeObject(forKey:"Id"  )
-        userDef.removeObject(forKey:"PhoneNumber"  )
-        userDef.removeObject(forKey:"patientName"  )
+//        userDef.removeObject(forKey:"Id"  )
+        userDef.removeObject(forKey:"DriverName"  )
+        userDef.removeObject(forKey:"DriverImage"  )
         userDef.removeObject(forKey:"Image"  )
         userDef.removeObject(forKey:"access_token"  )
         userDef.removeObject(forKey: "clinicId")

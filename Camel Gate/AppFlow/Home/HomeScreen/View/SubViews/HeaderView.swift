@@ -39,7 +39,6 @@ struct HeaderView: View {
             }
             Spacer()
             Button(action: {
-                active = true
                 destination = AnyView(NotificationsView())
             }) {
                 Image("ic_big_notification")

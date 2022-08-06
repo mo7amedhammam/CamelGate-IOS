@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
+
+    
     @State private var selectedFilterId : Int?
     private var filterArray = ["Ciro to Alex" , "6K to 10k SAR" , "Cairo to Alex" ,  "6K to 10k SAR" , "Ciro to Alex"]
     
@@ -28,7 +31,9 @@ struct HomeView: View {
                 HeaderView()
                 WalletIcon()
             ScrollView {
+                if ApprovedShipmentVM.publishedUserLogedInModel != nil{
                 ShipView().shadow(radius: 5)
+                }
                     FilterHeaderView()
                     ScrollView(.horizontal , showsIndicators : false) {
                         HStack {
@@ -63,6 +68,9 @@ struct HomeView: View {
                 })
             }.padding()
         }
+        .onAppear(perform: {
+            ApprovedShipmentVM.GetApprovedShipment()
+        })
         NavigationLink(destination: destination,isActive:$active , label: {
         })
 

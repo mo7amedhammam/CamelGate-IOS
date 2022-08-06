@@ -25,10 +25,12 @@ struct ProfileHeader: View {
                         Button(action: {
                             // here if you want to preview image
                         }, label: {
-                            AsyncImage(url: URL(string:  Helper.getUserimage())) { image in
+                            AsyncImage(url: URL(string: Constants.imagesURL + Helper.getDriverimage())) { image in
                                 image.resizable()
                             } placeholder: {
-                                Color("lightGray").opacity(0.2)
+//                                Color("lightGray").opacity(0.2)
+                                Image("face_vector")
+
                             }
                             .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
                         })
@@ -41,7 +43,7 @@ struct ProfileHeader: View {
                         }
                     }
                     
-                    Text(name ?? "Mohamed Hammam")
+                    Text(Helper.getDriverName() )
                         .font(Font.camelfonts.Bold20)
                         .foregroundColor(.white)
                     

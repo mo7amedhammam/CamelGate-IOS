@@ -82,19 +82,7 @@ class DriverInfoViewModel: ObservableObject {
         } receiveValue: { [self](modeldata) in
             publishedUserLogedInModel = modeldata.data
             UserCreated = true
-            
-            //            if publishedUserLogedInModel?.statusId == 1 {
-            //                destination = AnyView(PersonalDataView())
-            //            }else if publishedUserLogedInModel?.ProfileStatus == 1{
-            //                destination = AnyView(MedicalStateView())
-            //
-            //            }else if self.publishedUserLogedInModel?.ProfileStatus == 2{
-            //                Helper.setUserData(Id: publishedUserLogedInModel?.Id ?? 0, PhoneNumber: publishedUserLogedInModel?.Phone ?? "", patientName: publishedUserLogedInModel?.Name ?? "" )
-            //                Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserLogedInModel?.Image ?? "")")
-            //                destination = AnyView(TabBarView())
-            //            }
-//            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
-            //
+  
         }.store(in: &cancellables)
         
     }
@@ -149,9 +137,10 @@ class DriverInfoViewModel: ObservableObject {
                 if data.messageCode == 400{
                     message = data.message ?? "error 400"
                 }else if data.messageCode == 401{
-                    message = "unauthorized"
+                    message = data.message ??  "unauthorized"
                 }else{
-                    message = "Bad Request"
+
+                    message = data.message ?? "Bad Request"
                 }
                 isAlert = true
             }
