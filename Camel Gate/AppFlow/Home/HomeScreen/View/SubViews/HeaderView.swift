@@ -11,10 +11,17 @@ struct HeaderView: View {
     @State var destination = AnyView(NotificationsView())
     var body: some View {
         HStack {
-            Image("face_vector")
+            AsyncImage(url: URL(string:  Constants.imagesURL + Helper.getDriverimage())) { image in
+                image.resizable()
+            } placeholder: {
+                Image("face_vector")
+            }
+            .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
+
+            
             VStack(alignment: .leading ){
                 HStack{
-                    Text("Tawfiq Sweedy")
+                    Text(Helper.getDriverName())
                         .font(Font.camelfonts.Bold18)
                         .foregroundColor(Color.white)
                     HStack{

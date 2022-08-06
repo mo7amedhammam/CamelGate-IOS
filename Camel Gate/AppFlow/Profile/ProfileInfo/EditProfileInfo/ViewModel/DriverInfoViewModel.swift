@@ -82,19 +82,7 @@ class DriverInfoViewModel: ObservableObject {
         } receiveValue: { [self](modeldata) in
             publishedUserLogedInModel = modeldata.data
             UserCreated = true
-            
-            //            if publishedUserLogedInModel?.statusId == 1 {
-            //                destination = AnyView(PersonalDataView())
-            //            }else if publishedUserLogedInModel?.ProfileStatus == 1{
-            //                destination = AnyView(MedicalStateView())
-            //
-            //            }else if self.publishedUserLogedInModel?.ProfileStatus == 2{
-            //                Helper.setUserData(Id: publishedUserLogedInModel?.Id ?? 0, PhoneNumber: publishedUserLogedInModel?.Phone ?? "", patientName: publishedUserLogedInModel?.Name ?? "" )
-            //                Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserLogedInModel?.Image ?? "")")
-            //                destination = AnyView(TabBarView())
-            //            }
-//            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
-            //
+  
         }.store(in: &cancellables)
         
     }
@@ -106,15 +94,23 @@ class DriverInfoViewModel: ObservableObject {
             "roleId"                       : 8,
             "DrivingLicense"                  : LicenseNumber,
             "Email"                       : Email,
-            "Birthdate"    : "\(ConvertDateFormat(inp: Birthdate ?? Date(), FormatTo: "yyy-MM-ddTHH:mm:ss.sss"))",
+            "Birthdate"    :
+            ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS").string(from: Birthdate ?? Date())
+            ,
             "Gender"                       : gender,
             "CreateTruckDto.Plate"      : Int(TruckPlate) ?? 0,
             "CreateTruckDto.License"   : Int(TruckLicense) ?? 0,
-            "CreateTruckDto.LicenseIssueDate"                       :"\(ConvertDateFormat(inp:  TruckLicenseIssueDate ?? Date(), FormatTo: "yyy-MM-ddTHH:mm:ss.sss"))",
-            "CreateTruckDto.LicenseExpirationDate"                  :"\(ConvertDateFormat(inp:  TruckLicenseExpirationDate ?? Date(), FormatTo: "yyy-MM-ddTHH:mm:ss.sss"))" ,
-            "CreateTruckDto.NumberofAxe"                       :Int( NumberofAxe ) ?? 0,
-            "CreateTruckDto.TruckTypeId"                       : Int( TruckTypeId ) ?? 0,
-            "DrivingLicenseExpirationDate"                    : "\(ConvertDateFormat(inp: LicenseExpireDate ?? Date(), FormatTo: "yyy-MM-ddTHH:mm:ss.sss"))",
+            "CreateTruckDto.LicenseIssueDate"                       :
+            ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS").string(from: TruckLicenseIssueDate ?? Date())
+            ,
+            "CreateTruckDto.LicenseExpirationDate"                  :
+            ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss.SSz").string(from: TruckLicenseExpirationDate ?? Date())
+            ,
+            "CreateTruckDto.NumberofAxe"                       :Int(NumberofAxe) ?? 0,
+            "CreateTruckDto.TruckTypeId"                       : Int(TruckTypeId) ?? 0,
+            "DrivingLicenseExpirationDate"                    :
+            ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS").string(from: LicenseExpireDate ?? Date())
+            ,
             "CreateTruckDto.ProductionYear" : 2020,
             "CreateTruckDto.TruckManufacturerId":2
         ]
@@ -150,9 +146,10 @@ class DriverInfoViewModel: ObservableObject {
                 if data.messageCode == 400{
                     message = data.message ?? "error 400"
                 }else if data.messageCode == 401{
-                    message = "unauthorized"
+                    message = data.message ??  "unauthorized"
                 }else{
-                    message = "Bad Request"
+
+                    message = data.message ?? "Bad Request"
                 }
                 isAlert = true
             }

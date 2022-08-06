@@ -13,7 +13,7 @@ enum AuthServices {
     case createAccount(parameters : [String:Any])
     case GetDriverinfo
     case UpdateDriverInfo(parameters : [String:Any] , images : [String : Image?])
-    
+    case GetApprovedShipment
 }
 extension AuthServices : URLRequestBuilder {
     var path: String {
@@ -27,6 +27,9 @@ extension AuthServices : URLRequestBuilder {
         case .UpdateDriverInfo:
             return EndPoints.UpdateDriverInfo.rawValue
             
+        case .GetApprovedShipment:
+            return EndPoints.GetApprovedShipment.rawValue
+
         }
     }
     var method: Moya.Method {
@@ -39,6 +42,8 @@ extension AuthServices : URLRequestBuilder {
             return .get
         case .UpdateDriverInfo:
             return .post
+        case .GetApprovedShipment:
+            return .get
         }
     }
     var sampleData: Data {
@@ -86,6 +91,8 @@ extension AuthServices : URLRequestBuilder {
                 }
             }
             return .uploadMultipart(formData)
+        case .GetApprovedShipment:
+            return .requestPlain
         }
     }
 }

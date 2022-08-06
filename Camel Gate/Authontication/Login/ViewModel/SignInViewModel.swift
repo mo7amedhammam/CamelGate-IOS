@@ -75,6 +75,8 @@ class SignInViewModel: ObservableObject {
                     destination = AnyView(TabBarView()
                                             .navigationBarHidden(true))
                 }
+                Helper.setUserData( DriverName: publishedUserLogedInModel?.name ?? "", DriverImage: publishedUserLogedInModel?.image ?? "" )
+//                Helper.setUserimage(userImage: publishedUserLogedInModel?.image ?? "")
                 Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
                 isLogedin = true
             }

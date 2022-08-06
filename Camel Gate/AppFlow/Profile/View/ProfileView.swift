@@ -144,7 +144,8 @@ struct ProfileView: View {
                                         Helper.logout()
                                         islogout = true
                                     }else{
-                                        goToLogin = true
+                                        active = true
+                                        destination = AnyView(SignInView())
                                     }
                                 }, label: {
                                     HStack(spacing: 10){

@@ -58,7 +58,7 @@ struct ProfileInfoView: View {
                             Text("User_Name_:".localized(language))
                                 .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
-                            Text(  Helper.getpatientName() )
+                            Text(  Helper.getDriverName() )
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
@@ -77,7 +77,7 @@ struct ProfileInfoView: View {
                             Text("Phone_Number_:".localized(language))
                                 .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
-                            Text("\(Helper.getUserPhone() )" )
+                            Text("(Helper.getUserPhone() )" )
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
@@ -99,7 +99,7 @@ struct ProfileInfoView: View {
                             Text("Driver_barcode_:".localized(language))
                                 .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
-                            Text("\(Helper.getUserPhone() )" )
+                            Text("(Helper.getUserPhone() )" )
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
@@ -120,7 +120,7 @@ struct ProfileInfoView: View {
                             Text("CamelGate_Number_:".localized(language))
                                 .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
-                            Text("\(Helper.getUserPhone() )" )
+                            Text("(Helper.getUserPhone() )" )
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
@@ -157,7 +157,7 @@ struct ProfileInfoView: View {
                             Text("Truck_Number:".localized(language))
                                 .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
-                            Text(  Helper.getpatientName() )
+                            Text(  Helper.getDriverName() )
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
@@ -178,7 +178,7 @@ struct ProfileInfoView: View {
                             Text("Patient_Type_:".localized(language))
                                 .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
-                            Text("\(Helper.getUserPhone() )" )
+                            Text("(Helper.getUserPhone() )" )
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
@@ -199,7 +199,7 @@ struct ProfileInfoView: View {
                             Text("Driving_license_:".localized(language))
                                 .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
-                            Text("\(Helper.getUserPhone() )" )
+                            Text("(Helper.getUserPhone() )" )
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
@@ -220,7 +220,7 @@ struct ProfileInfoView: View {
                             Text("Expired_at_:".localized(language))
                                 .font(Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
-                            Text("\(Helper.getUserPhone() )" )
+                            Text("(Helper.getUserPhone() )" )
                                 .font(Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }

@@ -15,5 +15,6 @@ enum EndPoints: String {
     
     case GetDriverInfoById = "Driver/GetById"
     case UpdateDriverInfo = "Driver/Update"
+    case GetApprovedShipment = "Shipment/GetDriverCurrentApprovedShipment"
 
 }
