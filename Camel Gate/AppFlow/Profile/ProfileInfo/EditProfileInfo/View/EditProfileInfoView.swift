@@ -15,6 +15,8 @@ enum ProfileStep{
 struct EditProfileInfoView: View {
     @StateObject var profileVM = DriverInfoViewModel()
      var taskStatus:ProfileStep
+    @State private var isEditing = false
+
     
 //    @State private var image = UIImage()
     @State private var showImageSheet = false
@@ -35,14 +37,14 @@ struct EditProfileInfoView: View {
         ZStack{
             
             ScrollView{
-                
+                Group{
                 ZStack(alignment:.bottomTrailing){
                     Button(action: {
                         // here if you want to preview image
                     }, label: {
                         if profileVM.DriverImage.size.width == 0 {
                         
-                        AsyncImage(url: URL(string:  Helper.getDriverimage())) { image in
+                            AsyncImage(url: URL(string: Constants.imagesURL + Helper.getDriverimage())) { image in
                             image.resizable()
                         } placeholder: {
                             Color("lightGray").opacity(0.2)
@@ -58,8 +60,10 @@ struct EditProfileInfoView: View {
                         .clipShape(Circle())
                         .frame(width: 95, height: 95, alignment: .center)
                     
+                    if taskStatus == .update && isEditing == true{
                     CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
                         self.showImageSheet = true
+                    }
                     }
                 }
 
@@ -207,14 +211,17 @@ struct EditProfileInfoView: View {
                         Spacer()
                 }.padding(.vertical)
                 Spacer(minLength: 30)
-
+            }.disabled((taskStatus == .update && isEditing == false) ? true:false)
             }.padding(.top,hasNotch ? 140:130)
                 .padding(.bottom, 90)
                 .padding(.horizontal)
                 .onTapGesture(perform: {
                     hideKeyboard()
                 })
-            TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton, subText: "70%", trailingAction: {})
+                
+            TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton,trailingButton: .editButton ,subText: "70%", trailingAction: {
+                isEditing.toggle()
+            })
         
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .white, content: {
                 Button(action: {
@@ -223,7 +230,7 @@ struct EditProfileInfoView: View {
                     }
                 }, label: {
                     HStack {
-                        Text(taskStatus == .create ? "Create_account".localized(language) : "Save_Changes".localized(language))
+                        Text(taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language))
                             .font(Font.camelfonts.Reg14)
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -239,7 +246,9 @@ struct EditProfileInfoView: View {
                     .cornerRadius(12)
                     .padding(.horizontal, 20)
                     .padding(.bottom)
-                })
+                }).overlay(
+                    Color.white.opacity((taskStatus == .update && isEditing == false) ?  0.5:0)
+                )
             })
 //
 //            if ShowCalendar == true{
@@ -249,6 +258,7 @@ struct EditProfileInfoView: View {
 //            }
 
         }.background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+            .navigationBarHidden(true)
         
         //MARK: -------- imagePicker From Camera and Library ------
         .confirmationDialog("Choose Image From ?", isPresented: $showImageSheet) {

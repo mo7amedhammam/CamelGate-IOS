@@ -15,7 +15,7 @@ struct GarageView: View {
     var body: some View {
         ZStack{
             VStack {
-                Spacer().frame(height: 100 )
+                Spacer().frame(height: 145 )
                     ScrollView(.horizontal , showsIndicators : false) {
                         HStack {
                             ForEach(0 ..< filterArray.count) { filterItem in

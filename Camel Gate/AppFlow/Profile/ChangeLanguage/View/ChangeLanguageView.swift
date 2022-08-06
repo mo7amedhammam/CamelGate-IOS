@@ -50,6 +50,7 @@ struct ChangeLanguageView: View {
             
             TitleBar(Title: "Change_Language".localized(language), leadingButton: .backButton,trailingAction: {})
         }
+        .navigationBarHidden(true)
         .onAppear(perform: {
             if Helper.getLanguage() == "en" {
                 currentlanguage = "en"

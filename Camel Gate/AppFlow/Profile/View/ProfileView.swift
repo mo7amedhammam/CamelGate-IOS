@@ -28,7 +28,8 @@ struct ProfileView: View {
                             Group{
                                 Button(action: {
                                     active = true
-                                    destination = AnyView(ProfileInfoView())
+//                                    destination = AnyView(ProfileInfoView())
+                                    destination = AnyView(EditProfileInfoView(taskStatus: .update))
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "person.fill")
