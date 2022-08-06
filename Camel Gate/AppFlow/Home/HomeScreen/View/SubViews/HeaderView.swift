@@ -8,20 +8,15 @@
 import SwiftUI
 
 struct HeaderView: View {
+    @State var active = false
     @State var destination = AnyView(NotificationsView())
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string:  Constants.imagesURL + Helper.getDriverimage())) { image in
-                image.resizable()
-            } placeholder: {
-                Image("face_vector")
-            }
-            .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
-
-            
+            Image("face_vector")
+//            WebImage(url: URL(string: LoginManger.getUser()?.image ?? ""))
             VStack(alignment: .leading ){
                 HStack{
-                    Text(Helper.getDriverName())
+                    Text(LoginManger.getUser()?.name ?? "")
                         .font(Font.camelfonts.Bold18)
                         .foregroundColor(Color.white)
                     HStack{
@@ -48,8 +43,16 @@ struct HeaderView: View {
             }) {
                 Image("ic_big_notification")
             }
+//            Button(action: {
+//                active = true
+//                destination = AnyView(NotificationsView())
+//            }) {
+//                Image("ic_big_notification")
+//            }
         }
         .padding()
+        NavigationLink(destination: destination,isActive:$active , label: {
+        })
     }
 }
 

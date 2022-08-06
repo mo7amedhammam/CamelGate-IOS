@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+//    @State var rootView = AnyView(ProfileView())
     @State var islogout:Bool = false
     @State var goToLogin:Bool = false
     
@@ -140,13 +141,15 @@ struct ProfileView: View {
                                     }
                                 })
                                 Button(action: {
-                                    if Helper.userExist(){
-                                        Helper.logout()
-                                        islogout = true
-                                    }else{
-                                        active = true
-                                        destination = AnyView(SignInView())
-                                    }
+//                                    if Helper.userExist(){
+//                                        Helper.logout()
+//                                        islogout = true
+//                                    }else{
+//                                        goToLogin = true
+//                                    }
+                                    LoginManger.removeUser()
+                                    active = true
+                                    destination = AnyView(SignInView())
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "arrow.left.square.fill")
