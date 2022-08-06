@@ -15,5 +15,10 @@ enum EndPoints: String {
     
     case GetDriverInfoById = "Driver/GetById"
     case UpdateDriverInfo = "Driver/Update"
+    
+    
+    // MARK: - Home
+    case home = "cdcd"
+    
 
 }

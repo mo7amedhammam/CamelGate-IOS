@@ -100,7 +100,6 @@ class SignUpViewModel: ObservableObject {
             return BGServicesManager.CallApi(self.authServices,AuthServices.createAccount(parameters: params))
         }.done({ [self] response in
             let result = response as! Response
-
 //            guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<SignUpModel> = try BGDecoder.decode(data: result.data )
             print(params)

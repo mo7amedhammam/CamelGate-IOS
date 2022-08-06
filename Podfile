@@ -6,7 +6,9 @@ target 'Camel Gate' do
   use_frameworks!
 
   # Pods for Camel Gate
-pod 'Moya', '~> 15.0'
-pod "PromiseKit", "~> 6.8"
+
+pod 'Moya'
+pod "PromiseKit"
+pod 'SDWebImageSwiftUI'
 
 end
