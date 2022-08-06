@@ -65,19 +65,22 @@ class SignInViewModel: ObservableObject {
         
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
-            publishedUserLogedInModel = modeldata.data
-            if publishedUserLogedInModel?.statusId == 1 {
-                destination = AnyView(EditProfileInfoView(taskStatus: .create)
-//
-//                destination = AnyView(TabBarView()
-                                        .navigationBarHidden(true))
+            DispatchQueue.main.async {
+                publishedUserLogedInModel = modeldata.data
+                if publishedUserLogedInModel?.profileStatusId == 1 {
+                    destination = AnyView(EditProfileInfoView(taskStatus: .create)
+                                            .navigationBarHidden(true))
 
-            }else if publishedUserLogedInModel?.statusId == 2{
-                destination = AnyView(TabBarView()
-                                        .navigationBarHidden(true))
+                }else if publishedUserLogedInModel?.profileStatusId == 2{
+                    destination = AnyView(TabBarView()
+                                            .navigationBarHidden(true))
+                }
+                Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
+                isLogedin = true
             }
-            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
-            isLogedin = true
+            
+            
+            
         }.store(in: &cancellables)
     }
     

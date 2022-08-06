@@ -14,6 +14,7 @@ struct LoginModel : Codable{
     let roleId : Int?
     let companyId : Int?
     let statusId : Int?
+    let profileStatusId :Int?
 
     enum CodingKeys: String, CodingKey {
 
@@ -23,6 +24,8 @@ struct LoginModel : Codable{
         case roleId = "roleId"
         case companyId = "companyId"
         case statusId = "statusId"
+        case profileStatusId = "profileStatusId"
+        
     }
 
 //    init(from decoder: Decoder) throws {

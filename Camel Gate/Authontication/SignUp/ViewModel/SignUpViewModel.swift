@@ -81,18 +81,7 @@ class SignUpViewModel: ObservableObject {
             publishedUserLogedInModel = modeldata.data
             UserCreated = true
             
-//            if publishedUserLogedInModel?.statusId == 1 {
-//                destination = AnyView(PersonalDataView())
-//            }else if publishedUserLogedInModel?.ProfileStatus == 1{
-//                destination = AnyView(MedicalStateView())
-//
-//            }else if self.publishedUserLogedInModel?.ProfileStatus == 2{
-//                Helper.setUserData(Id: publishedUserLogedInModel?.Id ?? 0, PhoneNumber: publishedUserLogedInModel?.Phone ?? "", patientName: publishedUserLogedInModel?.Name ?? "" )
-//                Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserLogedInModel?.Image ?? "")")
-//                destination = AnyView(TabBarView())
-//            }
             Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
-//
         }.store(in: &cancellables)
         
     }

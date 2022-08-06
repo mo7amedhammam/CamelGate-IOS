@@ -49,7 +49,9 @@ extension URLRequestBuilder {
     var headers: [String: String]? {
         var header = [String: String]()
         header["Content-Type"] = "application/json"
-        header["Accept"] = "application/json"
+//        header["Accept"] = "application/json"
+        header ["Accept"] = "multipart/form-data"
+//                header ["Content-Type"] = "multipart/form-data"
 //        if let token = UserDefaults.standard.string(forKey: "auth_token") {
 //            header["jwt"] = "\(token)"
 //        }

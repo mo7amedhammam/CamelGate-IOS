@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct DriverInfoModel : Codable {
     let drivingLicenseExpirationDate : String?
@@ -69,6 +70,9 @@ struct TruckInfo : Codable {
     let id : Int?
     let imageUrl : String?
     let creationdate : String?
+    
+    let productionYear : Int?
+    let camelGateCode : String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -82,6 +86,8 @@ struct TruckInfo : Codable {
         case id = "id"
         case imageUrl = "imageUrl"
         case creationdate = "creationdate"
+        case productionYear = "productionYear"
+        case camelGateCode = "camelGateCode"
     }
 
 //    init(from decoder: Decoder) throws {

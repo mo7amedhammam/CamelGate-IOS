@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 enum ProfileStep{
     case create, update
@@ -25,6 +26,11 @@ struct EditProfileInfoView: View {
     @State var ShowCalendar  = false
 
     @State var selectedDate:Date?
+    
+    @State var active = false
+    @State var destination = AnyView( TabBarView().navigationBarHidden(true))
+
+    
     var body: some View {
         ZStack{
             
@@ -66,33 +72,8 @@ struct EditProfileInfoView: View {
                 if taskStatus == .update{
                     // card is here
                 }
-
-
-//                InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Name".localized(language), text: .constant("mohamed"))
-//                InputTextField(iconName: "Phone",iconColor: Color("OrangColor"), placeholder: "Phone_Number".localized(language), text: .constant("01101201322"))
-
                     HStack{
-
-                        Button(action: {
-                            ShowCalendar = true
-                        }, label: {
-                            
-//                            DatePicker(selection: $selectedDate, in: Date()..., displayedComponents: .date) {
-//                                           Text("Select a date")
-//                            }.labelsHidden()
-
-                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "".localized(language), text: .constant(""))
-                                .disabled(true)
-                                .overlay(content: {
-                                    DatePickerTextField(placeholder: "BirthDate".localized(language), date:$profileVM.Birthdate)
-                                        .padding(.leading,60)
-                                }
-                                )
-                        })
-                            .foregroundColor(Color("blueColor"))
-                            .buttonStyle(.plain)
-                       
-                    
+                        DateInputView( placeholder: "BirthDate", date: $profileVM.Birthdate)
                         InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male"):.constant("Female"))
                             .frame(width:130)
                             .disabled(true)
@@ -112,7 +93,7 @@ struct EditProfileInfoView: View {
 
                     HStack{
     
-                        InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text: .constant("") )
+                        InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text:     profileVM.RedisentOptions == 1 ? .constant("Citizen"):profileVM.RedisentOptions == 2 ? .constant("Resident"):.constant("Border")  )
                             .frame(width:130)
                             .disabled(true)
                             .overlay(content: {
@@ -138,14 +119,10 @@ struct EditProfileInfoView: View {
 
                     InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber)
                     
-                    InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: .constant(""))
-                        .disabled(true)
-                        .overlay(content: {
-                            DatePickerTextField(placeholder: "BirthDate".localized(language), date:$profileVM.LicenseExpireDate)
-                                .padding(.leading,60)
-                        }
-                        )
                     
+                    
+                    DateInputView( placeholder: "Licence_Expiration_Date", date: $profileVM.LicenseExpireDate)
+ 
 //                    InputTextField(iconName: "ic_pin_orange",iconColor: Color("OrangColor"), placeholder: "Location".localized(language), text: .constant("25 ehsan st., Aggamy, Alexandria"))
 //                        .overlay(content: {
 //                            HStack{
@@ -189,11 +166,7 @@ struct EditProfileInfoView: View {
                                     Image(systemName: "chevron.down")
                                 }
                                 .padding(.trailing)
-                                
                             }.padding()
-
-                           
-                            
                         })
 
                     HStack{
@@ -202,23 +175,10 @@ struct EditProfileInfoView: View {
                     }
                     InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
                     HStack{
-                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Start_Date".localized(language), text: .constant(""))
-                            .disabled(true)
-                            .overlay(content: {
-                                DatePickerTextField(placeholder: "BirthDate".localized(language), date:$profileVM.TruckLicenseIssueDate)
-                                    .padding(.leading,60)
-                            }
-                            )
 
+                        DateInputView( placeholder: "Start_Date", date: $profileVM.TruckLicenseIssueDate)
 
-                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Expiration_Date".localized(language), text: .constant(""))
-                            .disabled(true)
-                            .overlay(content: {
-                                DatePickerTextField(placeholder: "BirthDate".localized(language), date:$profileVM.TruckLicenseExpirationDate)
-                                    .padding(.leading,60)
-                            }
-                            )
-
+                        DateInputView( placeholder: "Expiration_Date", date: $profileVM.TruckLicenseExpirationDate)
                     }
                 
                 InputTextField(iconName: "ic_box",iconColor: Color("OrangColor"), placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
@@ -244,8 +204,6 @@ struct EditProfileInfoView: View {
                         .sheet(isPresented: $showsheet){
                             // Terms and Conditions here
                         }
-                        
-                    
                         Spacer()
                 }.padding(.vertical)
                 Spacer(minLength: 30)
@@ -256,20 +214,11 @@ struct EditProfileInfoView: View {
                 .onTapGesture(perform: {
                     hideKeyboard()
                 })
-            
-
-                
             TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton, subText: "70%", trailingAction: {})
         
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .white, content: {
                 Button(action: {
                     DispatchQueue.main.async{
-//                        switch taskStatus {
-//                        case .create:
-//
-//                        case .update:
-//
-//                        }
                         profileVM.CompleteProfile()
                     }
                 }, label: {
@@ -331,7 +280,19 @@ struct EditProfileInfoView: View {
             }))
         })
         
-        NavigationLink(destination: TabBarView().navigationBarHidden(true),isActive:$profileVM.UserCreated , label: {
+        .onChange(of: profileVM.UserCreated, perform: {newval in
+            if newval == true{
+                switch taskStatus {
+                case .create:
+                    active = true
+
+                case .update:
+                    print("profile updated")
+                    
+                }
+            }
+        })
+        NavigationLink(destination: destination,isActive:$active , label: {
         })
 
     }

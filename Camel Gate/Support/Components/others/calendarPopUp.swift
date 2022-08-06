@@ -52,40 +52,52 @@ struct calendarPopUp_Previews: PreviewProvider {
 
 
 
-//struct DateOfBirthView: View {
-//    var language = LocalizationService.shared.language
-//    @Binding var date: Date?
-//    let screenWidth = UIScreen.main.bounds.size.width - 55
-//    var body: some View {
-//        HStack{
-//            DatePickerTextField(placeholder: "birthdate".localized(language), date: self.$date)
-//            Spacer()
-//            Image(systemName: "calendar.badge.plus")
-//                .resizable()
-//                .frame(width: 25, height: 25)
+struct DateInputView: View {
+    var language = LocalizationService.shared.language
+    
+    @State var placeholder  = "Birthdate"
+    @State var iconName  = "CalendarOrange"
+
+    @State var iconColor : Color? = .clear
+
+    
+    @Binding var date: Date?
+    let screenWidth = UIScreen.main.bounds.size.width - 55
+    var body: some View {
+        HStack{
+            Image(iconName)
+                .resizable()
+                .frame(width: 25, height: 25)
 //                .foregroundColor(Color("lightGray"))
-//            }
-//            .frame( height: 30)
-//            .font(.system(size: 13))
-//            .padding(12)
-//            .disableAutocorrection(true)
-//            .background(
-//                Color.white
-//            ).foregroundColor(Color("blueColor"))
-//                .cornerRadius(5)
-//                .shadow(color: Color.black.opacity(0.099), radius: 3)
-//            .onAppear(perform: {
-////                DoctorCreatedVM.Birthday = "\(date , datef: datef )"
-//
-//            })
-//    }
-//}
-//
-//struct DateOfBirthView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DateOfBirthView(date: .constant(Date()))
-//    }
-//}
+//            Spacer()
+
+            ZStack (alignment:.leading){
+                Text(placeholder)
+                    .font(Font.camelfonts.Reg14)
+                    .foregroundColor(.gray.opacity(0.5))
+                    .offset(y: date == nil ? 0 : -20)
+                    .scaleEffect(date == nil ? 1 : 0.8, anchor: .leading)
+                DatePickerTextField(placeholder: "", date: self.$date)
+            }
+
+            }
+            .frame( height: 30)
+            .font(.system(size: 13))
+            .padding(12)
+            .disableAutocorrection(true)
+            .background(
+                Color.white
+            ).foregroundColor(Color("blueColor"))
+                .cornerRadius(5)
+                .shadow(color: Color.black.opacity(0.099), radius: 3)
+    }
+}
+
+struct DateOfBirthView_Previews: PreviewProvider {
+    static var previews: some View {
+        DateInputView(date: .constant(Date()))
+    }
+}
 
 
 
@@ -105,11 +117,11 @@ struct DatePickerTextField: UIViewRepresentable {
     @Binding public var date: Date?
 //    @ObservedObject var docvm = ViewModelCreatePatientProfile()
     
-    var datef:DateFormatter{
-        let df = DateFormatter()
-        df.dateFormat = "yyyy/mm/dd"
-        return df
-    }
+//    var datef:DateFormatter{
+//        let df = DateFormatter()
+//        df.dateFormat = "yyyy/mm/dd"
+//        return df
+//    }
     
     func makeUIView(context: Context) -> some UITextField {
         
