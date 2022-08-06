@@ -13,32 +13,22 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.18.0):
     - PromiseKit/CorePromise
-  - SDWebImage (5.13.2):
-    - SDWebImage/Core (= 5.13.2)
-  - SDWebImage/Core (5.13.2)
-  - SDWebImageSwiftUI (2.0.2):
-    - SDWebImage (~> 5.10)
 
 DEPENDENCIES:
   - Moya
   - PromiseKit
-  - SDWebImageSwiftUI
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Moya
     - PromiseKit
-    - SDWebImage
-    - SDWebImageSwiftUI
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   PromiseKit: 879fa89b55fcb8f11ade9aad0c9721850bb71b9f
-  SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
-  SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
 
-PODFILE CHECKSUM: 8e3128e5bcaca1cd02a72ff23aa1f676c6844563
+PODFILE CHECKSUM: bd7d05a55a27878e84ebda61bb9899dce9a4c997
 
 COCOAPODS: 1.11.2

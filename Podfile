@@ -9,6 +9,5 @@ target 'Camel Gate' do
 
 pod 'Moya'
 pod "PromiseKit"
-pod 'SDWebImageSwiftUI'
 
 end
