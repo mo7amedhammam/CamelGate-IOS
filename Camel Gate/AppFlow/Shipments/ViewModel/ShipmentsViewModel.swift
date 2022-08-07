@@ -27,7 +27,7 @@ class ShipmentsViewModel : ObservableObject {
     @Published var publishedUserLogedInModel: [ShipmentModel] = []
     @Published var UserCreated = false
     @Published var nodata = false
-
+    @Published var shipmentscount = 0
     
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -38,12 +38,19 @@ class ShipmentsViewModel : ObservableObject {
     init() {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
+            nodata = false
+            withAnimation{
+        publishedUserLogedInModel = []
+            }
             DispatchQueue.main.async {
                 if modeldata.data?.isEmpty ?? false || modeldata.data == []{
                     nodata = true
                 }else{
+                    withAnimation{
                 publishedUserLogedInModel = modeldata.data ?? []
-                UserCreated = true
+                        shipmentscount = modeldata.data?.count ?? 0
+                    }
+                        UserCreated = true
                 print(publishedUserLogedInModel )
                 }
             }

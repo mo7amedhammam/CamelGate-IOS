@@ -88,7 +88,7 @@ struct ShipmentsView: View {
             }
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
 
-            TitleBar(Title: "Shipments", navBarHidden: true, trailingButton: .filterButton, subText: "55" ,trailingAction: {
+            TitleBar(Title: "Shipments".localized(language), navBarHidden: true, trailingButton: .filterButton, subText: "\(shipmentsViewModel.shipmentscount)" ,trailingAction: {
             })
         }.onAppear(perform: {
             shipmentsViewModel.GetAppliedShipment() // not executed
