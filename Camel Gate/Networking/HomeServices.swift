@@ -11,7 +11,9 @@ import Moya
 enum HomeServices {
     
     case Home
-    
+    case appliedShipMents
+    case upComingShipments
+    case currentShipments
     
 }
 extension HomeServices : URLRequestBuilder {
@@ -19,6 +21,12 @@ extension HomeServices : URLRequestBuilder {
         switch self {
         case .Home:
             return EndPoints.Login.rawValue
+        case .appliedShipMents :
+            return EndPoints.appliedShipment.rawValue
+        case .upComingShipments :
+            return EndPoints.upcomingShipment.rawValue
+        case .currentShipments :
+            return EndPoints.currentShipment.rawValue
        
             
         }
@@ -27,7 +35,7 @@ extension HomeServices : URLRequestBuilder {
         switch self {
 //        case  .Login , .createAccount , .UpdateDriverInfo :
 //            return .post
-        case .Home :
+        case .Home , .appliedShipMents , .upComingShipments , .currentShipments:
             return .get
         }
     }
@@ -36,7 +44,7 @@ extension HomeServices : URLRequestBuilder {
     }
     var task: Task {
         switch self {
-        case .Home:
+        case .Home , .appliedShipMents , .upComingShipments , .currentShipments:
             return .requestPlain
     
         }

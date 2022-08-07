@@ -80,6 +80,7 @@
 		FA7078012895FD9500879399 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7078002895FD9500879399 /* NotificationsView.swift */; };
 		FA9CC383289ECFD500A56055 /* HomeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC382289ECFD500A56055 /* HomeServices.swift */; };
 		FA9CC385289ED1AE00A56055 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC384289ED1AE00A56055 /* LoginManager.swift */; };
+		FACE3D6C289F3B0500FE9415 /* ShipmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE3D6B289F3B0500FE9415 /* ShipmentsViewModel.swift */; };
 		FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */; };
 		FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEADE422884BDC9004535CE /* Assets.xcassets */; };
 		FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEADE452884BDC9004535CE /* Preview Assets.xcassets */; };
@@ -178,6 +179,7 @@
 		FA7078002895FD9500879399 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		FA9CC382289ECFD500A56055 /* HomeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServices.swift; sourceTree = "<group>"; };
 		FA9CC384289ED1AE00A56055 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		FACE3D6B289F3B0500FE9415 /* ShipmentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentsViewModel.swift; sourceTree = "<group>"; };
 		FAEADE3B2884BDC7004535CE /* Camel Gate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camel Gate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEADE3E2884BDC7004535CE /* Camel_GateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camel_GateApp.swift; sourceTree = "<group>"; };
 		FAEADE422884BDC9004535CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 		C8C94937288958DC0057EE7E /* Shipments */ = {
 			isa = PBXGroup;
 			children = (
+				FACE3D6A289F3AF900FE9415 /* ViewModel */,
 				C8C9496C28898CEA0057EE7E /* View */,
 			);
 			path = Shipments;
@@ -746,6 +749,14 @@
 				FA7078002895FD9500879399 /* NotificationsView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FACE3D6A289F3AF900FE9415 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FACE3D6B289F3B0500FE9415 /* ShipmentsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		FAE2F1912884FC610081177C /* Resources */ = {
@@ -1046,6 +1057,7 @@
 				C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */,
 				FA7078012895FD9500879399 /* NotificationsView.swift in Sources */,
 				C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */,
+				FACE3D6C289F3B0500FE9415 /* ShipmentsViewModel.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
 				C85D7DA1289BCB460088227D /* ImagePicker.swift in Sources */,
 				FA9CC385289ED1AE00A56055 /* LoginManager.swift in Sources */,

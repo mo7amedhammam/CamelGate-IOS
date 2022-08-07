@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShipmentsView: View {
-    
+    @StateObject var shipmentsViewModel = ShipmentsViewModel()
     @State var goToShipmentDetails:Bool = false
     @State var shipmentsCategory = ["Current","Upcoming","Applied"]
     @State var selected = "Applied"
@@ -22,13 +22,19 @@ struct ShipmentsView: View {
                         Button(action: {
                             withAnimation{
                                 self.selected = Category
+                                if selected == "Applied" {
+                                    shipmentsViewModel.GetAppliedShipment()
+                                }else if selected == "Upcoming" {
+                                    shipmentsViewModel.GetUpcomingShipment()
+                                }else{
+                                    shipmentsViewModel.GetCurrentShipment()
+                                }
                             }
                         }, label: {
                             HStack(alignment: .center){
                                 Text(Category )
                                     .font(.system(size: 15))
                                     .foregroundColor(self.selected == Category ? Color("blueColor") : Color("lightGray"))
-                                
                             }
                             .frame(width: 110, height: 45)
                             .clipShape(Rectangle())
@@ -73,7 +79,9 @@ struct ShipmentsView: View {
 
             TitleBar(Title: "Shipments", navBarHidden: true, trailingButton: .filterButton, subText: "55" ,trailingAction: {
             })
-        }
+        }.onAppear(perform: {
+            shipmentsViewModel.GetAppliedShipment()
+        })
 
         NavigationLink(destination: DetailsView(),isActive:$goToShipmentDetails , label: {
         })
