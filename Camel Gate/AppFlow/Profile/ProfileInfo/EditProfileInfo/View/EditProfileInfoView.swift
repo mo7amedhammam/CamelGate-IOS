@@ -60,7 +60,7 @@ struct EditProfileInfoView: View {
                         .clipShape(Circle())
                         .frame(width: 95, height: 95, alignment: .center)
                     
-                    if taskStatus == .update && isEditing == true{
+                    if (taskStatus == .update && isEditing == true) || taskStatus == .create{
                     CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
                         self.showImageSheet = true
                     }
@@ -219,7 +219,7 @@ struct EditProfileInfoView: View {
                     hideKeyboard()
                 })
                 
-            TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton,trailingButton: .editButton ,subText: "70%", trailingAction: {
+            TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton,trailingButton: taskStatus == .update ? .editButton:Optional.none ,subText: "70%", trailingAction: {
                 isEditing.toggle()
             })
         

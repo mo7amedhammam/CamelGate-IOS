@@ -22,13 +22,13 @@ struct ShipmentsView: View {
                         Button(action: {
                             withAnimation{
                                 self.selected = Category
-                                shipmentsViewModel.publishedUserLogedInModel?.removeAll()
+//                                shipmentsViewModel.publishedUserLogedInModel?.removeAll()
 
                                 if selected == "Applied" {
                                     shipmentsViewModel.GetAppliedShipment()
                                 }else if selected == "Upcoming" {
                                     shipmentsViewModel.GetUpcomingShipment()
-                                }else{
+                                }else if selected == "Current"{
                                     shipmentsViewModel.GetCurrentShipment()
                                 }
                             }
@@ -53,9 +53,7 @@ struct ShipmentsView: View {
 //                            .multilineTextAlignment(.center)
 //                        .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
 //                    }
-                    ForEach(shipmentsViewModel.publishedUserLogedInModel ?? [], id:\.self) { tripItem in
-//                            print(tripItem.shipmentStatusName ?? "4545454545454")
-
+                    ForEach(shipmentsViewModel.publishedUserLogedInModel, id:\.self) { tripItem in
                             tripCellView(shipmentModel: tripItem)
                                 .listRowSeparator(.hidden)
                                 .listRowBackground(Color.clear)
@@ -64,6 +62,8 @@ struct ShipmentsView: View {
                         goToShipmentDetails = true
                     }
                     ZStack{}
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
                     .frame( maxHeight: 2)
                     .foregroundColor(.black)
                     .onAppear(perform: {
@@ -77,13 +77,12 @@ struct ShipmentsView: View {
                 .padding(.vertical,0)
 
             }
-                            .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+            .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
 
             TitleBar(Title: "Shipments", navBarHidden: true, trailingButton: .filterButton, subText: "55" ,trailingAction: {
             })
         }.onAppear(perform: {
             shipmentsViewModel.GetAppliedShipment() // not executed
-            print(shipmentsViewModel.publishedUserLogedInModel ?? [])
         })
 
         NavigationLink(destination: DetailsView(),isActive:$goToShipmentDetails , label: {

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct tripCellView: View {
-     var shipmentModel:ApprovedShipmentModel?
+     
+    @State var shipmentModel:ShipmentModel?
     
     var body: some View {
         ZStack{
@@ -41,7 +42,7 @@ struct tripCellView: View {
                                     Spacer()
                                     VStack(spacing: 3){
                                         HStack(spacing: 3){
-                                            Text("1,200").foregroundColor(Color.white)
+                                            Text("\(shipmentModel?.lowestOffer ?? 1200)").foregroundColor(Color.white)
                                                 .font(Font.camelfonts.Reg16)
 
                                             Text("SAR").foregroundColor(Color.white)
@@ -54,7 +55,8 @@ struct tripCellView: View {
                             }.frame(height: 100)
                             Spacer()
                             HStack{
-                                Text("240").foregroundColor(Color.black)
+                                Text("\(shipmentModel?.offersCount ?? 0)")
+                                    .foregroundColor(Color.black)
                                 Text("Offers").foregroundColor(Color.gray)
                             }
                             .font(Font.camelfonts.Med14)
@@ -68,7 +70,7 @@ struct tripCellView: View {
                                     Text("Distance : ")
                                         .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
                                         .font(Font.camelfonts.Reg14)
-                                    Text("240 KM")
+                                    Text("\( String(format: "%.2f", shipmentModel?.totalDistance ?? 22.00)) KM")
                                         .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
                                         .font(Font.camelfonts.Reg14)
                                     Spacer()
@@ -81,7 +83,7 @@ struct tripCellView: View {
                                     Text("Company Rate : ")
                                         .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
                                         .font(Font.camelfonts.Reg14)
-                                    Text("4.5/5")
+                                    Text("\(shipmentModel?.companyRate ?? 0)/5")
                                         .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
                                         .font(Font.camelfonts.Reg14)
                                     Spacer()
@@ -96,20 +98,16 @@ struct tripCellView: View {
                                     }
                                     VStack(spacing: 30 ){
                                         VStack(alignment: .leading){
-                                            Text("Giza").foregroundColor(Color("Base_Color"))
-                                            HStack{
-                                                Text("22/05/2022")
-                                                Text(".  1:30 AM")
-                                            }
+                                            Text(shipmentModel?.fromCityName ?? "Giza").foregroundColor(Color("Base_Color"))
+                  
+                                            Text(ConvertStringDate(inp:shipmentModel?.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
+
                                             .font(Font.camelfonts.Reg14)
 
                                         }
                                         VStack(alignment: .leading){
-                                            Text("Alexandria").foregroundColor(Color("Second_Color"))
-                                            HStack{
-                                                Text("23/05/2022")
-                                                Text(".  4:30 PM")
-                                            }
+                                            Text(shipmentModel?.toCityName ??  "Alexandria").foregroundColor(Color("Second_Color"))
+                                            Text(ConvertStringDate(inp:shipmentModel?.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
                                             .font(Font.camelfonts.Reg14)
 
                                         }
@@ -129,9 +127,11 @@ struct tripCellView: View {
                         HStack{
 //                            Text("6").foregroundColor(Color.black)
                             Text("Driver Rate : ").foregroundColor(Color.gray)
-                            Text("4.5/5").foregroundColor(Color.gray)
+                            Text("\(shipmentModel?.lowestOfferDriverRate ?? 0)/5")
+                                .foregroundColor(Color.gray)
                             Spacer()
-                            Text("240").foregroundColor(Color.black)
+                            Text("\(shipmentModel?.offersCount ?? 0)")
+                                .foregroundColor(Color.black)
                             Text("Offers").foregroundColor(Color.gray)
                         }
                         .font(Font.camelfonts.Med14)
@@ -160,3 +160,5 @@ struct tripCellView_Previews: PreviewProvider {
         tripCellView()
     }
 }
+
+

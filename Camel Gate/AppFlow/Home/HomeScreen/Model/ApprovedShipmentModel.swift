@@ -45,6 +45,9 @@ struct ApprovedShipmentModel : Codable, Hashable, Identifiable {
     var toLang : Int?
     var shipmentStatusId : Int?
     var shipmentStatusName : String?
+    
+    
+    
 
     enum CodingKeys: String, CodingKey {
 

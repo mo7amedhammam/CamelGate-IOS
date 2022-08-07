@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ShipView: View {
-    var ShipmentModel:ApprovedShipmentModel?
+    var ShipmentObj:ApprovedShipmentModel?
     var body: some View {
         VStack(spacing: 0){
             ZStack{
                 Image("ic_ship_purple").resizable()
                 HStack(spacing: 10){
                     Text("Shipment").foregroundColor(Color.white)
-                    Text("#\(ShipmentModel?.code ?? "1215")")
+                    Text("#\(ShipmentObj?.code ?? "1215")")
                         .foregroundColor(Color.white)
                     Spacer()
                 }
@@ -31,7 +31,7 @@ struct ShipView: View {
                             Text("Delivery")
                             HStack{
                                 Text(
-ConvertStringDate(inp:ShipmentModel?.shipmentDateTo ?? "2022-08-06T13:54:58.365",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss.SSS",FormatTo:"E. dd/MM/yyyy . h:m aa")
+ConvertStringDate(inp:ShipmentObj?.shipmentDateTo ?? "2022-08-06T13:54:58.365",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss.SSS",FormatTo:"E. dd/MM/yyyy . h:m aa")
                                 )
                             }
                             
@@ -50,10 +50,10 @@ ConvertStringDate(inp:ShipmentModel?.shipmentDateTo ?? "2022-08-06T13:54:58.365"
                     }
                     .padding()
                     .frame(height: 80 )
-                    Image( ShipmentModel?.shipmentStatusId == 2 ? "ic_status1":ShipmentModel?.shipmentStatusId == 3 ? "ic_status2":"ic_status3")
+                    Image( ShipmentObj?.shipmentStatusId == 2 ? "ic_status1":ShipmentObj?.shipmentStatusId == 3 ? "ic_status2":"ic_status3")
                         .frame(height: 40 )
                     HStack {
-                        Text(ShipmentModel?.shipmentStatusName ?? "Waiting_to_start")
+                        Text(ShipmentObj?.shipmentStatusName ?? "Waiting_to_start")
                             .font(Font.camelfonts.Reg16)
                             .foregroundColor(Color.gray)
                             .frame(height: 20)
@@ -68,7 +68,7 @@ ConvertStringDate(inp:ShipmentModel?.shipmentDateTo ?? "2022-08-06T13:54:58.365"
                 Button(action: {
                     
                 }, label: {
-                    Text(ShipmentModel?.shipmentStatusId == 2 ? "Start_Shipment".localized(language):ShipmentModel?.shipmentStatusId == 3 ? "Uploaded".localized(language):"Dropped_&_Finished".localized(language))
+                    Text(ShipmentObj?.shipmentStatusId == 2 ? "Start_Shipment".localized(language):ShipmentObj?.shipmentStatusId == 3 ? "Uploaded".localized(language):"Dropped_&_Finished".localized(language))
                         .foregroundColor(Color.white)
                         .font(Font.camelfonts.Reg16)
                 })
