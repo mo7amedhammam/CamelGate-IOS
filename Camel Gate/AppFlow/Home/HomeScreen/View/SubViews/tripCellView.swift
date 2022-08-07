@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct tripCellView: View {
+     var shipmentModel:ApprovedShipmentModel?
+    
     var body: some View {
         ZStack{
             Color.white
@@ -140,6 +142,9 @@ struct tripCellView: View {
                 .frame(height: 40)
             }
         }
+        .onAppear(perform: {
+            print(shipmentModel?.shipmentStatusName ?? "4545454545454")
+        })
         .frame(height: 240)
         .overlay(
             RoundedRectangle(cornerRadius: 10)

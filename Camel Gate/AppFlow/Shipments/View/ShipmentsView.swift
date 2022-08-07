@@ -22,6 +22,8 @@ struct ShipmentsView: View {
                         Button(action: {
                             withAnimation{
                                 self.selected = Category
+                                shipmentsViewModel.publishedUserLogedInModel?.removeAll()
+
                                 if selected == "Applied" {
                                     shipmentsViewModel.GetAppliedShipment()
                                 }else if selected == "Upcoming" {
@@ -39,22 +41,22 @@ struct ShipmentsView: View {
                             .frame(width: 110, height: 45)
                             .clipShape(Rectangle())
                         })
-                            .background( Color(self.selected == Category ? "tabText" : "lightGray").opacity(self.selected == Category  ? 1 : 0.3)
-                                            .cornerRadius(8))
+                            .background( Color(self.selected == Category ? "tabText" : "lightGray").opacity(self.selected == Category  ? 1 : 0.3).cornerRadius(8))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.blue, lineWidth:self.selected == Category ? 1:0))
                         
                     }}
                 List() {
-                    
 //                    if  true{ // if empty
 //                        Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
 //                            .multilineTextAlignment(.center)
 //                        .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
 //                    }
-                        ForEach(0 ..< 5) { tripItem in
-                            tripCellView()
+                    ForEach(shipmentsViewModel.publishedUserLogedInModel ?? [], id:\.self) { tripItem in
+//                            print(tripItem.shipmentStatusName ?? "4545454545454")
+
+                            tripCellView(shipmentModel: tripItem)
                                 .listRowSeparator(.hidden)
                                 .listRowBackground(Color.clear)
 
@@ -80,7 +82,8 @@ struct ShipmentsView: View {
             TitleBar(Title: "Shipments", navBarHidden: true, trailingButton: .filterButton, subText: "55" ,trailingAction: {
             })
         }.onAppear(perform: {
-            shipmentsViewModel.GetAppliedShipment()
+            shipmentsViewModel.GetAppliedShipment() // not executed
+            print(shipmentsViewModel.publishedUserLogedInModel ?? [])
         })
 
         NavigationLink(destination: DetailsView(),isActive:$goToShipmentDetails , label: {

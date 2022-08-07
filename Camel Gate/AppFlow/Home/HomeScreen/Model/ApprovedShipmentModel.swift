@@ -7,37 +7,44 @@
 
 import Foundation
 
-struct ApprovedShipmentModel : Codable {
-    let id : Int?
-    let code : String?
-    let lowestOffer : Int?
-    let offersCount : Int?
-    let companyRate : Int?
-    let companyRatesCount : Int?
-    let totalDistance : Int?
-    let lowestOfferDriverRate : Int?
-    let lowestOfferDriverRatesCount : Int?
-    let driverOfferStatusId : Int?
-    let driverOfferId : Int?
-    let shipmentDateFrom : String?
-    let shipmentTimeFrom : ShipmentTimeFrom?
-    let shipmentDateTo : String?
-    let shipmentTimeTo : ShipmentTimeTo?
-    let description : String?
-    let fromGovernorateId : Int?
-    let fromGovernorateName : String?
-    let fromCityId : Int?
-    let fromCityName : String?
-    let toGovernorateId : Int?
-    let toGovernorateName : String?
-    let toCity : Int?
-    let toCityName : String?
-    let fromLat : Int?
-    let fromLang : Int?
-    let toLat : Int?
-    let toLang : Int?
-    let shipmentStatusId : Int?
-    let shipmentStatusName : String?
+struct ApprovedShipmentModel : Codable, Hashable, Identifiable {
+    static func == (lhs: ApprovedShipmentModel, rhs: ApprovedShipmentModel) -> Bool {
+        lhs.id == rhs.id
+    }
+//    func hash(into hasher: inout Hasher) {
+//            hasher.combine(id)
+//        }
+    
+    var id : Int?
+    var code : String?
+    var lowestOffer : Int?
+    var offersCount : Int?
+    var companyRate : Int?
+    var companyRatesCount : Int?
+    var totalDistance : Int?
+    var lowestOfferDriverRate : Int?
+    var lowestOfferDriverRatesCount : Int?
+    var driverOfferStatusId : Int?
+    var driverOfferId : Int?
+    var shipmentDateFrom : String?
+    var shipmentTimeFrom : ShipmentTimeFrom?
+    var shipmentDateTo : String?
+    var shipmentTimeTo : ShipmentTimeTo?
+    var description : String?
+    var fromGovernorateId : Int?
+    var fromGovernorateName : String?
+    var fromCityId : Int?
+    var fromCityName : String?
+    var toGovernorateId : Int?
+    var toGovernorateName : String?
+    var toCity : Int?
+    var toCityName : String?
+    var fromLat : Int?
+    var fromLang : Int?
+    var toLat : Int?
+    var toLang : Int?
+    var shipmentStatusId : Int?
+    var shipmentStatusName : String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -109,7 +116,7 @@ struct ApprovedShipmentModel : Codable {
 
 }
 
-struct ShipmentTimeFrom : Codable {
+struct ShipmentTimeFrom : Codable, Hashable {
     let ticks : Int?
     let days : Int?
     let hours : Int?
@@ -154,7 +161,7 @@ struct ShipmentTimeFrom : Codable {
 
 }
 
-struct ShipmentTimeTo : Codable {
+struct ShipmentTimeTo : Codable, Hashable {
     let ticks : Int?
     let days : Int?
     let hours : Int?

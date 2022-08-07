@@ -38,7 +38,7 @@ class ApprovedShipmentViewModel: ObservableObject {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
             publishedUserLogedInModel = modeldata.data
-            UserCreated = true
+//            UserCreated = true
 
         }.store(in: &cancellables)
         
@@ -53,7 +53,7 @@ class ApprovedShipmentViewModel: ObservableObject {
         }.done({ [self] response in
             let result = response as! Response
             
-                        guard BGNetworkHelper.validateResponse(response: result) else{return}
+//                        guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<ApprovedShipmentModel> = try BGDecoder.decode(data: result.data )
             print(result)
             print(data)

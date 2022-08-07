@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import SwiftUI
 import Combine
 import Moya
@@ -15,7 +14,7 @@ import PromiseKit
 class ShipmentsViewModel : ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<BaseResponse<ApprovedShipmentModel>, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<[ApprovedShipmentModel]>, Error>()
     private let Services = MoyaProvider<HomeServices>()
     private var cancellables: Set<AnyCancellable> = []
     
@@ -25,7 +24,7 @@ class ShipmentsViewModel : ObservableObject {
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
-    @Published var publishedUserLogedInModel: ApprovedShipmentModel? = nil
+    @Published var publishedUserLogedInModel: [ApprovedShipmentModel]? = []
     @Published var UserCreated = false
     
     @Published var isLoading:Bool? = false
@@ -33,17 +32,17 @@ class ShipmentsViewModel : ObservableObject {
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
     
-    
     @Published var destination = AnyView(TabBarView())
     init() {
-        
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
-            publishedUserLogedInModel = modeldata.data
-            UserCreated = true
+            DispatchQueue.main.async {
+                publishedUserLogedInModel = modeldata.data
+                UserCreated = true
+                print(publishedUserLogedInModel ?? [])
 
+            }
         }.store(in: &cancellables)
-        
     }
     
     // MARK: - API Services
@@ -53,11 +52,14 @@ class ShipmentsViewModel : ObservableObject {
             return BGServicesManager.CallApi(self.Services,HomeServices.appliedShipMents)
         }.done({ [self] response in
             let result = response as! Response
-            guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<ApprovedShipmentModel> = try BGDecoder.decode(data: result.data )
+//            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<[ApprovedShipmentModel]> = try BGDecoder.decode(data: result.data )
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
+                    print("data is ")
+                    print(data)
+                    print(data.data ?? [])
 //                    UserCreated = true
                 }
             }else {
@@ -83,11 +85,14 @@ class ShipmentsViewModel : ObservableObject {
             return BGServicesManager.CallApi(self.Services,HomeServices.upComingShipments)
         }.done({ [self] response in
             let result = response as! Response
-            guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<ApprovedShipmentModel> = try BGDecoder.decode(data: result.data )
+//            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<[ApprovedShipmentModel]> = try BGDecoder.decode(data: result.data )
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
+                    print("data is ")
+                    print(data)
+                    print(data.data!)
 //                    UserCreated = true
                 }
             }else {
@@ -107,17 +112,21 @@ class ShipmentsViewModel : ObservableObject {
             message = "\(error)"
         }
     }
+    
     func GetCurrentShipment(){
         firstly { () -> Promise<Any> in
             isLoading = true
             return BGServicesManager.CallApi(self.Services,HomeServices.currentShipments)
         }.done({ [self] response in
             let result = response as! Response
-            guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<ApprovedShipmentModel> = try BGDecoder.decode(data: result.data )
+//            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<[ApprovedShipmentModel]> = try BGDecoder.decode(data: result.data )
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
+                    print("data is ")
+                    print(data)
+                    print(data.data ?? [])
 //                    UserCreated = true
                 }
             }else {
