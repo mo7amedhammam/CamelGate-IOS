@@ -26,6 +26,8 @@ class ShipmentsViewModel : ObservableObject {
     @Published var ValidationMessage = ""
     @Published var publishedUserLogedInModel: [ShipmentModel] = []
     @Published var UserCreated = false
+    @Published var nodata = false
+
     
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -37,10 +39,13 @@ class ShipmentsViewModel : ObservableObject {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
             DispatchQueue.main.async {
+                if modeldata.data?.isEmpty ?? false || modeldata.data == []{
+                    nodata = true
+                }else{
                 publishedUserLogedInModel = modeldata.data ?? []
                 UserCreated = true
                 print(publishedUserLogedInModel )
-
+                }
             }
         }.store(in: &cancellables)
     }

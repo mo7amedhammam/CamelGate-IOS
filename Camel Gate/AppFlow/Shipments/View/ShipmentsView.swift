@@ -48,11 +48,7 @@ struct ShipmentsView: View {
                         
                     }}
                 List() {
-//                    if  true{ // if empty
-//                        Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
-//                            .multilineTextAlignment(.center)
-//                        .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
-//                    }
+                   
                     ForEach(shipmentsViewModel.publishedUserLogedInModel, id:\.self) { tripItem in
                             tripCellView(shipmentModel: tripItem)
                                 .listRowSeparator(.hidden)
@@ -75,6 +71,15 @@ struct ShipmentsView: View {
                 .frame(width: UIScreen.main.bounds.width)
                 .listStyle(.plain)
                 .padding(.vertical,0)
+                .overlay(
+                    ZStack{
+                        if shipmentsViewModel.nodata == true {
+                            Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
+                                .multilineTextAlignment(.center)
+                                .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
+                        }
+                    }
+                )
 
             }
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
