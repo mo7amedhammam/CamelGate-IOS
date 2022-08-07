@@ -15,6 +15,9 @@ enum HomeServices {
     case upComingShipments
     case currentShipments
     
+    case ShipmentDetails(parameters : [String:Any])
+
+    
 }
 extension HomeServices : URLRequestBuilder {
     var path: String {
@@ -29,6 +32,8 @@ extension HomeServices : URLRequestBuilder {
             return EndPoints.currentShipment.rawValue
        
             
+        case .ShipmentDetails:
+            return EndPoints.ShipmentDetails.rawValue
         }
     }
     var method: Moya.Method {
@@ -36,6 +41,8 @@ extension HomeServices : URLRequestBuilder {
 //        case  .Login , .createAccount , .UpdateDriverInfo :
 //            return .post
         case .Home , .appliedShipMents , .upComingShipments , .currentShipments:
+            return .get
+        case .ShipmentDetails:
             return .get
         }
     }
@@ -47,6 +54,8 @@ extension HomeServices : URLRequestBuilder {
         case .Home , .appliedShipMents , .upComingShipments , .currentShipments:
             return .requestPlain
     
+        case .ShipmentDetails(let param):
+            return .requestParameters(parameters: param, encoding: URLEncoding.default)
         }
     }
 }

@@ -12,6 +12,7 @@ struct ShipmentsView: View {
     @State var goToShipmentDetails:Bool = false
     @State var shipmentsCategory = ["Current","Upcoming","Applied"]
     @State var selected = "Applied"
+    @State var selecteshipmentId = 0
     
     var body: some View {
         ZStack{
@@ -53,9 +54,12 @@ struct ShipmentsView: View {
                             tripCellView(shipmentModel: tripItem)
                                 .listRowSeparator(.hidden)
                                 .listRowBackground(Color.clear)
+                                .onTapGesture {
+                                    selecteshipmentId = tripItem.id ?? 0
+                                    goToShipmentDetails = true
+                                }
 
-                    }.onTapGesture {
-                        goToShipmentDetails = true
+
                     }
                     ZStack{}
                     .listRowSeparator(.hidden)
@@ -90,7 +94,7 @@ struct ShipmentsView: View {
             shipmentsViewModel.GetAppliedShipment() // not executed
         })
 
-        NavigationLink(destination: DetailsView(),isActive:$goToShipmentDetails , label: {
+        NavigationLink(destination: DetailsView(shipmentId: selecteshipmentId),isActive:$goToShipmentDetails , label: {
         })
         
     }

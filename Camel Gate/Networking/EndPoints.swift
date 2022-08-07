@@ -20,5 +20,6 @@ enum EndPoints: String {
     case appliedShipment = "Shipment/GetDriverAppliedShipments"
     case upcomingShipment = "Shipment/GetDriverUpcomingShipments"
     case currentShipment = "Shipment/GetDriverCurrentShipments"
+    case ShipmentDetails = "Shipment/GetShipment"
 
 }

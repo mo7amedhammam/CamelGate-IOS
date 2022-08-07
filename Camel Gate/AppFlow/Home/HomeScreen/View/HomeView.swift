@@ -16,7 +16,7 @@ struct HomeView: View {
     
     @State var active = false
     @State var destination = AnyView(ChatsListView())
-
+@State var selectedShipmentId = 0
     var body: some View {
         ZStack{
             VStack {
@@ -51,7 +51,7 @@ struct HomeView: View {
                                     .padding(.horizontal)
                             }.onTapGesture {
                                 active = true
-                               destination = AnyView(DetailsView())
+                                destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
                             }
                         }
                     }

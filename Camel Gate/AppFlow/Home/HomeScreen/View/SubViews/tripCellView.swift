@@ -70,7 +70,7 @@ struct tripCellView: View {
                                     Text("Distance : ")
                                         .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
                                         .font(Font.camelfonts.Reg14)
-                                    Text("\( String(format: "%.2f", shipmentModel?.totalDistance ?? 22.00)) KM")
+                                    Text("\( String(format: "%.1f", shipmentModel?.totalDistance ?? 22.00)) KM")
                                         .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
                                         .font(Font.camelfonts.Reg14)
                                     Spacer()

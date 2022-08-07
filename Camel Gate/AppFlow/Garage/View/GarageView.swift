@@ -11,7 +11,9 @@ struct GarageView: View {
     @State private var selectedFilterId : Int?
     private var filterArray = ["Ciro to Alex" , "6K to 10k SAR" , "Cairo to Alex" ,  "6K to 10k SAR" , "Ciro to Alex"]
     @State var active = false
-    @State var destination = AnyView(DetailsView())
+    @State var selectedShipmentId = 0
+
+    @State var destination = AnyView(DetailsView(shipmentId: 0))
     var body: some View {
         ZStack{
             VStack {
@@ -32,7 +34,7 @@ struct GarageView: View {
                                     .padding(.horizontal)
                             }.onTapGesture {
                                 active = true
-                               destination = AnyView(DetailsView())
+                                destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
                             }
                         }
                     }
