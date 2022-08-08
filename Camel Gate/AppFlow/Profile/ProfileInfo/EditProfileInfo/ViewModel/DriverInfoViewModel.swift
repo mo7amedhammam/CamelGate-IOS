@@ -77,7 +77,7 @@ class DriverInfoViewModel: ObservableObject {
     
     @Published var destination = AnyView(TabBarView())
     init() {
-        
+        GetDriverInfo()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
             publishedUserLogedInModel = modeldata.data
@@ -91,11 +91,9 @@ class DriverInfoViewModel: ObservableObject {
     func CompleteProfile(){
         var params : [String : Any] =
         [
-//            "Id"                                   : "\(8)" ,
             "DrivingLicense"                       : "\(LicenseNumber)",
             "Email"                                : "\(Email)",
             "Birthdate"                            :
-//                "\(ConvertDateFormat(inp: Birthdate ?? Date(), FormatTo: "yyy-MM-dd'T'HH:mm:ss.sss"))"
             ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: Birthdate ?? Date() )
             ,
             "Gender"                               : "\(gender)",
@@ -169,16 +167,42 @@ class DriverInfoViewModel: ObservableObject {
             return BGServicesManager.CallApi(self.authServices,AuthServices.GetDriverinfo)
         }.done({ [self] response in
             let result = response as! Response
-            
 //                        guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<DriverInfoModel> = try BGDecoder.decode(data: result.data )
             print(result)
             print(data)
             if data.success == true {
-                DispatchQueue.main.async {
-                    passthroughModelSubject.send(data)
-//                    UserCreated = true
-                }
+                   
+                    DispatchQueue.main.async { [self] in
+                        self.LicenseNumber = data.data?.drivingLicense ?? ""
+                        self.Email = data.data?.email ?? ""
+                    self.LicenseNumber =  data.data?.drivingLicense ?? ""
+                    self.LicenseExpireDate =
+                        ChangeFormate(NewFormat: "dd-MM-yyyy").date(from:  data.data?.drivingLicenseExpirationDate ?? "" )
+                    self.gender =  data.data?.gender ?? 1
+                    self.TruckPlate = "\( data.data?.truckInfo?.plate ?? 0)"
+                    self.TruckTypeId = "\( data.data?.truckInfo?.truckTypeId ?? 0)"
+                    self.NumberofAxe = "\( data.data?.truckInfo?.numberofAxe ?? 0)"
+                    self.TruckLicense = "\( data.data?.truckInfo?.license ?? 0)"
+                    self.TruckLicenseIssueDate = ChangeFormate(NewFormat: "dd-MM-yyyy").date(from:  data.data?.truckInfo?.licenseIssueDate ?? "" )
+                    self.TruckLicenseExpirationDate = ChangeFormate(NewFormat: "dd-MM-yyyy").date(from:  data.data?.truckInfo?.licenseExpirationDate ?? "" )
+                        
+//
+//                        let Bdate = ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").date(from:  data.data?.birthdate ?? "" )
+//
+//                        let Bdatestr = ChangeFormate(NewFormat: "dd-MM-yyyy").string(from:  Bdate ?? Date() )
+                        self.Birthdate = convDateToDate(input: data.data?.birthdate ?? "" , format: "yyy-MM-dd'T'HH:mm:ss.sss")
+
+                        
+//                    self.Birthdate =  Bdate
+//                        self.Birthdate = ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").date(from: Bdatestr) ?? Date()
+                        
+//                        print("********")
+//                        print(Bdate ?? Date())
+////                        print(Bdatestr)
+//                        print(ChangeFormate(NewFormat: "dd-MM-yyyy").date(from: Bdatestr) ?? Date())
+                    }
+                
             }else {
                 if data.messageCode == 400{
                     message = data.message ?? "error 400"
@@ -189,7 +213,6 @@ class DriverInfoViewModel: ObservableObject {
                 }
                 isAlert = true
             }
-            
             
         }).ensure { [self] in
             isLoading = false

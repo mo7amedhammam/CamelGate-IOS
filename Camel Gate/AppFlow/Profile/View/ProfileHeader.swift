@@ -43,7 +43,7 @@ struct ProfileHeader: View {
                         }
                     }
                     
-                    Text(Helper.getDriverName() )
+                    Text(LoginManger.getUser()?.name ?? "")
                         .font(Font.camelfonts.Bold20)
                         .foregroundColor(.white)
                     

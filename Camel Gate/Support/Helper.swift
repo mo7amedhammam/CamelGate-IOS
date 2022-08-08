@@ -241,3 +241,16 @@ enum ActiveAlert {
 enum InvalidFields {
     case none, PhoneNumber, Password, ConfirmPassword, Name, unauthorized
 }
+
+
+func convDateToDate(input: String, format:String) -> Date {
+    var newdate = Date()
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = format
+    if let newDate = dateFormatter.date(from: input) {
+        newdate = newDate
+    } else{
+        print(" can't convert ")
+    }
+    return newdate
+}

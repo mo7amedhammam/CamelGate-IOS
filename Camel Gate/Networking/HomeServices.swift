@@ -11,6 +11,10 @@ import Moya
 enum HomeServices {
     
     case Home
+    case GetApprovedShipment
+
+    case HomeShipmments(parameters : [String:Any])
+
     case appliedShipMents
     case upComingShipments
     case currentShipments
@@ -24,6 +28,12 @@ extension HomeServices : URLRequestBuilder {
         switch self {
         case .Home:
             return EndPoints.Login.rawValue
+        case .HomeShipmments:
+            return EndPoints.GetFiltered.rawValue
+        case .GetApprovedShipment:
+            return EndPoints.GetApprovedShipment.rawValue
+
+
         case .appliedShipMents :
             return EndPoints.appliedShipment.rawValue
         case .upComingShipments :
@@ -40,8 +50,12 @@ extension HomeServices : URLRequestBuilder {
         switch self {
 //        case  .Login , .createAccount , .UpdateDriverInfo :
 //            return .post
-        case .Home , .appliedShipMents , .upComingShipments , .currentShipments:
+            
+        case .Home , .GetApprovedShipment , .appliedShipMents , .upComingShipments , .currentShipments:
             return .get
+        case .HomeShipmments:
+            return .post
+
         case .ShipmentDetails:
             return .get
         }
@@ -52,6 +66,10 @@ extension HomeServices : URLRequestBuilder {
     var task: Task {
         switch self {
         case .Home , .appliedShipMents , .upComingShipments , .currentShipments:
+            return .requestPlain
+        case .HomeShipmments(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .GetApprovedShipment:
             return .requestPlain
     
         case .ShipmentDetails(let param):

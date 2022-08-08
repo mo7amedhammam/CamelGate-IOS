@@ -13,7 +13,6 @@ enum AuthServices {
     case createAccount(parameters : [String:Any])
     case GetDriverinfo
     case UpdateDriverInfo(parameters : [String:Any] , images : [String : Image?])
-    case GetApprovedShipment
 }
 extension AuthServices : URLRequestBuilder {
     var path: String {
@@ -27,8 +26,6 @@ extension AuthServices : URLRequestBuilder {
         case .UpdateDriverInfo:
             return EndPoints.UpdateDriverInfo.rawValue
             
-        case .GetApprovedShipment:
-            return EndPoints.GetApprovedShipment.rawValue
 
         }
     }
@@ -36,7 +33,7 @@ extension AuthServices : URLRequestBuilder {
         switch self {
         case  .Login , .createAccount , .UpdateDriverInfo :
             return .post
-        case .GetDriverinfo , .GetApprovedShipment:
+        case .GetDriverinfo :
             return .get
         }
     }
@@ -96,8 +93,7 @@ extension AuthServices : URLRequestBuilder {
                 }
             }
             return .uploadMultipart(formData)
-        case .GetApprovedShipment:
-            return .requestPlain
+       
         }
     }
 }

@@ -69,7 +69,10 @@ struct HomeView: View {
             }.padding()
         }
         .onAppear(perform: {
+//            DispatchQueue.main.async {
             ApprovedShipmentVM.GetApprovedShipment()
+            ApprovedShipmentVM.GetFilteredShipments()
+//            }
         })
         NavigationLink(destination: destination,isActive:$active , label: {
         })

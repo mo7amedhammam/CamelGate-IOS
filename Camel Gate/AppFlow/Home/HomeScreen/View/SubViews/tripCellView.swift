@@ -142,16 +142,13 @@ struct tripCellView: View {
                 .frame(height: 40)
             }
         }
-        .onAppear(perform: {
-            print(shipmentModel?.shipmentStatusName ?? "4545454545454")
-        })
+
         .frame(height: 240)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(#colorLiteral(red: 0.6138994098, green: 0.6338609457, blue: 0.6889666915, alpha: 1)), lineWidth: 2.0)
         )
         .cornerRadius(10)
-//        .padding()
     }
 }
 
