@@ -39,7 +39,7 @@ final class Helper{
     
     //for checking if user exist
     class func userExist()->Bool{
-        return userDef.string(forKey: "DriverName") != nil
+        return userDef.string(forKey: "DriverName") != nil || userDef.string(forKey: "DriverName") != ""
     }
     
 //    class func getUserID() ->Int {
@@ -50,7 +50,7 @@ final class Helper{
 //        return userDef.string(forKey: "PhoneNumber") ?? ""
 //    }
     class func getDriverName() ->String {
-        return userDef.string(forKey: "DriverName") ?? "Mohamed Hammam"
+        return userDef.string(forKey: "DriverName") ?? ""
     }
     
 //    class func setUserimage(userImage : String) {

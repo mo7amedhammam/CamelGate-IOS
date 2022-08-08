@@ -75,14 +75,10 @@ class SignInViewModel: ObservableObject {
                     destination = AnyView(TabBarView()
                                             .navigationBarHidden(true))
                     Helper.setUserData( DriverName: publishedUserLogedInModel?.name ?? "", DriverImage: publishedUserLogedInModel?.image ?? "" )
-
                 }
-//                Helper.setUserimage(userImage: publishedUserLogedInModel?.image ?? "")
                 Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
                 isLogedin = true
             }
-            
-            
             
         }.store(in: &cancellables)
     }
@@ -100,7 +96,7 @@ class SignInViewModel: ObservableObject {
         }.done({ [self] response in
             let result = response as! Response
 
-//            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<LoginModel> = try BGDecoder.decode(data: result.data )
             print(data)
             if data.success == true {

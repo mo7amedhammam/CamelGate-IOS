@@ -143,7 +143,7 @@ struct ProfileView: View {
                                 })
                                 Button(action: {
 //                                    if Helper.userExist(){
-//                                        Helper.logout()
+                                        Helper.logout()
 //                                        islogout = true
 //                                    }else{
 //                                        goToLogin = true
