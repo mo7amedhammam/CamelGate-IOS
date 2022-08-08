@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import SwiftUICharts
+import SwiftUICharts
 
 struct WalletView: View {
     @State var WalletCategory = ["Gained","Withdrawn"]
@@ -40,7 +40,7 @@ struct WalletView: View {
                             }, label: {
                                 HStack(alignment: .center){
                                     Text(Category )
-                                        .font(.system(size: 15))
+                                        .font(Font.camelfonts.SemiBold16)
                                         .foregroundColor(self.selected == Category ? Color.white : Color("lightGray"))
                                     
                                 }
@@ -56,8 +56,8 @@ struct WalletView: View {
                         }}
                     .padding(.top, -30.0)
       //            Spacer()
-                  //        LineChartView(data: [12,20,6,15,30,3], title: "", legend: "Legendary")
-                  //          LineChartView(data: [12,20,6,15,30,3], title: "", legend: "qwq", style: Styles.barChartMidnightGreenLight , form: CGSize(width: 320, height: 200), rateValue: 4, dropShadow: true, valueSpecifier: "asd")
+//                          LineChartView(data: [12,20,6,15,30,3], title: "", legend: "Legendary")
+//                            LineChartView(data: [12,20,6,15,30,3], title: "", legend: "qwq", style: Styles.barChartMidnightGreenLight , form: CGSize(width: 320, height: 200), rateValue: 4, dropShadow: true, valueSpecifier: "asd")
                   HStack{
                     Button(action: {}) {
                       Image("ic_pervious")

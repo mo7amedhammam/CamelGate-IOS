@@ -77,6 +77,7 @@
 		FA4E27AF288C53A20047265D /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AE288C53A20047265D /* FilterHeaderView.swift */; };
 		FA4E27B1288C53D10047265D /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27B0288C53D10047265D /* FilterView.swift */; };
 		FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27B2288C540F0047265D /* tripCellView.swift */; };
+		FA57BDE828A1A968007E5329 /* HelpOnRoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57BDE728A1A968007E5329 /* HelpOnRoadView.swift */; };
 		FA5DBAE3289B4EE700C62105 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = FA5DBAE2289B4EE700C62105 /* SwiftUICharts */; };
 		FA7077FD28935B9300879399 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077FC28935B9300879399 /* DetailsView.swift */; };
 		FA7078012895FD9500879399 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7078002895FD9500879399 /* NotificationsView.swift */; };
@@ -180,6 +181,7 @@
 		FA4E27AE288C53A20047265D /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
 		FA4E27B0288C53D10047265D /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		FA4E27B2288C540F0047265D /* tripCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripCellView.swift; sourceTree = "<group>"; };
+		FA57BDE728A1A968007E5329 /* HelpOnRoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOnRoadView.swift; sourceTree = "<group>"; };
 		FA7077FC28935B9300879399 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		FA7078002895FD9500879399 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		FA9CC382289ECFD500A56055 /* HomeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServices.swift; sourceTree = "<group>"; };
@@ -749,6 +751,30 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		FA57BDE428A1A928007E5329 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				FA57BDE528A1A936007E5329 /* HelpOnRoad */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		FA57BDE528A1A936007E5329 /* HelpOnRoad */ = {
+			isa = PBXGroup;
+			children = (
+				FA57BDE628A1A956007E5329 /* View */,
+			);
+			path = HelpOnRoad;
+			sourceTree = "<group>";
+		};
+		FA57BDE628A1A956007E5329 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA57BDE728A1A968007E5329 /* HelpOnRoadView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FA7077FB28935B6F00879399 /* DetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,6 +869,7 @@
 				C8C949392889590E0057EE7E /* Wallet */,
 				C8C94938288959080057EE7E /* Profile */,
 				C845FAB42892AB9900B803FD /* Chat */,
+				FA57BDE428A1A928007E5329 /* Help */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -1104,6 +1131,7 @@
 				FA7077FD28935B9300879399 /* DetailsView.swift in Sources */,
 				FAEADE502884C064004535CE /* ContentView.swift in Sources */,
 				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
+				FA57BDE828A1A968007E5329 /* HelpOnRoadView.swift in Sources */,
 				C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */,
 				C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */,
 				FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */,
