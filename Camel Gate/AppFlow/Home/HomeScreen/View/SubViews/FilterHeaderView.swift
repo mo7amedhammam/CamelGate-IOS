@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct FilterHeaderView: View {
+    var action : ()->()
+
     var body: some View {
       HStack{
         Text("Nearest Shipments")
               .font(Font.camelfonts.Reg16)
           .foregroundColor(Color.gray)
         Spacer()
-        Button(action: {}) {
+        Button(action: {
+            action()
+        }) {
           Image("ic_filter")
             .resizable()
             .scaledToFit()
@@ -26,7 +30,7 @@ struct FilterHeaderView: View {
 
 struct FilterHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterHeaderView()
+        FilterHeaderView(action: {})
     }
 }
 

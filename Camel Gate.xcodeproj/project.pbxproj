@@ -356,6 +356,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C85B4D4228A260C400E9E6BE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C85D7D9D289B74740088227D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,6 +599,7 @@
 		C8C9493A288959140057EE7E /* Garage */ = {
 			isa = PBXGroup;
 			children = (
+				C85B4D4228A260C400E9E6BE /* ViewModel */,
 				C8C94973288993490057EE7E /* View */,
 			);
 			path = Garage;

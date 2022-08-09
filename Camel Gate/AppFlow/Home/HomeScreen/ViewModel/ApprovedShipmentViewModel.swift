@@ -20,13 +20,20 @@ class ApprovedShipmentViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
-    @Published var lat = 0
-    @Published var lang = 0
+    @Published var lat = 30.18
+    @Published var lang = 31.2
     @Published var fromCityId = 0
+    @Published var fromCityName = ""
+
     @Published var toCityId = 0
-    @Published var fromDate  = Date()
-    @Published var toDate = Date()
-    @Published var shipmentTypes = []
+    @Published var toCityName = ""
+    
+    @Published var fromDate  : Date?
+    @Published var toDate : Date?
+    @Published var shipmentTypesIds:[Int] = []
+    @Published var shipmentTypesNames:[String] = []
+
+    @Published var Filter = ShipmentFilterModel()
     
     //------- output
     @Published var validations: InvalidFields = .none
@@ -35,7 +42,8 @@ class ApprovedShipmentViewModel: ObservableObject {
     @Published var publishedFilteredShipments: [ShipmentModel] = []
 
     @Published var UserCreated = false
-    
+    @Published var nodata = false
+
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
@@ -53,7 +61,21 @@ class ApprovedShipmentViewModel: ObservableObject {
         
         passToFilteredShipmentsObject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
-            publishedFilteredShipments = modeldata.data ?? []
+            
+            nodata = false
+//            withAnimation{
+//                publishedFilteredShipments = []
+//            }
+            DispatchQueue.main.async {
+                if modeldata.data?.isEmpty ?? false || modeldata.data == []{
+                    nodata = true
+                }else{
+                    withAnimation{
+                        publishedFilteredShipments = modeldata.data ?? []
+                    }
+                }
+            }
+
         }.store(in: &cancellables)
         
     }
@@ -97,16 +119,28 @@ class ApprovedShipmentViewModel: ObservableObject {
     
     // MARK: - API Services
     func GetFilteredShipments(){
-        let params : [String : Any] =
+        var params : [String : Any] =
         [
-            "lat"                       : lat ,
-            "lang"                    : lang,
-            "fromCityId"                       : fromCityId ,
-            "toCityId"                    : toCityId,
-            "fromDate"                       :  ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: fromDate)  ,
-            "toDate"                    : ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: toDate),
-            "shipmentTypes": shipmentTypes
+            "lat"                          : lat ,
+            "lang"                         : lang
         ]
+        
+        if fromCityId != 0{
+            params["fromCityId"] = fromCityId
+        }
+        if toCityId != 0{
+            params["toCityId"] = toCityId
+        }
+        if fromDate != nil {
+            params["fromDate"] = ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: fromDate ?? Date())
+        }
+        if toDate != nil{
+            params["toDate"] = ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: toDate ?? Date())
+        }
+        if !shipmentTypesIds.isEmpty{
+            params["shipmentTypes"] = shipmentTypesIds
+        }
+        
         firstly { () -> Promise<Any> in
             isLoading = true
             print(params)
@@ -132,7 +166,6 @@ class ApprovedShipmentViewModel: ObservableObject {
                 }
                 isAlert = true
             }
-            
             
         }).ensure { [self] in
             isLoading = false

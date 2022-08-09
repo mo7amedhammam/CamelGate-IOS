@@ -22,17 +22,23 @@ struct MainTabBar : View {
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
     @Namespace var animation
     @State var tabs = ["Home","Shipments","Garage","Wallet","Profile"]
+    @State var FilterTag : FilterCases = .Menu
+    @State var showFilter = false
+    @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
+
     var body: some View {
         VStack(spacing: 0){
             GeometryReader{_ in
                 ZStack{
                     if self.selectedTab == "Home"{
-                        HomeView()
+                        HomeView(FilterTag: $FilterTag, showFilter: $showFilter)
+                            .environmentObject(ApprovedShipmentVM)
                     } else if self.selectedTab == "Shipments"{
                         ShipmentsView()
                         
                     }  else if self.selectedTab == "Garage"{
-                        GarageView()
+                        GarageView(FilterTag: $FilterTag, showFilter: $showFilter)
+                            .environmentObject(ApprovedShipmentVM)
                         
                     } else if self.selectedTab == "Wallet"{
                         WalletView()
@@ -62,6 +68,22 @@ struct MainTabBar : View {
         }
         .ignoresSafeArea(.all, edges: .bottom)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+        .overlay(
+            VStack{
+            if showFilter{
+                            BottomSheetView(IsPresented: $showFilter, withcapsule: true, bluryBackground: true, forgroundColor: .white, content: {
+                FilterMenu(FilterTag: $FilterTag , showFilter: $showFilter)
+                                    .environmentObject(ApprovedShipmentVM)
+                                    .padding()
+                            })
+
+            }
+                Spacer(minLength: 40)
+            }.padding(.bottom)
+        )
+
+        
+        
     }
 }
 

@@ -51,3 +51,4 @@ struct ShipmentModel: Codable, Hashable, Identifiable {
             case shipmentStatusName
         }
 }
+

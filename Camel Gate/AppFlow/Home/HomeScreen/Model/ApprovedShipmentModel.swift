@@ -208,3 +208,24 @@ struct ShipmentTimeTo : Codable, Hashable {
 //    }
 
 }
+
+//MARK: ----- Filter ------
+struct ShipmentFilterModel  {
+        var fromDate: String?    //"2022-08-09T09:48:49.960Z"
+        var toDate: String?      // "2022-08-09T09:48:49.960Z"
+        var fromCity: nameAndId?    //"2022-08-09T09:48:49.960Z"
+        var toCity: nameAndId?    //"2022-08-09T09:48:49.960Z"
+        var lat: Double?
+        var lang: Double?
+        var shipmentTypes: [nameAndId]?
+
+}
+
+struct nameAndId  {
+        var id: Int
+        var name: String
+}
+//struct shipmentTypes  {
+//        var id: Int?
+//        var name: String?
+//}

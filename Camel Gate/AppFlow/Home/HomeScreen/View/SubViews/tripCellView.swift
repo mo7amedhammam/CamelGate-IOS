@@ -10,7 +10,8 @@ import SwiftUI
 struct tripCellView: View {
      
     @State var shipmentModel:ShipmentModel?
-    
+    @Binding var selecteshipmentId:Int
+
     var body: some View {
         ZStack{
             Color.white
@@ -100,7 +101,7 @@ struct tripCellView: View {
                                         VStack(alignment: .leading){
                                             Text(shipmentModel?.fromCityName ?? "Giza").foregroundColor(Color("Base_Color"))
                   
-                                            Text(ConvertStringDate(inp:shipmentModel?.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
+                                            Text(ConvertStringDate(inp:shipmentModel?.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:"dd/MM/yyyy . h:mm a"))
 
                                             .font(Font.camelfonts.Reg14)
 
@@ -109,7 +110,6 @@ struct tripCellView: View {
                                             Text(shipmentModel?.toCityName ??  "Alexandria").foregroundColor(Color("Second_Color"))
                                             Text(ConvertStringDate(inp:shipmentModel?.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
                                             .font(Font.camelfonts.Reg14)
-
                                         }
                                     }
                                 }
@@ -142,6 +142,9 @@ struct tripCellView: View {
                 .frame(height: 40)
             }
         }
+        .onTapGesture {
+            selecteshipmentId = shipmentModel?.id ?? 0
+        }
 
         .frame(height: 240)
         .overlay(
@@ -154,7 +157,7 @@ struct tripCellView: View {
 
 struct tripCellView_Previews: PreviewProvider {
     static var previews: some View {
-        tripCellView()
+        tripCellView( selecteshipmentId: .constant(0))
     }
 }
 

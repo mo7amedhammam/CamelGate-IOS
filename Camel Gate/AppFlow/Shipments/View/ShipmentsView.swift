@@ -51,7 +51,7 @@ struct ShipmentsView: View {
                 List() {
                    
                     ForEach(shipmentsViewModel.publishedUserLogedInModel, id:\.self) { tripItem in
-                            tripCellView(shipmentModel: tripItem)
+                        tripCellView(shipmentModel: tripItem,selecteshipmentId:$selecteshipmentId)
                                 .listRowSeparator(.hidden)
                                 .listRowBackground(Color.clear)
                                 .onTapGesture {
