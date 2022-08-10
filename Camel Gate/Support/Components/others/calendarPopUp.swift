@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import PromiseKit
 
 struct calendarPopUp:View{
     @Binding var selectedDate : Date
@@ -48,10 +49,6 @@ struct calendarPopUp_Previews: PreviewProvider {
     }
 }
 
-
-
-
-
 struct DateInputView: View {
     var language = LocalizationService.shared.language
     
@@ -60,7 +57,6 @@ struct DateInputView: View {
 
     @State var iconColor : Color? = .clear
 
-    
     @Binding var date: Date?
     let screenWidth = UIScreen.main.bounds.size.width - 55
     var body: some View {
@@ -93,35 +89,25 @@ struct DateInputView: View {
     }
 }
 
-struct DateOfBirthView_Previews: PreviewProvider {
+struct DateInputView_Previews: PreviewProvider {
     static var previews: some View {
         DateInputView(date: .constant(Date()))
     }
 }
 
-
-
-
-
 struct DatePickerTextField: UIViewRepresentable {
     private let textField = UITextField()
     private let datePicker = UIDatePicker()
     private let helper = Helper()
-    private let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        return dateFormatter
-    }()
-    
+//    private let dateFormatter: DateFormatter = {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = format.
+//        return dateFormatter
+//    }()
+//    public var format = "yyyy/MM/dd"
+
     public var placeholder: String
     @Binding public var date: Date?
-//    @ObservedObject var docvm = ViewModelCreatePatientProfile()
-    
-//    var datef:DateFormatter{
-//        let df = DateFormatter()
-//        df.dateFormat = "yyyy/mm/dd"
-//        return df
-//    }
     
     func makeUIView(context: Context) -> some UITextField {
         
@@ -140,17 +126,11 @@ struct DatePickerTextField: UIViewRepresentable {
         
         self.helper.dateChanged =  {
             self.date = self.datePicker.date
-//            self.docvm.Birthday = self.datePicker.date
-//            self.docvm.Birthday = datef.string(from: datePicker.date)
 
         }
         self.helper.doneButtonTapped =  {
             if self.date == nil {
                 self.date = self.datePicker.date
-//                self.docvm.Birthday = self.datePicker.date
-//                self.docvm.Birthday = datef.string(from: datePicker.date)
-
-//                self.docvm.Birthday = datef.string(from: date ?? Date())
                 
             }
             self.textField.resignFirstResponder()
@@ -160,8 +140,10 @@ struct DatePickerTextField: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
+        
         if let selectedDate = self.date {
-            uiView.text = self.dateFormatter.string(from: selectedDate)
+            uiView.text = selectedDate.DateToStr(format: "dd-MM-yyyy")
+//            self.dateFormatter.string(from: selectedDate)
         }
     }
     

@@ -72,10 +72,15 @@ struct MainTabBar : View {
             VStack{
             if showFilter{
                             BottomSheetView(IsPresented: $showFilter, withcapsule: true, bluryBackground: true, forgroundColor: .white, content: {
-                FilterMenu(FilterTag: $FilterTag , showFilter: $showFilter)
+//                FilterMenu(FilterTag: $FilterTag , showFilter: $showFilter)
+//                                    .environmentObject(ApprovedShipmentVM)
+//                                    .padding()
+                MainFilterView(FilterTag: $FilterTag, showFilter: $showFilter)
                                     .environmentObject(ApprovedShipmentVM)
                                     .padding()
+
                             })
+                
 
             }
                 Spacer(minLength: 40)

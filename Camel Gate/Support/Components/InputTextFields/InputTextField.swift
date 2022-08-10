@@ -59,3 +59,78 @@ struct InputTextField_Previews: PreviewProvider {
     }
 }
 
+
+
+
+struct InputDateField: View {
+    @State var LeadingiconName : String? = ""
+    @State var LeadingiconColor : Color? = .clear
+    @State var TrailingiconName : String? = ""
+    @State var TrailingiconColor : Color? = .clear
+    var placeholder : String
+
+    @Binding var text: String
+    @Binding var date: Date
+
+    
+    let screenWidth = UIScreen.main.bounds.size.width - 55
+    var body: some View {
+        
+        HStack{
+            if LeadingiconName != "" || LeadingiconName != nil{
+                Image(LeadingiconName ?? "")
+                    .renderingMode( LeadingiconColor != .clear ? .template:.original)
+//                    .foregroundColor(.secondary)
+//                    .tint(.gray)
+//                    .background(Color.white)
+                    .foregroundColor(LeadingiconColor == .clear ? .clear:LeadingiconColor)
+                    .font(.system(size: 15))
+            }else{
+            }
+            
+            ZStack (alignment:.leading){
+                Text(placeholder)
+                    .font(Font.camelfonts.Reg14)
+                    .foregroundColor(.gray.opacity(0.5))
+                    .offset(y: text.isEmpty ? 0 : -20)
+                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+                
+                TextField("",text:$text)
+                    .font(Font.camelfonts.Reg16)
+                    .autocapitalization(.none)
+                    .textInputAutocapitalization(.never)
+  
+            }
+            if TrailingiconName != "" || TrailingiconName != nil{
+                Image(TrailingiconName ?? "")
+                    .renderingMode( TrailingiconColor != .clear ? .template:.original)
+                    .foregroundColor(TrailingiconColor == .clear ? .clear:TrailingiconColor)
+                    .font(.system(size: 15))
+            }else{
+            }
+
+        }
+        .overlay(content: {
+            DatePicker("", selection: $date, displayedComponents: [.date])
+                .opacity(0.051)
+                .background(Color.clear)
+                .tint(Color.red)
+        })
+        .frame( height: 30)
+        .padding(12)
+        .disableAutocorrection(true)
+        .background(
+            Color.white
+        )
+            .cornerRadius(5)
+            .shadow(color: Color.black.opacity(0.099), radius: 3)
+        
+    }
+}
+struct InputDateField_Previews: PreviewProvider {
+    static var previews: some View {
+        InputDateField(LeadingiconName:"x321gray",placeholder: "Name", text: .constant("Mohamed Hammam"), date: .constant(Date()))
+        
+    }
+}
+

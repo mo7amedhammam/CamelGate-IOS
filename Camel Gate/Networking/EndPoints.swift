@@ -22,5 +22,8 @@ enum EndPoints: String {
     case upcomingShipment = "Shipment/GetDriverUpcomingShipments"
     case currentShipment = "Shipment/GetDriverCurrentShipments"
     case ShipmentDetails = "Shipment/GetShipment"
+    case GetCities = "City/Get"
+    case GetShipmentTypes = "ShipmentType/GetAllForList"
+
 
 }

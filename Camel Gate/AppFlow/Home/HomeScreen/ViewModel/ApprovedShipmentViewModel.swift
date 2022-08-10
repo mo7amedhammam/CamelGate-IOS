@@ -28,8 +28,10 @@ class ApprovedShipmentViewModel: ObservableObject {
     @Published var toCityId = 0
     @Published var toCityName = ""
     
-    @Published var fromDate  : Date?
-    @Published var toDate : Date?
+    @Published var fromDate  = Date()
+    @Published var toDate = Date()
+    @Published var fromDateStr  = ""
+    @Published var toDateStr = ""
     @Published var shipmentTypesIds:[Int] = []
     @Published var shipmentTypesNames:[String] = []
 
@@ -68,6 +70,9 @@ class ApprovedShipmentViewModel: ObservableObject {
 //            }
             DispatchQueue.main.async {
                 if modeldata.data?.isEmpty ?? false || modeldata.data == []{
+                    withAnimation{
+                        publishedFilteredShipments = []
+                    }
                     nodata = true
                 }else{
                     withAnimation{
@@ -131,11 +136,11 @@ class ApprovedShipmentViewModel: ObservableObject {
         if toCityId != 0{
             params["toCityId"] = toCityId
         }
-        if fromDate != nil {
-            params["fromDate"] = ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: fromDate ?? Date())
+        if fromDateStr != "" {
+            params["fromDate"] = fromDate.DateToStr(format:"yyy-MM-dd'T'HH:mm:ss.sss")
         }
-        if toDate != nil{
-            params["toDate"] = ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: toDate ?? Date())
+        if toDateStr != "" {
+            params["toDate"] = toDate.DateToStr(format:"yyy-MM-dd'T'HH:mm:ss.sss")
         }
         if !shipmentTypesIds.isEmpty{
             params["shipmentTypes"] = shipmentTypesIds

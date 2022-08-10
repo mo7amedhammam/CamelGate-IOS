@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+import SwiftUI
 
 enum HomeServices {
     
@@ -20,8 +21,9 @@ enum HomeServices {
     case currentShipments
     
     case ShipmentDetails(parameters : [String:Any])
+    case GetCities(parameters:[String:Any])
+    case GetShipmentTypes
 
-    
 }
 extension HomeServices : URLRequestBuilder {
     var path: String {
@@ -33,30 +35,35 @@ extension HomeServices : URLRequestBuilder {
         case .GetApprovedShipment:
             return EndPoints.GetApprovedShipment.rawValue
 
-
         case .appliedShipMents :
             return EndPoints.appliedShipment.rawValue
         case .upComingShipments :
             return EndPoints.upcomingShipment.rawValue
         case .currentShipments :
             return EndPoints.currentShipment.rawValue
-       
             
         case .ShipmentDetails:
             return EndPoints.ShipmentDetails.rawValue
+        case .GetCities:
+            return EndPoints.GetCities.rawValue
+            
+        case .GetShipmentTypes:
+            return EndPoints.GetShipmentTypes.rawValue
         }
     }
     var method: Moya.Method {
         switch self {
-//        case  .Login , .createAccount , .UpdateDriverInfo :
-//            return .post
-            
+
         case .Home , .GetApprovedShipment , .appliedShipMents , .upComingShipments , .currentShipments:
             return .get
         case .HomeShipmments:
             return .post
 
         case .ShipmentDetails:
+            return .get
+        case .GetCities:
+            return .get
+        case .GetShipmentTypes:
             return .get
         }
     }
@@ -74,6 +81,10 @@ extension HomeServices : URLRequestBuilder {
     
         case .ShipmentDetails(let param):
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
+        case .GetCities(parameters: let parameters):
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        case .GetShipmentTypes:
+            return .requestPlain
         }
     }
 }
