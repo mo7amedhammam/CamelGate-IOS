@@ -12,7 +12,7 @@ struct HomeView: View {
 
     
     @State  var selectedFilterId : Int?
-    @State  var filterArray = ["Ciro to Alex" , "6K to 10k SAR" , "Cairo to Alex" ,  "6K to 10k SAR" , "Ciro to Alex"]
+    @State  var filterArray : [String] = []
     
     @State var active = false
     @State var destination = AnyView(ChatsListView())
@@ -87,8 +87,11 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(FilterTag: .constant(.Menu), showFilter: .constant(false))
+            .environmentObject(ApprovedShipmentViewModel())
         HomeView(FilterTag: .constant(.Menu), showFilter: .constant(false))
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+            .environmentObject(ApprovedShipmentViewModel())
+
     }
 }
 
@@ -106,10 +109,25 @@ struct ExtractedView: View {
         VStack{
             ScrollView(.horizontal , showsIndicators : false) {
                 HStack {
-                    ForEach(0 ..< filterArray.count) { filterItem in
-                        FilterView(delete: filterItem != selectedFilterId , filterTitle: filterArray[filterItem] , D: {
+                    if ApprovedShipmentVM.fromCityName != ""{
+                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) to \(ApprovedShipmentVM.toCityName)", D: {
+                            ApprovedShipmentVM.fromCityName = ""
+                            ApprovedShipmentVM.toCityName = ""
                         })
                     }
+                    if ApprovedShipmentVM.fromDateStr != ""{
+                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format: "dd/MM/yyyy")) to \(ApprovedShipmentVM.toDate.DateToStr(format: "dd/MM/yyyy"))", D: {
+                            ApprovedShipmentVM.fromDateStr = ""
+                            ApprovedShipmentVM.toDateStr = ""
+                        })
+                    }
+                    if ApprovedShipmentVM.shipmentTypesIds != []{
+                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.shipmentTypesNames.joined(separator: ", "))", D: {
+                            ApprovedShipmentVM.shipmentTypesIds = []
+                            ApprovedShipmentVM.shipmentTypesNames = []
+                        })
+                    }
+                    
                 }.padding()
             }
             ScrollView(.vertical , showsIndicators : false) {
@@ -128,7 +146,6 @@ struct ExtractedView: View {
                 // showing loading indicator
                 ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
             })
-        }
-   
+        }   
     }
 }

@@ -53,11 +53,9 @@ class ApprovedShipmentViewModel: ObservableObject {
     
     @Published var destination = AnyView(TabBarView())
     init() {
-//        GetFilteredShipments()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
             publishedUserLogedInModel = modeldata.data
-//            UserCreated = true
         }.store(in: &cancellables)
         
         
@@ -100,7 +98,6 @@ class ApprovedShipmentViewModel: ObservableObject {
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
-//                    UserCreated = true
                 }
             }else {
                 if data.messageCode == 400{

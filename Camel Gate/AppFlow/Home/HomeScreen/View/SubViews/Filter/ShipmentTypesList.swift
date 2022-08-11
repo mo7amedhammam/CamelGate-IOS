@@ -15,7 +15,7 @@ struct ShipTypeFilter: View {
     
     var body: some View {
         VStack{
-            Text(FilterTag == .CityFrom ? "From_(Choose City)".localized(language):"To(Choose City)".localized(language))
+            Text("Shipment_type".localized(language))
                 .font(.system(size: 18))
                 .fontWeight(.bold)
                 .frame(width:UIScreen.main.bounds.width)
@@ -38,7 +38,7 @@ struct ShipTypeFilter: View {
                         ShipmentVM.shipmentTypesNames = []
                     }, label: {
                         HStack{
-                            Image(systemName:ShipmentVM.shipmentTypesIds == [] ? "checkmark.circle.fill" :"circle")
+                            Image(systemName:ShipmentVM.shipmentTypesIds == [] ? "checkmark.rectangle.fill" :"checkmark.rectangle")
                                 .font(.system(size: 20))
                                 .foregroundColor(ShipmentVM.shipmentTypesIds == [] ? Color("blueColor") : .gray.opacity(0.5) )
                             Text("Any".localized(language))
@@ -67,7 +67,7 @@ struct ShipTypeFilter: View {
                                     }
                                 }                            }, label: {
                                 HStack{
-                                    Image(systemName:  ShipmentVM.shipmentTypesIds.contains(button.id ?? 0) ? "checkmark.circle.fill" : "circle")
+                                    Image(systemName:  ShipmentVM.shipmentTypesIds.contains(button.id ?? 0) ? "checkmark.rectangle.fill" : "checkmark.rectangle")
                                         .font(.system(size: 20))
                                         .foregroundColor(ShipmentVM.shipmentTypesIds.contains(button.id ?? 0) ? Color("blueColor") : .gray.opacity(0.5))
                                     Text(button.title ?? "")

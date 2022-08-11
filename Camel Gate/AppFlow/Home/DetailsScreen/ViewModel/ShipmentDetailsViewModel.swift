@@ -21,13 +21,19 @@ class ShipmentDetailsViewModel : ObservableObject {
     // ------- input
     @Published var shipmentId = 0
 
-    
+    @Published var driverOffer = ""
+    @Published var shipmentOfferId = 0
+    @Published var CancelationReasonId = 0
+    @Published var CancelationReasonStr = ""
+
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
     @Published var publishedUserLogedInModel: ShipmentModel = ShipmentModel.init()
     @Published var UserCreated = false
     @Published var nodata = false
+    @Published var OfferSent = false
+    @Published var OfferCanceled = false
 
     
     @Published var isLoading:Bool? = false
@@ -40,11 +46,9 @@ class ShipmentDetailsViewModel : ObservableObject {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
             DispatchQueue.main.async {
-              
                 publishedUserLogedInModel = modeldata.data ?? ShipmentModel.init()
                 UserCreated = true
                 print(publishedUserLogedInModel )
-                
             }
         }.store(in: &cancellables)
     }
@@ -72,9 +76,74 @@ class ShipmentDetailsViewModel : ObservableObject {
                 if data.messageCode == 400{
                     message = data.message ?? "error 400"
                 }else if data.messageCode == 401{
-                    message = "unauthorized"
+                    message = data.message ?? "unauthorized"
                 }else{
-                    message = "Bad Request"
+                    message = data.message ?? "Bad Request"
+                }
+                isAlert = true
+            }
+        }).ensure { [self] in
+            isLoading = false
+        }.catch { [self] (error) in
+            isAlert = true
+            message = "\(error)"
+        }
+    }
+    
+    func SendOffer() {
+        let param : [String : Any] = ["shipmentId":shipmentId,"driverOfferValue":Int(driverOffer) ?? 0]
+        firstly { () -> Promise<Any> in
+            isLoading = true
+            return BGServicesManager.CallApi(self.Services,HomeServices.setOffer(parameters: param))
+        }.done({ [self] response in
+            let result = response as! Response
+            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<SetOfferModel> = try BGDecoder.decode(data: result.data )
+            if data.success == true {
+                DispatchQueue.main.async {
+                    print(data)
+                    OfferSent = true
+                }
+            }else {
+                if data.messageCode == 400{
+                    message = data.message ?? "error 400"
+                }else if data.messageCode == 401{
+                    message = data.message ?? "unauthorized"
+                }else{
+                    message = data.message ?? "Bad Request"
+                }
+                isAlert = true
+            }
+        }).ensure { [self] in
+            isLoading = false
+        }.catch { [self] (error) in
+            isAlert = true
+            message = "\(error)"
+        }
+    }
+    
+    func CancelOffer() {
+        let param : [String : Any] = ["shipmentOfferId":shipmentOfferId,"shipmentCancelationReasonId":CancelationReasonId]
+        print(param)
+        firstly { () -> Promise<Any> in
+            isLoading = true
+            return BGServicesManager.CallApi(self.Services,HomeServices.CancelOffer(parameters: param))
+        }.done({ [self] response in
+            let result = response as! Response
+            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<CancelOfferModel> = try BGDecoder.decode(data: result.data )
+            if data.success == true {
+                DispatchQueue.main.async {
+                    print(data)
+                    OfferCanceled = true
+                }
+            }else {
+                if data.messageCode == 400{
+                    message = data.message ?? "error 400"
+                }else if data.messageCode == 401{
+                    message = data.message ?? "unauthorized"
+                }else{
+                    message = data.message ?? "Bad Request"
                 }
                 isAlert = true
             }

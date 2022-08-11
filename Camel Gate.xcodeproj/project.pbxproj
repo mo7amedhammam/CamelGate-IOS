@@ -18,6 +18,8 @@
 		C0125B1828993991004B65E5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B1728993991004B65E5 /* Decoder.swift */; };
 		C81B21FA28A3B17500816ECF /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21F928A3B17500816ECF /* CityModel.swift */; };
 		C81B21FC28A3B19100816ECF /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21FB28A3B19100816ECF /* CityViewModel.swift */; };
+		C82DBDEF28A54D3000F2A9AB /* CancelReasonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */; };
+		C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */; };
 		C82EC8F5289EAB090042A27F /* ApprovedShipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */; };
 		C82EC8F7289EACC90042A27F /* ApprovedShipmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82EC8F6289EACC90042A27F /* ApprovedShipmentViewModel.swift */; };
 		C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB62892AEA000B803FD /* ChatHeader.swift */; };
@@ -131,6 +133,8 @@
 		C80E8DE528A15D560056E85C /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C81B21F928A3B17500816ECF /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		C81B21FB28A3B19100816ECF /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
+		C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasonsModel.swift; sourceTree = "<group>"; };
+		C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasonsViewModel.swift; sourceTree = "<group>"; };
 		C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedShipmentModel.swift; sourceTree = "<group>"; };
 		C82EC8F6289EACC90042A27F /* ApprovedShipmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedShipmentViewModel.swift; sourceTree = "<group>"; };
 		C845FAB62892AEA000B803FD /* ChatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeader.swift; sourceTree = "<group>"; };
@@ -304,6 +308,15 @@
 				C81B21FB28A3B19100816ECF /* CityViewModel.swift */,
 			);
 			path = City;
+			sourceTree = "<group>";
+		};
+		C82DBDED28A54D0200F2A9AB /* CancelReasons */ = {
+			isa = PBXGroup;
+			children = (
+				C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */,
+				C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */,
+			);
+			path = CancelReasons;
 			sourceTree = "<group>";
 		};
 		C845FAB42892AB9900B803FD /* Chat */ = {
@@ -843,6 +856,7 @@
 		FA7077FB28935B6F00879399 /* DetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				C82DBDED28A54D0200F2A9AB /* CancelReasons */,
 				C8481CC7289FFF7100B6675D /* ViewModel */,
 				C851C29E28936F4E00A5C757 /* View */,
 			);
@@ -1147,6 +1161,7 @@
 				C85D7DA6289C0B5D0088227D /* DriverInfoModel.swift in Sources */,
 				C85D7DA3289BD2F60088227D /* ImageDataExtenstion.swift in Sources */,
 				FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */,
+				C82DBDEF28A54D3000F2A9AB /* CancelReasonsModel.swift in Sources */,
 				FA4E27B1288C53D10047265D /* FilterView.swift in Sources */,
 				C8D82A3728A46C4B0081E620 /* CitiesListView.swift in Sources */,
 				C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */,
@@ -1204,6 +1219,7 @@
 				C8481CC9289FFF9300B6675D /* ShipmentDetailsViewModel.swift in Sources */,
 				FA7077FD28935B9300879399 /* DetailsView.swift in Sources */,
 				C8D82A3528A46C060081E620 /* CityFilterView.swift in Sources */,
+				C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */,
 				FAEADE502884C064004535CE /* ContentView.swift in Sources */,
 				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
 				FA57BDE828A1A968007E5329 /* HelpOnRoadView.swift in Sources */,

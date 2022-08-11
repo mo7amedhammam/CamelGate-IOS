@@ -14,7 +14,9 @@ struct BottomSheetView <Content: View>: View {
     var IsPresented: Binding<Bool>
     var withcapsule: Bool
     var bluryBackground: Bool
+//    var disabledbackground: Bool
     var forgroundColor: Color
+
 
     init(  IsPresented:Binding<Bool>,withcapsule:Bool,bluryBackground:Bool,forgroundColor:Color, @ViewBuilder content: () -> Content) {
         self.language = LocalizationService.shared.language
@@ -35,7 +37,12 @@ struct BottomSheetView <Content: View>: View {
         .blur(radius: IsPresented.wrappedValue == true ? bluryBackground ? 5:0:0)
         .transition(.move(edge: .bottom))
         .onTapGesture(perform: {
+//            if disabledbackground{
+//                hideKeyboard()
+////                disabledbackground.toggle()
+//            }else{
             IsPresented.wrappedValue.toggle()
+//            }
     })
         
         .overlay(content: {

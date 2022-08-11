@@ -39,7 +39,6 @@ struct FilterMenu:View{
                         FilterTag = .City
                     }, label: {
                         HStack{
-                            
                             VStack(alignment:.leading){
                                 Text("Location(From-To)".localized(language))
                                     .font(Font.camelfonts.SemiBold18)
@@ -50,9 +49,7 @@ struct FilterMenu:View{
                                     .padding(.top,-10)
                                     .foregroundColor(.gray)
                             }
-                            
                             Spacer()
-                            
                             
                             CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                             
@@ -63,7 +60,6 @@ struct FilterMenu:View{
                     })
                         .listRowSeparator(.hidden)
                     Button(action: {
-                        print("sel date")
                         FilterTag = .Date
                     }, label: {
                         HStack{
@@ -88,7 +84,6 @@ struct FilterMenu:View{
                         
                     })
                     Button(action: {
-                        print("sel types")
                         FilterTag = .ShipmentTypes
                     }, label: {
                         HStack{

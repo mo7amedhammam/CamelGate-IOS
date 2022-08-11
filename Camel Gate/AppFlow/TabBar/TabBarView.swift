@@ -71,7 +71,7 @@ struct MainTabBar : View {
         .overlay(
             VStack{
             if showFilter{
-                            BottomSheetView(IsPresented: $showFilter, withcapsule: true, bluryBackground: true, forgroundColor: .white, content: {
+                BottomSheetView(IsPresented: $showFilter, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
 //                FilterMenu(FilterTag: $FilterTag , showFilter: $showFilter)
 //                                    .environmentObject(ApprovedShipmentVM)
 //                                    .padding()

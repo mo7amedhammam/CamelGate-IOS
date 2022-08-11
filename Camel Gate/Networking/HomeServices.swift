@@ -24,6 +24,10 @@ enum HomeServices {
     case GetCities(parameters:[String:Any])
     case GetShipmentTypes
 
+    case setOffer(parameters:[String:Any])
+    case CancelOffer(parameters:[String:Any])
+    case CancelationReasons
+
 }
 extension HomeServices : URLRequestBuilder {
     var path: String {
@@ -49,6 +53,12 @@ extension HomeServices : URLRequestBuilder {
             
         case .GetShipmentTypes:
             return EndPoints.GetShipmentTypes.rawValue
+        case .setOffer:
+            return EndPoints.SetOffer.rawValue
+        case .CancelOffer:
+            return EndPoints.CancelOffer.rawValue
+        case .CancelationReasons:
+            return EndPoints.CancelationReasons.rawValue
         }
     }
     var method: Moya.Method {
@@ -59,12 +69,11 @@ extension HomeServices : URLRequestBuilder {
         case .HomeShipmments:
             return .post
 
-        case .ShipmentDetails:
+        case .ShipmentDetails, .GetShipmentTypes, .GetCities, .CancelationReasons:
             return .get
-        case .GetCities:
-            return .get
-        case .GetShipmentTypes:
-            return .get
+   
+        case .setOffer,.CancelOffer:
+            return .post
         }
     }
     var sampleData: Data {
@@ -84,6 +93,13 @@ extension HomeServices : URLRequestBuilder {
         case .GetCities(parameters: let parameters):
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case .GetShipmentTypes:
+            return .requestPlain
+        case .setOffer( let parameters):
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .CancelOffer( let parameters):
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+
+        case .CancelationReasons:
             return .requestPlain
         }
     }

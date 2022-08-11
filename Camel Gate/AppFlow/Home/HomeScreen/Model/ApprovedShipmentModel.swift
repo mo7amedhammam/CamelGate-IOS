@@ -11,9 +11,6 @@ struct ApprovedShipmentModel : Codable, Hashable, Identifiable {
     static func == (lhs: ApprovedShipmentModel, rhs: ApprovedShipmentModel) -> Bool {
         lhs.id == rhs.id
     }
-//    func hash(into hasher: inout Hasher) {
-//            hasher.combine(id)
-//        }
     
     var id : Int?
     var code : String?
@@ -147,21 +144,6 @@ struct ShipmentTimeFrom : Codable, Hashable {
         case totalSeconds = "totalSeconds"
     }
 
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        ticks = try values.decodeIfPresent(Int.self, forKey: .ticks)
-//        days = try values.decodeIfPresent(Int.self, forKey: .days)
-//        hours = try values.decodeIfPresent(Int.self, forKey: .hours)
-//        milliseconds = try values.decodeIfPresent(Int.self, forKey: .milliseconds)
-//        minutes = try values.decodeIfPresent(Int.self, forKey: .minutes)
-//        seconds = try values.decodeIfPresent(Int.self, forKey: .seconds)
-//        totalDays = try values.decodeIfPresent(Int.self, forKey: .totalDays)
-//        totalHours = try values.decodeIfPresent(Int.self, forKey: .totalHours)
-//        totalMilliseconds = try values.decodeIfPresent(Int.self, forKey: .totalMilliseconds)
-//        totalMinutes = try values.decodeIfPresent(Int.self, forKey: .totalMinutes)
-//        totalSeconds = try values.decodeIfPresent(Int.self, forKey: .totalSeconds)
-//    }
-
 }
 
 struct ShipmentTimeTo : Codable, Hashable {
@@ -191,22 +173,6 @@ struct ShipmentTimeTo : Codable, Hashable {
         case totalMinutes = "totalMinutes"
         case totalSeconds = "totalSeconds"
     }
-
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        ticks = try values.decodeIfPresent(Int.self, forKey: .ticks)
-//        days = try values.decodeIfPresent(Int.self, forKey: .days)
-//        hours = try values.decodeIfPresent(Int.self, forKey: .hours)
-//        milliseconds = try values.decodeIfPresent(Int.self, forKey: .milliseconds)
-//        minutes = try values.decodeIfPresent(Int.self, forKey: .minutes)
-//        seconds = try values.decodeIfPresent(Int.self, forKey: .seconds)
-//        totalDays = try values.decodeIfPresent(Int.self, forKey: .totalDays)
-//        totalHours = try values.decodeIfPresent(Int.self, forKey: .totalHours)
-//        totalMilliseconds = try values.decodeIfPresent(Int.self, forKey: .totalMilliseconds)
-//        totalMinutes = try values.decodeIfPresent(Int.self, forKey: .totalMinutes)
-//        totalSeconds = try values.decodeIfPresent(Int.self, forKey: .totalSeconds)
-//    }
-
 }
 
 //MARK: ----- Filter ------
@@ -225,7 +191,32 @@ struct nameAndId  {
         var id: Int
         var name: String
 }
-//struct shipmentTypes  {
-//        var id: Int?
-//        var name: String?
-//}
+
+
+// MARK: - SetOfferModel
+struct SetOfferModel: Codable {
+    var id, shipmentID: Int?
+    var driverName: String?
+    var driverOfferValue: Int?
+    var truckTypeName: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case shipmentID = "shipmentId"
+        case driverName, driverOfferValue, truckTypeName
+    }
+}
+
+// MARK: - CancelOfferModel
+struct CancelOfferModel: Codable {
+    var shipmentOfferId, shipmentID: Int?
+    var driverName: String?
+    var driverOfferValue: Int?
+    var truckTypeName: String?
+
+    enum CodingKeys: String, CodingKey {
+        case shipmentOfferId
+        case shipmentID = "shipmentId"
+        case driverName, driverOfferValue, truckTypeName
+    }
+}

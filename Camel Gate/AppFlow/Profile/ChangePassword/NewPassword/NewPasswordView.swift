@@ -88,7 +88,7 @@ struct NewPasswordView: View {
             
             if showBottomSheet{
                 
-                BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true, forgroundColor: .white, content: {
+                BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
 
                         Text("Password_Changed".localized(language))
                             .font(Font.camelfonts.Reg20)

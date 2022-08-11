@@ -74,7 +74,7 @@ struct SignUpView: View {
                 hideKeyboard()
             })
 //            .padding(.horizontal,-30)
-            BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .clear, content: {
+            BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false,  forgroundColor: .clear, content: {
                 VStack{
                     GradientButton(action: {
                         SignUpVM.CreateAccount()
