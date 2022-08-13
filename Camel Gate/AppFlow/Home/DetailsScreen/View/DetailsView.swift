@@ -308,7 +308,6 @@ struct DetailsView: View {
                                 print("hide keayboard first")
                             }
                         )
-                    
                 }
             }.background(Color.clear)
                

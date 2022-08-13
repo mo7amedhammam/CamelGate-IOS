@@ -28,7 +28,7 @@ struct NotificationsView: View {
                     }
                 }
                 //            .refreshable(action: {
-                ////                    getAllDoctors()
+                
                 //            })
                 .frame(width: UIScreen.main.bounds.width)
                 .listStyle(.plain)
@@ -61,7 +61,7 @@ struct NotificationCell : View {
                         .font(Font.camelfonts.Reg11)
                         .foregroundColor(Color.gray)
                 }
-            }
+            }.padding(.vertical, 10.0)
         }
     }
 }
