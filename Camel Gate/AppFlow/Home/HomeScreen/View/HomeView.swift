@@ -65,6 +65,7 @@ struct HomeView: View {
                 })
             }.padding()
         }
+        .navigationBarHidden(true)
         .onAppear(perform: {
             selectedShipmentId = 0
 //            DispatchQueue.main.async {

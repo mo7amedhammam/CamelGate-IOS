@@ -39,16 +39,11 @@ struct HeaderView: View {
             }
             Spacer()
             Button(action: {
+                active = true
                 destination = AnyView(NotificationsView())
             }) {
                 Image("ic_big_notification")
             }
-//            Button(action: {
-//                active = true
-//                destination = AnyView(NotificationsView())
-//            }) {
-//                Image("ic_big_notification")
-//            }
         }
         .padding()
         NavigationLink(destination: destination,isActive:$active , label: {

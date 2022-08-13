@@ -92,6 +92,7 @@
 		FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27B2288C540F0047265D /* tripCellView.swift */; };
 		FA57BDE828A1A968007E5329 /* HelpOnRoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57BDE728A1A968007E5329 /* HelpOnRoadView.swift */; };
 		FA5DBAE3289B4EE700C62105 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = FA5DBAE2289B4EE700C62105 /* SwiftUICharts */; };
+		FA626CE028A7F3FD00714C67 /* HelpRequestSentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA626CDF28A7F3FD00714C67 /* HelpRequestSentView.swift */; };
 		FA7077FD28935B9300879399 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077FC28935B9300879399 /* DetailsView.swift */; };
 		FA7078012895FD9500879399 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7078002895FD9500879399 /* NotificationsView.swift */; };
 		FA9CC383289ECFD500A56055 /* HomeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC382289ECFD500A56055 /* HomeServices.swift */; };
@@ -208,6 +209,7 @@
 		FA4E27B0288C53D10047265D /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		FA4E27B2288C540F0047265D /* tripCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripCellView.swift; sourceTree = "<group>"; };
 		FA57BDE728A1A968007E5329 /* HelpOnRoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOnRoadView.swift; sourceTree = "<group>"; };
+		FA626CDF28A7F3FD00714C67 /* HelpRequestSentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRequestSentView.swift; sourceTree = "<group>"; };
 		FA7077FC28935B9300879399 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		FA7078002895FD9500879399 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		FA9CC382289ECFD500A56055 /* HomeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServices.swift; sourceTree = "<group>"; };
@@ -840,6 +842,7 @@
 		FA57BDE528A1A936007E5329 /* HelpOnRoad */ = {
 			isa = PBXGroup;
 			children = (
+				FA626CDE28A7F3AD00714C67 /* HelpRequestSent */,
 				FA57BDE628A1A956007E5329 /* View */,
 			);
 			path = HelpOnRoad;
@@ -851,6 +854,14 @@
 				FA57BDE728A1A968007E5329 /* HelpOnRoadView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FA626CDE28A7F3AD00714C67 /* HelpRequestSent */ = {
+			isa = PBXGroup;
+			children = (
+				FA626CDF28A7F3FD00714C67 /* HelpRequestSentView.swift */,
+			);
+			path = HelpRequestSent;
 			sourceTree = "<group>";
 		};
 		FA7077FB28935B6F00879399 /* DetailsScreen */ = {
@@ -1217,6 +1228,7 @@
 				C8DB51A9288CB45F004521C8 /* FontsExtension.swift in Sources */,
 				C0125B12289936B5004B65E5 /* EndPoints.swift in Sources */,
 				C8481CC9289FFF9300B6675D /* ShipmentDetailsViewModel.swift in Sources */,
+				FA626CE028A7F3FD00714C67 /* HelpRequestSentView.swift in Sources */,
 				FA7077FD28935B9300879399 /* DetailsView.swift in Sources */,
 				C8D82A3528A46C060081E620 /* CityFilterView.swift in Sources */,
 				C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */,
