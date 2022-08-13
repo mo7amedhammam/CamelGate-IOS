@@ -46,7 +46,8 @@ class DriverInfoViewModel: ObservableObject {
         }
     }
     @Published  var DriverImage = UIImage()
-    @Published  var Birthdate : Date? 
+    @Published  var Birthdate = Date()
+    @Published  var BirthdateStr = ""
     @Published  var gender = 1
     @Published  var RedisentOptions = 1 // 1: CitizenId, 2:ResidentId , 3: Border
     @Published  var citizenId = ""
@@ -54,14 +55,19 @@ class DriverInfoViewModel: ObservableObject {
     @Published  var borderId = ""
     @Published  var Email = ""
     @Published  var LicenseNumber = ""
-    @Published  var LicenseExpireDate : Date?
-    
+    @Published  var LicenseExpireDate = Date()
+    @Published  var LicenseExpireDateStr = ""
+
     @Published  var TruckTypeId = ""
     @Published  var NumberofAxe = ""
     @Published  var TruckPlate = ""
     @Published  var TruckLicense = ""
-    @Published  var TruckLicenseIssueDate : Date?
-    @Published  var TruckLicenseExpirationDate : Date? 
+    @Published  var TruckLicenseIssueDate = Date()
+    @Published  var TruckLicenseIssueDateStr = ""
+
+    @Published  var TruckLicenseExpirationDate = Date()
+    @Published  var TruckLicenseExpirationDateStr = ""
+
     
     //------- output
     @Published var validations: InvalidFields = .none
@@ -94,21 +100,21 @@ class DriverInfoViewModel: ObservableObject {
             "DrivingLicense"                       : "\(LicenseNumber)",
             "Email"                                : "\(Email)",
             "Birthdate"                            :
-            ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: Birthdate ?? Date() )
+                Birthdate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss")
             ,
             "Gender"                               : "\(gender)",
             "CreateTruckDto.Plate"                 : "\(Int(TruckPlate) ?? 0)",
             "CreateTruckDto.License"               : "\(Int(TruckLicense) ?? 0)",
             "CreateTruckDto.LicenseIssueDate"      :
-            ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: TruckLicenseIssueDate ?? Date() )
+                TruckLicenseIssueDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss")
             ,
             "CreateTruckDto.LicenseExpirationDate" :
-            ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: TruckLicenseExpirationDate ?? Date() )
+                TruckLicenseExpirationDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss")
             ,
             "CreateTruckDto.NumberofAxe"           : "\(Int( NumberofAxe ) ?? 0)",
             "CreateTruckDto.TruckTypeId"           : "\(Int( TruckTypeId ) ?? 0)",
             "DrivingLicenseExpirationDate"         :
-            ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").string(from: LicenseExpireDate ?? Date() )
+                LicenseExpireDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss")
             ,
             "CreateTruckDto.ProductionYear"        : "\(2020)",
             "CreateTruckDto.TruckManufacturerId"   : "\(2)"
@@ -174,33 +180,26 @@ class DriverInfoViewModel: ObservableObject {
             if data.success == true {
                    
                     DispatchQueue.main.async { [self] in
-                        self.LicenseNumber = data.data?.drivingLicense ?? ""
-                        self.Email = data.data?.email ?? ""
-                    self.LicenseNumber =  data.data?.drivingLicense ?? ""
-                    self.LicenseExpireDate =
-                        ChangeFormate(NewFormat: "dd-MM-yyyy").date(from:  data.data?.drivingLicenseExpirationDate ?? "" )
-                    self.gender =  data.data?.gender ?? 1
-                    self.TruckPlate = "\( data.data?.truckInfo?.plate ?? 0)"
-                    self.TruckTypeId = "\( data.data?.truckInfo?.truckTypeId ?? 0)"
-                    self.NumberofAxe = "\( data.data?.truckInfo?.numberofAxe ?? 0)"
-                    self.TruckLicense = "\( data.data?.truckInfo?.license ?? 0)"
-                    self.TruckLicenseIssueDate = ChangeFormate(NewFormat: "dd-MM-yyyy").date(from:  data.data?.truckInfo?.licenseIssueDate ?? "" )
-                    self.TruckLicenseExpirationDate = ChangeFormate(NewFormat: "dd-MM-yyyy").date(from:  data.data?.truckInfo?.licenseExpirationDate ?? "" )
-                        
-//
-//                        let Bdate = ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").date(from:  data.data?.birthdate ?? "" )
-//
-//                        let Bdatestr = ChangeFormate(NewFormat: "dd-MM-yyyy").string(from:  Bdate ?? Date() )
-                        self.Birthdate = convDateToDate(input: data.data?.birthdate ?? "" , format: "yyy-MM-dd'T'HH:mm:ss.sss")
+                    LicenseNumber = data.data?.drivingLicense ?? ""
+                    Email = data.data?.email ?? ""
+                    LicenseNumber =  data.data?.drivingLicense ?? ""
+                    gender =  data.data?.gender ?? 1
+                    TruckPlate = "\( data.data?.truckInfo?.plate ?? 0)"
+                    TruckTypeId = "\( data.data?.truckInfo?.truckTypeId ?? 0)"
+                    NumberofAxe = "\( data.data?.truckInfo?.numberofAxe ?? 0)"
+                    TruckLicense = "\( data.data?.truckInfo?.license ?? 0)"
+                      
+                    LicenseExpireDate = convDateToDate(input: data.data?.drivingLicenseExpirationDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
+                    LicenseExpireDateStr = LicenseExpireDate.DateToStr(format: "dd-MM-yyyy")
+                    
+                    TruckLicenseIssueDate = convDateToDate(input: data.data?.truckInfo?.licenseIssueDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
+                    TruckLicenseIssueDateStr = TruckLicenseIssueDate.DateToStr(format: "dd-MM-yyyy")
+                
+                    TruckLicenseExpirationDate = convDateToDate(input: data.data?.truckInfo?.licenseExpirationDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
+                    TruckLicenseExpirationDateStr = TruckLicenseExpirationDate.DateToStr(format: "dd-MM-yyyy")
 
-                        
-//                    self.Birthdate =  Bdate
-//                        self.Birthdate = ChangeFormate(NewFormat: "yyy-MM-dd'T'HH:mm:ss.sss").date(from: Bdatestr) ?? Date()
-                        
-//                        print("********")
-//                        print(Bdate ?? Date())
-////                        print(Bdatestr)
-//                        print(ChangeFormate(NewFormat: "dd-MM-yyyy").date(from: Bdatestr) ?? Date())
+                    Birthdate = convDateToDate(input: data.data?.birthdate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
+                    BirthdateStr = Birthdate.DateToStr(format: "dd-MM-yyyy")
                     }
                 
             }else {

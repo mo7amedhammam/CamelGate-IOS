@@ -72,7 +72,20 @@ struct EditProfileInfoView: View {
                             // card is here
                         }
                         HStack{
-                            DateInputView( placeholder: "BirthDate", date: $profileVM.Birthdate)
+                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr)
+        //                        .disabled(true)
+                                .overlay(content: {
+                                    HStack{
+                                        DatePicker("", selection: $profileVM.Birthdate, displayedComponents: [.date])
+                                            .opacity(0.04)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                    }.padding(.horizontal)
+                                })
+//                                .padding(.horizontal)
+                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                            
+                            
                             InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male"):.constant("Female"))
                                 .frame(width:130)
                                 .disabled(true)
@@ -116,7 +129,18 @@ struct EditProfileInfoView: View {
                         
                         InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber)
                         
-                        DateInputView( placeholder: "Licence_Expiration_Date", date: $profileVM.LicenseExpireDate)
+                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: $profileVM.LicenseExpireDateStr)
+    //                        .disabled(true)
+                            .overlay(content: {
+                                HStack{
+                                    DatePicker("", selection: $profileVM.LicenseExpireDate, displayedComponents: [.date])
+                                        .opacity(0.08)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                }.padding(.horizontal)
+                            })
+//                            .padding(.horizontal)
+                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         
                         //                    InputTextField(iconName: "ic_pin_orange",iconColor: Color("OrangColor"), placeholder: "Location".localized(language), text: .constant("25 ehsan st., Aggamy, Alexandria"))
                         //                        .overlay(content: {
@@ -169,12 +193,38 @@ struct EditProfileInfoView: View {
                         }
                         InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
                         HStack{
-                            DateInputView( placeholder: "Start_Date", date: $profileVM.TruckLicenseIssueDate)
                             
-                            DateInputView( placeholder: "Expiration_Date", date: $profileVM.TruckLicenseExpirationDate)
+                            
+//                            DateInputView( placeholder: "Start_Date", date: $profileVM.TruckLicenseIssueDate)
+                            
+                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Start_Date".localized(language), text: $profileVM.TruckLicenseIssueDateStr)
+        //                        .disabled(true)
+                                .overlay(content: {
+                                    HStack{
+                                        DatePicker("", selection: $profileVM.TruckLicenseIssueDate, displayedComponents: [.date])
+                                            .opacity(0.08)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                    }.padding(.horizontal)
+                                })
+                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+                            
+                            
+                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Expiration_Date".localized(language), text: $profileVM.TruckLicenseExpirationDateStr)
+                                .overlay(content: {
+                                    HStack{
+                                        DatePicker("", selection: $profileVM.TruckLicenseExpirationDate, displayedComponents: [.date])
+                                            .opacity(0.08)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                    }.padding(.horizontal)
+                                })
+                                
+                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         }
                         
-                        InputTextField(iconName: "ic_box",iconColor: Color("OrangColor"), placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
+//                        InputTextField(iconName: "ic_box",iconColor: Color("OrangColor"), placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
                     }
                     
                     HStack{

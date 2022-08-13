@@ -10,6 +10,8 @@ import SwiftUI
 struct HelpOnRoadView: View {
     @State var helpBtns = ["Request Form","Help Offers"]
     @State var selected = "Request Form"
+    
+    @State var phoneNumber = "011111222222"
     var body: some View {
         VStack{
             ZStack{
@@ -44,10 +46,12 @@ struct HelpOnRoadView: View {
                             Spacer()
                         }.padding()
                         Group {
-//                            InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"), placeholder: "Enter_your_Phone_number".localized(language))
                             
-//                            InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"), placeholder: "Enter_your_phone_number".localized(language), text: "ddd")
-//                                .padding(.horizontal)
+                            //if text is fixed use .constant(value)
+                            InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"), placeholder: "Enter_your_Phone_number".localized(language), text:.constant("01101201322"))
+                            
+                            //if text is fixed use $BindingVariable
+                            InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"), placeholder: "Enter_your_phone_number".localized(language), text: $phoneNumber)
 //                                .keyboardType(.numberPad)
 ////                                .overlay(
 ////                                    RoundedRectangle(cornerRadius: 8)
@@ -61,6 +65,7 @@ struct HelpOnRoadView: View {
 //////                                        .stroke(.red, lineWidth:SignInVM.validations == .PhoneNumber ? 1:0).padding(.horizontal)
 ////                                )
                         }
+                        .padding(.horizontal)
                         .font(Font.camelfonts.Reg16)
                         .ignoresSafeArea(.keyboard)
                     }
