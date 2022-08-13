@@ -59,6 +59,11 @@ class DriverInfoViewModel: ObservableObject {
     @Published  var LicenseExpireDateStr = ""
 
     @Published  var TruckTypeId = ""
+    @Published  var TruckTypeName = ""
+    @Published  var TruckManfacturerId = ""
+    @Published  var TruckManfacturerName = ""
+    @Published  var TruckManfactureYear = ""
+
     @Published  var NumberofAxe = ""
     @Published  var TruckPlate = ""
     @Published  var TruckLicense = ""
@@ -116,8 +121,8 @@ class DriverInfoViewModel: ObservableObject {
             "DrivingLicenseExpirationDate"         :
                 LicenseExpireDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss")
             ,
-            "CreateTruckDto.ProductionYear"        : "\(2020)",
-            "CreateTruckDto.TruckManufacturerId"   : "\(2)"
+            "CreateTruckDto.ProductionYear"        : "\(TruckManfactureYear)",
+            "CreateTruckDto.TruckManufacturerId"   : "\(Int( TruckManfacturerId ) ?? 0)"
         ]
         // optional
         if citizenId != ""{

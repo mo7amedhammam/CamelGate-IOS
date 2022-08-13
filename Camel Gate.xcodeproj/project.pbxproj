@@ -30,6 +30,10 @@
 		C84EAC7C288C3392000AB6AD /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC7B288C3392000AB6AD /* CircularButton.swift */; };
 		C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */; };
 		C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */; };
+		C84EFE1D28A7FE7B00302F7F /* TruckTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EFE1C28A7FE7B00302F7F /* TruckTypeModel.swift */; };
+		C84EFE1F28A7FEB700302F7F /* TruckManfacturerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EFE1E28A7FEB700302F7F /* TruckManfacturerModel.swift */; };
+		C84EFE2128A7FF7700302F7F /* TruckManfacturerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EFE2028A7FF7700302F7F /* TruckManfacturerViewModel.swift */; };
+		C84EFE2328A7FF8700302F7F /* TruckTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EFE2228A7FF8700302F7F /* TruckTypeViewModel.swift */; };
 		C85D7D9C289B66D80088227D /* calendarPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7D9B289B66D80088227D /* calendarPopUp.swift */; };
 		C85D7D9F289B74C90088227D /* DriverInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7D9E289B74C90088227D /* DriverInfoViewModel.swift */; };
 		C85D7DA1289BCB460088227D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA0289BCB460088227D /* ImagePicker.swift */; };
@@ -145,6 +149,10 @@
 		C84EAC7B288C3392000AB6AD /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
+		C84EFE1C28A7FE7B00302F7F /* TruckTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckTypeModel.swift; sourceTree = "<group>"; };
+		C84EFE1E28A7FEB700302F7F /* TruckManfacturerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckManfacturerModel.swift; sourceTree = "<group>"; };
+		C84EFE2028A7FF7700302F7F /* TruckManfacturerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckManfacturerViewModel.swift; sourceTree = "<group>"; };
+		C84EFE2228A7FF8700302F7F /* TruckTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckTypeViewModel.swift; sourceTree = "<group>"; };
 		C85D7D9B289B66D80088227D /* calendarPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarPopUp.swift; sourceTree = "<group>"; };
 		C85D7D9E289B74C90088227D /* DriverInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoViewModel.swift; sourceTree = "<group>"; };
 		C85D7DA0289BCB460088227D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -382,6 +390,8 @@
 		C84EAC82288C4698000AB6AD /* EditProfileInfo */ = {
 			isa = PBXGroup;
 			children = (
+				C84EFE1B28A7FDFE00302F7F /* TruckManufacturer */,
+				C84EFE1A28A7FDEE00302F7F /* TruckTypes */,
 				C85D7DA4289C0B460088227D /* Model */,
 				C85D7D9D289B74740088227D /* ViewModel */,
 				C8A0780E288D5CAA0084C0A6 /* View */,
@@ -395,6 +405,24 @@
 				C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C84EFE1A28A7FDEE00302F7F /* TruckTypes */ = {
+			isa = PBXGroup;
+			children = (
+				C84EFE1C28A7FE7B00302F7F /* TruckTypeModel.swift */,
+				C84EFE2228A7FF8700302F7F /* TruckTypeViewModel.swift */,
+			);
+			path = TruckTypes;
+			sourceTree = "<group>";
+		};
+		C84EFE1B28A7FDFE00302F7F /* TruckManufacturer */ = {
+			isa = PBXGroup;
+			children = (
+				C84EFE1E28A7FEB700302F7F /* TruckManfacturerModel.swift */,
+				C84EFE2028A7FF7700302F7F /* TruckManfacturerViewModel.swift */,
+			);
+			path = TruckManufacturer;
 			sourceTree = "<group>";
 		};
 		C851C29D28936F2700A5C757 /* HomeScreen */ = {
@@ -1149,7 +1177,9 @@
 				C8D82A3128A46B7A0081E620 /* MainFilterList.swift in Sources */,
 				C81B21FA28A3B17500816ECF /* CityModel.swift in Sources */,
 				C85D7D9C289B66D80088227D /* calendarPopUp.swift in Sources */,
+				C84EFE1D28A7FE7B00302F7F /* TruckTypeModel.swift in Sources */,
 				C8D82A3B28A46C970081E620 /* ShipmentTypesList.swift in Sources */,
+				C84EFE2128A7FF7700302F7F /* TruckManfacturerViewModel.swift in Sources */,
 				C8A0781C288D9B670084C0A6 /* RatingView.swift in Sources */,
 				FA4E27AD288C537E0047265D /* ShipView.swift in Sources */,
 				C8C9494B2889772B0057EE7E /* ProfileView.swift in Sources */,
@@ -1165,6 +1195,7 @@
 				FA4E27B1288C53D10047265D /* FilterView.swift in Sources */,
 				C8D82A3728A46C4B0081E620 /* CitiesListView.swift in Sources */,
 				C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */,
+				C84EFE2328A7FF8700302F7F /* TruckTypeViewModel.swift in Sources */,
 				C8E4C309288F0406005FDB7C /* PhoneVerificationView.swift in Sources */,
 				C0125B162899390B004B65E5 /* Constants.swift in Sources */,
 				C0125B142899384C004B65E5 /* ResponseModel.swift in Sources */,
@@ -1222,6 +1253,7 @@
 				C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */,
 				FAEADE502884C064004535CE /* ContentView.swift in Sources */,
 				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
+				C84EFE1F28A7FEB700302F7F /* TruckManfacturerModel.swift in Sources */,
 				FA57BDE828A1A968007E5329 /* HelpOnRoadView.swift in Sources */,
 				C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */,
 				C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */,

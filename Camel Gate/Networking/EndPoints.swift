@@ -27,5 +27,7 @@ enum EndPoints: String {
     case SetOffer = "Shipment/SetOffer"
     case CancelOffer = "Shipment/CancelOffer"
     case CancelationReasons = "ShipmentCancelationReason/GetAllForList"
+    case GetTruckTypes = "TruckType/GetAllForList"
+    case GetTruckManfacture = "TruckManfacture/GetAllForList"
 
 }

@@ -13,6 +13,9 @@ enum AuthServices {
     case createAccount(parameters : [String:Any])
     case GetDriverinfo
     case UpdateDriverInfo(parameters : [String:Any] , images : [String : Image?])
+    case GetTruckType
+    case GetTruckManfacture
+
 }
 extension AuthServices : URLRequestBuilder {
     var path: String {
@@ -25,7 +28,11 @@ extension AuthServices : URLRequestBuilder {
             return EndPoints.GetDriverInfoById.rawValue
         case .UpdateDriverInfo:
             return EndPoints.UpdateDriverInfo.rawValue
-            
+
+        case .GetTruckType:
+            return EndPoints.GetTruckTypes.rawValue
+        case .GetTruckManfacture:
+            return EndPoints.GetTruckManfacture.rawValue
 
         }
     }
@@ -33,7 +40,7 @@ extension AuthServices : URLRequestBuilder {
         switch self {
         case  .Login , .createAccount , .UpdateDriverInfo :
             return .post
-        case .GetDriverinfo :
+        case .GetDriverinfo, .GetTruckType, .GetTruckManfacture :
             return .get
         }
     }
@@ -46,7 +53,7 @@ extension AuthServices : URLRequestBuilder {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .createAccount(parameters: let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .GetDriverinfo:
+        case .GetDriverinfo, .GetTruckType, .GetTruckManfacture:
             return .requestPlain
         case .UpdateDriverInfo(let param,let images):
 //            var formData = [Moya.MultipartFormData]()
@@ -62,7 +69,7 @@ extension AuthServices : URLRequestBuilder {
 //            }
             
             var formData = [Moya.MultipartFormData]()
-            //                          append image to request
+            // append image to request
             for (key , image) in images {
                 if let selectedImage = image,image?.size.width ?? 0 > 0 {
                     formData.append(Moya.MultipartFormData(provider: .data(selectedImage.fixOrientation().jpegData(.lowest)!), name: "\(key)", fileName: "image_\(Int(Date().timeIntervalSince1970))"+".jpeg", mimeType: "image/jpeg"))

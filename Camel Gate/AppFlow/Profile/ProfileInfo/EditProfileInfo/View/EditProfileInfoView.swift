@@ -14,10 +14,11 @@ enum ProfileStep{
 
 struct EditProfileInfoView: View {
     @StateObject var profileVM = DriverInfoViewModel()
+    @StateObject var trucktypesVM = TruckTypeViewModel()
+    @StateObject var truckmanfacturersVM = TruckManfacturerViewModel()
+
     var taskStatus:ProfileStep
     @State private var isEditing = false
-    
-    //    @State private var image = UIImage()
     @State private var showImageSheet = false
     @State private var startPicking = false
     @State private var imgsource = ""
@@ -170,14 +171,17 @@ struct EditProfileInfoView: View {
                             .foregroundColor(Color("blueColor"))
                             .padding(.vertical,10)
                         
-                        InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: $profileVM.TruckTypeId)
+                        InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: $profileVM.TruckTypeName)
                             .disabled(true)
                             .overlay(content: {
                                 Menu {
-                                    Button("Jumbo 1", action: {profileVM.TruckTypeId = "1"})
-                                    Button("Jumbo 2", action: {profileVM.TruckTypeId = "2"})
-                                    Button("Jumbo 3", action: {profileVM.TruckTypeId = "3"})
-                                    
+                                    ForEach(trucktypesVM.publishedTypesArray,id:\.self){type in
+                                        Button(type.title ?? "", action: {
+                                            profileVM.TruckTypeId = "\(type.id ?? 0)"
+                                            profileVM.TruckTypeName = "\(type.title ?? "")"
+
+                                        })
+                                    }
                                 } label: {
                                     HStack{
                                         Spacer()
@@ -186,6 +190,44 @@ struct EditProfileInfoView: View {
                                     .padding(.trailing)
                                 }.padding()
                             })
+                        
+                        HStack{
+                            
+                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Manfacturer".localized(language), text: $profileVM.TruckManfacturerName)
+                                .disabled(true)
+                                .overlay(content: {
+                                    Menu {
+                                        ForEach(truckmanfacturersVM.publishedManfacturersArray,id:\.self){Manfacturer in
+                                            Button(Manfacturer.title ?? "", action: {
+                                                profileVM.TruckManfacturerId = "\(Manfacturer.id ?? 0)"
+                                                profileVM.TruckManfacturerName = "\(Manfacturer.title ?? "")"
+                                            })
+                                        }
+                                    } label: {
+                                        HStack{
+                                            Spacer()
+                                            Image(systemName: "chevron.down")
+                                        }
+//                                        .padding(.trailing)
+                                    }.padding()
+                                })
+                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+                            
+                            
+                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text: $profileVM.TruckManfactureYear)
+//                                .overlay(content: {
+//                                    HStack{
+//                                        DatePicker("", selection: $profileVM.TruckLicenseExpirationDate, displayedComponents: [.date])
+//                                            .opacity(0.08)
+//                                        Spacer()
+//                                        Image(systemName: "chevron.right")
+//                                    }.padding(.horizontal)
+//                                })
+                                .keyboardType(.numberPad)
+                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                        }
+                        
                         
                         HStack{
                             InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text: $profileVM.NumberofAxe)
@@ -298,6 +340,11 @@ struct EditProfileInfoView: View {
             
         }.background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
             .navigationBarHidden(true)
+            .onAppear(perform: {
+                profileVM.TruckTypeName = getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0)
+                profileVM.TruckManfacturerName = getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0)
+
+            })
             
         
         //MARK: -------- imagePicker From Camera and Library ------
@@ -355,6 +402,32 @@ struct EditProfileInfoView_Previews: PreviewProvider {
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }
+
+
+extension EditProfileInfoView{
+    func getTruckTypeName(id:Int) -> String {
+        var truckName = ""
+        for truck in trucktypesVM.publishedTypesArray{
+            if truck.id == id{
+                truckName = truck.title ?? ""
+            }
+        }
+        return truckName
+    }
+    
+    func getTruckManfacturerName(id:Int) -> String {
+        var ManfacrurerName = ""
+        for Manfacrurer in truckmanfacturersVM.publishedManfacturersArray{
+            if Manfacrurer.id == id{
+                ManfacrurerName = Manfacrurer.title ?? ""
+            }
+        }
+        return ManfacrurerName
+    }
+}
+
+
+
 
 
 extension Binding where Value: Equatable {
