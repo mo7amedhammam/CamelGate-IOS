@@ -46,6 +46,8 @@ class DriverInfoViewModel: ObservableObject {
         }
     }
     @Published  var DriverImage = UIImage()
+    @Published  var DriverImageStr = ""
+
     @Published  var Birthdate = Date()
     @Published  var BirthdateStr = ""
     @Published  var gender = 1
@@ -72,7 +74,6 @@ class DriverInfoViewModel: ObservableObject {
 
     @Published  var TruckLicenseExpirationDate = Date()
     @Published  var TruckLicenseExpirationDateStr = ""
-
     
     //------- output
     @Published var validations: InvalidFields = .none
@@ -85,7 +86,6 @@ class DriverInfoViewModel: ObservableObject {
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
     
-    
     @Published var destination = AnyView(TabBarView())
     init() {
         GetDriverInfo()
@@ -95,13 +95,13 @@ class DriverInfoViewModel: ObservableObject {
             UserCreated = true
             Helper.setUserData(DriverName: publishedUserLogedInModel?.name ?? "", DriverImage: publishedUserLogedInModel?.image ?? "")
         }.store(in: &cancellables)
-        
     }
     
     // MARK: - API Services
     func CompleteProfile(){
         var params : [String : Any] =
         [
+            "StatusId"                         :"\(LoginManger.getUser()?.profileStatusId ?? 0)",
             "DrivingLicense"                       : "\(LicenseNumber)",
             "Email"                                : "\(Email)",
             "Birthdate"                            :
@@ -172,7 +172,6 @@ class DriverInfoViewModel: ObservableObject {
     
     // MARK: - API Services
     func GetDriverInfo(){
-     
         firstly { () -> Promise<Any> in
             isLoading = true
             return BGServicesManager.CallApi(self.authServices,AuthServices.GetDriverinfo)
@@ -184,13 +183,16 @@ class DriverInfoViewModel: ObservableObject {
             print(data)
             if data.success == true {
                    
-                    DispatchQueue.main.async { [self] in
+//                    DispatchQueue.main.async { [self] in
+                self.DriverImageStr = data.data?.image ?? ""
                     LicenseNumber = data.data?.drivingLicense ?? ""
                     Email = data.data?.email ?? ""
-                    LicenseNumber =  data.data?.drivingLicense ?? ""
                     gender =  data.data?.gender ?? 1
                     TruckPlate = "\( data.data?.truckInfo?.plate ?? 0)"
                     TruckTypeId = "\( data.data?.truckInfo?.truckTypeId ?? 0)"
+                    TruckManfacturerId = "\( data.data?.truckInfo?.truckManufacturerId ?? 0)"
+                    TruckManfactureYear = "\( data.data?.truckInfo?.productionYear ?? 0)"
+                        
                     NumberofAxe = "\( data.data?.truckInfo?.numberofAxe ?? 0)"
                     TruckLicense = "\( data.data?.truckInfo?.license ?? 0)"
                       
@@ -205,7 +207,8 @@ class DriverInfoViewModel: ObservableObject {
 
                     Birthdate = convDateToDate(input: data.data?.birthdate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
                     BirthdateStr = Birthdate.DateToStr(format: "dd-MM-yyyy")
-                    }
+                    
+//                    }
                 
             }else {
                 if data.messageCode == 400{

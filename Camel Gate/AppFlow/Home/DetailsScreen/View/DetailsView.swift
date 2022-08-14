@@ -20,7 +20,7 @@ struct DetailsView: View {
                 VStack {
                     Button(action: {}) {
                         ZStack{
-                            AsyncImage(url: URL(string: Constants.imagesURL + "\(detailsVM.publishedUserLogedInModel.imageURL ?? "")")) { image in
+                            AsyncImage(url: URL(string: Constants.baseURL + "\(detailsVM.publishedUserLogedInModel.imageURL ?? "")")) { image in
                                 image.resizable()
                             } placeholder: {
                                 Image("cover_vector")

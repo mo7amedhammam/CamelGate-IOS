@@ -278,7 +278,7 @@ struct ProfileInfoView: View {
                     .padding(.horizontal)
                 }
             }
-            TitleBar(Title: "Profile_info", navBarHidden: true, leadingButton: .backButton, trailingButton: .editButton, subText: "90%", trailingAction: {
+            TitleBar(Title: "Profile_info", navBarHidden: true, leadingButton: .backButton, trailingButton: .editButton, trailingAction: {
                 goingToEditProfileInfo = true
             })
         }

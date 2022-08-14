@@ -50,14 +50,6 @@ struct HomeView: View {
             HStack{
                 Spacer()
                 Button(action: {
-//                    ApprovedShipmentVM.lat = 29.5
-//                    ApprovedShipmentVM.lang = 30.5
-//                    ApprovedShipmentVM.fromCityId = 2
-//                    ApprovedShipmentVM.toCityId = 5
-//                    ApprovedShipmentVM.fromDate = Date()
-//                    ApprovedShipmentVM.toDate = Date()
-//                    ApprovedShipmentVM.shipmentTypesIds = [2,4,5]
-//                    ApprovedShipmentVM.GetFilteredShipments()
                     active = true
                     destination = AnyView (ChatsListView())
                 }, label: {

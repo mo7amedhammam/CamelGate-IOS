@@ -25,7 +25,7 @@ struct ProfileHeader: View {
                         Button(action: {
                             // here if you want to preview image
                         }, label: {
-                            AsyncImage(url: URL(string: Constants.imagesURL + Helper.getDriverimage())) { image in
+                            AsyncImage(url: URL(string: Constants.baseURL + "\(LoginManger.getUser()?.image ?? "")")) { image in
                                 image.resizable()
                             } placeholder: {
 //                                Color("lightGray").opacity(0.2)
@@ -34,13 +34,13 @@ struct ProfileHeader: View {
                             }
                             .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
                         })
-                            .clipShape(Circle())
-                            .frame(width: 95, height: 95, alignment: .center)
-                            .cornerRadius(10)
+//                            .clipShape(Circle())
+//                            .frame(width: 95, height: 95, alignment: .center)
+//                            .cornerRadius(10)
                         
-                        CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
+//                        CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
                             //                                                    self.showImageSheet = true
-                        }
+//                        }
                     }
                     
                     Text(LoginManger.getUser()?.name ?? "")

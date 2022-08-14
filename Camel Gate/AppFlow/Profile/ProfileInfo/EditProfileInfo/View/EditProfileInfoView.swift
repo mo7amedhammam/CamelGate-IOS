@@ -39,30 +39,42 @@ struct EditProfileInfoView: View {
                         Button(action: {
                             // here if you want to preview image
                         }, label: {
+                            ZStack{
                             if profileVM.DriverImage.size.width == 0 {
-                                
-                                AsyncImage(url: URL(string: Constants.imagesURL + "\(profileVM.publishedUserLogedInModel?.image ?? "")")) { image in
-                                    image.resizable()
-                                } placeholder: {
-                                    Color("lightGray").opacity(0.2)
-                                }
-                                .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
-                                
+                            AsyncImage(url: URL(string: "\(Constants.baseURL +  profileVM.DriverImageStr)")) { image in
+
+//                            AsyncImage(url: URL(string: "https://camelgateapi.wecancity.com/Images//Driver//DriverImage//01f6969e-a923-4471-9311-29191bf51c92.jpg")) { image in
+
+                                        image.resizable()
+                                    } placeholder: {
+                                        Color("lightGray").opacity(0.2)
+//                                            .onAppear(perform: {
+//                                                print(Constants.baseURL + "\(profileVM.DriverImageStr )")
+//
+//                                            })
+                                    }
+//                                    .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
                             }else{
                                 Image(uiImage: profileVM.DriverImage)
                                     .resizable()
                                     .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
                             }
+                            
+                            }
                         })
                             .clipShape(Circle())
                             .frame(width: 95, height: 95, alignment: .center)
-                        
+                            
+                            
                         if (taskStatus == .update && isEditing == true) || taskStatus == .create{
                             CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
                                 self.showImageSheet = true
                             }
                         }
                     }
+//                    .onAppear(perform: {
+//                        print(Constants.baseURL + "\(profileVM.DriverImageStr )")
+//                    })
                     
                     Group{
                         Text("Driver_Info".localized(language))
@@ -179,7 +191,6 @@ struct EditProfileInfoView: View {
                                         Button(type.title ?? "", action: {
                                             profileVM.TruckTypeId = "\(type.id ?? 0)"
                                             profileVM.TruckTypeName = "\(type.title ?? "")"
-
                                         })
                                     }
                                 } label: {
@@ -192,7 +203,6 @@ struct EditProfileInfoView: View {
                             })
                         
                         HStack{
-                            
                             InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Manfacturer".localized(language), text: $profileVM.TruckManfacturerName)
                                 .disabled(true)
                                 .overlay(content: {
@@ -213,8 +223,6 @@ struct EditProfileInfoView: View {
                                 })
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
-                            
-                            
                             InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text: $profileVM.TruckManfactureYear)
 //                                .overlay(content: {
 //                                    HStack{
@@ -228,15 +236,12 @@ struct EditProfileInfoView: View {
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         }
                         
-                        
                         HStack{
                             InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text: $profileVM.NumberofAxe)
                             InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: $profileVM.TruckPlate)
                         }
                         InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
                         HStack{
-                            
-                            
 //                            DateInputView( placeholder: "Start_Date", date: $profileVM.TruckLicenseIssueDate)
                             
                             InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Start_Date".localized(language), text: $profileVM.TruckLicenseIssueDateStr)
@@ -251,8 +256,6 @@ struct EditProfileInfoView: View {
                                 })
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
-                            
-                            
                             InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Expiration_Date".localized(language), text: $profileVM.TruckLicenseExpirationDateStr)
                                 .overlay(content: {
                                     HStack{
@@ -300,7 +303,7 @@ struct EditProfileInfoView: View {
                     hideKeyboard()
                 })
             
-            TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton,trailingButton: taskStatus == .update ? .editButton:Optional.none ,subText: "70%", trailingAction: {
+            TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton,trailingButton: taskStatus == .update ? .editButton:Optional.none , trailingAction: {
                 isEditing.toggle()
             })
             
@@ -341,11 +344,20 @@ struct EditProfileInfoView: View {
         }.background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
             .navigationBarHidden(true)
             .onAppear(perform: {
-                profileVM.TruckTypeName = getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0)
-                profileVM.TruckManfacturerName = getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0)
-
+                print("\(Constants.baseURL +  profileVM.DriverImageStr)")
+                
+                DispatchQueue.main.asyncAfter(deadline:.now()+1,execute: {
+                    profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
+                    profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
+                })
             })
-            
+            .onChange(of: profileVM.DriverImageStr, perform: {newval in
+                print(newval)
+                DispatchQueue.main.async( execute: {
+                    profileVM.DriverImageStr = newval
+                   print( profileVM.DriverImageStr)
+                })
+            })
         
         //MARK: -------- imagePicker From Camera and Library ------
             .confirmationDialog("Choose Image From ?", isPresented: $showImageSheet) {
@@ -363,9 +375,7 @@ struct EditProfileInfoView: View {
                     ImagePicker(sourceType: .camera, selectedImage: self.$profileVM.DriverImage)
                 }
             }
-        
-        
-        
+
             .overlay(content: {
                 // showing loading indicator
                 ActivityIndicatorView(isPresented: $profileVM.isLoading)
@@ -382,16 +392,13 @@ struct EditProfileInfoView: View {
                     switch taskStatus {
                     case .create:
                         active = true
-                        
                     case .update:
                         print("profile updated")
-                        
                     }
                 }
             })
         NavigationLink(destination: destination,isActive:$active , label: {
         })
-        
     }
 }
 
@@ -412,6 +419,8 @@ extension EditProfileInfoView{
                 truckName = truck.title ?? ""
             }
         }
+        print(id)
+        print(truckName)
         return truckName
     }
     
@@ -422,6 +431,8 @@ extension EditProfileInfoView{
                 ManfacrurerName = Manfacrurer.title ?? ""
             }
         }
+        print(id)
+        print(ManfacrurerName)
         return ManfacrurerName
     }
 }

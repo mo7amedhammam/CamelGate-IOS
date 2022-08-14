@@ -12,8 +12,19 @@ struct HeaderView: View {
     @State var destination = AnyView(NotificationsView())
     var body: some View {
         HStack {
-            Image("face_vector")
+//            Image("face_vector")
 //            WebImage(url: URL(string: LoginManger.getUser()?.image ?? ""))
+            AsyncImage(url: URL(string: Constants.baseURL + "\(LoginManger.getUser()?.image ?? "")")) { image in
+                image.resizable()
+            } placeholder: {
+                Image("face_vector")
+
+            }
+            .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
+            .onAppear(perform: {
+                print(Constants.baseURL + "\(LoginManger.getUser()?.image ?? "")")
+            })
+            
             VStack(alignment: .leading ){
                 HStack{
                     Text(LoginManger.getUser()?.name ?? "")
