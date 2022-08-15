@@ -6,13 +6,19 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct ShipmentsView: View {
     @StateObject var shipmentsViewModel = ShipmentsViewModel()
+//    @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
+
     @State var goToShipmentDetails:Bool = false
     @State var shipmentsCategory = ["Current","Upcoming","Applied"]
     @State var selected = "Applied"
-    @State var selecteshipmentId = 0
+    
+    @State var active = false
+    @State var destination = AnyView(DetailsView(shipmentId: 0))
+    @State var selectedShipmentId = 0
     
     var body: some View {
         ZStack{
@@ -51,15 +57,18 @@ struct ShipmentsView: View {
                 List() {
                    
                     ForEach(shipmentsViewModel.publishedUserLogedInModel, id:\.self) { tripItem in
-                        tripCellView(shipmentModel: tripItem,selecteshipmentId:$selecteshipmentId)
+                        Button(action: {
+//                            detailsVM.shipmentOfferId = detailsVM.publishedUserLogedInModel.driverOfferID ?? 0
+
+                            active = true
+                            destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
+                        }, label: {
+                            tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId)
+//                                .padding(.horizontal)
+                        }).buttonStyle(.plain)
+                        
                                 .listRowSeparator(.hidden)
                                 .listRowBackground(Color.clear)
-                                .onTapGesture {
-                                    selecteshipmentId = tripItem.id ?? 0
-                                    goToShipmentDetails = true
-                                }
-
-
                     }
                     ZStack{}
                     .listRowSeparator(.hidden)
@@ -91,10 +100,15 @@ struct ShipmentsView: View {
             TitleBar(Title: "Shipments".localized(language), navBarHidden: true, trailingButton: .filterButton ,trailingAction: {
             })
         }.onAppear(perform: {
+            selectedShipmentId = 0
             shipmentsViewModel.GetAppliedShipment() // not executed
         })
+            .onChange(of: selectedShipmentId, perform: {newval in
+                    active = true
+                    destination = AnyView (DetailsView(shipmentId: selectedShipmentId))
+            })
 
-        NavigationLink(destination: DetailsView(shipmentId: selecteshipmentId),isActive:$goToShipmentDetails , label: {
+        NavigationLink(destination: destination,isActive:$active , label: {
         })
         
     }

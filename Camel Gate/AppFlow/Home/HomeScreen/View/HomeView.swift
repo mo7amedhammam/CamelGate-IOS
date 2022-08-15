@@ -60,10 +60,8 @@ struct HomeView: View {
         .navigationBarHidden(true)
         .onAppear(perform: {
             selectedShipmentId = 0
-//            DispatchQueue.main.async {
             ApprovedShipmentVM.GetApprovedShipment()
             ApprovedShipmentVM.GetFilteredShipments()
-//            }
         })
 
         .onChange(of: selectedShipmentId, perform: {newval in

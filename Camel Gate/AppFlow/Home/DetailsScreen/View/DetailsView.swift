@@ -242,20 +242,22 @@ struct DetailsView: View {
                 Text(detailsVM.publishedUserLogedInModel.description ?? " description will be here ").font(Font.camelfonts.Reg16).padding()
                 ZStack{
                     Button(action: {
-                        if  detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID != nil{
+                        if  detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 {
+                            detailsVM.shipmentOfferId = detailsVM.publishedUserLogedInModel.driverOfferID ?? 0
+
                             OfferCase = .cancel
                         } else {
-                            detailsVM.shipmentOfferId = detailsVM.publishedUserLogedInModel.driverOfferID ?? 0
+//                            detailsVM.shipmentOfferId = detailsVM.publishedUserLogedInModel.driverOfferID ?? 0
                             OfferCase = .set
                         }
                         ShowSetOffer = true
 
                     }) {
                         ZStack {
-                            detailsVM.publishedUserLogedInModel.driverOfferStatusID != 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID != nil ? Color.red.opacity(0.09) : Color("Base_Color")
-                            Text( detailsVM.publishedUserLogedInModel.driverOfferStatusID != 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID != nil ? "Cancel" : "Apply")
+                            detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 ? Color.red.opacity(0.09) : Color("Base_Color")
+                            Text( detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 ? "Cancel".localized(language) : detailsVM.publishedUserLogedInModel.driverOfferStatusID == 2 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 5 ? "ReApply".localized(language):"Apply".localized(language))
                                 .font(Font.camelfonts.Reg16)
-                                .foregroundColor(detailsVM.publishedUserLogedInModel.driverOfferStatusID != 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID != nil ? Color.red : Color.white)
+                                .foregroundColor(detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 ? Color.red : Color.white)
                         }
                     }
                     .cornerRadius(10)
@@ -549,6 +551,8 @@ struct CancelOfferView:View{
                     .multilineTextAlignment(.center)
                 Spacer()
             }.padding()
+            
+            if detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 {
             Button(action: {
                 OfferCase = .CancelationList
             }, label: {
@@ -563,6 +567,7 @@ struct CancelOfferView:View{
                     .padding(.horizontal)
                     .padding(.top,20)
             })
+            }
             
             Spacer()
             
