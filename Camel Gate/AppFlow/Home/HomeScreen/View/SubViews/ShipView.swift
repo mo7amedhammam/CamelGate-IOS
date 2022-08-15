@@ -31,7 +31,7 @@ struct ShipView: View {
                             Text("Delivery")
                             HStack{
                                 Text(
-                                    ConvertStringDate(inp:ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentDateTo ?? "2022-08-06T13:54:58.365",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss.SSS",FormatTo:"E. dd/MM/yyyy . h:m aa")
+                                    ConvertStringDate(inp:ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentDateTo ?? "2022-08-17T00:00:00",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss",FormatTo:"E. dd/MM/yyyy . h:m aa")
                                 )
                             }
                             
@@ -39,7 +39,17 @@ struct ShipView: View {
                         .font(Font.camelfonts.Reg16)
 
                         Spacer()
-                        Button(action: {}) {
+                        Button(action: {
+                            
+                            if ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2{
+                                Helper.openGoogleMap(longitude: Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLang ?? 0), latitude: Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLat ?? 0))
+                            } else if ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3{
+                                Helper.openGoogleMap(longitude: Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLang ?? 0), latitude: Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLat ?? 0))
+                            }else{
+                                Helper.openGoogleMap(longitude: Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLang ?? 0), latitude: Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLat ?? 0))
+                            }
+//                            ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? Helper.openGoogleMap(longitude: ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLang, latitude: ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLat)  : ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? Helper.openGoogleMap(longitude: ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLang, latitude: ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLat) : Helper.openGoogleMap(longitude: ApprovedShipmentVM.publishedapprovedShipmentModel?.toLang, latitude: ApprovedShipmentVM.publishedapprovedShipmentModel?.toLat)
+                        }) {
                             ZStack{
                                 Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
                                 Text("Location").foregroundColor(Color(#colorLiteral(red: 0.2833708227, green: 0.149017632, blue: 0.4966977239, alpha: 1)))

@@ -10,8 +10,8 @@ import Alamofire
 
 struct ShipmentsView: View {
     @StateObject var shipmentsViewModel = ShipmentsViewModel()
-//    @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
-
+    //    @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
+    
     @State var goToShipmentDetails:Bool = false
     @State var shipmentsCategory = ["Current","Upcoming","Applied"]
     @State var selected = "Applied"
@@ -29,15 +29,7 @@ struct ShipmentsView: View {
                         Button(action: {
                             withAnimation{
                                 self.selected = Category
-//                                shipmentsViewModel.publishedUserLogedInModel?.removeAll()
-
-                                if selected == "Applied" {
-                                    shipmentsViewModel.GetAppliedShipment()
-                                }else if selected == "Upcoming" {
-                                    shipmentsViewModel.GetUpcomingShipment()
-                                }else if selected == "Current"{
-                                    shipmentsViewModel.GetCurrentShipment()
-                                }
+                                getshipments()
                             }
                         }, label: {
                             HStack(alignment: .center){
@@ -55,20 +47,17 @@ struct ShipmentsView: View {
                         
                     }}
                 List() {
-                   
                     ForEach(shipmentsViewModel.publishedUserLogedInModel, id:\.self) { tripItem in
                         Button(action: {
-//                            detailsVM.shipmentOfferId = detailsVM.publishedUserLogedInModel.driverOfferID ?? 0
-
+                            
                             active = true
                             destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
                         }, label: {
                             tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId)
-//                                .padding(.horizontal)
                         }).buttonStyle(.plain)
                         
-                                .listRowSeparator(.hidden)
-                                .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
                     }
                     ZStack{}
                     .listRowSeparator(.hidden)
@@ -76,38 +65,39 @@ struct ShipmentsView: View {
                     .frame( maxHeight: 2)
                     .foregroundColor(.black)
                     .onAppear(perform: {
-                       // pagination
+                        // pagination
                     })
                 }.refreshable(action: {
-//                    getAllDoctors()
+                    getshipments()
                 })
-                .frame(width: UIScreen.main.bounds.width)
-                .listStyle(.plain)
-                .padding(.vertical,0)
-                .overlay(
-                    ZStack{
-                        if shipmentsViewModel.nodata == true {
-                            Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
-                                .multilineTextAlignment(.center)
-                                .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
+                    .frame(width: UIScreen.main.bounds.width)
+                    .listStyle(.plain)
+                    .padding(.vertical,0)
+                    .overlay(
+                        ZStack{
+                            if shipmentsViewModel.nodata == true {
+                                Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
+                                    .multilineTextAlignment(.center)
+                                    .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
+                            }
                         }
-                    }
-                )
-
+                    )
+                
             }
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
-
-            TitleBar(Title: "Shipments".localized(language), navBarHidden: true, trailingButton: .filterButton ,trailingAction: {
+            
+            TitleBar(Title: "Shipments".localized(language), navBarHidden: true, trailingButton: TopButtons.none ,trailingAction: {
             })
         }.onAppear(perform: {
             selectedShipmentId = 0
-            shipmentsViewModel.GetAppliedShipment() // not executed
+            getshipments()
+            
         })
             .onChange(of: selectedShipmentId, perform: {newval in
-                    active = true
-                    destination = AnyView (DetailsView(shipmentId: selectedShipmentId))
+                active = true
+                destination = AnyView (DetailsView(shipmentId: selectedShipmentId))
             })
-
+        
         NavigationLink(destination: destination,isActive:$active , label: {
         })
         
@@ -117,5 +107,17 @@ struct ShipmentsView: View {
 struct ShipmentsView_Previews: PreviewProvider {
     static var previews: some View {
         ShipmentsView()
+    }
+}
+
+extension ShipmentsView{
+    func getshipments() {
+        if selected == "Applied" {
+            shipmentsViewModel.GetAppliedShipment()
+        }else if selected == "Upcoming" {
+            shipmentsViewModel.GetUpcomingShipment()
+        }else if selected == "Current"{
+            shipmentsViewModel.GetCurrentShipment()
+        }
     }
 }

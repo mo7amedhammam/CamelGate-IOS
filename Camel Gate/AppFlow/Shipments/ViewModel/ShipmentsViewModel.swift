@@ -126,7 +126,6 @@ class ShipmentsViewModel : ObservableObject {
             message = "\(error)"
         }
     }
-    
     func GetCurrentShipment(){
         print("here is current")
 

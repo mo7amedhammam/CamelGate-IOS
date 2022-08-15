@@ -38,12 +38,27 @@ struct HomeView: View {
                 ShipView().shadow(radius: 5)
                         .environmentObject(ApprovedShipmentVM)
                 }
+                
+                if ApprovedShipmentVM.publishedFilteredShipments != []{
                 FilterHeaderView(action: {
                     showFilter.toggle()
                 })
+                }
+                
                 ExtractedView(active: $active, destination: $destination, selectedFilterId: $selectedFilterId, filterArray: $filterArray, selectedShipmentId: $selectedShipmentId)
                     .environmentObject(ApprovedShipmentVM)
+                 
+
                 }
+            .overlay(
+                ZStack{
+                    if ApprovedShipmentVM.nodata == true {
+                        Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
+                            .multilineTextAlignment(.center)
+                            .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
+                    }
+                }
+            )
             }.padding(.top,30)
             
             HStack{

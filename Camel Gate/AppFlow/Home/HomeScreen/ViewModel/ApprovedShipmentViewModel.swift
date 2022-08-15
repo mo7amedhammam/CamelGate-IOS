@@ -41,7 +41,6 @@ class ApprovedShipmentViewModel: ObservableObject {
     @Published var shipmentTypesIds:[Int] = []
     @Published var shipmentTypesNames:[String] = []
 
-    @Published var Filter = ShipmentFilterModel()
     
     //------- output
     @Published var validations: InvalidFields = .none

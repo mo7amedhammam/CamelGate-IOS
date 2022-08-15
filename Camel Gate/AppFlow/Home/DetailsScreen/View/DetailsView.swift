@@ -129,7 +129,7 @@ struct DetailsView: View {
                                 Text("Estimated Time").font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_star")
-                                    Text("\(detailsVM.publishedUserLogedInModel.estimateTime ?? "2-3") Days")
+//                                    Text("\(detailsVM.publishedUserLogedInModel.estimateTime?.values .joined(separator: " - ") ?? []) ")
                                         .font(Font.camelfonts.Med16).foregroundColor(Color.black)
                                 }
                             }
@@ -173,7 +173,7 @@ struct DetailsView: View {
                             Spacer()
                             VStack {
                                 Button(action: {
-                                    Helper.openGoogleMap(longitude: detailsVM.publishedUserLogedInModel.fromLang ?? 0.0, latitude: detailsVM.publishedUserLogedInModel.fromLat ?? 0.0)
+                                    Helper.openGoogleMap(longitude: Double(detailsVM.publishedUserLogedInModel.fromLang ?? 0), latitude: Double(detailsVM.publishedUserLogedInModel.fromLat ?? 0))
                                 }) {
                                     ZStack{
                                         Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
@@ -184,7 +184,7 @@ struct DetailsView: View {
                                 }
                                 Spacer()
                                 Button(action: {
-                                    Helper.openGoogleMap(longitude: detailsVM.publishedUserLogedInModel.toLang ?? 0.0, latitude: detailsVM.publishedUserLogedInModel.toLat ?? 0.0)
+                                    Helper.openGoogleMap(longitude: Double(detailsVM.publishedUserLogedInModel.toLang ?? 0), latitude: Double(detailsVM.publishedUserLogedInModel.toLat ?? 0))
                                 }) {
                                     ZStack{
                                         Color("Second_Color").opacity(0.2).frame(width : 100 , height: 40)
