@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ShipView: View {
-    var ShipmentObj:ApprovedShipmentModel?
+    @EnvironmentObject var ApprovedShipmentVM:ApprovedShipmentViewModel
     var body: some View {
         VStack(spacing: 0){
             ZStack{
                 Image("ic_ship_purple").resizable()
                 HStack(spacing: 10){
                     Text("Shipment").foregroundColor(Color.white)
-                    Text("#\(ShipmentObj?.code ?? "1215")")
+                    Text("#\(ApprovedShipmentVM.publishedapprovedShipmentModel?.code ?? "1215")")
                         .foregroundColor(Color.white)
                     Spacer()
                 }
@@ -31,7 +31,7 @@ struct ShipView: View {
                             Text("Delivery")
                             HStack{
                                 Text(
-ConvertStringDate(inp:ShipmentObj?.shipmentDateTo ?? "2022-08-06T13:54:58.365",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss.SSS",FormatTo:"E. dd/MM/yyyy . h:m aa")
+                                    ConvertStringDate(inp:ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentDateTo ?? "2022-08-06T13:54:58.365",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss.SSS",FormatTo:"E. dd/MM/yyyy . h:m aa")
                                 )
                             }
                             
@@ -50,10 +50,10 @@ ConvertStringDate(inp:ShipmentObj?.shipmentDateTo ?? "2022-08-06T13:54:58.365",F
                     }
                     .padding()
                     .frame(height: 80 )
-                    Image( ShipmentObj?.shipmentStatusId == 2 ? "ic_status1":ShipmentObj?.shipmentStatusId == 3 ? "ic_status2":"ic_status3")
+                    Image( ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? "ic_status1":ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? "ic_status2":"ic_status3")
                         .frame(height: 40 )
                     HStack {
-                        Text(ShipmentObj?.shipmentStatusName ?? "Waiting_to_start")
+                        Text(ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusName ?? "Waiting_to_start")
                             .font(Font.camelfonts.Reg16)
                             .foregroundColor(Color.gray)
                             .frame(height: 20)
@@ -66,9 +66,12 @@ ConvertStringDate(inp:ShipmentObj?.shipmentDateTo ?? "2022-08-06T13:54:58.365",F
                     .resizable()
                     .padding(.horizontal,-20)
                 Button(action: {
+                    ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ?
+                    ApprovedShipmentVM.ApprovedAction(operation: .start) :ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ?
+                    ApprovedShipmentVM.ApprovedAction(operation: .Upload):ApprovedShipmentVM.ApprovedAction(operation: .finish)
                     
                 }, label: {
-                    Text(ShipmentObj?.shipmentStatusId == 2 ? "Start_Shipment".localized(language):ShipmentObj?.shipmentStatusId == 3 ? "Uploaded".localized(language):"Dropped_&_Finished".localized(language))
+                    Text(ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? "Start_Shipment".localized(language):ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? "Uploaded".localized(language):"Dropped_&_Finished".localized(language))
                         .foregroundColor(Color.white)
                         .font(Font.camelfonts.Reg16)
                 })
@@ -86,6 +89,6 @@ ConvertStringDate(inp:ShipmentObj?.shipmentDateTo ?? "2022-08-06T13:54:58.365",F
 
 struct ShipView_Previews: PreviewProvider {
     static var previews: some View {
-        ShipView()
+        ShipView().environmentObject(ApprovedShipmentViewModel())
     }
 }

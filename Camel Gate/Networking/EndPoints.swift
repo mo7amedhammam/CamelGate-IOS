@@ -16,6 +16,10 @@ enum EndPoints: String {
     case GetDriverInfoById = "Driver/GetById"
     case UpdateDriverInfo = "Driver/Update"
     case GetApprovedShipment = "Shipment/GetDriverCurrentApprovedShipment"
+    case startApprovedShipment = "Shipment/StartShipment"
+    case UploadApprovedShipment = "Shipment/ShipmentUploaded"
+    case FinishApprovedShipment = "Shipment/ShipmentDroppedAndFinished"
+
     case GetFiltered = "Shipment/GetFiltered"
     
     case appliedShipment = "Shipment/GetDriverAppliedShipments"

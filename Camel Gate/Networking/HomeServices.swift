@@ -13,6 +13,9 @@ enum HomeServices {
     
     case Home
     case GetApprovedShipment
+    case StartApprovedShipment(parameters : [String:Any])
+    case UploadApprovedShipment(parameters : [String:Any])
+    case FinishApprovedShipment(parameters : [String:Any])
 
     case HomeShipmments(parameters : [String:Any])
 
@@ -59,12 +62,21 @@ extension HomeServices : URLRequestBuilder {
             return EndPoints.CancelOffer.rawValue
         case .CancelationReasons:
             return EndPoints.CancelationReasons.rawValue
+        case .StartApprovedShipment:
+            return EndPoints.startApprovedShipment.rawValue
+
+        case .UploadApprovedShipment:
+            return EndPoints.UploadApprovedShipment.rawValue
+
+        case .FinishApprovedShipment:
+            return EndPoints.FinishApprovedShipment.rawValue
+
         }
     }
     var method: Moya.Method {
         switch self {
 
-        case .Home , .GetApprovedShipment , .appliedShipMents , .upComingShipments , .currentShipments:
+        case .Home , .GetApprovedShipment, .StartApprovedShipment, .UploadApprovedShipment, .FinishApprovedShipment , .appliedShipMents , .upComingShipments , .currentShipments:
             return .get
         case .HomeShipmments:
             return .post
@@ -101,6 +113,15 @@ extension HomeServices : URLRequestBuilder {
 
         case .CancelationReasons:
             return .requestPlain
+        case .StartApprovedShipment(let param):
+            return .requestParameters(parameters: param, encoding: URLEncoding.default)
+
+        case .UploadApprovedShipment(let param):
+            return .requestParameters(parameters: param, encoding: URLEncoding.default)
+
+        case .FinishApprovedShipment(let param):
+            return .requestParameters(parameters: param, encoding: URLEncoding.default)
+
         }
     }
 }

@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
 
-    
     @State  var selectedFilterId : Int?
     @State  var filterArray : [String] = []
     
@@ -19,9 +18,8 @@ struct HomeView: View {
     
     @Binding var FilterTag : FilterCases
     @Binding var showFilter:Bool
-    
 
-@State var selectedShipmentId = 0
+    @State var selectedShipmentId = 0
     var body: some View {
         ZStack{
             VStack {
@@ -36,8 +34,9 @@ struct HomeView: View {
                 HeaderView()
                 WalletIcon()
             ScrollView {
-                if ApprovedShipmentVM.publishedUserLogedInModel != nil{
+                if ApprovedShipmentVM.publishedapprovedShipmentModel != nil{
                 ShipView().shadow(radius: 5)
+                        .environmentObject(ApprovedShipmentVM)
                 }
                 FilterHeaderView(action: {
                     showFilter.toggle()
@@ -71,6 +70,13 @@ struct HomeView: View {
 
         NavigationLink(destination: destination,isActive:$active , label: {
         })
+        
+        // Alert with no internet connection
+            .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
+                Alert(title: Text(ApprovedShipmentVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    ApprovedShipmentVM.isAlert = false
+                }))
+            })
 
     }
 }

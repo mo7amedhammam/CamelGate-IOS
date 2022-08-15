@@ -10,6 +10,10 @@ import Combine
 import Moya
 import PromiseKit
 
+enum approvedshipmentOperations {
+case start, Upload, finish
+}
+
 class ApprovedShipmentViewModel: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
@@ -20,6 +24,8 @@ class ApprovedShipmentViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
+    @Published var ApprovedshipmentId = 0
+    
     @Published var lat = 30.18
     @Published var lang = 31.2
     @Published var fromCityId = 0
@@ -40,7 +46,7 @@ class ApprovedShipmentViewModel: ObservableObject {
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
-    @Published var publishedUserLogedInModel: ApprovedShipmentModel? = nil
+    @Published var publishedapprovedShipmentModel: ApprovedShipmentModel? = nil
     @Published var publishedFilteredShipments: [ShipmentModel] = []
 
     @Published var UserCreated = false
@@ -55,17 +61,13 @@ class ApprovedShipmentViewModel: ObservableObject {
     init() {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
-            publishedUserLogedInModel = modeldata.data
+            publishedapprovedShipmentModel = modeldata.data
+            ApprovedshipmentId = publishedapprovedShipmentModel?.id ?? 0
         }.store(in: &cancellables)
-        
         
         passToFilteredShipmentsObject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
-            
             nodata = false
-//            withAnimation{
-//                publishedFilteredShipments = []
-//            }
             DispatchQueue.main.async {
                 if modeldata.data?.isEmpty ?? false || modeldata.data == []{
                     withAnimation{
@@ -78,7 +80,6 @@ class ApprovedShipmentViewModel: ObservableObject {
                     }
                 }
             }
-
         }.store(in: &cancellables)
         
     }
@@ -157,6 +158,48 @@ class ApprovedShipmentViewModel: ObservableObject {
             if data.success == true {
                 DispatchQueue.main.async {
                     passToFilteredShipmentsObject.send(data)
+                }
+            }else {
+                if data.messageCode == 400{
+                    message = data.message ?? "error 400"
+                }else if data.messageCode == 401{
+                    message = "unauthorized"
+                }else{
+                    message = "Bad Request"
+                }
+                isAlert = true
+            }
+            
+        }).ensure { [self] in
+            isLoading = false
+        }.catch { [self] (error) in
+            isAlert = true
+            message = "\(error)"
+        }
+    }
+    
+    //MARK: ------ approved shipment operation -----
+    // MARK: - API Services
+    func ApprovedAction(operation: approvedshipmentOperations){
+        let params : [String : Any] =
+        [
+            "shipmentId"                          : ApprovedshipmentId
+        ]
+        firstly { () -> Promise<Any> in
+            isLoading = true
+            print(operation)
+            print(params)
+            return BGServicesManager.CallApi(self.authServices, operation == .Upload ? HomeServices.UploadApprovedShipment(parameters: params): operation == .finish ? HomeServices.FinishApprovedShipment(parameters: params): HomeServices.StartApprovedShipment(parameters: params))
+        }.done({ [self] response in
+            let result = response as! Response
+            
+//                        guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<ApprovedShipmentModel> = try BGDecoder.decode(data: result.data )
+            print(result)
+            print(data)
+            if data.success == true {
+                DispatchQueue.main.async {
+                    passthroughModelSubject.send(data)
                 }
             }else {
                 if data.messageCode == 400{

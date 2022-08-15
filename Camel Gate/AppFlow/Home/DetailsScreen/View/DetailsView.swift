@@ -172,7 +172,9 @@ struct DetailsView: View {
                             }
                             Spacer()
                             VStack {
-                                Button(action: {}) {
+                                Button(action: {
+                                    Helper.openGoogleMap(longitude: detailsVM.publishedUserLogedInModel.fromLang ?? 0.0, latitude: detailsVM.publishedUserLogedInModel.fromLat ?? 0.0)
+                                }) {
                                     ZStack{
                                         Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
                                         Text("Location").foregroundColor(Color(#colorLiteral(red: 0.2833708227, green: 0.149017632, blue: 0.4966977239, alpha: 1)))
@@ -181,7 +183,9 @@ struct DetailsView: View {
                                     }.cornerRadius(8)
                                 }
                                 Spacer()
-                                Button(action: {}) {
+                                Button(action: {
+                                    Helper.openGoogleMap(longitude: detailsVM.publishedUserLogedInModel.toLang ?? 0.0, latitude: detailsVM.publishedUserLogedInModel.toLat ?? 0.0)
+                                }) {
                                     ZStack{
                                         Color("Second_Color").opacity(0.2).frame(width : 100 , height: 40)
                                         Text("Location").foregroundColor(Color("Second_Color"))
