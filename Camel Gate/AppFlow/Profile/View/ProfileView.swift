@@ -18,6 +18,7 @@ struct ProfileView: View {
     @State var active = false
     @State var destination = AnyView(ProfileInfoView())
 
+    @AppStorage("language")
     var language = LocalizationService.shared.language
     var body: some View {
         NavigationView {
@@ -86,27 +87,44 @@ struct ProfileView: View {
                                     }
                                 })
                                 
-                                Button(action:{
-                                    active = true
-                                    destination = AnyView(ChangeLanguageView())
-                                },label:{
-                                    VStack{
-                                        HStack(spacing: 10){
-                                            Image(systemName: "network")
-                                                .font(.system(size:20))
-                                                .foregroundColor(Color("blueColor"))
-                                            
-                                            Text("Change_Language".localized(language))
-                                                .foregroundColor(Color("lightGray"))
-                                            Spacer()
-                                            Image(systemName: "chevron.forward")
-                                                .foregroundColor(Color("lightGray"))
-                                                .font(.system(size:15))
+                                HStack(spacing:15){
+                                    Button(action:{
+                                        withAnimation {
+                                        LocalizationService.shared.language = .arabic
+                                        Helper.setLanguage(currentLanguage: "ar")
                                         }
-                                        HStack{
-                                        }
+                                    },label:{
+                                            HStack(spacing: 10){
+                                                Image(systemName: "network")
+                                                    .font(.system(size:20))
+                                                    .foregroundColor(Color("blueColor"))
+                                                
+                                                Text("العربية".localized(language))
+                                                    .foregroundColor(Color("lightGray"))
+                                                Spacer()
+                                            }
+                                    })
+                                    
+                                    Button(action:{
+                                      withAnimation {
+                                        LocalizationService.shared.language = .english_us
+                                        Helper.setLanguage(currentLanguage: "en")
                                     }
-                                })
+                                    },label:{
+                                            HStack(spacing: 10){
+                                                Image(systemName: "network")
+                                                    .font(.system(size:20))
+                                                    .foregroundColor(Color("blueColor"))
+                                                
+                                                Text("English".localized(language))
+                                                    .foregroundColor(Color("lightGray"))
+                                                Spacer()
+                                            }
+                                    })
+                                }
+                                
+                                
+
                                 
                                 
                                 Button(action: {

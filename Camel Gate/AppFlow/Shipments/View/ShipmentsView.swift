@@ -55,7 +55,6 @@ struct ShipmentsView: View {
                         }, label: {
                             tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId)
                         }).buttonStyle(.plain)
-                        
                             .listRowSeparator(.hidden)
                             .listRowBackground(Color.clear)
                     }
@@ -70,9 +69,10 @@ struct ShipmentsView: View {
                 }.refreshable(action: {
                     getshipments()
                 })
-                    .frame(width: UIScreen.main.bounds.width)
+//                    .frame(width: UIScreen.main.bounds.width)
                     .listStyle(.plain)
                     .padding(.vertical,0)
+                    .padding(.horizontal,-10)
                     .overlay(
                         ZStack{
                             if shipmentsViewModel.nodata == true {

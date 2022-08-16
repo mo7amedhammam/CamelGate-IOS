@@ -12,7 +12,7 @@ struct RedirectToGMaps:View{
     @Binding var ShowRedirector:Bool
     var Long:Double
     var Lat:Double
-
+@State var Address = ""
     var body: some View{
         VStack{
             Spacer()
@@ -35,7 +35,7 @@ struct RedirectToGMaps:View{
                 Image("ic_pin_orange")
                     .resizable()
                     .frame(width: 50, height: 50)
-                Text("12, 4th stock, mohamed orabi st., moharam bik, Alexandria, Egypt ".localized(language))
+                Text(Helper.getUserAddress())
                     .lineLimit(.bitWidth)
             }
             Button(action: {
@@ -58,8 +58,25 @@ struct RedirectToGMaps:View{
         }.onAppear(perform: {
             print(Long)
             print(Lat)
+            DispatchQueue.main.async {
+                Address = getAddressFromLatLon(Latitude:"\(Lat)" ,withLongitude:"\(Long)")
+
+            }
+            
+        })
+            .onChange(of: Long, perform: {newval in
+                DispatchQueue.main.async {
+                    Address = getAddressFromLatLon(Latitude:"\(Lat)" ,withLongitude:"\(newval)")
+                }
 
         })
+            .onChange(of: Lat, perform: {newval in
+                DispatchQueue.main.async {
+                    Address = getAddressFromLatLon(Latitude:"\(newval)" ,withLongitude:"\(Long)")
+                }
+
+        })
+        
 //        .frame(height:180)
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 import SystemConfiguration
 import UIKit
 import SwiftUI
+import CoreLocation
 
 final class Helper{
     static let userDef = UserDefaults.standard
@@ -137,6 +138,9 @@ final class Helper{
         userDef.removeObject(forKey:"CurrentAddress"  )
     }
     
+  
+    
+    
     // navigate to google maps with lond & lat
     class func openGoogleMap(longitude: Double, latitude: Double) {
             let appURL = NSURL(string: "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving")!
@@ -254,3 +258,55 @@ func convDateToDate(input: String, format:String) -> Date {
     }
     return newdate
 }
+
+
+
+//MARK: --- get addres string from lat & long ---
+func getAddressFromLatLon(Latitude: String, withLongitude Longitude: String) -> String{
+        var Address = ""
+        var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
+        let lat: Double = Double("\(Latitude)")!
+        //21.228124
+        let lon: Double = Double("\(Longitude)")!
+        //72.833770
+        let ceo: CLGeocoder = CLGeocoder()
+        center.latitude = lat
+        center.longitude = lon
+
+        let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
+
+    ceo.reverseGeocodeLocation(loc) { placemarks, error in
+     
+                        if (error != nil)
+                        {
+                            print("reverse geodcode fail: \(error!.localizedDescription)")
+                        }
+        
+                         let pm = placemarks! as [CLPlacemark]
+        
+                        if pm.count > 0 {
+                            let pm = placemarks![0]
+        
+                            var addressString : String = ""
+                            if pm.subLocality != nil {
+                                addressString = addressString + pm.subLocality! + ", "
+                            }
+                            if pm.thoroughfare != nil {
+                                addressString = addressString + pm.thoroughfare! + ", "
+                            }
+                            if pm.locality != nil {
+                                addressString = addressString + pm.locality! + ", "
+                            }
+                            if pm.country != nil {
+                                addressString = addressString + pm.country! + ", "
+                            }
+                            if pm.postalCode != nil {
+                                addressString = addressString + pm.postalCode! + " "
+                            }
+                            print(addressString)
+                            Address = addressString
+                            Helper.setUseraddress(CurrentAddress: addressString)
+                      }
+    }
+    return Address
+    }
