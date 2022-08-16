@@ -19,6 +19,9 @@ struct HomeView: View {
     @Binding var FilterTag : FilterCases
     @Binding var showFilter:Bool
 
+    @State var ShowMapRedirector:Bool = false
+    @State var longitude:Double = 0
+    @State var latitude:Double = 0
     @State var selectedShipmentId = 0
     var body: some View {
         ZStack{
@@ -35,7 +38,7 @@ struct HomeView: View {
                 WalletIcon()
             ScrollView {
                 if ApprovedShipmentVM.publishedapprovedShipmentModel != nil{
-                ShipView().shadow(radius: 5)
+                    ShipView(ShowMapRedirector:$ShowMapRedirector,longitude:$longitude,latitude:$latitude).shadow(radius: 5)
                         .environmentObject(ApprovedShipmentVM)
                 }
                 
@@ -90,6 +93,18 @@ struct HomeView: View {
 
         NavigationLink(destination: destination,isActive:$active , label: {
         })
+            .overlay(
+                VStack{
+                    if ShowMapRedirector{
+                        BottomSheetView(IsPresented: $ShowMapRedirector, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
+                            RedirectToGMaps(ShowRedirector: $ShowMapRedirector, Long: longitude, Lat: latitude)
+                                .padding()
+                                .frame( height: 190)
+                        })
+                    }
+                    Spacer(minLength: 40)
+                }.padding(.bottom)
+            )
             .overlay(content: {
                 // showing loading indicator
                 ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
