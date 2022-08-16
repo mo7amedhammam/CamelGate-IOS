@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HelpRequestSentView: View {
+    var language = LocalizationService.shared.language
+
     @Binding var showPopUp :Bool
     var body: some View {
         VStack{
@@ -42,6 +44,8 @@ struct HelpRequestSentView: View {
                 }
             }
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
     }
 }
 

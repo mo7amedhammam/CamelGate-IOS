@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct NotificationsView: View {
-    
+    var language = LocalizationService.shared.language
+
     var body: some View {
         ZStack{
             VStack{
@@ -37,6 +38,8 @@ struct NotificationsView: View {
             }.background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
             TitleBar(Title: "Notifications" , navBarHidden: true, leadingButton: .backButton , trailingAction: {})
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
     }
 }
 

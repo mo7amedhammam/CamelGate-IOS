@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NoteScreenView: View {
+    var language = LocalizationService.shared.language
+
     @State var gotoPhoneVerification = false
     var body: some View {
         ZStack{
@@ -54,6 +56,8 @@ struct NoteScreenView: View {
             TitleBar(Title: "Change_Password", navBarHidden: true, leadingButton: .backButton ,trailingAction: {
             })
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         NavigationLink(destination: PhoneVerificationView<OTPViewModel>(),isActive:$gotoPhoneVerification , label: {
         })
     }

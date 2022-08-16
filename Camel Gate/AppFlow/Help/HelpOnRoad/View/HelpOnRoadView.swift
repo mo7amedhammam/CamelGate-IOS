@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HelpOnRoadView: View {
+    var language = LocalizationService.shared.language
+
     @State var helpBtns = ["Request Form","Help Offers"]
     @State var selected = "Request Form"
     
@@ -113,6 +115,8 @@ struct HelpOnRoadView: View {
                 })
             }.edgesIgnoringSafeArea(.bottom)
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
     }
 }
 

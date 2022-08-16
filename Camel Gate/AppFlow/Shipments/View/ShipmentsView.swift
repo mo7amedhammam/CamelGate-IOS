@@ -9,6 +9,8 @@ import SwiftUI
 import Alamofire
 
 struct ShipmentsView: View {
+    var language = LocalizationService.shared.language
+
     @StateObject var shipmentsViewModel = ShipmentsViewModel()
     //    @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     
@@ -88,7 +90,11 @@ struct ShipmentsView: View {
             
             TitleBar(Title: "Shipments".localized(language), navBarHidden: true, trailingButton: TopButtons.none ,trailingAction: {
             })
-        }.onAppear(perform: {
+        }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+        
+        .onAppear(perform: {
             selectedShipmentId = 0
             getshipments()
             

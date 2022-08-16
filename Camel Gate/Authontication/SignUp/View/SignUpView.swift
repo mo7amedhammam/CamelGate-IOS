@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SignUpView: View {
-    
+    var language = LocalizationService.shared.language
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var SignUpVM = SignUpViewModel()
 
@@ -102,7 +103,10 @@ struct SignUpView: View {
 
             })
             
-        }.navigationBarHidden(true)
+        }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+        .navigationBarHidden(true)
         .overlay(content: {
             VStack{
                 HStack{

@@ -154,9 +154,9 @@ class ApprovedShipmentViewModel: ObservableObject {
             print(result)
             print(data)
             if data.success == true {
-//                DispatchQueue.main.async {
+                DispatchQueue.main.async {
                     passToFilteredShipmentsObject.send(data)
-//                }
+                }
             }else {
                 if data.messageCode == 400{
                     message = data.message ?? "error 400"

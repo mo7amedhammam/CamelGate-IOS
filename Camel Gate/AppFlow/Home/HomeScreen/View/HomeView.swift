@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    var language = LocalizationService.shared.language
+
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
 
     @State  var selectedFilterId : Int?
@@ -79,6 +81,8 @@ struct HomeView: View {
                 }.padding()
             }.padding(.bottom, 50)
         }
+                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         .navigationBarHidden(true)
         .onAppear(perform: {
             selectedShipmentId = 0

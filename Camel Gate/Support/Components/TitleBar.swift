@@ -23,7 +23,7 @@ struct TitleBar: View {
                 Image("TopBarImage")
                     .resizable()
                     .frame(height: 160)
-                    .padding(.leading,-2)
+                    .padding(.horizontal,-2)
                 
                 VStack {
                     HStack(){

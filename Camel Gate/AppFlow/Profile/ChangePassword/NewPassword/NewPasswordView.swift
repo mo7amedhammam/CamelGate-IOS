@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NewPasswordView: View {
+    var language = LocalizationService.shared.language
 
     @State var newpass = ""
     @State var Confirmnewpass = ""
@@ -128,6 +129,8 @@ struct NewPasswordView: View {
                         .transition(.move(edge: .bottom))
             }
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
 //        .padding(.bottom, keyboard.currentHeight)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
     }

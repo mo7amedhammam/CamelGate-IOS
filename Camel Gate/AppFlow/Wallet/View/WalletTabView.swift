@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftUICharts
 
 struct WalletView: View {
+    var language = LocalizationService.shared.language
     @State var WalletCategory = ["Gained","Withdrawn"]
     @State var selected = "Gained"
     var body: some View {
@@ -95,6 +96,8 @@ struct WalletView: View {
             TitleBar(Title: "Wallet", navBarHidden: true, trailingButton: .filterButton ,trailingAction: {
             })
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
     }
 }
 

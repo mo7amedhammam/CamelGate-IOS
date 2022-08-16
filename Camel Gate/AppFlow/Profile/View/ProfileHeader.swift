@@ -18,7 +18,7 @@ struct ProfileHeader: View {
                 Image("ProfileBackground")
                     .resizable()
                     .frame(height:280)
-                    .padding(.leading,-1)
+                    .padding(.horizontal,-1)
                     .shadow(color: .black.opacity(0.5), radius: 7)
                 VStack {
                     ZStack(alignment:.bottomTrailing){

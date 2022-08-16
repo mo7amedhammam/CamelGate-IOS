@@ -57,6 +57,8 @@ struct ShipmentRateCell: View {
             }
             .background(Color.white)
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         .cornerRadius(12)
         .padding(.horizontal)
         .shadow(radius: 4)

@@ -8,17 +8,8 @@
 import SwiftUI
 
 struct GarageView: View {
-//    @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
-//
-//
-//    @State private var selectedFilterId : Int?
-//    private var filterArray = ["Ciro to Alex" , "6K to 10k SAR" , "Cairo to Alex" ,  "6K to 10k SAR" , "Ciro to Alex"]
-//    @State var active = false
-//    @State var selectedShipmentId = 0
-//
-//    @State var destination = AnyView(DetailsView(shipmentId: 0))
-//
-    
+    var language = LocalizationService.shared.language
+
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
 
     
@@ -64,6 +55,8 @@ struct GarageView: View {
                 showFilter.toggle()
             })
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         .onAppear(perform: {
             selectedShipmentId = 0
         })

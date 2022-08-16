@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PhoneVerificationView<T:ObservableObject>: View {
+    var language = LocalizationService.shared.language
+
     @State var gotonewpassword = false
     
     @EnvironmentObject var ViewModel : T
@@ -194,6 +196,8 @@ struct PhoneVerificationView<T:ObservableObject>: View {
             })
             
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         .onAppear(perform: {
             DynamicTimer(sentTimer: 120)
             //            CreateUserVM.fullName = RegisterUserVM.fullName

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RatingView: View {
+    var language = LocalizationService.shared.language
+
     var body: some View {
         ZStack{
             ScrollView{
@@ -19,7 +21,10 @@ struct RatingView: View {
             
             TitleBar(Title: "Rating_&_Reviews".localized(language), navBarHidden: true, leadingButton: .backButton, IsSubTextRate: true,subText: "4.5", trailingAction: {})
 
-        }.background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+        }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+        .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
     }
 }
 

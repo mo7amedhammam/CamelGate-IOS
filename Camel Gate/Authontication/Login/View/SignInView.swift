@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SignInView: View {
-    
+    var language = LocalizationService.shared.language
+
     @StateObject var SignInVM = SignInViewModel()
     
     @State var active = false
@@ -139,7 +140,8 @@ struct SignInView: View {
             })
             NavigationLink(destination: SignInVM.destination.navigationBarHidden(true),isActive:$SignInVM.isLogedin , label: {
             })
-        }
+        }                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         
     }
     

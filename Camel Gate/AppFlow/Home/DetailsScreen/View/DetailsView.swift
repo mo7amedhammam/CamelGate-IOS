@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DetailsView: View {
+    var language = LocalizationService.shared.language
 
     var shipmentId:Int
     @StateObject var detailsVM = ShipmentDetailsViewModel()
@@ -295,6 +296,9 @@ struct DetailsView: View {
             
             
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+
         .edgesIgnoringSafeArea(.bottom)
         .onAppear(perform: {
             detailsVM.shipmentId = shipmentId

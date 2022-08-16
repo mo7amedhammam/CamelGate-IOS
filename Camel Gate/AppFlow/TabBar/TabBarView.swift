@@ -18,6 +18,8 @@ struct TabBarView: View {
 }
 
 struct MainTabBar : View {
+    var language = LocalizationService.shared.language
+
     @State var selectedTab = "Home"
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
     @Namespace var animation
@@ -66,6 +68,8 @@ struct MainTabBar : View {
                     .foregroundColor(.white)
             )
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         .ignoresSafeArea(.all, edges: .bottom)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .overlay(

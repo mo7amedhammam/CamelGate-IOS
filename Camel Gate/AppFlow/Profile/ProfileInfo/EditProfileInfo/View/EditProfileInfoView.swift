@@ -13,6 +13,8 @@ enum ProfileStep{
 }
 
 struct EditProfileInfoView: View {
+    var language = LocalizationService.shared.language
+
     @StateObject var profileVM = DriverInfoViewModel()
     @StateObject var trucktypesVM = TruckTypeViewModel()
     @StateObject var truckmanfacturersVM = TruckManfacturerViewModel()
@@ -342,7 +344,10 @@ struct EditProfileInfoView: View {
             //                        }
             //            }
             
-        }.background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+        }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+        .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
             .navigationBarHidden(true)
             .onAppear(perform: {
                 print("\(Constants.baseURL +  profileVM.DriverImageStr)")

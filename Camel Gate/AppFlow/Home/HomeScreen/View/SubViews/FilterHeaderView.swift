@@ -14,7 +14,7 @@ struct FilterHeaderView: View {
       HStack{
           Text("Nearest_Shipments".localized(language))
               .font(Font.camelfonts.Reg16)
-          .foregroundColor(Color.gray)
+          .foregroundColor(Color.black)
         Spacer()
         Button(action: {
             action()

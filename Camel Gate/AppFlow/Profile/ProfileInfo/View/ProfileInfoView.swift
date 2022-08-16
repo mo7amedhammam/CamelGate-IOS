@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileInfoView: View {
+    var language = LocalizationService.shared.language
+
     let columns =
     [
             GridItem(.adaptive(minimum: UIScreen.main.bounds.width)),
@@ -282,6 +284,8 @@ struct ProfileInfoView: View {
                 goingToEditProfileInfo = true
             })
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         NavigationLink(destination: EditProfileInfoView(taskStatus: .update, selectedDate: Date()),isActive:$goingToEditProfileInfo , label: {
         })
     }
