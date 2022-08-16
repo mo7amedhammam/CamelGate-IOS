@@ -26,7 +26,8 @@ struct EditProfileInfoView: View {
     @State var ageeTerms = false
     @State var showsheet = false
     @State var ShowCalendar  = false
-    
+    @State var showBottomSheet  = false
+
     @State var selectedDate:Date?
     @State var active = false
     @State var destination = AnyView( TabBarView().navigationBarHidden(true))
@@ -358,7 +359,55 @@ struct EditProfileInfoView: View {
                    print( profileVM.DriverImageStr)
                 })
             })
+            .onChange(of: profileVM.UserCreated, perform: {newval in
+                if newval == true && taskStatus == .update{
+                    showBottomSheet = true
+                }
+            })
         
+            .overlay(content: {
+                if showBottomSheet{
+            
+            BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
+
+                    Text("Profile_Updated".localized(language))
+                        .font(Font.camelfonts.Reg20)
+
+                    Image("success-orange")
+
+                    Text("You_just_updated_your_Info".localized(language))
+                        .font(Font.camelfonts.Reg16)
+                        .foregroundColor(.black.opacity(0.8))
+                        .padding(.bottom,50)
+
+                    Button(action: {
+                        DispatchQueue.main.async{
+        // Action
+                            showBottomSheet.toggle()
+                        }
+                    }, label: {
+                        HStack {
+                            Text("Ok".localized(language))
+                                .font(Font.camelfonts.Med18)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .frame(height:22)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(
+                            LinearGradient(
+                                gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
+                                startPoint: .trailing,
+                                endPoint: .leading
+                            ))
+                        .cornerRadius(12)
+                        .padding(.horizontal, 20)
+                        .padding(.bottom)
+                    })
+                })
+                    .transition(.move(edge: .bottom))
+        }
+            })
         //MARK: -------- imagePicker From Camera and Library ------
             .confirmationDialog("Choose Image From ?", isPresented: $showImageSheet) {
                 Button("photo Library") { self.imgsource = "Library";   self.showImageSheet = false; self.startPicking = true }

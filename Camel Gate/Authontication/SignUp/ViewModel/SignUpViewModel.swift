@@ -17,7 +17,7 @@ class SignUpViewModel: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<SignUpModel>, Error>()
     private let authServices = MoyaProvider<AuthServices>()
     private var cancellables: Set<AnyCancellable> = []
-    let characterLimit: Int = 14
+    let characterLimit: Int = 11
     
     // ------- input
     @Published  var Drivername: String = ""

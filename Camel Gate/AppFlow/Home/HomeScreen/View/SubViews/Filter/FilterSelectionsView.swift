@@ -17,7 +17,7 @@ struct FilterMenu:View{
         VStack{
             Spacer()
             Text("Filter_Shipments".localized(language))
-                .font(Font.camelfonts.Bold20)
+                .font(Font.camelfonts.SemiBold18)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -40,11 +40,11 @@ struct FilterMenu:View{
                     }, label: {
                         HStack{
                             VStack(alignment:.leading){
-                                Text("Location(From-To)".localized(language))
-                                    .font(Font.camelfonts.SemiBold18)
+                                Text("Location_(From-To)".localized(language))
+                                    .font(Font.camelfonts.Reg18)
                                     .foregroundColor(.black)
                                 
-                                Text(ShipmentVM.fromCityName == "" ? "all".localized(language):"\(ShipmentVM.fromCityName)-\(ShipmentVM.toCityName)" )
+                                Text(ShipmentVM.fromCityName == "" ? "Any".localized(language):"\(ShipmentVM.fromCityName)-\(ShipmentVM.toCityName)" )
                                     .font(Font.camelfonts.Reg16)
                                     .padding(.top,-10)
                                     .foregroundColor(.gray)
@@ -54,7 +54,8 @@ struct FilterMenu:View{
                             CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                             
                         }
-                        .padding([.horizontal,.top])
+                        .padding(.top)
+                        .padding(.horizontal,5)
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         
                     })
@@ -65,10 +66,10 @@ struct FilterMenu:View{
                         HStack{
                             
                             VStack(alignment:.leading){
-                                Text("Date(From-To)".localized(language))
-                                    .font(Font.camelfonts.SemiBold18)
+                                Text("Date_(From-To)".localized(language))
+                                    .font(Font.camelfonts.Reg18)
                                     .foregroundColor(.black)
-                                Text(ShipmentVM.fromDateStr == "" ? "all".localized(language):"\(ShipmentVM.fromDateStr ) - \(ShipmentVM.toDateStr )")
+                                Text(ShipmentVM.fromDateStr == "" ? "Any".localized(language):"\(ShipmentVM.fromDateStr ) - \(ShipmentVM.toDateStr )")
                                     .font(Font.camelfonts.Reg16)
                                     .padding(.top,-10)
                                     .foregroundColor(.gray)
@@ -79,7 +80,7 @@ struct FilterMenu:View{
                             CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                             
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal,5)
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         
                     })
@@ -88,10 +89,10 @@ struct FilterMenu:View{
                     }, label: {
                         HStack{
                             VStack(alignment:.leading){
-                                Text("Shipment_type".localized(language))
-                                    .font(Font.camelfonts.SemiBold18)
+                                Text("Shipment_types".localized(language))
+                                    .font(Font.camelfonts.Reg18)
                                     .foregroundColor(.black)
-                                Text(ShipmentVM.shipmentTypesNames == [] ? "All_Types".localized(language): ShipmentVM.shipmentTypesNames.joined(separator:", "))
+                                Text(ShipmentVM.shipmentTypesNames == [] ? "Any".localized(language): ShipmentVM.shipmentTypesNames.joined(separator:", "))
                                     .font(Font.camelfonts.Reg16)
                                     .padding(.top,-10)
                                     .foregroundColor(.gray)
@@ -102,7 +103,7 @@ struct FilterMenu:View{
                             CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                             
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal,5)
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                     })
                 }
@@ -118,8 +119,8 @@ struct FilterMenu:View{
                         .font(Font.camelfonts.SemiBold16)
                         .foregroundColor(.black.opacity(0.5))
                 })
-                
-                    .padding(.leading)
+                    .padding(.horizontal,30)
+
                 Button(action: {
                     
                     applyFilter()
@@ -134,8 +135,8 @@ struct FilterMenu:View{
                     .foregroundColor(.white)
                     .background(Color("blueColor"))
                     .cornerRadius(12)
-                    .padding(.horizontal, 30)
                 })
+
             }
             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             

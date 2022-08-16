@@ -28,7 +28,7 @@ struct SignInView: View {
                     
                     Group{
                         
-                        InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"), placeholder: "Enter_your_phone_number".localized(language), text: $SignInVM.phoneNumber)
+                        InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"),fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $SignInVM.phoneNumber)
                             .padding(.horizontal)
                             .keyboardType(.numberPad)
                             .overlay(
@@ -91,7 +91,6 @@ struct SignInView: View {
                         }
                         .font(.system(size: 13, weight: .bold))
                         .foregroundColor(Color("blueColor"))
-                        
                     }
                     .padding(.top,-10)
                 }

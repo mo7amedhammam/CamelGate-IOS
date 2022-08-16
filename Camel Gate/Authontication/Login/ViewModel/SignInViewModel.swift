@@ -19,7 +19,7 @@ class SignInViewModel: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<LoginModel>, Error>()
     private let authServices = MoyaProvider<AuthServices>()
     private var cancellables: Set<AnyCancellable> = []
-    let characterLimit: Int = 14
+    let characterLimit: Int = 11
     
     // ------- input
     @Published  var phoneNumber: String = "" {
@@ -77,6 +77,7 @@ class SignInViewModel: ObservableObject {
                     Helper.setUserData( DriverName: publishedUserLogedInModel?.name ?? "", DriverImage: publishedUserLogedInModel?.image ?? "" )
                 }
                 Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
+                    isLoading = false
                 isLogedin = true
             }
             
@@ -114,11 +115,14 @@ class SignInViewModel: ObservableObject {
                     message = "Bad Request"
                 }
                 isAlert = true
+                isLoading = false
             }
 
 
         }).ensure { [self] in
-            isLoading = false
+//            isLoading = false
+            message = "success"
+
         }.catch { [self] (error) in
             isAlert = true
             message = "\(error)"

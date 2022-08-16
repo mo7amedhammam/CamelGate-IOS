@@ -42,10 +42,10 @@ struct CityFromTo:View{
                                 Spacer()
                                 Image(systemName: "chevron.right")
                             }
+                            .padding(.horizontal)
                         })
-                        .padding(.horizontal)
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                })
+                }).buttonStyle(.plain)
                 
                 Button(action: {
                     FilterTag = .CityTo
@@ -57,16 +57,13 @@ struct CityFromTo:View{
                                 Spacer()
                                 Image(systemName: "chevron.right")
                             }
+                            .padding(.horizontal)
                         })
-                        .padding(.horizontal)
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                })
+                }).buttonStyle(.plain)
             }
             
             Button(action: {
-                
-                //                    applyFilter()
-                //                    showFilter.toggle()
                 FilterTag = .Menu
             }, label: {
                 HStack {
@@ -78,11 +75,8 @@ struct CityFromTo:View{
                 .foregroundColor(.white)
                 .background(Color("blueColor"))
                 .cornerRadius(12)
-                .padding(.horizontal, 30)
             })
-            
                 .frame( height: 60)
-                .padding(.horizontal)
                 .padding(.bottom,10)
         }
         .frame(height:180)

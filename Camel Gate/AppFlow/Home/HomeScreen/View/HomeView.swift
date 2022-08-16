@@ -39,15 +39,17 @@ struct HomeView: View {
                         .environmentObject(ApprovedShipmentVM)
                 }
                 
-                if ApprovedShipmentVM.publishedFilteredShipments != []{
+//                if ApprovedShipmentVM.publishedFilteredShipments != []{
                 FilterHeaderView(action: {
                     showFilter.toggle()
+                    FilterTag = .Menu
                 })
-                }
+                    .padding(.horizontal)
+                    .padding(.bottom,-30)
+//                }
                 
                 ExtractedView(active: $active, destination: $destination, selectedFilterId: $selectedFilterId, filterArray: $filterArray, selectedShipmentId: $selectedShipmentId)
                     .environmentObject(ApprovedShipmentVM)
-                 
 
                 }
             .overlay(
@@ -61,15 +63,18 @@ struct HomeView: View {
             )
             }.padding(.top,30)
             
-            HStack{
+            VStack {
                 Spacer()
-                Button(action: {
-                    active = true
-                    destination = AnyView (ChatsListView())
-                }, label: {
-                    Image("floatingchat")
-                })
-            }.padding()
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        active = true
+                        destination = AnyView (ChatsListView())
+                    }, label: {
+                        Image("floatingchat")
+                    })
+                }.padding()
+            }.padding(.bottom, 50)
         }
         .navigationBarHidden(true)
         .onAppear(perform: {
@@ -85,7 +90,10 @@ struct HomeView: View {
 
         NavigationLink(destination: destination,isActive:$active , label: {
         })
-        
+            .overlay(content: {
+                // showing loading indicator
+                ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
+            })
         // Alert with no internet connection
             .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
                 Alert(title: Text(ApprovedShipmentVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
@@ -125,12 +133,18 @@ struct ExtractedView: View {
                         FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) to \(ApprovedShipmentVM.toCityName)", D: {
                             ApprovedShipmentVM.fromCityName = ""
                             ApprovedShipmentVM.toCityName = ""
+                            ApprovedShipmentVM.fromCityId = 0
+                            ApprovedShipmentVM.toCityId = 0
+
                         })
                     }
                     if ApprovedShipmentVM.fromDateStr != ""{
-                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format: "dd/MM/yyyy")) to \(ApprovedShipmentVM.toDate.DateToStr(format: "dd/MM/yyyy"))", D: {
+                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format: "dd/MM/yyyy")) to \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: "dd/MM/yyyy"):"")", D: {
                             ApprovedShipmentVM.fromDateStr = ""
                             ApprovedShipmentVM.toDateStr = ""
+                            ApprovedShipmentVM.fromDate = Date()
+                            ApprovedShipmentVM.toDate = Date()
+
                         })
                     }
                     if ApprovedShipmentVM.shipmentTypesIds != []{
@@ -140,7 +154,9 @@ struct ExtractedView: View {
                         })
                     }
                     
-                }.padding()
+                }
+                .padding(.horizontal)
+                .padding(.top,25)
             }
             ScrollView(.vertical , showsIndicators : false) {
                 VStack{
@@ -154,10 +170,16 @@ struct ExtractedView: View {
                         }).buttonStyle(.plain)
                     }
                 }
-            }.overlay(content: {
-                // showing loading indicator
-                ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
-            })
-        }   
+            }
+        }
+        .onChange(of: ApprovedShipmentVM.fromCityName, perform: {_ in
+            ApprovedShipmentVM.GetFilteredShipments()
+        })
+        .onChange(of: ApprovedShipmentVM.fromDateStr, perform: {_ in
+            ApprovedShipmentVM.GetFilteredShipments()
+        })
+        .onChange(of: ApprovedShipmentVM.shipmentTypesNames, perform: {_ in
+            ApprovedShipmentVM.GetFilteredShipments()
+        })
     }
 }

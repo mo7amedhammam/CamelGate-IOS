@@ -13,6 +13,9 @@ struct DetailsView: View {
     @StateObject var detailsVM = ShipmentDetailsViewModel()
     @State var ShowSetOffer:Bool = false
     @State var OfferCase:OfferCases = .set
+    @State var ShowMapRedirector:Bool = false
+    @State var longitude:Double = 0
+    @State var latitude:Double = 0
 
     var body: some View {
         ZStack {
@@ -137,7 +140,25 @@ struct DetailsView: View {
                     }
                     .frame(height: 160)
                     .padding()
-                    Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(height: 1)
+                    
+                    Group{
+                        Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))                        .frame(height: 1)
+
+
+                    HStack {
+                        Text("Description")
+                            .font(Font.camelfonts.Bold14).foregroundColor(Color.gray)
+                        Spacer()
+                    }
+                    .frame(height: 40)
+                    .padding(.leading , 20.0)
+                    Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
+                        .frame(height: 1)
+                    Text(detailsVM.publishedUserLogedInModel.description ?? " description will be here ").font(Font.camelfonts.Reg16).padding()
+                    
+                    Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
+                        .frame(height: 1)
+                }
                     HStack {
                         Text("Shipment Location")
                             .font(Font.camelfonts.Bold14).foregroundColor(Color.gray)
@@ -173,7 +194,10 @@ struct DetailsView: View {
                             Spacer()
                             VStack {
                                 Button(action: {
-                                    Helper.openGoogleMap(longitude: Double(detailsVM.publishedUserLogedInModel.fromLang ?? 0), latitude: Double(detailsVM.publishedUserLogedInModel.fromLat ?? 0))
+                                    longitude = Double(detailsVM.publishedUserLogedInModel.fromLang ?? 0)
+                                latitude = Double(detailsVM.publishedUserLogedInModel.fromLat ?? 0)
+                                    ShowMapRedirector = true
+
                                 }) {
                                     ZStack{
                                         Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
@@ -184,7 +208,10 @@ struct DetailsView: View {
                                 }
                                 Spacer()
                                 Button(action: {
-                                    Helper.openGoogleMap(longitude: Double(detailsVM.publishedUserLogedInModel.toLang ?? 0), latitude: Double(detailsVM.publishedUserLogedInModel.toLat ?? 0))
+                                    longitude = Double(detailsVM.publishedUserLogedInModel.toLang ?? 0)
+                                latitude = Double(detailsVM.publishedUserLogedInModel.toLat ?? 0)
+                                    ShowMapRedirector = true
+
                                 }) {
                                     ZStack{
                                         Color("Second_Color").opacity(0.2).frame(width : 100 , height: 40)
@@ -234,16 +261,7 @@ struct DetailsView: View {
                 //                Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
                 //                    .frame(height: 1)
                 //
-                HStack {
-                    Text("Description")
-                        .font(Font.camelfonts.Bold14).foregroundColor(Color.gray)
-                    Spacer()
-                }
-                .frame(height: 40)
-                .padding(.leading , 20.0)
-                Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
-                    .frame(height: 1)
-                Text(detailsVM.publishedUserLogedInModel.description ?? " description will be here ").font(Font.camelfonts.Reg16).padding()
+             
                 ZStack{
                     Button(action: {
                         if  detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 {
@@ -284,7 +302,6 @@ struct DetailsView: View {
         })
         .overlay(content: {
             ZStack{
-                
                 if ShowSetOffer{
                     BottomSheetView(IsPresented: $ShowSetOffer, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
                         if OfferCase == .set{
@@ -324,6 +341,18 @@ struct DetailsView: View {
             ActivityIndicatorView(isPresented: $detailsVM.isLoading)
         })
 
+        .overlay(
+            VStack{
+                if ShowMapRedirector{
+                    BottomSheetView(IsPresented: $ShowMapRedirector, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
+                        RedirectToGMaps(ShowRedirector: $ShowMapRedirector, Long: longitude, Lat: latitude)
+                            .padding()
+                            .frame( height: 190)
+                    })
+                }
+                Spacer(minLength: 40)
+            }.padding(.bottom)
+        )
     // Alert with no internet connection
         .alert(isPresented: $detailsVM.isAlert, content: {
             Alert(title: Text(detailsVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {

@@ -9,6 +9,7 @@ import SwiftUI
 struct InputTextField: View {
     @State var iconName : String? = ""
     @State var iconColor : Color? = .clear
+    @State var fieldType : inputfields? = .Default
 
     var placeholder : String
 
@@ -20,9 +21,6 @@ struct InputTextField: View {
             if iconName != "" || iconName != nil{
                 Image(iconName ?? "")
                     .renderingMode( iconColor != .clear ? .template:.original)
-//                    .foregroundColor(.secondary)
-//                    .tint(.gray)
-//                    .background(Color.white)
                     .foregroundColor(iconColor == .clear ? .clear:iconColor)
                     .font(.system(size: 15))
             }else{
@@ -34,11 +32,19 @@ struct InputTextField: View {
                     .foregroundColor(.gray.opacity(0.5))
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+                    .padding(.leading,fieldType == .Phone ? text.isEmpty ? 55:0:0)
                 
+                HStack{
+                    if fieldType == .Phone{
+                Text("+966 |")
+                        .font(Font.camelfonts.Reg14)
+                        .foregroundColor(.gray.opacity(0.5))
+                    }
                 TextField("",text:$text)
                     .font(Font.camelfonts.Reg16)
                     .autocapitalization(.none)
                     .textInputAutocapitalization(.never)
+             }
             }
         }
         .frame( height: 30)
@@ -54,11 +60,70 @@ struct InputTextField: View {
 }
 struct InputTextField_Previews: PreviewProvider {
     static var previews: some View {
-        InputTextField(iconName:"x321gray",placeholder: "Name", text: .constant("Mohamed Hammam"))
+        InputTextField(iconName:"x321gray",fieldType:.Password, placeholder: "Name", text: .constant(""))
         
     }
 }
 
+enum inputfields {
+    case Phone, Default, Password
+}
+struct PhoneInputField: View {
+    @State var iconName : String? = ""
+    @State var iconColor : Color? = .clear
+    @State var field : inputfields? = .none
+
+    var placeholder : String
+
+    @Binding var text: String
+    let screenWidth = UIScreen.main.bounds.size.width - 55
+    var body: some View {
+        
+        HStack{
+            if iconName != "" || iconName != nil{
+                Image(iconName ?? "")
+                    .renderingMode( iconColor != .clear ? .template:.original)
+                    .foregroundColor(iconColor == .clear ? .clear:iconColor)
+                    .font(.system(size: 15))
+            }else{
+            }
+            
+          
+            ZStack(alignment:.leading){
+                Text(placeholder)
+                    .font(Font.camelfonts.Reg14)
+                    .foregroundColor(.gray.opacity(0.5))
+                    .offset(y: withAnimation{text.isEmpty ? 0 : -20})
+                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+                    .padding(.leading,text.isEmpty ? 55:0)
+                HStack{
+                Text("+966 |")
+                        .font(Font.camelfonts.Reg14)
+                        .foregroundColor(.gray.opacity(0.5))
+                TextField("",text:$text)
+                    .font(Font.camelfonts.Reg16)
+                    .autocapitalization(.none)
+                    .textInputAutocapitalization(.never)
+             }
+            }
+        }
+        .frame( height: 30)
+        .padding(12)
+        .disableAutocorrection(true)
+        .background(
+            Color.white
+        )
+            .cornerRadius(5)
+            .shadow(color: Color.black.opacity(0.099), radius: 3)
+        
+    }
+}
+struct PhoneInputField_Previews: PreviewProvider {
+    static var previews: some View {
+        PhoneInputField(iconName:"x321gray",placeholder: "Phone", text: .constant(""))
+        
+    }
+}
 
 
 

@@ -10,6 +10,14 @@ import SwiftUI
 extension Font {
     struct CamelFonts {
 
+        let Light11 = Font.custom("SFUIText-Light", size: 11)
+        let Light14 = Font.custom("SFUIText-Light", size: 14)
+        let Light16 = Font.custom("SFUIText-Light", size: 16)
+        let Light18 = Font.custom("SFUIText-Light", size: 18)
+        let Light20 = Font.custom("SFUIText-Light", size: 20)
+        let Light22 = Font.custom("SFUIText-Light", size: 22)
+        let Light24 = Font.custom("SFUIText-Light", size: 24)
+
         let Reg11 = Font.custom("SFUIText-Regular", size: 11)
         let Reg14 = Font.custom("SFUIText-Regular", size: 14)
         let Reg16 = Font.custom("SFUIText-Regular", size: 16)

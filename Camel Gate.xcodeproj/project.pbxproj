@@ -39,6 +39,7 @@
 		C85D7DA1289BCB460088227D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA0289BCB460088227D /* ImagePicker.swift */; };
 		C85D7DA3289BD2F60088227D /* ImageDataExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */; };
 		C85D7DA6289C0B5D0088227D /* DriverInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA5289C0B5D0088227D /* DriverInfoModel.swift */; };
+		C8691FFD28ABD7A2002201F3 /* RedirectToGMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8691FFC28ABD7A2002201F3 /* RedirectToGMaps.swift */; };
 		C870F89828901D9100CCFD9B /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89728901D9100CCFD9B /* OnBoardingView.swift */; };
 		C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */; };
 		C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21428915519002D115A /* KeyboardHandler.swift */; };
@@ -159,6 +160,7 @@
 		C85D7DA0289BCB460088227D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataExtenstion.swift; sourceTree = "<group>"; };
 		C85D7DA5289C0B5D0088227D /* DriverInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoModel.swift; sourceTree = "<group>"; };
+		C8691FFC28ABD7A2002201F3 /* RedirectToGMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectToGMaps.swift; sourceTree = "<group>"; };
 		C870F89728901D9100CCFD9B /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtenstions.swift; sourceTree = "<group>"; };
 		C87BD21428915519002D115A /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
@@ -466,6 +468,14 @@
 				C85D7DA5289C0B5D0088227D /* DriverInfoModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C8691FFB28ABD766002201F3 /* RedirectToGMaps */ = {
+			isa = PBXGroup;
+			children = (
+				C8691FFC28ABD7A2002201F3 /* RedirectToGMaps.swift */,
+			);
+			path = RedirectToGMaps;
 			sourceTree = "<group>";
 		};
 		C870F89528901D4100CCFD9B /* OnBoarding */ = {
@@ -895,6 +905,7 @@
 		FA7077FB28935B6F00879399 /* DetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				C8691FFB28ABD766002201F3 /* RedirectToGMaps */,
 				C82DBDED28A54D0200F2A9AB /* CancelReasons */,
 				C8481CC7289FFF7100B6675D /* ViewModel */,
 				C851C29E28936F4E00A5C757 /* View */,
@@ -1263,6 +1274,7 @@
 				FA7077FD28935B9300879399 /* DetailsView.swift in Sources */,
 				C8D82A3528A46C060081E620 /* CityFilterView.swift in Sources */,
 				C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */,
+				C8691FFD28ABD7A2002201F3 /* RedirectToGMaps.swift in Sources */,
 				FAEADE502884C064004535CE /* ContentView.swift in Sources */,
 				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
 				C84EFE1F28A7FEB700302F7F /* TruckManfacturerModel.swift in Sources */,

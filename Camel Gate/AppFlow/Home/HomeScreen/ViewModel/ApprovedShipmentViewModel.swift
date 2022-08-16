@@ -96,9 +96,9 @@ class ApprovedShipmentViewModel: ObservableObject {
             print(result)
             print(data)
             if data.success == true {
-                DispatchQueue.main.async {
+//                DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
-                }
+//                }
             }else {
                 if data.messageCode == 400{
                     message = data.message ?? "error 400"
@@ -109,7 +109,6 @@ class ApprovedShipmentViewModel: ObservableObject {
                 }
                 isAlert = true
             }
-            
             
         }).ensure { [self] in
             isLoading = false
@@ -155,9 +154,9 @@ class ApprovedShipmentViewModel: ObservableObject {
             print(result)
             print(data)
             if data.success == true {
-                DispatchQueue.main.async {
+//                DispatchQueue.main.async {
                     passToFilteredShipmentsObject.send(data)
-                }
+//                }
             }else {
                 if data.messageCode == 400{
                     message = data.message ?? "error 400"
@@ -197,9 +196,9 @@ class ApprovedShipmentViewModel: ObservableObject {
             print(result)
             print(data)
             if data.success == true {
-                DispatchQueue.main.async {
+//                DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
-                }
+//                }
             }else {
                 if data.messageCode == 400{
                     message = data.message ?? "error 400"

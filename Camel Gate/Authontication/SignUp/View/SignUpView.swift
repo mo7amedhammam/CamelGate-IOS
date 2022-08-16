@@ -30,7 +30,7 @@ struct SignUpView: View {
                     Group{
                         InputTextField(iconName: "person",iconColor: Color("blueColor"), placeholder: "Enter_your_name".localized(language), text: $SignUpVM.Drivername)
 
-                        InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"), placeholder: "Enter_your_phone_number".localized(language), text: $SignUpVM.phoneNumber)
+                        InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"),fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $SignUpVM.phoneNumber)
                             .keyboardType(.numberPad)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)

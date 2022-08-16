@@ -12,7 +12,7 @@ struct FilterHeaderView: View {
 
     var body: some View {
       HStack{
-        Text("Nearest Shipments")
+          Text("Nearest_Shipments".localized(language))
               .font(Font.camelfonts.Reg16)
           .foregroundColor(Color.gray)
         Spacer()
@@ -24,7 +24,8 @@ struct FilterHeaderView: View {
             .scaledToFit()
             .frame(width: 25 , height: 25)
         }
-      }.padding()
+      }
+//      .padding()
     }
 }
 

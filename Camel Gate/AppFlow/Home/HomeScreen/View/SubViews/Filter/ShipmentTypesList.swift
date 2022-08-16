@@ -22,7 +22,7 @@ struct ShipTypeFilter: View {
                 .overlay(HStack{
                     Spacer()
                     Button(action: {
-                        FilterTag = .City
+                        FilterTag = .Menu
                     }, label: {
                         Image(systemName: "x.circle.fill")
                             .font(.title)
@@ -98,10 +98,10 @@ struct ShipTypeFilter: View {
                 .foregroundColor(.white)
                 .background(Color("blueColor"))
                 .cornerRadius(12)
-                .padding(.horizontal, 12)
+//                .padding(.horizontal, 12)
             })
                 .frame( height: 60)
-                .padding(.horizontal)
+//                .padding(.horizontal)
                 .padding(.bottom,10)
         }
         .frame(height:(UIScreen.main.bounds.height/2)+90)

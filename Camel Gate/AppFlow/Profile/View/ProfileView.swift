@@ -41,8 +41,8 @@ struct ProfileView: View {
                                         
                                         Spacer()
                                         
-                                        Text("70%".localized(language))
-                                            .foregroundColor(.red)
+//                                        Text("70%".localized(language))
+//                                            .foregroundColor(.red)
                                         
                                         Image(systemName: "chevron.forward")
                                             .foregroundColor(Color("lightGray"))

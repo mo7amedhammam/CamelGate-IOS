@@ -37,35 +37,32 @@ struct DateFromTo:View{
                         .overlay(content: {
                             HStack{
                                 DatePicker("", selection: $ShipmentVM.fromDate, displayedComponents: [.date])
-                                    .opacity(0.08)
+                                    .opacity(0.04)
                                 Spacer()
                                 Image(systemName: "chevron.right")
-                            }
+                            }                        .padding(.horizontal)
+
                         })
-                        .padding(.horizontal)
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                     InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "To".localized(language), text:$ShipmentVM.toDateStr)
                         .overlay(content: {
                             HStack{
                                 DatePicker("", selection: $ShipmentVM.toDate, displayedComponents: [.date])
-                                    .opacity(0.08)
+                                    .opacity(0.04)
                                 Spacer()
                                 Image(systemName: "chevron.right")
                             }
+                            .padding(.horizontal)
+
                         })
-                        .padding(.horizontal)
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 //                }).buttonStyle(.plain)
 
-//                DateInputView(placeholder: "To", iconName:"", date: $ShipmentVM.toDate)
 
             }
+
             
             Button(action: {
-                //                    applyFilter()
-                //                    showFilter.toggle()
-//                ShipmentVM.fromDateStr = ShipmentVM.fromDate.DateToStr(format: "dd-MM-yyyy")
-//                ShipmentVM.toDateStr = ShipmentVM.toDate.DateToStr(format: "dd-MM-yyyy")
                 FilterTag = .Menu
             }, label: {
                 HStack {
@@ -77,10 +74,8 @@ struct DateFromTo:View{
                 .foregroundColor(.white)
                 .background(Color("blueColor"))
                 .cornerRadius(12)
-                .padding(.horizontal, 30)
             })
                 .frame( height: 60)
-                .padding(.horizontal)
                 .padding(.bottom,10)
         }
         .onChange(of: ShipmentVM.fromDate, perform: {newval in

@@ -30,62 +30,79 @@ struct tripCellView: View {
                     HStack{
                         VStack {
                             ZStack{
-                                Image("ic_tripCell_purple")
                                 VStack{
                                     Image("ic_ship_box")
                                         .resizable()
-                                        .frame(width: 100, height: 70)
+//                                        .scaledToFill()
+                                        .frame(width: 100, height: 90)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 8)
                                                 .stroke(Color(#colorLiteral(red: 0.8797428608, green: 0.8797428012, blue: 0.8797428608, alpha: 1)).opacity(0.60), lineWidth: 2.0)
                                         )
                                         .cornerRadius(8)
-                                    Spacer()
-                                    VStack(spacing: 3){
-                                        HStack(spacing: 3){
-                                            Text("\(shipmentModel?.lowestOffer ?? 1200)").foregroundColor(Color.white)
-                                                .font(Font.camelfonts.Reg16)
+                                        .padding(.top,8)
+                                        .offset(y:-8)
 
-                                            Text("SAR").foregroundColor(Color.white)
-                                                .font(Font.camelfonts.Bold16)
+                                    Spacer()
+                                    VStack(){
+                                        HStack(alignment:.bottom, spacing: 3){
+                                            Text("\(shipmentModel?.lowestOffer ?? 1200)").foregroundColor(Color.white)
+                                                .font(Font.camelfonts.Reg20)
+                                                .fontWeight(.medium)
+
+                                            Text("SAR").foregroundColor(Color.white.opacity(0.99))
+                                                .font(Font.camelfonts.Med14)
                                         }
-                                        Text("Lowest Offer").foregroundColor(Color.white)
-                                            .font(Font.camelfonts.Med14)
-                                    }.padding()
+                                        Text("Lowest Offer").foregroundColor(Color.white.opacity(0.9))
+                                            .font(Font.camelfonts.Reg14)
+                                    }.padding(.horizontal)
+                                        .padding(.bottom)
                                 }
-                            }.frame(height: 100)
+                            }.background(
+                                Image("ic_tripCell_purple")
+                                    .resizable()
+                            )
+                                .padding(.vertical,0)
+//                            .frame(height: 100)
                             Spacer()
                             HStack{
                                 Text("\(shipmentModel?.offersCount ?? 0)")
-                                    .foregroundColor(Color.black)
-                                Text("Offers").foregroundColor(Color.gray)
-                            }
-                            .font(Font.camelfonts.Med14)
+                                    .foregroundColor(Color.black.opacity(0.7))
+                                Text("Offers")                            .foregroundColor(.secondary)
 
-                        }.frame(height: 150)
+                            }
+
+                        }
+                        .frame(height: 150)
                         Spacer()
                         VStack{
                             VStack {
                                 HStack{
                                     Image("ic_dark_truck")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(Color.black.opacity(0.5))
+
                                     Text("Distance : ")
-                                        .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
+                                        .foregroundColor(.secondary)
                                         .font(Font.camelfonts.Reg14)
                                     Text("\( String(format: "%.1f", shipmentModel?.totalDistance ?? 22.00)) KM")
-                                        .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
+                                        .foregroundColor(.black.opacity(0.7))
                                         .font(Font.camelfonts.Reg14)
                                     Spacer()
-                                    Button(action: {}) {
-                                        Image("ic_share")
-                                    }
                                 }
                                 HStack{
                                     Image("stargray")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .frame(width: 18, height: 18)
+                                        .foregroundColor(Color.black.opacity(0.5))
                                     Text("Company Rate : ")
-                                        .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
+                                        .foregroundColor(.secondary)
                                         .font(Font.camelfonts.Reg14)
                                     Text("\(shipmentModel?.companyRate ?? 0)/5")
-                                        .foregroundColor(Color(#colorLiteral(red: 0.4320293069, green: 0.4300495386, blue: 0.3618791103, alpha: 1)))
+                                        .foregroundColor(.black.opacity(0.7))
                                         .font(Font.camelfonts.Reg14)
                                     Spacer()
                                 }
@@ -97,19 +114,34 @@ struct tripCellView: View {
                                         Image("ic_line")
                                         Image("ic_pin_orange")
                                     }
-                                    VStack(spacing: 30 ){
+                                    VStack(spacing: 20 ){
                                         VStack(alignment: .leading){
                                             Text(shipmentModel?.fromCityName ?? "Giza").foregroundColor(Color("Base_Color"))
+                                                .font(Font.camelfonts.Med18)
                   
-                                            Text(ConvertStringDate(inp:shipmentModel?.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:"dd/MM/yyyy . h:mm a"))
+                                            HStack {
+                                                Text(ConvertStringDate(inp:shipmentModel?.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:"dd/MM/yyyy"))
 
-                                            .font(Font.camelfonts.Reg14)
+                                                
+                                                Text(ConvertStringDate(inp:shipmentModel?.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:". h:mm a"))
+                                                    .foregroundColor(.secondary)
+                                                
+                                            }        .font(Font.camelfonts.Reg14)
+                                            
 
                                         }
                                         VStack(alignment: .leading){
                                             Text(shipmentModel?.toCityName ??  "Alexandria").foregroundColor(Color("Second_Color"))
-                                            Text(ConvertStringDate(inp:shipmentModel?.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
-                                            .font(Font.camelfonts.Reg14)
+                                                .font(Font.camelfonts.Med18)
+
+                                            HStack {
+                                                Text(ConvertStringDate(inp:shipmentModel?.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy"))
+                                                
+                                                Text(ConvertStringDate(inp:shipmentModel?.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:". hh:mm a"))
+                                                    .foregroundColor(.secondary)
+                                                
+                                            }    .font(Font.camelfonts.Reg14)
+                                            
                                         }
                                     }
                                 }
@@ -119,25 +151,38 @@ struct tripCellView: View {
                         }.padding(.top , -10)
                     }.padding()
                 }
+               
+                
                 Color(#colorLiteral(red: 0.6138994098, green: 0.6338609457, blue: 0.6889666915, alpha: 1)).frame(height: 1)
                 ZStack{
                     Color(#colorLiteral(red: 0.6920476556, green: 0.7039827704, blue: 0.747436285, alpha: 1)).opacity(0.16)
                     HStack(spacing: 10){
                         Image("stargray")
-                        HStack{
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(Color.black.opacity(0.7))
+
+//                        HStack{
 //                            Text("6").foregroundColor(Color.black)
-                            Text("Driver Rate : ").foregroundColor(Color.gray)
+                        Text("Driver Rate : ").foregroundColor(.secondary)                        .font(Font.camelfonts.Light16)
+
                             Text("\(shipmentModel?.lowestOfferDriverRate ?? 0)/5")
-                                .foregroundColor(Color.gray)
+                            .foregroundColor(Color.black.opacity(0.7))
                             Spacer()
                             Text("\(shipmentModel?.offersCount ?? 0)")
-                                .foregroundColor(Color.black)
-                            Text("Offers").foregroundColor(Color.gray)
-                        }
-                        .font(Font.camelfonts.Med14)
+                            .foregroundColor(Color.black.opacity(0.7))
+                        Text("Offers").foregroundColor(.secondary)
+                            .font(Font.camelfonts.Light16)
+//                                .fontWeight(.ultraLight)
 
-                        Spacer()
-                    }.padding()
+                            Button(action: {}) {
+                                Image("ic_share")
+                            }
+
+//                        }
+
+                    }
+                    .padding(.horizontal)
                 }
                 .frame(height: 40)
             }

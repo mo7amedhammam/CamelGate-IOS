@@ -14,26 +14,37 @@ struct FilterView: View {
     var body: some View {
         if (delete) {
             ZStack{
-                Color(#colorLiteral(red: 0.9521436095, green: 0.9569442868, blue: 0.9612503648, alpha: 1))
                 HStack{
-                    Text(filterTitle).foregroundColor(Color.gray)
+                    Text(filterTitle)
+                        .font(Font.camelfonts.Light16)
                     Spacer()
                     Button(action: {
                         D?()
                     }) {
                         Image("ic_x")
+                            .renderingMode(.template)
                             .scaledToFit()
-                            .frame(width: 25, height: 25)
+                            .frame(width: 22, height: 22)
                     }
                 }.padding()
+                    .foregroundColor(Color("OrangColor"))
             }
-            .frame(height: 40)
+            .background(
+                Color("OrangColor").opacity(0.06)
+            )
+            .frame(height: 35)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.gray, lineWidth: 1))
+                    .stroke(Color("OrangColor"), lineWidth: 1))
             .cornerRadius(20)
         }
     }
 }
 
 
+struct FilterView_Previews: PreviewProvider {
+    static var previews: some View {
+        FilterView(delete: true, filterTitle: "Cairo", D: {})
+        
+    }
+}

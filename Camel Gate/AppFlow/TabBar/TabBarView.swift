@@ -25,7 +25,7 @@ struct MainTabBar : View {
     @State var FilterTag : FilterCases = .Menu
     @State var showFilter = false
     @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
-
+    
     var body: some View {
         VStack(spacing: 0){
             GeometryReader{_ in
@@ -45,7 +45,7 @@ struct MainTabBar : View {
                         
                     }else if self.selectedTab == "Profile"{
                         ProfileView()
-
+                        
                     }
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
@@ -70,25 +70,16 @@ struct MainTabBar : View {
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .overlay(
             VStack{
-            if showFilter{
-                BottomSheetView(IsPresented: $showFilter, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
-//                FilterMenu(FilterTag: $FilterTag , showFilter: $showFilter)
-//                                    .environmentObject(ApprovedShipmentVM)
-//                                    .padding()
-                MainFilterView(FilterTag: $FilterTag, showFilter: $showFilter)
-                                    .environmentObject(ApprovedShipmentVM)
-                                    .padding()
-
-                            })
-                
-
-            }
+                if showFilter{
+                    BottomSheetView(IsPresented: $showFilter, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
+                        MainFilterView(FilterTag: $FilterTag, showFilter: $showFilter)
+                            .environmentObject(ApprovedShipmentVM)
+                            .padding()
+                    })
+                }
                 Spacer(minLength: 40)
             }.padding(.bottom)
         )
-
-        
-        
     }
 }
 
