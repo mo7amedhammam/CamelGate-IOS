@@ -81,7 +81,7 @@ struct EditProfileInfoView: View {
                     
                     Group{
                         Text("Driver_Info".localized(language))
-                            .font(Font.camelfonts.Med16)
+                            .font(Font.camelfonts.SemiBold16)
                             .foregroundColor(Color("blueColor"))
                             .padding(.vertical,10)
                         if taskStatus == .update{
@@ -180,7 +180,7 @@ struct EditProfileInfoView: View {
                     
                     Group{
                         Text("Truck_Info".localized(language))
-                            .font(Font.camelfonts.Med16)
+                            .font(Font.camelfonts.SemiBold16)
                             .foregroundColor(Color("blueColor"))
                             .padding(.vertical,10)
                         
@@ -389,7 +389,7 @@ struct EditProfileInfoView: View {
                     }, label: {
                         HStack {
                             Text("Ok".localized(language))
-                                .font(Font.camelfonts.Med18)
+                                .font(Font.camelfonts.SemiBold16)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .frame(height:22)

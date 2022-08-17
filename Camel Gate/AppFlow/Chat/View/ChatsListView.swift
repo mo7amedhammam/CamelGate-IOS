@@ -54,7 +54,7 @@ struct ChatsListView: View {
                         HStack {
                             Image(systemName: "paperplane.fill")
                             Text("Send_us_a_message".localized(language))
-                                .font(Font.camelfonts.Med14)
+                                .font(Font.camelfonts.SemiBold14)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .frame(height:15)
@@ -104,7 +104,7 @@ struct ChatsListView: View {
                                     VStack{
                                         HStack{
                                             Text("Mahmoud")
-                                                .font(Font.camelfonts.Med14)
+                                                .font(Font.camelfonts.SemiBold14)
                                             Spacer()
                                             Text("12 hours ago")
                                                 .font(Font.camelfonts.Reg14)

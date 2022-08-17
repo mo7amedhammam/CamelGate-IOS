@@ -70,7 +70,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_green_dollar")
                                     Text("\(detailsVM.publishedUserLogedInModel.lowestOffer ?? 111) SAR")
-                                        .font(Font.camelfonts.Med16).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                        .font(Font.camelfonts.SemiBold16).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
                                 }
                             }
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(width: 1)
@@ -79,7 +79,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_orange_star")
                                     Text("\(detailsVM.publishedUserLogedInModel.lowestOfferDriverRate ?? 2)/5 ")
-                                        .font(Font.camelfonts.Med16).foregroundColor(Color(#colorLiteral(red: 1, green: 0.5745426416, blue: 0, alpha: 1)))
+                                        .font(Font.camelfonts.SemiBold16).foregroundColor(Color(#colorLiteral(red: 1, green: 0.5745426416, blue: 0, alpha: 1)))
                                 }
                             }
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(width: 1)
@@ -88,7 +88,7 @@ struct DetailsView: View {
                                 Spacer()
                                 HStack{
                                     Text("\(detailsVM.publishedUserLogedInModel.offersCount ?? 3) Offers")
-                                        .font(Font.camelfonts.Med16).foregroundColor(Color.black)
+                                        .font(Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
                         }.padding()
@@ -103,7 +103,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_#")
                                     Text("\(detailsVM.publishedUserLogedInModel.id ?? 2)")
-                                        .font(Font.camelfonts.Med16).foregroundColor(Color.black)
+                                        .font(Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
                             Spacer()
@@ -112,7 +112,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_orange_pin")
                                     Text("\( String(format: "%.1f", detailsVM.publishedUserLogedInModel.totalDistance ?? 22.0011)) KM")
-                                        .font(Font.camelfonts.Med16).foregroundColor(Color.black)
+                                        .font(Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
                         }
@@ -123,7 +123,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_orange_star")
                                     Text("\(detailsVM.publishedUserLogedInModel.companyRate ?? 2)/5")
-                                        .font(Font.camelfonts.Med16).foregroundColor(Color.black)
+                                        .font(Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                     Text("(\(detailsVM.publishedUserLogedInModel.companyRatesCount ?? 2) Rates)")
                                         .font(Font.camelfonts.Reg14).foregroundColor(Color.black)
                                 }
@@ -134,7 +134,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_orange_star")
 //                                    Text("\(detailsVM.publishedUserLogedInModel.estimateTime?.values .joined(separator: " - ") ?? []) ")
-                                        .font(Font.camelfonts.Med16).foregroundColor(Color.black)
+                                        .font(Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
                         }
@@ -385,7 +385,7 @@ struct SetOfferView:View{
         VStack{
             Spacer()
             Text("Set_Offer".localized(language))
-                .font(Font.camelfonts.Med22)
+                .font(Font.camelfonts.SemiBold22)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -474,7 +474,7 @@ struct AppliedOfferView:View{
         VStack{
             
             Text("Offer_Applied".localized(language))
-                .font(Font.camelfonts.Med22)
+                .font(Font.camelfonts.SemiBold22)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -508,7 +508,7 @@ struct AppliedOfferView:View{
             }, label: {
                 HStack {
                     Text("Check_other_shipments".localized(language))
-                        .font(Font.camelfonts.Med18)
+                        .font(Font.camelfonts.SemiBold22)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .frame(height:22)
@@ -548,7 +548,7 @@ struct CancelOfferView:View{
         VStack{
             Spacer()
             Text("Cancel_Offer?".localized(language))
-                .font(Font.camelfonts.Med22)
+                .font(Font.camelfonts.SemiBold22)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -738,7 +738,7 @@ struct CancelledOfferView:View{
         VStack{
             
             Text("Canceled".localized(language))
-                .font(Font.camelfonts.Med22)
+                .font(Font.camelfonts.SemiBold22)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()

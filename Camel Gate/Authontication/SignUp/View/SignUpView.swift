@@ -114,7 +114,7 @@ struct SignUpView: View {
                     Spacer()
                     Text("Sign_Up".localized(language))
                         .foregroundColor(.white)
-                        .font(Font.camelfonts.Med20)
+                        .font(Font.camelfonts.SemiBold20)
                        Spacer()
                     Spacer().frame(width:50)
                 }

@@ -59,7 +59,7 @@ struct NotificationCell : View {
                         .font(Font.camelfonts.Reg14)
                         .foregroundColor(Color.gray)
                     Text("You have finished a shipment!")
-                        .font(Font.camelfonts.Med14)
+                        .font(Font.camelfonts.SemiBold14)
                     Text("You just finished a shipment and gained 1,200 SAR to your balance.")
                         .font(Font.camelfonts.Reg11)
                         .foregroundColor(Color.gray)

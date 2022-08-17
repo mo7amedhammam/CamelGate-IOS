@@ -22,7 +22,7 @@ struct ShipView: View {
                         .foregroundColor(Color.white)
                     Spacer()
                 }
-                .font(Font.camelfonts.Med16)
+                .font(Font.camelfonts.SemiBold16)
                 .padding(.leading)
             }
             .frame(height: 50)

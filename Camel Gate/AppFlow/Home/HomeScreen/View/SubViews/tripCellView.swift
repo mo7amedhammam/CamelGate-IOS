@@ -51,7 +51,7 @@ struct tripCellView: View {
                                                 .fontWeight(.medium)
 
                                             Text("SAR").foregroundColor(Color.white.opacity(0.99))
-                                                .font(Font.camelfonts.Med14)
+                                                .font(Font.camelfonts.SemiBold14)
                                         }
                                         Text("Lowest Offer").foregroundColor(Color.white.opacity(0.9))
                                             .font(Font.camelfonts.Reg14)
@@ -117,7 +117,7 @@ struct tripCellView: View {
                                     VStack(spacing: 20 ){
                                         VStack(alignment: .leading){
                                             Text(shipmentModel?.fromCityName ?? "Giza").foregroundColor(Color("Base_Color"))
-                                                .font(Font.camelfonts.Med18)
+                                                .font(Font.camelfonts.SemiBold18)
                   
                                             HStack {
                                                 Text(ConvertStringDate(inp:shipmentModel?.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:"dd/MM/yyyy"))
@@ -132,7 +132,7 @@ struct tripCellView: View {
                                         }
                                         VStack(alignment: .leading){
                                             Text(shipmentModel?.toCityName ??  "Alexandria").foregroundColor(Color("Second_Color"))
-                                                .font(Font.camelfonts.Med18)
+                                                .font(Font.camelfonts.SemiBold18)
 
                                             HStack {
                                                 Text(ConvertStringDate(inp:shipmentModel?.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy"))

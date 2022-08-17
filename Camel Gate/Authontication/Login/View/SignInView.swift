@@ -112,7 +112,7 @@ struct SignInView: View {
                             Spacer()
                             Text("Sign_In".localized(language))
                                 .foregroundColor(.white)
-                                .font(Font.camelfonts.Med20)
+                                .font(Font.camelfonts.SemiBold20)
                             Spacer()
                             //                    Spacer().frame(width:50)
                         }

@@ -35,7 +35,7 @@ struct TitleBar: View {
                         }
                         Spacer()
                         Text(Title ?? "")
-                            .font(Font.camelfonts.Med22)
+                            .font(Font.camelfonts.SemiBold22)
                             .foregroundColor(.white)
                         
                         Spacer()

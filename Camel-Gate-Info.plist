@@ -4,10 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Myriad Roman Regular.ttf</string>
-		<string>Myriad Roman Bold</string>
 		<string>MyriadVariableConcept-Roman.otf</string>
-		<string>GE_SS_Unique_Light_1.otf</string>
+		<string>GESSUniqueLight.otf</string>
+		<string>GESSUniqueBold-Bold.otf</string>
+		<string>GESSTextMedium-Medium.otf</string>
 		<string>SFUIText-Bold.ttf</string>
 		<string>SFUIText-BoldItalic.ttf</string>
 		<string>SFUIText-Heavy.ttf</string>

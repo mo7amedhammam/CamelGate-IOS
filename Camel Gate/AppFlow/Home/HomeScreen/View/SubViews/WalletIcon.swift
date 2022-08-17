@@ -29,7 +29,7 @@ struct WalletIcon: View {
                                 .font(Font.camelfonts.Bold20)
                             Text("Upcoming Trips")
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
-                                .font(Font.camelfonts.Med11)
+                                .font(Font.camelfonts.SemiBold11)
                         }
                         Spacer()
                     }
@@ -43,7 +43,7 @@ struct WalletIcon: View {
                                 .font(Font.camelfonts.Bold20)
                             Text("This Month Money")
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
-                            .font(Font.camelfonts.Med11)
+                            .font(Font.camelfonts.SemiBold11)
                         }
                         Spacer()
                     }

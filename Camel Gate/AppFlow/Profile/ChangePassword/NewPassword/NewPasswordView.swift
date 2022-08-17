@@ -109,7 +109,7 @@ struct NewPasswordView: View {
                         }, label: {
                             HStack {
                                 Text("Ok".localized(language))
-                                    .font(Font.camelfonts.Med18)
+                                    .font(Font.camelfonts.SemiBold18)
                             }
                             .frame(minWidth: 0, maxWidth: .infinity)
                             .frame(height:22)

@@ -18,14 +18,15 @@
 		C0125B1828993991004B65E5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B1728993991004B65E5 /* Decoder.swift */; };
 		C81B21FA28A3B17500816ECF /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21F928A3B17500816ECF /* CityModel.swift */; };
 		C81B21FC28A3B19100816ECF /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21FB28A3B19100816ECF /* CityViewModel.swift */; };
-		C81FA27D28AD01BD0012D823 /* GE_SS_Unique_Light_1.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA27C28AD01B30012D823 /* GE_SS_Unique_Light_1.otf */; };
-		C81FA27E28AD01C10012D823 /* MyriadVariableConcept-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA27B28AD01B30012D823 /* MyriadVariableConcept-Roman.otf */; };
-		C81FA28128AD05C50012D823 /* Myriad Roman Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA27F28AD05C50012D823 /* Myriad Roman Regular.ttf */; };
-		C81FA28228AD05C50012D823 /* Myriad Roman Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA28028AD05C50012D823 /* Myriad Roman Bold.ttf */; };
+		C81FA28628AD12F20012D823 /* GESSUniqueBold-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */; };
+		C81FA28A28AD23A90012D823 /* GESSTextMedium-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA28928AD23A90012D823 /* GESSTextMedium-Medium.otf */; };
+		C81FA2AE28AD275E0012D823 /* FontTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81FA2AD28AD275E0012D823 /* FontTest.swift */; };
 		C82DBDEF28A54D3000F2A9AB /* CancelReasonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */; };
 		C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */; };
 		C82EC8F5289EAB090042A27F /* ApprovedShipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */; };
 		C82EC8F7289EACC90042A27F /* ApprovedShipmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82EC8F6289EACC90042A27F /* ApprovedShipmentViewModel.swift */; };
+		C82FD99D28AD2F75003DC739 /* GESSUniqueLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */; };
+		C82FD99F28AD3190003DC739 /* MyriadVariableConcept-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */; };
 		C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB62892AEA000B803FD /* ChatHeader.swift */; };
 		C845FAB92892B99000B803FD /* XButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB82892B99000B803FD /* XButton.swift */; };
 		C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FABC2892BB6D00B803FD /* ChatsListView.swift */; };
@@ -143,14 +144,15 @@
 		C80E8DE528A15D560056E85C /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C81B21F928A3B17500816ECF /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		C81B21FB28A3B19100816ECF /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
-		C81FA27B28AD01B30012D823 /* MyriadVariableConcept-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadVariableConcept-Roman.otf"; sourceTree = "<group>"; };
-		C81FA27C28AD01B30012D823 /* GE_SS_Unique_Light_1.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GE_SS_Unique_Light_1.otf; sourceTree = "<group>"; };
-		C81FA27F28AD05C50012D823 /* Myriad Roman Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Myriad Roman Regular.ttf"; sourceTree = "<group>"; };
-		C81FA28028AD05C50012D823 /* Myriad Roman Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Myriad Roman Bold.ttf"; sourceTree = "<group>"; };
+		C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GESSUniqueBold-Bold.otf"; sourceTree = "<group>"; };
+		C81FA28928AD23A90012D823 /* GESSTextMedium-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GESSTextMedium-Medium.otf"; sourceTree = "<group>"; };
+		C81FA2AD28AD275E0012D823 /* FontTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTest.swift; sourceTree = "<group>"; };
 		C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasonsModel.swift; sourceTree = "<group>"; };
 		C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasonsViewModel.swift; sourceTree = "<group>"; };
 		C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedShipmentModel.swift; sourceTree = "<group>"; };
 		C82EC8F6289EACC90042A27F /* ApprovedShipmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedShipmentViewModel.swift; sourceTree = "<group>"; };
+		C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GESSUniqueLight.otf; sourceTree = "<group>"; };
+		C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadVariableConcept-Roman.otf"; sourceTree = "<group>"; };
 		C845FAB62892AEA000B803FD /* ChatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeader.swift; sourceTree = "<group>"; };
 		C845FAB82892B99000B803FD /* XButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButton.swift; sourceTree = "<group>"; };
 		C845FABC2892BB6D00B803FD /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
@@ -1053,10 +1055,10 @@
 		FAEADEA02884D3C0004535CE /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				C81FA28028AD05C50012D823 /* Myriad Roman Bold.ttf */,
-				C81FA27F28AD05C50012D823 /* Myriad Roman Regular.ttf */,
-				C81FA27C28AD01B30012D823 /* GE_SS_Unique_Light_1.otf */,
-				C81FA27B28AD01B30012D823 /* MyriadVariableConcept-Roman.otf */,
+				C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */,
+				C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */,
+				C81FA28928AD23A90012D823 /* GESSTextMedium-Medium.otf */,
+				C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */,
 				FAEADEAB2884D3D0004535CE /* SFUIText-Bold.ttf */,
 				FAEADEA32884D3CF004535CE /* SFUIText-BoldItalic.ttf */,
 				FAEADEA62884D3CF004535CE /* SFUIText-Heavy.ttf */,
@@ -1070,6 +1072,7 @@
 				FAEADEA92884D3D0004535CE /* SFUIText-Semibold.ttf */,
 				FAEADEA52884D3CF004535CE /* SFUIText-SemiboldItalic.ttf */,
 				C8DB51A8288CB45F004521C8 /* FontsExtension.swift */,
+				C81FA2AD28AD275E0012D823 /* FontTest.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1141,6 +1144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81FA28A28AD23A90012D823 /* GESSTextMedium-Medium.otf in Resources */,
 				FAEADEB52884D3D0004535CE /* SFUIText-Semibold.ttf in Resources */,
 				FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */,
 				FAEADEB42884D3D0004535CE /* SFUIText-Regular.ttf in Resources */,
@@ -1149,17 +1153,16 @@
 				FAEADEAF2884D3D0004535CE /* SFUIText-BoldItalic.ttf in Resources */,
 				FAEADEB22884D3D0004535CE /* SFUIText-Heavy.ttf in Resources */,
 				FAEADEB62884D3D0004535CE /* SFUIText-RegularItalic.ttf in Resources */,
-				C81FA27E28AD01C10012D823 /* MyriadVariableConcept-Roman.otf in Resources */,
 				FAEADEB12884D3D0004535CE /* SFUIText-SemiboldItalic.ttf in Resources */,
 				FAEADEB72884D3D0004535CE /* SFUIText-Bold.ttf in Resources */,
 				C8C949632889791F0057EE7E /* Localizable.strings in Resources */,
 				FAEADEB32884D3D0004535CE /* SFUIText-MediumItalic.ttf in Resources */,
 				FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */,
-				C81FA27D28AD01BD0012D823 /* GE_SS_Unique_Light_1.otf in Resources */,
+				C82FD99D28AD2F75003DC739 /* GESSUniqueLight.otf in Resources */,
 				FAEADEB82884D3D0004535CE /* SFUIText-HeavyItalic.ttf in Resources */,
 				FAEADEAD2884D3D0004535CE /* SFUIText-LightItalic.ttf in Resources */,
-				C81FA28228AD05C50012D823 /* Myriad Roman Bold.ttf in Resources */,
-				C81FA28128AD05C50012D823 /* Myriad Roman Regular.ttf in Resources */,
+				C82FD99F28AD3190003DC739 /* MyriadVariableConcept-Roman.otf in Resources */,
+				C81FA28628AD12F20012D823 /* GESSUniqueBold-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1244,6 +1247,7 @@
 				C8C9496E28898D030057EE7E /* ShipmentsView.swift in Sources */,
 				C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */,
 				C8D82A3928A46C6E0081E620 /* DateFilterView.swift in Sources */,
+				C81FA2AE28AD275E0012D823 /* FontTest.swift in Sources */,
 				C0125B0C289935C5004B65E5 /* AuthServices.swift in Sources */,
 				C8E4C30B288F0429005FDB7C /* NewPasswordView.swift in Sources */,
 				C870F89828901D9100CCFD9B /* OnBoardingView.swift in Sources */,

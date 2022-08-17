@@ -134,7 +134,7 @@ struct HelpOfferCell: View {
                 Image("face_vector")
                 VStack(alignment: .leading , spacing: 6){
                     Text("Tawfiq").font(Font.camelfonts.SemiBold16)
-                    Text("2.5 KM . Open Truck").font(Font.camelfonts.Med14)
+                    Text("2.5 KM . Open Truck").font(Font.camelfonts.SemiBold14)
                         .foregroundColor(Color.gray)
                 }
                 Spacer()

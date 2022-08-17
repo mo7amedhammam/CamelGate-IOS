@@ -130,7 +130,7 @@ struct ProfileView: View {
                                                     .foregroundColor(Color("blueColor"))
                                                 
                                                 Text("العربية".localized(language))
-                                                    .font(Font.camelfonts.LightAr16)
+                                                    .font(Font.camelfonts.MedAr16)
                                                     .foregroundColor(Color("lightGray"))
                                                 Spacer()
                                             }

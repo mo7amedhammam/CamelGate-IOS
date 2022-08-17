@@ -233,7 +233,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
     }
     private func otpText(text: String) -> some View {
         return Text(text)
-            .font(Font.camelfonts.Med24)
+            .font(Font.camelfonts.SemiBold24)
             .foregroundColor(Color("blueColor"))
             .frame(width: textBoxWidth, height: textBoxHeight)
             .background(

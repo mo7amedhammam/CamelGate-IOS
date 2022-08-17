@@ -37,7 +37,7 @@ struct OnBoardingView: View {
                         Text(bodyTitle)
                             .transition(.slide)
                             .animation(.rippleText())
-                            .font(Font.camelfonts.Med16)
+                            .font(Font.camelfonts.SemiBold16)
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color("lightGray"))
                         
@@ -74,7 +74,7 @@ struct OnBoardingView: View {
                             }
                         }) {
                                 HStack{
-                                    Text(currentIndex == 2 ? "Geting Started" : "Next").font(Font.camelfonts.Med16)
+                                    Text(currentIndex == 2 ? "Geting Started" : "Next").font(Font.camelfonts.SemiBold16)
                                         .foregroundColor(Color.white)
                                     Image("ic_next_arrow")
                                 }
