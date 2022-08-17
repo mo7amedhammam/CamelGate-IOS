@@ -18,6 +18,10 @@
 		C0125B1828993991004B65E5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B1728993991004B65E5 /* Decoder.swift */; };
 		C81B21FA28A3B17500816ECF /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21F928A3B17500816ECF /* CityModel.swift */; };
 		C81B21FC28A3B19100816ECF /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21FB28A3B19100816ECF /* CityViewModel.swift */; };
+		C81FA27D28AD01BD0012D823 /* GE_SS_Unique_Light_1.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA27C28AD01B30012D823 /* GE_SS_Unique_Light_1.otf */; };
+		C81FA27E28AD01C10012D823 /* MyriadVariableConcept-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA27B28AD01B30012D823 /* MyriadVariableConcept-Roman.otf */; };
+		C81FA28128AD05C50012D823 /* Myriad Roman Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA27F28AD05C50012D823 /* Myriad Roman Regular.ttf */; };
+		C81FA28228AD05C50012D823 /* Myriad Roman Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA28028AD05C50012D823 /* Myriad Roman Bold.ttf */; };
 		C82DBDEF28A54D3000F2A9AB /* CancelReasonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */; };
 		C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */; };
 		C82EC8F5289EAB090042A27F /* ApprovedShipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */; };
@@ -139,6 +143,10 @@
 		C80E8DE528A15D560056E85C /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C81B21F928A3B17500816ECF /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		C81B21FB28A3B19100816ECF /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
+		C81FA27B28AD01B30012D823 /* MyriadVariableConcept-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadVariableConcept-Roman.otf"; sourceTree = "<group>"; };
+		C81FA27C28AD01B30012D823 /* GE_SS_Unique_Light_1.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GE_SS_Unique_Light_1.otf; sourceTree = "<group>"; };
+		C81FA27F28AD05C50012D823 /* Myriad Roman Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Myriad Roman Regular.ttf"; sourceTree = "<group>"; };
+		C81FA28028AD05C50012D823 /* Myriad Roman Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Myriad Roman Bold.ttf"; sourceTree = "<group>"; };
 		C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasonsModel.swift; sourceTree = "<group>"; };
 		C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasonsViewModel.swift; sourceTree = "<group>"; };
 		C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedShipmentModel.swift; sourceTree = "<group>"; };
@@ -1045,6 +1053,10 @@
 		FAEADEA02884D3C0004535CE /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				C81FA28028AD05C50012D823 /* Myriad Roman Bold.ttf */,
+				C81FA27F28AD05C50012D823 /* Myriad Roman Regular.ttf */,
+				C81FA27C28AD01B30012D823 /* GE_SS_Unique_Light_1.otf */,
+				C81FA27B28AD01B30012D823 /* MyriadVariableConcept-Roman.otf */,
 				FAEADEAB2884D3D0004535CE /* SFUIText-Bold.ttf */,
 				FAEADEA32884D3CF004535CE /* SFUIText-BoldItalic.ttf */,
 				FAEADEA62884D3CF004535CE /* SFUIText-Heavy.ttf */,
@@ -1137,13 +1149,17 @@
 				FAEADEAF2884D3D0004535CE /* SFUIText-BoldItalic.ttf in Resources */,
 				FAEADEB22884D3D0004535CE /* SFUIText-Heavy.ttf in Resources */,
 				FAEADEB62884D3D0004535CE /* SFUIText-RegularItalic.ttf in Resources */,
+				C81FA27E28AD01C10012D823 /* MyriadVariableConcept-Roman.otf in Resources */,
 				FAEADEB12884D3D0004535CE /* SFUIText-SemiboldItalic.ttf in Resources */,
 				FAEADEB72884D3D0004535CE /* SFUIText-Bold.ttf in Resources */,
 				C8C949632889791F0057EE7E /* Localizable.strings in Resources */,
 				FAEADEB32884D3D0004535CE /* SFUIText-MediumItalic.ttf in Resources */,
 				FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */,
+				C81FA27D28AD01BD0012D823 /* GE_SS_Unique_Light_1.otf in Resources */,
 				FAEADEB82884D3D0004535CE /* SFUIText-HeavyItalic.ttf in Resources */,
 				FAEADEAD2884D3D0004535CE /* SFUIText-LightItalic.ttf in Resources */,
+				C81FA28228AD05C50012D823 /* Myriad Roman Bold.ttf in Resources */,
+				C81FA28128AD05C50012D823 /* Myriad Roman Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

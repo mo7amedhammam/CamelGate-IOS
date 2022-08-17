@@ -99,7 +99,6 @@ struct EditProfileInfoView: View {
                                     }.padding(.horizontal)
                                 })
 //                                .padding(.horizontal)
-                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                             
                             
                             InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male"):.constant("Female"))
@@ -156,7 +155,6 @@ struct EditProfileInfoView: View {
                                 }.padding(.horizontal)
                             })
 //                            .padding(.horizontal)
-                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         
                         //                    InputTextField(iconName: "ic_pin_orange",iconColor: Color("OrangColor"), placeholder: "Location".localized(language), text: .constant("25 ehsan st., Aggamy, Alexandria"))
                         //                        .overlay(content: {
@@ -224,7 +222,6 @@ struct EditProfileInfoView: View {
 //                                        .padding(.trailing)
                                     }.padding()
                                 })
-                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
                             InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text: $profileVM.TruckManfactureYear)
 //                                .overlay(content: {
@@ -236,7 +233,6 @@ struct EditProfileInfoView: View {
 //                                    }.padding(.horizontal)
 //                                })
                                 .keyboardType(.numberPad)
-                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         }
                         
                         HStack{
@@ -269,12 +265,11 @@ struct EditProfileInfoView: View {
                                     }.padding(.horizontal)
                                 })
                                 
-                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         }
                         
 //                        InputTextField(iconName: "ic_box",iconColor: Color("OrangColor"), placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
                     }
-                    
+                 if taskStatus == .create{
                     HStack{
                         Image(systemName: ageeTerms ?  "checkmark.square.fill":"square")
                             .font(.system(size: 20))
@@ -297,6 +292,7 @@ struct EditProfileInfoView: View {
                             }
                         Spacer()
                     }.padding(.vertical)
+                }
                     Spacer(minLength: 30)
                 }.disabled((taskStatus == .update && isEditing == false) ? true:false)
             }.padding(.top,hasNotch ? 140:130)
