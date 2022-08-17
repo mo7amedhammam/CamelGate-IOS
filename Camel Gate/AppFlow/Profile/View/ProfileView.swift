@@ -29,7 +29,6 @@ struct ProfileView: View {
                             Group{
                                 Button(action: {
                                     active = true
-//                                    destination = AnyView(ProfileInfoView())
                                     destination = AnyView(EditProfileInfoView(taskStatus: .update))
                                 }, label: {
                                     HStack(spacing: 10){
@@ -41,9 +40,6 @@ struct ProfileView: View {
                                             .foregroundColor(Color("lightGray"))
                                         
                                         Spacer()
-                                        
-//                                        Text("70%".localized(language))
-//                                            .foregroundColor(.red)
                                         
                                         Image(systemName: "chevron.forward")
                                             .foregroundColor(Color("lightGray"))
@@ -87,46 +83,66 @@ struct ProfileView: View {
                                     }
                                 })
                                 
-                                HStack(spacing:15){
-                                    Button(action:{
-                                        withAnimation {
-                                        LocalizationService.shared.language = .arabic
-                                        Helper.setLanguage(currentLanguage: "ar")
-                                        }
-                                    },label:{
-                                            HStack(spacing: 10){
-                                                Image(systemName: "network")
-                                                    .font(.system(size:20))
-                                                    .foregroundColor(Color("blueColor"))
-                                                
-                                                Text("العربية".localized(language))
-                                                    .foregroundColor(Color("lightGray"))
-                                                Spacer()
+                            }  .font(Font.camelfonts.Reg14)
+                                .padding(12)
+                                .disableAutocorrection(true)
+                                .background(
+                                    Color.white
+                                ).cornerRadius(8)
+                                .foregroundColor(Color("blueColor"))
+                                    .cornerRadius(5)
+                                    .shadow(color: Color.black.opacity(0.099), radius: 8)
+                            
+                            Section(header: Text("Change_Language".localized(language))            .foregroundColor(Color("lightGray"))
+                            ){
+                                    HStack(spacing:15){
+                                        Group{
+                                            Button(action:{
+                                              withAnimation {
+                                                LocalizationService.shared.language = .english_us
+                                                Helper.setLanguage(currentLanguage: "en")
                                             }
-                                    })
-                                    
-                                    Button(action:{
-                                      withAnimation {
-                                        LocalizationService.shared.language = .english_us
-                                        Helper.setLanguage(currentLanguage: "en")
+                                            },label:{
+                                                    HStack(spacing: 10){
+                                                        Image("usaFlag")
+                                                            .frame(width: 20, height: 20)
+                                                            .padding(.horizontal).foregroundColor(Color("blueColor"))
+                                                        
+                                                        Text("English".localized(language))
+                                                            .foregroundColor(Color("lightGray"))
+                                                        Spacer()
+                                                    }
+                                            })
+                                            
+                                        Button(action:{
+                                            withAnimation {
+                                            LocalizationService.shared.language = .arabic
+                                            Helper.setLanguage(currentLanguage: "ar")
+                                            }
+                                        },label:{
+                                                HStack(spacing: 10){
+                                                    Image("saudiFlag")
+                                                        .frame(width: 20, height: 20)
+                                                        .padding(.horizontal)
+                                                        .foregroundColor(Color("blueColor"))
+                                                    
+                                                    Text("العربية".localized(language))
+                                                        .foregroundColor(Color("lightGray"))
+                                                    Spacer()
+                                                }
+                                        })
+                                }  .font(Font.camelfonts.Reg14)
+                                    .padding(12)
+                                    .disableAutocorrection(true)
+                                    .background(
+                                        Color.white
+                                    ).cornerRadius(8)
+                                    .foregroundColor(Color("blueColor"))
+                                        .cornerRadius(5)
+                                        .shadow(color: Color.black.opacity(0.099), radius: 8)
                                     }
-                                    },label:{
-                                            HStack(spacing: 10){
-                                                Image(systemName: "network")
-                                                    .font(.system(size:20))
-                                                    .foregroundColor(Color("blueColor"))
-                                                
-                                                Text("English".localized(language))
-                                                    .foregroundColor(Color("lightGray"))
-                                                Spacer()
-                                            }
-                                    })
-                                }
-                                
-                                
-
-                                
-                                
+                            }
+                            Group{
                                 Button(action: {
                                     Helper.MakePhoneCall(PhoneNumber: "0221256299")
                                 }, label: {
@@ -181,7 +197,6 @@ struct ProfileView: View {
                                     }
                                 })
                             }
-                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                             .font(Font.camelfonts.Reg14)
                             .padding(12)
                             .disableAutocorrection(true)
@@ -202,6 +217,7 @@ struct ProfileView: View {
                 ProfileHeader()
                     .padding(.top,hasNotch ? -20:-30 )
             }
+            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             .edgesIgnoringSafeArea(.vertical)
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
 
