@@ -93,7 +93,7 @@ class DriverInfoViewModel: ObservableObject {
         } receiveValue: { [self](modeldata) in
             publishedUserLogedInModel = modeldata.data
             UserCreated = true
-            Helper.setUserData(DriverName: publishedUserLogedInModel?.name ?? "", DriverImage: publishedUserLogedInModel?.image ?? "")
+                Helper.setUserData(DriverName: publishedUserLogedInModel?.name ?? "", DriverImage: publishedUserLogedInModel?.image ?? "")
         }.store(in: &cancellables)
     }
     

@@ -15,13 +15,13 @@ struct HeaderView: View {
 //            Image("face_vector")
 //            WebImage(url: URL(string: LoginManger.getUser()?.image ?? ""))
             
-            AsyncImage(url: URL(string: Constants.baseURL + Helper.getDriverimage())) { image in
+            AsyncImage(url: URL(string: Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/"))) { image in
                 image.resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50)
             } placeholder: {
                 Image("face_vector")
             }
+            .clipShape(Circle())
+            .frame(width: 50, height: 50, alignment: .center)
             .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
             
             VStack(alignment: .leading ){
@@ -55,9 +55,6 @@ struct HeaderView: View {
                 Image("ic_big_notification")
             }
         }
-        .onAppear(perform: {
-            print(Constants.baseURL + Helper.getDriverimage())
-        })
 
         .padding()
         NavigationLink(destination: destination,isActive:$active , label: {

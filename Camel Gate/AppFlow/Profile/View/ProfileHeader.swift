@@ -25,17 +25,16 @@ struct ProfileHeader: View {
                         Button(action: {
                             // here if you want to preview image
                         }, label: {
-                            AsyncImage(url: URL(string: Constants.baseURL + "\(LoginManger.getUser()?.image ?? "")")) { image in
+                            AsyncImage(url: URL(string: Constants.baseURL +  Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/"))) { image in
                                 image.resizable()
                             } placeholder: {
-//                                Color("lightGray").opacity(0.2)
                                 Image("face_vector")
 
                             }
                             .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
                         })
-//                            .clipShape(Circle())
-//                            .frame(width: 95, height: 95, alignment: .center)
+                            .clipShape(Circle())
+                            .frame(width: 95, height: 95, alignment: .center)
 //                            .cornerRadius(10)
                         
 //                        CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){

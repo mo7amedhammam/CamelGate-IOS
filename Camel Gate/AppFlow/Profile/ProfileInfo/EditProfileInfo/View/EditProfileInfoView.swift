@@ -44,19 +44,12 @@ struct EditProfileInfoView: View {
                         }, label: {
                             ZStack{
                             if profileVM.DriverImage.size.width == 0 {
-                            AsyncImage(url: URL(string: "\(Constants.baseURL +  profileVM.DriverImageStr)")) { image in
-
-//                            AsyncImage(url: URL(string: "https://camelgateapi.wecancity.com/Images//Driver//DriverImage//01f6969e-a923-4471-9311-29191bf51c92.jpg")) { image in
-
+                            AsyncImage(url: URL(string: Constants.baseURL +  profileVM.DriverImageStr.replacingOccurrences(of: "\\",with: "/"))) { image in
                                         image.resizable()
                                     } placeholder: {
                                         Color("lightGray").opacity(0.2)
-//                                            .onAppear(perform: {
-//                                                print(Constants.baseURL + "\(profileVM.DriverImageStr )")
-//
-//                                            })
                                     }
-//                                    .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
+                                    .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
                             }else{
                                 Image(uiImage: profileVM.DriverImage)
                                     .resizable()
@@ -68,16 +61,12 @@ struct EditProfileInfoView: View {
                             .clipShape(Circle())
                             .frame(width: 95, height: 95, alignment: .center)
                             
-                            
                         if (taskStatus == .update && isEditing == true) || taskStatus == .create{
                             CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
                                 self.showImageSheet = true
                             }
                         }
                     }
-//                    .onAppear(perform: {
-//                        print(Constants.baseURL + "\(profileVM.DriverImageStr )")
-//                    })
                     
                     Group{
                         Text("Driver_Info".localized(language))
@@ -98,7 +87,6 @@ struct EditProfileInfoView: View {
                                         Image(systemName: "chevron.right")
                                     }.padding(.horizontal)
                                 })
-//                                .padding(.horizontal)
                             
                             
                             InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male"):.constant("Female"))
@@ -145,7 +133,6 @@ struct EditProfileInfoView: View {
                         InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber)
                         
                         InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: $profileVM.LicenseExpireDateStr)
-    //                        .disabled(true)
                             .overlay(content: {
                                 HStack{
                                     DatePicker("", selection: $profileVM.LicenseExpireDate, displayedComponents: [.date])
@@ -154,7 +141,6 @@ struct EditProfileInfoView: View {
                                     Image(systemName: "chevron.right")
                                 }.padding(.horizontal)
                             })
-//                            .padding(.horizontal)
                         
                         //                    InputTextField(iconName: "ic_pin_orange",iconColor: Color("OrangColor"), placeholder: "Location".localized(language), text: .constant("25 ehsan st., Aggamy, Alexandria"))
                         //                        .overlay(content: {
