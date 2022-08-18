@@ -12,7 +12,7 @@ struct OnBoardingView: View {
     @State private var HeadLineTitle = "Apply Easily On Shipments!"
     @State private var bodyTitle = "You can easily Apply on more than 3,500 shipments and set your own offer"
     @State var active = false
-    @State var destination = AnyView(TabBarView())
+    @State var destination = AnyView(SignInView())
     var body: some View {
         ZStack{
             Color("Base_Color")
@@ -65,28 +65,29 @@ struct OnBoardingView: View {
                                 HeadLineTitle = "Check your Balance!"
                                 bodyTitle = "You can easily check your balance along time and transitions made in/out"
                             case 2 :
-                                    Helper.onBoardOpened()
-                               active = true
-                                destination = AnyView(TabBarView()        .navigationBarHidden(true)
-)
+                                Helper.onBoardOpened()
+                                active = true
+                                destination = AnyView(SignInView()
+                                                        .navigationBarHidden(true)
+                                )
                             default :
                                 print("")
                             }
                         }) {
-                                HStack{
-                                    Text(currentIndex == 2 ? "Geting Started" : "Next").font(Font.camelfonts.SemiBold16)
-                                        .foregroundColor(Color.white)
-                                    Image("ic_next_arrow")
-                                }
-                                .frame(height: 50)
-                                .padding(.horizontal, 80)
+                            HStack{
+                                Text(currentIndex == 2 ? "Geting Started" : "Next").font(Font.camelfonts.SemiBold16)
+                                    .foregroundColor(Color.white)
+                                Image("ic_next_arrow")
+                            }
+                            .frame(height: 50)
+                            .padding(.horizontal, 80)
                             .background(
                                 LinearGradient(
                                     gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
                                     startPoint: .trailing,
                                     endPoint: .leading
-                                ))                                .cornerRadius(radius: 8)
-
+                                ))
+                            .cornerRadius(radius: 8)
                         }
                     }.padding()
                 }.frame(maxWidth: .infinity, maxHeight: 340)
@@ -104,6 +105,6 @@ struct OnBoardingView_Previews: PreviewProvider {
         OnBoardingView()
         OnBoardingView()
             .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-
+        
     }
 }

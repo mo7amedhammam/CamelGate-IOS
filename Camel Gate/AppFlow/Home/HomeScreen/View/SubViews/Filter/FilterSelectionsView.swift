@@ -60,6 +60,7 @@ struct FilterMenu:View{
                         
                     })
                         .listRowSeparator(.hidden)
+//                    Spacer()
                     Button(action: {
                         FilterTag = .Date
                     }, label: {
@@ -84,6 +85,7 @@ struct FilterMenu:View{
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         
                     })
+//                    Spacer()
                     Button(action: {
                         FilterTag = .ShipmentTypes
                     }, label: {
@@ -120,7 +122,7 @@ struct FilterMenu:View{
                         .foregroundColor(.black.opacity(0.5))
                 })
                     .padding(.horizontal,30)
-
+                
                 Button(action: {
                     
                     applyFilter()
@@ -136,7 +138,7 @@ struct FilterMenu:View{
                     .background(Color("blueColor"))
                     .cornerRadius(12)
                 })
-
+                
             }
             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             
@@ -156,7 +158,7 @@ struct FilterMenu:View{
     func resetFilter(){
         ShipmentVM.fromCityId = 0
         ShipmentVM.fromCityName = ""
-
+        
         ShipmentVM.toCityId = 0
         ShipmentVM.toCityName = ""
         ShipmentVM.fromDate = Date()
