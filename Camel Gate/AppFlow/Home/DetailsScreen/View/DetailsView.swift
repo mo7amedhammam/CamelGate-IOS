@@ -36,7 +36,7 @@ struct DetailsView: View {
                     if detailsVM.publishedUserLogedInModel.driverOfferStatusID != nil{
                     VStack{
                         ZStack{
-                            Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 1))
+                            (detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4) ? Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 1)):Color.red
                             Text("\(detailsVM.publishedUserLogedInModel.driverOfferStatusName ?? "Applied")").fontWeight(.medium).foregroundColor(Color
                                                                                                                                                     .white)
                         }.frame(height: 30)
