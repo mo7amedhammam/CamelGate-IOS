@@ -33,5 +33,5 @@ struct Constants {
 
     static var baseURL:String {return "https://camelgateapi.wecancity.com/"}
     static var apiURL:String {return "\(baseURL)api/\(Helper.getLanguage())"}
-//    static var imagesURL:String {return baseURL + "storage/"}
+    static var imagesURL:String {return "http://camelgateapi.wecancity.com/"}
 }

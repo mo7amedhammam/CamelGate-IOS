@@ -47,7 +47,7 @@ class TruckTypeViewModel: ObservableObject {
         }.done({ [self] response in
             let result = response as! Response
 
-            guard BGNetworkHelper.validateResponse(response: result) else{return}
+//            guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<[TruckTypeModel]> = try BGDecoder.decode(data: result.data )
             print(data)
             if data.success == true {

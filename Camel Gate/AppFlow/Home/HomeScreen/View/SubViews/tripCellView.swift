@@ -33,15 +33,17 @@ struct tripCellView: View {
                                 VStack{
                                     Image("ic_ship_box")
                                         .resizable()
-//                                        .scaledToFill()
+                                        .scaledToFit()
                                         .frame(width: 100, height: 90)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .stroke(Color(#colorLiteral(red: 0.8797428608, green: 0.8797428012, blue: 0.8797428608, alpha: 1)).opacity(0.60), lineWidth: 2.0)
-                                        )
-                                        .cornerRadius(8)
-                                        .padding(.top,8)
-                                        .offset(y:-8)
+//                                        .overlay(
+//                                            RoundedRectangle(cornerRadius: 8)
+//                                                .stroke(Color(#colorLiteral(red: 0.8797428608, green: 0.8797428012, blue: 0.8797428608, alpha: 1)).opacity(0.60), lineWidth: 2.0)
+//
+//                                        )
+//                                        .cornerRadius(8)
+                                        .padding(.horizontal,8)
+                                        .padding(.top,15)
+//                                        .offset(y:25)
 
                                     Spacer()
                                     VStack(){
@@ -57,12 +59,13 @@ struct tripCellView: View {
                                             .font(Font.camelfonts.Reg14)
                                     }.padding(.horizontal)
                                         .padding(.bottom)
+                                    
                                 }
                             }.background(
                                 Image("ic_tripCell_purple")
                                     .resizable()
                             )
-                                .padding(.vertical,0)
+//                                .padding(.vertical,0)
 //                            .frame(height: 100)
                             Spacer()
                             HStack{
@@ -71,9 +74,9 @@ struct tripCellView: View {
                                 Text("Offers")                            .foregroundColor(.secondary)
 
                             }
-
                         }
                         .frame(height: 150)
+                        .offset( y: -20)
                         Spacer()
                         VStack{
                             VStack {

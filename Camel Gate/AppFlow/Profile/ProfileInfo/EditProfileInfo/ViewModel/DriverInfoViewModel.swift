@@ -46,7 +46,7 @@ class DriverInfoViewModel: ObservableObject {
         }
     }
     @Published  var DriverImage = UIImage()
-    @Published  var DriverImageStr = ""
+    @Published  var DriverImageStr = Helper.getDriverimage()
 
     @Published  var Birthdate = Date()
     @Published  var BirthdateStr = ""
@@ -182,7 +182,7 @@ class DriverInfoViewModel: ObservableObject {
             print(result)
             print(data)
             if data.success == true {
-                   
+
 //                    DispatchQueue.main.async { [self] in
                 self.DriverImageStr = data.data?.image ?? ""
                     LicenseNumber = data.data?.drivingLicense ?? ""
