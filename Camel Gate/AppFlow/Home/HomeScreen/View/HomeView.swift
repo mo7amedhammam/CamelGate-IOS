@@ -11,10 +11,7 @@ struct HomeView: View {
     var language = LocalizationService.shared.language
 
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
-
-    @State  var selectedFilterId : Int?
-    @State  var filterArray : [String] = []
-    
+  
     @State var active = false
     @State var destination = AnyView(ChatsListView())
     
@@ -49,14 +46,15 @@ struct HomeView: View {
                     showFilter.toggle()
                     FilterTag = .Menu
                 })
-                    .padding(.horizontal)
                     .padding(.bottom,-30)
 //                }
                 
-                ExtractedView(active: $active, destination: $destination, selectedFilterId: $selectedFilterId, filterArray: $filterArray, selectedShipmentId: $selectedShipmentId)
+                ExtractedView(active: $active, destination: $destination,  selectedShipmentId: $selectedShipmentId)
                     .environmentObject(ApprovedShipmentVM)
 
                 }
+            .padding(.horizontal,10)
+
             .overlay(
                 ZStack{
                     if ApprovedShipmentVM.nodata == true {
@@ -139,9 +137,6 @@ struct ExtractedView: View {
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
     @Binding var active : Bool
     @Binding var destination : AnyView
-    
-    @Binding  var selectedFilterId : Int?
-    @Binding var filterArray : [String]
     @Binding var selectedShipmentId : Int
 
     var body: some View {
@@ -185,7 +180,6 @@ struct ExtractedView: View {
                             destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
                         }, label: {
                             tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId)
-                                .padding(.horizontal)
                         }).buttonStyle(.plain)
                     }
                 }

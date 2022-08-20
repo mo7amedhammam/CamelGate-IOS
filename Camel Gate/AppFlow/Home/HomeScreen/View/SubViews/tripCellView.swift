@@ -57,7 +57,8 @@ struct tripCellView: View {
                                         }
                                         Text("Lowest Offer").foregroundColor(Color.white.opacity(0.9))
                                             .font(Font.camelfonts.Reg14)
-                                    }.padding(.horizontal)
+                                    }
+//                                    .padding(.horizontal)
                                         .padding(.bottom)
                                     
                                 }

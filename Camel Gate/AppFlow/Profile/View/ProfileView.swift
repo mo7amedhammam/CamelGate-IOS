@@ -67,7 +67,8 @@ struct ProfileView: View {
                                 
                                 Button(action: {
                                     active = true
-                                    destination = AnyView(NoteScreenView())
+//                                    destination = AnyView(NoteScreenView()) //verification
+                                    destination = AnyView(ChangePasswordView())
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "lock.fill")

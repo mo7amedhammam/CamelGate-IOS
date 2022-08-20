@@ -12,9 +12,6 @@ struct GarageView: View {
 
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
 
-    
-    @State  var selectedFilterId : Int?
-    @State var filterArray = ["Ciro to Alex" , "6K to 10k SAR" , "Cairo to Alex" ,  "6K to 10k SAR" , "Ciro to Alex"]
     @State var active = false
     @State var destination = AnyView(DetailsView(shipmentId: 0))
     
@@ -24,34 +21,13 @@ struct GarageView: View {
 
     var body: some View {
         ZStack{
-//            VStack {
-//                Spacer().frame(height: 145 )
-//                    ScrollView(.horizontal , showsIndicators : false) {
-//                        HStack {
-//                            ForEach(0 ..< filterArray.count) { filterItem in
-//                                FilterView(delete: filterItem != selectedFilterId , filterTitle: filterArray[filterItem] , D: {
-//                                    selectedFilterId = filterItem
-//                                })
-//                            }
-//                        }.padding()
-//                    }
-//                    ScrollView(.vertical , showsIndicators : false) {
-//                        VStack{
-//                            ForEach(ApprovedShipmentVM.publishedFilteredShipments,id:\.self) { tripItem in
-//                                tripCellView(shipmentModel: tripItem)
-//                                    .padding(.horizontal)
-//                            }.onTapGesture {
-//                                active = true
-//                                destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
-//                            }
-//                        }
-//                    }
-//                }
-            ExtractedView(active: $active, destination: $destination, selectedFilterId: $selectedFilterId, filterArray: $filterArray, selectedShipmentId: $selectedShipmentId)
+            ExtractedView(active: $active, destination: $destination, selectedShipmentId: $selectedShipmentId)
                 .environmentObject(ApprovedShipmentVM)
                 .padding(.top,140)
+                .padding(.horizontal,10)
+
             
-            TitleBar(Title: "Garage Shipments", navBarHidden: true, trailingButton: .filterButton, applyStatus: .applyed,subText: "Applied"  ,trailingAction: {
+            TitleBar(Title: "Garage_Shipments".localized(language), navBarHidden: true, trailingButton: .filterButton, applyStatus: Optional.none, trailingAction: {
                 showFilter.toggle()
             })
         }

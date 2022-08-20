@@ -30,6 +30,8 @@ enum HomeServices {
     case setOffer(parameters:[String:Any])
     case CancelOffer(parameters:[String:Any])
     case CancelationReasons
+    
+    case ChangePassword(parameters:[String:Any])
 
 }
 extension HomeServices : URLRequestBuilder {
@@ -71,6 +73,9 @@ extension HomeServices : URLRequestBuilder {
         case .FinishApprovedShipment:
             return EndPoints.FinishApprovedShipment.rawValue
 
+        case .ChangePassword:
+            return EndPoints.ChangePassword.rawValue
+
         }
     }
     var method: Moya.Method {
@@ -84,7 +89,7 @@ extension HomeServices : URLRequestBuilder {
         case .ShipmentDetails, .GetShipmentTypes, .GetCities, .CancelationReasons:
             return .get
    
-        case .setOffer,.CancelOffer:
+        case .setOffer,.CancelOffer,.ChangePassword:
             return .post
         }
     }
@@ -121,6 +126,9 @@ extension HomeServices : URLRequestBuilder {
 
         case .FinishApprovedShipment(let param):
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
+
+        case .ChangePassword(parameters: let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
 
         }
     }

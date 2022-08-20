@@ -120,8 +120,8 @@ class SignInViewModel: ObservableObject {
 
 
         }).ensure { [self] in
-//            isLoading = false
-            message = "success"
+            isLoading = false
+//            message = "success"
 
         }.catch { [self] (error) in
             isAlert = true
