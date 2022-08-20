@@ -20,7 +20,7 @@
 		C81B21FC28A3B19100816ECF /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21FB28A3B19100816ECF /* CityViewModel.swift */; };
 		C81FA28628AD12F20012D823 /* GESSUniqueBold-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */; };
 		C81FA28A28AD23A90012D823 /* GESSTextMedium-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA28928AD23A90012D823 /* GESSTextMedium-Medium.otf */; };
-		C81FA2AE28AD275E0012D823 /* FontTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81FA2AD28AD275E0012D823 /* FontTest.swift */; };
+		C81FA2AE28AD275E0012D823 /* ImagePreviewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81FA2AD28AD275E0012D823 /* ImagePreviewer.swift */; };
 		C82DBDEF28A54D3000F2A9AB /* CancelReasonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */; };
 		C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */; };
 		C82EC8F5289EAB090042A27F /* ApprovedShipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */; };
@@ -148,7 +148,7 @@
 		C81B21FB28A3B19100816ECF /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
 		C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GESSUniqueBold-Bold.otf"; sourceTree = "<group>"; };
 		C81FA28928AD23A90012D823 /* GESSTextMedium-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GESSTextMedium-Medium.otf"; sourceTree = "<group>"; };
-		C81FA2AD28AD275E0012D823 /* FontTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTest.swift; sourceTree = "<group>"; };
+		C81FA2AD28AD275E0012D823 /* ImagePreviewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewer.swift; sourceTree = "<group>"; };
 		C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasonsModel.swift; sourceTree = "<group>"; };
 		C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasonsViewModel.swift; sourceTree = "<group>"; };
 		C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedShipmentModel.swift; sourceTree = "<group>"; };
@@ -1111,7 +1111,7 @@
 				FAEADEA92884D3D0004535CE /* SFUIText-Semibold.ttf */,
 				FAEADEA52884D3CF004535CE /* SFUIText-SemiboldItalic.ttf */,
 				C8DB51A8288CB45F004521C8 /* FontsExtension.swift */,
-				C81FA2AD28AD275E0012D823 /* FontTest.swift */,
+				C81FA2AD28AD275E0012D823 /* ImagePreviewer.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1288,7 +1288,7 @@
 				C8C9496E28898D030057EE7E /* ShipmentsView.swift in Sources */,
 				C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */,
 				C8D82A3928A46C6E0081E620 /* DateFilterView.swift in Sources */,
-				C81FA2AE28AD275E0012D823 /* FontTest.swift in Sources */,
+				C81FA2AE28AD275E0012D823 /* ImagePreviewer.swift in Sources */,
 				C0125B0C289935C5004B65E5 /* AuthServices.swift in Sources */,
 				C8E4C30B288F0429005FDB7C /* NewPasswordView.swift in Sources */,
 				C870F89828901D9100CCFD9B /* OnBoardingView.swift in Sources */,

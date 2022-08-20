@@ -10,6 +10,10 @@ import SwiftUI
 struct HeaderView: View {
     @State var active = false
     @State var destination = AnyView(NotificationsView())
+    
+    @State var Showimage = false
+    @State var imageUrl = ""
+
     var body: some View {
         HStack {
 //            Image("face_vector")
@@ -17,6 +21,13 @@ struct HeaderView: View {
             
             AsyncImage(url: URL(string: Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/"))) { image in
                 image.resizable()
+                    .onTapGesture(perform: {
+                        imageUrl = Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/")
+                        Showimage = true
+                    })
+                    .sheet(isPresented: $Showimage){
+                        ImagePreviewer(IsPresented: $Showimage, imageUrl: $imageUrl)
+                    }
             } placeholder: {
                 Image("face_vector")
             }
@@ -55,6 +66,7 @@ struct HeaderView: View {
                 Image("ic_big_notification")
             }
         }
+       
 
         .padding()
         NavigationLink(destination: destination,isActive:$active , label: {
