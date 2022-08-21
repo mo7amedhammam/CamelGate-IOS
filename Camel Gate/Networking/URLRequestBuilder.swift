@@ -55,7 +55,7 @@ extension URLRequestBuilder {
 //        if let token = UserDefaults.standard.string(forKey: "auth_token") {
 //            header["jwt"] = "\(token)"
 //        }
-        header["Authorization"] = Helper.getAccessToken() 
+        header["Authorization"] = Helper.getAccessToken()
 //        header["Accept-Language"] = "ar"
         return header
     }

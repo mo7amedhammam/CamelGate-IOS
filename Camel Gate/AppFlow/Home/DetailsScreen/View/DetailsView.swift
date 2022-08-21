@@ -360,6 +360,13 @@ struct DetailsView: View {
     // Alert with no internet connection
         .alert(isPresented: $detailsVM.isAlert, content: {
             Alert(title: Text(detailsVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                if detailsVM.activeAlert == .unauthorized{
+                    Helper.logout()
+                    LoginManger.removeUser()
+//                    destination = AnyView(SignInView())
+//                    active = true
+                }
+
                 detailsVM.isAlert = false
             }))
         })

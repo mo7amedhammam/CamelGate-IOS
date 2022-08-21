@@ -54,7 +54,7 @@ class ChangePasswordViewModel: ObservableObject {
     func ChangePassword(){
         let params : [String : Any] =
         [
-            "id"                              : 8,
+//            "id"                              : 8,
             "currentPassword"               : CurrentPassword ,
             "newPassword"                    : NewPassword
         ]

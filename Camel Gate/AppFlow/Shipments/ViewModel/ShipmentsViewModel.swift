@@ -19,7 +19,7 @@ class ShipmentsViewModel : ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
-
+    
     
     //------- output
     @Published var validations: InvalidFields = .none
@@ -40,18 +40,18 @@ class ShipmentsViewModel : ObservableObject {
         } receiveValue: { [self](modeldata) in
             nodata = false
             withAnimation{
-        publishedUserLogedInModel = []
+                publishedUserLogedInModel = []
             }
             DispatchQueue.main.async {
                 if modeldata.data?.isEmpty ?? false || modeldata.data == []{
                     nodata = true
                 }else{
                     withAnimation{
-                publishedUserLogedInModel = modeldata.data ?? []
+                        publishedUserLogedInModel = modeldata.data ?? []
                         shipmentscount = modeldata.data?.count ?? 0
                     }
-                        UserCreated = true
-                print(publishedUserLogedInModel )
+                    UserCreated = true
+                    print(publishedUserLogedInModel )
                 }
             }
         }.store(in: &cancellables)
@@ -65,7 +65,7 @@ class ShipmentsViewModel : ObservableObject {
             return BGServicesManager.CallApi(self.Services,HomeServices.appliedShipMents)
         }.done({ [self] response in
             let result = response as! Response
-//            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            //            guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<[ShipmentModel]> = try BGDecoder.decode(data: result.data )
             if data.success == true {
                 DispatchQueue.main.async {
@@ -73,7 +73,7 @@ class ShipmentsViewModel : ObservableObject {
                     print("data is ")
                     print(data)
                     print(data.data ?? [])
-//                    UserCreated = true
+                    //                    UserCreated = true
                 }
             }else {
                 if data.messageCode == 400{
@@ -99,7 +99,7 @@ class ShipmentsViewModel : ObservableObject {
             return BGServicesManager.CallApi(self.Services,HomeServices.upComingShipments)
         }.done({ [self] response in
             let result = response as! Response
-//            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            //            guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<[ShipmentModel]> = try BGDecoder.decode(data: result.data )
             if data.success == true {
                 DispatchQueue.main.async {
@@ -107,7 +107,7 @@ class ShipmentsViewModel : ObservableObject {
                     print("data is ")
                     print(data)
                     print(data.data ?? [])
-//                    UserCreated = true
+                    //                    UserCreated = true
                 }
             }else {
                 if data.messageCode == 400{
@@ -128,31 +128,28 @@ class ShipmentsViewModel : ObservableObject {
     }
     func GetCurrentShipment(){
         print("here is current")
-
+        
         firstly { () -> Promise<Any> in
             isLoading = true
             return BGServicesManager.CallApi(self.Services,HomeServices.currentShipments)
         }.done({ [self] response in
             let result = response as! Response
-//            guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<[ShipmentModel]> = try BGDecoder.decode(data: result.data )
-            if data.success == true {
-                DispatchQueue.main.async {
-                    passthroughModelSubject.send(data)
-                    print("data is ")
-                    print(data)
-                    print(data.data ?? [])
-//                    UserCreated = true
-                }
-            }else {
-                if data.messageCode == 400{
-                    message = data.message ?? "error 400"
-                }else if data.messageCode == 401{
-                    message = "unauthorized"
-                }else{
-                    message = "Bad Request"
-                }
+            
+            if result.statusCode == 401 {
+                activeAlert = .unauthorized
+                message = "You_have_To_Login_Again".localized(language)
                 isAlert = true
+            }else{
+                //            guard BGNetworkHelper.validateResponse(response: result) else{return}
+                let data : BaseResponse<[ShipmentModel]> = try BGDecoder.decode(data: result.data )
+                if data.messageCode == 200 {
+                    DispatchQueue.main.async {
+                        passthroughModelSubject.send(data)
+                    }
+                }else{
+                    message = data.message ?? "there is an error"
+                    isAlert = true
+                }
             }
         }).ensure { [self] in
             isLoading = false

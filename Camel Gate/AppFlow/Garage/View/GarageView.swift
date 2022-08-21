@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct GarageView: View {
     var language = LocalizationService.shared.language
 
@@ -26,15 +27,24 @@ struct GarageView: View {
                 .padding(.top,140)
                 .padding(.horizontal,10)
 
-            
             TitleBar(Title: "Garage_Shipments".localized(language), navBarHidden: true, trailingButton: .filterButton, applyStatus: Optional.none, trailingAction: {
                 showFilter.toggle()
             })
         }
+        .overlay(
+           ZStack{
+               if ApprovedShipmentVM.nodata == true {
+                   Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
+                       .multilineTextAlignment(.center)
+                       .frame(width:UIScreen.main.bounds.width-10,alignment:.center)
+               }
+           }
+       )
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
         .onAppear(perform: {
             selectedShipmentId = 0
+            ApprovedShipmentVM.GetFilteredShipments()
         })
         .onChange(of: selectedShipmentId, perform: {newval in
             if selectedShipmentId == newval{
@@ -46,8 +56,27 @@ struct GarageView: View {
             }
         })
 
+        .overlay(content: {
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
+        })
+
         NavigationLink(destination: destination,isActive:$active , label: {
         })
+        
+        // Alert with no internet connection
+            .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
+                Alert(title: Text(ApprovedShipmentVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    if ApprovedShipmentVM.activeAlert == .unauthorized{
+                        Helper.logout()
+                        LoginManger.removeUser()
+                        destination = AnyView(SignInView())
+                        active = true
+                    }
+                    ApprovedShipmentVM.isAlert = false
+                }))
+            })
+
     }
 }
 

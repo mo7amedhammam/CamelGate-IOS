@@ -113,8 +113,10 @@ class ApprovedShipmentViewModel: ObservableObject {
         }).ensure { [self] in
             isLoading = false
         }.catch { [self] (error) in
-            isAlert = true
-            message = "\(error)"
+//            isAlert = true
+//            message = "\(error)"
+            isLoading = false
+
         }
     }
     
@@ -148,31 +150,34 @@ class ApprovedShipmentViewModel: ObservableObject {
             return BGServicesManager.CallApi(self.authServices,HomeServices.HomeShipmments(parameters: params))
         }.done({ [self] response in
             let result = response as! Response
-            
+            print(result)
+            if result.statusCode == 401{
+                activeAlert = .unauthorized
+                message = "You_have_To_Login_Again".localized(language)
+                isAlert = true
+            }
+            else{
 //                        guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<[ShipmentModel]> = try BGDecoder.decode(data: result.data )
-            print(result)
             print(data)
-            if data.success == true {
+                if data.messageCode == 200 {
                 DispatchQueue.main.async {
                     passToFilteredShipmentsObject.send(data)
                 }
             }else {
-                if data.messageCode == 400{
                     message = data.message ?? "error 400"
-                }else if data.messageCode == 401{
-                    message = "unauthorized"
-                }else{
-                    message = "Bad Request"
-                }
                 isAlert = true
             }
-            
+            }
         }).ensure { [self] in
             isLoading = false
         }.catch { [self] (error) in
-            isAlert = true
-            message = "\(error)"
+            print(error)
+            print(error.localizedDescription)
+//            isAlert = true
+//            message = "\(error)"
+            isLoading = false
+
         }
     }
     
@@ -213,8 +218,10 @@ class ApprovedShipmentViewModel: ObservableObject {
         }).ensure { [self] in
             isLoading = false
         }.catch { [self] (error) in
-            isAlert = true
-            message = "\(error)"
+//            isAlert = true
+//            message = "\(error)"
+            isLoading = false
+
         }
     }
     

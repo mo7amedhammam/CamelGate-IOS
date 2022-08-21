@@ -64,6 +64,7 @@ struct HomeView: View {
                     }
                 }
             )
+                
             }.padding(.top,30)
             
             VStack {
@@ -109,11 +110,18 @@ struct HomeView: View {
             )
             .overlay(content: {
                 // showing loading indicator
-                ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
+//                ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
+AnimatingGif(isPresented: $ApprovedShipmentVM.isLoading)
             })
         // Alert with no internet connection
             .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
                 Alert(title: Text(ApprovedShipmentVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    if ApprovedShipmentVM.activeAlert == .unauthorized{
+                        Helper.logout()
+                        LoginManger.removeUser()
+                        destination = AnyView(SignInView())
+                        active = true
+                    }
                     ApprovedShipmentVM.isAlert = false
                 }))
             })
@@ -184,7 +192,9 @@ struct ExtractedView: View {
                     }
                 }
             }
+           
         }
+        
         .onChange(of: ApprovedShipmentVM.fromCityName, perform: {_ in
             ApprovedShipmentVM.GetFilteredShipments()
         })

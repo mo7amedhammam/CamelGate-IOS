@@ -130,6 +130,11 @@ class ShipmentDetailsViewModel : ObservableObject {
             return BGServicesManager.CallApi(self.Services,HomeServices.CancelOffer(parameters: param))
         }.done({ [self] response in
             let result = response as! Response
+            if result.statusCode == 401 {
+                activeAlert = .unauthorized
+                message = "You_have_To_Login_Again".localized(language)
+                isAlert = true
+            }else{
             guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<CancelOfferModel> = try BGDecoder.decode(data: result.data )
             if data.success == true {
@@ -138,14 +143,15 @@ class ShipmentDetailsViewModel : ObservableObject {
                     OfferCanceled = true
                 }
             }else {
-                if data.messageCode == 400{
-                    message = data.message ?? "error 400"
-                }else if data.messageCode == 401{
-                    message = data.message ?? "unauthorized"
-                }else{
+//                if data.messageCode == 400{
+//                    message = data.message ?? "error 400"
+//                }else if data.messageCode == 401{
+//                    message = data.message ?? "unauthorized"
+//                }else{
                     message = data.message ?? "Bad Request"
-                }
+//                }
                 isAlert = true
+            }
             }
         }).ensure { [self] in
             isLoading = false

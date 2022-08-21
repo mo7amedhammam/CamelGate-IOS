@@ -177,6 +177,11 @@ class DriverInfoViewModel: ObservableObject {
             return BGServicesManager.CallApi(self.authServices,AuthServices.GetDriverinfo)
         }.done({ [self] response in
             let result = response as! Response
+            if result.statusCode == 401 {
+                activeAlert = .unauthorized
+                message = "You_have_To_Login_Again".localized(language)
+                isAlert = true
+            }else{
 //                        guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<DriverInfoModel> = try BGDecoder.decode(data: result.data )
             print(result)
@@ -211,16 +216,16 @@ class DriverInfoViewModel: ObservableObject {
 //                    }
                 
             }else {
-                if data.messageCode == 400{
-                    message = data.message ?? "error 400"
-                }else if data.messageCode == 401{
-                    message = "unauthorized"
-                }else{
-                    message = "Bad Request"
-                }
+//                if data.messageCode == 400{
+//                    message = data.message ?? "error 400"
+//                }else if data.messageCode == 401{
+//                    message = "unauthorized"
+//                }else{
+                message = data.message ?? "Bad Request"
+//                }
                 isAlert = true
             }
-            
+            }
         }).ensure { [self] in
             isLoading = false
         }.catch { [self] (error) in

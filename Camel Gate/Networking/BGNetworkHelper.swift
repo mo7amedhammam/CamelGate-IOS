@@ -34,6 +34,7 @@ struct BGNetworkHelper {
         guard response.statusCode == Constants.success else{
             if response.statusCode == 401 {
 //                BGLoginManger.logout()
+                return false
             }else if response.statusCode == 400 {
                 return true
             }

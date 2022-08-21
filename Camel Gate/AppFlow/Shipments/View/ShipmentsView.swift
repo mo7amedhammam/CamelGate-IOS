@@ -106,6 +106,23 @@ struct ShipmentsView: View {
         
         NavigationLink(destination: destination,isActive:$active , label: {
         })
+            .overlay(content: {
+                // showing loading indicator
+//                ActivityIndicatorView(isPresented: $shipmentsViewModel.isLoading)
+                AnimatingGif(isPresented: .constant(true))
+            })
+        // Alert with no internet connection
+            .alert(isPresented: $shipmentsViewModel.isAlert, content: {
+                Alert(title: Text(shipmentsViewModel.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    if shipmentsViewModel.activeAlert == .unauthorized{
+                        Helper.logout()
+                        LoginManger.removeUser()
+                        destination = AnyView(SignInView())
+                        active = true
+                    }
+                    shipmentsViewModel.isAlert = false
+                }))
+            })
         
     }
 }

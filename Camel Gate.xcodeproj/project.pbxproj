@@ -16,6 +16,7 @@
 		C0125B142899384C004B65E5 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B132899384C004B65E5 /* ResponseModel.swift */; };
 		C0125B162899390B004B65E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B152899390B004B65E5 /* Constants.swift */; };
 		C0125B1828993991004B65E5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B1728993991004B65E5 /* Decoder.swift */; };
+		C812BE9528B268D4002EED9B /* App-Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = C812BE9428B268D4002EED9B /* App-Loading.gif */; };
 		C81B21FA28A3B17500816ECF /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21F928A3B17500816ECF /* CityModel.swift */; };
 		C81B21FC28A3B19100816ECF /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21FB28A3B19100816ECF /* CityViewModel.swift */; };
 		C81FA28628AD12F20012D823 /* GESSUniqueBold-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */; };
@@ -144,6 +145,7 @@
 		C0125B132899384C004B65E5 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		C0125B152899390B004B65E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C0125B1728993991004B65E5 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
+		C812BE9428B268D4002EED9B /* App-Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "App-Loading.gif"; sourceTree = "<group>"; };
 		C81B21F928A3B17500816ECF /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		C81B21FB28A3B19100816ECF /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
 		C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GESSUniqueBold-Bold.otf"; sourceTree = "<group>"; };
@@ -992,6 +994,7 @@
 			children = (
 				FAEADEA02884D3C0004535CE /* Fonts */,
 				FAEADE422884BDC9004535CE /* Assets.xcassets */,
+				C812BE9428B268D4002EED9B /* App-Loading.gif */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1194,6 +1197,7 @@
 				FAEADEB62884D3D0004535CE /* SFUIText-RegularItalic.ttf in Resources */,
 				FAEADEB12884D3D0004535CE /* SFUIText-SemiboldItalic.ttf in Resources */,
 				FAEADEB72884D3D0004535CE /* SFUIText-Bold.ttf in Resources */,
+				C812BE9528B268D4002EED9B /* App-Loading.gif in Resources */,
 				C8C949632889791F0057EE7E /* Localizable.strings in Resources */,
 				FAEADEB32884D3D0004535CE /* SFUIText-MediumItalic.ttf in Resources */,
 				FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */,

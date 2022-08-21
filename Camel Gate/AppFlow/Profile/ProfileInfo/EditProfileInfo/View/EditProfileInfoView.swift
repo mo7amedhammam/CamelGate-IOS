@@ -419,6 +419,13 @@ struct EditProfileInfoView: View {
         // Alert with no internet connection
             .alert(isPresented: $profileVM.isAlert, content: {
                 Alert(title: Text(profileVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    if profileVM.activeAlert == .unauthorized{
+                        Helper.logout()
+                        LoginManger.removeUser()
+                        destination = AnyView(SignInView())
+                        active = true
+                    }
+
                     profileVM.isAlert = false
                 }))
             })
