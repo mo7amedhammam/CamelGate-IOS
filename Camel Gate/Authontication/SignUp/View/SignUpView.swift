@@ -123,9 +123,12 @@ struct SignUpView: View {
                 Spacer()
             }
         })
+//        .overlay(content: {
+//            // showing loading indicator
+//            ActivityIndicatorView(isPresented: $SignUpVM.isLoading)
+//        })
         .overlay(content: {
-            // showing loading indicator
-            ActivityIndicatorView(isPresented: $SignUpVM.isLoading)
+            AnimatingGif(isPresented: $SignUpVM.isLoading)
         })
         
         NavigationLink(destination: EditProfileInfoView(taskStatus: .create, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.UserCreated , label: {

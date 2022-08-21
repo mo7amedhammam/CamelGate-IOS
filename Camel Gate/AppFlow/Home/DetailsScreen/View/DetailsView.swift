@@ -340,11 +340,13 @@ struct DetailsView: View {
                
         })
         
+//        .overlay(content: {
+//            // showing loading indicator
+//            ActivityIndicatorView(isPresented: $detailsVM.isLoading)
+//        })
         .overlay(content: {
-            // showing loading indicator
-            ActivityIndicatorView(isPresented: $detailsVM.isLoading)
+            AnimatingGif(isPresented: $detailsVM.isLoading)
         })
-
         .overlay(
             VStack{
                 if ShowMapRedirector{

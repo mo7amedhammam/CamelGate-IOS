@@ -106,10 +106,12 @@ struct ShipmentsView: View {
         
         NavigationLink(destination: destination,isActive:$active , label: {
         })
-            .overlay(content: {
-                // showing loading indicator
+//            .overlay(content: {
+//                // showing loading indicator
 //                ActivityIndicatorView(isPresented: $shipmentsViewModel.isLoading)
-                AnimatingGif(isPresented: .constant(true))
+//            })
+            .overlay(content: {
+                AnimatingGif(isPresented: $shipmentsViewModel.isLoading)
             })
         // Alert with no internet connection
             .alert(isPresented: $shipmentsViewModel.isAlert, content: {

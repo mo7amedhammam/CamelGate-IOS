@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Lottie",
+        "repositoryURL": "https://github.com/airbnb/lottie-ios",
+        "state": {
+          "branch": null,
+          "revision": "4ca8023b820b7d5d5ae1e2637c046e3dab0f45d0",
+          "version": "3.4.2"
+        }
+      },
+      {
         "package": "SwiftUICharts",
         "repositoryURL": "https://github.com/willdale/SwiftUICharts",
         "state": {

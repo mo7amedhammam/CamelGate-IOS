@@ -142,9 +142,12 @@ struct ChangePasswordView: View {
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         
         
+//        .overlay(content: {
+//            // showing loading indicator
+//            ActivityIndicatorView(isPresented: $ChangePasswordVM.isLoading)
+//        })
         .overlay(content: {
-            // showing loading indicator
-            ActivityIndicatorView(isPresented: $ChangePasswordVM.isLoading)
+            AnimatingGif(isPresented: $ChangePasswordVM.isLoading)
         })
     // Alert with no internet connection
         .alert(isPresented: $ChangePasswordVM.isAlert, content: {

@@ -122,11 +122,13 @@ struct SignInView: View {
                     }
                 })
             
+//                .overlay(content: {
+//                    // showing loading indicator
+//                    ActivityIndicatorView(isPresented: $SignInVM.isLoading)
+//
+//                })
                 .overlay(content: {
-                    // showing loading indicator
-                    ActivityIndicatorView(isPresented: $SignInVM.isLoading)
                     AnimatingGif(isPresented: $SignInVM.isLoading)
-
                 })
             // Alert with no internet connection
                 .alert(isPresented: $SignInVM.isAlert, content: {

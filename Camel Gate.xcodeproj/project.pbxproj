@@ -28,6 +28,8 @@
 		C82EC8F7289EACC90042A27F /* ApprovedShipmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82EC8F6289EACC90042A27F /* ApprovedShipmentViewModel.swift */; };
 		C82FD99D28AD2F75003DC739 /* GESSUniqueLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */; };
 		C82FD99F28AD3190003DC739 /* MyriadVariableConcept-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */; };
+		C83C4D4A28B2949300208751 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C83C4D4928B2949300208751 /* Lottie */; };
+		C83C4D4C28B2955700208751 /* App-Loading-File.json in Resources */ = {isa = PBXBuildFile; fileRef = C83C4D4B28B2955700208751 /* App-Loading-File.json */; };
 		C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB62892AEA000B803FD /* ChatHeader.swift */; };
 		C845FAB92892B99000B803FD /* XButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB82892B99000B803FD /* XButton.swift */; };
 		C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FABC2892BB6D00B803FD /* ChatsListView.swift */; };
@@ -157,6 +159,7 @@
 		C82EC8F6289EACC90042A27F /* ApprovedShipmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedShipmentViewModel.swift; sourceTree = "<group>"; };
 		C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GESSUniqueLight.otf; sourceTree = "<group>"; };
 		C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadVariableConcept-Roman.otf"; sourceTree = "<group>"; };
+		C83C4D4B28B2955700208751 /* App-Loading-File.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "App-Loading-File.json"; sourceTree = "<group>"; };
 		C845FAB62892AEA000B803FD /* ChatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeader.swift; sourceTree = "<group>"; };
 		C845FAB82892B99000B803FD /* XButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButton.swift; sourceTree = "<group>"; };
 		C845FABC2892BB6D00B803FD /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
@@ -269,6 +272,7 @@
 			files = (
 				FBEC1DE8FACEF97DC7759D67 /* Pods_Camel_Gate.framework in Frameworks */,
 				FA5DBAE3289B4EE700C62105 /* SwiftUICharts in Frameworks */,
+				C83C4D4A28B2949300208751 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -994,6 +998,7 @@
 			children = (
 				FAEADEA02884D3C0004535CE /* Fonts */,
 				FAEADE422884BDC9004535CE /* Assets.xcassets */,
+				C83C4D4B28B2955700208751 /* App-Loading-File.json */,
 				C812BE9428B268D4002EED9B /* App-Loading.gif */,
 			);
 			path = Resources;
@@ -1139,6 +1144,7 @@
 			name = "Camel Gate";
 			packageProductDependencies = (
 				FA5DBAE2289B4EE700C62105 /* SwiftUICharts */,
+				C83C4D4928B2949300208751 /* Lottie */,
 			);
 			productName = "Camel Gate";
 			productReference = FAEADE3B2884BDC7004535CE /* Camel Gate.app */;
@@ -1171,6 +1177,7 @@
 			mainGroup = FAEADE322884BDC7004535CE;
 			packageReferences = (
 				FA5DBAE1289B4EE700C62105 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+				C83C4D4828B2949300208751 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = FAEADE3C2884BDC7004535CE /* Products */;
 			projectDirPath = "";
@@ -1191,6 +1198,7 @@
 				FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */,
 				FAEADEB42884D3D0004535CE /* SFUIText-Regular.ttf in Resources */,
 				FAEADEB02884D3D0004535CE /* SFUIText-Light.ttf in Resources */,
+				C83C4D4C28B2955700208751 /* App-Loading-File.json in Resources */,
 				FAEADEAE2884D3D0004535CE /* SFUIText-Medium.ttf in Resources */,
 				FAEADEAF2884D3D0004535CE /* SFUIText-BoldItalic.ttf in Resources */,
 				FAEADEB22884D3D0004535CE /* SFUIText-Heavy.ttf in Resources */,
@@ -1583,6 +1591,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C83C4D4828B2949300208751 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 3.4.2;
+			};
+		};
 		FA5DBAE1289B4EE700C62105 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/willdale/SwiftUICharts";
@@ -1594,6 +1610,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C83C4D4928B2949300208751 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C83C4D4828B2949300208751 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		FA5DBAE2289B4EE700C62105 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FA5DBAE1289B4EE700C62105 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;

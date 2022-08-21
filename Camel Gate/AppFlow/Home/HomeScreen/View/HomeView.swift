@@ -111,7 +111,7 @@ struct HomeView: View {
             .overlay(content: {
                 // showing loading indicator
 //                ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
-AnimatingGif(isPresented: $ApprovedShipmentVM.isLoading)
+                AnimatingGif(isPresented: $ApprovedShipmentVM.isLoading)
             })
         // Alert with no internet connection
             .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {

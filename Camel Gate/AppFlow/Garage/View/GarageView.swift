@@ -56,9 +56,13 @@ struct GarageView: View {
             }
         })
 
+//        .overlay(content: {
+//            // showing loading indicator
+//            ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
+//        })
         .overlay(content: {
-            // showing loading indicator
-            ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
+
+            AnimatingGif(isPresented: $ApprovedShipmentVM.isLoading)
         })
 
         NavigationLink(destination: destination,isActive:$active , label: {
