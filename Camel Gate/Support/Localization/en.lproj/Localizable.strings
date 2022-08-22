@@ -6,4 +6,64 @@
   
 */
 
-"settings_language" = "Language";
+// MARK: -- Profile tab
+"Profile_info" = "Profile info";
+"Rating_and_Reviews" = "Rating and Reviews";
+"Change_Password" = "Change Password";
+"Change_Language" = "Change Language";
+"English" = "English";
+"Arabic" = "العربية";
+"Get_in_Touch" = "Get in Touch";
+"Help" = "Help";
+"Logout" = "Logout";
+"you_signed_out" = "you signed out";
+"OK" = "OK";
+
+//Mark: -- edit profile
+"Driver_Info" = "Driver Info";
+"BirthDate" = "BirthDate";
+"Gender" = "Gender";
+"Male" = "Male";
+"Female" = "Female";
+"resident" = "resident";
+"Citizen" = "Citizen";
+"Resident" = "Resident";
+"Border" = "Border";
+"Citizen_Id" = "Citizen Id";
+"Resident_Id" = "Resident Id";
+"Border_Id" = "Border Id";
+"Id" = "Id";
+"Email" = "Email";
+"Driving_Licence" = "Driving Licence";
+"Licence_Expiration_Date" = "Licence Expiration Date";
+"Truck_Info" = "Truck Info";
+"Truck_Type" = "Truck Type";
+"Manfacturer" = "Manfacturer";
+"Model" = "Model";
+"AXE_Number" = "AXE Number";
+"Plate_Number" = "Plate Number";
+"License_Number" = "License Number";
+"Start_Date" = "Start Date";
+"Expiration_Date" = "Expiration Date";
+"I_agree_all" = "I agree all";
+"Terms_&_Conditions" = "Terms & Conditions";
+"Create_an_account" = "Create an account";
+"Profile_info" = "Profile info";
+"Create_account" = "Create account";
+"Save_Changes" = "Save Changes";
+"Choose_Image_From" = "Choose Image From";
+"photo_Library" = "photo Library";
+"Camera" = "Camera";
+"Cancel" = "Cancel";
+
+
+//MarK: -- change password --
+"Change_Password" = "Change Password";
+"Password_Changed" = "Password Changed";
+"You_just_changed_your_password" = "You just changed your password";
+"Passwords_does_not_match" = "Passwords does not match";
+"Please_enter_the_new_password_\nand_remember_that_it_needs_to_be_\ndifferent_from_the_last_one" = "Please enter the new password \nand remember that it needs to be \ndifferent from the last one";
+"Current_Password" = "Current Password";
+"new_Password" = "new Password";
+"Confirm_new_Password" = "Confirm new Password";
+"Confirm" = "Confirm";

@@ -133,7 +133,7 @@ struct DetailsView: View {
                                 Text("Estimated Time").font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_star")
-//                                    Text("\(detailsVM.publishedUserLogedInModel.estimateTime?.values .joined(separator: " - ") ?? []) ")
+                                    Text(detailsVM.publishedUserLogedInModel.estimateTime ?? "2-3")
                                         .font(Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }

@@ -6,4 +6,52 @@
   
 */
 
-"settings_language" = "اللغة";
+// MARK: -- Profile tab
+"Profile_info" = "بيانات الحساب";
+"Rating_and_Reviews" = "ريڤيوهات وتقييم";
+"Change_Password" = "تغيير الرقم السرى";
+"Change_Language" = "تغيير اللغة";
+"English" = "الإنجليزيه";
+"Arabic" = "العربية";
+"Get_in_Touch" = "تواصل معنا";
+"Help" = "مساعده";
+"Logout" = "تسجيل خروج";
+"you_signed_out" = "تم تسجيل خروجك";
+"OK" = "موافق";
+
+//Mark: -- edit profile
+"Driver_Info" = "بيانات السائق";
+"BirthDate" = "تاريخ الميلاد";
+"Gender" = "النوع";
+"Male" = "ذكر";
+"Female" = "أنثى";
+"resident" = "الإقامة";
+"Citizen" = "مواطن";
+"Resident" = "مقيم";
+"Border" = "حدود";
+"Citizen_Id" = "رقم المواطنة";
+"Resident_Id" = "رقم الاقامة";
+"Border_Id" = "رقم الحدود";
+"Id" = "الرقم";
+"Email" = "البريد الإلكترونى";
+"Driving_Licence" = "رخصة القيادة";
+"Licence_Expiration_Date" = "تاريخ انتهاء الرخصة";
+"Truck_Info" = "بيانات الشاحنة";
+"Truck_Type" = "نوع الشاحنة";
+"Manfacturer" = "المًصنِع";
+"Model" = "الموديل";
+"AXE_Number" = "رقم الشاسية";
+"Plate_Number" = "رقم اللوحة";
+"License_Number" = "رقم الرخصة";
+"Start_Date" = "تاريخ الاصدار";
+"Expiration_Date" = "تاريخ الانتهاء";
+"I_agree_all" = "أوافق على كل";
+"Terms_&_Conditions" = "الشروط والاحكام";
+"Create_an_account" = "إنشاء حساب";
+"Profile_info" = "بيانات الحساب";
+"Create_account" = "انشئ حساب";
+"Save_Changes" = "حفظ التعديلات";
+"Choose_Image_From" = "إختيار صورة من";
+"photo_Library" = "معرض الصور";
+"Camera" = "إلتقاط صورة";
+"Cancel" = "إلغاء";

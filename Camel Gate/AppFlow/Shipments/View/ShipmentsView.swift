@@ -92,6 +92,9 @@ struct ShipmentsView: View {
             })
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+        .overlay(content: {
+            AnimatingGif(isPresented: $shipmentsViewModel.isLoading)
+        })
 
         
         .onAppear(perform: {
@@ -106,13 +109,7 @@ struct ShipmentsView: View {
         
         NavigationLink(destination: destination,isActive:$active , label: {
         })
-//            .overlay(content: {
-//                // showing loading indicator
-//                ActivityIndicatorView(isPresented: $shipmentsViewModel.isLoading)
-//            })
-            .overlay(content: {
-                AnimatingGif(isPresented: $shipmentsViewModel.isLoading)
-            })
+
         // Alert with no internet connection
             .alert(isPresented: $shipmentsViewModel.isAlert, content: {
                 Alert(title: Text(shipmentsViewModel.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {

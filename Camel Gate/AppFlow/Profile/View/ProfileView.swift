@@ -150,7 +150,7 @@ struct ProfileView: View {
                             }
                             Group{
                                 Button(action: {
-                                    Helper.MakePhoneCall(PhoneNumber: "0221256299")
+                                    Helper.MakePhoneCall(PhoneNumber: "00000000")
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "phone.fill")

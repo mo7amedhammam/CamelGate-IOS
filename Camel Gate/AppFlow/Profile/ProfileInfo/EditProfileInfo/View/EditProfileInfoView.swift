@@ -112,9 +112,9 @@ struct EditProfileInfoView: View {
                                 .disabled(true)
                                 .overlay(content: {
                                     Menu {
-                                        Button("Citizen Id", action: {profileVM.RedisentOptions = 1 })
-                                        Button("Resident Id", action: {profileVM.RedisentOptions = 2})
-                                        Button("Border Id", action: {profileVM.RedisentOptions = 3})
+                                        Button("Citizen_Id", action: {profileVM.RedisentOptions = 1 })
+                                        Button("Resident_Id", action: {profileVM.RedisentOptions = 2})
+                                        Button("Border_Id", action: {profileVM.RedisentOptions = 3})
                                         
                                     } label: {
                                         HStack{
@@ -136,7 +136,7 @@ struct EditProfileInfoView: View {
                             .overlay(content: {
                                 HStack{
                                     DatePicker("", selection: $profileVM.LicenseExpireDate, displayedComponents: [.date])
-                                        .opacity(0.08)
+                                        .opacity(0.04)
                                     Spacer()
                                     Image(systemName: "chevron.right")
                                 }.padding(.horizontal)
@@ -234,7 +234,7 @@ struct EditProfileInfoView: View {
                                 .overlay(content: {
                                     HStack{
                                         DatePicker("", selection: $profileVM.TruckLicenseIssueDate, displayedComponents: [.date])
-                                            .opacity(0.08)
+                                            .opacity(0.04)
                                         Spacer()
                                         Image(systemName: "chevron.right")
                                     }.padding(.horizontal)
@@ -245,7 +245,7 @@ struct EditProfileInfoView: View {
                                 .overlay(content: {
                                     HStack{
                                         DatePicker("", selection: $profileVM.TruckLicenseExpirationDate, displayedComponents: [.date])
-                                            .opacity(0.08)
+                                            .opacity(0.04)
                                         Spacer()
                                         Image(systemName: "chevron.right")
                                     }.padding(.horizontal)
@@ -396,11 +396,11 @@ struct EditProfileInfoView: View {
         }
             })
         //MARK: -------- imagePicker From Camera and Library ------
-            .confirmationDialog("Choose Image From ?", isPresented: $showImageSheet) {
-                Button("photo Library") { self.imgsource = "Library";   self.showImageSheet = false; self.startPicking = true }
-                Button("Camera") {self.imgsource = "Cam" ;    self.showImageSheet = false; self.startPicking = true}
-                Button("Cancel", role: .cancel) { }
-            } message: {Text("Select Image From")}
+            .confirmationDialog("Choose_Image_From".localized(language), isPresented: $showImageSheet) {
+                Button("photo_Library".localized(language)) { self.imgsource = "Library";   self.showImageSheet = false; self.startPicking = true }
+                Button("Camera".localized(language)) {self.imgsource = "Cam" ;    self.showImageSheet = false; self.startPicking = true}
+                Button("Cancel".localized(language), role: .cancel) { }
+            } message: {Text("Choose_Image_From".localized(language))}
         
             .sheet(isPresented: $startPicking) {
                 if imgsource == "Library"{

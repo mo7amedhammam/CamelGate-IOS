@@ -48,15 +48,16 @@ struct AnimatingGif: View {
      var body: some View {
          if isPresented ?? false{
             ZStack {
+                
                 ZStack{
 //                    GifImage( name: "App-Loading")
                     
-                    LottieView(lottieFile: "App-Loading-File")
-                        .frame(width: 300, height: 300)
+                    LottieView(lottieFile: "App-Loading2")
+                        .scaleEffect(0.7)
+//                        .frame(width: 200, height: 200)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity) // 1
                 .background(Color.black.opacity(0.1))
-
             }
          }
     }

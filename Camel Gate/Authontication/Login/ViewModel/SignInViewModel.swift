@@ -88,6 +88,7 @@ class SignInViewModel: ObservableObject {
     func Login(){
         let params : [String : Any] =
         [
+            "roleId"                       : 8,
             "mobile"                       : phoneNumber ,
             "password"                    : password
         ]
@@ -119,10 +120,9 @@ class SignInViewModel: ObservableObject {
             }
 
 
-        }).ensure { [self] in
-            isLoading = false
+        }).ensure {
+//            isLoading = false
 //            message = "success"
-
         }.catch { [self] (error) in
             isAlert = true
             message = "\(error)"

@@ -16,7 +16,6 @@
 		C0125B142899384C004B65E5 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B132899384C004B65E5 /* ResponseModel.swift */; };
 		C0125B162899390B004B65E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B152899390B004B65E5 /* Constants.swift */; };
 		C0125B1828993991004B65E5 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0125B1728993991004B65E5 /* Decoder.swift */; };
-		C812BE9528B268D4002EED9B /* App-Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = C812BE9428B268D4002EED9B /* App-Loading.gif */; };
 		C81B21FA28A3B17500816ECF /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21F928A3B17500816ECF /* CityModel.swift */; };
 		C81B21FC28A3B19100816ECF /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B21FB28A3B19100816ECF /* CityViewModel.swift */; };
 		C81FA28628AD12F20012D823 /* GESSUniqueBold-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */; };
@@ -29,7 +28,6 @@
 		C82FD99D28AD2F75003DC739 /* GESSUniqueLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */; };
 		C82FD99F28AD3190003DC739 /* MyriadVariableConcept-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */; };
 		C83C4D4A28B2949300208751 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C83C4D4928B2949300208751 /* Lottie */; };
-		C83C4D4C28B2955700208751 /* App-Loading-File.json in Resources */ = {isa = PBXBuildFile; fileRef = C83C4D4B28B2955700208751 /* App-Loading-File.json */; };
 		C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB62892AEA000B803FD /* ChatHeader.swift */; };
 		C845FAB92892B99000B803FD /* XButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB82892B99000B803FD /* XButton.swift */; };
 		C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FABC2892BB6D00B803FD /* ChatsListView.swift */; };
@@ -55,6 +53,7 @@
 		C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */; };
 		C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21428915519002D115A /* KeyboardHandler.swift */; };
 		C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21828917AC1002D115A /* ChangeLanguageView.swift */; };
+		C87CAC7228B3CBB100A4F8EC /* App-Loading2.json in Resources */ = {isa = PBXBuildFile; fileRef = C87CAC7128B3CBB100A4F8EC /* App-Loading2.json */; };
 		C88F948328969317008B6AD0 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F948228969317008B6AD0 /* SignUpView.swift */; };
 		C88F94852896946D008B6AD0 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F94842896946D008B6AD0 /* GradientButton.swift */; };
 		C88F94882896C67D008B6AD0 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F94872896C67D008B6AD0 /* SignInView.swift */; };
@@ -147,7 +146,6 @@
 		C0125B132899384C004B65E5 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		C0125B152899390B004B65E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C0125B1728993991004B65E5 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
-		C812BE9428B268D4002EED9B /* App-Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "App-Loading.gif"; sourceTree = "<group>"; };
 		C81B21F928A3B17500816ECF /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		C81B21FB28A3B19100816ECF /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
 		C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GESSUniqueBold-Bold.otf"; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 		C82EC8F6289EACC90042A27F /* ApprovedShipmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedShipmentViewModel.swift; sourceTree = "<group>"; };
 		C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GESSUniqueLight.otf; sourceTree = "<group>"; };
 		C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadVariableConcept-Roman.otf"; sourceTree = "<group>"; };
-		C83C4D4B28B2955700208751 /* App-Loading-File.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "App-Loading-File.json"; sourceTree = "<group>"; };
 		C845FAB62892AEA000B803FD /* ChatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeader.swift; sourceTree = "<group>"; };
 		C845FAB82892B99000B803FD /* XButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButton.swift; sourceTree = "<group>"; };
 		C845FABC2892BB6D00B803FD /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
@@ -185,6 +182,7 @@
 		C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtenstions.swift; sourceTree = "<group>"; };
 		C87BD21428915519002D115A /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		C87BD21828917AC1002D115A /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageView.swift; sourceTree = "<group>"; };
+		C87CAC7128B3CBB100A4F8EC /* App-Loading2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "App-Loading2.json"; sourceTree = "<group>"; };
 		C88F948228969317008B6AD0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C88F94842896946D008B6AD0 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		C88F94872896C67D008B6AD0 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -998,8 +996,7 @@
 			children = (
 				FAEADEA02884D3C0004535CE /* Fonts */,
 				FAEADE422884BDC9004535CE /* Assets.xcassets */,
-				C83C4D4B28B2955700208751 /* App-Loading-File.json */,
-				C812BE9428B268D4002EED9B /* App-Loading.gif */,
+				C87CAC7128B3CBB100A4F8EC /* App-Loading2.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1198,16 +1195,15 @@
 				FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */,
 				FAEADEB42884D3D0004535CE /* SFUIText-Regular.ttf in Resources */,
 				FAEADEB02884D3D0004535CE /* SFUIText-Light.ttf in Resources */,
-				C83C4D4C28B2955700208751 /* App-Loading-File.json in Resources */,
 				FAEADEAE2884D3D0004535CE /* SFUIText-Medium.ttf in Resources */,
 				FAEADEAF2884D3D0004535CE /* SFUIText-BoldItalic.ttf in Resources */,
 				FAEADEB22884D3D0004535CE /* SFUIText-Heavy.ttf in Resources */,
 				FAEADEB62884D3D0004535CE /* SFUIText-RegularItalic.ttf in Resources */,
 				FAEADEB12884D3D0004535CE /* SFUIText-SemiboldItalic.ttf in Resources */,
 				FAEADEB72884D3D0004535CE /* SFUIText-Bold.ttf in Resources */,
-				C812BE9528B268D4002EED9B /* App-Loading.gif in Resources */,
 				C8C949632889791F0057EE7E /* Localizable.strings in Resources */,
 				FAEADEB32884D3D0004535CE /* SFUIText-MediumItalic.ttf in Resources */,
+				C87CAC7228B3CBB100A4F8EC /* App-Loading2.json in Resources */,
 				FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */,
 				C82FD99D28AD2F75003DC739 /* GESSUniqueLight.otf in Resources */,
 				FAEADEB82884D3D0004535CE /* SFUIText-HeavyItalic.ttf in Resources */,
