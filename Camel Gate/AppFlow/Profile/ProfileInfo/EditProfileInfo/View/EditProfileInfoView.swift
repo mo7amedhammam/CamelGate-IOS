@@ -33,41 +33,41 @@ struct EditProfileInfoView: View {
     @State var selectedDate:Date?
     @State var active = false
     @State var destination = AnyView( TabBarView().navigationBarHidden(true))
-    
+    @EnvironmentObject var imageVM : imageViewModel
     var body: some View {
         ZStack{
             ScrollView{
-                Group{
-                    ZStack(alignment:.bottomTrailing){
-                        Button(action: {
-                            // here if you want to preview image
-                        }, label: {
-                            ZStack{
-                            if profileVM.DriverImage.size.width == 0 {
-                            AsyncImage(url: URL(string: Constants.baseURL +  profileVM.DriverImageStr.replacingOccurrences(of: "\\",with: "/"))) { image in
-                                        image.resizable()
-                                    } placeholder: {
-                                        Color("lightGray").opacity(0.2)
-                                    }
-                                    .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
-                            }else{
-                                Image(uiImage: profileVM.DriverImage)
-                                    .resizable()
-                                    .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
-                            }
-                            
-                            }
-                        })
-                            .clipShape(Circle())
-                            .frame(width: 95, height: 95, alignment: .center)
-                            
-                        if (taskStatus == .update && isEditing == true) || taskStatus == .create{
-                            CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
-                                self.showImageSheet = true
-                            }
+                ZStack(alignment:.bottomTrailing){
+                    Button(action: {
+                        // here if you want to preview image
+                    }, label: {
+                        ZStack{
+                        if profileVM.DriverImage.size.width == 0 {
+                        AsyncImage(url: URL(string: Constants.baseURL +  profileVM.DriverImageStr.replacingOccurrences(of: "\\",with: "/"))) { image in
+                                    image.resizable()
+                                .onTapGesture(perform: {
+                                    imageVM.isPresented = true
+                                    imageVM.imageUrl = Constants.baseURL +  profileVM.DriverImageStr.replacingOccurrences(of: "\\",with: "/")
+                                })
+                                } placeholder: {
+                                    Color("lightGray").opacity(0.2)
+                                }
+                        }else{
+                            Image(uiImage: profileVM.DriverImage)
+                                .resizable()
+                        }
+                        }                                    .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
+                    })
+                        .clipShape(Circle())
+                        .frame(width: 95, height: 95, alignment: .center)
+                        
+                    if (taskStatus == .update && isEditing == true) || taskStatus == .create{
+                        CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
+                            self.showImageSheet = true
                         }
                     }
-                    
+                }
+                Group{
                     Group{
                         Text("Driver_Info".localized(language))
                             .font(Font.camelfonts.SemiBold16)
@@ -449,8 +449,8 @@ struct EditProfileInfoView: View {
 
 struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileInfoView(taskStatus: .update)
-        EditProfileInfoView(taskStatus: .update)
+        EditProfileInfoView(taskStatus: .update).environmentObject(imageViewModel())
+        EditProfileInfoView(taskStatus: .update).environmentObject(imageViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }

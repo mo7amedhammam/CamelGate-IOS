@@ -22,6 +22,7 @@ struct HomeView: View {
     @State var longitude:Double = 0
     @State var latitude:Double = 0
     @State var selectedShipmentId = 0
+    @EnvironmentObject var imageVM : imageViewModel
     var body: some View {
         ZStack{
             VStack {
@@ -66,7 +67,7 @@ struct HomeView: View {
             )
                 
             }.padding(.top,30)
-            
+                .environmentObject(imageVM)
             VStack {
                 Spacer()
                 HStack{
@@ -133,8 +134,10 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(FilterTag: .constant(.Menu), showFilter: .constant(false))
             .environmentObject(ApprovedShipmentViewModel())
+            .environmentObject(imageViewModel())
         HomeView(FilterTag: .constant(.Menu), showFilter: .constant(false))
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+            .environmentObject(imageViewModel())
             .environmentObject(ApprovedShipmentViewModel())
 
     }

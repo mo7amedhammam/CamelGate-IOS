@@ -27,7 +27,7 @@ struct MainTabBar : View {
     @State var FilterTag : FilterCases = .Menu
     @State var showFilter = false
     @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
-    
+    @StateObject var imageVM = imageViewModel()
     var body: some View {
         VStack(spacing: 0){
             GeometryReader{_ in
@@ -67,9 +67,11 @@ struct MainTabBar : View {
                 RoundedCornersShape(radius: 30, corners: [.topLeft,.topRight])
                     .foregroundColor(.white)
             )
-        }
+        }.environmentObject(imageVM)
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
+        .sheet(isPresented: $imageVM.isPresented){
+            ImagePreviewer(IsPresented: $imageVM.isPresented, imageUrl: $imageVM.imageUrl)
+        }
         .ignoresSafeArea(.all, edges: .bottom)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .overlay(
@@ -97,4 +99,5 @@ struct TabBarView_Previews: PreviewProvider {
         }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }
+
 

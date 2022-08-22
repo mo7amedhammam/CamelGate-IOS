@@ -682,6 +682,7 @@
 				C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */,
 				C85D7D9B289B66D80088227D /* calendarPopUp.swift */,
 				C85D7DA0289BCB460088227D /* ImagePicker.swift */,
+				C81FA2AD28AD275E0012D823 /* ImagePreviewer.swift */,
 			);
 			path = others;
 			sourceTree = "<group>";
@@ -1116,7 +1117,6 @@
 				FAEADEA92884D3D0004535CE /* SFUIText-Semibold.ttf */,
 				FAEADEA52884D3CF004535CE /* SFUIText-SemiboldItalic.ttf */,
 				C8DB51A8288CB45F004521C8 /* FontsExtension.swift */,
-				C81FA2AD28AD275E0012D823 /* ImagePreviewer.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";

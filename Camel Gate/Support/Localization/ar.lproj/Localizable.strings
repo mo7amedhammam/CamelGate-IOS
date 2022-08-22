@@ -55,3 +55,14 @@
 "photo_Library" = "معرض الصور";
 "Camera" = "إلتقاط صورة";
 "Cancel" = "إلغاء";
+
+//MarK: -- change password --
+"Change_Password" = "تغيير كلمة المرور";
+"Password_Changed" = "تم تغيير كلمة المرور";
+"You_just_changed_your_password" = "لقد قمت الأن بتغيير \nكلمة المرور الخاصة بك";
+"Passwords_does_not_match" = "كلمة المرور غير متطابقة";
+"Please_enter_the_new_password_\nand_remember_that_it_needs_to_be_\ndifferent_from_the_last_one" = "برجاء إدخال كلمة مرور جديدة, \nولكن تذكر ان تكون \nمختلفة عن كلمة المرور السابقة";
+"Current_Password" = "كلمة المرور الحالية";
+"new_Password" = "كلمة المرور الجديدة";
+"Confirm_new_Password" = "تأكيد كلمة المرور";
+"Confirm" = "تأكيد";

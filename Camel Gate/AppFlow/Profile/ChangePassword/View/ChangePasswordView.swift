@@ -84,7 +84,7 @@ struct ChangePasswordView: View {
             .padding(.bottom)
                     
             
-            TitleBar(Title: "Change_Password", navBarHidden: true, leadingButton: .backButton ,trailingAction: {
+                TitleBar(Title: "Change_Password".localized(language), navBarHidden: true, leadingButton: .backButton ,trailingAction: {
             })
         }
             .blur(radius: showBottomSheet ? 5:0)

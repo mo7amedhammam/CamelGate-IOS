@@ -20,6 +20,7 @@ struct ProfileView: View {
     
     @AppStorage("language")
     var language = LocalizationService.shared.language
+    @EnvironmentObject var imageVM : imageViewModel
     var body: some View {
         NavigationView {
             ZStack{
@@ -29,7 +30,7 @@ struct ProfileView: View {
                             Group{
                                 Button(action: {
                                     active = true
-                                    destination = AnyView(EditProfileInfoView(taskStatus: .update))
+                                    destination = AnyView(EditProfileInfoView(taskStatus: .update).environmentObject(imageVM))
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "person.fill")
@@ -213,6 +214,8 @@ struct ProfileView: View {
                                 .cornerRadius(5)
                                 .shadow(color: Color.black.opacity(0.099), radius: 8)
                         }
+                        .environmentObject(imageVM)
+
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding()
                     }
@@ -223,6 +226,7 @@ struct ProfileView: View {
                 ProfileHeader()
                     .padding(.top,hasNotch ? -20:-30 )
             }
+            .navigationBarHidden(true)
             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             .edgesIgnoringSafeArea(.vertical)
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
@@ -245,10 +249,10 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            ProfileView()
+            ProfileView().environmentObject(imageViewModel())
         }
         ZStack {
-            ProfileView()
+            ProfileView().environmentObject(imageViewModel())
         }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }

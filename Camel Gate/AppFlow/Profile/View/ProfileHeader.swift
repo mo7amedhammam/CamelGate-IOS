@@ -11,6 +11,7 @@ struct ProfileHeader: View {
     @State var name : String?
     @State var rate : String?
     @State var tolatrate : String?
+    @EnvironmentObject var imageVM : imageViewModel
 
     var body: some View {
         VStack{
@@ -24,6 +25,8 @@ struct ProfileHeader: View {
                     ZStack(alignment:.bottomTrailing){
                         Button(action: {
                             // here if you want to preview image
+                            imageVM.isPresented = true
+                            imageVM.imageUrl = Constants.baseURL +  Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/")
                         }, label: {
                             AsyncImage(url: URL(string: Constants.baseURL +  Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/"))) { image in
                                 image.resizable()
@@ -68,13 +71,15 @@ struct ProfileHeader: View {
             }
             Spacer()
         }.ignoresSafeArea()
+            .navigationBarHidden(true)
     }
 }
 
 struct ProfileHeader_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileHeader()
-        ProfileHeader().previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+        ProfileHeader().environmentObject(imageViewModel())
+        ProfileHeader().environmentObject(imageViewModel())
+            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
 
     }
 }

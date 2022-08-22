@@ -11,9 +11,7 @@ struct HeaderView: View {
     @State var active = false
     @State var destination = AnyView(NotificationsView())
     
-    @State var Showimage = false
-    @State var imageUrl = ""
-
+    @EnvironmentObject var imageVM : imageViewModel
     var body: some View {
         HStack {
 //            Image("face_vector")
@@ -22,12 +20,10 @@ struct HeaderView: View {
             AsyncImage(url: URL(string: Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/"))) { image in
                 image.resizable()
                     .onTapGesture(perform: {
-                        imageUrl = Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/")
-                        Showimage = true
+                        imageVM.imageUrl = Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/")
+                        imageVM.isPresented = true
                     })
-                    .sheet(isPresented: $Showimage){
-                        ImagePreviewer(IsPresented: $Showimage, imageUrl: $imageUrl)
-                    }
+                 
             } placeholder: {
                 Image("face_vector")
             }
@@ -76,6 +72,6 @@ struct HeaderView: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView()
+        HeaderView().environmentObject(imageViewModel())
     }
 }
