@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CityFromTo:View{
+    var language = LocalizationService.shared.language
     @EnvironmentObject var ShipmentVM : ApprovedShipmentViewModel
     @Binding var FilterTag:FilterCases
     

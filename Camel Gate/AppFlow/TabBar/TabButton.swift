@@ -9,13 +9,15 @@ import SwiftUI
 
 // Tab Button...
 struct TabButton : View {
+    var language = LocalizationService.shared.language
+
   var title : String
   @Binding var selectedTab : String
     var animation : Namespace.ID
 
   var body: some View{
     Button(action: {
-      withAnimation{selectedTab = title}
+        withAnimation{selectedTab = title}
     }) {
       VStack(spacing: 6){
         ZStack{
@@ -39,7 +41,7 @@ struct TabButton : View {
           .foregroundColor(selectedTab == title ? Color("Second_Color") : Color.black.opacity(0.2))
           .frame(width: 24, height: 24)
 
-        Text(title)
+          Text(title.localized(language))
               .font(Font.camelfonts.Reg14)
               .foregroundColor(Color("Base_Color")
                                 .opacity(selectedTab == title ? 1.0 : 0.2))

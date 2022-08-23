@@ -18,6 +18,7 @@ struct TabBarView: View {
 }
 
 struct MainTabBar : View {
+    @AppStorage("language")
     var language = LocalizationService.shared.language
 
     @State var selectedTab = "Home"
@@ -32,20 +33,20 @@ struct MainTabBar : View {
         VStack(spacing: 0){
             GeometryReader{_ in
                 ZStack{
-                    if self.selectedTab == "Home"{
+                    if self.selectedTab.localized(language) == "Home".localized(language){
                         HomeView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
-                    } else if self.selectedTab == "Shipments"{
+                    } else if self.selectedTab.localized(language) == "Shipments".localized(language){
                         ShipmentsView()
                         
-                    }  else if self.selectedTab == "Garage"{
+                    }  else if self.selectedTab.localized(language) == "Garage".localized(language){
                         GarageView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
                         
-                    } else if self.selectedTab == "Wallet"{
+                    } else if self.selectedTab.localized(language) == "Wallet".localized(language){
                         WalletView()
                         
-                    }else if self.selectedTab == "Profile"{
+                    }else if self.selectedTab.localized(language) == "Profile".localized(language){
                         ProfileView()
                         
                     }

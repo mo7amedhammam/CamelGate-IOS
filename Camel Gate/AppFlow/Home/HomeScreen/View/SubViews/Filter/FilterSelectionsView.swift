@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 struct FilterMenu:View{
+    var language = LocalizationService.shared.language
     @EnvironmentObject var ShipmentVM : ApprovedShipmentViewModel
     
     @Binding var FilterTag:FilterCases

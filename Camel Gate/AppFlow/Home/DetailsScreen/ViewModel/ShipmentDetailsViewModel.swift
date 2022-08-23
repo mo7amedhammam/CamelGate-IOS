@@ -143,13 +143,7 @@ class ShipmentDetailsViewModel : ObservableObject {
                     OfferCanceled = true
                 }
             }else {
-//                if data.messageCode == 400{
-//                    message = data.message ?? "error 400"
-//                }else if data.messageCode == 401{
-//                    message = data.message ?? "unauthorized"
-//                }else{
                     message = data.message ?? "Bad Request"
-//                }
                 isAlert = true
             }
             }

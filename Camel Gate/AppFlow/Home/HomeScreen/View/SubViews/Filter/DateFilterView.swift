@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 struct DateFromTo:View{
+    var language = LocalizationService.shared.language
     @EnvironmentObject var ShipmentVM : ApprovedShipmentViewModel
     
     @Binding var FilterTag:FilterCases

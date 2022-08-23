@@ -11,6 +11,9 @@ import Combine
 import Moya
 import PromiseKit
 
+enum DriverShipments{
+    case current, Upcomming, applied
+}
 class ShipmentsViewModel : ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
@@ -57,81 +60,11 @@ class ShipmentsViewModel : ObservableObject {
         }.store(in: &cancellables)
     }
     
-    // MARK: - API Services
-    func GetAppliedShipment(){
-        print("here is upplied")
-        firstly { () -> Promise<Any> in
-            isLoading = true
-            return BGServicesManager.CallApi(self.Services,HomeServices.appliedShipMents)
-        }.done({ [self] response in
-            let result = response as! Response
-            //            guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<[ShipmentModel]> = try BGDecoder.decode(data: result.data )
-            if data.success == true {
-                DispatchQueue.main.async {
-                    passthroughModelSubject.send(data)
-                    print("data is ")
-                    print(data)
-                    print(data.data ?? [])
-                    //                    UserCreated = true
-                }
-            }else {
-                if data.messageCode == 400{
-                    message = data.message ?? "error 400"
-                }else if data.messageCode == 401{
-                    message = "unauthorized"
-                }else{
-                    message = "Bad Request"
-                }
-                isAlert = true
-            }
-        }).ensure { [self] in
-            isLoading = false
-        }.catch { [self] (error) in
-            isAlert = true
-            message = "\(error)"
-        }
-    }
-    func GetUpcomingShipment(){
-        print("here is upcomming")
-        firstly { () -> Promise<Any> in
-            isLoading = true
-            return BGServicesManager.CallApi(self.Services,HomeServices.upComingShipments)
-        }.done({ [self] response in
-            let result = response as! Response
-            //            guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<[ShipmentModel]> = try BGDecoder.decode(data: result.data )
-            if data.success == true {
-                DispatchQueue.main.async {
-                    passthroughModelSubject.send(data)
-                    print("data is ")
-                    print(data)
-                    print(data.data ?? [])
-                    //                    UserCreated = true
-                }
-            }else {
-                if data.messageCode == 400{
-                    message = data.message ?? "error 400"
-                }else if data.messageCode == 401{
-                    message = "unauthorized"
-                }else{
-                    message = "Bad Request"
-                }
-                isAlert = true
-            }
-        }).ensure { [self] in
-            isLoading = false
-        }.catch { [self] (error) in
-            isAlert = true
-            message = "\(error)"
-        }
-    }
-    func GetCurrentShipment(){
+    func GetShipment(type:DriverShipments){
         print("here is current")
-        
         firstly { () -> Promise<Any> in
             isLoading = true
-            return BGServicesManager.CallApi(self.Services,HomeServices.currentShipments)
+            return BGServicesManager.CallApi(self.Services, type == .current ?  HomeServices.currentShipments : type == .Upcomming ? HomeServices.upComingShipments : HomeServices.appliedShipMents )
         }.done({ [self] response in
             let result = response as! Response
             

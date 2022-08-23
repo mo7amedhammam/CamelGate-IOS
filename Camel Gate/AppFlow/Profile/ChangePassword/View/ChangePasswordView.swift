@@ -110,7 +110,6 @@ struct ChangePasswordView: View {
 
                         Button(action: {
                             DispatchQueue.main.async{
-            // Action
                                 showBottomSheet.toggle()
                             }
                         }, label: {

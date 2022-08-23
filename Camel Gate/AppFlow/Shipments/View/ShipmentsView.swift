@@ -9,6 +9,7 @@ import SwiftUI
 import Alamofire
 
 struct ShipmentsView: View {
+    @AppStorage("language")
     var language = LocalizationService.shared.language
 
     @StateObject var shipmentsViewModel = ShipmentsViewModel()
@@ -35,7 +36,7 @@ struct ShipmentsView: View {
                             }
                         }, label: {
                             HStack(alignment: .center){
-                                Text(Category )
+                                Text("\(Category)".localized(language) )
                                     .font(.system(size: 15))
                                     .foregroundColor(self.selected == Category ? Color("blueColor") : Color("lightGray"))
                             }
@@ -49,7 +50,7 @@ struct ShipmentsView: View {
                         
                     }}
                 List() {
-                    ForEach(shipmentsViewModel.publishedUserLogedInModel, id:\.self) { tripItem in
+                    ForEach($shipmentsViewModel.publishedUserLogedInModel, id:\.self) { tripItem in
                         Button(action: {
                             
                             active = true
@@ -134,12 +135,12 @@ struct ShipmentsView_Previews: PreviewProvider {
 
 extension ShipmentsView{
     func getshipments() {
-        if selected == "Applied" {
-            shipmentsViewModel.GetAppliedShipment()
-        }else if selected == "Upcoming" {
-            shipmentsViewModel.GetUpcomingShipment()
-        }else if selected == "Current"{
-            shipmentsViewModel.GetCurrentShipment()
+        if selected == "Applied".localized(language) {
+            shipmentsViewModel.GetShipment(type: .applied)
+        }else if selected == "Upcoming".localized(language) {
+            shipmentsViewModel.GetShipment(type: .Upcomming)
+        }else if selected == "Current".localized(language){
+            shipmentsViewModel.GetShipment(type: .current)
         }
     }
 }

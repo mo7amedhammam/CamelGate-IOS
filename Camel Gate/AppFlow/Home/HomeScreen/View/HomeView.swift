@@ -185,7 +185,7 @@ struct ExtractedView: View {
             }
             ScrollView(.vertical , showsIndicators : false) {
                 VStack{
-                    ForEach(ApprovedShipmentVM.publishedFilteredShipments, id:\.self) { tripItem in
+                    ForEach($ApprovedShipmentVM.publishedFilteredShipments, id:\.self) { tripItem in
                         Button(action: {
                             active = true
                             destination = AnyView(DetailsView(shipmentId: selectedShipmentId))

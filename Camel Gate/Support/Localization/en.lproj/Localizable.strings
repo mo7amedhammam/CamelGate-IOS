@@ -6,6 +6,11 @@
   
 */
 
+//MARK: -- fonts --
+"MyriadConceptRoman-Light" = "MyriadConceptRoman-Light";
+"MyriadConceptRoman-Regular" = "MyriadConceptRoman-Regular";
+"MyriadConceptRoman-Semibold" = "MyriadConceptRoman-Semibold";
+"MyriadConceptRoman-Bold" = "MyriadConceptRoman-Bold";
 // MARK: -- Profile tab
 "Profile_info" = "Profile info";
 "Rating_and_Reviews" = "Rating and Reviews";
@@ -67,3 +72,61 @@
 "new_Password" = "new Password";
 "Confirm_new_Password" = "Confirm new Password";
 "Confirm" = "Confirm";
+
+
+//MARK: -- Home
+"Sorry,\nNo_Shipments_Found_🤷‍♂️" = "Sorry,\nNo Shipments Found 🤷‍♂️";
+"Shipment" = "Shipment";
+"Delivery" = "Delivery";
+"Location" = "Location";
+"Start_Shipment" = "Start Shipment";
+"Uploaded" = "Uploaded";
+"Dropped_&_Finished" = "Dropped & Finished";
+
+"SAR" = "SAR";
+"LowestOffer" = "LowestOffer";
+"Offers" = "Offers";
+"Distance_:_" = "Distance : ";
+"KM" = "KM";
+"Company_Rate_:_" = "Company Rate : ";
+"Driver_Rate_:_" = "Driver Rate : ";
+
+"Nearest_Shipments" = "Nearest Shipments";
+
+"Filter_Shipments" = "Filter Shipments";
+"Location_(From-To)" = "Location (From-To)";
+"Any" = "Any";
+"Date_(From-To)" = "Date (From-To)";
+"Shipment_types" = "Shipment types";
+"Reset" = "Reset";
+"Apply_Filter" = "Apply Filter";
+
+"Location_(from-to)" = "Location (from-to)";
+"From" = "From";
+"To" = "To";
+"Done" = "Done";
+"From_(Choose_City)" = "From (Choose City)";
+"To_(Choose_City)" = "To (Choose City)";
+
+"Date_(from-to)" = "Date (from-to)";
+"Done" = "Done";
+"Shipment_type" = "Shipment type";
+
+//MARK: -- shipments
+"Current" = "Current";
+"Upcoming" = "Upcoming";
+"Applied" = "Applied";
+
+//MARK: -- tab bar --
+"Home" = "Home";
+"Shipments" = "Shipments";
+"Garage" = "Garage";
+"Wallet" = "Wallet";
+"Profile" = "Profile";
+
+//MARK: -- garage
+"Garage_Shipments" = "Garage Shipments";
+
+
+//MARK: -- message --
+"You_have_To_Login_Again" = "You have To Login Again";

@@ -6,6 +6,12 @@
   
 */
 
+//MARK: -- fonts --
+"MyriadConceptRoman-Light" = "GESSUniqueLight-Light";
+"MyriadConceptRoman-Regular" = "GESSTextMedium-Medium";
+"MyriadConceptRoman-Semibold" = "GESSTextMedium-Medium";
+"MyriadConceptRoman-Bold" = "GESSUniqueBold-Bold";
+
 // MARK: -- Profile tab
 "Profile_info" = "بيانات الحساب";
 "Rating_and_Reviews" = "ريڤيوهات وتقييم";
@@ -66,3 +72,58 @@
 "new_Password" = "كلمة المرور الجديدة";
 "Confirm_new_Password" = "تأكيد كلمة المرور";
 "Confirm" = "تأكيد";
+
+//MARK: -- Home
+"Sorry,\nNo_Shipments_Found_🤷‍♂️" = "نأسف, لا توجد شحنات الآن 🤷‍♂️";
+"Shipment" = "شحنة";
+"Delivery" = "التوصيل";
+"Location" = "الموقع";
+"Start_Shipment" = "إبدأ الشحنة";
+"Uploaded" = "تم التحميل";
+"Dropped_&_Finished" = "تم التنزيل والإنتهاء";
+
+"SAR" = "ر٫س";
+"LowestOffer" = "أقل عرض";
+"Offers" = "عرض";
+"Distance_:_" = "المسافة";
+"KM" = "كلم";
+"Company_Rate_:_" = "تقييم الشركة : ";
+"Driver_Rate_:_" = "تقييم السائق : ";
+
+"Nearest_Shipments" = "أقرب شحنات";
+
+"Filter_Shipments" = "تنقية الشحنات";
+"Location_(From-To)" = "الموقع (من - إلى)";
+"Any" = "الكل";
+"Date_(From-To)" = "التاريخ (من - إلى)";
+"Shipment_types" = "أنواع الشحنة";
+"Reset" = "إفتراضى";
+"Apply_Filter" = "قم بالتنقية";
+
+"Location_(from-to)" = "الموقع (من - إلى)";
+"From" = "من";
+"To" = "إلى";
+"Done" = "تم";
+"From_(Choose_City)" = "من (إختر مدينة)";
+"To_(Choose_City)" = "إلى (إختر مدينة)";
+
+"Date_(from-to)" = "التاريخ (من - إلى)";
+"Shipment_type" = "نوع الشحنة";
+
+//MARK: -- shipments
+"Current" = "حالى";
+"Upcoming" = "قادم";
+"Applied" = "مُقدم عليه";
+
+//MARK: -- tab bar --
+"Home" = "الرئيسية";
+"Shipments" = "شحناتى";
+"Garage" = "الجراچ";
+"Wallet" = "محفظتى";
+"Profile" = "حسابى";
+
+//MARK: -- garage
+"Garage_Shipments" = "جراچ الشحنات";
+
+//MARK: -- message --
+"You_have_To_Login_Again" = "يجب ان تسجل دخول من جديد";

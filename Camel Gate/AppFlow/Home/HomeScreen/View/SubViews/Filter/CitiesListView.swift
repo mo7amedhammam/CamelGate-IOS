@@ -9,13 +9,14 @@ import Foundation
 import SwiftUI
 
 struct LocationFilter: View {
+    var language = LocalizationService.shared.language
     @EnvironmentObject var ShipmentVM : ApprovedShipmentViewModel
     @StateObject var CitiesVM = CityViewModel()
     @Binding var FilterTag:FilterCases
     
     var body: some View {
         VStack{
-            Text(FilterTag == .CityFrom ? "From_(Choose City)".localized(language):"To(Choose City)".localized(language))
+            Text(FilterTag == .CityFrom ? "From_(Choose_City)".localized(language):"To_(Choose_City)".localized(language))
                 .font(.system(size: 18))
                 .fontWeight(.bold)
                 .frame(width:UIScreen.main.bounds.width)

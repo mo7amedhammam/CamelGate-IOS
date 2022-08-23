@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ShipTypeFilter: View {
+    var language = LocalizationService.shared.language
     @EnvironmentObject var ShipmentVM : ApprovedShipmentViewModel
     @StateObject var ShipTypesVM = ShipTypeViewModel()
     @Binding var FilterTag:FilterCases

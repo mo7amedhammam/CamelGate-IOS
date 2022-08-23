@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FilterHeaderView: View {
+    var language = LocalizationService.shared.language
     var action : ()->()
 
     var body: some View {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FilterView: View {
+    var language = LocalizationService.shared.language
     var delete : Bool
     let filterTitle : String
     var D : (()->())?
