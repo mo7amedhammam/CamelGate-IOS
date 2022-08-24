@@ -50,7 +50,7 @@ struct MainTabBar : View {
                         ProfileView()
                         
                     }
-                }
+                }.environmentObject(imageVM)
                 .navigationViewStyle(StackNavigationViewStyle())
                 .ignoresSafeArea()
             }
@@ -68,7 +68,7 @@ struct MainTabBar : View {
                 RoundedCornersShape(radius: 30, corners: [.topLeft,.topRight])
                     .foregroundColor(.white)
             )
-        }.environmentObject(imageVM)
+        }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .sheet(isPresented: $imageVM.isPresented){
             ImagePreviewer(IsPresented: $imageVM.isPresented, imageUrl: $imageVM.imageUrl)

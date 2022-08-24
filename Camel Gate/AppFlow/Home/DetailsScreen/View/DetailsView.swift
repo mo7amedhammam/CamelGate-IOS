@@ -17,35 +17,41 @@ struct DetailsView: View {
     @State var ShowMapRedirector:Bool = false
     @State var longitude:Double = 0
     @State var latitude:Double = 0
-
+    @EnvironmentObject var imageVM : imageViewModel
     var body: some View {
         ZStack {
             ScrollView {
                 VStack {
-                    Button(action: {}) {
+                    Button(action: {
+                    }) {
                         ZStack{
                             AsyncImage(url: URL(string: Constants.baseURL + "\(detailsVM.publishedUserLogedInModel.imageURL ?? "")".replacingOccurrences(of: "\\",with: "/"))) { image in
                                 image.resizable()
+                                    .onTapGesture(perform: {
+                                        imageVM.isPresented = true
+                                        imageVM.imageUrl = Constants.baseURL + "\(detailsVM.publishedUserLogedInModel.imageURL ?? "")".replacingOccurrences(of: "\\",with: "/")
+                                    })
                             } placeholder: {
                                 Image("cover_vector")
                                     .resizable()
+ 
                             }
                             .frame(height: 120)
                         }.padding(.top , 60)
                     }
+                    .buttonStyle(.plain)
                     if detailsVM.publishedUserLogedInModel.driverOfferStatusID != nil{
                     VStack{
                         ZStack{
                             (detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4) ? Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 1)):Color.red
-                            Text("\(detailsVM.publishedUserLogedInModel.driverOfferStatusName ?? "Applied")").fontWeight(.medium).foregroundColor(Color
-                                                                                                                                                    .white)
+                            Text("\(detailsVM.publishedUserLogedInModel.driverOfferStatusName ?? "Applied")").fontWeight(.medium).foregroundColor(Color.white)
                         }.frame(height: 30)
                         ZStack{
                             Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 0.2))
                             HStack {
                                 Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1250)").fontWeight(.medium).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
-                                Text("SAR").fontWeight(.medium).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
-                                Text("Your Offer").foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                Text("SAR".localized(language)).fontWeight(.medium).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                Text("Your_Offer".localized(language)).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
                             }
                         }
                         .padding(.top , -10)
@@ -55,7 +61,7 @@ struct DetailsView: View {
                         HStack(alignment : .top){
                             Spacer()
                             Image("ic_lump")
-                            Text("To change the offer you need to cancel the order first then to apply again").font(Font.camelfonts.Reg14).lineLimit(2)
+                            Text("To_change_the_offer_you_need_to_cancel_the_order_first_then_to_apply_again".localized(language)).font(Font.camelfonts.Reg14).lineLimit(2)
                             Spacer()
                         }.padding()
                     }
@@ -66,16 +72,16 @@ struct DetailsView: View {
                     ZStack{
                         HStack(alignment : .top , spacing : 20){
                             VStack{
-                                Text("Lowest Offer").font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Lowest_Offer".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_green_dollar")
-                                    Text("\(detailsVM.publishedUserLogedInModel.lowestOffer ?? 111) SAR")
+                                    Text("\(detailsVM.publishedUserLogedInModel.lowestOffer ?? 111) "+"SAR".localized(language))
                                         .font(Font.camelfonts.SemiBold16).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
                                 }
                             }
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(width: 1)
                             VStack{
-                                Text("Driver's Rate").font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Driver's_Rate".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_star")
                                     Text("\(detailsVM.publishedUserLogedInModel.lowestOfferDriverRate ?? 2)/5 ")
@@ -84,10 +90,10 @@ struct DetailsView: View {
                             }
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(width: 1)
                             VStack{
-                                Text("Total Offers").font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Total_Offers".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 Spacer()
                                 HStack{
-                                    Text("\(detailsVM.publishedUserLogedInModel.offersCount ?? 3) Offers")
+                                    Text("\(detailsVM.publishedUserLogedInModel.offersCount ?? 3) "+"Offers".localized(language))
                                         .font(Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
@@ -99,7 +105,7 @@ struct DetailsView: View {
                     HStack{
                         VStack {
                             VStack{
-                                Text("Shipment ID").font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Shipment_ID".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_#")
                                     Text("\(detailsVM.publishedUserLogedInModel.id ?? 2)")
@@ -108,10 +114,10 @@ struct DetailsView: View {
                             }
                             Spacer()
                             VStack{
-                                Text("Total Distance").font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Total_Distance".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_pin")
-                                    Text("\( String(format: "%.1f", detailsVM.publishedUserLogedInModel.totalDistance ?? 22.0011)) KM")
+                                    Text("\( String(format: "%.1f", detailsVM.publishedUserLogedInModel.totalDistance ?? 22.0011)) "+"KM".localized(language))
                                         .font(Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
@@ -119,18 +125,18 @@ struct DetailsView: View {
                         Spacer()
                         VStack {
                             VStack{
-                                Text("Company Rate").font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Company_Rate".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_star")
                                     Text("\(detailsVM.publishedUserLogedInModel.companyRate ?? 2)/5")
                                         .font(Font.camelfonts.SemiBold16).foregroundColor(Color.black)
-                                    Text("(\(detailsVM.publishedUserLogedInModel.companyRatesCount ?? 2) Rates)")
+                                    Text("(\(detailsVM.publishedUserLogedInModel.companyRatesCount ?? 2) "+"Rates".localized(language)+")")
                                         .font(Font.camelfonts.Reg14).foregroundColor(Color.black)
                                 }
                             }
                             Spacer()
                             VStack{
-                                Text("Estimated Time").font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Estimated_Time".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_star")
                                     Text(detailsVM.publishedUserLogedInModel.estimateTime ?? "2-3")
@@ -147,7 +153,7 @@ struct DetailsView: View {
 
 
                     HStack {
-                        Text("Description")
+                        Text("Description".localized(language))
                             .font(Font.camelfonts.Bold14).foregroundColor(Color.gray)
                         Spacer()
                     }
@@ -161,7 +167,7 @@ struct DetailsView: View {
                         .frame(height: 1)
                 }
                     HStack {
-                        Text("Shipment Location")
+                        Text("Shipment_Location".localized(language))
                             .font(Font.camelfonts.Bold14).foregroundColor(Color.gray)
                         Spacer()
                     }
@@ -202,7 +208,7 @@ struct DetailsView: View {
                                 }) {
                                     ZStack{
                                         Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
-                                        Text("Location").foregroundColor(Color(#colorLiteral(red: 0.2833708227, green: 0.149017632, blue: 0.4966977239, alpha: 1)))
+                                        Text("Location".localized(language)).foregroundColor(Color(#colorLiteral(red: 0.2833708227, green: 0.149017632, blue: 0.4966977239, alpha: 1)))
                                             .font(Font.camelfonts.Reg16)
                                         
                                     }.cornerRadius(8)
@@ -216,7 +222,7 @@ struct DetailsView: View {
                                 }) {
                                     ZStack{
                                         Color("Second_Color").opacity(0.2).frame(width : 100 , height: 40)
-                                        Text("Location").foregroundColor(Color("Second_Color"))
+                                        Text("Location".localized(language)).foregroundColor(Color("Second_Color"))
                                             .font(Font.camelfonts.Reg16)
                                         
                                     }.cornerRadius(8)
@@ -297,8 +303,6 @@ struct DetailsView: View {
             
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
-
         .edgesIgnoringSafeArea(.bottom)
         .onAppear(perform: {
             detailsVM.shipmentId = shipmentId
@@ -378,6 +382,7 @@ struct DetailsView: View {
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         DetailsView(shipmentId: 0)
+            .environmentObject(imageViewModel())
     }
 }
 
@@ -386,6 +391,8 @@ enum OfferCases{
     case set, applied, cancel, CancelationList, canceled, none
 }
 struct SetOfferView:View{
+    var language = LocalizationService.shared.language
+
     @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     @Binding var OfferCase:OfferCases
     @Binding var ShowSetOffer:Bool
@@ -429,7 +436,7 @@ struct SetOfferView:View{
                 Text("Lowest_Osser_is".localized(language))
                     .font(Font.camelfonts.Reg16)
                     .foregroundColor(.secondary)
-                Text("\(detailsVM.publishedUserLogedInModel.lowestOffer ?? 1200) SAR")
+                Text("\(detailsVM.publishedUserLogedInModel.lowestOffer ?? 1200) "+"SAR".localized(language))
                     .font(Font.camelfonts.SemiBold16)
                     .foregroundColor(Color("blueColor"))
                 Spacer()
@@ -455,7 +462,8 @@ struct SetOfferView:View{
                 .padding(.horizontal)
                 .padding(.top,10)
                 .padding(.vertical,10)
-        }
+        }        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                 .frame(height:260)
                 .onChange(of: detailsVM.OfferSent, perform: {newval in
                     self.OfferCase = .applied
@@ -474,6 +482,8 @@ struct SetOfferView_Previews: PreviewProvider {
 }
 
 struct AppliedOfferView:View{
+    var language = LocalizationService.shared.language
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     @Binding var OfferCase:OfferCases
@@ -535,6 +545,7 @@ struct AppliedOfferView:View{
             })
                 .padding(.top,40)
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .frame(maxHeight:(UIScreen.main.bounds.height/2)-90)
     }
 }
@@ -549,6 +560,8 @@ struct AppliedOfferView_Previews: PreviewProvider {
 }
 
 struct CancelOfferView:View{
+    var language = LocalizationService.shared.language
+
     @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     @Binding var OfferCase:OfferCases
     @Binding var ShowSetOffer:Bool
@@ -579,7 +592,7 @@ struct CancelOfferView:View{
                     .resizable()
                     .frame(width: 100, height: 100)
                     .padding()
-                Text("You_will_loose_the_opportunity_to_gain")
+                Text("You_will_loose_the_opportunity_to_gain".localized(language))
                     .font(Font.camelfonts.Reg14)
                     .multilineTextAlignment(.center)
                 Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1400) SAR")
@@ -591,7 +604,7 @@ struct CancelOfferView:View{
             HStack(alignment : .top){
                 Spacer()
                 Image("ic_lump")
-                Text("To_change_the_offer_you_need_to_cancel_\nthe_order_first_then_to_apply_again")
+                Text("To_change_the_offer_you_need_to_cancel_\nthe_order_first_then_to_apply_again".localized(language))
                     .font(Font.camelfonts.Reg14)
                     //.lineLimit(2)
                     .multilineTextAlignment(.center)
@@ -636,6 +649,7 @@ struct CancelOfferView:View{
                 .padding(.top,10)
                 .padding(.vertical,10)
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .frame(height:(UIScreen.main.bounds.height/2)+60)
                 .onChange(of: detailsVM.OfferCanceled , perform: {newval in
                     self.OfferCase = .canceled
@@ -655,6 +669,8 @@ struct CancelOfferView_Previews: PreviewProvider {
 }
 
 struct CancelationResonsListView: View {
+    var language = LocalizationService.shared.language
+
     @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     @StateObject var CancelationReasonsVM = CancelReasonsViewModel()
     @Binding var OfferCase:OfferCases
@@ -710,7 +726,6 @@ struct CancelationResonsListView: View {
                         .fontWeight(.semibold)
                         .font(.title3)
                 }
-                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
@@ -723,6 +738,7 @@ struct CancelationResonsListView: View {
                 .padding(.horizontal)
                 .padding(.bottom,10)
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .frame(height:(UIScreen.main.bounds.height/2)+90)
         .onAppear(perform: {
             CancelationReasonsVM.GetCancelationReasons()
@@ -738,6 +754,8 @@ struct CancelationResonsListView_Previews: PreviewProvider {
 }
 
 struct CancelledOfferView:View{
+    var language = LocalizationService.shared.language
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     @Binding var OfferCase:OfferCases
@@ -823,6 +841,7 @@ struct CancelledOfferView:View{
             .padding(.horizontal ,20)
                 .padding(.top,40)
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .frame(maxHeight:(UIScreen.main.bounds.height/2)-90)
     }
 }

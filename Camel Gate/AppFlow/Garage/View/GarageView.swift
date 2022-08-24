@@ -12,6 +12,7 @@ struct GarageView: View {
     var language = LocalizationService.shared.language
 
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
+    @EnvironmentObject var imageVM : imageViewModel
 
     @State var active = false
     @State var destination = AnyView(DetailsView(shipmentId: 0))
@@ -49,10 +50,10 @@ struct GarageView: View {
         .onChange(of: selectedShipmentId, perform: {newval in
             if selectedShipmentId == newval{
             active = true
-            destination = AnyView (DetailsView(shipmentId: selectedShipmentId))
+            destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
             }else{
                 active = true
-                destination = AnyView (DetailsView(shipmentId: selectedShipmentId))
+                destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
             }
         })
 
@@ -86,6 +87,7 @@ struct GarageView: View {
 
 struct GarageView_Previews: PreviewProvider {
     static var previews: some View {
-        GarageView(FilterTag: .constant(.Menu), showFilter: .constant(false)).environmentObject(ApprovedShipmentViewModel())
+        GarageView(FilterTag: .constant(.Menu), showFilter: .constant(false)).environmentObject(ApprovedShipmentViewModel()).environmentObject(imageViewModel())
+        
     }
 }

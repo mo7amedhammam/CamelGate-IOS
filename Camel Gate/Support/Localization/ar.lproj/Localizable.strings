@@ -127,3 +127,39 @@
 
 //MARK: -- message --
 "You_have_To_Login_Again" = "يجب ان تسجل دخول من جديد";
+
+//MARK: -- details --
+"Your_Offer" = "عرضك";
+"To_change_the_offer_you_need_to_cancel_the_order_first_then_to_apply_again" = "لتغيير عرضك يجب الغاء العرض الحالى ثم تقديم عرض جديد";
+"Lowest_Offer" = "اقل عرض";
+"Driver's_Rate" = "تقييم السائق";
+"Total_Offers" = "اجمالى العروض";
+"Shipment_ID" = "رقم الشحنة";
+"Total_Distance" = "المسافة الإجمالية";
+"Company_Rate" = "تقييم الشركة";
+"Rates" = "تقييم";
+"Estimated_Time" = "الوقت المتوقع";
+"Description" = "الوصف";
+"Shipment_Location" = "مكان الشحنة";
+"Apply" = "تقديم";
+"ReApply" = "إعادة التقديم";
+"Shipment_Details"= "تفاصيل الشحنة";
+
+"Set_Offer" = "تقديم عرض";
+"Offer" = "العرض";
+"Lowest_Osser_is" = "أقل عرض هو";
+"Send_Offer" = "إرسال العرض";
+"Offer_Applied" = "تم تقديم العرض";
+"You_have_applied_for_this_shipment_\nsuccessfully" = "لقم قمت الآن بتقديم طلب لهذه الشحنة بنجاح";
+"Check_other_shipments" = "عرض شحنات أخرى";
+"Confirm_cancelation" = "تأكيد الإلغاء";
+"Reason" = "السبب";
+"To_change_the_offer_you_need_to_cancel_\nthe_order_first_then_to_apply_again" = "لتغيير العرض يجب إلغاء العرض الحالى أولا ثم تقديم عرض جديد";
+"You_will_loose_the_opportunity_to_gain" = "سوف تفقد هذة الفرصة";
+"Cancel_Offer?" = "إلغاء العرض ؟";
+
+"select_Reason" = "تحديد سبب";
+"Canceled" = "تم الإلغاء";
+"You_still_can_re-apply_for_this_job" = "ما زلت بإمكانك تقديم عرض مرة اخرى";
+"other_shipments" = "عرض شحنات أخرى";
+"Re-Apply" = "إعادة التقديم";

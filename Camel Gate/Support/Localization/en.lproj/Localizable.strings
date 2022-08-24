@@ -127,6 +127,41 @@
 //MARK: -- garage
 "Garage_Shipments" = "Garage Shipments";
 
-
 //MARK: -- message --
 "You_have_To_Login_Again" = "You have To Login Again";
+
+//MARK: -- details --
+"Your_Offer" = "Your Offer";
+"To_change_the_offer_you_need_to_cancel_the_order_first_then_to_apply_again" = "To change the offer you need to cancel the order first then to apply again";
+"Lowest_Offer" = "Lowest Offer";
+"Driver's_Rate" = "Driver's Rate";
+"Total_Offers" = "Total Offers";
+"Shipment_ID" = "Shipment ID";
+"Total_Distance" = "Total Distance";
+"Company_Rate" = "Company Rate";
+"Rates" = "Rates";
+"Estimated_Time" = "Estimated Time";
+"Description" = "Description";
+"Shipment_Location" = "Shipment Location";
+"Apply" = "Apply";
+"ReApply" = "ReApply";
+"Shipment_Details"= "Shipment Details";
+
+"Set_Offer" = "Set Offer";
+"Offer" = "Offer";
+"Lowest_Osser_is" = "Lowest Osser is";
+"Send_Offer" = "Send Offer";
+"Offer_Applied" = "Offer Applied";
+"You_have_applied_for_this_shipment_\nsuccessfully" = "You have applied for this shipment \nsuccessfully";
+"Check_other_shipments" = "Check other shipments";
+"Confirm_cancelation" = "Confirm cancelation";
+"Reason" = "Reason";
+"To_change_the_offer_you_need_to_cancel_\nthe_order_first_then_to_apply_again" = "To change the offer you need to cancel \nthe order first then to apply again";
+"You_will_loose_the_opportunity_to_gain" = "You will loose the opportunity to gain";
+"Cancel_Offer?" = "Cancel Offer?";
+
+"select_Reason" = "select Reason";
+"Canceled" = "Canceled";
+"You_still_can_re-apply_for_this_job" = "You still can re-apply for this job";
+"other_shipments" = "other shipments";
+"Re-Apply" = "Re-Apply";

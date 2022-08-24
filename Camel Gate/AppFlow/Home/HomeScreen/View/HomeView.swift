@@ -41,7 +41,6 @@ struct HomeView: View {
                     ShipView(ShowMapRedirector:$ShowMapRedirector,longitude:$longitude,latitude:$latitude).shadow(radius: 5)
                         .environmentObject(ApprovedShipmentVM)
                 }
-                
 //                if ApprovedShipmentVM.publishedFilteredShipments != []{
                 FilterHeaderView(action: {
                     showFilter.toggle()
@@ -49,10 +48,9 @@ struct HomeView: View {
                 })
                     .padding(.bottom,-30)
 //                }
-                
                 ExtractedView(active: $active, destination: $destination,  selectedShipmentId: $selectedShipmentId)
                     .environmentObject(ApprovedShipmentVM)
-
+                    .environmentObject(imageVM)
                 }
             .padding(.horizontal,10)
 
@@ -81,6 +79,7 @@ struct HomeView: View {
                 }.padding()
             }.padding(.bottom, 50)
         }
+        .environmentObject(imageVM)
                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
         .navigationBarHidden(true)
@@ -92,7 +91,7 @@ struct HomeView: View {
 
         .onChange(of: selectedShipmentId, perform: {newval in
                 active = true
-                destination = AnyView (DetailsView(shipmentId: selectedShipmentId))
+            destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
         })
 
         NavigationLink(destination: destination,isActive:$active , label: {
@@ -144,7 +143,8 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 struct ExtractedView: View {
-    
+    @EnvironmentObject var imageVM : imageViewModel
+
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
     @Binding var active : Bool
     @Binding var destination : AnyView
@@ -190,7 +190,7 @@ struct ExtractedView: View {
                             active = true
                             destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
                         }, label: {
-                            tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId)
+                            tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId).environmentObject(imageVM)
                         }).buttonStyle(.plain)
                     }
                 }

@@ -22,7 +22,7 @@ struct ShipmentsView: View {
     @State var active = false
     @State var destination = AnyView(DetailsView(shipmentId: 0))
     @State var selectedShipmentId = 0
-    
+    @EnvironmentObject var imageVM : imageViewModel
     var body: some View {
         ZStack{
             VStack{
@@ -54,7 +54,7 @@ struct ShipmentsView: View {
                         Button(action: {
                             
                             active = true
-                            destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
+                            destination = AnyView(DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
                         }, label: {
                             tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId)
                         }).buttonStyle(.plain)
@@ -105,7 +105,7 @@ struct ShipmentsView: View {
         })
             .onChange(of: selectedShipmentId, perform: {newval in
                 active = true
-                destination = AnyView (DetailsView(shipmentId: selectedShipmentId))
+                destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
             })
         
         NavigationLink(destination: destination,isActive:$active , label: {
@@ -130,6 +130,7 @@ struct ShipmentsView: View {
 struct ShipmentsView_Previews: PreviewProvider {
     static var previews: some View {
         ShipmentsView()
+            .environmentObject(imageViewModel())
     }
 }
 

@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct tripCellView: View {
+    
     var language = LocalizationService.shared.language
     @Binding var shipmentModel:ShipmentModel
     @Binding var selecteshipmentId:Int
-
+    @EnvironmentObject var imageVM : imageViewModel
     var body: some View {
         ZStack{
             Color.white
@@ -24,15 +25,23 @@ struct tripCellView: View {
                         HStack {
                             Text("")
                             Spacer()
-                            Image("ic_gray_camel")
+//                            Image("ic_gray_camel")
+                            
                         }.padding()
                     }
                     HStack{
                         VStack {
                             ZStack{
                                 VStack{
-                                    Image("ic_ship_box")
-                                        .resizable()
+//                                    Image("ic_ship_box")
+                                    AsyncImage(url: URL(string: Constants.baseURL + "\(shipmentModel.imageURL ?? "")".replacingOccurrences(of: "\\",with: "/"))) { image in
+                                        image.resizable()
+                                    } placeholder: {
+                                        Image("cover_vector")
+                                            .resizable()
+         
+                                    }
+//                                        .resizable()
                                         .scaledToFit()
                                         .frame(width: 100, height: 90)
 //                                        .overlay(
