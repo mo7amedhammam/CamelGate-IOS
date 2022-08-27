@@ -46,7 +46,7 @@ struct FilterMenu:View{
                                     .foregroundColor(.black)
                                 
                                 Text(ShipmentVM.fromCityName == "" ? "Any".localized(language):"\(ShipmentVM.fromCityName)-\(ShipmentVM.toCityName)" )
-                                    .font(Font.camelfonts.Reg16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                     .padding(.top,-10)
                                     .foregroundColor(.gray)
                             }
@@ -72,7 +72,7 @@ struct FilterMenu:View{
                                     .font(Font.camelfonts.Reg18)
                                     .foregroundColor(.black)
                                 Text(ShipmentVM.fromDateStr == "" ? "Any".localized(language):"\(ShipmentVM.fromDateStr ) - \(ShipmentVM.toDateStr )")
-                                    .font(Font.camelfonts.Reg16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                     .padding(.top,-10)
                                     .foregroundColor(.gray)
                             }
@@ -96,7 +96,7 @@ struct FilterMenu:View{
                                     .font(Font.camelfonts.Reg18)
                                     .foregroundColor(.black)
                                 Text(ShipmentVM.shipmentTypesNames == [] ? "Any".localized(language): ShipmentVM.shipmentTypesNames.joined(separator:", "))
-                                    .font(Font.camelfonts.Reg16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                     .padding(.top,-10)
                                     .foregroundColor(.gray)
                             }
@@ -119,7 +119,7 @@ struct FilterMenu:View{
                     showFilter.toggle()
                 }, label: {
                     Text("Reset".localized(language))
-                        .font(Font.camelfonts.SemiBold16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                         .foregroundColor(.black.opacity(0.5))
                 })
                     .padding(.horizontal,30)

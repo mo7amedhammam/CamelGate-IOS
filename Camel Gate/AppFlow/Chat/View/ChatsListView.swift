@@ -31,7 +31,8 @@ struct ChatsListView: View {
                         VStack(alignment:.leading){
                             Text("We_reply_usually")
                                 .foregroundColor(.black.opacity(0.8))
-                                .font(Font.camelfonts.Reg14)
+                                                                               .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                 .fontWeight(.thin)
                                 .padding(.bottom,5)
                             
@@ -104,15 +105,17 @@ struct ChatsListView: View {
                                     VStack{
                                         HStack{
                                             Text("Mahmoud")
-                                                .font(Font.camelfonts.SemiBold14)
+.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
                                             Spacer()
                                             Text("12 hours ago")
-                                                .font(Font.camelfonts.Reg14)
+                                                                                               .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                                 .fontWeight(.thin)
                                         }.foregroundColor(.gray)
                                         
                                         Text("Thanks_for_using_CamelGate,_Ahmed_we...")
-                                            .font(Font.camelfonts.Reg14)
+                                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                     }
                                 }
                                 .padding()

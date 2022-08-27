@@ -53,7 +53,8 @@ struct ProfileHeader: View {
                         HStack(){
                             Image(systemName:"star.fill").foregroundColor(.orange)
                             Text(rate ?? "4.5")
-                                .font(Font.camelfonts.Reg14)
+                                                                               .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                 .foregroundColor(Color.white)
                             
                         } .padding(.horizontal)
@@ -62,7 +63,8 @@ struct ProfileHeader: View {
                             .cornerRadius(8)
                         
                         Text(tolatrate ?? "( 250 Reviews )")
-                            .font(Font.camelfonts.Reg14)
+                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                             .foregroundColor(Color.white)
                     }
                     .padding(.top,-10)

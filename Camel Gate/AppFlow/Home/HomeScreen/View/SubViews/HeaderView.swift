@@ -40,7 +40,8 @@ struct HeaderView: View {
                         Text("")
                         Image("ic_star")
                         Text("4.5  ")
-                            .font(Font.camelfonts.Reg14)
+                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                             .foregroundColor(Color.white)
                     }
                     .padding(3.0)
@@ -50,7 +51,8 @@ struct HeaderView: View {
                 HStack{
                     Image("ic_location")
                     Text("2nd department, October, Giza")
-                        .font(Font.camelfonts.Reg14)
+                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                         .foregroundColor(Color.white)
                 }
             }

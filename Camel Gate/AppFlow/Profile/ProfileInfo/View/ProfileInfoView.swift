@@ -26,7 +26,7 @@ struct ProfileInfoView: View {
                     
                     HStack {
                         Text("Driver_barCode".localized(language))
-                            .font(Font.camelfonts.SemiBold16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                             .foregroundColor(.gray)
                         Spacer()
                     }
@@ -42,7 +42,7 @@ struct ProfileInfoView: View {
                   
                     HStack {
                         Text("Driver_info".localized(language))
-                            .font(Font.camelfonts.SemiBold16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                             .foregroundColor(.gray)
                         Spacer()
                     }
@@ -58,10 +58,10 @@ struct ProfileInfoView: View {
                         
                         HStack{
                             Text("User_Name_:".localized(language))
-                                .font(Font.camelfonts.SemiBold16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text(  Helper.getDriverName() )
-                                .font(Font.camelfonts.Reg16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.leading,-5)
@@ -77,10 +77,10 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("Phone_Number_:".localized(language))
-                                .font(Font.camelfonts.SemiBold16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("(Helper.getUserPhone() )" )
-                                .font(Font.camelfonts.Reg16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.leading,-5)
@@ -99,10 +99,10 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("Driver_barcode_:".localized(language))
-                                .font(Font.camelfonts.SemiBold16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("(Helper.getUserPhone() )" )
-                                .font(Font.camelfonts.Reg16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.leading,-7)
@@ -120,10 +120,10 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("CamelGate_Number_:".localized(language))
-                                .font(Font.camelfonts.SemiBold16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("(Helper.getUserPhone() )" )
-                                .font(Font.camelfonts.Reg16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.leading,-7)
@@ -139,7 +139,7 @@ struct ProfileInfoView: View {
                 VStack(spacing:10){
                     HStack {
                         Text("Truck_info".localized(language))
-                            .font(Font.camelfonts.SemiBold16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                             .foregroundColor(.gray)
                         Spacer()
                     }
@@ -157,10 +157,10 @@ struct ProfileInfoView: View {
                         
                         HStack{
                             Text("Truck_Number:".localized(language))
-                                .font(Font.camelfonts.SemiBold16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text(  Helper.getDriverName() )
-                                .font(Font.camelfonts.Reg16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.leading,-5)
@@ -178,10 +178,10 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("Patient_Type_:".localized(language))
-                                .font(Font.camelfonts.SemiBold16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("(Helper.getUserPhone() )" )
-                                .font(Font.camelfonts.Reg16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.leading,-5)
@@ -199,10 +199,10 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("Driving_license_:".localized(language))
-                                .font(Font.camelfonts.SemiBold16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("(Helper.getUserPhone() )" )
-                                .font(Font.camelfonts.Reg16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.leading,-5)
@@ -220,10 +220,10 @@ struct ProfileInfoView: View {
                         
                         HStack(){
                             Text("Expired_at_:".localized(language))
-                                .font(Font.camelfonts.SemiBold16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                             Text("(Helper.getUserPhone() )" )
-                                .font(Font.camelfonts.Reg16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.8))
                         }
                         .padding(.leading,-5)
@@ -238,7 +238,7 @@ struct ProfileInfoView: View {
                 VStack(spacing:10){
                     HStack {
                         Text("Cargo_Type".localized(language))
-                            .font(Font.camelfonts.SemiBold16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                             .foregroundColor(.gray)
                         Spacer()
                     }
@@ -256,7 +256,7 @@ struct ProfileInfoView: View {
                         
                         HStack{
                             Text("Cargo_I_can_handel_:".localized(language))
-                                .font(Font.camelfonts.SemiBold16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                 .foregroundColor(Color("blueColor"))
                         }
                         .padding(.leading,-5)
@@ -271,7 +271,7 @@ struct ProfileInfoView: View {
                                 .frame(height:15)
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 10)
-                                .font(Font.camelfonts.Reg16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                 .foregroundColor(.black.opacity(0.6))
                                 .background(.gray.opacity(0.2))
                                 .cornerRadius(10)

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("language")
-    var language = LocalizationService.shared.language
+//    @AppStorage("language")
+//    var language = LocalizationService.shared.language
 
     @State var displayedView = AnyView(SplashScreenView())
     @Environment(\.presentationMode) var presentationMode
@@ -21,7 +21,7 @@ struct ContentView: View {
         }
         .onAppear {
             delaySegue()
-            setFirstLanguage()
+//            setFirstLanguage()
         }
         
         .onChange(of: scenePhase, perform: { newPhase in

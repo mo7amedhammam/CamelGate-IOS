@@ -58,14 +58,15 @@ struct tripCellView: View {
                                     VStack(){
                                         HStack(alignment:.bottom, spacing: 3){
                                             Text("\(shipmentModel.lowestOffer ?? 1200)").foregroundColor(Color.white)
-                                                .font(Font.camelfonts.Reg20)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
                                                 .fontWeight(.medium)
 
                                             Text("SAR".localized(language)).foregroundColor(Color.white.opacity(0.99))
-                                                .font(Font.camelfonts.SemiBold14)
+.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
                                         }
                                         Text("LowestOffer".localized(language)).foregroundColor(Color.white.opacity(0.9))
-                                            .font(Font.camelfonts.Reg14)
+                                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                     }
 //                                    .padding(.horizontal)
                                         .padding(.bottom)
@@ -99,10 +100,12 @@ struct tripCellView: View {
 
                                     Text("Distance_:_".localized(language))
                                         .foregroundColor(.secondary)
-                                        .font(Font.camelfonts.Reg14)
+                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                     Text("\( String(format: "%.1f", shipmentModel.totalDistance ?? 22.00)) "+"KM".localized(language))
                                         .foregroundColor(.black.opacity(0.7))
-                                        .font(Font.camelfonts.Reg14)
+                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                     Spacer()
                                 }
                                 HStack{
@@ -113,10 +116,12 @@ struct tripCellView: View {
                                         .foregroundColor(Color.black.opacity(0.5))
                                     Text("Company_Rate_:_".localized(language))
                                         .foregroundColor(.secondary)
-                                        .font(Font.camelfonts.Reg14)
+                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                     Text("\(shipmentModel.companyRate ?? 0)/5")
                                         .foregroundColor(.black.opacity(0.7))
-                                        .font(Font.camelfonts.Reg14)
+                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                     Spacer()
                                 }
                             }
@@ -130,7 +135,7 @@ struct tripCellView: View {
                                     VStack(spacing: 20 ){
                                         VStack(alignment: .leading){
                                             Text(shipmentModel.fromCityName ?? "Giza").foregroundColor(Color("Base_Color"))
-                                                .font(Font.camelfonts.SemiBold18)
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr18:Font.camelfonts.SemiBold18)
                   
                                             HStack {
                                                 Text(ConvertStringDate(inp:shipmentModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:"dd/MM/yyyy"))
@@ -139,13 +144,15 @@ struct tripCellView: View {
                                                 Text(ConvertStringDate(inp:shipmentModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:". h:mm a"))
                                                     .foregroundColor(.secondary)
                                                 
-                                            }        .font(Font.camelfonts.Reg14)
+                                            }
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                             
 
                                         }
                                         VStack(alignment: .leading){
                                             Text(shipmentModel.toCityName ??  "Alexandria").foregroundColor(Color("Second_Color"))
-                                                .font(Font.camelfonts.SemiBold18)
+                                                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr18:Font.camelfonts.SemiBold18)
 
                                             HStack {
                                                 Text(ConvertStringDate(inp:shipmentModel.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy"))
@@ -153,7 +160,9 @@ struct tripCellView: View {
                                                 Text(ConvertStringDate(inp:shipmentModel.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:". hh:mm a"))
                                                     .foregroundColor(.secondary)
                                                 
-                                            }    .font(Font.camelfonts.Reg14)
+                                            }
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                             
                                         }
                                     }
@@ -194,7 +203,7 @@ struct tripCellView: View {
                             .foregroundColor(Color.black.opacity(0.7))
 //                        HStack{
 //                            Text("6").foregroundColor(Color.black)
-                        Text("Driver_Rate_:_".localized(language)).foregroundColor(.secondary)                        .font(Font.camelfonts.Light16)
+                        Text("Driver_Rate_:_".localized(language)).foregroundColor(.secondary)                       .font( language.rawValue == "ar" ? Font.camelfonts.LightAr16:Font.camelfonts.Light16)
 
                         Text("\(shipmentModel.lowestOfferDriverRate ?? 0)/5")
                             .foregroundColor(Color.black.opacity(0.7))
@@ -202,7 +211,7 @@ struct tripCellView: View {
                         Text("\(shipmentModel.offersCount ?? 0)")
                             .foregroundColor(Color.black.opacity(0.7))
                         Text("Offers".localized(language)).foregroundColor(.secondary)
-                            .font(Font.camelfonts.Light16)
+                           .font( language.rawValue == "ar" ? Font.camelfonts.LightAr16:Font.camelfonts.Light16)
 //                                .fontWeight(.ultraLight)
 
                             Button(action: {}) {

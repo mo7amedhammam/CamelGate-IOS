@@ -24,7 +24,7 @@ struct ShipView: View {
                         .foregroundColor(Color.white)
                     Spacer()
                 }
-                .font(Font.camelfonts.SemiBold16)
+.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                 .padding(.leading)
             }
             .frame(height: 50)
@@ -41,7 +41,7 @@ struct ShipView: View {
                             }
                             
                         }
-                        .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
 
                         Spacer()
                         Button(action: {
@@ -63,7 +63,7 @@ struct ShipView: View {
                             ZStack{
                                 Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
                                 Text("Location".localized(language)).foregroundColor(Color(#colorLiteral(red: 0.2833708227, green: 0.149017632, blue: 0.4966977239, alpha: 1)))
-                                    .font(Font.camelfonts.Reg16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
 
                             }.cornerRadius(8)
                         }
@@ -74,7 +74,7 @@ struct ShipView: View {
                         .frame(height: 40 )
                     HStack {
                         Text(ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusName ?? "Waiting_to_start")
-                            .font(Font.camelfonts.Reg16)
+    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                             .foregroundColor(Color.gray)
                             .frame(height: 20)
                         Spacer()
@@ -93,7 +93,7 @@ struct ShipView: View {
                 }, label: {
                     Text(ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? "Start_Shipment".localized(language):ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? "Uploaded".localized(language):"Dropped_&_Finished".localized(language))
                         .foregroundColor(Color.white)
-                        .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                 })
             }
             .frame(height: 50)

@@ -48,10 +48,12 @@ struct HomeView: View {
                 })
                     .padding(.bottom,-30)
 //                }
+                
                 ExtractedView(active: $active, destination: $destination,  selectedShipmentId: $selectedShipmentId)
                     .environmentObject(ApprovedShipmentVM)
                     .environmentObject(imageVM)
                 }
+                
             .padding(.horizontal,10)
 
             .overlay(
@@ -143,8 +145,9 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 struct ExtractedView: View {
-    @EnvironmentObject var imageVM : imageViewModel
+    var language = LocalizationService.shared.language
 
+    @EnvironmentObject var imageVM : imageViewModel
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
     @Binding var active : Bool
     @Binding var destination : AnyView

@@ -44,7 +44,8 @@ struct SignUpView: View {
                             HStack{
                                 Text(SignUpVM.ValidationMessage.localized(language))
                                     .foregroundColor(.red)
-                                    .font(Font.camelfonts.Reg14)
+                                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                 Spacer()
                             }
                         }
@@ -58,13 +59,14 @@ struct SignUpView: View {
                         HStack{
                             Text(SignUpVM.ValidationMessage.localized(language))
                                 .foregroundColor(.red)
-                                .font(Font.camelfonts.Reg14)
+                                                                               .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                             Spacer()
                         }.padding(.horizontal)
                     }
                     }
                     .padding(.horizontal)
-                    .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
 
                 }

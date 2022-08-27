@@ -38,7 +38,7 @@ struct OnBoardingView: View {
                         Text(bodyTitle.localized(language))
                             .transition(.slide)
                             .animation(.rippleText())
-                            .font(Font.camelfonts.SemiBold16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color("lightGray"))
                         

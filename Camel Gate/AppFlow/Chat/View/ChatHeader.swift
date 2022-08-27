@@ -35,7 +35,8 @@ struct ChatHeader: View {
                         Text("Ahmed")
                 }
                     Text("How could we help you?")
-                        .font(Font.camelfonts.Reg14)
+                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                         .padding(.top,-8)
                 }
                 .foregroundColor(.white)

@@ -46,7 +46,8 @@ struct SignInView: View {
                             HStack{
                                 Text(SignInVM.ValidationMessage.localized(language))
                                     .foregroundColor(.red)
-                                    .font(Font.camelfonts.Reg14)
+                                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                 Spacer()
                             }.padding(.horizontal)
                         }
@@ -54,14 +55,15 @@ struct SignInView: View {
                         SecureInputTextField("Enter_your_password".localized(language), text: $SignInVM.password,iconName:"lockBlue")
                             .padding(.horizontal)
                     }
-                    .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
                     
                     HStack{
                         Spacer()
                         Text("Forgot_Password?".localized(language))
                             .foregroundColor(.red)
-                            .font(Font.camelfonts.Reg14)
+                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                         
                     }.padding(.horizontal)
                     

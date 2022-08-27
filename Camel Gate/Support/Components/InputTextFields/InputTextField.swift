@@ -27,7 +27,8 @@ struct InputTextField: View {
             
             ZStack (alignment:.leading){
                 Text(placeholder)
-                    .font(Font.camelfonts.Reg14)
+                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                     .foregroundColor(.gray.opacity(0.5))
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
@@ -36,11 +37,12 @@ struct InputTextField: View {
                 HStack{
                     if fieldType == .Phone{
                         Text("+966 |")
-                        .font(Font.camelfonts.Reg14)
+                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                         .foregroundColor(.gray.opacity(0.5))
                     }
                 TextField("",text:$text)
-                    .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .autocapitalization(.none)
                     .textInputAutocapitalization(.never)
              }
@@ -90,17 +92,19 @@ enum inputfields {
 //          
 //            ZStack(alignment:.leading){
 //                Text(placeholder)
-//                    .font(Font.camelfonts.Reg14)
+//                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
 //                    .foregroundColor(.gray.opacity(0.5))
 //                    .offset(y: withAnimation{text.isEmpty ? 0 : -20})
 //                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
 //                    .padding(.leading,text.isEmpty ? 55:0)
 //                HStack{
 //                Text("+966 |")
-//                        .font(Font.camelfonts.Reg14)
+//                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
 //                        .foregroundColor(.gray.opacity(0.5))
 //                TextField("",text:$text)
-//                    .font(Font.camelfonts.Reg16)
+//.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
 //                    .autocapitalization(.none)
 //                    .textInputAutocapitalization(.never)
 //             }
@@ -154,13 +158,14 @@ struct InputDateField: View {
             
             ZStack (alignment:.leading){
                 Text(placeholder)
-                    .font(Font.camelfonts.Reg14)
+                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                     .foregroundColor(.gray.opacity(0.5))
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
                 
                 TextField("",text:$text)
-                    .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .autocapitalization(.none)
                     .textInputAutocapitalization(.never)
   

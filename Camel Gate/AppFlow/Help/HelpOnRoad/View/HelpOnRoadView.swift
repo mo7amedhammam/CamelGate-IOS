@@ -28,7 +28,7 @@ struct HelpOnRoadView: View {
                                 }, label: {
                                     HStack(alignment: .center){
                                         Text(Category )
-                                            .font(Font.camelfonts.SemiBold16)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                             .foregroundColor(self.selected == Category ? Color("Base_Color") : Color("lightGray"))
                                     }
                                     .padding(.horizontal, 20.0)
@@ -57,7 +57,7 @@ struct HelpOnRoadView: View {
                                 .keyboardType(.numberPad)
                         }
                         .padding(.horizontal)
-                        .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .ignoresSafeArea(.keyboard)
 
                         Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
@@ -77,10 +77,11 @@ struct HelpOnRoadView: View {
                                 VStack(alignment : .leading){
                                     Text("Location")
                                         .foregroundColor(Color.gray)
-                                        .font(Font.camelfonts.Reg14)
+                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                     Text("25 ehsan st., Aggamy, Alexandria")
                                         .foregroundColor(Color.black)
-                                        .font(Font.camelfonts.SemiBold16)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                 }
                                 Spacer()
                                 Image("ic_detect_location")

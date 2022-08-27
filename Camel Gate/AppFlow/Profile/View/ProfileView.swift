@@ -85,7 +85,7 @@ struct ProfileView: View {
                                     }
                                 })
                                 
-                            }  .font(Font.camelfonts.Reg16)
+}.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                 .padding(12)
                                 .disableAutocorrection(true)
                                 .background(
@@ -96,7 +96,7 @@ struct ProfileView: View {
                                 .shadow(color: Color.black.opacity(0.099), radius: 8)
                             
                             Section(header: Text("Change_Language".localized(language))
-                                        .font(Font.camelfonts.Reg16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                         .foregroundColor(Color("lightGray"))
                             ){
                                 HStack(spacing:15){
@@ -113,7 +113,7 @@ struct ProfileView: View {
                                                     .padding(.horizontal).foregroundColor(Color("blueColor"))
                                                 
                                                 Text("English".localized(language))
-                                                    .font(Font.camelfonts.Reg16)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                                     .foregroundColor(Color("lightGray"))
                                                 Spacer()
                                             }
@@ -132,13 +132,14 @@ struct ProfileView: View {
                                                     .foregroundColor(Color("blueColor"))
                                                 
                                                 Text("العربية".localized(language))
-                                                    .font(Font.camelfonts.Reg16)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                                     .foregroundColor(Color("lightGray"))
                                                 Spacer()
                                             }
                                         })
                                     }
-                                    //                                        .font(Font.camelfonts.Reg14)
+                                    //                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                                     .padding(12)
                                     .disableAutocorrection(true)
                                     .background(
@@ -204,7 +205,7 @@ struct ProfileView: View {
                                     }
                                 })
                             }
-                            .font(Font.camelfonts.Reg16)
+    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                             .padding(12)
                             .disableAutocorrection(true)
                             .background(
@@ -231,6 +232,14 @@ struct ProfileView: View {
             .edgesIgnoringSafeArea(.vertical)
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         }
+//        .onChange(of: LocalizationService.shared.language, perform: {newval in
+//            print(Helper.getLanguage())
+//print(newval)
+//            DispatchQueue.main.async(execute: {
+//                Helper.setLanguage(currentLanguage: newval.rawValue)
+//            })
+//            print(Helper.getLanguage())
+//        })
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())

@@ -35,12 +35,13 @@ struct ChangePasswordView: View {
                         SecureInputTextField("Confirm_new_Password".localized(language), text: $ChangePasswordVM.ConfirmNewPassword, iconName: "")
                     }
                     .padding(.horizontal)
-                    .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
                     if (ChangePasswordVM.ConfirmNewPassword != "" && (ChangePasswordVM.NewPassword != ChangePasswordVM.ConfirmNewPassword )){
                     HStack {
                         Text("Passwords_does_not_match".localized(language) )
-                            .font(Font.camelfonts.Reg14)
+                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                             .multilineTextAlignment(.center)
                             .padding( .leading)
                             .foregroundColor(.red)
@@ -62,7 +63,8 @@ struct ChangePasswordView: View {
                 }, label: {
                     HStack {
                         Text("Confirm".localized(language))
-                            .font(Font.camelfonts.Reg14)
+                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .frame(height:22)
@@ -104,7 +106,7 @@ struct ChangePasswordView: View {
                         Image("success-orange")
 
                         Text("You_just_changed_your_password".localized(language))
-                            .font(Font.camelfonts.Reg16)
+    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                             .foregroundColor(.black.opacity(0.8))
                             .padding(.bottom,50)
 

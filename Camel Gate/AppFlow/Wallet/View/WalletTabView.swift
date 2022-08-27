@@ -41,7 +41,7 @@ struct WalletView: View {
                             }, label: {
                                 HStack(alignment: .center){
                                     Text(Category )
-                                        .font(Font.camelfonts.SemiBold16)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                         .foregroundColor(self.selected == Category ? Color.white : Color("lightGray"))
                                     
                                 }

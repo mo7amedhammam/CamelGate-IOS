@@ -25,7 +25,8 @@ struct NoteScreenView: View {
                     Text("+699 128 665 1628")
                         .foregroundColor(Color("Second_Color"))
                 }
-                .font(Font.camelfonts.Reg14)
+                                                               .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                 .multilineTextAlignment(.center)
 
                 
@@ -36,7 +37,8 @@ struct NoteScreenView: View {
                 }, label: {
                     HStack {
                         Text("Send_Code".localized(language))
-                            .font(Font.camelfonts.Reg14)
+                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .frame(height:22)

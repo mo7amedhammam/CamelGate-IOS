@@ -70,7 +70,7 @@ struct EditProfileInfoView: View {
                 Group{
                     Group{
                         Text("Driver_Info".localized(language))
-                            .font(Font.camelfonts.SemiBold16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                             .foregroundColor(Color("blueColor"))
                             .padding(.vertical,10)
                         if taskStatus == .update{
@@ -166,7 +166,7 @@ struct EditProfileInfoView: View {
                     
                     Group{
                         Text("Truck_Info".localized(language))
-                            .font(Font.camelfonts.SemiBold16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                             .foregroundColor(Color("blueColor"))
                             .padding(.vertical,10)
                         
@@ -300,7 +300,8 @@ struct EditProfileInfoView: View {
                 }, label: {
                     HStack {
                         Text(taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language))
-                            .font(Font.camelfonts.Reg14)
+                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .frame(height:22)
@@ -363,7 +364,7 @@ struct EditProfileInfoView: View {
                     Image("success-orange")
 
                     Text("You_just_updated_your_Info".localized(language))
-                        .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .foregroundColor(.black.opacity(0.8))
                         .padding(.bottom,50)
 
@@ -375,7 +376,7 @@ struct EditProfileInfoView: View {
                     }, label: {
                         HStack {
                             Text("Ok".localized(language))
-                                .font(Font.camelfonts.SemiBold16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .frame(height:22)

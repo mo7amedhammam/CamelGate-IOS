@@ -42,7 +42,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                     Image("message-orange")
                     
                     Text("Please_enter_the_Verification_Code_\nwe_sent_to_your_mobile".localized(language) )
-                        .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                     
@@ -94,7 +94,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                             Text("01101201322")
                                 .foregroundColor(Color("blueColor"))
                         }
-                        .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .foregroundColor(.black)
                         .frame( alignment: .center)
                         .multilineTextAlignment(.center)
@@ -103,7 +103,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                             .padding(.top,2)
                             .foregroundColor((hideIncorrectCode == false || (minutes == 0 && seconds == 0 )) ? .red:.black )
                     }
-                    .font(Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     
                     Text("\(minutes):\(seconds)")
                         .font(.subheadline)
@@ -127,7 +127,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                         //                    self.DynamicTimer(sentTimer: RegisterUserVM.publishedUserRegisteredModel?.ReSendCounter ?? 60)
                     }, label: {
                         Text("Resend_Code".localized(language))
-                            .font(Font.camelfonts.Reg16)
+    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                             .padding()
                             .foregroundColor( (minutes == 00 && seconds == 00) ? Color("blueColor") : Color(uiColor: .lightGray))
                     }).disabled(minutes != 00 && seconds != 00)
@@ -155,7 +155,8 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                 }, label: {
                     HStack {
                         Text("Send_Code".localized(language))
-                            .font(Font.camelfonts.Reg14)
+                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .frame(height:22)

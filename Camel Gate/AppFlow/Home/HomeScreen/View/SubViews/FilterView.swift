@@ -17,7 +17,7 @@ struct FilterView: View {
             ZStack{
                 HStack{
                     Text(filterTitle)
-                        .font(Font.camelfonts.Light16)
+                       .font( language.rawValue == "ar" ? Font.camelfonts.LightAr16:Font.camelfonts.Light16)
                     Spacer()
                     Button(action: {
                         D?()

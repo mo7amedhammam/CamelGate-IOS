@@ -18,7 +18,8 @@ struct ShipmentRateCell: View {
                     
                     VStack(alignment:.leading){
                         Text("#DRE132312")
-                            .font(Font.camelfonts.Reg14)
+                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                             .foregroundColor(Color("blueColor"))
                         HStack{
                             StarsView(rating: 4.5)
@@ -39,7 +40,8 @@ struct ShipmentRateCell: View {
                 }, label: {
                     HStack {
                         Text("Shipment_Details".localized(language))
-                            .font(Font.camelfonts.Reg14)
+                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                             .foregroundColor(Color("blueColor"))
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)

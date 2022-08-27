@@ -69,7 +69,8 @@ struct DateInputView: View {
 
             ZStack (alignment:.leading){
                 Text(placeholder)
-                    .font(Font.camelfonts.Reg14)
+                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                     .foregroundColor(.gray.opacity(0.5))
                     .offset(y: date == nil ? 0 : -20)
                     .scaleEffect(date == nil ? 1 : 0.8, anchor: .leading)

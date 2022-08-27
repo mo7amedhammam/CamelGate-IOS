@@ -56,7 +56,8 @@ struct NotificationCell : View {
                 Image("ic_green_truck")
                 VStack(alignment : .leading){
                     Text("12:30 AM")
-                        .font(Font.camelfonts.Reg14)
+                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                         .foregroundColor(Color.gray)
                     Text("You have finished a shipment!")
                         .font(Font.camelfonts.SemiBold14)
