@@ -45,7 +45,7 @@ struct RedirectToGMaps:View{
             }, label: {
                 HStack {
                     Text("Redirect_to_Location".localized(language))
-                        .font(Font.camelfonts.Bold18)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()

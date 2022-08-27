@@ -40,7 +40,7 @@ struct ChatHeader: View {
                         .padding(.top,-8)
                 }
                 .foregroundColor(.white)
-                .font(Font.camelfonts.SemiBold22)
+.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
                 .offset(y:hasNotch ? -20:-30)
             }
             

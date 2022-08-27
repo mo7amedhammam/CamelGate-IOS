@@ -14,8 +14,6 @@ struct HeaderView: View {
     @EnvironmentObject var imageVM : imageViewModel
     var body: some View {
         HStack {
-//            Image("face_vector")
-//            WebImage(url: URL(string: LoginManger.getUser()?.image ?? ""))
             
             AsyncImage(url: URL(string: Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/"))) { image in
                 image.resizable()
@@ -34,7 +32,7 @@ struct HeaderView: View {
             VStack(alignment: .leading ){
                 HStack{
                     Text(LoginManger.getUser()?.name ?? "")
-                        .font(Font.camelfonts.Bold18)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
                         .foregroundColor(Color.white)
                     HStack{
                         Text("")

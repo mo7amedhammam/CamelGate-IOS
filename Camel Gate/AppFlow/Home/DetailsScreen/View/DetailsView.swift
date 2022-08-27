@@ -9,7 +9,6 @@ import SwiftUI
 
 struct DetailsView: View {
     var language = LocalizationService.shared.language
-
     var shipmentId:Int
     @StateObject var detailsVM = ShipmentDetailsViewModel()
     @State var ShowSetOffer:Bool = false
@@ -44,7 +43,7 @@ struct DetailsView: View {
                     VStack{
                         ZStack{
                             (detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4) ? Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 1)):Color.red
-                            Text("\(detailsVM.publishedUserLogedInModel.driverOfferStatusName ?? "Applied")").fontWeight(.medium).foregroundColor(Color.white)
+                            Text("\(detailsVM.publishedUserLogedInModel.driverOfferStatusName?.replacingOccurrences(of: "  ", with: "") ?? "Applied")").fontWeight(.medium).foregroundColor(Color.white)
                         }.frame(height: 30)
                         ZStack{
                             Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 0.2))
@@ -305,6 +304,16 @@ struct DetailsView: View {
             
             
         }
+
+        .toolbar{
+            ToolbarItemGroup(placement: .keyboard ){
+                Spacer()
+                Button("Done"){
+hideKeyboard()
+                    
+                }
+            }
+        }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .edgesIgnoringSafeArea(.bottom)
         .onAppear(perform: {
@@ -318,8 +327,12 @@ struct DetailsView: View {
                         if OfferCase == .set{
                             SetOfferView( OfferCase: $OfferCase, ShowSetOffer: $ShowSetOffer)
                             .environmentObject(detailsVM)
+                            .keyboardSpace()
+                            
                         }else if OfferCase == .applied{
                             AppliedOfferView( OfferCase: $OfferCase, ShowSetOffer: $ShowSetOffer)
+                                .environmentObject(detailsVM)
+
                         }else if OfferCase == .cancel{
                             CancelOfferView( OfferCase: $OfferCase, ShowSetOffer: $ShowSetOffer)
                                 .environmentObject(detailsVM)
@@ -331,8 +344,6 @@ struct DetailsView: View {
                         }else if OfferCase == .canceled{
                             CancelledOfferView( OfferCase: $OfferCase, ShowSetOffer: $ShowSetOffer)
                                 .environmentObject(detailsVM)
-
-                            
                         }
                     })
                         .background(
@@ -395,7 +406,6 @@ enum OfferCases{
 }
 struct SetOfferView:View{
     var language = LocalizationService.shared.language
-
     @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     @Binding var OfferCase:OfferCases
     @Binding var ShowSetOffer:Bool
@@ -404,7 +414,7 @@ struct SetOfferView:View{
         VStack{
             Spacer()
             Text("Set_Offer".localized(language))
-                .font(Font.camelfonts.SemiBold22)
+.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -452,7 +462,7 @@ struct SetOfferView:View{
             }, label: {
                 HStack {
                     Text("Send_Offer".localized(language))
-                        .font(Font.camelfonts.Bold18)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
@@ -463,11 +473,12 @@ struct SetOfferView:View{
             
                 .frame( height: 60)
                 .padding(.horizontal)
-                .padding(.top,10)
-                .padding(.vertical,10)
-        }        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                .padding(.top,20)
+                .padding(.bottom, 10)
+        }
 
-                .frame(height:260)
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+        .frame(height: 250)
                 .onChange(of: detailsVM.OfferSent, perform: {newval in
                     self.OfferCase = .applied
                 })
@@ -496,7 +507,7 @@ struct AppliedOfferView:View{
         VStack{
             
             Text("Offer_Applied".localized(language))
-                .font(Font.camelfonts.SemiBold22)
+.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -518,7 +529,7 @@ struct AppliedOfferView:View{
 
             Text("You_have_applied_for_this_shipment_\nsuccessfully".localized(language))
                 .multilineTextAlignment(.center)
-                .font(Font.camelfonts.Reg16)
+  .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                 .foregroundColor(.black.opacity(0.8))
 
             Button(action: {
@@ -530,7 +541,7 @@ struct AppliedOfferView:View{
             }, label: {
                 HStack {
                     Text("Check_other_shipments".localized(language))
-                        .font(Font.camelfonts.SemiBold22)
+.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .frame(height:22)
@@ -573,7 +584,7 @@ struct CancelOfferView:View{
         VStack{
             Spacer()
             Text("Cancel_Offer?".localized(language))
-                .font(Font.camelfonts.SemiBold22)
+.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -640,7 +651,7 @@ struct CancelOfferView:View{
             }, label: {
                 HStack {
                     Text("Confirm_cancelation".localized(language))
-                        .font(Font.camelfonts.Bold18)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
@@ -770,7 +781,7 @@ struct CancelledOfferView:View{
         VStack{
             
             Text("Canceled".localized(language))
-                .font(Font.camelfonts.SemiBold22)
+.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -792,7 +803,7 @@ struct CancelledOfferView:View{
 
             Text("You_still_can_re-apply_for_this_job".localized(language))
                 .multilineTextAlignment(.center)
-                .font(Font.camelfonts.Reg16)
+  .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                 .foregroundColor(.black.opacity(0.8))
 
             HStack{
@@ -821,6 +832,7 @@ struct CancelledOfferView:View{
                 DispatchQueue.main.async{
                     detailsVM.driverOffer = "\( detailsVM.publishedUserLogedInModel.driverOfferValue ?? 00)"
                     OfferCase = .none
+                    detailsVM.GetShipmentDetails()
                     ShowSetOffer = false
                 }
             }, label: {

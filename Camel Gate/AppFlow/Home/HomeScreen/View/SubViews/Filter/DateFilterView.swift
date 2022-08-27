@@ -68,7 +68,7 @@ struct DateFromTo:View{
             }, label: {
                 HStack {
                     Text("Done".localized(language))
-                        .font(Font.camelfonts.Bold18)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()

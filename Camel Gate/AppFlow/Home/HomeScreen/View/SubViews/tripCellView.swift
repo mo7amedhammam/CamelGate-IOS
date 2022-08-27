@@ -177,14 +177,14 @@ struct tripCellView: View {
                             
                             VStack {
                                 HStack(alignment:.top){
-                                    Text(shipmentModel.driverOfferStatusName ?? "Accepted")
+                                    Text(shipmentModel.driverOfferStatusName?.replacingOccurrences(of: "  ", with: "") ?? "Accepted")
                                         .foregroundColor(.white)
                                         .padding(.horizontal)
                                         .padding(.vertical,5)
                                     
 
                                         .background(
-                                            RoundedCornersShape(radius: 8, corners: [.topLeft,.bottomRight]).foregroundColor( (shipmentModel.driverOfferStatusID == 1 || shipmentModel.driverOfferStatusID == 4) ? Color(#colorLiteral(red: 0.259, green: 0.812, blue: 0, alpha: 1)):.red))
+                                            RoundedCornersShape(radius: 8, corners: language.rawValue == "ar" ? [.topRight, .bottomLeft]:[.topLeft,.bottomRight]).foregroundColor( (shipmentModel.driverOfferStatusID == 1 || shipmentModel.driverOfferStatusID == 4) ? Color(#colorLiteral(red: 0.259, green: 0.812, blue: 0, alpha: 1)):.red))
 //                                        .cornerRadius(8)
                                     Spacer()
                                 }
