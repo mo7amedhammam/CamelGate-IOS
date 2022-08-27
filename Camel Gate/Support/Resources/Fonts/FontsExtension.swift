@@ -46,7 +46,7 @@ extension Font {
 //        let BoldAr22 = Font.custom("GESSUniqueBold-Bold", size: 22)
 //        let BoldAr24 = Font.custom("GESSUniqueBold-Bold", size: 24)
         
-        let Light11 = Font.custom( language.rawValue == "ar" ? "GESSUniqueLight-Light":"MyriadConceptRoman-Light", size: 11)
+        let Light11 = Font.custom(language.rawValue == "ar" ? "GESSUniqueLight-Light":"MyriadConceptRoman-Light", size: 11)
         let Light14 = Font.custom(language.rawValue == "ar" ? "GESSUniqueLight-Light":"MyriadConceptRoman-Light", size: 14)
         let Light16 = Font.custom(language.rawValue == "ar" ? "GESSUniqueLight-Light":"MyriadConceptRoman-Light", size: 16)
         let Light18 = Font.custom(language.rawValue == "ar" ? "GESSUniqueLight-Light":"MyriadConceptRoman-Light", size: 18)

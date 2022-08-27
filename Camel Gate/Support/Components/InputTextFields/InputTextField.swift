@@ -12,11 +12,10 @@ struct InputTextField: View {
     @State var fieldType : inputfields? = .Default
 
     var placeholder : String
-
     @Binding var text: String
     let screenWidth = UIScreen.main.bounds.size.width - 55
+    
     var body: some View {
-        
         HStack{
             if iconName != "" || iconName != nil{
                 Image(iconName ?? "")
@@ -36,7 +35,7 @@ struct InputTextField: View {
                 
                 HStack{
                     if fieldType == .Phone{
-                Text("+966 |")
+                        Text("+966 |")
                         .font(Font.camelfonts.Reg14)
                         .foregroundColor(.gray.opacity(0.5))
                     }
@@ -68,62 +67,62 @@ struct InputTextField_Previews: PreviewProvider {
 enum inputfields {
     case Phone, Default, Password
 }
-struct PhoneInputField: View {
-    @State var iconName : String? = ""
-    @State var iconColor : Color? = .clear
-    @State var field : inputfields? = .none
-
-    var placeholder : String
-
-    @Binding var text: String
-    let screenWidth = UIScreen.main.bounds.size.width - 55
-    var body: some View {
-        
-        HStack{
-            if iconName != "" || iconName != nil{
-                Image(iconName ?? "")
-                    .renderingMode( iconColor != .clear ? .template:.original)
-                    .foregroundColor(iconColor == .clear ? .clear:iconColor)
-                    .font(.system(size: 15))
-            }else{
-            }
-            
-          
-            ZStack(alignment:.leading){
-                Text(placeholder)
-                    .font(Font.camelfonts.Reg14)
-                    .foregroundColor(.gray.opacity(0.5))
-                    .offset(y: withAnimation{text.isEmpty ? 0 : -20})
-                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
-                    .padding(.leading,text.isEmpty ? 55:0)
-                HStack{
-                Text("+966 |")
-                        .font(Font.camelfonts.Reg14)
-                        .foregroundColor(.gray.opacity(0.5))
-                TextField("",text:$text)
-                    .font(Font.camelfonts.Reg16)
-                    .autocapitalization(.none)
-                    .textInputAutocapitalization(.never)
-             }
-            }
-        }
-        .frame( height: 30)
-        .padding(12)
-        .disableAutocorrection(true)
-        .background(
-            Color.white
-        )
-            .cornerRadius(5)
-            .shadow(color: Color.black.opacity(0.099), radius: 3)
-        
-    }
-}
-struct PhoneInputField_Previews: PreviewProvider {
-    static var previews: some View {
-        PhoneInputField(iconName:"x321gray",placeholder: "Phone", text: .constant(""))
-        
-    }
-}
+//struct PhoneInputField: View {
+//    @State var iconName : String? = ""
+//    @State var iconColor : Color? = .clear
+//    @State var field : inputfields? = .none
+//
+//    var placeholder : String
+//
+//    @Binding var text: String
+//    let screenWidth = UIScreen.main.bounds.size.width - 55
+//    var body: some View {
+//        
+//        HStack{
+//            if iconName != "" || iconName != nil{
+//                Image(iconName ?? "")
+//                    .renderingMode( iconColor != .clear ? .template:.original)
+//                    .foregroundColor(iconColor == .clear ? .clear:iconColor)
+//                    .font(.system(size: 15))
+//            }else{
+//            }
+//            
+//          
+//            ZStack(alignment:.leading){
+//                Text(placeholder)
+//                    .font(Font.camelfonts.Reg14)
+//                    .foregroundColor(.gray.opacity(0.5))
+//                    .offset(y: withAnimation{text.isEmpty ? 0 : -20})
+//                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+//                    .padding(.leading,text.isEmpty ? 55:0)
+//                HStack{
+//                Text("+966 |")
+//                        .font(Font.camelfonts.Reg14)
+//                        .foregroundColor(.gray.opacity(0.5))
+//                TextField("",text:$text)
+//                    .font(Font.camelfonts.Reg16)
+//                    .autocapitalization(.none)
+//                    .textInputAutocapitalization(.never)
+//             }
+//            }
+//        }
+//        .frame( height: 30)
+//        .padding(12)
+//        .disableAutocorrection(true)
+//        .background(
+//            Color.white
+//        )
+//            .cornerRadius(5)
+//            .shadow(color: Color.black.opacity(0.099), radius: 3)
+//        
+//    }
+//}
+//struct PhoneInputField_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PhoneInputField(iconName:"x321gray",placeholder: "Phone", text: .constant(""))
+//        
+//    }
+//}
 
 
 

@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct OnBoardingView: View {
+    var language = LocalizationService.shared.language
     @State private var currentIndex = 0
-    @State private var HeadLineTitle = "Apply Easily On Shipments!"
-    @State private var bodyTitle = "You can easily Apply on more than 3,500 shipments and set your own offer"
+    @State private var HeadLineTitle = "Apply_Easily_On_Shipments!"
+    @State private var bodyTitle = "You_can_easily_Apply_on_more_than_3,500_shipments_and_set_your_own_offer"
     @State var active = false
     @State var destination = AnyView(SignInView())
     var body: some View {
@@ -29,12 +30,12 @@ struct OnBoardingView: View {
                     Image("ic_onBoarding_mask")
                         .resizable()
                     VStack(spacing : 26){
-                        Text(HeadLineTitle)
+                        Text(HeadLineTitle.localized(language))
                             .transition(.slide)
                             .animation(.rippleText())
                             .font(Font.camelfonts.Bold22)
                             .multilineTextAlignment(.center)
-                        Text(bodyTitle)
+                        Text(bodyTitle.localized(language))
                             .transition(.slide)
                             .animation(.rippleText())
                             .font(Font.camelfonts.SemiBold16)
@@ -58,12 +59,12 @@ struct OnBoardingView: View {
                             switch currentIndex {
                             case 0 :
                                 currentIndex = 1
-                                HeadLineTitle = "Track your Shipment!"
-                                bodyTitle = "You can easily track your shipment since you start it till you drop the backage"
+                                HeadLineTitle = "Track_your_Shipment!"
+                                bodyTitle = "You_can_easily_track_your_shipment_since_you_start_it_till_you_drop_the_backage"
                             case 1 :
                                 self.currentIndex = 2
-                                HeadLineTitle = "Check your Balance!"
-                                bodyTitle = "You can easily check your balance along time and transitions made in/out"
+                                HeadLineTitle = "Check_your_Balance!"
+                                bodyTitle = "You_can_easily_check_your_balance_along_time_and_transitions_made_in/out"
                             case 2 :
                                 Helper.onBoardOpened()
                                 active = true
@@ -75,7 +76,7 @@ struct OnBoardingView: View {
                             }
                         }) {
                             HStack{
-                                Text(currentIndex == 2 ? "Geting Started" : "Next").font(Font.camelfonts.SemiBold16)
+                                Text(currentIndex == 2 ? "Geting_Started".localized(language) : "Next".localized(language)).font(Font.camelfonts.SemiBold16)
                                     .foregroundColor(Color.white)
                                 Image("ic_next_arrow")
                             }
@@ -93,7 +94,10 @@ struct OnBoardingView: View {
                 }.frame(maxWidth: .infinity, maxHeight: 340)
                     .background(Color.clear)
             }.edgesIgnoringSafeArea(.all)
-        }.ignoresSafeArea()
+        }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+        .ignoresSafeArea()
             .navigationBarHidden(true)
         NavigationLink(destination: destination,isActive:$active , label: {
         })

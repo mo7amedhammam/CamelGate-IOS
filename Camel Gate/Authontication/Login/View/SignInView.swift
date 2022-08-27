@@ -30,8 +30,9 @@ struct SignInView: View {
                     Group{
                         
                         InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"),fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $SignInVM.phoneNumber)
+                            
                             .padding(.horizontal)
-                            .keyboardType(.numberPad)
+                            .keyboardType(.phonePad)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.red, lineWidth:SignInVM.validations == .PhoneNumber ? 1:0).padding(.horizontal)
@@ -49,7 +50,6 @@ struct SignInView: View {
                                 Spacer()
                             }.padding(.horizontal)
                         }
-                        
                         
                         SecureInputTextField("Enter_your_password".localized(language), text: $SignInVM.password,iconName:"lockBlue")
                             .padding(.horizontal)
@@ -84,7 +84,7 @@ struct SignInView: View {
                     }, Title: "Sign_In".localized(language))
                     
                     HStack {
-                        Text("dont_have_an_Account? ".localized(language)).foregroundColor(.secondary)
+                        Text("dont_have_an_Account?".localized(language)).foregroundColor(.secondary)
                         
                         Button("Sign_Up".localized(language)) {
                             active = true
@@ -144,7 +144,8 @@ struct SignInView: View {
             })
             NavigationLink(destination: SignInVM.destination.navigationBarHidden(true),isActive:$SignInVM.isLogedin , label: {
             })
-        }                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+        }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
         
     }
@@ -154,5 +155,18 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
+    }
+}
+
+public extension UITextField
+{
+    override var textInputMode: UITextInputMode?
+    {
+        let locale = Locale(identifier: "en-US")
+        
+        return
+            UITextInputMode.activeInputModes.first(where: { $0.primaryLanguage == locale.identifier })
+            ??
+            super.textInputMode
     }
 }

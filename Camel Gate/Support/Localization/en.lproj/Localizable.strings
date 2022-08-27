@@ -165,3 +165,34 @@
 "You_still_can_re-apply_for_this_job" = "You still can re-apply for this job";
 "other_shipments" = "other shipments";
 "Re-Apply" = "Re-Apply";
+
+
+//MARK: -- onboarding --
+"Apply_Easily_On_Shipments!" = "Apply Easily On Shipments!";
+"You_can_easily_Apply_on_more_than_3,500_shipments_and_set_your_own_offer" = "You can easily Apply on more than 3,500 shipments and set your own offer";
+"Track_your_Shipment!" = "Track your Shipment!";
+"You_can_easily_track_your_shipment_since_you_start_it_till_you_drop_the_backage" = "You can easily track your shipment since you start it till you drop the backage";
+"Check_your_Balance!" = "Check your Balance!";
+"You_can_easily_check_your_balance_along_time_and_transitions_made_in/out" = "You can easily check your balance along time and transitions made in/out";
+"Geting_Started" = "Geting Started";
+"Next" = "Next";
+
+//MARK: -- sign in --
+"Enter_your_phone_number" = "Enter your phone number";
+"Enter_your_password" = "Enter your password";
+"Forgot_Password?" = "Forgot Password?";
+"Sign_In" = "Sign In";
+"dont_have_an_Account?" = "dont have an Account?";
+"Sign_Up" = "Sign Up";
+"Sign_In" = "Sign In";
+"Enter_a_valid_Phone_number" = "Enter a valid Phone number";
+
+//MARK: -- sign up --
+"Enter_your_name" = "Enter your name";
+"Enter_your_phone_number" = "Enter your phone number";
+"Enter_your_password" = "Enter your password";
+"Confirm_your_password" = "Confirm your password";
+"Create_account" = "Create account";
+"have_an_Account?" = "have an Account? ";
+"Sign_In" = "Sign In";
+"Passwords_does_not_match" ="Passwords does not match";

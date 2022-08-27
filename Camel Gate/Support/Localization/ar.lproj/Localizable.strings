@@ -163,3 +163,33 @@
 "You_still_can_re-apply_for_this_job" = "ما زلت بإمكانك تقديم عرض مرة اخرى";
 "other_shipments" = "عرض شحنات أخرى";
 "Re-Apply" = "إعادة التقديم";
+
+//MARK: -- onboarding --
+"Apply_Easily_On_Shipments!" = "تقدم للشحنات بسهولة";
+"You_can_easily_Apply_on_more_than_3,500_shipments_and_set_your_own_offer" = "يمكنك التقدم بسهولة على أكثر من ٣,٥٠٠ شحنة وإضافة عرض مناسب لك";
+"Track_your_Shipment!" = "متابعة شحنتك";
+"You_can_easily_track_your_shipment_since_you_start_it_till_you_drop_the_backage" = "تستطيع تتبع شحنتك منذ بدايتها حتى وصولها وإستلامها";
+"Check_your_Balance!" = "متابعة رصيدك";
+"You_can_easily_check_your_balance_along_time_and_transitions_made_in/out" = "يمكنك متابعة حسابك طوال الوقت ومعاملاتك من/إلى";
+"Geting_Started" = "بداية الإستخدام";
+"Next" = "التالى";
+
+//MARK: -- sign in --
+"Enter_your_phone_number" = "أدخل رقم الهاتف";
+"Enter_your_password" = "أدخل كلمة المرور";
+"Forgot_Password?" = "نسيت كلمة المرور؟";
+"Sign_In" = "دخول";
+"dont_have_an_Account?" = "ليس لديك حساب ؟";
+"Sign_Up" = "إنشاء حساب";
+//"Sign_In" = "Sign In";
+"Enter_a_valid_Phone_number" = "برجاء إدخال رقم صحيح";
+
+//MARK: -- sign up --
+"Enter_your_name" = "أدخل إسمك";
+"Enter_your_phone_number" = "ادخل رقم الهاتف";
+"Enter_your_password" = "أدخل كلمة المرور";
+"Confirm_your_password" = "تأكيد كلمةالمرور";
+"Create_account" = "إنشاء حساب";
+"have_an_Account?" = "لديك حساب؟ ";
+"Sign_In" = "تسجيل دخول";
+"Passwords_does_not_match" = "كلمة المرور غير متطابقة";

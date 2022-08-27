@@ -32,7 +32,7 @@ struct SignUpView: View {
                         InputTextField(iconName: "person",iconColor: Color("blueColor"), placeholder: "Enter_your_name".localized(language), text: $SignUpVM.Drivername)
 
                         InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"),fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $SignUpVM.phoneNumber)
-                            .keyboardType(.numberPad)
+                            .keyboardType(.phonePad)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.red, lineWidth:SignUpVM.validations == .PhoneNumber ? 1:0))
@@ -82,7 +82,7 @@ struct SignUpView: View {
                     }, Title: "Create_account".localized(language))
                     .padding(.top)
                     HStack {
-                        Text("have_an_Account? ".localized(language)).foregroundColor(.secondary)
+                        Text("have_an_Account?".localized(language)).foregroundColor(.secondary)
                         
                         Button("Sign_In".localized(language)) {
                             self.presentationMode.wrappedValue.dismiss()
