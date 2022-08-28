@@ -84,9 +84,10 @@ struct ProfileView: View {
                                             .font(.system(size:15))
                                     }
                                 })
-                                
-}.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-                                .padding(12)
+                            }
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                            .frame(height:33)
+                            .padding(12)
                                 .disableAutocorrection(true)
                                 .background(
                                     Color.white
@@ -111,7 +112,7 @@ struct ProfileView: View {
                                                 Image("usaFlag")
                                                     .frame(width: 20, height: 20)
                                                     .padding(.horizontal).foregroundColor(Color("blueColor"))
-                                                
+
                                                 Text("English".localized(language))
                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                                     .foregroundColor(Color("lightGray"))
@@ -130,7 +131,6 @@ struct ProfileView: View {
                                                     .frame(width: 20, height: 20)
                                                     .padding(.horizontal)
                                                     .foregroundColor(Color("blueColor"))
-                                                
                                                 Text("العربية".localized(language))
                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                                                     .foregroundColor(Color("lightGray"))
@@ -139,7 +139,7 @@ struct ProfileView: View {
                                         })
                                     }
                                     //                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                                    .frame(height:33)
                                     .padding(12)
                                     .disableAutocorrection(true)
                                     .background(
@@ -206,6 +206,7 @@ struct ProfileView: View {
                                 })
                             }
     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                            .frame(height:33)
                             .padding(12)
                             .disableAutocorrection(true)
                             .background(

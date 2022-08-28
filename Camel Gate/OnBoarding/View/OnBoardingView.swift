@@ -33,12 +33,12 @@ struct OnBoardingView: View {
                         Text(HeadLineTitle.localized(language))
                             .transition(.slide)
                             .animation(.rippleText())
-                            .font(Font.camelfonts.Bold22)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr22:Font.camelfonts.Bold22)
                             .multilineTextAlignment(.center)
                         Text(bodyTitle.localized(language))
                             .transition(.slide)
                             .animation(.rippleText())
-            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
+            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color("lightGray"))
                         
@@ -76,7 +76,8 @@ struct OnBoardingView: View {
                             }
                         }) {
                             HStack{
-                                Text(currentIndex == 2 ? "Geting_Started".localized(language) : "Next".localized(language)).font(Font.camelfonts.SemiBold16)
+                                Text(currentIndex == 2 ? "Geting_Started".localized(language) : "Next".localized(language))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                                     .foregroundColor(Color.white)
                                 Image("ic_next_arrow")
                             }

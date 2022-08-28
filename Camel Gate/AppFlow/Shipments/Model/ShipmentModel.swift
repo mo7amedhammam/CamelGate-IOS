@@ -11,8 +11,13 @@ import SwiftUI
 // MARK: - Datum
 struct ShipmentModel: Codable, Hashable, Identifiable {
     static func == (lhs: ShipmentModel, rhs: ShipmentModel) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.code == rhs.code
     }
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+            hasher.combine(code)
+        }
+
     
     var id: Int?
     var code, imageURL: String?

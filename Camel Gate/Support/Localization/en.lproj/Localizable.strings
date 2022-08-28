@@ -196,3 +196,7 @@
 "have_an_Account?" = "have an Account? ";
 "Sign_In" = "Sign In";
 "Passwords_does_not_match" ="Passwords does not match";
+
+//MARK: -- Delivery_Location --
+"Delivery_Location" = "Delivery Location";
+"Redirect_to_Location" = "Redirect to Location";

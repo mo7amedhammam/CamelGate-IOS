@@ -39,18 +39,31 @@ struct DetailsView: View {
                         }.padding(.top , 60)
                     }
                     .buttonStyle(.plain)
-                    if detailsVM.publishedUserLogedInModel.driverOfferStatusID != nil{
+                    if detailsVM.publishedUserLogedInModel.driverOfferStatusID == nil{
                     VStack{
                         ZStack{
                             (detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4) ? Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 1)):Color.red
-                            Text("\(detailsVM.publishedUserLogedInModel.driverOfferStatusName?.replacingOccurrences(of: "  ", with: "") ?? "Applied")").fontWeight(.medium).foregroundColor(Color.white)
+                            Text("\(detailsVM.publishedUserLogedInModel.driverOfferStatusName?.replacingOccurrences(of: "  ", with: "") ?? "Applied")")
+                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
+                                .foregroundColor(Color.white)
                         }.frame(height: 30)
                         ZStack{
                             Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 0.2))
-                            HStack {
-                                Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1250)").fontWeight(.medium).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
-                                Text("SAR".localized(language)).fontWeight(.medium).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                            HStack(alignment:.bottom,spacing:10){
+                                HStack(alignment:.bottom,spacing:2){
+                                Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1250)")
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr18:Font.camelfonts.SemiBold18)
+                                    .foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                    
+                                Text("SAR".localized(language))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                }
+                                
                                 Text("Your_Offer".localized(language)).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                             }
                         }
                         .padding(.top , -10)
@@ -211,7 +224,7 @@ struct DetailsView: View {
                                     ZStack{
                                         Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
                                         Text("Location".localized(language)).foregroundColor(Color(#colorLiteral(red: 0.2833708227, green: 0.149017632, blue: 0.4966977239, alpha: 1)))
-                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
                                         
                                     }.cornerRadius(8)
                                 }
@@ -225,7 +238,7 @@ struct DetailsView: View {
                                     ZStack{
                                         Color("Second_Color").opacity(0.2).frame(width : 100 , height: 40)
                                         Text("Location".localized(language)).foregroundColor(Color("Second_Color"))
-                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
                                         
                                     }.cornerRadius(8)
                                 }
@@ -282,18 +295,17 @@ struct DetailsView: View {
                             OfferCase = .set
                         }
                         ShowSetOffer = true
-
                     }) {
                         ZStack {
                             detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 ? Color.red.opacity(0.09) : Color("Base_Color")
                             Text( detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 ? "Cancel".localized(language) : detailsVM.publishedUserLogedInModel.driverOfferStatusID == 2 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 5 ? "ReApply".localized(language):"Apply".localized(language))
-        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                                 .foregroundColor(detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 ? Color.red : Color.white)
                         }
                     }
                     .cornerRadius(10)
                     .shadow(color: Color.black.opacity(0.08), radius: 3.0 , x: 0, y: 4)
-                    .frame(height : 60)
+                    .frame(height : 50)
                     .padding(.horizontal)
                 }
                 .cornerRadius(10)
@@ -386,7 +398,6 @@ hideKeyboard()
 //                    destination = AnyView(SignInView())
 //                    active = true
                 }
-
                 detailsVM.isAlert = false
             }))
         })
@@ -414,7 +425,7 @@ struct SetOfferView:View{
         VStack{
             Spacer()
             Text("Set_Offer".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -438,8 +449,8 @@ struct SetOfferView:View{
                         Spacer()
                         Text("SAR".localized(language))
     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-                            .foregroundColor(.secondary)
-                    }
+    .foregroundColor(.secondary.opacity(0.5))
+                    }.padding(.horizontal)
                 })
                 .padding(.horizontal)
                 .padding(.top,20)
@@ -448,7 +459,7 @@ struct SetOfferView:View{
             HStack{
                 Text("Lowest_Osser_is".localized(language))
 .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-                    .foregroundColor(.secondary)
+.foregroundColor(.secondary.opacity(0.8))
                 Text("\(detailsVM.publishedUserLogedInModel.lowestOffer ?? 1200) "+"SAR".localized(language))
     .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                     .foregroundColor(Color("blueColor"))
@@ -462,7 +473,7 @@ struct SetOfferView:View{
             }, label: {
                 HStack {
                     Text("Send_Offer".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
@@ -507,7 +518,7 @@ struct AppliedOfferView:View{
         VStack{
             
             Text("Offer_Applied".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
+.font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -541,7 +552,7 @@ struct AppliedOfferView:View{
             }, label: {
                 HStack {
                     Text("Check_other_shipments".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .frame(height:22)
@@ -584,7 +595,7 @@ struct CancelOfferView:View{
         VStack{
             Spacer()
             Text("Cancel_Offer?".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
+                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -607,7 +618,7 @@ struct CancelOfferView:View{
                     .frame(width: 100, height: 100)
                     .padding()
                 Text("You_will_loose_the_opportunity_to_gain".localized(language))
-                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
 
                     .multilineTextAlignment(.center)
                 Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1400) SAR")
@@ -620,7 +631,7 @@ struct CancelOfferView:View{
                 Spacer()
                 Image("ic_lump")
                 Text("To_change_the_offer_you_need_to_cancel_\nthe_order_first_then_to_apply_again".localized(language))
-                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
 
                     //.lineLimit(2)
                     .multilineTextAlignment(.center)
@@ -651,7 +662,7 @@ struct CancelOfferView:View{
             }, label: {
                 HStack {
                     Text("Confirm_cancelation".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
@@ -781,7 +792,7 @@ struct CancelledOfferView:View{
         VStack{
             
             Text("Canceled".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
+                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -838,7 +849,7 @@ struct CancelledOfferView:View{
             }, label: {
                 HStack {
                     Text("Re-Apply".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .frame(height:22)

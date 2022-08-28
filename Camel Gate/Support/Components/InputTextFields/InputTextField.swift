@@ -158,14 +158,14 @@ struct InputDateField: View {
             
             ZStack (alignment:.leading){
                 Text(placeholder)
-                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
 
                     .foregroundColor(.gray.opacity(0.5))
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
                 
                 TextField("",text:$text)
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                     .autocapitalization(.none)
                     .textInputAutocapitalization(.never)
   

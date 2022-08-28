@@ -101,7 +101,7 @@ struct ChangePasswordView: View {
                 BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
 
                         Text("Password_Changed".localized(language))
-                            .font(Font.camelfonts.Reg20)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
 
                         Image("success-orange")
 
@@ -117,7 +117,8 @@ struct ChangePasswordView: View {
                         }, label: {
                             HStack {
                                 Text("Ok".localized(language))
-                                    .font(Font.camelfonts.SemiBold18)
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+
                             }
                             .frame(minWidth: 0, maxWidth: .infinity)
                             .frame(height:22)

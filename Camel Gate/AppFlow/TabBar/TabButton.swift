@@ -42,7 +42,7 @@ struct TabButton : View {
           .frame(width: 24, height: 24)
 
           Text(title.localized(language))
-                                                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
 
               .foregroundColor(Color("Base_Color")
                                 .opacity(selectedTab == title ? 1.0 : 0.2))

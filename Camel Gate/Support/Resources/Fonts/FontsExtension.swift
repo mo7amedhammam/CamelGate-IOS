@@ -22,6 +22,7 @@ extension Font {
 //        "MyriadConceptRoman-Bold"
 //
         let LightAr11 = Font.custom("GESSUniqueLight-Light", size: 11)
+        let LightAr12 = Font.custom("GESSUniqueLight-Light", size: 12)
         let LightAr14 = Font.custom("GESSUniqueLight-Light", size: 14)
         let LightAr16 = Font.custom("GESSUniqueLight-Light", size: 16)
         let LightAr18 = Font.custom("GESSUniqueLight-Light", size: 18)
@@ -30,6 +31,7 @@ extension Font {
         let LightAr24 = Font.custom("GESSUniqueLight-Light", size: 24)
 //
         let RegAr11 = Font.custom("GESSTextMedium-Medium", size: 11)
+        let RegAr12 = Font.custom("GESSTextMedium-Medium", size: 12)
         let RegAr14 = Font.custom("GESSTextMedium-Medium", size: 14)
         let RegAr16 = Font.custom("GESSTextMedium-Medium", size: 16)
         let RegAr18 = Font.custom("GESSTextMedium-Medium", size: 18)
@@ -38,6 +40,7 @@ extension Font {
         let RegAr24 = Font.custom("GESSTextMedium-Medium", size: 24)
 //
         let BoldAr11 = Font.custom("GESSUniqueBold-Bold", size: 11)
+        let BoldAr12 = Font.custom("GESSUniqueBold-Bold", size: 12)
         let BoldAr14 = Font.custom("GESSUniqueBold-Bold", size: 14)
         let BoldAr16 = Font.custom("GESSUniqueBold-Bold", size: 16)
         let BoldAr18 = Font.custom("GESSUniqueBold-Bold", size: 18)
@@ -46,6 +49,7 @@ extension Font {
         let BoldAr24 = Font.custom("GESSUniqueBold-Bold", size: 24)
 
         let SemiBoldAr11 = Font.custom("GESSUniqueBold-Bold", size: 11)
+        let SemiBoldAr12 = Font.custom("GESSUniqueBold-Bold", size: 12)
         let SemiBoldAr14 = Font.custom("GESSUniqueBold-Bold", size: 14)
         let SemiBoldAr16 = Font.custom("GESSUniqueBold-Bold", size: 16)
         let SemiBoldAr18 = Font.custom("GESSUniqueBold-Bold", size: 18)
@@ -56,6 +60,7 @@ extension Font {
         
         
         let Light11 = Font.custom("MyriadConceptRoman-Light", size: 11)
+        let Light12 = Font.custom("MyriadConceptRoman-Light", size: 12)
         let Light14 = Font.custom("MyriadConceptRoman-Light", size: 14)
         let Light16 = Font.custom("MyriadConceptRoman-Light", size: 16)
         let Light18 = Font.custom("MyriadConceptRoman-Light", size: 18)
@@ -64,6 +69,7 @@ extension Font {
         let Light24 = Font.custom("MyriadConceptRoman-Light", size: 24)
 
         let Reg11 = Font.custom("MyriadConceptRoman-Regular", size: 11)
+        let Reg12 = Font.custom("MyriadConceptRoman-Regular", size: 12)
         let Reg14 = Font.custom("MyriadConceptRoman-Regular", size: 14)
         let Reg16 = Font.custom("MyriadConceptRoman-Regular", size: 16)
         let Reg18 = Font.custom("MyriadConceptRoman-Regular", size: 18)
@@ -80,6 +86,7 @@ extension Font {
 //        let Med24 = Font.custom("Myriad Roman Regular", size: 24)
         
         let Bold11 = Font.custom("MyriadConceptRoman-Bold", size: 11)
+        let Bold12 = Font.custom("MyriadConceptRoman-Bold", size: 12)
         let Bold14 = Font.custom("MyriadConceptRoman-Bold", size: 14)
         let Bold16 = Font.custom("MyriadConceptRoman-Bold", size: 16)
         let Bold18 = Font.custom("MyriadConceptRoman-Bold", size: 18)
@@ -88,6 +95,7 @@ extension Font {
         let Bold24 = Font.custom("MyriadConceptRoman-Bold", size: 24)
 
         let SemiBold11 = Font.custom("MyriadConceptRoman-Semibold", size: 11)
+        let SemiBold12 = Font.custom("MyriadConceptRoman-Semibold", size: 12)
         let SemiBold14 = Font.custom("MyriadConceptRoman-Semibold", size: 14)
         let SemiBold16 = Font.custom("MyriadConceptRoman-Semibold", size: 16)
         let SemiBold18 = Font.custom("MyriadConceptRoman-Semibold", size: 18)

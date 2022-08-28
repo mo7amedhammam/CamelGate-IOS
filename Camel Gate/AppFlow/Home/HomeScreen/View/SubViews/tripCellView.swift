@@ -39,6 +39,7 @@ struct tripCellView: View {
                                     } placeholder: {
                                         Image("cover_vector")
                                             .resizable()
+                                            .cornerRadius(8)
          
                                     }
 //                                        .resizable()
@@ -49,7 +50,7 @@ struct tripCellView: View {
 //                                                .stroke(Color(#colorLiteral(red: 0.8797428608, green: 0.8797428012, blue: 0.8797428608, alpha: 1)).opacity(0.60), lineWidth: 2.0)
 //
 //                                        )
-//                                        .cornerRadius(8)
+                                        .cornerRadius(8)
                                         .padding(.horizontal,8)
                                         .padding(.top,15)
 //                                        .offset(y:25)
@@ -58,14 +59,15 @@ struct tripCellView: View {
                                     VStack(){
                                         HStack(alignment:.bottom, spacing: 3){
                                             Text("\(shipmentModel.lowestOffer ?? 1200)").foregroundColor(Color.white)
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
+                                                .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr16:Font.camelfonts.Bold18)
                                                 .fontWeight(.medium)
 
                                             Text("SAR".localized(language)).foregroundColor(Color.white.opacity(0.99))
-.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
+                                                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr12:Font.camelfonts.SemiBold12)
                                         }
                                         Text("LowestOffer".localized(language)).foregroundColor(Color.white.opacity(0.9))
-                                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
+                                                .padding(.top,-4)
 
                                     }
 //                                    .padding(.horizontal)
@@ -82,9 +84,12 @@ struct tripCellView: View {
                             HStack{
                                 Text("\(shipmentModel.offersCount ?? 0)")
                                     .foregroundColor(Color.black.opacity(0.7))
-                                Text("Offers".localized(language))                            .foregroundColor(.secondary)
+                                Text("Offers".localized(language))
+                                    .foregroundColor(.secondary)
 
                             }
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
                         }
                         .frame(height: 150)
                         .offset( y: -20)
@@ -95,16 +100,16 @@ struct tripCellView: View {
                                     Image("ic_dark_truck")
                                         .renderingMode(.template)
                                         .resizable()
-                                        .frame(width: 20, height: 20)
-                                        .foregroundColor(Color.black.opacity(0.5))
+                                        .frame(width: 18, height: 18)
+                                        .foregroundColor(Color.black.opacity(0.4))
 
                                     Text("Distance_:_".localized(language))
                                         .foregroundColor(.secondary)
-                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
 
                                     Text("\( String(format: "%.1f", shipmentModel.totalDistance ?? 22.00)) "+"KM".localized(language))
                                         .foregroundColor(.black.opacity(0.7))
-                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
 
                                     Spacer()
                                 }
@@ -112,15 +117,15 @@ struct tripCellView: View {
                                     Image("stargray")
                                         .renderingMode(.template)
                                         .resizable()
-                                        .frame(width: 18, height: 18)
-                                        .foregroundColor(Color.black.opacity(0.5))
+                                        .frame(width: 16, height: 16)
+                                        .foregroundColor(Color.black.opacity(0.4))
                                     Text("Company_Rate_:_".localized(language))
                                         .foregroundColor(.secondary)
-                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
 
-                                    Text("\(shipmentModel.companyRate ?? 0)/5")
+                                    Text("\(shipmentModel.companyRate ?? 0) / 5")
                                         .foregroundColor(.black.opacity(0.7))
-                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
 
                                     Spacer()
                                 }
@@ -129,39 +134,49 @@ struct tripCellView: View {
                                 HStack{
                                     VStack{
                                         Image("ic_pin_purple")
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+
                                         Image("ic_line")
+                                            .resizable()
+                                            .frame(width: 1, height: 15)
+                                            .padding(.vertical,-10)
+
+                                        
                                         Image("ic_pin_orange")
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+
                                     }
-                                    VStack(spacing: 20 ){
+                                    VStack(spacing: 15 ){
                                         VStack(alignment: .leading){
                                             Text(shipmentModel.fromCityName ?? "Giza").foregroundColor(Color("Base_Color"))
-                                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr18:Font.camelfonts.SemiBold18)
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                   
                                             HStack {
-                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:"dd/MM/yyyy"))
+                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:"dd / MM / yyyy"))
 
                                                 
                                                 Text(ConvertStringDate(inp:shipmentModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:". h:mm a"))
                                                     .foregroundColor(.secondary)
                                                 
                                             }
-                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
-                                            
-
+                                            .padding(.top,-6)
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
                                         }
                                         VStack(alignment: .leading){
                                             Text(shipmentModel.toCityName ??  "Alexandria").foregroundColor(Color("Second_Color"))
-                                                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr18:Font.camelfonts.SemiBold18)
+                                                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
 
                                             HStack {
-                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy"))
+                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd / MM / yyyy"))
                                                 
                                                 Text(ConvertStringDate(inp:shipmentModel.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:". hh:mm a"))
                                                     .foregroundColor(.secondary)
                                                 
                                             }
-                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                            .padding(.top,-6)
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
 
                                             
                                         }
@@ -170,7 +185,7 @@ struct tripCellView: View {
                                 Spacer()
                                 Text("")
                             }
-                        }.padding(.top , -10)
+                        }.padding(.top , -30)
                     }.padding()
                         .overlay(content: {
                             if shipmentModel.driverOfferStatusID != nil {
@@ -181,7 +196,7 @@ struct tripCellView: View {
                                         .foregroundColor(.white)
                                         .padding(.horizontal)
                                         .padding(.vertical,5)
-                                    
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
 
                                         .background(
                                             RoundedCornersShape(radius: 8, corners: language.rawValue == "ar" ? [.topRight, .bottomLeft]:[.topLeft,.bottomRight]).foregroundColor( (shipmentModel.driverOfferStatusID == 1 || shipmentModel.driverOfferStatusID == 4) ? Color(#colorLiteral(red: 0.259, green: 0.812, blue: 0, alpha: 1)):.red))
@@ -199,31 +214,38 @@ struct tripCellView: View {
                     HStack(spacing: 10){
                         Image("stargray")
                             .resizable()
-                            .frame(width: 20, height: 20)
+                            .frame(width: 15, height: 15)
                             .foregroundColor(Color.black.opacity(0.7))
 //                        HStack{
 //                            Text("6").foregroundColor(Color.black)
-                        Text("Driver_Rate_:_".localized(language)).foregroundColor(.secondary)                       .font( language.rawValue == "ar" ? Font.camelfonts.LightAr16:Font.camelfonts.Light16)
+                        Text("Driver_Rate_:_".localized(language)).foregroundColor(.secondary)
+//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
 
-                        Text("\(shipmentModel.lowestOfferDriverRate ?? 0)/5")
+                        Text("\(shipmentModel.lowestOfferDriverRate ?? 0) / 5")
                             .foregroundColor(Color.black.opacity(0.7))
                             Spacer()
                         Text("\(shipmentModel.offersCount ?? 0)")
                             .foregroundColor(Color.black.opacity(0.7))
                         Text("Offers".localized(language)).foregroundColor(.secondary)
-                           .font( language.rawValue == "ar" ? Font.camelfonts.LightAr16:Font.camelfonts.Light16)
+//                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
 //                                .fontWeight(.ultraLight)
 
                             Button(action: {}) {
                                 Image("ic_share")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+
                             }
 //                        }
                     }
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
                     .padding(.horizontal)
                 }
                 .frame(height: 40)
             }
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         .onTapGesture {
             selecteshipmentId = shipmentModel.id ?? 0
         }

@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct RedirectToGMaps:View{
+    var language = LocalizationService.shared.language
+
     @Binding var ShowRedirector:Bool
     var Long:Double
     var Lat:Double
@@ -17,7 +19,7 @@ struct RedirectToGMaps:View{
         VStack{
             Spacer()
             Text("Delivery_Location".localized(language))
-                .font(Font.camelfonts.Bold20)
+                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr20:Font.camelfonts.SemiBold20)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -45,7 +47,7 @@ struct RedirectToGMaps:View{
             }, label: {
                 HStack {
                     Text("Redirect_to_Location".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
@@ -55,9 +57,10 @@ struct RedirectToGMaps:View{
             })
                 .frame( height: 60)
                 .padding(.bottom,10)
-        }.onAppear(perform: {
-            print(Long)
-            print(Lat)
+        }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+        .onAppear(perform: {
             DispatchQueue.main.async {
                 Address = getAddressFromLatLon(Latitude:"\(Lat)" ,withLongitude:"\(Long)")
 

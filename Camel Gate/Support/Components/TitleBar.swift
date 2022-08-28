@@ -35,7 +35,7 @@ struct TitleBar: View {
                         }
                         Spacer()
                         Text(Title ?? "")
-.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
+.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr20:Font.camelfonts.Bold20)
                             .foregroundColor(.white)
                         
                         Spacer()
