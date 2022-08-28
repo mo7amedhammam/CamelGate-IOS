@@ -193,3 +193,7 @@
 "have_an_Account?" = "لديك حساب؟ ";
 "Sign_In" = "تسجيل دخول";
 "Passwords_does_not_match" = "كلمة المرور غير متطابقة";
+
+//MARK: -- Delivery_Location --
+"Delivery_Location" = "مكان الشحنة";
+"Redirect_to_Location" = "انتقال الى الخرائط";
