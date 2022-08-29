@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignInView: View {
     var language = LocalizationService.shared.language
-
+    
     @StateObject var SignInVM = SignInViewModel()
     
     @State var active = false
@@ -30,7 +30,7 @@ struct SignInView: View {
                     Group{
                         
                         InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"),fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $SignInVM.phoneNumber)
-                            
+                        
                             .padding(.horizontal)
                             .keyboardType(.phonePad)
                             .overlay(
@@ -46,8 +46,8 @@ struct SignInView: View {
                             HStack{
                                 Text(SignInVM.ValidationMessage.localized(language))
                                     .foregroundColor(.red)
-                                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                
                                 Spacer()
                             }.padding(.horizontal)
                         }
@@ -55,15 +55,15 @@ struct SignInView: View {
                         SecureInputTextField("Enter_your_password".localized(language), text: $SignInVM.password,iconName:"lockBlue")
                             .padding(.horizontal)
                     }
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
                     
                     HStack{
                         Spacer()
                         Text("Forgot_Password?".localized(language))
                             .foregroundColor(.red)
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                        
                         
                     }.padding(.horizontal)
                     
@@ -83,16 +83,17 @@ struct SignInView: View {
                     //                    Spacer()
                     GradientButton(action: {
                         SignInVM.Login()
-                    }, Title: "Sign_In".localized(language))
-                    
+                    }, Title: "Sign_In".localized(language),IsDisabled:.constant(  !((SignInVM.phoneNumber != "" && SignInVM.password != "")&&SignInVM.ValidationMessage == "")) )
+                       
                     HStack {
                         Text("dont_have_an_Account?".localized(language)).foregroundColor(.secondary)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
                         
                         Button("Sign_Up".localized(language)) {
                             active = true
                             destination = AnyView(SignUpView())
                         }
-                        .font(.system(size: 13, weight: .bold))
+                        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                         .foregroundColor(Color("blueColor"))
                     }
                     .padding(.top,-10)
@@ -114,7 +115,7 @@ struct SignInView: View {
                             Spacer()
                             Text("Sign_In".localized(language))
                                 .foregroundColor(.white)
-        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
+                                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
                             Spacer()
                             //                    Spacer().frame(width:50)
                         }
@@ -124,11 +125,11 @@ struct SignInView: View {
                     }
                 })
             
-//                .overlay(content: {
-//                    // showing loading indicator
-//                    ActivityIndicatorView(isPresented: $SignInVM.isLoading)
-//
-//                })
+            //                .overlay(content: {
+            //                    // showing loading indicator
+            //                    ActivityIndicatorView(isPresented: $SignInVM.isLoading)
+            //
+            //                })
                 .overlay(content: {
                     AnimatingGif(isPresented: $SignInVM.isLoading)
                 })
@@ -148,7 +149,7 @@ struct SignInView: View {
             })
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
+        
         
     }
     
@@ -167,8 +168,8 @@ public extension UITextField
         let locale = Locale(identifier: "en-US")
         
         return
-            UITextInputMode.activeInputModes.first(where: { $0.primaryLanguage == locale.identifier })
-            ??
-            super.textInputMode
+        UITextInputMode.activeInputModes.first(where: { $0.primaryLanguage == locale.identifier })
+        ??
+        super.textInputMode
     }
 }

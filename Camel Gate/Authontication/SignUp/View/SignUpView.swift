@@ -81,15 +81,18 @@ struct SignUpView: View {
                 VStack{
                     GradientButton(action: {
                         SignUpVM.CreateAccount()
-                    }, Title: "Create_account".localized(language))
+                    }, Title: "Create_account".localized(language), IsDisabled: .constant(  !((SignUpVM.Drivername != "" && SignUpVM.phoneNumber != "" && SignUpVM.password != "" && SignUpVM.confirmpassword != "")&&SignUpVM.ValidationMessage == "")))
                     .padding(.top)
+                    
                     HStack {
                         Text("have_an_Account?".localized(language)).foregroundColor(.secondary)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
+
                         
                         Button("Sign_In".localized(language)) {
                             self.presentationMode.wrappedValue.dismiss()
                         }
-                        .font(.system(size: 13, weight: .bold))
+                        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                         .foregroundColor(Color("blueColor"))
                         
                     }

@@ -88,7 +88,7 @@ class DriverInfoViewModel: ObservableObject {
     
     @Published var destination = AnyView(TabBarView())
     init() {
-        GetDriverInfo()
+//        GetDriverInfo()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
             publishedUserLogedInModel = modeldata.data

@@ -333,8 +333,9 @@ struct EditProfileInfoView: View {
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
             .navigationBarHidden(true)
             .onAppear(perform: {
-                print("\(Constants.baseURL +  profileVM.DriverImageStr)")
-                
+                if taskStatus == .update{
+                    profileVM.GetDriverInfo()
+                }
                 DispatchQueue.main.asyncAfter(deadline:.now()+1,execute: {
                     profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
                     profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"

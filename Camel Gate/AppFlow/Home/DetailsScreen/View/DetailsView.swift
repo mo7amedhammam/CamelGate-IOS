@@ -33,52 +33,51 @@ struct DetailsView: View {
                             } placeholder: {
                                 Image("cover_vector")
                                     .resizable()
- 
                             }
                             .frame(height: 120)
                         }.padding(.top , 60)
                     }
                     .buttonStyle(.plain)
-                    if detailsVM.publishedUserLogedInModel.driverOfferStatusID == nil{
-                    VStack{
-                        ZStack{
-                            (detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4) ? Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 1)):Color.red
-                            Text("\(detailsVM.publishedUserLogedInModel.driverOfferStatusName?.replacingOccurrences(of: "  ", with: "") ?? "Applied")")
-                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
-                                .foregroundColor(Color.white)
-                        }.frame(height: 30)
-                        ZStack{
-                            Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 0.2))
-                            HStack(alignment:.bottom,spacing:10){
-                                HStack(alignment:.bottom,spacing:2){
-                                Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1250)")
-                                    .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr18:Font.camelfonts.SemiBold18)
-                                    .foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                    if detailsVM.publishedUserLogedInModel.driverOfferStatusID != nil{
+                        VStack{
+                            ZStack{
+                                (detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4) ? Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 1)):Color.red
+                                Text("\(detailsVM.publishedUserLogedInModel.driverOfferStatusName?.replacingOccurrences(of: "  ", with: "") ?? "Applied")")
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
+                                    .foregroundColor(Color.white)
+                            }.frame(height: 30)
+                            ZStack{
+                                Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 0.2))
+                                HStack(alignment:.bottom,spacing:10){
+                                    HStack(alignment:.bottom,spacing:2){
+                                        Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1250)")
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr18:Font.camelfonts.SemiBold18)
+                                            .foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                        
+                                        Text("SAR".localized(language))
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                            .fontWeight(.medium)
+                                            .foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                    }
                                     
-                                Text("SAR".localized(language))
-                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                    Text("Your_Offer".localized(language)).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    
                                 }
-                                
-                                Text("Your_Offer".localized(language)).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
-                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
                             }
+                            .padding(.top , -10)
+                            .frame(height: 40)
+                        }.padding(.top , -10)
+                        ZStack{
+                            HStack(alignment : .top){
+                                Spacer()
+                                Image("ic_lump")
+                                Text("To_change_the_offer_you_need_to_cancel_the_order_first_then_to_apply_again".localized(language)).font(Font.camelfonts.Reg14).lineLimit(2)
+                                Spacer()
+                            }.padding()
                         }
+                        .frame(height: 80)
                         .padding(.top , -10)
-                        .frame(height: 40)
-                    }.padding(.top , -10)
-                    ZStack{
-                        HStack(alignment : .top){
-                            Spacer()
-                            Image("ic_lump")
-                            Text("To_change_the_offer_you_need_to_cancel_the_order_first_then_to_apply_again".localized(language)).font(Font.camelfonts.Reg14).lineLimit(2)
-                            Spacer()
-                        }.padding()
-                    }
-                    .frame(height: 80)
-                    .padding(.top , -10)
                     }
                     Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(height: 1)
                     ZStack{
@@ -88,7 +87,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_green_dollar")
                                     Text("\(detailsVM.publishedUserLogedInModel.lowestOffer ?? 111) "+"SAR".localized(language))
-                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
                                 }
                             }
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(width: 1)
@@ -97,7 +96,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_orange_star")
                                     Text("\(detailsVM.publishedUserLogedInModel.lowestOfferDriverRate ?? 2)/5 ")
-                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color(#colorLiteral(red: 1, green: 0.5745426416, blue: 0, alpha: 1)))
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color(#colorLiteral(red: 1, green: 0.5745426416, blue: 0, alpha: 1)))
                                 }
                             }
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(width: 1)
@@ -106,7 +105,7 @@ struct DetailsView: View {
                                 Spacer()
                                 HStack{
                                     Text("\(detailsVM.publishedUserLogedInModel.offersCount ?? 3) "+"Offers".localized(language))
-                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
                         }.padding()
@@ -121,7 +120,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_#")
                                     Text("\(detailsVM.publishedUserLogedInModel.id ?? 2)")
-                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
                             Spacer()
@@ -130,7 +129,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_orange_pin")
                                     Text("\( String(format: "%.1f", detailsVM.publishedUserLogedInModel.totalDistance ?? 22.0011)) "+"KM".localized(language))
-                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
                         }
@@ -141,10 +140,10 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_orange_star")
                                     Text("\(detailsVM.publishedUserLogedInModel.companyRate ?? 2)/5")
-                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                     Text("(\(detailsVM.publishedUserLogedInModel.companyRatesCount ?? 2) "+"Rates".localized(language)+")")
-                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-.foregroundColor(Color.black)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                        .foregroundColor(Color.black)
                                 }
                             }
                             Spacer()
@@ -153,7 +152,7 @@ struct DetailsView: View {
                                 HStack{
                                     Image("ic_orange_star")
                                     Text(detailsVM.publishedUserLogedInModel.estimateTime ?? "2-3")
-                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
                         }
@@ -163,22 +162,22 @@ struct DetailsView: View {
                     
                     Group{
                         Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))                        .frame(height: 1)
-
-
-                    HStack {
-                        Text("Description".localized(language))
-                            .font(Font.camelfonts.Bold14).foregroundColor(Color.gray)
-                        Spacer()
+                        
+                        
+                        HStack {
+                            Text("Description".localized(language))
+                                .font(Font.camelfonts.Bold14).foregroundColor(Color.gray)
+                            Spacer()
+                        }
+                        .frame(height: 40)
+                        .padding(.leading , 20.0)
+                        Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
+                            .frame(height: 1)
+                        Text(detailsVM.publishedUserLogedInModel.description ?? " description will be here ").font(Font.camelfonts.Reg16).padding()
+                        
+                        Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
+                            .frame(height: 1)
                     }
-                    .frame(height: 40)
-                    .padding(.leading , 20.0)
-                    Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
-                        .frame(height: 1)
-                    Text(detailsVM.publishedUserLogedInModel.description ?? " description will be here ").font(Font.camelfonts.Reg16).padding()
-                    
-                    Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
-                        .frame(height: 1)
-                }
                     HStack {
                         Text("Shipment_Location".localized(language))
                             .font(Font.camelfonts.Bold14).foregroundColor(Color.gray)
@@ -201,15 +200,15 @@ struct DetailsView: View {
                                 VStack(alignment: .leading){
                                     Text(detailsVM.publishedUserLogedInModel.fromCityName ?? "Giza").foregroundColor(Color("Base_Color"))
                                     Text(ConvertStringDate(inp:detailsVM.publishedUserLogedInModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
-                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    
                                     
                                 }
                                 VStack(alignment: .leading){
                                     Text(detailsVM.publishedUserLogedInModel.toCityName ?? "Alexandria").foregroundColor(Color("Second_Color"))
                                     Text(ConvertStringDate(inp:detailsVM.publishedUserLogedInModel.shipmentDateTo ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
-                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    
                                     
                                 }
                             }
@@ -217,28 +216,28 @@ struct DetailsView: View {
                             VStack {
                                 Button(action: {
                                     longitude = Double(detailsVM.publishedUserLogedInModel.fromLang ?? 0)
-                                latitude = Double(detailsVM.publishedUserLogedInModel.fromLat ?? 0)
+                                    latitude = Double(detailsVM.publishedUserLogedInModel.fromLat ?? 0)
                                     ShowMapRedirector = true
-
+                                    
                                 }) {
                                     ZStack{
                                         Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
                                         Text("Location".localized(language)).foregroundColor(Color(#colorLiteral(red: 0.2833708227, green: 0.149017632, blue: 0.4966977239, alpha: 1)))
-                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
                                         
                                     }.cornerRadius(8)
                                 }
                                 Spacer()
                                 Button(action: {
                                     longitude = Double(detailsVM.publishedUserLogedInModel.toLang ?? 0)
-                                latitude = Double(detailsVM.publishedUserLogedInModel.toLat ?? 0)
+                                    latitude = Double(detailsVM.publishedUserLogedInModel.toLat ?? 0)
                                     ShowMapRedirector = true
-
+                                    
                                 }) {
                                     ZStack{
                                         Color("Second_Color").opacity(0.2).frame(width : 100 , height: 40)
                                         Text("Location".localized(language)).foregroundColor(Color("Second_Color"))
-                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
                                         
                                     }.cornerRadius(8)
                                 }
@@ -283,15 +282,15 @@ struct DetailsView: View {
                 //                Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
                 //                    .frame(height: 1)
                 //
-             
+                
                 ZStack{
                     Button(action: {
                         if  detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 {
                             detailsVM.shipmentOfferId = detailsVM.publishedUserLogedInModel.driverOfferID ?? 0
-
+                            
                             OfferCase = .cancel
                         } else {
-//                            detailsVM.shipmentOfferId = detailsVM.publishedUserLogedInModel.driverOfferID ?? 0
+                            //                            detailsVM.shipmentOfferId = detailsVM.publishedUserLogedInModel.driverOfferID ?? 0
                             OfferCase = .set
                         }
                         ShowSetOffer = true
@@ -299,7 +298,7 @@ struct DetailsView: View {
                         ZStack {
                             detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 ? Color.red.opacity(0.09) : Color("Base_Color")
                             Text( detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 ? "Cancel".localized(language) : detailsVM.publishedUserLogedInModel.driverOfferStatusID == 2 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 5 ? "ReApply".localized(language):"Apply".localized(language))
-        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+                                .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                                 .foregroundColor(detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 ? Color.red : Color.white)
                         }
                     }
@@ -316,12 +315,12 @@ struct DetailsView: View {
             
             
         }
-
+        
         .toolbar{
             ToolbarItemGroup(placement: .keyboard ){
                 Spacer()
                 Button("Done"){
-hideKeyboard()
+                    hideKeyboard()
                     
                 }
             }
@@ -338,21 +337,21 @@ hideKeyboard()
                     BottomSheetView(IsPresented: $ShowSetOffer, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
                         if OfferCase == .set{
                             SetOfferView( OfferCase: $OfferCase, ShowSetOffer: $ShowSetOffer)
-                            .environmentObject(detailsVM)
-                            .keyboardSpace()
+                                .environmentObject(detailsVM)
+                                .keyboardSpace()
                             
                         }else if OfferCase == .applied{
                             AppliedOfferView( OfferCase: $OfferCase, ShowSetOffer: $ShowSetOffer)
                                 .environmentObject(detailsVM)
-
+                            
                         }else if OfferCase == .cancel{
                             CancelOfferView( OfferCase: $OfferCase, ShowSetOffer: $ShowSetOffer)
                                 .environmentObject(detailsVM)
-
+                            
                         }else if OfferCase == .CancelationList{
                             CancelationResonsListView ( OfferCase: $OfferCase)
                                 .environmentObject(detailsVM)
-
+                            
                         }else if OfferCase == .canceled{
                             CancelledOfferView( OfferCase: $OfferCase, ShowSetOffer: $ShowSetOffer)
                                 .environmentObject(detailsVM)
@@ -362,18 +361,18 @@ hideKeyboard()
                             Color.clear
                                 .disabled(true)
                                 .onTapGesture {
-                                print("hide keayboard first")
-                            }
+                                    print("hide keayboard first")
+                                }
                         )
                 }
             }.background(Color.clear)
-               
+            
         })
         
-//        .overlay(content: {
-//            // showing loading indicator
-//            ActivityIndicatorView(isPresented: $detailsVM.isLoading)
-//        })
+        //        .overlay(content: {
+        //            // showing loading indicator
+        //            ActivityIndicatorView(isPresented: $detailsVM.isLoading)
+        //        })
         .overlay(content: {
             AnimatingGif(isPresented: $detailsVM.isLoading)
         })
@@ -389,14 +388,14 @@ hideKeyboard()
                 Spacer(minLength: 40)
             }.padding(.bottom)
         )
-    // Alert with no internet connection
+        // Alert with no internet connection
         .alert(isPresented: $detailsVM.isAlert, content: {
             Alert(title: Text(detailsVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                 if detailsVM.activeAlert == .unauthorized{
                     Helper.logout()
                     LoginManger.removeUser()
-//                    destination = AnyView(SignInView())
-//                    active = true
+                    //                    destination = AnyView(SignInView())
+                    //                    active = true
                 }
                 detailsVM.isAlert = false
             }))
@@ -425,7 +424,7 @@ struct SetOfferView:View{
         VStack{
             Spacer()
             Text("Set_Offer".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
+                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -448,8 +447,8 @@ struct SetOfferView:View{
                     HStack{
                         Spacer()
                         Text("SAR".localized(language))
-    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-    .foregroundColor(.secondary.opacity(0.5))
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                            .foregroundColor(.secondary.opacity(0.5))
                     }.padding(.horizontal)
                 })
                 .padding(.horizontal)
@@ -458,10 +457,10 @@ struct SetOfferView:View{
             
             HStack{
                 Text("Lowest_Osser_is".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-.foregroundColor(.secondary.opacity(0.8))
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    .foregroundColor(.secondary.opacity(0.8))
                 Text("\(detailsVM.publishedUserLogedInModel.lowestOffer ?? 1200) "+"SAR".localized(language))
-    .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                     .foregroundColor(Color("blueColor"))
                 Spacer()
             }
@@ -473,7 +472,7 @@ struct SetOfferView:View{
             }, label: {
                 HStack {
                     Text("Send_Offer".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
@@ -487,13 +486,13 @@ struct SetOfferView:View{
                 .padding(.top,20)
                 .padding(.bottom, 10)
         }
-
+        
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .frame(height: 250)
-                .onChange(of: detailsVM.OfferSent, perform: {newval in
-                    self.OfferCase = .applied
-                })
-                
+        .onChange(of: detailsVM.OfferSent, perform: {newval in
+            self.OfferCase = .applied
+        })
+        
     }
 }
 
@@ -508,7 +507,7 @@ struct SetOfferView_Previews: PreviewProvider {
 
 struct AppliedOfferView:View{
     var language = LocalizationService.shared.language
-
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     @Binding var OfferCase:OfferCases
@@ -518,7 +517,7 @@ struct AppliedOfferView:View{
         VStack{
             
             Text("Offer_Applied".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
+                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr20:Font.camelfonts.Reg20)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
                     Spacer()
@@ -534,15 +533,15 @@ struct AppliedOfferView:View{
                 }
                             .padding()
                 )
-
+            
             Image("success-orange")
                 .padding()
-
+            
             Text("You_have_applied_for_this_shipment_\nsuccessfully".localized(language))
                 .multilineTextAlignment(.center)
-  .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                 .foregroundColor(.black.opacity(0.8))
-
+            
             Button(action: {
                 DispatchQueue.main.async{
                     OfferCase = .set
@@ -552,7 +551,7 @@ struct AppliedOfferView:View{
             }, label: {
                 HStack {
                     Text("Check_other_shipments".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .frame(height:22)
@@ -586,7 +585,7 @@ struct AppliedOfferView_Previews: PreviewProvider {
 
 struct CancelOfferView:View{
     var language = LocalizationService.shared.language
-
+    
     @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     @Binding var OfferCase:OfferCases
     @Binding var ShowSetOffer:Bool
@@ -619,11 +618,11 @@ struct CancelOfferView:View{
                     .padding()
                 Text("You_will_loose_the_opportunity_to_gain".localized(language))
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-
+                
                     .multilineTextAlignment(.center)
                 Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1400) SAR")
                     .foregroundColor(.red)
-
+                
             }.padding()
             
             
@@ -632,27 +631,27 @@ struct CancelOfferView:View{
                 Image("ic_lump")
                 Text("To_change_the_offer_you_need_to_cancel_\nthe_order_first_then_to_apply_again".localized(language))
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-
-                    //.lineLimit(2)
+                
+                //.lineLimit(2)
                     .multilineTextAlignment(.center)
                 Spacer()
             }.padding()
             
             if detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 {
-            Button(action: {
-                OfferCase = .CancelationList
-            }, label: {
-                InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "Reason".localized(language), text: $detailsVM.CancelationReasonStr)
-                    .disabled(true)
-                    .overlay(content: {
-                        HStack{
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                        }
-                    })
-                    .padding(.horizontal)
-                    .padding(.top,20)
-            })
+                Button(action: {
+                    OfferCase = .CancelationList
+                }, label: {
+                    InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "Reason".localized(language), text: $detailsVM.CancelationReasonStr)
+                        .disabled(true)
+                        .overlay(content: {
+                            HStack{
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                        })
+                        .padding(.horizontal)
+                        .padding(.top,20)
+                })
             }
             
             Spacer()
@@ -662,7 +661,7 @@ struct CancelOfferView:View{
             }, label: {
                 HStack {
                     Text("Confirm_cancelation".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
@@ -678,11 +677,11 @@ struct CancelOfferView:View{
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .frame(height:(UIScreen.main.bounds.height/2)+60)
-                .onChange(of: detailsVM.OfferCanceled , perform: {newval in
-                    self.OfferCase = .canceled
-                })
-
-                
+        .onChange(of: detailsVM.OfferCanceled , perform: {newval in
+            self.OfferCase = .canceled
+        })
+        
+        
     }
 }
 
@@ -697,11 +696,11 @@ struct CancelOfferView_Previews: PreviewProvider {
 
 struct CancelationResonsListView: View {
     var language = LocalizationService.shared.language
-
+    
     @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     @StateObject var CancelationReasonsVM = CancelReasonsViewModel()
     @Binding var OfferCase:OfferCases
-
+    
     var body: some View {
         VStack{
             Text("select_Reason".localized(language))
@@ -722,25 +721,25 @@ struct CancelationResonsListView: View {
                 )
             ScrollView {
                 VStack {
-              
+                    
                     ForEach(CancelationReasonsVM.publishedcanCelationReasonsArray , id:\.self) { button in
-                            Button(action: {
-                                detailsVM.shipmentOfferId = detailsVM.publishedUserLogedInModel.driverOfferID ?? 0
-                                detailsVM.CancelationReasonId = button.id ?? 0
-                                detailsVM.CancelationReasonStr = button.title ?? ""
-                            }, label: {
-                                HStack{
-                                    Image(systemName:  detailsVM.CancelationReasonId == button.id ? "checkmark.circle.fill" :"circle")
-                                        .font(.system(size: 20))
-                                        .foregroundColor( detailsVM.CancelationReasonId == button.id ? Color("blueColor") : .gray.opacity(0.5) )
-                                    Text(button.title ?? "")
-                                        .padding()
-                                        .foregroundColor(detailsVM.CancelationReasonId == button.id ? Color("blueColor") : .gray.opacity(0.5))
-                                    Spacer()
-                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                            }).padding(.leading)
-//                        }
-                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                        Button(action: {
+                            detailsVM.shipmentOfferId = detailsVM.publishedUserLogedInModel.driverOfferID ?? 0
+                            detailsVM.CancelationReasonId = button.id ?? 0
+                            detailsVM.CancelationReasonStr = button.title ?? ""
+                        }, label: {
+                            HStack{
+                                Image(systemName:  detailsVM.CancelationReasonId == button.id ? "checkmark.circle.fill" :"circle")
+                                    .font(.system(size: 20))
+                                    .foregroundColor( detailsVM.CancelationReasonId == button.id ? Color("blueColor") : .gray.opacity(0.5) )
+                                Text(button.title ?? "")
+                                    .padding()
+                                    .foregroundColor(detailsVM.CancelationReasonId == button.id ? Color("blueColor") : .gray.opacity(0.5))
+                                Spacer()
+                            }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                        }).padding(.leading)
+                        //                        }
+                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                     }
                 }
             }
@@ -782,7 +781,7 @@ struct CancelationResonsListView_Previews: PreviewProvider {
 
 struct CancelledOfferView:View{
     var language = LocalizationService.shared.language
-
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
     @Binding var OfferCase:OfferCases
@@ -808,15 +807,15 @@ struct CancelledOfferView:View{
                 }
                             .padding()
                 )
-
+            
             Image("CancelledX")
                 .padding()
-
+            
             Text("You_still_can_re-apply_for_this_job".localized(language))
                 .multilineTextAlignment(.center)
-  .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                 .foregroundColor(.black.opacity(0.8))
-
+            
             HStack{
                 Button(action: {
                     DispatchQueue.main.async{
@@ -827,7 +826,7 @@ struct CancelledOfferView:View{
                 }, label: {
                     HStack {
                         Text("other_shipments".localized(language))
-    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .frame(height:22)
@@ -839,35 +838,35 @@ struct CancelledOfferView:View{
                     .cornerRadius(12)
                     .padding(.bottom)
                 })
-            Button(action: {
-                DispatchQueue.main.async{
-                    detailsVM.driverOffer = "\( detailsVM.publishedUserLogedInModel.driverOfferValue ?? 00)"
-                    OfferCase = .none
-                    detailsVM.GetShipmentDetails()
-                    ShowSetOffer = false
-                }
-            }, label: {
-                HStack {
-                    Text("Re-Apply".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
-                }
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .frame(height:22)
-                .padding()
-                .foregroundColor(.white)
-                .background(
-                    LinearGradient(
-                        gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
-                        startPoint: .trailing,
-                        endPoint: .leading
-                    ))
-                .cornerRadius(12)
-//                .padding(.horizontal, 20)
-                .padding(.bottom)
-            })
-        }
+                Button(action: {
+                    DispatchQueue.main.async{
+                        detailsVM.driverOffer = "\( detailsVM.publishedUserLogedInModel.driverOfferValue ?? 00)"
+                        OfferCase = .none
+                        detailsVM.GetShipmentDetails()
+                        ShowSetOffer = false
+                    }
+                }, label: {
+                    HStack {
+                        Text("Re-Apply".localized(language))
+                            .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .frame(height:22)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(
+                        LinearGradient(
+                            gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
+                            startPoint: .trailing,
+                            endPoint: .leading
+                        ))
+                    .cornerRadius(12)
+                    //                .padding(.horizontal, 20)
+                    .padding(.bottom)
+                })
+            }
             .padding(.horizontal ,20)
-                .padding(.top,40)
+            .padding(.top,40)
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .frame(maxHeight:(UIScreen.main.bounds.height/2)-90)
