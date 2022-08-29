@@ -216,10 +216,8 @@ struct tripCellView: View {
                             .resizable()
                             .frame(width: 15, height: 15)
                             .foregroundColor(Color.black.opacity(0.7))
-//                        HStack{
-//                            Text("6").foregroundColor(Color.black)
+
                         Text("Driver_Rate_:_".localized(language)).foregroundColor(.secondary)
-//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
 
                         Text("\(shipmentModel.lowestOfferDriverRate ?? 0) / 5")
                             .foregroundColor(Color.black.opacity(0.7))
@@ -227,16 +225,13 @@ struct tripCellView: View {
                         Text("\(shipmentModel.offersCount ?? 0)")
                             .foregroundColor(Color.black.opacity(0.7))
                         Text("Offers".localized(language)).foregroundColor(.secondary)
-//                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
-//                                .fontWeight(.ultraLight)
 
-                            Button(action: {}) {
-                                Image("ic_share")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
+//                            Button(action: {}) {
+//                                Image("ic_share")
+//                                    .resizable()
+//                                    .frame(width: 20, height: 20)
+//                            }
 
-                            }
-//                        }
                     }
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
                     .padding(.horizontal)
