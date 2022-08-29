@@ -75,6 +75,8 @@ class DriverInfoViewModel: ObservableObject {
     @Published  var TruckLicenseExpirationDate = Date()
     @Published  var TruckLicenseExpirationDateStr = ""
     
+    @Published var IsTermsAgreed = false
+
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
@@ -94,6 +96,7 @@ class DriverInfoViewModel: ObservableObject {
             publishedUserLogedInModel = modeldata.data
             UserCreated = true
                 Helper.setUserData(DriverName: publishedUserLogedInModel?.name ?? "", DriverImage: publishedUserLogedInModel?.image ?? "")
+            Helper.IsLoggedIn(value: true)
         }.store(in: &cancellables)
     }
     

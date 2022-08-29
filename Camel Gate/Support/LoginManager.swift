@@ -48,6 +48,7 @@ struct LoginManger {
         //BGNavigator.rootNavigation(newViewController: main)
 
     }
+    
     static func setUserLogedin() {
         UserDefaults.standard.setValue(true, forKey: "isLogin")
     }

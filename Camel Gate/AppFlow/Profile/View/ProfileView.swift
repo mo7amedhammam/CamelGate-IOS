@@ -186,6 +186,7 @@ struct ProfileView: View {
                                 Button(action: {
                                     //                                    if Helper.userExist(){
                                     Helper.logout()
+                                    Helper.IsLoggedIn(value: false)
                                     //                                        islogout = true
                                     //                                    }else{
                                     //                                        goToLogin = true

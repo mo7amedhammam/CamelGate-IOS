@@ -24,7 +24,8 @@ final class Helper{
     var CurrentAddress = ""
     var currentLanguage = ""
     private static let onBoardKey = "onBoard"
-    
+    private static let LoggedInKey = "LoggedId"
+
     class func setUserData(
 //        Id : Int,
     DriverName : String,
@@ -102,6 +103,13 @@ final class Helper{
 
     static func checkOnBoard() -> Bool {
         return UserDefaults.standard.bool(forKey: onBoardKey)
+    }
+    static func IsLoggedIn(value:Bool) {
+        UserDefaults.standard.set(value, forKey: LoggedInKey)
+    }
+
+    static func CheckIfLoggedIn() -> Bool {
+        return UserDefaults.standard.bool(forKey: LoggedInKey)
     }
     
     class func changeLang() {

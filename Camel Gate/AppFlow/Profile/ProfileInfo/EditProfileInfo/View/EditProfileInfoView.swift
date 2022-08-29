@@ -14,11 +14,11 @@ enum ProfileStep{
 
 struct EditProfileInfoView: View {
     var language = LocalizationService.shared.language
-
+    
     @StateObject var profileVM = DriverInfoViewModel()
     @StateObject var trucktypesVM = TruckTypeViewModel()
     @StateObject var truckmanfacturersVM = TruckManfacturerViewModel()
-
+    
     var taskStatus:ProfileStep
     @State private var isEditing = false
     @State private var showImageSheet = false
@@ -29,7 +29,7 @@ struct EditProfileInfoView: View {
     @State var showsheet = false
     @State var ShowCalendar  = false
     @State var showBottomSheet  = false
-
+    
     @State var selectedDate:Date?
     @State var active = false
     @State var destination = AnyView( TabBarView().navigationBarHidden(true))
@@ -42,25 +42,25 @@ struct EditProfileInfoView: View {
                         // here if you want to preview image
                     }, label: {
                         ZStack{
-                        if profileVM.DriverImage.size.width == 0 {
-                        AsyncImage(url: URL(string: Constants.baseURL +  profileVM.DriverImageStr.replacingOccurrences(of: "\\",with: "/"))) { image in
+                            if profileVM.DriverImage.size.width == 0 {
+                                AsyncImage(url: URL(string: Constants.baseURL +  profileVM.DriverImageStr.replacingOccurrences(of: "\\",with: "/"))) { image in
                                     image.resizable()
-                                .onTapGesture(perform: {
-                                    imageVM.isPresented = true
-                                    imageVM.imageUrl = Constants.baseURL +  profileVM.DriverImageStr.replacingOccurrences(of: "\\",with: "/")
-                                })
+                                        .onTapGesture(perform: {
+                                            imageVM.isPresented = true
+                                            imageVM.imageUrl = Constants.baseURL +  profileVM.DriverImageStr.replacingOccurrences(of: "\\",with: "/")
+                                        })
                                 } placeholder: {
                                     Color("lightGray").opacity(0.2)
                                 }
-                        }else{
-                            Image(uiImage: profileVM.DriverImage)
-                                .resizable()
-                        }
+                            }else{
+                                Image(uiImage: profileVM.DriverImage)
+                                    .resizable()
+                            }
                         }                                    .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
                     })
                         .clipShape(Circle())
                         .frame(width: 95, height: 95, alignment: .center)
-                        
+                    
                     if (taskStatus == .update && isEditing == true) || taskStatus == .create{
                         CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
                             self.showImageSheet = true
@@ -70,7 +70,7 @@ struct EditProfileInfoView: View {
                 Group{
                     Group{
                         Text("Driver_Info".localized(language))
-            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                             .foregroundColor(Color("blueColor"))
                             .padding(.vertical,10)
                         if taskStatus == .update{
@@ -78,7 +78,7 @@ struct EditProfileInfoView: View {
                         }
                         HStack{
                             InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr)
-        //                        .disabled(true)
+                            //                        .disabled(true)
                                 .overlay(content: {
                                     HStack{
                                         DatePicker("", selection: $profileVM.Birthdate, displayedComponents: [.date])
@@ -166,7 +166,7 @@ struct EditProfileInfoView: View {
                     
                     Group{
                         Text("Truck_Info".localized(language))
-            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                             .foregroundColor(Color("blueColor"))
                             .padding(.vertical,10)
                         
@@ -205,19 +205,19 @@ struct EditProfileInfoView: View {
                                             Spacer()
                                             Image(systemName: "chevron.down")
                                         }
-//                                        .padding(.trailing)
+                                        //                                        .padding(.trailing)
                                     }.padding()
                                 })
-
+                            
                             InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text: $profileVM.TruckManfactureYear)
-//                                .overlay(content: {
-//                                    HStack{
-//                                        DatePicker("", selection: $profileVM.TruckLicenseExpirationDate, displayedComponents: [.date])
-//                                            .opacity(0.08)
-//                                        Spacer()
-//                                        Image(systemName: "chevron.right")
-//                                    }.padding(.horizontal)
-//                                })
+                            //                                .overlay(content: {
+                            //                                    HStack{
+                            //                                        DatePicker("", selection: $profileVM.TruckLicenseExpirationDate, displayedComponents: [.date])
+                            //                                            .opacity(0.08)
+                            //                                        Spacer()
+                            //                                        Image(systemName: "chevron.right")
+                            //                                    }.padding(.horizontal)
+                            //                                })
                                 .keyboardType(.numberPad)
                         }
                         
@@ -227,10 +227,10 @@ struct EditProfileInfoView: View {
                         }
                         InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
                         HStack{
-//                            DateInputView( placeholder: "Start_Date", date: $profileVM.TruckLicenseIssueDate)
+                            //                            DateInputView( placeholder: "Start_Date", date: $profileVM.TruckLicenseIssueDate)
                             
                             InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Start_Date".localized(language), text: $profileVM.TruckLicenseIssueDateStr)
-        //                        .disabled(true)
+                            //                        .disabled(true)
                                 .overlay(content: {
                                     HStack{
                                         DatePicker("", selection: $profileVM.TruckLicenseIssueDate, displayedComponents: [.date])
@@ -240,7 +240,7 @@ struct EditProfileInfoView: View {
                                     }.padding(.horizontal)
                                 })
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
+                            
                             InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Expiration_Date".localized(language), text: $profileVM.TruckLicenseExpirationDateStr)
                                 .overlay(content: {
                                     HStack{
@@ -250,35 +250,37 @@ struct EditProfileInfoView: View {
                                         Image(systemName: "chevron.right")
                                     }.padding(.horizontal)
                                 })
-                                
+                            
                         }
                         
-//                        InputTextField(iconName: "ic_box",iconColor: Color("OrangColor"), placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
+                        //                        InputTextField(iconName: "ic_box",iconColor: Color("OrangColor"), placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
                     }
-                 if taskStatus == .create{
-                    HStack{
-                        Image(systemName: ageeTerms ?  "checkmark.square.fill":"square")
-                            .font(.system(size: 20))
-                            .foregroundColor(Color("blueColor"))
-                            .onTapGesture(perform: {
-                                ageeTerms .toggle()
-                            })
-                        
-                        Text("I_agree_all".localized(language))
-                        
-                        Button(action: {
-                            showsheet = true
-                        }, label: {
-                            Text("Terms_&_Conditions".localized(language))
-                                .underline()
+                    if taskStatus == .create{
+                        HStack{
+                            Image(systemName: ageeTerms ?  "checkmark.square.fill":"square")
+                                .font(.system(size: 20))
                                 .foregroundColor(Color("blueColor"))
-                        })
-                            .sheet(isPresented: $showsheet){
-                                // Terms and Conditions here
-                            }
-                        Spacer()
-                    }.padding(.vertical)
-                }
+                                .onTapGesture(perform: {
+                                    ageeTerms .toggle()
+                                    profileVM.IsTermsAgreed.toggle()
+                                })
+                            
+                            Text("I_agree_all".localized(language))
+                            
+                            Button(action: {
+                                showsheet = true
+                                
+                            }, label: {
+                                Text("Terms_&_Conditions".localized(language))
+                                    .underline()
+                                    .foregroundColor(Color("blueColor"))
+                            })
+                                .sheet(isPresented: $showsheet){
+                                    // Terms and Conditions here
+                                }
+                            Spacer()
+                        }.padding(.vertical)
+                    }
                     Spacer(minLength: 30)
                 }.disabled((taskStatus == .update && isEditing == false) ? true:false)
             }.padding(.top,hasNotch ? 140:130)
@@ -293,33 +295,40 @@ struct EditProfileInfoView: View {
             })
             
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .white, content: {
-                Button(action: {
+                GradientButton(action: {
                     DispatchQueue.main.async{
                         profileVM.CompleteProfile()
                     }
-                }, label: {
-                    HStack {
-                        Text(taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language))
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .frame(height:22)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(
-                        LinearGradient(
-                            gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
-                            startPoint: .trailing,
-                            endPoint: .leading
-                        ))
-                    .cornerRadius(12)
-                    .padding(.horizontal, 20)
-                    .padding(.bottom)
-                }).overlay(
-                    Color.white.opacity((taskStatus == .update && isEditing == false) ?  0.5:0)
+                },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant( ((profileVM.Email == "") || !(taskStatus == .create && profileVM.IsTermsAgreed)) && !(taskStatus == .update && isEditing))
                 )
+//                Button(action: {
+//                    DispatchQueue.main.async{
+//                        profileVM.CompleteProfile()
+//                    }
+//                }, label: {
+//                    HStack {
+//                        Text(taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language))
+//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+//
+//                    }
+//                    .frame(minWidth: 0, maxWidth: .infinity)
+//                    .frame(height:22)
+//                    .padding()
+//                    .foregroundColor(.white)
+//                    .background(
+//                        LinearGradient(
+//                            gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
+//                            startPoint: .trailing,
+//                            endPoint: .leading
+//                        ))
+//                    .cornerRadius(12)
+//                    .padding(.horizontal, 20)
+//                    .padding(.bottom)
+//                }).overlay(
+//                    Color.white.opacity((taskStatus == .update && isEditing == false) ?  0.5:0)
+//                )
             })
+                               
             //
             //            if ShowCalendar == true{
             //                ZStack{
@@ -329,55 +338,56 @@ struct EditProfileInfoView: View {
             
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
-        .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
-            .navigationBarHidden(true)
-            .onAppear(perform: {
-                if taskStatus == .update{
-                    profileVM.GetDriverInfo()
-                }
-                DispatchQueue.main.asyncAfter(deadline:.now()+1,execute: {
-                    profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
-                    profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
-                })
-            })
-            .onChange(of: profileVM.DriverImageStr, perform: {newval in
-                print(newval)
-                DispatchQueue.main.async( execute: {
-                    profileVM.DriverImageStr = newval
-                   print( profileVM.DriverImageStr)
-                })
-            })
-            .onChange(of: profileVM.UserCreated, perform: {newval in
-                if newval == true && taskStatus == .update{
-                    showBottomSheet = true
-                }
-            })
         
-            .overlay(content: {
-                if showBottomSheet{
-            
-            BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
-
+        .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+        .navigationBarHidden(true)
+        .onAppear(perform: {
+            if taskStatus == .update{
+                profileVM.GetDriverInfo()
+            }
+            DispatchQueue.main.asyncAfter(deadline:.now()+1,execute: {
+                profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
+                profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
+            })
+        })
+        .onChange(of: profileVM.DriverImageStr, perform: {newval in
+            print(newval)
+            DispatchQueue.main.async( execute: {
+                profileVM.DriverImageStr = newval
+                print( profileVM.DriverImageStr)
+            })
+        })
+        .onChange(of: profileVM.UserCreated, perform: {newval in
+            if newval == true && taskStatus == .update{
+                showBottomSheet = true
+            }
+        })
+        
+        //MARK: -- updated popup --
+        .overlay(content: {
+            if showBottomSheet{
+                
+                BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
+                    
                     Text("Profile_Updated".localized(language))
                         .font(Font.camelfonts.Reg20)
-
+                    
                     Image("success-orange")
-
+                    
                     Text("You_just_updated_your_Info".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .foregroundColor(.black.opacity(0.8))
                         .padding(.bottom,50)
-
+                    
                     Button(action: {
                         DispatchQueue.main.async{
-        // Action
+                            // Action
                             showBottomSheet.toggle()
                         }
                     }, label: {
                         HStack {
                             Text("Ok".localized(language))
-                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
+                                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .frame(height:22)
@@ -395,55 +405,56 @@ struct EditProfileInfoView: View {
                     })
                 })
                     .transition(.move(edge: .bottom))
-        }
-            })
-        //MARK: -------- imagePicker From Camera and Library ------
-            .confirmationDialog("Choose_Image_From".localized(language), isPresented: $showImageSheet) {
-                Button("photo_Library".localized(language)) { self.imgsource = "Library";   self.showImageSheet = false; self.startPicking = true }
-                Button("Camera".localized(language)) {self.imgsource = "Cam" ;    self.showImageSheet = false; self.startPicking = true}
-                Button("Cancel".localized(language), role: .cancel) { }
-            } message: {Text("Choose_Image_From".localized(language))}
+            }
+        })
         
-            .sheet(isPresented: $startPicking) {
-                if imgsource == "Library"{
-                    // Pick an image from the photo library:
-                    ImagePicker(sourceType: .photoLibrary, selectedImage: self.$profileVM.DriverImage)
-                }else{
-                    //  If you wish to take a photo from camera instead:
-                    ImagePicker(sourceType: .camera, selectedImage: self.$profileVM.DriverImage)
+        //MARK: -------- imagePicker From Camera and Library ------
+        .confirmationDialog("Choose_Image_From".localized(language), isPresented: $showImageSheet) {
+            Button("photo_Library".localized(language)) { self.imgsource = "Library";   self.showImageSheet = false; self.startPicking = true }
+            Button("Camera".localized(language)) {self.imgsource = "Cam" ;    self.showImageSheet = false; self.startPicking = true}
+            Button("Cancel".localized(language), role: .cancel) { }
+        } message: {Text("Choose_Image_From".localized(language))}
+        
+        .sheet(isPresented: $startPicking) {
+            if imgsource == "Library"{
+                // Pick an image from the photo library:
+                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$profileVM.DriverImage)
+            }else{
+                //  If you wish to take a photo from camera instead:
+                ImagePicker(sourceType: .camera, selectedImage: self.$profileVM.DriverImage)
+            }
+        }
+        .overlay(content: {
+            AnimatingGif(isPresented: $profileVM.isLoading)
+        })
+        //            .overlay(content: {
+        //                // showing loading indicator
+        //                ActivityIndicatorView(isPresented: $profileVM.isLoading)
+        //            })
+        // Alert with no internet connection
+        .alert(isPresented: $profileVM.isAlert, content: {
+            Alert(title: Text(profileVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                if profileVM.activeAlert == .unauthorized{
+                    Helper.logout()
+                    LoginManger.removeUser()
+                    destination = AnyView(SignInView())
+                    active = true
+                }
+                
+                profileVM.isAlert = false
+            }))
+        })
+        
+        .onChange(of: profileVM.UserCreated, perform: {newval in
+            if newval == true{
+                switch taskStatus {
+                case .create:
+                    active = true
+                case .update:
+                    print("profile updated")
                 }
             }
-            .overlay(content: {
-                AnimatingGif(isPresented: $profileVM.isLoading)
-            })
-//            .overlay(content: {
-//                // showing loading indicator
-//                ActivityIndicatorView(isPresented: $profileVM.isLoading)
-//            })
-        // Alert with no internet connection
-            .alert(isPresented: $profileVM.isAlert, content: {
-                Alert(title: Text(profileVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    if profileVM.activeAlert == .unauthorized{
-                        Helper.logout()
-                        LoginManger.removeUser()
-                        destination = AnyView(SignInView())
-                        active = true
-                    }
-
-                    profileVM.isAlert = false
-                }))
-            })
-        
-            .onChange(of: profileVM.UserCreated, perform: {newval in
-                if newval == true{
-                    switch taskStatus {
-                    case .create:
-                        active = true
-                    case .update:
-                        print("profile updated")
-                    }
-                }
-            })
+        })
         NavigationLink(destination: destination,isActive:$active , label: {
         })
     }
@@ -451,7 +462,8 @@ struct EditProfileInfoView: View {
 
 struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileInfoView(taskStatus: .update).environmentObject(imageViewModel())
+        EditProfileInfoView(taskStatus: .create
+        ).environmentObject(imageViewModel())
         EditProfileInfoView(taskStatus: .update).environmentObject(imageViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }

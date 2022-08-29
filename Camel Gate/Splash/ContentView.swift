@@ -48,7 +48,7 @@ struct ContentView: View {
                 return
             }
             // second check if user is logedin or not
-            guard LoginManger.checkUser() else{
+            guard Helper.CheckIfLoggedIn() else{
                 withAnimation{
                     displayedView = AnyView(SignInView())
                 }
