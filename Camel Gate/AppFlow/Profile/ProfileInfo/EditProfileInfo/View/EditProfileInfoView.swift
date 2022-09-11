@@ -34,6 +34,9 @@ struct EditProfileInfoView: View {
     @State var active = false
     @State var destination = AnyView( TabBarView().navigationBarHidden(true))
     @EnvironmentObject var imageVM : imageViewModel
+  
+    var years:[String] = []
+    
     var body: some View {
         ZStack{
             ScrollView{
@@ -81,7 +84,7 @@ struct EditProfileInfoView: View {
                             //                        .disabled(true)
                                 .overlay(content: {
                                     HStack{
-                                        DatePicker("", selection: $profileVM.Birthdate, displayedComponents: [.date])
+                                        DatePicker("", selection: $profileVM.Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
                                             .opacity(0.04)
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -131,11 +134,20 @@ struct EditProfileInfoView: View {
                         InputTextField(iconName: "Shipments",iconColor: Color("OrangColor"), placeholder: "Email".localized(language), text:$profileVM.Email)
                         
                         InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber)
+                        if profileVM.validations == .DriverLicense {
+                            HStack{
+                                Text(profileVM.ValidationMessage.localized(language))
+                                    .foregroundColor(.red)
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
+                                Spacer()
+                            }
+                        }
                         
                         InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: $profileVM.LicenseExpireDateStr)
                             .overlay(content: {
                                 HStack{
-                                    DatePicker("", selection: $profileVM.LicenseExpireDate, displayedComponents: [.date])
+                                    DatePicker("", selection: $profileVM.LicenseExpireDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
                                         .opacity(0.04)
                                     Spacer()
                                     Image(systemName: "chevron.right")
@@ -210,22 +222,57 @@ struct EditProfileInfoView: View {
                                 })
                             
                             InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text: $profileVM.TruckManfactureYear)
-                            //                                .overlay(content: {
-                            //                                    HStack{
-                            //                                        DatePicker("", selection: $profileVM.TruckLicenseExpirationDate, displayedComponents: [.date])
-                            //                                            .opacity(0.08)
-                            //                                        Spacer()
-                            //                                        Image(systemName: "chevron.right")
-                            //                                    }.padding(.horizontal)
-                            //                                })
-                                .keyboardType(.numberPad)
+                                .disabled(true)
+                                .overlay(content: {
+                                    Menu {
+                                        ForEach(getYearsArr(),id:\.self){ year1 in
+                                            Button(year1, action: {
+                                                profileVM.TruckManfactureYear = "\(year1)"
+                                            })
+                                        }
+                                    } label: {
+                                        HStack{
+                                            Spacer()
+                                            Image(systemName: "chevron.down")
+                                        }
+                                        //                                        .padding(.trailing)
+                                    }.padding()
+                                })
                         }
                         
                         HStack{
                             InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text: $profileVM.NumberofAxe)
+                                .disabled(true)
+                                .overlay(content: {
+                                    Menu {
+                                        ForEach(1..<5,id:\.self){ AxeNum in
+                                            Button("\(AxeNum)", action: {
+                                                profileVM.NumberofAxe = "\(AxeNum)"
+                                            })
+                                        }
+                                    } label: {
+                                        HStack{
+                                            Spacer()
+                                            Image(systemName: "chevron.down")
+                                        }
+                                        //                                        .padding(.trailing)
+                                    }.padding()
+                                })
+                            
+                            
                             InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: $profileVM.TruckPlate)
                         }
                         InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
+                        if profileVM.validations == .TruckLicense {
+                            HStack{
+                                Text(profileVM.ValidationMessage.localized(language))
+                                    .foregroundColor(.red)
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
+                                Spacer()
+                            }
+                        }
+                        
                         HStack{
                             //                            DateInputView( placeholder: "Start_Date", date: $profileVM.TruckLicenseIssueDate)
                             
@@ -233,7 +280,7 @@ struct EditProfileInfoView: View {
                             //                        .disabled(true)
                                 .overlay(content: {
                                     HStack{
-                                        DatePicker("", selection: $profileVM.TruckLicenseIssueDate, displayedComponents: [.date])
+                                        DatePicker("", selection: $profileVM.TruckLicenseIssueDate,in: ...Date(), displayedComponents: [.date])
                                             .opacity(0.04)
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -244,13 +291,12 @@ struct EditProfileInfoView: View {
                             InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Expiration_Date".localized(language), text: $profileVM.TruckLicenseExpirationDateStr)
                                 .overlay(content: {
                                     HStack{
-                                        DatePicker("", selection: $profileVM.TruckLicenseExpirationDate, displayedComponents: [.date])
+                                        DatePicker("", selection: $profileVM.TruckLicenseExpirationDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
                                             .opacity(0.04)
                                         Spacer()
                                         Image(systemName: "chevron.right")
                                     }.padding(.horizontal)
                                 })
-                            
                         }
                         
                         //                        InputTextField(iconName: "ic_box",iconColor: Color("OrangColor"), placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
@@ -494,6 +540,15 @@ extension EditProfileInfoView{
         print(ManfacrurerName)
         return ManfacrurerName
     }
+    
+    func getYearsArr() -> [String]{
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: currentDate)
+        return (1950...currentYear).map { String($0) }
+    }
+    
+    
 }
 
 

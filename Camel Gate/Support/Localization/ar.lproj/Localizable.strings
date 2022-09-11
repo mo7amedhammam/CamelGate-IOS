@@ -62,6 +62,9 @@
 "Camera" = "إلتقاط صورة";
 "Cancel" = "إلغاء";
 
+"Enter_a_valid_License_number" = "ادخل رقم رخصة صحيح";
+
+
 //MarK: -- change password --
 "Change_Password" = "تغيير كلمة المرور";
 "Password_Changed" = "تم تغيير كلمة المرور";

@@ -61,6 +61,8 @@
 "Camera" = "Camera";
 "Cancel" = "Cancel";
 
+"Enter_a_valid_License_number" = "Enter a valid License number";
+
 
 //MarK: -- change password --
 "Change_Password" = "Change Password";

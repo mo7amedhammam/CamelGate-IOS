@@ -37,14 +37,14 @@ struct SignUpView: View {
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.red, lineWidth:SignUpVM.validations == .PhoneNumber ? 1:0))
                             .onChange(of: SignUpVM.phoneNumber){ newval in
-                                SignUpVM.phoneNumber =  String(newval.prefix(SignUpVM.characterLimit))
+                                SignUpVM.phoneNumber =  String(newval.prefix(SignUpVM.PhoneNumLength))
                             }
                         
                         if SignUpVM.validations == .PhoneNumber{
                             HStack{
                                 Text(SignUpVM.ValidationMessage.localized(language))
                                     .foregroundColor(.red)
-                                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
 
                                 Spacer()
                             }

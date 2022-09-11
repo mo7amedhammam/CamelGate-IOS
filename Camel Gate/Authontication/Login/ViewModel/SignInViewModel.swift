@@ -19,8 +19,8 @@ class SignInViewModel: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<LoginModel>, Error>()
     private let authServices = MoyaProvider<AuthServices>()
     private var cancellables: Set<AnyCancellable> = []
-    let characterLimit: Int = 11
-    
+    let PhoneNumLength: Int = 9
+
     // ------- input
     @Published  var phoneNumber: String = "" {
         didSet{
@@ -29,7 +29,7 @@ class SignInViewModel: ObservableObject {
             if phoneNumber != filtered {
                 phoneNumber = filtered
             }
-            if self.phoneNumber != "" && ( self.phoneNumber.count < characterLimit || self.phoneNumber.count > characterLimit) {
+            if self.phoneNumber != "" && ( self.phoneNumber.count < PhoneNumLength || self.phoneNumber.count > PhoneNumLength) {
                 validations = .PhoneNumber
                 self.ValidationMessage = "Enter_a_valid_Phone_number"
             }
@@ -37,7 +37,7 @@ class SignInViewModel: ObservableObject {
             //                validations = .PhoneNumber
             //                self.ValidationMessage = "*"
             //            }
-            else if self.phoneNumber.count == characterLimit {
+            else if self.phoneNumber.count == PhoneNumLength {
                 validations = .none
                 self.ValidationMessage = ""
             }

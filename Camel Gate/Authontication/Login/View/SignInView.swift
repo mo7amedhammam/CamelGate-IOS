@@ -39,7 +39,7 @@ struct SignInView: View {
                             )
                         
                             .onChange(of: SignInVM.phoneNumber){ newval in
-                                SignInVM.phoneNumber =  String(newval.prefix(SignInVM.characterLimit))
+                                SignInVM.phoneNumber =  String(newval.prefix(SignInVM.PhoneNumLength))
                             }
                         
                         if SignInVM.validations == .PhoneNumber{

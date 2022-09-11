@@ -17,7 +17,9 @@ class DriverInfoViewModel: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<DriverInfoModel>, Error>()
     private let authServices = MoyaProvider<AuthServices>()
     private var cancellables: Set<AnyCancellable> = []
-    let characterLimit: Int = 14
+    let PhoneNumLength: Int = 9
+    let LicenseNumLength: Int = 10
+
     
     // ------- input
     @Published  var Drivername: String = ""
@@ -27,7 +29,7 @@ class DriverInfoViewModel: ObservableObject {
             if phoneNumber != filtered {
                 phoneNumber = filtered
             }
-            if self.phoneNumber != "" && ( self.phoneNumber.count < characterLimit || self.phoneNumber.count > characterLimit) {
+            if self.phoneNumber != "" && ( self.phoneNumber.count < PhoneNumLength || self.phoneNumber.count > PhoneNumLength) {
                 validations = .PhoneNumber
                 self.ValidationMessage = "Enter_a_valid_Phone_number"
             }
@@ -35,7 +37,7 @@ class DriverInfoViewModel: ObservableObject {
             //                validations = .PhoneNumber
             //                self.ValidationMessage = "*"
             //            }
-            else if self.phoneNumber.count == characterLimit {
+            else if self.phoneNumber.count == PhoneNumLength {
                 validations = .none
                 self.ValidationMessage = ""
             }
@@ -56,7 +58,31 @@ class DriverInfoViewModel: ObservableObject {
     @Published  var residentId = ""
     @Published  var borderId = ""
     @Published  var Email = ""
-    @Published  var LicenseNumber = ""
+    @Published  var LicenseNumber = ""{
+        didSet{
+            let filtered = LicenseNumber.filter {$0.isNumber}
+            if LicenseNumber != filtered {
+                LicenseNumber = filtered
+            }
+            if self.LicenseNumber != "" && ( self.LicenseNumber.count < LicenseNumLength || self.LicenseNumber.count > LicenseNumLength) {
+                validations = .DriverLicense
+                self.ValidationMessage = "Enter_a_valid_License_number"
+            }
+            //            else if self.phoneNumber.isEmpty {
+            //                validations = .PhoneNumber
+            //                self.ValidationMessage = "*"
+            //            }
+            else if self.LicenseNumber.count == LicenseNumLength {
+                validations = .none
+                self.ValidationMessage = ""
+            }
+            else if self.LicenseNumber == "" {
+                validations = .none
+                self.ValidationMessage = ""
+            }
+        }
+    }
+    
     @Published  var LicenseExpireDate = Date()
     @Published  var LicenseExpireDateStr = ""
 
@@ -68,7 +94,30 @@ class DriverInfoViewModel: ObservableObject {
 
     @Published  var NumberofAxe = ""
     @Published  var TruckPlate = ""
-    @Published  var TruckLicense = ""
+    @Published  var TruckLicense = ""{
+        didSet{
+            let filtered = TruckLicense.filter {$0.isNumber}
+            if TruckLicense != filtered {
+                TruckLicense = filtered
+            }
+            if self.TruckLicense != "" && ( self.TruckLicense.count < LicenseNumLength || self.TruckLicense.count > LicenseNumLength) {
+                validations = .TruckLicense
+                self.ValidationMessage = "Enter_a_valid_License_number"
+            }
+            //            else if self.phoneNumber.isEmpty {
+            //                validations = .PhoneNumber
+            //                self.ValidationMessage = "*"
+            //            }
+            else if self.TruckLicense.count == LicenseNumLength {
+                validations = .none
+                self.ValidationMessage = ""
+            }
+            else if self.TruckLicense == "" {
+                validations = .none
+                self.ValidationMessage = ""
+            }
+        }
+    }
     @Published  var TruckLicenseIssueDate = Date()
     @Published  var TruckLicenseIssueDateStr = ""
 
