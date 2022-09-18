@@ -15,6 +15,7 @@ enum AuthServices {
     case UpdateDriverInfo(parameters : [String:Any] , images : [String : Image?])
     case GetTruckType
     case GetTruckManfacture
+    case GetNationalityies
 
 }
 extension AuthServices : URLRequestBuilder {
@@ -34,6 +35,8 @@ extension AuthServices : URLRequestBuilder {
         case .GetTruckManfacture:
             return EndPoints.GetTruckManfacture.rawValue
 
+        case .GetNationalityies:
+            return EndPoints.getNationalities.rawValue
         }
     }
     var method: Moya.Method {
@@ -41,6 +44,8 @@ extension AuthServices : URLRequestBuilder {
         case  .Login , .createAccount , .UpdateDriverInfo :
             return .post
         case .GetDriverinfo, .GetTruckType, .GetTruckManfacture :
+            return .get
+        case .GetNationalityies:
             return .get
         }
     }
@@ -54,6 +59,8 @@ extension AuthServices : URLRequestBuilder {
         case .createAccount(parameters: let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .GetDriverinfo, .GetTruckType, .GetTruckManfacture:
+            return .requestPlain
+        case .GetNationalityies:
             return .requestPlain
         case .UpdateDriverInfo(let param,let images):
 //            var formData = [Moya.MultipartFormData]()

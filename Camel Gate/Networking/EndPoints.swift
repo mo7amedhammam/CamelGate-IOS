@@ -33,6 +33,7 @@ enum EndPoints: String {
     case CancelationReasons = "ShipmentCancelationReason/GetAllForList"
     case GetTruckTypes = "TruckType/GetAllForList"
     case GetTruckManfacture = "TruckManfacture/GetAllForList"
+    case getNationalities = "Nationality/GetAllForList"
     case ChangePassword = "User/ChangePassword"
 
 }

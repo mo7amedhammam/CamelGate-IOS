@@ -18,7 +18,8 @@ struct EditProfileInfoView: View {
     @StateObject var profileVM = DriverInfoViewModel()
     @StateObject var trucktypesVM = TruckTypeViewModel()
     @StateObject var truckmanfacturersVM = TruckManfacturerViewModel()
-    
+    @StateObject var nationalityVM = nationalityViewModel()
+
     var taskStatus:ProfileStep
     @State private var isEditing = false
     @State private var showImageSheet = false
@@ -85,7 +86,7 @@ struct EditProfileInfoView: View {
                                 .overlay(content: {
                                     HStack{
                                         DatePicker("", selection: $profileVM.Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
-                                            .opacity(0.04)
+                                            .opacity(0.02)
                                         Spacer()
                                         Image(systemName: "chevron.right")
                                     }.padding(.horizontal)
@@ -108,6 +109,28 @@ struct EditProfileInfoView: View {
                                     }
                                 })
                         }
+                        
+                        InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Nationality".localized(language), text: $profileVM.nationalityName)
+                            .disabled(true)
+                            .overlay(content: {
+                                Menu {
+                                    ForEach(nationalityVM.publishedNationalitiesArray ,id:\.self){nationality in
+                                        Button(
+                                            nationality.title ?? ""
+                                            , action: {
+                                            profileVM.NationalityId = nationality.id ?? 0
+                                            profileVM.nationalityName = nationality.title ?? ""
+                                        })
+                                    }
+                                } label: {
+                                    HStack{
+                                        Spacer()
+                                        Image(systemName: "chevron.down")
+                                    }
+                                    .padding(.trailing)
+                                }
+                            })
+                        
                         
                         HStack{
                             InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text:     profileVM.RedisentOptions == 1 ? .constant("Citizen"):profileVM.RedisentOptions == 2 ? .constant("Resident"):.constant("Border")  )
@@ -148,7 +171,7 @@ struct EditProfileInfoView: View {
                             .overlay(content: {
                                 HStack{
                                     DatePicker("", selection: $profileVM.LicenseExpireDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
-                                        .opacity(0.04)
+                                        .opacity(0.02)
                                     Spacer()
                                     Image(systemName: "chevron.right")
                                 }.padding(.horizontal)
@@ -281,7 +304,7 @@ struct EditProfileInfoView: View {
                                 .overlay(content: {
                                     HStack{
                                         DatePicker("", selection: $profileVM.TruckLicenseIssueDate,in: ...Date(), displayedComponents: [.date])
-                                            .opacity(0.04)
+                                            .opacity(0.02)
                                         Spacer()
                                         Image(systemName: "chevron.right")
                                     }.padding(.horizontal)
@@ -292,7 +315,7 @@ struct EditProfileInfoView: View {
                                 .overlay(content: {
                                     HStack{
                                         DatePicker("", selection: $profileVM.TruckLicenseExpirationDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
-                                            .opacity(0.04)
+                                            .opacity(0.02)
                                         Spacer()
                                         Image(systemName: "chevron.right")
                                     }.padding(.horizontal)
@@ -408,6 +431,18 @@ struct EditProfileInfoView: View {
                 showBottomSheet = true
             }
         })
+        .onChange(of: profileVM.Birthdate, perform: {newval in
+            profileVM.BirthdateStr = newval.DateToStr(format: "dd/MM/yyyy")
+        })
+        .onChange(of: profileVM.LicenseExpireDate, perform: {newval in
+            profileVM.LicenseExpireDateStr = newval.DateToStr(format: "dd/MM/yyyy")
+        })
+        .onChange(of: profileVM.TruckLicenseIssueDate, perform: {newval in
+            profileVM.TruckLicenseIssueDateStr = newval.DateToStr(format: "dd/MM/yyyy")
+        })
+        .onChange(of: profileVM.TruckLicenseExpirationDate, perform: {newval in
+            profileVM.TruckLicenseExpirationDateStr = newval.DateToStr(format: "dd/MM/yyyy")
+        })
         
         //MARK: -- updated popup --
         .overlay(content: {
@@ -496,6 +531,7 @@ struct EditProfileInfoView: View {
                 switch taskStatus {
                 case .create:
                     active = true
+                    Helper.IsLoggedIn(value: true)
                 case .update:
                     print("profile updated")
                 }

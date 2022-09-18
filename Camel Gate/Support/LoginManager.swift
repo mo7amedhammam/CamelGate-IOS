@@ -30,6 +30,7 @@ struct LoginManger {
     }
 
     static func removeUser() {
+        Helper.IsLoggedIn(value: false)
         UserDefaults.standard.removeObject(forKey: "auth_token")
         UserDefaults.standard.setValue(false, forKey: "isLogin")
         UserDefaults.standard.removeObject(forKey: key)

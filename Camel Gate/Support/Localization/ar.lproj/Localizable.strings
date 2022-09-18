@@ -39,6 +39,7 @@
 "Resident_Id" = "رقم الاقامة";
 "Border_Id" = "رقم الحدود";
 "Id" = "الرقم";
+"Nationality" = "الجنسية";
 "Email" = "البريد الإلكترونى";
 "Driving_Licence" = "رخصة القيادة";
 "Licence_Expiration_Date" = "تاريخ انتهاء الرخصة";

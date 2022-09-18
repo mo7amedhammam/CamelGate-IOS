@@ -90,6 +90,7 @@ final class Helper{
     //remove data then logout
     class func logout() {
 //        userDef.removeObject(forKey:"Id"  )
+        Helper.IsLoggedIn(value: false)
         userDef.removeObject(forKey:"DriverName"  )
         userDef.removeObject(forKey:"DriverImage"  )
         userDef.removeObject(forKey:"Image"  )

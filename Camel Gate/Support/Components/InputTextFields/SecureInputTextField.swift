@@ -32,6 +32,7 @@ struct SecureInputTextField: View {
                 Group{
                 if isSecured {
                     SecureField(placeholder, text: $text)
+                        .textContentType(.password)
                     
                 } else {
                     TextField(placeholder, text: $text)

@@ -54,6 +54,8 @@
 		C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21428915519002D115A /* KeyboardHandler.swift */; };
 		C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21828917AC1002D115A /* ChangeLanguageView.swift */; };
 		C87CAC7228B3CBB100A4F8EC /* App-Loading2.json in Resources */ = {isa = PBXBuildFile; fileRef = C87CAC7128B3CBB100A4F8EC /* App-Loading2.json */; };
+		C88E8B4428D740E9006CCCE3 /* nationalityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88E8B4328D740E9006CCCE3 /* nationalityModel.swift */; };
+		C88E8B4628D74100006CCCE3 /* nationalityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88E8B4528D74100006CCCE3 /* nationalityViewModel.swift */; };
 		C88F948328969317008B6AD0 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F948228969317008B6AD0 /* SignUpView.swift */; };
 		C88F94852896946D008B6AD0 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F94842896946D008B6AD0 /* GradientButton.swift */; };
 		C88F94882896C67D008B6AD0 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F94872896C67D008B6AD0 /* SignInView.swift */; };
@@ -183,6 +185,8 @@
 		C87BD21428915519002D115A /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		C87BD21828917AC1002D115A /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageView.swift; sourceTree = "<group>"; };
 		C87CAC7128B3CBB100A4F8EC /* App-Loading2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "App-Loading2.json"; sourceTree = "<group>"; };
+		C88E8B4328D740E9006CCCE3 /* nationalityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nationalityModel.swift; sourceTree = "<group>"; };
+		C88E8B4528D74100006CCCE3 /* nationalityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nationalityViewModel.swift; sourceTree = "<group>"; };
 		C88F948228969317008B6AD0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C88F94842896946D008B6AD0 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		C88F94872896C67D008B6AD0 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -414,6 +418,7 @@
 		C84EAC82288C4698000AB6AD /* EditProfileInfo */ = {
 			isa = PBXGroup;
 			children = (
+				C88E8B4228D7405A006CCCE3 /* Nationality */,
 				C84EFE1B28A7FDFE00302F7F /* TruckManufacturer */,
 				C84EFE1A28A7FDEE00302F7F /* TruckTypes */,
 				C85D7DA4289C0B460088227D /* Model */,
@@ -572,6 +577,15 @@
 				C87BD21828917AC1002D115A /* ChangeLanguageView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C88E8B4228D7405A006CCCE3 /* Nationality */ = {
+			isa = PBXGroup;
+			children = (
+				C88E8B4328D740E9006CCCE3 /* nationalityModel.swift */,
+				C88E8B4528D74100006CCCE3 /* nationalityViewModel.swift */,
+			);
+			path = Nationality;
 			sourceTree = "<group>";
 		};
 		C88F947E28969251008B6AD0 /* Authontication */ = {
@@ -1273,6 +1287,7 @@
 				C8C9494B2889772B0057EE7E /* ProfileView.swift in Sources */,
 				C8C94969288980AB0057EE7E /* BackButtonView.swift in Sources */,
 				C84EFE8828B0FE7100399C78 /* ChangePasswordModel.swift in Sources */,
+				C88E8B4628D74100006CCCE3 /* nationalityViewModel.swift in Sources */,
 				C0125B1828993991004B65E5 /* Decoder.swift in Sources */,
 				C82EC8F5289EAB090042A27F /* ApprovedShipmentModel.swift in Sources */,
 				C82EC8F7289EACC90042A27F /* ApprovedShipmentViewModel.swift in Sources */,
@@ -1284,6 +1299,7 @@
 				FA4E27B1288C53D10047265D /* FilterView.swift in Sources */,
 				C8D82A3728A46C4B0081E620 /* CitiesListView.swift in Sources */,
 				C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */,
+				C88E8B4428D740E9006CCCE3 /* nationalityModel.swift in Sources */,
 				C84EFE2328A7FF8700302F7F /* TruckTypeViewModel.swift in Sources */,
 				C8E4C309288F0406005FDB7C /* PhoneVerificationView.swift in Sources */,
 				C0125B162899390B004B65E5 /* Constants.swift in Sources */,

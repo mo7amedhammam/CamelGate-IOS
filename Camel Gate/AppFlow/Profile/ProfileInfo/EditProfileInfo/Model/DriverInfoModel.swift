@@ -19,8 +19,12 @@ struct DriverInfoModel : Codable {
     let email : String?
     let image : String?
     let birthdate : String?
+    let nationalityName : String?
+    let nationalityId : Int?
     let gender : Int?
     let statusId : Int?
+    let citizenId,residentId,borderId : String?
+
     let truckInfo : TruckInfo?
 
     enum CodingKeys: String, CodingKey {
@@ -38,6 +42,11 @@ struct DriverInfoModel : Codable {
         case gender = "gender"
         case statusId = "statusId"
         case truckInfo = "truckInfo"
+        case nationalityName = "nationalityName"
+        case nationalityId = "nationalityId"
+        case citizenId = "citizenId"
+        case residentId = "residentId"
+        case borderId = "borderId"
     }
 
 //    init(from decoder: Decoder) throws {
@@ -60,7 +69,7 @@ struct DriverInfoModel : Codable {
 }
 
 struct TruckInfo : Codable {
-    let plate : Int?
+    let plate : String?
     let license : Int?
     let licenseIssueDate : String?
     let licenseExpirationDate : String?
@@ -70,12 +79,10 @@ struct TruckInfo : Codable {
     let id : Int?
     let imageUrl : String?
     let creationdate : String?
-    
     let productionYear : Int?
     let camelGateCode : String?
 
     enum CodingKeys: String, CodingKey {
-
         case plate = "plate"
         case license = "license"
         case licenseIssueDate = "licenseIssueDate"

@@ -28,16 +28,13 @@ struct SignInView: View {
                         .padding(.horizontal,90)
                     
                     Group{
-                        
                         InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"),fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $SignInVM.phoneNumber)
-                        
                             .padding(.horizontal)
                             .keyboardType(.phonePad)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.red, lineWidth:SignInVM.validations == .PhoneNumber ? 1:0).padding(.horizontal)
                             )
-                        
                             .onChange(of: SignInVM.phoneNumber){ newval in
                                 SignInVM.phoneNumber =  String(newval.prefix(SignInVM.PhoneNumLength))
                             }

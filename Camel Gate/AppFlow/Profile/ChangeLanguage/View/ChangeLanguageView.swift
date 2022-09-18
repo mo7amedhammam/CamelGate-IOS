@@ -10,7 +10,6 @@ import SwiftUI
 struct ChangeLanguageView: View {
     
     @State var currentlanguage = "en"
-    
     var body: some View {
         ZStack{
             

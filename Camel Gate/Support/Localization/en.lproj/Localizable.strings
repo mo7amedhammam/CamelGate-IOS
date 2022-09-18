@@ -38,6 +38,7 @@
 "Resident_Id" = "Resident Id";
 "Border_Id" = "Border Id";
 "Id" = "Id";
+"Nationality" = "Nationality";
 "Email" = "Email";
 "Driving_Licence" = "Driving Licence";
 "Licence_Expiration_Date" = "Licence Expiration Date";

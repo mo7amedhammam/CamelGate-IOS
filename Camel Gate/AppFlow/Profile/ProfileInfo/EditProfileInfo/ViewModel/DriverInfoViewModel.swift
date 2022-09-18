@@ -53,6 +53,9 @@ class DriverInfoViewModel: ObservableObject {
     @Published  var Birthdate = Date()
     @Published  var BirthdateStr = ""
     @Published  var gender = 1
+    @Published  var NationalityId = 1
+    @Published  var nationalityName = ""
+
     @Published  var RedisentOptions = 1 // 1: CitizenId, 2:ResidentId , 3: Border
     @Published  var citizenId = ""
     @Published  var residentId = ""
@@ -160,6 +163,7 @@ class DriverInfoViewModel: ObservableObject {
                 Birthdate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss")
             ,
             "Gender"                               : "\(gender)",
+            "NationalityId" : "\(NationalityId)",
             "CreateTruckDto.Plate"                 : "\(Int(TruckPlate) ?? 0)",
             "CreateTruckDto.License"               : "\(Int(TruckLicense) ?? 0)",
             "CreateTruckDto.LicenseIssueDate"      :
@@ -245,11 +249,12 @@ class DriverInfoViewModel: ObservableObject {
                     LicenseNumber = data.data?.drivingLicense ?? ""
                     Email = data.data?.email ?? ""
                     gender =  data.data?.gender ?? 1
-                    TruckPlate = "\( data.data?.truckInfo?.plate ?? 0)"
+                    TruckPlate = "\( data.data?.truckInfo?.plate ?? "")"
                     TruckTypeId = "\( data.data?.truckInfo?.truckTypeId ?? 0)"
                     TruckManfacturerId = "\( data.data?.truckInfo?.truckManufacturerId ?? 0)"
                     TruckManfactureYear = "\( data.data?.truckInfo?.productionYear ?? 0)"
-                        
+                NationalityId = data.data?.nationalityId ?? 0
+                nationalityName = data.data?.nationalityName ?? ""
                     NumberofAxe = "\( data.data?.truckInfo?.numberofAxe ?? 0)"
                     TruckLicense = "\( data.data?.truckInfo?.license ?? 0)"
                       
@@ -264,6 +269,18 @@ class DriverInfoViewModel: ObservableObject {
 
                     Birthdate = convDateToDate(input: data.data?.birthdate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
                     BirthdateStr = Birthdate.DateToStr(format: "dd-MM-yyyy")
+                if data.data?.citizenId != nil{
+                    citizenId = data.data?.citizenId ?? ""
+                    RedisentOptions = 1
+                }
+                if data.data?.residentId != nil{
+                    citizenId = data.data?.residentId ?? ""
+                    RedisentOptions = 2
+                }
+                if data.data?.borderId != nil{
+                    citizenId = data.data?.borderId ?? ""
+                    RedisentOptions = 3
+                }
                     
 //                    }
                 
