@@ -48,6 +48,7 @@
 		C85D7DA1289BCB460088227D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA0289BCB460088227D /* ImagePicker.swift */; };
 		C85D7DA3289BD2F60088227D /* ImageDataExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */; };
 		C85D7DA6289C0B5D0088227D /* DriverInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA5289C0B5D0088227D /* DriverInfoModel.swift */; };
+		C85E829F28D88053004361B0 /* LocationAddressVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E829E28D88053004361B0 /* LocationAddressVM.swift */; };
 		C8691FFD28ABD7A2002201F3 /* RedirectToGMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8691FFC28ABD7A2002201F3 /* RedirectToGMaps.swift */; };
 		C870F89828901D9100CCFD9B /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89728901D9100CCFD9B /* OnBoardingView.swift */; };
 		C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */; };
@@ -179,6 +180,7 @@
 		C85D7DA0289BCB460088227D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataExtenstion.swift; sourceTree = "<group>"; };
 		C85D7DA5289C0B5D0088227D /* DriverInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoModel.swift; sourceTree = "<group>"; };
+		C85E829E28D88053004361B0 /* LocationAddressVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAddressVM.swift; sourceTree = "<group>"; };
 		C8691FFC28ABD7A2002201F3 /* RedirectToGMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectToGMaps.swift; sourceTree = "<group>"; };
 		C870F89728901D9100CCFD9B /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtenstions.swift; sourceTree = "<group>"; };
@@ -533,6 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				C8691FFC28ABD7A2002201F3 /* RedirectToGMaps.swift */,
+				C85E829E28D88053004361B0 /* LocationAddressVM.swift */,
 			);
 			path = RedirectToGMaps;
 			sourceTree = "<group>";
@@ -1288,6 +1291,7 @@
 				C8C94969288980AB0057EE7E /* BackButtonView.swift in Sources */,
 				C84EFE8828B0FE7100399C78 /* ChangePasswordModel.swift in Sources */,
 				C88E8B4628D74100006CCCE3 /* nationalityViewModel.swift in Sources */,
+				C85E829F28D88053004361B0 /* LocationAddressVM.swift in Sources */,
 				C0125B1828993991004B65E5 /* Decoder.swift in Sources */,
 				C82EC8F5289EAB090042A27F /* ApprovedShipmentModel.swift in Sources */,
 				C82EC8F7289EACC90042A27F /* ApprovedShipmentViewModel.swift in Sources */,
@@ -1527,7 +1531,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Camel-Gate-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camel Gate user Your Camera to Take Profile Image";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Camel Gate user Your Camera to Select Profile Image";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Came Gate Will use your location to select your address";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Came Gate Will use your location to select your address";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Camel Gate user Your Library to Select Profile Image";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1560,7 +1566,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Camel-Gate-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camel Gate user Your Camera to Take Profile Image";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Camel Gate user Your Camera to Select Profile Image";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Came Gate Will use your location to select your address";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Came Gate Will use your location to select your address";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Camel Gate user Your Library to Select Profile Image";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

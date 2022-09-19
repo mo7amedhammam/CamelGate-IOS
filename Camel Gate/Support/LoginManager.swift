@@ -36,11 +36,7 @@ struct LoginManger {
         UserDefaults.standard.removeObject(forKey: key)
     }
     static func logout() {
-        
         removeUser()
-        
-        
-        
         // MARK:- Developer should ADD
         // navigate to root AuthVC
         // should be like

@@ -14,7 +14,8 @@ struct RedirectToGMaps:View{
     @Binding var ShowRedirector:Bool
     var Long:Double
     var Lat:Double
-@State var Address = ""
+    @State var Address = ""
+    @StateObject var locationVM = LocationAddressVM()
     var body: some View{
         VStack{
             Spacer()
@@ -37,11 +38,10 @@ struct RedirectToGMaps:View{
                 Image("ic_pin_orange")
                     .resizable()
                     .frame(width: 50, height: 50)
-                Text(Helper.getUserAddress())
+                Text(locationVM.Publishedaddress)
                     .lineLimit(.bitWidth)
             }
             Button(action: {
-
                 Helper.openGoogleMap(longitude: Long, latitude: Lat)
                 ShowRedirector = false
             }, label: {
@@ -61,23 +61,9 @@ struct RedirectToGMaps:View{
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
         .onAppear(perform: {
-            DispatchQueue.main.async {
-                Address = getAddressFromLatLon(Latitude:"\(Lat)" ,withLongitude:"\(Long)")
-
-            }
-            
-        })
-            .onChange(of: Long, perform: {newval in
-                DispatchQueue.main.async {
-                    Address = getAddressFromLatLon(Latitude:"\(Lat)" ,withLongitude:"\(newval)")
-                }
-
-        })
-            .onChange(of: Lat, perform: {newval in
-                DispatchQueue.main.async {
-                    Address = getAddressFromLatLon(Latitude:"\(newval)" ,withLongitude:"\(Long)")
-                }
-
+            locationVM.lat = "\(Lat)"
+            locationVM.long = "\(Long)"
+            locationVM.getAddressFromLatLon()
         })
         
 //        .frame(height:180)

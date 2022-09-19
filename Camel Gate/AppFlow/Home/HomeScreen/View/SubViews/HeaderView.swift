@@ -6,22 +6,20 @@
 //
 
 import SwiftUI
-
+import CoreLocation
 struct HeaderView: View {
     @State var active = false
     @State var destination = AnyView(NotificationsView())
-    
+    @StateObject var locationVM = LocationAddressVM()
     @EnvironmentObject var imageVM : imageViewModel
     var body: some View {
         HStack {
-            
             AsyncImage(url: URL(string: Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/"))) { image in
                 image.resizable()
                     .onTapGesture(perform: {
                         imageVM.imageUrl = Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/")
                         imageVM.isPresented = true
                     })
-                 
             } placeholder: {
                 Image("face_vector")
             }
@@ -32,14 +30,13 @@ struct HeaderView: View {
             VStack(alignment: .leading ){
                 HStack{
                     Text(LoginManger.getUser()?.name ?? "")
-.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
                         .foregroundColor(Color.white)
                     HStack{
                         Text("")
                         Image("ic_star")
                         Text("4.5  ")
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)
                     }
                     .padding(3.0)
@@ -48,9 +45,8 @@ struct HeaderView: View {
                 }
                 HStack{
                     Image("ic_location")
-                    Text("2nd department, October, Giza")
-                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                    Text(locationVM.Publishedaddress)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                         .foregroundColor(Color.white)
                 }
             }
@@ -62,9 +58,14 @@ struct HeaderView: View {
                 Image("ic_big_notification")
             }
         }
-       
-
         .padding()
+        .onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: { [self] in
+                locationVM.lat = "\(locationVM.lastLocation?.coordinate.latitude ?? 0.0)"
+                locationVM.long = "\(locationVM.lastLocation?.coordinate.longitude ?? 0.0)"
+                locationVM.getAddressFromLatLon()
+            })
+        })
         NavigationLink(destination: destination,isActive:$active , label: {
         })
     }

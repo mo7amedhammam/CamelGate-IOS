@@ -55,7 +55,6 @@ struct HomeView: View {
                 }
                 
             .padding(.horizontal,10)
-
             .overlay(
                 ZStack{
                     if ApprovedShipmentVM.nodata == true {
@@ -83,7 +82,6 @@ struct HomeView: View {
         }
         .environmentObject(imageVM)
                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
         .navigationBarHidden(true)
         .onAppear(perform: {
             selectedShipmentId = 0
@@ -127,7 +125,6 @@ struct HomeView: View {
                     ApprovedShipmentVM.isAlert = false
                 }))
             })
-
     }
 }
 
@@ -140,7 +137,6 @@ struct HomeView_Previews: PreviewProvider {
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
             .environmentObject(imageViewModel())
             .environmentObject(ApprovedShipmentViewModel())
-
     }
 }
 

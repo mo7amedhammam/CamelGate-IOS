@@ -232,13 +232,11 @@ struct DetailsView: View {
                                     longitude = Double(detailsVM.publishedUserLogedInModel.toLang ?? 0)
                                     latitude = Double(detailsVM.publishedUserLogedInModel.toLat ?? 0)
                                     ShowMapRedirector = true
-                                    
                                 }) {
                                     ZStack{
                                         Color("Second_Color").opacity(0.2).frame(width : 100 , height: 40)
                                         Text("Location".localized(language)).foregroundColor(Color("Second_Color"))
                                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
-                                        
                                     }.cornerRadius(8)
                                 }
                             }
@@ -283,6 +281,7 @@ struct DetailsView: View {
                 //                    .frame(height: 1)
                 //
                 
+                if LoginManger.getUser()?.isDriverInCompany == false{
                 ZStack{
                     Button(action: {
                         if  detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 {
@@ -309,6 +308,7 @@ struct DetailsView: View {
                 }
                 .cornerRadius(10)
                 .frame(height : 120)
+                }
             }
             TitleBar(Title: "Shipment_Details".localized(language) , navBarHidden: true, leadingButton: .backButton, trailingButton: .shareButton , trailingAction: {
             })

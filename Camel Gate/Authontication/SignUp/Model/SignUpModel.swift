@@ -14,15 +14,17 @@ struct SignUpModel : Codable{
     let roleId : Int?
     let companyId : Int?
     let statusId : Int?
+    let profileStatusId :Int?
+//    let isDriverInCompany : Bool?
 
     enum CodingKeys: String, CodingKey {
-
         case token = "token"
         case name = "name"
         case image = "image"
         case roleId = "roleId"
         case companyId = "companyId"
         case statusId = "statusId"
+        case profileStatusId = "profileStatusId"
+//        case isDriverInCompany = "isDriverInCompany"
     }
-
 }
