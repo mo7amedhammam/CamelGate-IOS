@@ -10,7 +10,9 @@ import Moya
 
 enum AuthServices {
     case Login(parameters : [String:Any])
+    case VerifyAccount(parameters : [String:Any])
     case createAccount(parameters : [String:Any])
+
     case GetDriverinfo
     case UpdateDriverInfo(parameters : [String:Any] , images : [String : Image?])
     case GetTruckType
@@ -23,25 +25,25 @@ extension AuthServices : URLRequestBuilder {
         switch self {
         case .Login:
             return EndPoints.Login.rawValue
-        case .createAccount:
+        case .VerifyAccount:
             return EndPoints.CreateAccount.rawValue
+        case .createAccount:
+            return EndPoints.VerifyAccount.rawValue
         case .GetDriverinfo:
             return EndPoints.GetDriverInfoById.rawValue
         case .UpdateDriverInfo:
             return EndPoints.UpdateDriverInfo.rawValue
-
         case .GetTruckType:
             return EndPoints.GetTruckTypes.rawValue
         case .GetTruckManfacture:
             return EndPoints.GetTruckManfacture.rawValue
-
         case .GetNationalityies:
             return EndPoints.getNationalities.rawValue
-        }
+                }
     }
     var method: Moya.Method {
         switch self {
-        case  .Login , .createAccount , .UpdateDriverInfo :
+        case  .Login, .VerifyAccount, .createAccount , .UpdateDriverInfo :
             return .post
         case .GetDriverinfo, .GetTruckType, .GetTruckManfacture :
             return .get
@@ -56,12 +58,15 @@ extension AuthServices : URLRequestBuilder {
         switch self {
         case .Login(let param) :
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .VerifyAccount(parameters: let parameters):
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .createAccount(parameters: let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .GetDriverinfo, .GetTruckType, .GetTruckManfacture:
             return .requestPlain
         case .GetNationalityies:
             return .requestPlain
+            
         case .UpdateDriverInfo(let param,let images):
 //            var formData = [Moya.MultipartFormData]()
 //            // append image to request
@@ -108,6 +113,7 @@ extension AuthServices : URLRequestBuilder {
             }
             return .uploadMultipart(formData)
        
+
         }
     }
 }

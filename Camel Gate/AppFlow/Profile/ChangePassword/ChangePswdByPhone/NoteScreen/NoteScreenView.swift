@@ -60,8 +60,8 @@ struct NoteScreenView: View {
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
-        NavigationLink(destination: PhoneVerificationView<OTPViewModel>(),isActive:$gotoPhoneVerification , label: {
-        })
+//        NavigationLink(destination: PhoneVerificationView<OTPViewModel>(),isActive:$gotoPhoneVerification , label: {
+//        })
     }
 }
 

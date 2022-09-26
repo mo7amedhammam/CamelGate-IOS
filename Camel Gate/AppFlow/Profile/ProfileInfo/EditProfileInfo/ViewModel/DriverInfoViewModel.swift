@@ -160,22 +160,22 @@ class DriverInfoViewModel: ObservableObject {
             "DrivingLicense"                       : "\(LicenseNumber)",
             "Email"                                : "\(Email)",
             "Birthdate"                            :
-                Birthdate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss")
+                Birthdate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
             ,
             "Gender"                               : "\(gender)",
             "NationalityId" : "\(NationalityId)",
             "CreateTruckDto.Plate"                 : "\(Int(TruckPlate) ?? 0)",
             "CreateTruckDto.License"               : "\(Int(TruckLicense) ?? 0)",
             "CreateTruckDto.LicenseIssueDate"      :
-                TruckLicenseIssueDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss")
+                TruckLicenseIssueDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
             ,
             "CreateTruckDto.LicenseExpirationDate" :
-                TruckLicenseExpirationDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss")
+                TruckLicenseExpirationDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
             ,
             "CreateTruckDto.NumberofAxe"           : "\(Int( NumberofAxe ) ?? 0)",
             "CreateTruckDto.TruckTypeId"           : "\(Int( TruckTypeId ) ?? 0)",
             "DrivingLicenseExpirationDate"         :
-                LicenseExpireDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss")
+                LicenseExpireDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
             ,
             "CreateTruckDto.ProductionYear"        : "\(TruckManfactureYear)",
             "CreateTruckDto.TruckManufacturerId"   : "\(Int( TruckManfacturerId ) ?? 0)"
@@ -259,16 +259,16 @@ class DriverInfoViewModel: ObservableObject {
                     TruckLicense = "\( data.data?.truckInfo?.license ?? 0)"
                       
                     LicenseExpireDate = convDateToDate(input: data.data?.drivingLicenseExpirationDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
-                    LicenseExpireDateStr = LicenseExpireDate.DateToStr(format: "dd-MM-yyyy")
+                    LicenseExpireDateStr = LicenseExpireDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
                     
                     TruckLicenseIssueDate = convDateToDate(input: data.data?.truckInfo?.licenseIssueDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
-                    TruckLicenseIssueDateStr = TruckLicenseIssueDate.DateToStr(format: "dd-MM-yyyy")
+                    TruckLicenseIssueDateStr = TruckLicenseIssueDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
                 
                     TruckLicenseExpirationDate = convDateToDate(input: data.data?.truckInfo?.licenseExpirationDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
-                    TruckLicenseExpirationDateStr = TruckLicenseExpirationDate.DateToStr(format: "dd-MM-yyyy")
+                    TruckLicenseExpirationDateStr = TruckLicenseExpirationDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
 
                     Birthdate = convDateToDate(input: data.data?.birthdate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
-                    BirthdateStr = Birthdate.DateToStr(format: "dd-MM-yyyy")
+                    BirthdateStr = Birthdate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
                 if data.data?.citizenId != nil{
                     citizenId = data.data?.citizenId ?? ""
                     RedisentOptions = 1

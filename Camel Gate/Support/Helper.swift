@@ -197,19 +197,29 @@ final class Helper{
     }
 }
 
-func ChangeFormate( NewFormat:String) -> DateFormatter {
 
+
+//@AppStorage("language")
+//var language = LocalizationService.shared.language
+
+func ChangeFormate( NewFormat:String) -> DateFormatter {
+    @AppStorage("language")
+    var language = LocalizationService.shared.language
     let df = DateFormatter()
     df.dateFormat = NewFormat
-    df.locale = Locale(identifier: "en_US_POSIX")
+    df.locale = Locale(identifier: language.rawValue == "en" ? "en_US_POSIX":"ar")
     return df
 }
 
 // change Format From String to String
 func ConvertStringDate(inp:String, FormatFrom:String, FormatTo:String) -> String {
+    @AppStorage("language")
+    var language = LocalizationService.shared.language
+    
     var newdate = ""
     let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.locale = Locale(identifier: language.rawValue == "en" ? "en_US_POSIX":"ar")
+
     formatter.dateFormat = FormatFrom
     if let date = formatter.date(from: inp) {
 //        print(date)
@@ -221,10 +231,13 @@ func ConvertStringDate(inp:String, FormatFrom:String, FormatTo:String) -> String
 
 // change Format From date to date
 func ConvertDateFormat(inp:Date, FormatTo:String) -> Date {
+    @AppStorage("language")
+    var language = LocalizationService.shared.language
+    
     var newdate = Date()
         let formatter = DateFormatter()
     let date = formatter.string(from: inp )
-    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.locale = Locale(identifier: language.rawValue == "en" ? "en_US_POSIX":"ar")
         formatter.dateFormat = FormatTo
         newdate = formatter.date(from: date) ?? Date()
     
@@ -257,9 +270,13 @@ enum InvalidFields {
 
 
 func convDateToDate(input: String, format:String) -> Date {
+    @AppStorage("language")
+    var language = LocalizationService.shared.language
     var newdate = Date()
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = format
+    dateFormatter.locale = Locale(identifier: language.rawValue == "en" ? "en_US_POSIX":"ar")
+
     if let newDate = dateFormatter.date(from: input) {
         newdate = newDate
     } else{

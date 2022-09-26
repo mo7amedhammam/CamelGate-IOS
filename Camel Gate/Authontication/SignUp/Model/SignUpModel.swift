@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct SignUpPhoneVerify:Codable{
+    let otp, secondsCount : Int?
+}
+
 struct SignUpModel : Codable{
     let token : String?
     let name : String?

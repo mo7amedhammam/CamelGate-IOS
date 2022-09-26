@@ -9,17 +9,17 @@ import SwiftUI
 
 struct SignUpView: View {
     var language = LocalizationService.shared.language
-
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var SignUpVM = SignUpViewModel()
-
+    
     var body: some View {
         ZStack{
-         
+            
             VStack{
                 Image("signupheaderpng")
                     .resizable()
-//                    .frame(width:500)
+                //                    .frame(width:500)
                 
                     .padding(.top,-50)
                     .frame(height:320)
@@ -30,7 +30,7 @@ struct SignUpView: View {
                     
                     Group{
                         InputTextField(iconName: "person",iconColor: Color("blueColor"), placeholder: "Enter_your_name".localized(language), text: $SignUpVM.Drivername)
-
+                        
                         InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"),fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $SignUpVM.phoneNumber)
                             .keyboardType(.phonePad)
                             .overlay(
@@ -45,30 +45,30 @@ struct SignUpView: View {
                                 Text(SignUpVM.ValidationMessage.localized(language))
                                     .foregroundColor(.red)
                                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                                
                                 Spacer()
                             }
                         }
-
+                        
                         SecureInputTextField("Enter_your_password".localized(language), text: $SignUpVM.password, iconName: "lockBlue")
                         SecureInputTextField("Confirm_your_password".localized(language), text: $SignUpVM.confirmpassword, iconName: "lockBlue")
                             .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(.red, lineWidth:SignUpVM.validations == .ConfirmPassword ? 1:0))
-                    if SignUpVM.validations == .ConfirmPassword{
-                        HStack{
-                            Text(SignUpVM.ValidationMessage.localized(language))
-                                .foregroundColor(.red)
-                                                                               .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
-                            Spacer()
-                        }.padding(.horizontal)
-                    }
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(.red, lineWidth:SignUpVM.validations == .ConfirmPassword ? 1:0))
+                        if SignUpVM.validations == .ConfirmPassword{
+                            HStack{
+                                Text(SignUpVM.ValidationMessage.localized(language))
+                                    .foregroundColor(.red)
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                
+                                Spacer()
+                            }.padding(.horizontal)
+                        }
                     }
                     .padding(.horizontal)
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
-
+                    
                 }
                 Spacer()
             }
@@ -76,25 +76,23 @@ struct SignUpView: View {
             .onTapGesture(perform: {
                 hideKeyboard()
             })
-//            .padding(.horizontal,-30)
+            //            .padding(.horizontal,-30)
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false,  forgroundColor: .clear, content: {
                 VStack{
                     GradientButton(action: {
-                        SignUpVM.CreateAccount()
+                        SignUpVM.VerifyAccount()
                     }, Title: "Create_account".localized(language), IsDisabled: .constant(  !((SignUpVM.Drivername != "" && SignUpVM.phoneNumber != "" && SignUpVM.password != "" && SignUpVM.confirmpassword != "")&&SignUpVM.ValidationMessage == "")))
-                    .padding(.top)
+                        .padding(.top)
                     
                     HStack {
                         Text("have_an_Account?".localized(language)).foregroundColor(.secondary)
                             .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
-
                         
                         Button("Sign_In".localized(language)) {
                             self.presentationMode.wrappedValue.dismiss()
                         }
                         .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                         .foregroundColor(Color("blueColor"))
-                        
                     }
                     .padding(.top,-10)
                 }
@@ -105,12 +103,10 @@ struct SignUpView: View {
                         .padding(.horizontal, -30)
                         .padding(.bottom,-250)
                 )
-
             })
-            
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
+        
         .navigationBarHidden(true)
         .overlay(content: {
             VStack{
@@ -119,8 +115,8 @@ struct SignUpView: View {
                     Spacer()
                     Text("Sign_Up".localized(language))
                         .foregroundColor(.white)
-.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
-                       Spacer()
+                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
+                    Spacer()
                     Spacer().frame(width:50)
                 }
                 .padding(.horizontal)
@@ -128,23 +124,36 @@ struct SignUpView: View {
                 Spacer()
             }
         })
-//        .overlay(content: {
-//            // showing loading indicator
-//            ActivityIndicatorView(isPresented: $SignUpVM.isLoading)
-//        })
+        //        .overlay(content: {
+        //            // showing loading indicator
+        //            ActivityIndicatorView(isPresented: $SignUpVM.isLoading)
+        //        })
         .overlay(content: {
             AnimatingGif(isPresented: $SignUpVM.isLoading)
         })
+//        .onChange(of: $SignUpVM.UserCreated , perform: {newval in
+//            if
+//        })
+        .fullScreenCover(isPresented: $SignUpVM.verifyUser , onDismiss: {
+            //MARK: -- create user and navigate to complete profil
+            print("user verified with otp\(SignUpVM.publishedUserLogedInModel?.otp ?? 0000)")
+            SignUpVM.CreateAccount()
+            
+        }, content: {
+            PhoneVerificationView(op: .signup, phoneNumber: $SignUpVM.phoneNumber, CurrentOTP: $SignUpVM.currentOTP ,validFor: SignUpVM.publishedUserLogedInModel?.secondsCount ?? 0 , matchedOTP: $SignUpVM.isMatchedOTP, isPresented: $SignUpVM.verifyUser)
+        })
+        NavigationLink(destination: EditProfileInfoView(taskStatus: .create, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.isUserCreated , label: {
+        })
         
-        NavigationLink(destination: EditProfileInfoView(taskStatus: .create, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.UserCreated , label: {
-        })
-
-    // Alert with no internet connection
-        .alert(isPresented: $SignUpVM.isAlert, content: {
-            Alert(title: Text(SignUpVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                SignUpVM.isAlert = false
-            }))
-        })
+//        NavigationLink(destination:PhoneVerificationView<SignUpViewModel>().navigationBarHidden(true),isActive:$SignUpVM.UserCreated , label: {
+//        })
+        
+        // Alert with no internet connection
+            .alert(isPresented: $SignUpVM.isAlert, content: {
+                Alert(title: Text(SignUpVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    SignUpVM.isAlert = false
+                }))
+            })
     }
 }
 

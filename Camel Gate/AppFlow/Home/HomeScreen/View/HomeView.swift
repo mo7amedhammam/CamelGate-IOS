@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+//    @AppStorage("language")
     var language = LocalizationService.shared.language
 
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel

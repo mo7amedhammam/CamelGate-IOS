@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct tripCellView: View {
-    
     var language = LocalizationService.shared.language
     @Binding var shipmentModel:ShipmentModel
     @Binding var selecteshipmentId:Int

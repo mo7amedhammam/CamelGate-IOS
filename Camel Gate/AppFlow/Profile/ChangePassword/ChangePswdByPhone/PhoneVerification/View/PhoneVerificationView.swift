@@ -6,21 +6,30 @@
 //
 
 import SwiftUI
+import PromiseKit
+enum operations {
+    case signup,password
+}
 
-struct PhoneVerificationView<T:ObservableObject>: View {
+struct PhoneVerificationView: View{
     var language = LocalizationService.shared.language
+    var op : operations
+    @Binding var phoneNumber : String
+    @Binding var CurrentOTP : Int
+    var validFor : Int = 60
+    @Binding var matchedOTP : Bool
+    @Binding var isPresented : Bool
 
+    @StateObject var SignUpVM : SignUpViewModel = SignUpViewModel()
+    @StateObject var changePasswordVM : ChangePasswordViewModel = ChangePasswordViewModel()
+    
     @State var gotonewpassword = false
-    
-    @EnvironmentObject var ViewModel : T
-    
-    @State private var matchedOTP = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var minutes: Int = 00
     @State private var seconds: Int = 00
     
     @State private var hideIncorrectCode = true
-    @StateObject var viewModel = OTPViewModel()
+    @StateObject var otpVM = OTPViewModel()
     @State var isErrorCode = false
     
     let textBoxWidth = UIScreen.main.bounds.width / 8
@@ -28,7 +37,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
     let spaceBetweenBoxes: CGFloat = 10
     let paddingOfBox: CGFloat = 1
     var textFieldOriginalWidth: CGFloat {
-        (textBoxWidth*4)+(spaceBetweenBoxes*3)+((paddingOfBox*2)*3)
+        (textBoxWidth*6)+(spaceBetweenBoxes*5)+((paddingOfBox*2)*5)
     }
     @State  var isfocused = false
     
@@ -42,45 +51,56 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                     Image("message-orange")
                     
                     Text("Please_enter_the_Verification_Code_\nwe_sent_to_your_mobile".localized(language) )
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
-                    
+                    Text("\(String(CurrentOTP))")
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+
                     ZStack {
                         HStack (spacing: spaceBetweenBoxes){
-                            
-                            otpText(text: viewModel.otp1)
+                            otpText(text: otpVM.otp1)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
                                         .stroke(.blue, lineWidth:
-                                                    isfocused&&viewModel.otp1 == "" ? 1:0)
+                                                    isfocused&&otpVM.otp1 == "" ? 1:0)
                                 )
-                            otpText(text: viewModel.otp2)
+                            otpText(text: otpVM.otp2)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
-                                        .stroke(.blue, lineWidth: viewModel.otp1 != ""&&viewModel.otp2 == "" ? 1:0)
+                                        .stroke(.blue, lineWidth: otpVM.otp1 != ""&&otpVM.otp2 == "" ? 1:0)
                                 )
                             
-                            otpText(text: viewModel.otp3)
+                            otpText(text: otpVM.otp3)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
-                                        .stroke(.blue, lineWidth:  viewModel.otp2 != ""&&viewModel.otp3 == "" ? 1:0)
+                                        .stroke(.blue, lineWidth:  otpVM.otp2 != ""&&otpVM.otp3 == "" ? 1:0)
                                 )
                             
-                            otpText(text: viewModel.otp4)
+                            otpText(text: otpVM.otp4)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
-                                        .stroke(.blue, lineWidth: viewModel.otp3 != ""&&viewModel.otp4 == "" ? 1:0)
+                                        .stroke(.blue, lineWidth: otpVM.otp3 != ""&&otpVM.otp4 == "" ? 1:0)
                                 )
-                            
-                            
+                            otpText(text: otpVM.otp5)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(.blue, lineWidth: otpVM.otp4 != ""&&otpVM.otp5 == "" ? 1:0)
+                                )
+                            otpText(text: otpVM.otp6)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(.blue, lineWidth: otpVM.otp4 != ""&&otpVM.otp5 == "" ? 1:0)
+                                )
                         }
                         
-                        TextField("", text: $viewModel.otpField)
+                        TextField("", text: $otpVM.otpField)
                         //                            .focused($isfocused)
                             .autocapitalization(.none)
                             .frame(width: isfocused ? 2 : textFieldOriginalWidth, height: textBoxHeight)
-                            .disabled(viewModel.isTextFieldDisabled)
+                            .disabled(otpVM.isTextFieldDisabled)
                             .textContentType(.oneTimeCode)
                             .foregroundColor(.clear)
                             .accentColor(.clear)
@@ -91,10 +111,10 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                     Group{
                         HStack {
                             Text("Code_sent_to_+2".localized(language))
-                            Text("01101201322")
+                            Text(phoneNumber)
                                 .foregroundColor(Color("blueColor"))
                         }
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .foregroundColor(.black)
                         .frame( alignment: .center)
                         .multilineTextAlignment(.center)
@@ -103,7 +123,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                             .padding(.top,2)
                             .foregroundColor((hideIncorrectCode == false || (minutes == 0 && seconds == 0 )) ? .red:.black )
                     }
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     
                     Text("\(minutes):\(seconds)")
                         .font(.subheadline)
@@ -119,7 +139,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                                 .opacity(0.2)
                         )
                         .keyboardSpace()
-
+                    
                     Button(action: {
                         // resend code action
                         //                    RegisterUserVM.startFetchUserRegisteration()
@@ -127,7 +147,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                         //                    self.DynamicTimer(sentTimer: RegisterUserVM.publishedUserRegisteredModel?.ReSendCounter ?? 60)
                     }, label: {
                         Text("Resend_Code".localized(language))
-    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                             .padding()
                             .foregroundColor( (minutes == 00 && seconds == 00) ? Color("blueColor") : Color(uiColor: .lightGray))
                     }).disabled(minutes != 00 && seconds != 00)
@@ -141,13 +161,19 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                 
                 Button(action: {
                     // send code action
-                    gotonewpassword = true
-                    let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
-                    if checkOTP(sentOTP: 1234 , TypedOTP: Int(otp) ?? 0000){
-                        self.matchedOTP.toggle()
-                        // action
-                        gotonewpassword = true
-                        //                        CreateUserVM.startFetchUserCreation()
+                    //                    gotonewpassword = true
+                    let otp = otpVM.otp1+otpVM.otp2+otpVM.otp3+otpVM.otp4+otpVM.otp5+otpVM.otp6
+                    if checkOTP(sentOTP: CurrentOTP , TypedOTP: Int(otp) ?? 0000){
+                        if op == .signup {
+                            matchedOTP.toggle()
+                            isPresented.toggle()
+                            // action
+                            //                        gotonewpassword = true
+                            //                        CreateUserVM.startFetchUserCreation()
+                        }else if  op == .password{
+                            matchedOTP.toggle()
+                            isPresented.toggle()
+                        }
                     }else{
                         hideIncorrectCode =  false
                     }
@@ -155,8 +181,8 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                 }, label: {
                     HStack {
                         Text("Send_Code".localized(language))
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                        
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .frame(height:22)
@@ -168,13 +194,13 @@ struct PhoneVerificationView<T:ObservableObject>: View {
                             startPoint: .trailing,
                             endPoint: .leading
                         )
-                            .opacity(viewModel.otp4 == "" || (minutes == 00 && seconds == 00) ? 0.5:1)
+                            .opacity(otpVM.otp6 == "" || (minutes == 00 && seconds == 00) ? 0.5:1)
                     )
                     .cornerRadius(12)
                     .padding(.horizontal, 25)
                 })
-//                    .padding(.top, 120)
-                    .disabled(viewModel.otp4 == "" || (minutes == 00 && seconds == 00))
+                //                    .padding(.top, 120)
+                    .disabled(otpVM.otp6 == "" || (minutes == 00 && seconds == 00))
             }
             .padding(.bottom)
             
@@ -198,9 +224,9 @@ struct PhoneVerificationView<T:ObservableObject>: View {
             
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
+        
         .onAppear(perform: {
-            DynamicTimer(sentTimer: 120)
+            DynamicTimer(sentTimer: validFor)
             //            CreateUserVM.fullName = RegisterUserVM.fullName
             //            CreateUserVM.email = RegisterUserVM.email
             //            CreateUserVM.phoneNumber = RegisterUserVM.phoneNumber
@@ -221,6 +247,24 @@ struct PhoneVerificationView<T:ObservableObject>: View {
             hideKeyboard()
         })
         
+        .onChange(of: otpVM.otp6, perform: {newval in
+            let otp = otpVM.otp1+otpVM.otp2+otpVM.otp3+otpVM.otp4+otpVM.otp5+newval
+            if checkOTP(sentOTP: CurrentOTP , TypedOTP: Int(otp) ?? 0000){
+                if op == .signup {
+                    matchedOTP.toggle()
+                    isPresented.toggle()
+                    // action
+                    //                        gotonewpassword = true
+                    //                        CreateUserVM.startFetchUserCreation()
+                }else if  op == .password{
+                    matchedOTP.toggle()
+                    isPresented.toggle()
+                }
+            }else{
+                hideIncorrectCode =  false
+            }
+            
+        })
         NavigationLink(destination: NewPasswordView(),isActive:$gotonewpassword , label: {
         })
         // Alert with no internet connection
@@ -266,6 +310,7 @@ struct PhoneVerificationView<T:ObservableObject>: View {
     //MARK: validOTP
     func DynamicTimer(sentTimer:Int ){
         self.minutes = sentTimer/60
+        self.seconds = sentTimer%60
     }
     
 }
@@ -273,11 +318,11 @@ struct PhoneVerificationView<T:ObservableObject>: View {
 struct PhoneVerificationView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            PhoneVerificationView<OTPViewModel>()
+            PhoneVerificationView( op: .signup, phoneNumber: .constant(""), CurrentOTP: .constant(0), matchedOTP: .constant(false), isPresented: .constant(false))
         }
-    
+        
         ZStack {
-            PhoneVerificationView<OTPViewModel>()
+            PhoneVerificationView(op:.signup, phoneNumber: .constant(""), CurrentOTP: .constant(0), matchedOTP: .constant(false), isPresented: .constant(false))
         }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }

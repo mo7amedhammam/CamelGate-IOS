@@ -13,6 +13,7 @@ enum ProfileStep{
 }
 
 struct EditProfileInfoView: View {
+    @AppStorage("language")
     var language = LocalizationService.shared.language
     
     @StateObject var profileVM = DriverInfoViewModel()
@@ -88,18 +89,18 @@ struct EditProfileInfoView: View {
                                         DatePicker("", selection: $profileVM.Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
                                             .opacity(0.02)
                                         Spacer()
-                                        Image(systemName: "chevron.right")
+                                        Image(systemName:language.rawValue == "en" ? "chevron.right":"chevron.left")
                                     }.padding(.horizontal)
                                 })
                             
                             
-                            InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male"):.constant("Female"))
+                            InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male".localized(language)):.constant("Female".localized(language)))
                                 .frame(width:130)
                                 .disabled(true)
                                 .overlay(content: {
                                     Menu {
-                                        Button("Male", action: {profileVM.gender = 1})
-                                        Button("Female", action: {profileVM.gender = 2})
+                                        Button("Male".localized(language), action: {profileVM.gender = 1})
+                                        Button("Female".localized(language), action: {profileVM.gender = 2})
                                     } label: {
                                         HStack{
                                             Spacer()
@@ -133,14 +134,14 @@ struct EditProfileInfoView: View {
                         
                         
                         HStack{
-                            InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text:     profileVM.RedisentOptions == 1 ? .constant("Citizen"):profileVM.RedisentOptions == 2 ? .constant("Resident"):.constant("Border")  )
+                            InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text:     profileVM.RedisentOptions == 1 ? .constant("Citizen".localized(language)):profileVM.RedisentOptions == 2 ? .constant("Resident".localized(language)):.constant("Border".localized(language))  )
                                 .frame(width:130)
                                 .disabled(true)
                                 .overlay(content: {
                                     Menu {
-                                        Button("Citizen_Id", action: {profileVM.RedisentOptions = 1 })
-                                        Button("Resident_Id", action: {profileVM.RedisentOptions = 2})
-                                        Button("Border_Id", action: {profileVM.RedisentOptions = 3})
+                                        Button("Citizen_Id".localized(language), action: {profileVM.RedisentOptions = 1 })
+                                        Button("Resident_Id".localized(language), action: {profileVM.RedisentOptions = 2})
+                                        Button("Border_Id".localized(language), action: {profileVM.RedisentOptions = 3})
                                         
                                     } label: {
                                         HStack{
@@ -168,12 +169,13 @@ struct EditProfileInfoView: View {
                         }
                         
                         InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: $profileVM.LicenseExpireDateStr)
+                            .disabled(true)
                             .overlay(content: {
-                                HStack{
+                                HStack(){
                                     DatePicker("", selection: $profileVM.LicenseExpireDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
                                         .opacity(0.02)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
+                                    Spacer().frame(minWidth:200)
+                                    Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                                 }.padding(.horizontal)
                             })
                         
@@ -220,7 +222,7 @@ struct EditProfileInfoView: View {
                                         Spacer()
                                         Image(systemName: "chevron.down")
                                     }
-                                    .padding(.trailing)
+//                                    .padding(.trailing)
                                 }.padding()
                             })
                         
@@ -306,7 +308,7 @@ struct EditProfileInfoView: View {
                                         DatePicker("", selection: $profileVM.TruckLicenseIssueDate,in: ...Date(), displayedComponents: [.date])
                                             .opacity(0.02)
                                         Spacer()
-                                        Image(systemName: "chevron.right")
+                                        Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                                     }.padding(.horizontal)
                                 })
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
@@ -317,7 +319,7 @@ struct EditProfileInfoView: View {
                                         DatePicker("", selection: $profileVM.TruckLicenseExpirationDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
                                             .opacity(0.02)
                                         Spacer()
-                                        Image(systemName: "chevron.right")
+                                        Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                                     }.padding(.horizontal)
                                 })
                         }
@@ -338,7 +340,6 @@ struct EditProfileInfoView: View {
                             
                             Button(action: {
                                 showsheet = true
-                                
                             }, label: {
                                 Text("Terms_&_Conditions".localized(language))
                                     .underline()
@@ -351,8 +352,10 @@ struct EditProfileInfoView: View {
                         }.padding(.vertical)
                     }
                     Spacer(minLength: 30)
-                }.disabled((taskStatus == .update && isEditing == false) ? true:false)
-            }.padding(.top,hasNotch ? 140:130)
+                }
+                .disabled((taskStatus == .update && isEditing == false) ? true:false)
+            }
+            .padding(.top,hasNotch ? 140:130)
                 .padding(.bottom, 90)
                 .padding(.horizontal)
                 .onTapGesture(perform: {
@@ -407,7 +410,6 @@ struct EditProfileInfoView: View {
             
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-        
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .navigationBarHidden(true)
         .onAppear(perform: {
@@ -432,24 +434,22 @@ struct EditProfileInfoView: View {
             }
         })
         .onChange(of: profileVM.Birthdate, perform: {newval in
-            profileVM.BirthdateStr = newval.DateToStr(format: "dd/MM/yyyy")
+            profileVM.BirthdateStr = newval.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
         })
         .onChange(of: profileVM.LicenseExpireDate, perform: {newval in
-            profileVM.LicenseExpireDateStr = newval.DateToStr(format: "dd/MM/yyyy")
+            profileVM.LicenseExpireDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
         })
         .onChange(of: profileVM.TruckLicenseIssueDate, perform: {newval in
-            profileVM.TruckLicenseIssueDateStr = newval.DateToStr(format: "dd/MM/yyyy")
+            profileVM.TruckLicenseIssueDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
         })
         .onChange(of: profileVM.TruckLicenseExpirationDate, perform: {newval in
-            profileVM.TruckLicenseExpirationDateStr = newval.DateToStr(format: "dd/MM/yyyy")
+            profileVM.TruckLicenseExpirationDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
         })
         
         //MARK: -- updated popup --
         .overlay(content: {
             if showBottomSheet{
-                
                 BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
-                    
                     Text("Profile_Updated".localized(language))
                         .font(Font.camelfonts.Reg20)
                     
@@ -544,10 +544,18 @@ struct EditProfileInfoView: View {
 
 struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileInfoView(taskStatus: .create
-        ).environmentObject(imageViewModel())
-        EditProfileInfoView(taskStatus: .update).environmentObject(imageViewModel())
-            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+        ZStack {
+            EditProfileInfoView(taskStatus: .create)
+                .environmentObject(imageViewModel())
+        }
+        .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+
+        ZStack {
+            EditProfileInfoView(taskStatus: .update)
+                .environmentObject(imageViewModel())
+        }
+        .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+
     }
 }
 
