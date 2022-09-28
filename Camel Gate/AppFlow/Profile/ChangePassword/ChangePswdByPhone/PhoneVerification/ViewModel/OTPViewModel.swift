@@ -14,7 +14,6 @@ class OTPViewModel: ObservableObject {
             guard otpField.count <= 6,
                   otpField.last?.isNumber ?? true else {
                       otpField = oldValue
-                      
                       return
                   }
         }

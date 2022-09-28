@@ -12,7 +12,8 @@ struct SignUpView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var SignUpVM = SignUpViewModel()
-    
+    @State var presentPhoneVerify = false
+
     var body: some View {
         ZStack{
             
@@ -131,16 +132,18 @@ struct SignUpView: View {
         .overlay(content: {
             AnimatingGif(isPresented: $SignUpVM.isLoading)
         })
-//        .onChange(of: $SignUpVM.UserCreated , perform: {newval in
-//            if
-//        })
-        .fullScreenCover(isPresented: $SignUpVM.verifyUser , onDismiss: {
-            //MARK: -- create user and navigate to complete profil
-            print("user verified with otp\(SignUpVM.publishedUserLogedInModel?.otp ?? 0000)")
+        .onChange(of: SignUpVM.verifyUser , perform: {newval in
+            if newval == true{
+                presentPhoneVerify.toggle()
+            }
+        })
+        
+        .fullScreenCover(isPresented: $presentPhoneVerify , onDismiss: {
+            if SignUpVM.isMatchedOTP {
             SignUpVM.CreateAccount()
-            
+            }
         }, content: {
-            PhoneVerificationView(op: .signup, phoneNumber: $SignUpVM.phoneNumber, CurrentOTP: $SignUpVM.currentOTP ,validFor: SignUpVM.publishedUserLogedInModel?.secondsCount ?? 0 , matchedOTP: $SignUpVM.isMatchedOTP, isPresented: $SignUpVM.verifyUser)
+            PhoneVerificationView(op: .signup, phoneNumber: $SignUpVM.phoneNumber, CurrentOTP: $SignUpVM.currentOTP ,validFor: $SignUpVM.SecondsCount , matchedOTP: $SignUpVM.isMatchedOTP, isPresented: $presentPhoneVerify)
         })
         NavigationLink(destination: EditProfileInfoView(taskStatus: .create, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.isUserCreated , label: {
         })

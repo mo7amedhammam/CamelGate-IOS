@@ -13,6 +13,7 @@ enum EndPoints: String {
     case Login = "User/Login"
     case CreateAccount = "User/SignUp"
     case VerifyAccount = "User/VefiryUser"
+    case resendOTP = "User/SendOTP"
 
     case GetDriverInfoById = "Driver/GetById"
     case UpdateDriverInfo = "Driver/Update"

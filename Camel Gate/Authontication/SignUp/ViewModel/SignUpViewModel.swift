@@ -65,7 +65,8 @@ class SignUpViewModel: ObservableObject {
      }
 
     @Published  var currentOTP = 0
-    
+    @Published  var SecondsCount = 0
+
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
@@ -89,7 +90,9 @@ class SignUpViewModel: ObservableObject {
         } receiveValue: { [self](modeldata) in
             publishedUserLogedInModel = modeldata.data
             currentOTP = publishedUserLogedInModel?.otp ?? 0
-            verifyUser = true
+            SecondsCount = publishedUserLogedInModel?.secondsCount ?? 0
+
+//            verifyUser = true
         }.store(in: &cancellables)
         
         passthroughCreateModel.sink { (completion) in

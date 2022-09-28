@@ -33,6 +33,7 @@
 		C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FABC2892BB6D00B803FD /* ChatsListView.swift */; };
 		C8481CC6289FE4DB00B6675D /* ShipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8481CC5289FE4DB00B6675D /* ShipmentModel.swift */; };
 		C8481CC9289FFF9300B6675D /* ShipmentDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8481CC8289FFF9300B6675D /* ShipmentDetailsViewModel.swift */; };
+		C84899EB28E44F900013685A /* ResendOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84899EA28E44F900013685A /* ResendOTPViewModel.swift */; };
 		C84EAC7C288C3392000AB6AD /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC7B288C3392000AB6AD /* CircularButton.swift */; };
 		C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */; };
 		C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */; };
@@ -165,6 +166,7 @@
 		C845FABC2892BB6D00B803FD /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		C8481CC5289FE4DB00B6675D /* ShipmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentModel.swift; sourceTree = "<group>"; };
 		C8481CC8289FFF9300B6675D /* ShipmentDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentDetailsViewModel.swift; sourceTree = "<group>"; };
+		C84899EA28E44F900013685A /* ResendOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendOTPViewModel.swift; sourceTree = "<group>"; };
 		C84EAC7B288C3392000AB6AD /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		C84EAC84288C47BE000AB6AD /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
@@ -389,6 +391,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		C84899E928E44F5A0013685A /* ResendOTP */ = {
+			isa = PBXGroup;
+			children = (
+				C84899EA28E44F900013685A /* ResendOTPViewModel.swift */,
+			);
+			path = ResendOTP;
+			sourceTree = "<group>";
+		};
 		C84EAC7F288C4600000AB6AD /* ChangePassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +479,7 @@
 			children = (
 				C8E4C302288F0256005FDB7C /* NoteScreen */,
 				C8E4C304288F02F4005FDB7C /* PhoneVerification */,
+				C84899E928E44F5A0013685A /* ResendOTP */,
 				C8E4C303288F02F1005FDB7C /* NewPassword */,
 			);
 			path = ChangePswdByPhone;
@@ -1359,6 +1370,7 @@
 				C8A07819288D8A4C0084C0A6 /* BottomPopupView.swift in Sources */,
 				C8DB51A9288CB45F004521C8 /* FontsExtension.swift in Sources */,
 				C0125B12289936B5004B65E5 /* EndPoints.swift in Sources */,
+				C84899EB28E44F900013685A /* ResendOTPViewModel.swift in Sources */,
 				C8481CC9289FFF9300B6675D /* ShipmentDetailsViewModel.swift in Sources */,
 				FA626CE028A7F3FD00714C67 /* HelpRequestSentView.swift in Sources */,
 				FA7077FD28935B9300879399 /* DetailsView.swift in Sources */,

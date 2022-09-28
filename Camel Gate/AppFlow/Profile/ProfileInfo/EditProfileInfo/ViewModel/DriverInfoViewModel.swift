@@ -159,6 +159,7 @@ class DriverInfoViewModel: ObservableObject {
             "StatusId"                         :"\(LoginManger.getUser()?.profileStatusId ?? 0)",
             "DrivingLicense"                       : "\(LicenseNumber)",
             "Email"                                : "\(Email)",
+            "Name"                                : "\(Drivername)",
             "Birthdate"                            :
                 Birthdate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
             ,
@@ -245,7 +246,8 @@ class DriverInfoViewModel: ObservableObject {
             if data.success == true {
 
 //                    DispatchQueue.main.async { [self] in
-                self.DriverImageStr = data.data?.image ?? ""
+                Drivername = data.data?.name ?? ""
+                DriverImageStr = data.data?.image ?? ""
                     LicenseNumber = data.data?.drivingLicense ?? ""
                     Email = data.data?.email ?? ""
                     gender =  data.data?.gender ?? 1

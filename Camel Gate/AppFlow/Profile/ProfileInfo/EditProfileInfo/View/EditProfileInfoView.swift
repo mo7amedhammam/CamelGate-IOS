@@ -61,7 +61,8 @@ struct EditProfileInfoView: View {
                                 Image(uiImage: profileVM.DriverImage)
                                     .resizable()
                             }
-                        }                                    .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
+                        }
+                        .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
                     })
                         .clipShape(Circle())
                         .frame(width: 95, height: 95, alignment: .center)
@@ -81,6 +82,10 @@ struct EditProfileInfoView: View {
                         if taskStatus == .update{
                             // card is here
                         }
+                        
+                        InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
+
+                        //MARK: - birthdate and gender -
                         HStack{
                             InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr)
                             //                        .disabled(true)
@@ -132,7 +137,7 @@ struct EditProfileInfoView: View {
                                 }
                             })
                         
-                        
+                        //MARK: - resident and Id -
                         HStack{
                             InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text:     profileVM.RedisentOptions == 1 ? .constant("Citizen".localized(language)):profileVM.RedisentOptions == 2 ? .constant("Resident".localized(language)):.constant("Border".localized(language))  )
                                 .frame(width:130)
@@ -226,6 +231,7 @@ struct EditProfileInfoView: View {
                                 }.padding()
                             })
                         
+                        //MARK: - truck manfacturer and model -
                         HStack{
                             InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Manfacturer".localized(language), text: $profileVM.TruckManfacturerName)
                                 .disabled(true)
@@ -265,6 +271,7 @@ struct EditProfileInfoView: View {
                                 })
                         }
                         
+                        //MARK: - AXE number and Plate number -
                         HStack{
                             InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text: $profileVM.NumberofAxe)
                                 .disabled(true)
@@ -298,9 +305,8 @@ struct EditProfileInfoView: View {
                             }
                         }
                         
+                        //MARK: -- truck license start and expire date --
                         HStack{
-                            //                            DateInputView( placeholder: "Start_Date", date: $profileVM.TruckLicenseIssueDate)
-                            
                             InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Start_Date".localized(language), text: $profileVM.TruckLicenseIssueDateStr)
                             //                        .disabled(true)
                                 .overlay(content: {

@@ -26,6 +26,7 @@
 
 //Mark: -- edit profile
 "Driver_Info" = "Driver Info";
+"name" = "Name";
 "BirthDate" = "BirthDate";
 "Gender" = "Gender";
 "Male" = "Male";
@@ -203,3 +204,15 @@
 //MARK: -- Delivery_Location --
 "Delivery_Location" = "Delivery Location";
 "Redirect_to_Location" = "Redirect to Location";
+
+//MARK: -- phone Verify --
+"Verify_Mobile" = "Verify Mobile";
+"Please_enter_the_Verification_Code_\nwe_sent_to_your_mobile" = "Please enter the Verification Code \nwe sent to your mobile";
+"This_code_will_be_expired_within" = "This code will be expired within";
+"expired_or_Tomeout_codeMessage" = "expired Code or Time Out";
+"Code_sent_to_+966" = "Code sent to +966";
+"Error_Code" = "Error Code";
+"Resend_Code" = "Resend Code";
+"Send_Code" = "Verify";
+"Incorrect_Code" = "Incorrect Code";
+"Time_is_Out" = "Time is Out";
