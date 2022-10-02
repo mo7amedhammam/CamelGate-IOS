@@ -213,3 +213,13 @@
 "Send_Code" = "تأكيد";
 "Incorrect_Code" = "كود غير صحيح";
 "Time_is_Out" = "انتهى الوقت";
+
+//MARK: -- reset Password --
+"We_have_to_confirm_your\n_identity_by_sending_a_code_to_\nyour_phone_number" = "يجب تأكيد هويتك من خلال\n إرسال كود إلى رقم هاتفك";
+"Code_will_be_sent_to_+699" = "سوف يتم إرسال كود الى رقم +٦٩٩";
+"Send_OTP" = "أرسل الكود";
+"Change_your_phone_number" = "تغيير رقم الهاتف";
+
+"Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers" = "رقم المواطنه يبدأ ب١ وبحد اقصى ١٠ ارقام";
+"Hint:_Resident_ID_should_start_with_2_with_maximum_16_Numbers" = "رقم المقيم يبدأ ب٢ وبحد اقصى ١٦ ارقام";
+"Hint:_Border_ID_should_start_with_5_with_maximum_16_Numbers" = "رقم الحدود يبدأ ب٥ وبحد اقصى ١٦ ارقام";

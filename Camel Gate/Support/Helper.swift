@@ -265,7 +265,7 @@ enum ActiveAlert {
 }
 
 enum InvalidFields {
-    case none, PhoneNumber, Password, ConfirmPassword, Name, unauthorized, DriverLicense, TruckLicense
+    case none, PhoneNumber, Password, ConfirmPassword, Name, unauthorized, DriverLicense, TruckLicense, ResidentId
 }
 
 

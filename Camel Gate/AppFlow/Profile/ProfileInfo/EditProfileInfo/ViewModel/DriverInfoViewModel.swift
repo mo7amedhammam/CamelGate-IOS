@@ -57,9 +57,78 @@ class DriverInfoViewModel: ObservableObject {
     @Published  var nationalityName = ""
 
     @Published  var RedisentOptions = 1 // 1: CitizenId, 2:ResidentId , 3: Border
-    @Published  var citizenId = ""
-    @Published  var residentId = ""
-    @Published  var borderId = ""
+    @Published  var RedisentNumLength: Int = 10 //10:CitizenId(start by 1), 16:ResidentId(start by 2), 16:Border(start by 5)
+    @Published  var RedisentHint = "Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers"
+
+    @Published  var citizenId = ""{
+        didSet{
+            let filtered = citizenId.filter {$0.isNumber}
+            if citizenId != filtered {
+                citizenId = filtered
+            }
+            if self.citizenId != "" && ( self.citizenId.count < RedisentNumLength || self.citizenId.count > RedisentNumLength) || self.citizenId.prefix(1) != "1" {
+                validations = .ResidentId
+                self.ValidationMessage = "Id_must_be_10_Starting_with_1"
+            }
+            else if self.citizenId.count == RedisentNumLength {
+                validations = .none
+                self.ValidationMessage = ""
+            }
+            else if self.citizenId == "" {
+                validations = .none
+                self.ValidationMessage = ""
+            }
+        }
+    }
+    @Published  var residentId = ""{
+        didSet{
+            let filtered = residentId.filter {$0.isNumber}
+            if residentId != filtered {
+                residentId = filtered
+            }
+            if self.residentId != "" && ( self.residentId.count < RedisentNumLength || self.residentId.count > RedisentNumLength) || self.residentId.prefix(1) != "2"{
+                validations = .ResidentId
+                self.ValidationMessage = "Id_must_be_16_Starting_with_2"
+            }
+            //            else if self.phoneNumber.isEmpty {
+            //                validations = .PhoneNumber
+            //                self.ValidationMessage = "*"
+            //            }
+            else if self.residentId.count == RedisentNumLength {
+                validations = .none
+                self.ValidationMessage = ""
+            }
+            else if self.residentId == "" {
+                validations = .none
+                self.ValidationMessage = ""
+            }
+        }
+    }
+    @Published  var borderId = ""{
+        didSet{
+            let filtered = borderId.filter {$0.isNumber}
+            if borderId != filtered {
+                borderId = filtered
+            }
+            if self.borderId != "" && ( self.borderId.count < RedisentNumLength || self.borderId.count > RedisentNumLength) || self.borderId.prefix(1) != "5" {
+                validations = .ResidentId
+                self.ValidationMessage = "Id_must_be_16_Starting_with_5"
+            }
+            //            else if self.phoneNumber.isEmpty {
+            //                validations = .PhoneNumber
+            //                self.ValidationMessage = "*"
+            //            }
+            else if self.borderId.count == RedisentNumLength {
+                validations = .none
+                self.ValidationMessage = ""
+            }
+            else if self.borderId == "" {
+                validations = .none
+                self.ValidationMessage = ""
+            }
+        }
+    }
+    
     @Published  var Email = ""
     @Published  var LicenseNumber = ""{
         didSet{

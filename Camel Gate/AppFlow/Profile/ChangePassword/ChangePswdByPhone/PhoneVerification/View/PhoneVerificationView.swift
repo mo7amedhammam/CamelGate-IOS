@@ -120,7 +120,6 @@ struct PhoneVerificationView: View{
                         .frame( alignment: .center)
                         .multilineTextAlignment(.center)
                         
-//                        Text((hideIncorrectCode == false || (minutes == 0 && seconds == 0 )) ? "expired_or_Tomeout_codeMessage".localized(language): "This_code_will_be_expired_within".localized(language))
                         if errorMessage != "" {
                             Text(errorMessage.localized(language))
                             .padding(.top,2)
@@ -144,6 +143,7 @@ struct PhoneVerificationView: View{
                         )
                         .keyboardSpace()
                     
+                    //MARK: --  Resend code button --
                     Button(action: {
                         // resend code action
                         resendOTPVM.phoneNumber = phoneNumber
@@ -155,57 +155,52 @@ struct PhoneVerificationView: View{
                             .padding()
                             .foregroundColor( (minutes == 00 && seconds == 00) ? Color("blueColor") : Color(uiColor: .lightGray))
                     }).disabled(minutes != 00 && seconds != 00)
-                    // Alert with no internet connection
-                    
-//                        .alert(isPresented: $isErrorCode, content: {
-//                            Alert(title: Text("Error_Code".localized(language)), message: nil, dismissButton: .cancel())
-//                        })
                     
                     Spacer()
                 }
-                
-                Button(action: {
-                    // send code action
-                    //                    gotonewpassword = true
-                    let otp = otpVM.otp1+otpVM.otp2+otpVM.otp3+otpVM.otp4+otpVM.otp5+otpVM.otp6
-                    if checkOTP(sentOTP: CurrentOTP , TypedOTP: Int(otp) ?? 0000) && (minutes > 0 || seconds > 0){
-                        if op == .signup {
-                            matchedOTP.toggle()
-                            isPresented.toggle()
-                        }else if  op == .password{
-                            matchedOTP.toggle()
-                            isPresented.toggle()
-                        }
-                    }else{
-                        if (minutes == 0 && seconds == 0) {
-                            errorMessage = "Time_is_Out"
-                        }else{
-                            errorMessage = "Incorrect_Code"
-                        }
-                    }
-                    
-                }, label: {
-                    HStack {
-                        Text("Send_Code".localized(language))
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                        
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .frame(height:22)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(
-                        LinearGradient(
-                            gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
-                            startPoint: .trailing,
-                            endPoint: .leading
-                        )
-                            .opacity(otpVM.otp6 == "" || (minutes == 00 && seconds == 00) ? 0.5:1)
-                    )
-                    .cornerRadius(12)
-                    .padding(.horizontal, 25)
-                })
-                    .disabled(otpVM.otp6 == "" || (minutes == 00 && seconds == 00))
+                //MARK: --  verify button --
+//                Button(action: {
+//                    // send code action
+//                    //                    gotonewpassword = true
+//                    let otp = otpVM.otp1+otpVM.otp2+otpVM.otp3+otpVM.otp4+otpVM.otp5+otpVM.otp6
+//                    if checkOTP(sentOTP: CurrentOTP , TypedOTP: Int(otp) ?? 0000) && (minutes > 0 || seconds > 0){
+//                        if op == .signup {
+//                            matchedOTP.toggle()
+//                            isPresented.toggle()
+//                        }else if  op == .password{
+//                            matchedOTP.toggle()
+//                            isPresented.toggle()
+//                        }
+//                    }else{
+//                        if (minutes == 0 && seconds == 0) {
+//                            errorMessage = "Time_is_Out"
+//                        }else{
+//                            errorMessage = "Incorrect_Code"
+//                        }
+//                    }
+//
+//                }, label: {
+//                    HStack {
+//                        Text("Send_Code".localized(language))
+//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+//
+//                    }
+//                    .frame(minWidth: 0, maxWidth: .infinity)
+//                    .frame(height:22)
+//                    .padding()
+//                    .foregroundColor(.white)
+//                    .background(
+//                        LinearGradient(
+//                            gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
+//                            startPoint: .trailing,
+//                            endPoint: .leading
+//                        )
+//                            .opacity(otpVM.otp6 == "" || (minutes == 00 && seconds == 00) ? 0.5:1)
+//                    )
+//                    .cornerRadius(12)
+//                    .padding(.horizontal, 25)
+//                })
+//                    .disabled(otpVM.otp6 == "" || (minutes == 00 && seconds == 00))
             }
             .padding(.bottom)
 

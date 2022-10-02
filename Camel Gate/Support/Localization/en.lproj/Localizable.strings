@@ -221,3 +221,8 @@
 "We_have_to_confirm_your\n_identity_by_sending_a_code_to_\nyour_phone_number" = "We have to confirm your\nidentity by sending a code to \nyour phone number";
 "Code_will_be_sent_to_+699" = "Code will be sent to +699";
 "Send_OTP" = "Send Code";
+"Change_your_phone_number" = "change your phone number";
+
+"Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers" = "Hint: Citizen ID should start with 1 with maximum 10 Numbers";
+"Hint:_Resident_ID_should_start_with_2_with_maximum_16_Numbers" = "Hint: Resident ID should start with 2 with maximum 16 Numbers";
+"Hint:_Border_ID_should_start_with_5_with_maximum_16_Numbers" = "Hint: Border ID should start with 5 with maximum 16 Numbers";

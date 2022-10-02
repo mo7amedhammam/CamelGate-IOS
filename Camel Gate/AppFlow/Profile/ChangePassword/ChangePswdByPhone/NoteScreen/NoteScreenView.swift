@@ -40,43 +40,16 @@ struct NoteScreenView: View {
                 .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                 .multilineTextAlignment(.center)
 
-                if phoneNumber == "" {
                     InputTextField(iconName: "phoneBlue", fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $resendOTPVM.phoneNumber)
                         .padding(.horizontal)
                         .onChange(of: resendOTPVM.phoneNumber){ newval in
                             resendOTPVM.phoneNumber =  String(newval.prefix(resendOTPVM.PhoneNumLength))
                         }
-                }
 
                 GradientButton(action: {
                                             resendOTPVM.phoneNumber = phoneNumber
                                             resendOTPVM.SendOTP()
                 }, Title: "Send_OTP".localized(language),IsDisabled:.constant(resendOTPVM.phoneNumber == "" || resendOTPVM.ValidationMessage != "") )
-                
-//                Button(action: {
-//                    DispatchQueue.main.async{
-//                        //Send Otp
-//                        resendOTPVM.phoneNumber = phoneNumber
-//                        resendOTPVM.SendOTP()
-//                    }
-//                }, label: {
-//                    HStack {
-//                        Text("Send_OTP".localized(language))
-//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-//                    }
-//                    .frame(minWidth: 0, maxWidth: .infinity)
-//                    .frame(height:22)
-//                    .padding()
-//                    .foregroundColor(.white)
-//                    .background(
-//                        LinearGradient(
-//                            gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
-//                            startPoint: .trailing,
-//                            endPoint: .leading
-//                        ))
-//                    .cornerRadius(12)
-//                    .padding(.horizontal, 80)
-//                })
                     .padding(.top,50)
             }
             

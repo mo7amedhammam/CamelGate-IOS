@@ -12,6 +12,8 @@ struct InputTextField: View {
     @State var fieldType : inputfields? = .Default
 
     var placeholder : String
+    @State var placeholderColor : Color? = .gray.opacity(0.5)
+
     @Binding var text: String
     let screenWidth = UIScreen.main.bounds.size.width - 55
     
@@ -27,9 +29,8 @@ struct InputTextField: View {
             
             ZStack (alignment:.leading){
                 Text(placeholder)
-                                                                   .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
-                    .foregroundColor(.gray.opacity(0.5))
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                    .foregroundColor(placeholderColor == .red ?  .red:placeholderColor)
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
                     .padding(.leading,fieldType == .Phone ? text.isEmpty ? 55:0:0)
@@ -37,19 +38,21 @@ struct InputTextField: View {
                 HStack{
                     if fieldType == .Phone{
                         Text("+966 |")
-                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                         .foregroundColor(.gray.opacity(0.5))
                     }
                 TextField("",text:$text)
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .autocapitalization(.none)
                     .textInputAutocapitalization(.never)
+                    .frame( height: 40)
+
              }
             }
         }
-        .frame( height: 30)
-        .padding(12)
+        .frame( height: 40)
+        .padding(.horizontal,10)
+        .padding(.vertical,5)
         .disableAutocorrection(true)
         .background(
             Color.white

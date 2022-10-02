@@ -138,26 +138,47 @@ struct EditProfileInfoView: View {
                             })
                         
                         //MARK: - resident and Id -
-                        HStack{
-                            InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text:     profileVM.RedisentOptions == 1 ? .constant("Citizen".localized(language)):profileVM.RedisentOptions == 2 ? .constant("Resident".localized(language)):.constant("Border".localized(language))  )
-                                .frame(width:130)
-                                .disabled(true)
-                                .overlay(content: {
-                                    Menu {
-                                        Button("Citizen_Id".localized(language), action: {profileVM.RedisentOptions = 1 })
-                                        Button("Resident_Id".localized(language), action: {profileVM.RedisentOptions = 2})
-                                        Button("Border_Id".localized(language), action: {profileVM.RedisentOptions = 3})
-                                        
-                                    } label: {
-                                        HStack{
-                                            Spacer()
-                                            Image(systemName: "chevron.down")
+                        VStack {
+                            if taskStatus == .create || isEditing{
+                                withAnimation{
+                            HStack {
+                                Text(profileVM.RedisentHint.localized(language))
+                                    .foregroundColor(.red)
+                                .font(.system(size:11))
+                                Spacer()
+                            }
+                            }
+                            }
+                            HStack{
+                                InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text: profileVM.RedisentOptions == 1 ? .constant("Citizen".localized(language)):profileVM.RedisentOptions == 2 ? .constant("Resident".localized(language)):.constant("Border".localized(language))  )
+                                    .frame(width:130)
+                                    .disabled(true)
+                                    .overlay(content: {
+                                        Menu {
+                                            Button("Citizen_Id".localized(language), action: {profileVM.RedisentOptions = 1 })
+                                            Button("Resident_Id".localized(language), action: {profileVM.RedisentOptions = 2})
+                                            Button("Border_Id".localized(language), action: {profileVM.RedisentOptions = 3})
+                                            
+                                        } label: {
+                                            HStack{
+                                                Spacer()
+                                                Image(systemName: "chevron.down")
+                                            }
+                                            .padding(.trailing)
                                         }
-                                        .padding(.trailing)
+                                    })
+                                
+                                InputTextField(iconName: "", placeholder: "Id".localized(language), placeholderColor:(profileVM.validations == .ResidentId && profileVM.ValidationMessage != "") ? .red:.gray.opacity(0.5), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
+                                    .onChange(of: profileVM.citizenId  ){ newval in
+                                        profileVM.citizenId =  String(newval.prefix(profileVM.RedisentNumLength))
                                     }
-                                })
-                            
-                            InputTextField(iconName: "", placeholder: "Id".localized(language), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
+                                    .onChange(of: profileVM.residentId  ){ newval in
+                                        profileVM.residentId =  String(newval.prefix(profileVM.RedisentNumLength))
+                                    }
+                                    .onChange(of: profileVM.borderId  ){ newval in
+                                        profileVM.borderId =  String(newval.prefix(profileVM.RedisentNumLength))
+                                    }
+                            }
                         }
                         
                         InputTextField(iconName: "Shipments",iconColor: Color("OrangColor"), placeholder: "Email".localized(language), text:$profileVM.Email)
@@ -377,7 +398,7 @@ struct EditProfileInfoView: View {
                     DispatchQueue.main.async{
                         profileVM.CompleteProfile()
                     }
-                },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant( ((profileVM.Email == "") || !(taskStatus == .create && profileVM.IsTermsAgreed)) && !(taskStatus == .update && isEditing))
+                },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant( ((profileVM.Email == "" && profileVM.validations == .none && profileVM.ValidationMessage == "" && profileVM.LicenseNumber == "" && profileVM.TruckTypeName == "" && profileVM.TruckManfacturerName == "" && profileVM.TruckLicense == "") || !(taskStatus == .create && profileVM.IsTermsAgreed)) && !(taskStatus == .update && isEditing))
                 )
 //                Button(action: {
 //                    DispatchQueue.main.async{
@@ -439,6 +460,25 @@ struct EditProfileInfoView: View {
                 showBottomSheet = true
             }
         })
+        
+        .onChange(of: profileVM.RedisentOptions, perform: {newval in
+            if newval == 1 {
+                profileVM.RedisentNumLength = 10
+                profileVM.RedisentHint = "Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers"
+                profileVM.residentId = ""
+                profileVM.citizenId = ""
+            }else if newval == 2{
+                profileVM.RedisentNumLength = 16
+                profileVM.RedisentHint = "Hint:_Resident_ID_should_start_with_2_with_maximum_16_Numbers"
+                profileVM.citizenId = ""
+                profileVM.borderId = ""
+            }else if newval == 3{
+                profileVM.RedisentNumLength = 16
+                profileVM.RedisentHint = "Hint:_Border_ID_should_start_with_5_with_maximum_16_Numbers"
+                profileVM.residentId = ""
+                profileVM.citizenId = ""
+            }
+            })
         .onChange(of: profileVM.Birthdate, perform: {newval in
             profileVM.BirthdateStr = newval.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
         })
@@ -451,6 +491,7 @@ struct EditProfileInfoView: View {
         .onChange(of: profileVM.TruckLicenseExpirationDate, perform: {newval in
             profileVM.TruckLicenseExpirationDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
         })
+        
         
         //MARK: -- updated popup --
         .overlay(content: {

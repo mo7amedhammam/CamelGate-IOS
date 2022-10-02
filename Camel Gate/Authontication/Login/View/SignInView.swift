@@ -62,13 +62,15 @@ struct SignInView: View {
                         HStack{
                             Spacer()
                             Text("Forgot_Password?".localized(language))
-                                .foregroundColor(.red).opacity(SignInVM.phoneNumber != "" && SignInVM.ValidationMessage != "" ? 0.3:1)
+                                .foregroundColor(.red)
+//                                .opacity(SignInVM.phoneNumber != "" && SignInVM.ValidationMessage != "")
                                 .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             
                             
                         }.padding(.horizontal)
 
-                    }).disabled(SignInVM.phoneNumber != "" && SignInVM.ValidationMessage != "")
+                    })
+//                        .disabled(SignInVM.phoneNumber != "" && SignInVM.ValidationMessage != "")
                     
                 }
                 

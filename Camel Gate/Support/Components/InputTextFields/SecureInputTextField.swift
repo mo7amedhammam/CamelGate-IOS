@@ -33,17 +33,22 @@ struct SecureInputTextField: View {
                 if isSecured {
                     SecureField(placeholder, text: $text)
                         .textContentType(.password)
-                    
+
                 } else {
                     TextField(placeholder, text: $text)
                 }
                 }
+                .frame( height: 40 , alignment: .trailing)
+
             }
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.never)
-                    .frame( height: 30 , alignment: .trailing)
                     .font(.system(size: 13))
-                    .padding(12)
+//                    .frame( height: 40)
+                    .frame( height: 40 , alignment: .trailing)
+
+                    .padding(.horizontal,10)
+                    .padding(.vertical,5)
                     .disableAutocorrection(true)
                     .background(
                         Color.white
