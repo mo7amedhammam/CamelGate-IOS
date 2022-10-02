@@ -55,14 +55,20 @@ struct SignInView: View {
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
                     
-                    HStack{
-                        Spacer()
-                        Text("Forgot_Password?".localized(language))
-                            .foregroundColor(.red)
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                        
-                        
-                    }.padding(.horizontal)
+                    Button(action: {
+                        destination = AnyView(NoteScreenView(phoneNumber: SignInVM.phoneNumber))
+                        active.toggle()
+                    }, label: {
+                        HStack{
+                            Spacer()
+                            Text("Forgot_Password?".localized(language))
+                                .foregroundColor(.red).opacity(SignInVM.phoneNumber != "" && SignInVM.ValidationMessage != "" ? 0.3:1)
+                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                            
+                            
+                        }.padding(.horizontal)
+
+                    }).disabled(SignInVM.phoneNumber != "" && SignInVM.ValidationMessage != "")
                     
                 }
                 
@@ -144,6 +150,8 @@ struct SignInView: View {
             })
             NavigationLink(destination: SignInVM.destination.navigationBarHidden(true),isActive:$SignInVM.isLogedin , label: {
             })
+            
+            
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         

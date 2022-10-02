@@ -13,6 +13,10 @@ struct ChangePasswordView: View {
 
     @State var showBottomSheet = false
 //    @ObservedObject private var keyboard = KeyboardResponder()
+    @State var phoneNumber = ""
+    @State var operation : passwordOperations = .change
+    @State var active = false
+    @State var destination = AnyView(SignUpView())
 
     var body: some View {
         ZStack{
@@ -28,20 +32,20 @@ struct ChangePasswordView: View {
                         .padding(.vertical,30)
                     
                     Group{
+                        if ChangePasswordVM.operation == .change{
                         SecureInputTextField("Current_Password".localized(language), text: $ChangePasswordVM.CurrentPassword, iconName: "")
                             .padding(.bottom)
-
+                        }
                         SecureInputTextField("new_Password".localized(language), text: $ChangePasswordVM.NewPassword, iconName: "")
                         SecureInputTextField("Confirm_new_Password".localized(language), text: $ChangePasswordVM.ConfirmNewPassword, iconName: "")
                     }
                     .padding(.horizontal)
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
                     if (ChangePasswordVM.ConfirmNewPassword != "" && (ChangePasswordVM.NewPassword != ChangePasswordVM.ConfirmNewPassword )){
                     HStack {
                         Text("Passwords_does_not_match".localized(language) )
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .multilineTextAlignment(.center)
                             .padding( .leading)
                             .foregroundColor(.red)
@@ -51,7 +55,6 @@ struct ChangePasswordView: View {
                     }
                     Spacer()
                 }
-
                 .onTapGesture(perform: {
                     hideKeyboard()
                 })
@@ -63,7 +66,7 @@ struct ChangePasswordView: View {
                 }, label: {
                     HStack {
                         Text("Confirm".localized(language))
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
 
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -76,15 +79,14 @@ struct ChangePasswordView: View {
                             startPoint: .trailing,
                             endPoint: .leading
                         )
-                            .opacity((ChangePasswordVM.CurrentPassword == "" || (ChangePasswordVM.ConfirmNewPassword == "" || (ChangePasswordVM.NewPassword != ChangePasswordVM.ConfirmNewPassword ))) ? 0.5:1)
+                            .opacity(((operation == .change && ChangePasswordVM.CurrentPassword == "") || (ChangePasswordVM.ConfirmNewPassword == "" || (ChangePasswordVM.NewPassword != ChangePasswordVM.ConfirmNewPassword ))) ? 0.5:1)
                     )
                     .cornerRadius(12)
                     .padding(.horizontal, 25)
                 })
-                .disabled((ChangePasswordVM.CurrentPassword == "" || (ChangePasswordVM.ConfirmNewPassword == "" || (ChangePasswordVM.NewPassword != ChangePasswordVM.ConfirmNewPassword ))))
+                    .disabled(((operation == .change && ChangePasswordVM.CurrentPassword == "") || (ChangePasswordVM.ConfirmNewPassword == "" || (ChangePasswordVM.NewPassword != ChangePasswordVM.ConfirmNewPassword ))))
             }
             .padding(.bottom)
-                    
             
                 TitleBar(Title: "Change_Password".localized(language), navBarHidden: true, leadingButton: .backButton ,trailingAction: {
             })
@@ -113,6 +115,10 @@ struct ChangePasswordView: View {
                         Button(action: {
                             DispatchQueue.main.async{
                                 showBottomSheet.toggle()
+                                if operation == .forget {
+                                    destination = AnyView(SignInView())
+                                    active.toggle()
+                                }
                             }
                         }, label: {
                             HStack {
@@ -138,6 +144,10 @@ struct ChangePasswordView: View {
                         .transition(.move(edge: .bottom))
             }
         }
+        .onAppear(perform: {
+            ChangePasswordVM.operation = operation
+            ChangePasswordVM.phoneNumber = phoneNumber
+        })
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
 //        .padding(.bottom, keyboard.currentHeight)
@@ -157,6 +167,9 @@ struct ChangePasswordView: View {
                 ChangePasswordVM.isAlert = false
             }))
         })
+        NavigationLink(destination: destination.navigationBarHidden(true),isActive:$active , label: {
+        })
+
     }
 }
 

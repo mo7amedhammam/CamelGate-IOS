@@ -32,6 +32,8 @@ enum HomeServices {
     case CancelationReasons
     
     case ChangePassword(parameters:[String:Any])
+    case ChangeForgetPassword(parameters:[String:Any])
+
 
 }
 extension HomeServices : URLRequestBuilder {
@@ -75,6 +77,8 @@ extension HomeServices : URLRequestBuilder {
 
         case .ChangePassword:
             return EndPoints.ChangePassword.rawValue
+        case .ChangeForgetPassword:
+            return EndPoints.ChangeForgetPassword.rawValue
 
         }
     }
@@ -89,7 +93,7 @@ extension HomeServices : URLRequestBuilder {
         case .ShipmentDetails, .GetShipmentTypes, .GetCities, .CancelationReasons:
             return .get
    
-        case .setOffer,.CancelOffer,.ChangePassword:
+        case .setOffer,.CancelOffer,.ChangePassword, .ChangeForgetPassword:
             return .post
         }
     }
@@ -127,7 +131,7 @@ extension HomeServices : URLRequestBuilder {
         case .FinishApprovedShipment(let param):
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
 
-        case .ChangePassword(parameters: let param):
+        case .ChangePassword(parameters: let param), .ChangeForgetPassword(parameters: let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
 
         }

@@ -9,8 +9,18 @@ import SwiftUI
 
 struct NoteScreenView: View {
     var language = LocalizationService.shared.language
+    
+    @StateObject var resendOTPVM = ResendOTPViewModel()
 
-    @State var gotoPhoneVerification = false
+    @State var presentPhoneVerify = false
+    @State var gotonewpassword = false
+
+//    var op : operations
+    @State var phoneNumber : String = ""
+//    @Binding var CurrentOTP : Int
+//    @Binding var validFor : Int
+    @State var matchedOTP : Bool = false
+//    @Binding var isPresented : Bool
     var body: some View {
         ZStack{
             VStack{
@@ -20,53 +30,86 @@ struct NoteScreenView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                     .padding(.horizontal)
+                
                 HStack{
-                    Text("Code_will_be_sent_to".localized(language))
-                    Text("+699 128 665 1628")
+                    Text("Code_will_be_sent_to_+699".localized(language))
+                                        
+                    Text(resendOTPVM.phoneNumber)
                         .foregroundColor(Color("Second_Color"))
                 }
-                                                               .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                 .multilineTextAlignment(.center)
 
-                
-                Button(action: {
-                    DispatchQueue.main.async{
-                        gotoPhoneVerification = true
-                    }
-                }, label: {
-                    HStack {
-                        Text("Send_Code".localized(language))
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                if phoneNumber == "" {
+                    InputTextField(iconName: "phoneBlue", fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $resendOTPVM.phoneNumber)
+                        .padding(.horizontal)
+                        .onChange(of: resendOTPVM.phoneNumber){ newval in
+                            resendOTPVM.phoneNumber =  String(newval.prefix(resendOTPVM.PhoneNumLength))
+                        }
+                }
 
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .frame(height:22)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(
-                        LinearGradient(
-                            gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
-                            startPoint: .trailing,
-                            endPoint: .leading
-                        ))
-                    .cornerRadius(12)
-                    .padding(.horizontal, 80)
-                }).padding(.top,50)
+                GradientButton(action: {
+                                            resendOTPVM.phoneNumber = phoneNumber
+                                            resendOTPVM.SendOTP()
+                }, Title: "Send_OTP".localized(language),IsDisabled:.constant(resendOTPVM.phoneNumber == "" || resendOTPVM.ValidationMessage != "") )
+                
+//                Button(action: {
+//                    DispatchQueue.main.async{
+//                        //Send Otp
+//                        resendOTPVM.phoneNumber = phoneNumber
+//                        resendOTPVM.SendOTP()
+//                    }
+//                }, label: {
+//                    HStack {
+//                        Text("Send_OTP".localized(language))
+//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+//                    }
+//                    .frame(minWidth: 0, maxWidth: .infinity)
+//                    .frame(height:22)
+//                    .padding()
+//                    .foregroundColor(.white)
+//                    .background(
+//                        LinearGradient(
+//                            gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
+//                            startPoint: .trailing,
+//                            endPoint: .leading
+//                        ))
+//                    .cornerRadius(12)
+//                    .padding(.horizontal, 80)
+//                })
+                    .padding(.top,50)
             }
             
-            TitleBar(Title: "Change_Password", navBarHidden: true, leadingButton: .backButton ,trailingAction: {
+            TitleBar(Title: "Change_Password".localized(language), navBarHidden: true, leadingButton: .backButton ,trailingAction: {
             })
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
-//        NavigationLink(destination: PhoneVerificationView<OTPViewModel>(),isActive:$gotoPhoneVerification , label: {
-//        })
+        
+        .onChange(of: resendOTPVM.verifyUser , perform: {newval in
+            if newval == true{
+                presentPhoneVerify.toggle()
+            }
+        })
+        .onAppear(perform: {
+            resendOTPVM.phoneNumber = phoneNumber
+        })
+        
+        .fullScreenCover(isPresented: $presentPhoneVerify , onDismiss: {
+            if resendOTPVM.isMatchedOTP == true {
+                gotonewpassword.toggle()
+            }
+        }, content: {
+            PhoneVerificationView(op: .password, phoneNumber: $phoneNumber, CurrentOTP: $resendOTPVM.NewCode ,validFor: $resendOTPVM.NewSecondsCount , matchedOTP: $resendOTPVM.isMatchedOTP, isPresented: $presentPhoneVerify)
+        })
+        
+        
+        NavigationLink(destination: ChangePasswordView(phoneNumber:resendOTPVM.phoneNumber,operation: .forget),isActive:$gotonewpassword, label: {
+                })
     }
 }
 
 struct NoteScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        NoteScreenView()
+        NoteScreenView( phoneNumber: "")
     }
 }

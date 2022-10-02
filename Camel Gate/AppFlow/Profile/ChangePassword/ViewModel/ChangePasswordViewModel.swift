@@ -21,10 +21,13 @@ class ChangePasswordViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
-    
+    @Published var operation : passwordOperations = .change
+    @Published  var phoneNumber = ""
+
     @Published  var CurrentPassword = ""
     @Published  var NewPassword = ""
     @Published  var ConfirmNewPassword = ""
+    
 
     //------- output
     @Published var validations: InvalidFields = .none
@@ -52,15 +55,18 @@ class ChangePasswordViewModel: ObservableObject {
     
     // MARK: - API Services
     func ChangePassword(){
-        let params : [String : Any] =
+        let params : [String : Any] = operation == .change ?
         [
 //            "id"                              : 8,
             "currentPassword"               : CurrentPassword ,
             "newPassword"                    : NewPassword
+        ]:[
+            "mobile"               : phoneNumber ,
+            "newPassword"                    : NewPassword
         ]
         firstly { () -> Promise<Any> in
             isLoading = true
-            return BGServicesManager.CallApi(self.authServices,HomeServices.ChangePassword(parameters: params))
+            return BGServicesManager.CallApi(self.authServices, operation == .change ? HomeServices.ChangePassword(parameters: params) : HomeServices.ChangeForgetPassword(parameters: params))
         }.done({ [self] response in
             let result = response as! Response
 

@@ -21,7 +21,7 @@ class ResendOTPViewModel: ObservableObject {
     let PhoneNumLength: Int = 9
     
     // ------- input
-    @Published  var Drivername: String = ""
+//    @Published  var Drivername: String = ""
     @Published  var phoneNumber: String = "" {
         didSet{
             let filtered = phoneNumber.filter {$0.isNumber}

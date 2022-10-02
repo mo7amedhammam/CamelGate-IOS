@@ -216,3 +216,8 @@
 "Send_Code" = "Verify";
 "Incorrect_Code" = "Incorrect Code";
 "Time_is_Out" = "Time is Out";
+
+//MARK: -- reset Password --
+"We_have_to_confirm_your\n_identity_by_sending_a_code_to_\nyour_phone_number" = "We have to confirm your\nidentity by sending a code to \nyour phone number";
+"Code_will_be_sent_to_+699" = "Code will be sent to +699";
+"Send_OTP" = "Send Code";

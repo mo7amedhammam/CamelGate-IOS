@@ -7,13 +7,19 @@
 
 import SwiftUI
 
+enum passwordOperations {
+case change,forget
+}
 struct NewPasswordView: View {
     var language = LocalizationService.shared.language
 
     @State var newpass = ""
     @State var Confirmnewpass = ""
     @State var showBottomSheet = false
-//    @ObservedObject private var keyboard = KeyboardResponder()
+
+    @State var operation : passwordOperations = .change
+    @State var active = false
+    @State var destination = AnyView(SignInView())
 
     var body: some View {
         ZStack{
@@ -48,6 +54,7 @@ struct NewPasswordView: View {
                     }
                     Spacer()
                 }
+                .padding(.horizontal)
 
                 .onTapGesture(perform: {
                     hideKeyboard()
@@ -60,7 +67,7 @@ struct NewPasswordView: View {
                 }, label: {
                     HStack {
                         Text("Confirm".localized(language))
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
 
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -90,7 +97,6 @@ struct NewPasswordView: View {
             .blur(radius: showBottomSheet ? 5:0)
             
             if showBottomSheet{
-                
                 BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
 
                         Text("Password_Changed".localized(language))
@@ -129,12 +135,20 @@ struct NewPasswordView: View {
                         })
                     })
                         .transition(.move(edge: .bottom))
+                        .onDisappear(perform: {
+                            if operation == .forget{
+                                active.toggle()
+                            }
+                        })
             }
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
 //        .padding(.bottom, keyboard.currentHeight)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
+        
+        NavigationLink(destination: destination.navigationBarHidden(true),isActive:$active , label: {
+        })
+        
     }
 }
 
