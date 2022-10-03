@@ -95,6 +95,7 @@ struct EditProfileInfoView: View {
                                             .opacity(0.02)
                                         Spacer()
                                         Image(systemName:language.rawValue == "en" ? "chevron.right":"chevron.left")
+                                            .foregroundColor(                                    Color("lightGray").opacity(0.5))
                                     }.padding(.horizontal)
                                 })
                             
@@ -110,6 +111,8 @@ struct EditProfileInfoView: View {
                                         HStack{
                                             Spacer()
                                             Image(systemName: "chevron.down")
+                                                .foregroundColor(                                    Color("lightGray").opacity(0.5))
+
                                         }
                                         .padding(.trailing)
                                     }
@@ -132,6 +135,8 @@ struct EditProfileInfoView: View {
                                     HStack{
                                         Spacer()
                                         Image(systemName: "chevron.down")
+                                            .foregroundColor(                                    Color("lightGray").opacity(0.5))
+
                                     }
                                     .padding(.trailing)
                                 }
@@ -163,6 +168,8 @@ struct EditProfileInfoView: View {
                                             HStack{
                                                 Spacer()
                                                 Image(systemName: "chevron.down")
+                                                    .foregroundColor(Color("lightGray").opacity(0.5))
+
                                             }
                                             .padding(.trailing)
                                         }
@@ -183,14 +190,19 @@ struct EditProfileInfoView: View {
                         
                         InputTextField(iconName: "Shipments",iconColor: Color("OrangColor"), placeholder: "Email".localized(language), text:$profileVM.Email)
                         
-                        InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber)
-                        if profileVM.validations == .DriverLicense {
-                            HStack{
-                                Text(profileVM.ValidationMessage.localized(language))
-                                    .foregroundColor(.red)
-                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                        VStack {
+                            if profileVM.validations == .DriverLicense {
+                                HStack{
+                                    Text(profileVM.ValidationMessage.localized(language))
+                                        .foregroundColor(.red)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
 
-                                Spacer()
+                                    Spacer()
+                                }
+                            }
+                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber)
+                                .onChange(of: profileVM.LicenseNumber  ){ newval in
+                                    profileVM.LicenseNumber =  String(newval.prefix(profileVM.LicenseNumLength))
                             }
                         }
                         
@@ -202,6 +214,8 @@ struct EditProfileInfoView: View {
                                         .opacity(0.02)
                                     Spacer().frame(minWidth:200)
                                     Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
+                                        .foregroundColor(Color("lightGray").opacity(0.5))
+
                                 }.padding(.horizontal)
                             })
                         
@@ -247,6 +261,7 @@ struct EditProfileInfoView: View {
                                     HStack{
                                         Spacer()
                                         Image(systemName: "chevron.down")
+                                            .foregroundColor(Color("lightGray").opacity(0.5))
                                     }
 //                                    .padding(.trailing)
                                 }.padding()
@@ -268,6 +283,8 @@ struct EditProfileInfoView: View {
                                         HStack{
                                             Spacer()
                                             Image(systemName: "chevron.down")
+                                                .foregroundColor(Color("lightGray").opacity(0.5))
+
                                         }
                                         //                                        .padding(.trailing)
                                     }.padding()
@@ -286,6 +303,8 @@ struct EditProfileInfoView: View {
                                         HStack{
                                             Spacer()
                                             Image(systemName: "chevron.down")
+                                                .foregroundColor(Color("lightGray").opacity(0.5))
+
                                         }
                                         //                                        .padding(.trailing)
                                     }.padding()
@@ -307,6 +326,8 @@ struct EditProfileInfoView: View {
                                         HStack{
                                             Spacer()
                                             Image(systemName: "chevron.down")
+                                                .foregroundColor(Color("lightGray").opacity(0.5))
+
                                         }
                                         //                                        .padding(.trailing)
                                     }.padding()
@@ -315,16 +336,22 @@ struct EditProfileInfoView: View {
                             
                             InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: $profileVM.TruckPlate)
                         }
-                        InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
-                        if profileVM.validations == .TruckLicense {
-                            HStack{
-                                Text(profileVM.ValidationMessage.localized(language))
-                                    .foregroundColor(.red)
-                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                        VStack {
+                            if profileVM.validations == .TruckLicense {
+                                HStack{
+                                    Text(profileVM.ValidationMessage.localized(language))
+                                        .foregroundColor(.red)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
 
-                                Spacer()
+                                    Spacer()
+                                }
+                            }
+                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
+                                .onChange(of: profileVM.TruckLicense  ){ newval in
+                                    profileVM.TruckLicense =  String(newval.prefix(profileVM.LicenseNumLength))
                             }
                         }
+                       
                         
                         //MARK: -- truck license start and expire date --
                         HStack{
@@ -336,6 +363,8 @@ struct EditProfileInfoView: View {
                                             .opacity(0.02)
                                         Spacer()
                                         Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
+                                            .foregroundColor(Color("lightGray").opacity(0.5))
+
                                     }.padding(.horizontal)
                                 })
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
@@ -347,6 +376,8 @@ struct EditProfileInfoView: View {
                                             .opacity(0.02)
                                         Spacer()
                                         Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
+                                            .foregroundColor(Color("lightGray").opacity(0.5))
+
                                     }.padding(.horizontal)
                                 })
                         }
@@ -398,34 +429,9 @@ struct EditProfileInfoView: View {
                     DispatchQueue.main.async{
                         profileVM.CompleteProfile()
                     }
-                },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant( ((profileVM.Email == "" && profileVM.validations == .none && profileVM.ValidationMessage == "" && profileVM.LicenseNumber == "" && profileVM.TruckTypeName == "" && profileVM.TruckManfacturerName == "" && profileVM.TruckLicense == "") || !(taskStatus == .create && profileVM.IsTermsAgreed)) && !(taskStatus == .update && isEditing))
+                },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant( ((profileVM.Drivername == "" || profileVM.BirthdateStr == "" || (profileVM.validations != .none && profileVM.ValidationMessage != "") || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "")) || !(taskStatus == .create && profileVM.IsTermsAgreed)) && (!(taskStatus == .update && isEditing) || (taskStatus == .update && (profileVM.Drivername == "" || profileVM.BirthdateStr == "" || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "") || (profileVM.validations != .none && profileVM.ValidationMessage != "")))))
                 )
-//                Button(action: {
-//                    DispatchQueue.main.async{
-//                        profileVM.CompleteProfile()
-//                    }
-//                }, label: {
-//                    HStack {
-//                        Text(taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language))
-//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-//
-//                    }
-//                    .frame(minWidth: 0, maxWidth: .infinity)
-//                    .frame(height:22)
-//                    .padding()
-//                    .foregroundColor(.white)
-//                    .background(
-//                        LinearGradient(
-//                            gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
-//                            startPoint: .trailing,
-//                            endPoint: .leading
-//                        ))
-//                    .cornerRadius(12)
-//                    .padding(.horizontal, 20)
-//                    .padding(.bottom)
-//                }).overlay(
-//                    Color.white.opacity((taskStatus == .update && isEditing == false) ?  0.5:0)
-//                )
+
             })
                                
             //
@@ -456,11 +462,16 @@ struct EditProfileInfoView: View {
             })
         })
         .onChange(of: profileVM.UserCreated, perform: {newval in
-            if newval == true && taskStatus == .update{
-                showBottomSheet = true
+            if newval == true{
+                switch taskStatus {
+                case .create:
+                    active = true
+                    Helper.IsLoggedIn(value: true)
+                case .update:
+                    showBottomSheet = true
+                }
             }
         })
-        
         .onChange(of: profileVM.RedisentOptions, perform: {newval in
             if newval == 1 {
                 profileVM.RedisentNumLength = 10
@@ -492,25 +503,24 @@ struct EditProfileInfoView: View {
             profileVM.TruckLicenseExpirationDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
         })
         
-        
         //MARK: -- updated popup --
         .overlay(content: {
             if showBottomSheet{
                 BottomSheetView(IsPresented: $showBottomSheet, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
                     Text("Profile_Updated".localized(language))
                         .font(Font.camelfonts.Reg20)
-                    
                     Image("success-orange")
-                    
                     Text("You_just_updated_your_Info".localized(language))
                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .foregroundColor(.black.opacity(0.8))
                         .padding(.bottom,50)
-                    
                     Button(action: {
                         DispatchQueue.main.async{
                             // Action
                             showBottomSheet.toggle()
+                            DispatchQueue.main.async(execute: {
+                                profileVM.UserCreated = false
+                            })
                         }
                     }, label: {
                         HStack {
@@ -555,10 +565,6 @@ struct EditProfileInfoView: View {
         .overlay(content: {
             AnimatingGif(isPresented: $profileVM.isLoading)
         })
-        //            .overlay(content: {
-        //                // showing loading indicator
-        //                ActivityIndicatorView(isPresented: $profileVM.isLoading)
-        //            })
         // Alert with no internet connection
         .alert(isPresented: $profileVM.isAlert, content: {
             Alert(title: Text(profileVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
@@ -568,22 +574,13 @@ struct EditProfileInfoView: View {
                     destination = AnyView(SignInView())
                     active = true
                 }
-                
-                profileVM.isAlert = false
+                DispatchQueue.main.async(execute: {
+                    profileVM.isAlert = false
+                })
             }))
         })
         
-        .onChange(of: profileVM.UserCreated, perform: {newval in
-            if newval == true{
-                switch taskStatus {
-                case .create:
-                    active = true
-                    Helper.IsLoggedIn(value: true)
-                case .update:
-                    print("profile updated")
-                }
-            }
-        })
+      
         NavigationLink(destination: destination,isActive:$active , label: {
         })
     }

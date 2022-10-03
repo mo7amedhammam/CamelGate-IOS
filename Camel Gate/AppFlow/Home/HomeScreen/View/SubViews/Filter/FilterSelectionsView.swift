@@ -52,7 +52,7 @@ struct FilterMenu:View{
                             }
                             Spacer()
                             
-                            CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                            CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                             
                         }
                         .padding(.top)
@@ -79,7 +79,7 @@ struct FilterMenu:View{
                             
                             Spacer()
                             
-                            CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                            CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                             
                         }
                         .padding(.horizontal,5)
@@ -103,7 +103,7 @@ struct FilterMenu:View{
                             
                             Spacer()
                             
-                            CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                            CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                             
                         }
                         .padding(.horizontal,5)

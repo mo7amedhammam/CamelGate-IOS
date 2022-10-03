@@ -65,6 +65,8 @@
 
 "Enter_a_valid_License_number" = "Enter a valid License number";
 
+"Profile_Updated" = "Profile Updated";
+"You_just_updated_your_Info" = "You just updated your Info";
 
 //MarK: -- change password --
 "Change_Password" = "Change Password";

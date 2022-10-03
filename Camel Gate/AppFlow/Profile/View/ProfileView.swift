@@ -132,13 +132,12 @@ struct ProfileView: View {
                                                     .padding(.horizontal)
                                                     .foregroundColor(Color("blueColor"))
                                                 Text("العربية".localized(language))
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                            .font( language.rawValue == "en" ? Font.camelfonts.RegAr16:Font.camelfonts.RegAr16)
                                                     .foregroundColor(Color("lightGray"))
                                                 Spacer()
                                             }
                                         })
                                     }
-                                    //                                                                                       .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                                     .frame(height:33)
                                     .padding(12)
                                     .disableAutocorrection(true)

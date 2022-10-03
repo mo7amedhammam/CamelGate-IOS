@@ -65,6 +65,8 @@
 
 "Enter_a_valid_License_number" = "ادخل رقم رخصة صحيح";
 
+"Profile_Updated" = "تم تحديث الحساب";
+"You_just_updated_your_Info" = "لقد قمت الآن بتحديث بياناتك";
 
 //MarK: -- change password --
 "Change_Password" = "تغيير كلمة المرور";

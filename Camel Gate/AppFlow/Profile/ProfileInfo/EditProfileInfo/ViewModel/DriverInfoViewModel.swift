@@ -59,6 +59,7 @@ class DriverInfoViewModel: ObservableObject {
     @Published  var RedisentOptions = 1 // 1: CitizenId, 2:ResidentId , 3: Border
     @Published  var RedisentNumLength: Int = 10 //10:CitizenId(start by 1), 16:ResidentId(start by 2), 16:Border(start by 5)
     @Published  var RedisentHint = "Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers"
+    @Published  var LicenseHint = "Hint:_License_Number_should_Be_10_Numbers"
 
     @Published  var citizenId = ""{
         didSet{
@@ -283,10 +284,9 @@ class DriverInfoViewModel: ObservableObject {
                 }else if data.messageCode == 401{
                     message = data.message ??  "unauthorized"
                 }else{
-
                     message = data.message ?? "Bad Request"
                 }
-                isAlert = true
+                isAlert.toggle()
             }
         }).ensure { [self] in
             isLoading = false
