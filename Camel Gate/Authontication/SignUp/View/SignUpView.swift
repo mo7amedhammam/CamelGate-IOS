@@ -139,13 +139,14 @@ struct SignUpView: View {
         })
         
         .fullScreenCover(isPresented: $presentPhoneVerify , onDismiss: {
+            SignUpVM.verifyUser = false
             if SignUpVM.isMatchedOTP {
             SignUpVM.CreateAccount()
             }
         }, content: {
             PhoneVerificationView(op: .signup, phoneNumber: $SignUpVM.phoneNumber, CurrentOTP: $SignUpVM.currentOTP ,validFor: $SignUpVM.SecondsCount , matchedOTP: $SignUpVM.isMatchedOTP, isPresented: $presentPhoneVerify)
         })
-        NavigationLink(destination: EditProfileInfoView(taskStatus: .create, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.isUserCreated , label: {
+        NavigationLink(destination: EditProfileInfoView(taskStatus: .create,enteredDriverName: SignUpVM.Drivername, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.isUserCreated , label: {
         })
         
 //        NavigationLink(destination:PhoneVerificationView<SignUpViewModel>().navigationBarHidden(true),isActive:$SignUpVM.UserCreated , label: {

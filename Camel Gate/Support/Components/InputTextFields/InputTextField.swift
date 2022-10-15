@@ -45,14 +45,14 @@ struct InputTextField: View {
                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .autocapitalization(.none)
                     .textInputAutocapitalization(.never)
-                    .frame( height: 40)
+                    .frame( height: 50)
 
              }
             }
         }
-        .frame( height: 40)
+        .frame( height: 50)
         .padding(.horizontal,10)
-        .padding(.vertical,5)
+//        .padding(.vertical,5)
         .disableAutocorrection(true)
         .background(
             Color.white
@@ -188,8 +188,8 @@ struct InputDateField: View {
                 .background(Color.clear)
                 .tint(Color.red)
         })
-        .frame( height: 30)
-        .padding(12)
+        .frame( height: 50)
+        .padding(.horizontal, 12)
         .disableAutocorrection(true)
         .background(
             Color.white

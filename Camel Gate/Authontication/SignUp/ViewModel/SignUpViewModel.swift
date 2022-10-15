@@ -92,6 +92,10 @@ class SignUpViewModel: ObservableObject {
             currentOTP = publishedUserLogedInModel?.otp ?? 0
             SecondsCount = publishedUserLogedInModel?.secondsCount ?? 0
 
+            DispatchQueue.main.async {
+//                passthroughModelSubject.send(data)
+                verifyUser = true
+            }
 //            verifyUser = true
         }.store(in: &cancellables)
         
@@ -100,7 +104,7 @@ class SignUpViewModel: ObservableObject {
             publishedUserCreatedModel = modeldata.data
             isUserCreated = true
             Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserCreatedModel?.token ?? "")" )
-            
+//            Helper.setUserData(DriverName: modeldata.data?.name ?? "", DriverImage: modeldata.data?.image ?? "")
         }.store(in: &cancellables)
     }
 

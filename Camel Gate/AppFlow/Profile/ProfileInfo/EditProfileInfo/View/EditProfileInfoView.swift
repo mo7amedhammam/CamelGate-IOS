@@ -27,6 +27,8 @@ struct EditProfileInfoView: View {
     @State private var startPicking = false
     @State private var imgsource = ""
     
+    @State var enteredDriverName = ""
+
     @State var ageeTerms = false
     @State var showsheet = false
     @State var ShowCalendar  = false
@@ -448,6 +450,10 @@ struct EditProfileInfoView: View {
         .onAppear(perform: {
             if taskStatus == .update{
                 profileVM.GetDriverInfo()
+            }else{
+                if enteredDriverName != ""{
+                profileVM.Drivername = enteredDriverName
+                }
             }
             DispatchQueue.main.asyncAfter(deadline:.now()+1,execute: {
                 profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"

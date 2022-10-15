@@ -141,24 +141,21 @@ struct tripCellView: View {
                                             .frame(width: 1, height: 15)
                                             .padding(.vertical,-10)
 
-                                        
                                         Image("ic_pin_orange")
                                             .resizable()
                                             .frame(width: 30, height: 30)
-
                                     }
-                                    VStack(spacing: 15 ){
+                                    VStack(alignment:.leading, spacing: 15 ){
                                         VStack(alignment: .leading){
-                                            Text(shipmentModel.fromCityName ?? "Giza").foregroundColor(Color("Base_Color"))
+                                            Text(shipmentModel.fromCityName ?? "Giza")
+                                                .foregroundColor(Color("Base_Color"))
                                             .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                   
                                             HStack {
-                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:"dd / MM / yyyy"))
+                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'HH:mm:ss",FormatTo:"dd / MM / yyyy"))
 
-                                                
-                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'h:mm:ss",FormatTo:". h:mm a"))
+                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'HH:mm:ss",FormatTo:". h:mm a"))
                                                     .foregroundColor(.secondary)
-                                                
                                             }
                                             .padding(.top,-6)
                                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
@@ -168,9 +165,9 @@ struct tripCellView: View {
                                                 .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
 
                                             HStack {
-                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd / MM / yyyy"))
+                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'HH:mm:ss",FormatTo:"dd / MM / yyyy"))
                                                 
-                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:". hh:mm a"))
+                                                Text(ConvertStringDate(inp:shipmentModel.shipmentDateTo ?? "2023-01-03T00:00:00" ,FormatFrom:"yyyy-MM-dd'T'HH:mm:ss",FormatTo:". hh:mm a"))
                                                     .foregroundColor(.secondary)
                                                 
                                             }

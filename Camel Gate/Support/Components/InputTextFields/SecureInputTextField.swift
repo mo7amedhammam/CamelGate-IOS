@@ -38,17 +38,17 @@ struct SecureInputTextField: View {
                     TextField(placeholder, text: $text)
                 }
                 }
-                .frame( height: 40 , alignment: .trailing)
+                .frame( height: 50 , alignment: .trailing)
 
             }
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.never)
                     .font(.system(size: 13))
 //                    .frame( height: 40)
-                    .frame( height: 40 , alignment: .trailing)
+                    .frame( height: 50 , alignment: .trailing)
 
                     .padding(.horizontal,10)
-                    .padding(.vertical,5)
+//                    .padding(.vertical,5)
                     .disableAutocorrection(true)
                     .background(
                         Color.white

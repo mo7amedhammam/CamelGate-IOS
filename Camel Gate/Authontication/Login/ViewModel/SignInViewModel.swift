@@ -69,7 +69,7 @@ class SignInViewModel: ObservableObject {
             DispatchQueue.main.async {
                 publishedUserLogedInModel = modeldata.data
                 if publishedUserLogedInModel?.profileStatusId == 1 {
-                    destination = AnyView(EditProfileInfoView(taskStatus: .create)
+                    destination = AnyView(EditProfileInfoView(taskStatus: .create,enteredDriverName: modeldata.data?.name ?? "")
                                             .navigationBarHidden(true))
 
                 }else if publishedUserLogedInModel?.profileStatusId == 2{
