@@ -433,7 +433,6 @@ struct EditProfileInfoView: View {
                     }
                 },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant( ((profileVM.Drivername == "" || profileVM.BirthdateStr == "" || (profileVM.validations != .none && profileVM.ValidationMessage != "") || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "")) || !(taskStatus == .create && profileVM.IsTermsAgreed)) && (!(taskStatus == .update && isEditing) || (taskStatus == .update && (profileVM.Drivername == "" || profileVM.BirthdateStr == "" || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "") || (profileVM.validations != .none && profileVM.ValidationMessage != "")))))
                 )
-
             })
                                
             //

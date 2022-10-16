@@ -13,8 +13,6 @@ struct ShipmentsView: View {
     var language = LocalizationService.shared.language
 
     @StateObject var shipmentsViewModel = ShipmentsViewModel()
-    //    @EnvironmentObject var detailsVM : ShipmentDetailsViewModel
-    
     @State var goToShipmentDetails:Bool = false
     @State var shipmentsCategory = ["Current","Upcoming","Applied"]
     @State var selected = "Applied"
@@ -96,12 +94,10 @@ struct ShipmentsView: View {
         .overlay(content: {
             AnimatingGif(isPresented: $shipmentsViewModel.isLoading)
         })
-
         
         .onAppear(perform: {
             selectedShipmentId = 0
             getshipments()
-            
         })
             .onChange(of: selectedShipmentId, perform: {newval in
                 active = true
@@ -136,11 +132,11 @@ struct ShipmentsView_Previews: PreviewProvider {
 
 extension ShipmentsView{
     func getshipments() {
-        if selected == "Applied".localized(language) {
+        if selected == "Applied" {
             shipmentsViewModel.GetShipment(type: .applied)
-        }else if selected == "Upcoming".localized(language) {
+        }else if selected == "Upcoming" {
             shipmentsViewModel.GetShipment(type: .Upcomming)
-        }else if selected == "Current".localized(language){
+        }else if selected == "Current"{
             shipmentsViewModel.GetShipment(type: .current)
         }
     }
