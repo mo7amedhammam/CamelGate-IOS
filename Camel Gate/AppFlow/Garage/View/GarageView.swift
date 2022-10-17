@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct GarageView: View {
     var language = LocalizationService.shared.language
 
@@ -23,10 +22,20 @@ struct GarageView: View {
 
     var body: some View {
         ZStack{
-            ExtractedView(active: $active, destination: $destination, selectedShipmentId: $selectedShipmentId)
-                .environmentObject(ApprovedShipmentVM)
-                .padding(.top,140)
-                .padding(.horizontal,10)
+            
+//            List {
+//                PullToRefreshView(bg:.clear,onRefresh: {
+//                                    ApprovedShipmentVM.GetFilteredShipments()
+//                })
+                ExtractedView(active: $active, destination: $destination, selectedShipmentId: $selectedShipmentId)
+                    .environmentObject(ApprovedShipmentVM)
+                    .padding(.top,hasNotch ? 140:110)
+//                    .listRowBackground(Color.clear)
+//            }.listStyle(.plain)
+//                .padding(.horizontal,-10)
+//                .refreshable(action: {
+//                ApprovedShipmentVM.GetFilteredShipments()
+//                })
 
             TitleBar(Title: "Garage_Shipments".localized(language), navBarHidden: true, trailingButton: .filterButton, applyStatus: Optional.none, trailingAction: {
                 showFilter.toggle()
@@ -56,13 +65,7 @@ struct GarageView: View {
                 destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
             }
         })
-
-//        .overlay(content: {
-//            // showing loading indicator
-//            ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
-//        })
         .overlay(content: {
-
             AnimatingGif(isPresented: $ApprovedShipmentVM.isLoading)
         })
 
@@ -81,7 +84,6 @@ struct GarageView: View {
                     ApprovedShipmentVM.isAlert = false
                 }))
             })
-
     }
 }
 

@@ -16,14 +16,11 @@ struct SignUpView: View {
 
     var body: some View {
         ZStack{
-            
             VStack{
                 Image("signupheaderpng")
                     .resizable()
-                //                    .frame(width:500)
-                
-                    .padding(.top,-50)
-                    .frame(height:320)
+                    .padding(.top,hasNotch ? -50:-80)
+                    .frame(height:hasNotch ? 320:250)
                 
                 ScrollView{
                     Image("LOGO")
@@ -71,9 +68,12 @@ struct SignUpView: View {
                     .ignoresSafeArea(.keyboard)
                     
                 }
+                .keyboardSpace()
+
+                .padding(.top,hasNotch ? -15:-30)
                 Spacer()
             }
-            .edgesIgnoringSafeArea(.bottom)
+//            .edgesIgnoringSafeArea(.bottom)
             .onTapGesture(perform: {
                 hideKeyboard()
             })
@@ -97,7 +97,7 @@ struct SignUpView: View {
                     }
                     .padding(.top,-10)
                 }
-                .padding(.bottom,30)
+                .padding(.bottom,hasNotch ? 30:15)
                 .background(
                     Image("bottomBackimg")
                         .resizable()
@@ -121,14 +121,10 @@ struct SignUpView: View {
                     Spacer().frame(width:50)
                 }
                 .padding(.horizontal)
-                .padding(.top,20)
+                .padding(.top,hasNotch ? 20:5)
                 Spacer()
             }
         })
-        //        .overlay(content: {
-        //            // showing loading indicator
-        //            ActivityIndicatorView(isPresented: $SignUpVM.isLoading)
-        //        })
         .overlay(content: {
             AnimatingGif(isPresented: $SignUpVM.isLoading)
         })
@@ -148,9 +144,6 @@ struct SignUpView: View {
         })
         NavigationLink(destination: EditProfileInfoView(taskStatus: .create,enteredDriverName: SignUpVM.Drivername, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.isUserCreated , label: {
         })
-        
-//        NavigationLink(destination:PhoneVerificationView<SignUpViewModel>().navigationBarHidden(true),isActive:$SignUpVM.UserCreated , label: {
-//        })
         
         // Alert with no internet connection
             .alert(isPresented: $SignUpVM.isAlert, content: {

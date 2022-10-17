@@ -26,7 +26,6 @@ struct FilterHeaderView: View {
             .frame(width: 25 , height: 25)
         }
       }
-//      .padding()
     }
 }
 

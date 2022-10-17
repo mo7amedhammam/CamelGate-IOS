@@ -20,8 +20,8 @@ struct SignInView: View {
             VStack{
                 Image("signupheaderpng")
                     .resizable()
-                    .padding(.top,-50)
-                    .frame(height:320)
+                    .padding(.top,hasNotch ? -50:-100)
+                    .frame(height:hasNotch ? 320:280)
                 
                 ScrollView{
                     Image("LOGO")
@@ -63,17 +63,12 @@ struct SignInView: View {
                             Spacer()
                             Text("Forgot_Password?".localized(language))
                                 .foregroundColor(.red)
-//                                .opacity(SignInVM.phoneNumber != "" && SignInVM.ValidationMessage != "")
                                 .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                            
-                            
                         }.padding(.horizontal)
-
                     })
-//                        .disabled(SignInVM.phoneNumber != "" && SignInVM.ValidationMessage != "")
-                    
                 }
-                
+                .padding(.top,hasNotch ? -15:-30)
+
                 Spacer()
             }
             .edgesIgnoringSafeArea(.bottom)
@@ -108,7 +103,7 @@ struct SignInView: View {
                     Image("bottomBackimg")
                         .resizable()
                         .padding(.horizontal, -30)
-                        .padding(.bottom,-25)
+                        .padding(.bottom,hasNotch ? -25:-25)
                 )
                 
             })
@@ -116,25 +111,17 @@ struct SignInView: View {
                 .overlay(content: {
                     VStack{
                         HStack{
-                            //                    BackButtonView()
                             Spacer()
                             Text("Sign_In".localized(language))
                                 .foregroundColor(.white)
                                 .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr22:Font.camelfonts.SemiBold22)
                             Spacer()
-                            //                    Spacer().frame(width:50)
                         }
                         .padding(.horizontal)
-                        .padding(.top,40)
+                        .padding(.top,hasNotch ? 40:10)
                         Spacer()
                     }
                 })
-            
-            //                .overlay(content: {
-            //                    // showing loading indicator
-            //                    ActivityIndicatorView(isPresented: $SignInVM.isLoading)
-            //
-            //                })
                 .overlay(content: {
                     AnimatingGif(isPresented: $SignInVM.isLoading)
                 })
@@ -152,14 +139,9 @@ struct SignInView: View {
             })
             NavigationLink(destination: SignInVM.destination.navigationBarHidden(true),isActive:$SignInVM.isLogedin , label: {
             })
-            
-            
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-        
-        
     }
-    
 }
 
 struct SignInView_Previews: PreviewProvider {

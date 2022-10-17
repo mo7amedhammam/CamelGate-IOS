@@ -25,75 +25,80 @@ struct HomeView: View {
     @State var selectedShipmentId = 0
     @EnvironmentObject var imageVM : imageViewModel
     var body: some View {
-        ZStack{
-            VStack {
-                ZStack {
-                    Image("homeTopMask")
-                        .resizable()
-                }.frame(maxWidth: .infinity, maxHeight: 240).background(Color.clear)
-                Spacer()
-            }.edgesIgnoringSafeArea(.all)
-
-            VStack(spacing: 0){
-                HeaderView()
-                WalletIcon()
-            ScrollView {
-                if ApprovedShipmentVM.publishedapprovedShipmentModel != nil{
-                    ShipView(ShowMapRedirector:$ShowMapRedirector,longitude:$longitude,latitude:$latitude).shadow(radius: 5)
-                        .environmentObject(ApprovedShipmentVM)
-                }
-//                if ApprovedShipmentVM.publishedFilteredShipments != []{
-                FilterHeaderView(action: {
-                    showFilter.toggle()
-                    FilterTag = .Menu
-                })
-                    .padding(.bottom,-30)
-//                }
-                
-                ExtractedView(active: $active, destination: $destination,  selectedShipmentId: $selectedShipmentId)
-                    .environmentObject(ApprovedShipmentVM)
-                    .environmentObject(imageVM)
-                }
-                
-            .padding(.horizontal,10)
-            .overlay(
-                ZStack{
-                    if ApprovedShipmentVM.nodata == true {
-                        Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
-                            .multilineTextAlignment(.center)
-                            .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
-                    }
-                }
-            )
-                
-            }.padding(.top,30)
-                .environmentObject(imageVM)
-            VStack {
-                Spacer()
-                HStack{
+        GeometryReader { g in
+            ZStack{
+                VStack {
+                    ZStack {
+                        Image("homeTopMask")
+                            .resizable()
+                    }.frame(maxWidth: .infinity, maxHeight: 240).background(Color.clear)
                     Spacer()
-                    Button(action: {
-                        active = true
-                        destination = AnyView (ChatsListView())
-                    }, label: {
-                        Image("floatingchat")
-                    })
-                }.padding()
-            }.padding(.bottom, 50)
-        }
-        .environmentObject(imageVM)
-                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-        .navigationBarHidden(true)
-        .onAppear(perform: {
-            selectedShipmentId = 0
-            ApprovedShipmentVM.GetApprovedShipment()
-            ApprovedShipmentVM.GetFilteredShipments()
-        })
+                }.edgesIgnoringSafeArea(.all)
 
-        .onChange(of: selectedShipmentId, perform: {newval in
-                active = true
-            destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
+                VStack(spacing: 0){
+                    HeaderView()
+                    WalletIcon()
+                    
+                    ScrollView{
+                    if ApprovedShipmentVM.publishedapprovedShipmentModel != nil{
+                        ShipView(ShowMapRedirector:$ShowMapRedirector,longitude:$longitude,latitude:$latitude).shadow(radius: 5)
+                            .environmentObject(ApprovedShipmentVM)
+                        
+                    }
+                    FilterHeaderView(action: {
+                        showFilter.toggle()
+                        FilterTag = .Menu
+                    })
+                        .padding(.bottom,-25)
+                                ExtractedView(active: $active, destination: $destination,  selectedShipmentId: $selectedShipmentId)
+                                .environmentObject(ApprovedShipmentVM)
+                                .environmentObject(imageVM)
+                                .frame( height: (g.size.height / 2)+(hasNotch ? 90:0), alignment: .center)
+                            .padding(.horizontal,-10)
+                    }
+                    .frame( height: (g.size.height / 2)+(hasNotch ? 120:40), alignment: .center)
+
+                .padding(.horizontal,10)
+                .overlay(
+                    ZStack{
+                        if ApprovedShipmentVM.nodata == true {
+                            Text("Sorry,\nNo_Shipments_Found_🤷‍♂️".localized(language))
+                                .multilineTextAlignment(.center)
+                                .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
+                        }
+                    }
+                )
+                }
+                .padding(.top,30)
+                    .environmentObject(imageVM)
+                VStack {
+                    Spacer()
+                    HStack{
+                        Spacer()
+                        Button(action: {
+                            active = true
+                            destination = AnyView (ChatsListView())
+                        }, label: {
+                            Image("floatingchat")
+                        })
+                    }.padding()
+                }
+                .padding(.bottom, 50)
+            }
+            .environmentObject(imageVM)
+                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+            .navigationBarHidden(true)
+            .onAppear(perform: {
+                selectedShipmentId = 0
+                ApprovedShipmentVM.GetApprovedShipment()
+                ApprovedShipmentVM.GetFilteredShipments()
+            })
+
+            .onChange(of: selectedShipmentId, perform: {newval in
+                    active = true
+                destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
         })
+        }
 
         NavigationLink(destination: destination,isActive:$active , label: {
         })
@@ -111,7 +116,6 @@ struct HomeView: View {
             )
             .overlay(content: {
                 // showing loading indicator
-//                ActivityIndicatorView(isPresented: $ApprovedShipmentVM.isLoading)
                 AnimatingGif(isPresented: $ApprovedShipmentVM.isLoading)
             })
         // Alert with no internet connection
@@ -141,71 +145,4 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
-struct ExtractedView: View {
-    var language = LocalizationService.shared.language
 
-    @EnvironmentObject var imageVM : imageViewModel
-    @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
-    @Binding var active : Bool
-    @Binding var destination : AnyView
-    @Binding var selectedShipmentId : Int
-
-    var body: some View {
-        VStack{
-            ScrollView(.horizontal , showsIndicators : false) {
-                HStack {
-                    if ApprovedShipmentVM.fromCityName != ""{
-                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) to \(ApprovedShipmentVM.toCityName)", D: {
-                            ApprovedShipmentVM.fromCityName = ""
-                            ApprovedShipmentVM.toCityName = ""
-                            ApprovedShipmentVM.fromCityId = 0
-                            ApprovedShipmentVM.toCityId = 0
-
-                        })
-                    }
-                    if ApprovedShipmentVM.fromDateStr != ""{
-                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format: "dd/MM/yyyy")) to \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: "dd/MM/yyyy"):"")", D: {
-                            ApprovedShipmentVM.fromDateStr = ""
-                            ApprovedShipmentVM.toDateStr = ""
-                            ApprovedShipmentVM.fromDate = Date()
-                            ApprovedShipmentVM.toDate = Date()
-
-                        })
-                    }
-                    if ApprovedShipmentVM.shipmentTypesIds != []{
-                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.shipmentTypesNames.joined(separator: ", "))", D: {
-                            ApprovedShipmentVM.shipmentTypesIds = []
-                            ApprovedShipmentVM.shipmentTypesNames = []
-                        })
-                    }
-                    
-                }
-                .padding(.horizontal)
-                .padding(.top,25)
-            }
-            ScrollView(.vertical , showsIndicators : false) {
-                VStack{
-                    ForEach($ApprovedShipmentVM.publishedFilteredShipments, id:\.self) { tripItem in
-                        Button(action: {
-                            active = true
-                            destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
-                        }, label: {
-                            tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId).environmentObject(imageVM)
-                        }).buttonStyle(.plain)
-                    }
-                }
-            }
-           
-        }
-        
-        .onChange(of: ApprovedShipmentVM.fromCityName, perform: {_ in
-            ApprovedShipmentVM.GetFilteredShipments()
-        })
-        .onChange(of: ApprovedShipmentVM.fromDateStr, perform: {_ in
-            ApprovedShipmentVM.GetFilteredShipments()
-        })
-        .onChange(of: ApprovedShipmentVM.shipmentTypesNames, perform: {_ in
-            ApprovedShipmentVM.GetFilteredShipments()
-        })
-    }
-}
