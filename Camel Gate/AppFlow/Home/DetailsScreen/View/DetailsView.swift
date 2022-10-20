@@ -20,6 +20,7 @@ struct DetailsView: View {
     var body: some View {
         ZStack {
             ScrollView {
+                Spacer().frame(height:10)
                 VStack {
                     Button(action: {
                     }) {
@@ -34,7 +35,7 @@ struct DetailsView: View {
                                 Image("cover_vector")
                                     .resizable()
                             }
-                            .frame(height: 120)
+                            .frame(height: 140)
                         }.padding(.top , 60)
                     }
                     .buttonStyle(.plain)
@@ -161,8 +162,8 @@ struct DetailsView: View {
                     .padding()
                     
                     Group{
-                        Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))                        .frame(height: 1)
-                        
+                        Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
+                            .frame(height: 1)
                         
                         HStack {
                             Text("Description".localized(language))
@@ -196,20 +197,16 @@ struct DetailsView: View {
                                 Image("ic_line")
                                 Image("ic_pin_orange")
                             }
-                            VStack(spacing: 30 ){
+                            VStack(alignment:.leading, spacing: 30){
                                 VStack(alignment: .leading){
                                     Text(detailsVM.publishedUserLogedInModel.fromCityName ?? "Giza").foregroundColor(Color("Base_Color"))
-                                    Text(ConvertStringDate(inp:detailsVM.publishedUserLogedInModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
+                                    Text(ConvertStringDate(inp:detailsVM.publishedUserLogedInModel.shipmentDateFrom ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'HH:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
                                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                                    
-                                    
                                 }
                                 VStack(alignment: .leading){
                                     Text(detailsVM.publishedUserLogedInModel.toCityName ?? "Alexandria").foregroundColor(Color("Second_Color"))
-                                    Text(ConvertStringDate(inp:detailsVM.publishedUserLogedInModel.shipmentDateTo ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'hh:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
+                                    Text(ConvertStringDate(inp:detailsVM.publishedUserLogedInModel.shipmentDateTo ?? "2022-12-13T12:00:00" ,FormatFrom:"yyyy-MM-dd'T'HH:mm:ss",FormatTo:"dd/MM/yyyy . hh:mm a"))
                                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                                    
-                                    
                                 }
                             }
                             Spacer()
@@ -218,7 +215,6 @@ struct DetailsView: View {
                                     longitude = Double(detailsVM.publishedUserLogedInModel.fromLang ?? 0)
                                     latitude = Double(detailsVM.publishedUserLogedInModel.fromLat ?? 0)
                                     ShowMapRedirector = true
-                                    
                                 }) {
                                     ZStack{
                                         Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
@@ -312,16 +308,12 @@ struct DetailsView: View {
             }
             TitleBar(Title: "Shipment_Details".localized(language) , navBarHidden: true, leadingButton: .backButton, trailingButton: .shareButton , trailingAction: {
             })
-            
-            
         }
-        
         .toolbar{
             ToolbarItemGroup(placement: .keyboard ){
                 Spacer()
                 Button("Done"){
                     hideKeyboard()
-                    
                 }
             }
         }
@@ -366,13 +358,7 @@ struct DetailsView: View {
                         )
                 }
             }.background(Color.clear)
-            
         })
-        
-        //        .overlay(content: {
-        //            // showing loading indicator
-        //            ActivityIndicatorView(isPresented: $detailsVM.isLoading)
-        //        })
         .overlay(content: {
             AnimatingGif(isPresented: $detailsVM.isLoading)
         })

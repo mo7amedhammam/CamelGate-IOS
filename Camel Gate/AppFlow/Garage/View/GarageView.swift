@@ -28,8 +28,9 @@ struct GarageView: View {
 //                                    ApprovedShipmentVM.GetFilteredShipments()
 //                })
                 ExtractedView(active: $active, destination: $destination, selectedShipmentId: $selectedShipmentId)
-                    .environmentObject(ApprovedShipmentVM)
-                    .padding(.top,hasNotch ? 140:110)
+                        .environmentObject(ApprovedShipmentVM)
+                        .padding(.top,hasNotch ? 110:90)
+
 //                    .listRowBackground(Color.clear)
 //            }.listStyle(.plain)
 //                .padding(.horizontal,-10)

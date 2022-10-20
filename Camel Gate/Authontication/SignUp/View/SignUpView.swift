@@ -121,7 +121,7 @@ struct SignUpView: View {
                     Spacer().frame(width:50)
                 }
                 .padding(.horizontal)
-                .padding(.top,hasNotch ? 20:5)
+                .padding(.top,hasNotch ? 20:10)
                 Spacer()
             }
         })

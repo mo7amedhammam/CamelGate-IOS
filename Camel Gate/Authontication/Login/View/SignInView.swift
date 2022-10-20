@@ -118,7 +118,7 @@ struct SignInView: View {
                             Spacer()
                         }
                         .padding(.horizontal)
-                        .padding(.top,hasNotch ? 40:10)
+                        .padding(.top,hasNotch ? 40:20)
                         Spacer()
                     }
                 })

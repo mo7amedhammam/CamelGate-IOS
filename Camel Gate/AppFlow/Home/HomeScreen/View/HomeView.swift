@@ -23,7 +23,8 @@ struct HomeView: View {
     @State var longitude:Double = 0
     @State var latitude:Double = 0
     @State var selectedShipmentId = 0
-    @EnvironmentObject var imageVM : imageViewModel
+    @EnvironmentObject var environments : imageViewModel
+
     var body: some View {
         GeometryReader { g in
             ZStack{
@@ -31,13 +32,14 @@ struct HomeView: View {
                     ZStack {
                         Image("homeTopMask")
                             .resizable()
-                    }.frame(maxWidth: .infinity, maxHeight: 240).background(Color.clear)
+                    }.frame(maxWidth: .infinity, maxHeight: hasNotch ? 240:200).background(Color.clear)
                     Spacer()
                 }.edgesIgnoringSafeArea(.all)
 
                 VStack(spacing: 0){
                     HeaderView()
                     WalletIcon()
+                        .environmentObject(environments)
                     
                     ScrollView{
                     if ApprovedShipmentVM.publishedapprovedShipmentModel != nil{
@@ -52,11 +54,11 @@ struct HomeView: View {
                         .padding(.bottom,-25)
                                 ExtractedView(active: $active, destination: $destination,  selectedShipmentId: $selectedShipmentId)
                                 .environmentObject(ApprovedShipmentVM)
-                                .environmentObject(imageVM)
-                                .frame( height: (g.size.height / 2)+(hasNotch ? 90:0), alignment: .center)
+                                .environmentObject(environments)
+                                .frame( height: (g.size.height / 2)+(hasNotch ? 90:20), alignment: .center)
                             .padding(.horizontal,-10)
                     }
-                    .frame( height: (g.size.height / 2)+(hasNotch ? 120:40), alignment: .center)
+                    .frame( height: (g.size.height / 2)+(hasNotch ? 120:60), alignment: .center)
 
                 .padding(.horizontal,10)
                 .overlay(
@@ -69,8 +71,8 @@ struct HomeView: View {
                     }
                 )
                 }
-                .padding(.top,30)
-                    .environmentObject(imageVM)
+                .padding(.top,hasNotch ? 30:15)
+                .environmentObject(environments)
                 VStack {
                     Spacer()
                     HStack{
@@ -83,9 +85,9 @@ struct HomeView: View {
                         })
                     }.padding()
                 }
-                .padding(.bottom, 50)
+                .padding(.bottom,hasNotch ? 50:50)
             }
-            .environmentObject(imageVM)
+            .environmentObject(environments)
                     .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             .navigationBarHidden(true)
             .onAppear(perform: {
@@ -96,7 +98,7 @@ struct HomeView: View {
 
             .onChange(of: selectedShipmentId, perform: {newval in
                     active = true
-                destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
+                destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(environments))
         })
         }
 
@@ -138,6 +140,7 @@ struct HomeView_Previews: PreviewProvider {
         HomeView(FilterTag: .constant(.Menu), showFilter: .constant(false))
             .environmentObject(ApprovedShipmentViewModel())
             .environmentObject(imageViewModel())
+            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
         HomeView(FilterTag: .constant(.Menu), showFilter: .constant(false))
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
             .environmentObject(imageViewModel())

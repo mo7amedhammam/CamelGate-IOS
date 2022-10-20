@@ -22,7 +22,7 @@ struct TitleBar: View {
             ZStack{
                 Image("TopBarImage")
                     .resizable()
-                    .frame(height: 160)
+                    .frame(height: hasNotch ? 160:130)
                     .padding(.horizontal,-2)
                 
                 VStack {
@@ -81,7 +81,8 @@ struct TitleBar: View {
             }
 
             Spacer()
-        }.ignoresSafeArea()
+        }
+        .ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(navBarHidden ?? false)
     }

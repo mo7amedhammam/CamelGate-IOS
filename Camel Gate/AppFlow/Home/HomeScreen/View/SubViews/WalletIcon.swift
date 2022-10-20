@@ -8,18 +8,32 @@
 import SwiftUI
 
 struct WalletIcon: View {
+    @EnvironmentObject var environments : imageViewModel
+
     var body: some View {
         HStack{
-            ZStack(alignment: .leading ){
-                Image("ic_back_wallet").resizable().scaledToFit()
-                VStack(spacing: 8 ){
-                    Image("ic_wallet")
-                    Text("Wallet").foregroundColor(Color.white.opacity(0.7))
-                    Text("12,400").foregroundColor(Color.white)
-                }.padding()
-      .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+            Button(action: {
+//                if LoginManger.getUser()?.isDriverInCompany ?? false {
+//
+//                }else{
+                environments.desiredTab = "Wallet".localized(language)
+//                    }
+            }, label: {
+                ZStack(alignment: .leading ){
+                    Image("ic_back_wallet").resizable().scaledToFit()
+                    VStack(spacing: 8 ){
+                        Image("ic_wallet")
+                        Text("Wallet").foregroundColor(Color.white.opacity(0.7))
+                        Text("12,400").foregroundColor(Color.white)
+                    }.padding()
+          .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
 
-            }.frame(height: 140)
+                }.frame(height: 140)
+            }).buttonStyle(.plain)
+                .disabled(LoginManger.getUser()?.isDriverInCompany ?? false)
+            
+            
+            
             ZStack(alignment: .leading ){
                 VStack(spacing: 0 ){
                     HStack{
@@ -66,5 +80,6 @@ struct WalletIcon: View {
 struct WalletIcon_Previews: PreviewProvider {
     static var previews: some View {
         WalletIcon()
+            .environmentObject(imageViewModel())
     }
 }

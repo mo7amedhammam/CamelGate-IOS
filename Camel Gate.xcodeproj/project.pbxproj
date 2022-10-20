@@ -27,6 +27,7 @@
 		C82EC8F7289EACC90042A27F /* ApprovedShipmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82EC8F6289EACC90042A27F /* ApprovedShipmentViewModel.swift */; };
 		C82FD99D28AD2F75003DC739 /* GESSUniqueLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */; };
 		C82FD99F28AD3190003DC739 /* MyriadVariableConcept-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */; };
+		C835E5E02901918400B252D1 /* WalletViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C835E5DF2901918400B252D1 /* WalletViewCell.swift */; };
 		C83C4D4A28B2949300208751 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C83C4D4928B2949300208751 /* Lottie */; };
 		C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB62892AEA000B803FD /* ChatHeader.swift */; };
 		C845FAB92892B99000B803FD /* XButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB82892B99000B803FD /* XButton.swift */; };
@@ -162,6 +163,7 @@
 		C82EC8F6289EACC90042A27F /* ApprovedShipmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedShipmentViewModel.swift; sourceTree = "<group>"; };
 		C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GESSUniqueLight.otf; sourceTree = "<group>"; };
 		C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadVariableConcept-Roman.otf"; sourceTree = "<group>"; };
+		C835E5DF2901918400B252D1 /* WalletViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewCell.swift; sourceTree = "<group>"; };
 		C845FAB62892AEA000B803FD /* ChatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeader.swift; sourceTree = "<group>"; };
 		C845FAB82892B99000B803FD /* XButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButton.swift; sourceTree = "<group>"; };
 		C845FABC2892BB6D00B803FD /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
@@ -358,6 +360,14 @@
 				C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */,
 			);
 			path = CancelReasons;
+			sourceTree = "<group>";
+		};
+		C835E5DE2901916600B252D1 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C835E5DF2901918400B252D1 /* WalletViewCell.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		C845FAB42892AB9900B803FD /* Chat */ = {
@@ -886,6 +896,7 @@
 		C8C9497828899D920057EE7E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C835E5DE2901916600B252D1 /* SubViews */,
 				C8C9497928899DA80057EE7E /* WalletTabView.swift */,
 			);
 			path = View;
@@ -1379,6 +1390,7 @@
 				FA626CE028A7F3FD00714C67 /* HelpRequestSentView.swift in Sources */,
 				FA7077FD28935B9300879399 /* DetailsView.swift in Sources */,
 				C8D82A3528A46C060081E620 /* CityFilterView.swift in Sources */,
+				C835E5E02901918400B252D1 /* WalletViewCell.swift in Sources */,
 				C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */,
 				C8691FFD28ABD7A2002201F3 /* RedirectToGMaps.swift in Sources */,
 				FAEADE502884C064004535CE /* ContentView.swift in Sources */,

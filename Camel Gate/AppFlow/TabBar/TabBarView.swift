@@ -28,7 +28,7 @@ struct MainTabBar : View {
     @State var FilterTag : FilterCases = .Menu
     @State var showFilter = false
     @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
-    @StateObject var imageVM = imageViewModel()
+    @StateObject var environments = imageViewModel()
     var body: some View {
         VStack(spacing: 0){
             GeometryReader{_ in
@@ -36,6 +36,7 @@ struct MainTabBar : View {
                     if self.selectedTab.localized(language) == "Home".localized(language){
                         HomeView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
+                            .environmentObject(environments)
                     } else if self.selectedTab.localized(language) == "Shipments".localized(language){
                         ShipmentsView()
                         
@@ -50,7 +51,7 @@ struct MainTabBar : View {
                         ProfileView()
                         
                     }
-                }.environmentObject(imageVM)
+                }.environmentObject(environments)
                 .navigationViewStyle(StackNavigationViewStyle())
                 .ignoresSafeArea()
             }
@@ -63,16 +64,19 @@ struct MainTabBar : View {
                 }
             }
             .padding(.horizontal , 20)
-            .padding(.bottom,edges!.bottom == 0 ? 15 : edges!.bottom-15)
+            .padding(.bottom,edges!.bottom == 0 ? hasNotch ? 15:5 : edges!.bottom-15)
             .background(
                 RoundedCornersShape(radius: 30, corners: [.topLeft,.topRight])
                     .foregroundColor(.white)
             )
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-        .sheet(isPresented: $imageVM.isPresented){
-            ImagePreviewer(IsPresented: $imageVM.isPresented, imageUrl: $imageVM.imageUrl)
+        .sheet(isPresented: $environments.isPresented){
+            ImagePreviewer(IsPresented: $environments.isPresented, imageUrl: $environments.imageUrl)
         }
+        .onChange(of: environments.desiredTab, perform: {newval in
+            selectedTab = newval
+        })
         .ignoresSafeArea(.all, edges: .bottom)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .overlay(
@@ -82,10 +86,11 @@ struct MainTabBar : View {
                         MainFilterView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
                             .padding()
+                            .padding(.bottom,hasNotch ? 0:-10)
                     })
                 }
-                Spacer(minLength: 40)
-            }.padding(.bottom)
+//                Spacer(minLength: 40)
+            }.padding(.bottom, hasNotch ? 0:-20)
         )
     }
 }

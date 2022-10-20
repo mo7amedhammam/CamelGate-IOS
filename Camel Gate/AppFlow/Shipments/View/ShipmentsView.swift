@@ -24,7 +24,7 @@ struct ShipmentsView: View {
     var body: some View {
         ZStack{
             VStack{
-                Spacer().frame(height:145)
+                Spacer().frame(height:hasNotch ? 150:120)
                 HStack{
                     ForEach(shipmentsCategory,id:\.self){ Category in
                         Button(action: {
@@ -83,7 +83,6 @@ struct ShipmentsView: View {
                             }
                         }
                     )
-                
             }
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
             
@@ -127,6 +126,7 @@ struct ShipmentsView_Previews: PreviewProvider {
     static var previews: some View {
         ShipmentsView()
             .environmentObject(imageViewModel())
+            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }
 

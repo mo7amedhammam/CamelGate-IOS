@@ -10,6 +10,8 @@ import SwiftUI
 class imageViewModel: ObservableObject {
     @Published var isPresented = false
     @Published var imageUrl = ""
+    @Published var desiredTab = ""
+
 }
 
 
