@@ -896,8 +896,8 @@
 		C8C9497828899D920057EE7E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C835E5DE2901916600B252D1 /* SubViews */,
 				C8C9497928899DA80057EE7E /* WalletTabView.swift */,
+				C835E5DE2901916600B252D1 /* SubViews */,
 			);
 			path = View;
 			sourceTree = "<group>";

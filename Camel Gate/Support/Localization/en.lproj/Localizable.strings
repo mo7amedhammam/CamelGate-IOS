@@ -228,3 +228,6 @@
 "Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers" = "Hint: Citizen ID should start with 1 with maximum 10 Numbers";
 "Hint:_Resident_ID_should_start_with_2_with_maximum_16_Numbers" = "Hint: Resident ID should start with 2 with maximum 16 Numbers";
 "Hint:_Border_ID_should_start_with_5_with_maximum_16_Numbers" = "Hint: Border ID should start with 5 with maximum 16 Numbers";
+
+//MARK: -- Wallet Tab --
+"you_Can't_See_Wallet" = "you Can't See Wallet";

@@ -89,7 +89,6 @@ struct MainTabBar : View {
                             .padding(.bottom,hasNotch ? 0:-10)
                     })
                 }
-//                Spacer(minLength: 40)
             }.padding(.bottom, hasNotch ? 0:-20)
         )
     }

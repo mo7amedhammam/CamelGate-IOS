@@ -225,3 +225,6 @@
 "Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers" = "رقم المواطنه يبدأ ب١ وبحد اقصى ١٠ ارقام";
 "Hint:_Resident_ID_should_start_with_2_with_maximum_16_Numbers" = "رقم المقيم يبدأ ب٢ وبحد اقصى ١٦ ارقام";
 "Hint:_Border_ID_should_start_with_5_with_maximum_16_Numbers" = "رقم الحدود يبدأ ب٥ وبحد اقصى ١٦ ارقام";
+
+//MARK: -- Wallet Tab --
+"you_Can't_See_Wallet" = "لا يمكنك رؤية المحفظة";

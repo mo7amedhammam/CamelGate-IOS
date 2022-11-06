@@ -227,29 +227,29 @@ class DriverInfoViewModel: ObservableObject {
         var params : [String : Any] =
         [
             "StatusId"                         :"\(LoginManger.getUser()?.profileStatusId ?? 0)",
-            "DrivingLicense"                       : "\(LicenseNumber)",
-            "Email"                                : "\(Email)",
-            "Name"                                : "\(Drivername)",
+            "DrivingLicense"                       : LicenseNumber,
+            "Email"                                : Email,
+            "Name"                                : Drivername,
             "Birthdate"                            :
                 Birthdate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
             ,
-            "Gender"                               : "\(gender)",
-            "NationalityId" : "\(NationalityId)",
+            "Gender"                               : gender,
+            "NationalityId"                        : NationalityId,
             "CreateTruckDto.Plate"                 : "\(Int(TruckPlate) ?? 0)",
-            "CreateTruckDto.License"               : "\(Int(TruckLicense) ?? 0)",
+            "CreateTruckDto.License"               : Int(TruckLicense) ?? 0,
             "CreateTruckDto.LicenseIssueDate"      :
                 TruckLicenseIssueDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
             ,
             "CreateTruckDto.LicenseExpirationDate" :
                 TruckLicenseExpirationDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
             ,
-            "CreateTruckDto.NumberofAxe"           : "\(Int( NumberofAxe ) ?? 0)",
-            "CreateTruckDto.TruckTypeId"           : "\(Int( TruckTypeId ) ?? 0)",
+            "CreateTruckDto.NumberofAxe"           : Int( NumberofAxe ) ?? 0,
+            "CreateTruckDto.TruckTypeId"           : Int( TruckTypeId ) ?? 0,
             "DrivingLicenseExpirationDate"         :
                 LicenseExpireDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
             ,
-            "CreateTruckDto.ProductionYear"        : "\(TruckManfactureYear)",
-            "CreateTruckDto.TruckManufacturerId"   : "\(Int( TruckManfacturerId ) ?? 0)"
+            "CreateTruckDto.ProductionYear"        : TruckManfactureYear,
+            "CreateTruckDto.TruckManufacturerId"   : Int( TruckManfacturerId ) ?? 0
         ]
         // optional
         if citizenId != ""{
