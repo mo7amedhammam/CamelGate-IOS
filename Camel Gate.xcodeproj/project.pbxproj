@@ -28,6 +28,8 @@
 		C82FD99D28AD2F75003DC739 /* GESSUniqueLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */; };
 		C82FD99F28AD3190003DC739 /* MyriadVariableConcept-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */; };
 		C835E5E02901918400B252D1 /* WalletViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C835E5DF2901918400B252D1 /* WalletViewCell.swift */; };
+		C837B8B929190787009819C7 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837B8B829190787009819C7 /* WalletViewModel.swift */; };
+		C837B8BC291908F3009819C7 /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C837B8BB291908F3009819C7 /* WalletModel.swift */; };
 		C83C4D4A28B2949300208751 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C83C4D4928B2949300208751 /* Lottie */; };
 		C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB62892AEA000B803FD /* ChatHeader.swift */; };
 		C845FAB92892B99000B803FD /* XButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB82892B99000B803FD /* XButton.swift */; };
@@ -164,6 +166,8 @@
 		C82FD99C28AD2F75003DC739 /* GESSUniqueLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GESSUniqueLight.otf; sourceTree = "<group>"; };
 		C82FD99E28AD3190003DC739 /* MyriadVariableConcept-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadVariableConcept-Roman.otf"; sourceTree = "<group>"; };
 		C835E5DF2901918400B252D1 /* WalletViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewCell.swift; sourceTree = "<group>"; };
+		C837B8B829190787009819C7 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		C837B8BB291908F3009819C7 /* WalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
 		C845FAB62892AEA000B803FD /* ChatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeader.swift; sourceTree = "<group>"; };
 		C845FAB82892B99000B803FD /* XButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButton.swift; sourceTree = "<group>"; };
 		C845FABC2892BB6D00B803FD /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
@@ -368,6 +372,22 @@
 				C835E5DF2901918400B252D1 /* WalletViewCell.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C837B8B72919076E009819C7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C837B8B829190787009819C7 /* WalletViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C837B8BA291908E6009819C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C837B8BB291908F3009819C7 /* WalletModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C845FAB42892AB9900B803FD /* Chat */ = {
@@ -786,6 +806,8 @@
 		C8C949392889590E0057EE7E /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				C837B8BA291908E6009819C7 /* Model */,
+				C837B8B72919076E009819C7 /* ViewModel */,
 				C8C9497828899D920057EE7E /* View */,
 			);
 			path = Wallet;
@@ -1337,6 +1359,7 @@
 				C8C94970288992260057EE7E /* EditButtonView.swift in Sources */,
 				C8C949652889791F0057EE7E /* LocalizationService.swift in Sources */,
 				FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */,
+				C837B8B929190787009819C7 /* WalletViewModel.swift in Sources */,
 				C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */,
 				C8C9496E28898D030057EE7E /* ShipmentsView.swift in Sources */,
 				C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */,
@@ -1351,6 +1374,7 @@
 				C8C94972288992E30057EE7E /* ShareButtonView.swift in Sources */,
 				C0125B0A28993594004B65E5 /* URLRequestBuilder.swift in Sources */,
 				C8C94977288994B20057EE7E /* Helper.swift in Sources */,
+				C837B8BC291908F3009819C7 /* WalletModel.swift in Sources */,
 				C845FAB92892B99000B803FD /* XButton.swift in Sources */,
 				C8C949622889791F0057EE7E /* Strings.swift in Sources */,
 				FA9CC383289ECFD500A56055 /* HomeServices.swift in Sources */,

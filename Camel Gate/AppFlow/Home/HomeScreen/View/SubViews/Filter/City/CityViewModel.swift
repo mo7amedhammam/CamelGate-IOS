@@ -49,14 +49,14 @@ class CityViewModel: ObservableObject {
     
     // MARK: - API Services
     func GetCiities(){
-        let params : [String : Any] =
-        [
-            "GovernorateId"                       : GovernorateId
-        ]
+//        let params : [String : Any] =
+//        [
+////            "GovernorateId"                       : GovernorateId
+//        ]
         
         firstly { () -> Promise<Any> in
             isLoading = true
-            return BGServicesManager.CallApi(self.authServices,HomeServices.GetCities(parameters: params))
+            return BGServicesManager.CallApi(self.authServices,HomeServices.GetCities)
         }.done({ [self] response in
             let result = response as! Response
 

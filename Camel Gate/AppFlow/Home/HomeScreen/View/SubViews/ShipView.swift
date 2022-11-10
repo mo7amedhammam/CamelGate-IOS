@@ -68,8 +68,10 @@ struct ShipView: View {
                             }.cornerRadius(8)
                         }
                     }
-                    .padding()
-                    .frame(height: 80 )
+                    .padding(.horizontal)
+                    .padding(.top)
+
+                    //                    .frame(height: 60 )
                     Image( ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? "ic_status1":ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? "ic_status2":"ic_status3")
                         .frame(height: 40 )
                     HStack {
@@ -78,29 +80,36 @@ struct ShipView: View {
                             .foregroundColor(Color.gray)
                             .frame(height: 20)
                         Spacer()
-                    }.padding()
+                    }
+                    .padding(.horizontal)
                 }
             }
             ZStack{
                 Image("ic_ship_orange" )
                     .resizable()
-                    .padding(.horizontal,-20)
+                    .padding(.horizontal,-4)
+                    .padding(.bottom,-5)
+
                 Button(action: {
+                    
                     ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ?
                     ApprovedShipmentVM.ApprovedAction(operation: .start) :ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ?
                     ApprovedShipmentVM.ApprovedAction(operation: .Upload):ApprovedShipmentVM.ApprovedAction(operation: .finish)
                     
                 }, label: {
-                    Text(ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? "Start_Shipment".localized(language):ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? "Uploaded".localized(language):"Dropped_&_Finished".localized(language))
-                        .foregroundColor(Color.white)
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    HStack {
+                        Text(ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? "Start_Shipment".localized(language):ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? "Uploaded".localized(language):"Dropped_&_Finished".localized(language))
+                            .foregroundColor(Color.white)
+                        
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    }
                 })
             }
             .frame(height: 50)
         }
-        .frame(height: 280)
+//        .frame(height: 280)
         .cornerRadius(10)
-        .padding()
+//        .padding()
     }
 }
 

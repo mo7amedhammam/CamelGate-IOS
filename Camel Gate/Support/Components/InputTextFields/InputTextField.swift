@@ -45,7 +45,8 @@ struct InputTextField: View {
                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .autocapitalization(.none)
                     .textInputAutocapitalization(.never)
-                    .frame( height: 50)
+                    .frame( minHeight: 50)
+                    
 
              }
             }
@@ -206,3 +207,417 @@ struct InputDateField_Previews: PreviewProvider {
     }
 }
 
+
+struct InputTextField2: View {
+    @State var iconName : String? = ""
+    @State var iconColor : Color? = .clear
+    @State var fieldType : inputfields? = .Default
+
+    var placeholder : String
+    @State var placeholderColor : Color? = .gray.opacity(0.5)
+
+    @Binding var text: String
+    let screenWidth = UIScreen.main.bounds.size.width - 55
+    
+    var body: some View {
+        GeometryReader {g in
+            HStack{
+                if iconName != "" || iconName != nil{
+                    Image(iconName ?? "")
+                        .renderingMode( iconColor != .clear ? .template:.original)
+                        .foregroundColor(iconColor == .clear ? .clear:iconColor)
+                        .font(.system(size: 15))
+                }else{
+                }
+                
+                ZStack (alignment:.leading){
+                    Text(placeholder)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                        .foregroundColor(placeholderColor == .red ?  .red:placeholderColor)
+                        .offset(y: text.isEmpty ? 0 : -20)
+                        .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+                        .padding(.leading,fieldType == .Phone ? text.isEmpty ? 55:0:0)
+                    
+                    HStack{
+                        if fieldType == .Phone{
+                            Text("+966 |")
+                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                            .foregroundColor(.gray.opacity(0.5))
+                        }
+                    TextField("",text:$text)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                        .autocapitalization(.none)
+                        .textInputAutocapitalization(.never)
+                        .frame( height: 50)
+
+                 }
+                }
+            }
+
+            .padding(.horizontal,10)
+    //        .padding(.vertical,5)
+            .disableAutocorrection(true)
+            .background(
+                Color.white
+            )
+                .cornerRadius(5)
+            .shadow(color: Color.black.opacity(0.099), radius: 3)
+            .frame(width:g.size.width, height: g.size.height)
+
+        }
+        .ignoresSafeArea()
+        
+    }
+}
+struct InputTextField2_Previews: PreviewProvider {
+    static var previews: some View {
+        InputTextField2(iconName:"x321gray",fieldType:.Password, placeholder: "Name", text: .constant(""))
+        
+    }
+}
+
+
+struct InputTextField22: View {
+    @State var iconName : String? = ""
+    @State var iconColor : Color? = .clear
+    @State var fieldType : inputfields? = .Default
+    @State var BirthdateStr : String = ""
+    @State var Birthdate : Date = Date()
+
+    var placeholder : String
+    @State var placeholderColor : Color? = .gray.opacity(0.5)
+
+    @Binding var text: String
+    let screenWidth = UIScreen.main.bounds.size.width - 55
+    
+    var body: some View {
+        
+        VStack (spacing:40){
+            
+            GeometryReader {g in
+                InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $BirthdateStr)
+                                        .disabled(true)
+                    .overlay(content: {
+                        DatePicker("", selection: $Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
+                            .opacity(0.02)
+                            .labelsHidden()
+                            .frame(minHeight:50)
+                            .frame(minWidth:g.size.width)
+                        HStack{
+                                            Spacer()
+                            Image(systemName:language.rawValue == "en" ? "chevron.right":"chevron.left")
+                                .foregroundColor(                                    Color("lightGray").opacity(0.5))
+                                .padding(.horizontal)
+//                                .frame(width:20)
+
+                        }
+//                        .frame(minWidth:g.size.width)
+
+                })
+            }
+            
+            
+            TextField("",text:$text)
+                .autocapitalization(.none)
+                .textInputAutocapitalization(.never)
+                .frame( minHeight: 50)
+                .font(.system(size: 20))
+                .padding(.horizontal,10)
+                .disableAutocorrection(true)
+                .background(
+                    Color.white
+                )
+                .cornerRadius(5)
+                .shadow(color: Color.black.opacity(0.099), radius: 3)
+            
+            
+            
+//            TextField("",text:$text)
+//                .autocapitalization(.none)
+//                .textInputAutocapitalization(.never)
+//                .frame( height: 50)
+//                .font(.system(size: 30))
+//                .padding(.horizontal,10)
+//                .disableAutocorrection(true)
+//                .background(
+//                    Color.white
+//                )
+//                .cornerRadius(5)
+//                .shadow(color: Color.black.opacity(0.099), radius: 3)
+//            
+//                .overlay(
+//                HStack{
+//                        if iconName != "" || iconName != nil{
+//                            Image(iconName ?? "")
+//                                .renderingMode( iconColor != .clear ? .template:.original)
+//                                .foregroundColor(iconColor == .clear ? .clear:iconColor)
+//                                .font(.system(size: 15))
+//                        }else{
+//                        }
+//                            Text(placeholder)
+//                                .foregroundColor(placeholderColor == .red ?  .red:placeholderColor)
+//                                .offset(y: text.isEmpty ? 0 : -20)
+//                                .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+//                                .padding(.leading,fieldType == .Phone ? text.isEmpty ? 55:0:0)
+//                    HStack(alignment:.lastTextBaseline){
+//                                if fieldType == .Phone{
+//                                    Text("+966 |")
+//                                    .foregroundColor(.gray.opacity(0.5))
+//                                }
+//                                Spacer()
+////                                Text(text)
+//    //                        TextField("",text:$text)
+//    //                            .autocapitalization(.none)
+//    //                            .textInputAutocapitalization(.never)
+//    //                            .frame( height: 50)
+////                        Spacer()
+//                         }
+//                    .frame(height:50)
+//                }
+//            )
+            
+            
+            
+            
+//                TextField("",text:$text)
+//                    .autocapitalization(.none)
+//                    .textInputAutocapitalization(.never)
+//                    .frame( height: 50)
+//                    .padding(.horizontal,10)
+//                    .disableAutocorrection(true)
+//                    .background(
+//                        Color.white
+//                    )
+//                    .cornerRadius(5)
+//                    .shadow(color: Color.black.opacity(0.099), radius: 3)
+//                
+//                    .overlay(
+//                    HStack{
+//                            if iconName != "" || iconName != nil{
+//                                Image(iconName ?? "")
+//                                    .renderingMode( iconColor != .clear ? .template:.original)
+//                                    .foregroundColor(iconColor == .clear ? .clear:iconColor)
+//                                    .font(.system(size: 15))
+//                            }else{
+//                            }
+//                                Text(placeholder)
+//                                    .foregroundColor(placeholderColor == .red ?  .red:placeholderColor)
+//                                    .offset(y: text.isEmpty ? 0 : -20)
+//                                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+//                                    .padding(.leading,fieldType == .Phone ? text.isEmpty ? 55:0:0)
+//                        HStack(alignment:.lastTextBaseline){
+//                                    if fieldType == .Phone{
+//                                        Text("+966 |")
+//                                        .foregroundColor(.gray.opacity(0.5))
+//                                    }
+//                                    
+//                                    Text(text)
+//        //                        TextField("",text:$text)
+//        //                            .autocapitalization(.none)
+//        //                            .textInputAutocapitalization(.never)
+//        //                            .frame( height: 50)
+////                            Spacer()
+//                             }
+//                        .frame(height:50)
+//                    }
+//                )
+            
+        }
+
+    }
+}
+struct InputTextField22_Previews: PreviewProvider {
+    static var previews: some View {
+        InputTextField22(iconName:"x321gray",fieldType:.Password, placeholder: "Name", text: .constant(""))
+        
+    }
+}
+
+struct InputTextField1: View {
+    @State var iconName : String? = ""
+    @State var iconColor : Color? = .clear
+    @State var fieldType : inputfields? = .Default
+
+    var placeholder : String
+    @State var placeholderColor : Color? = .gray.opacity(0.5)
+
+    @Binding var text: String
+    let screenWidth = UIScreen.main.bounds.size.width - 55
+    
+    var body: some View {
+        HStack{
+            if iconName != "" || iconName != nil{
+                Image(iconName ?? "")
+                    .renderingMode( iconColor != .clear ? .template:.original)
+                    .foregroundColor(iconColor == .clear ? .clear:iconColor)
+//                    .font(.system(size: 15))
+                    .frame(width: 15, height: 15, alignment: .center)
+            }else{
+            }
+            
+            ZStack (alignment:.leading){
+                Text(placeholder)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                    .foregroundColor(placeholderColor == .red ?  .red:placeholderColor)
+                    .offset(y: text.isEmpty ? 0 : -20)
+                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+                    .padding(.leading,fieldType == .Phone ? text.isEmpty ? 55:0:0)
+                
+                HStack{
+                    if fieldType == .Phone{
+                        Text("+966 |")
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                        .foregroundColor(.gray.opacity(0.5))
+                    }
+                    TextField("",text:$text)
+                    .textFieldStyle(.plain)
+//                        .frame( minHeight: 50)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr9:Font.camelfonts.Reg9)
+                    .autocapitalization(.none)
+                    .textInputAutocapitalization(.never)
+//                    .padding(.leading,10)
+                    .padding(.trailing,-10)
+                    .padding(.bottom,-5)
+                    .scaleEffect(1.8, anchor: .leading)
+                    .frame(height:60)
+             }
+                .frame( minHeight: 55)
+            }
+        }
+//        .frame( height: 50)
+        .padding(.horizontal,10)
+//        .padding(.vertical,5)
+        .disableAutocorrection(true)
+        .background(
+            Color.white
+        )
+            .cornerRadius(5)
+            .shadow(color: Color.black.opacity(0.099), radius: 3)
+        
+    }
+}
+struct InputTextField1_Previews: PreviewProvider {
+    static var previews: some View {
+        InputTextField1(iconName:"x321gray",fieldType:.Password, placeholder: "Name", text: .constant(""))
+        
+    }
+}
+
+
+
+struct UIKitTextField: UIViewRepresentable {
+  var titleKey: String
+  @Binding var text: String
+
+  public init(_ titleKey: String, text: Binding<String>) {
+    self.titleKey = titleKey
+    self._text = text
+  }
+
+  func makeUIView(context: Context) -> UITextField {
+    let textField = UITextField(frame: .zero)
+    textField.delegate = context.coordinator
+    textField.setContentHuggingPriority(.defaultHigh, for: .vertical)
+    textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    textField.placeholder = NSLocalizedString(titleKey, comment: "")
+
+    return textField
+  }
+
+  func updateUIView(_ uiView: UITextField, context: Context) {
+    if text != uiView.text {
+        uiView.text = text
+    }
+  }
+
+  func makeCoordinator() -> Coordinator {
+    Coordinator(self)
+  }
+
+  final class Coordinator: NSObject, UITextFieldDelegate {
+    var parent: UIKitTextField
+
+    init(_ textField: UIKitTextField) {
+      self.parent = textField
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+//      guard textField.markedTextRange == nil, parent.text != textField.text else {
+//        return
+//      }
+      parent.text = textField.text ?? ""
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      textField.resignFirstResponder()
+      return true
+    }
+  }
+}
+
+
+
+struct InputTextFieldKit: View {
+    @State var iconName : String? = ""
+    @State var iconColor : Color? = .clear
+    @State var fieldType : inputfields? = .Default
+
+    var placeholder : String
+    @State var placeholderColor : Color? = .gray.opacity(0.5)
+
+    @Binding var text: String
+    let screenWidth = UIScreen.main.bounds.size.width - 55
+    
+    var body: some View {
+        HStack{
+            if iconName != "" || iconName != nil{
+                Image(iconName ?? "")
+                    .renderingMode( iconColor != .clear ? .template:.original)
+                    .foregroundColor(iconColor == .clear ? .clear:iconColor)
+                    .font(.system(size: 15))
+            }else{
+            }
+            
+            ZStack (alignment:.leading){
+                Text(placeholder)
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                    .foregroundColor(placeholderColor == .red ?  .red:placeholderColor)
+                    .offset(y: text.isEmpty ? 0 : -20)
+                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+                    .padding(.leading,fieldType == .Phone ? text.isEmpty ? 55:0:0)
+                
+                HStack{
+                    if fieldType == .Phone{
+                        Text("+966 |")
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                        .foregroundColor(.gray.opacity(0.5))
+                    }
+//                TextField("",text:$text)
+                    UIKitTextField("", text: $text)
+
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    .autocapitalization(.none)
+                    .textInputAutocapitalization(.never)
+                    .frame( minHeight: 50)
+
+             }
+            }
+        }
+        .frame( height: 50)
+        .padding(.horizontal,10)
+//        .padding(.vertical,5)
+        .disableAutocorrection(true)
+        .background(
+            Color.white
+        )
+            .cornerRadius(5)
+            .shadow(color: Color.black.opacity(0.099), radius: 3)
+        
+    }
+}
+struct InputTextFieldkit_Previews: PreviewProvider {
+    static var previews: some View {
+        InputTextFieldKit(iconName:"x321gray",fieldType:.Password, placeholder: "Name", text: .constant(""))
+        
+    }
+}

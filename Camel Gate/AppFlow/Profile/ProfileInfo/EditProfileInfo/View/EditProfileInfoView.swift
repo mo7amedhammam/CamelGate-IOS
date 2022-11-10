@@ -11,6 +11,11 @@ import Alamofire
 enum ProfileStep{
     case create, update
 }
+//enum FocusElement: Hashable {
+//    case name
+//    case email
+//}
+
 
 struct EditProfileInfoView: View {
     @AppStorage("language")
@@ -40,10 +45,11 @@ struct EditProfileInfoView: View {
     @EnvironmentObject var imageVM : imageViewModel
   
     var years:[String] = []
-    
+    @FocusState var inFocus: Int?
+
     var body: some View {
         ZStack{
-            ScrollView{
+            ScrollView(showsIndicators:false){
                 ZStack(alignment:.bottomTrailing){
                     Button(action: {
                         // here if you want to preview image
@@ -85,21 +91,67 @@ struct EditProfileInfoView: View {
                             // card is here
                         }
                         
+                        VStack{
                         InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
+                                .focused($inFocus,equals:1)
+                                .onTapGesture(perform: {
+                                    inFocus = 1
+                                })
+//                                .textFieldStyle(RoundedBorderTextFieldStyle())
 
+//                        InputTextField1(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
+                            
+//                            InputTextField1(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
+//                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr24:Font.camelfonts.Reg24)
+//
+//                            InputTextField1(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
+//                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr24:Font.camelfonts.Reg24)
+
+//                        InputTextField22(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
+                        }
+                        
                         //MARK: - birthdate and gender -
                         HStack{
-                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr)
-                            //                        .disabled(true)
-                                .overlay(content: {
-                                    HStack{
+//                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr)
+//                                                    .disabled(true)
+//                                .overlay(content: {
+//                                    HStack{
+//                                        DatePicker("           ", selection: $profileVM.Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
+//                                            .opacity(0.02)
+//                                            .labelsHidden()
+//                                            .frame(minHeight:50)
+////                                        Spacer()
+//                                        Image(systemName:language.rawValue == "en" ? "chevron.right":"chevron.left")
+//                                            .foregroundColor(                                    Color("lightGray").opacity(0.5))
+//                                            .padding(.horizontal)
+//                                    }
+////                                    .frame(minHeight:50)
+//
+//                                })
+                            
+                            
+                            
+                            GeometryReader {g in
+                                InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr)
+                                                        .disabled(true)
+                                    .overlay(content: {
                                         DatePicker("", selection: $profileVM.Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
                                             .opacity(0.02)
-                                        Spacer()
-                                        Image(systemName:language.rawValue == "en" ? "chevron.right":"chevron.left")
-                                            .foregroundColor(                                    Color("lightGray").opacity(0.5))
-                                    }.padding(.horizontal)
+                                            .labelsHidden()
+                                            .frame(minHeight:50)
+                                            .frame(minWidth:g.size.width)
+                                        HStack{
+                                                            Spacer()
+                                            Image(systemName:language.rawValue == "en" ? "chevron.right":"chevron.left")
+                                                .foregroundColor(                                    Color("lightGray").opacity(0.5))
+                                                .padding(.horizontal)
+                //                                .frame(width:20)
+
+                                        }
+                //                        .frame(minWidth:g.size.width)
+
                                 })
+                            }
                             
                             
                             InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male".localized(language)):.constant("Female".localized(language)))
@@ -114,10 +166,14 @@ struct EditProfileInfoView: View {
                                             Spacer()
                                             Image(systemName: "chevron.down")
                                                 .foregroundColor(                                    Color("lightGray").opacity(0.5))
+                                                .padding(.trailing)
 
                                         }
-                                        .padding(.trailing)
+
+//                                        .padding(.vertical,-20)
                                     }
+                                    .frame(minHeight:50)
+
                                 })
                         }
                         
@@ -138,10 +194,11 @@ struct EditProfileInfoView: View {
                                         Spacer()
                                         Image(systemName: "chevron.down")
                                             .foregroundColor(                                    Color("lightGray").opacity(0.5))
-
+                                            .padding(.trailing)
                                     }
-                                    .padding(.trailing)
                                 }
+                                .frame(minHeight:50)
+
                             })
                         
                         //MARK: - resident and Id -
@@ -171,10 +228,12 @@ struct EditProfileInfoView: View {
                                                 Spacer()
                                                 Image(systemName: "chevron.down")
                                                     .foregroundColor(Color("lightGray").opacity(0.5))
-
+                                                    .padding(.trailing)
                                             }
-                                            .padding(.trailing)
-                                        }
+                                        
+                                    }
+                                    .frame(minHeight:50)
+
                                     })
                                 
                                 InputTextField(iconName: "", placeholder: "Id".localized(language), placeholderColor:(profileVM.validations == .ResidentId && profileVM.ValidationMessage != "") ? .red:.gray.opacity(0.5), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
@@ -187,11 +246,18 @@ struct EditProfileInfoView: View {
                                     .onChange(of: profileVM.borderId  ){ newval in
                                         profileVM.borderId =  String(newval.prefix(profileVM.RedisentNumLength))
                                     }
+                                    .focused($inFocus,equals:2)
+                                    .onTapGesture(perform: {
+                                        inFocus = 2
+                                    })
                             }
                         }
                         
                         InputTextField(iconName: "Shipments",iconColor: Color("OrangColor"), placeholder: "Email".localized(language), text:$profileVM.Email)
-                        
+                            .focused($inFocus,equals:3)
+                            .onTapGesture(perform: {
+                                inFocus = 3
+                            })
                         VStack {
                             if profileVM.validations == .DriverLicense {
                                 HStack{
@@ -206,6 +272,10 @@ struct EditProfileInfoView: View {
                                 .onChange(of: profileVM.LicenseNumber  ){ newval in
                                     profileVM.LicenseNumber =  String(newval.prefix(profileVM.LicenseNumLength))
                             }
+                                .focused($inFocus,equals:4)
+                                .onTapGesture(perform: {
+                                    inFocus = 4
+                                })
                         }
                         
                         InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: $profileVM.LicenseExpireDateStr)
@@ -214,11 +284,13 @@ struct EditProfileInfoView: View {
                                 HStack(){
                                     DatePicker("", selection: $profileVM.LicenseExpireDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
                                         .opacity(0.02)
+                                        .frame(minHeight:50)
+
                                     Spacer().frame(minWidth:200)
                                     Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                                         .foregroundColor(Color("lightGray").opacity(0.5))
-
-                                }.padding(.horizontal)
+                                        .padding(.horizontal)
+                                }
                             })
                         
                         //                    InputTextField(iconName: "ic_pin_orange",iconColor: Color("OrangColor"), placeholder: "Location".localized(language), text: .constant("25 ehsan st., Aggamy, Alexandria"))
@@ -264,9 +336,11 @@ struct EditProfileInfoView: View {
                                         Spacer()
                                         Image(systemName: "chevron.down")
                                             .foregroundColor(Color("lightGray").opacity(0.5))
+                                            .padding(.trailing)
+
                                     }
-//                                    .padding(.trailing)
-                                }.padding()
+                                }
+                                .frame(minHeight:50)
                             })
                         
                         //MARK: - truck manfacturer and model -
@@ -286,10 +360,11 @@ struct EditProfileInfoView: View {
                                             Spacer()
                                             Image(systemName: "chevron.down")
                                                 .foregroundColor(Color("lightGray").opacity(0.5))
-
+                                                .padding(.trailing)
                                         }
-                                        //                                        .padding(.trailing)
-                                    }.padding()
+                                    }
+                                    .frame(minHeight:50)
+                                    
                                 })
                             
                             InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text: $profileVM.TruckManfactureYear)
@@ -306,10 +381,11 @@ struct EditProfileInfoView: View {
                                             Spacer()
                                             Image(systemName: "chevron.down")
                                                 .foregroundColor(Color("lightGray").opacity(0.5))
-
+                                                .padding(.trailing)
                                         }
-                                        //                                        .padding(.trailing)
-                                    }.padding()
+                                    }
+                                    .frame(minHeight:50)
+
                                 })
                         }
                         
@@ -330,13 +406,18 @@ struct EditProfileInfoView: View {
                                             Image(systemName: "chevron.down")
                                                 .foregroundColor(Color("lightGray").opacity(0.5))
 
-                                        }
-                                        //                                        .padding(.trailing)
-                                    }.padding()
+                                                .padding(.trailing)
+                                    }
+                                    }
+                                    .frame(minHeight:50)
                                 })
                             
                             
                             InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: $profileVM.TruckPlate)
+                                .focused($inFocus,equals:5)
+                                .onTapGesture(perform: {
+                                    inFocus = 5
+                                })
                         }
                         VStack {
                             if profileVM.validations == .TruckLicense {
@@ -352,6 +433,10 @@ struct EditProfileInfoView: View {
                                 .onChange(of: profileVM.TruckLicense  ){ newval in
                                     profileVM.TruckLicense =  String(newval.prefix(profileVM.LicenseNumLength))
                             }
+                                .focused($inFocus,equals:6)
+                                .onTapGesture(perform: {
+                                    inFocus = 6
+                                })
                         }
                        
                         
@@ -363,11 +448,14 @@ struct EditProfileInfoView: View {
                                     HStack{
                                         DatePicker("", selection: $profileVM.TruckLicenseIssueDate,in: ...Date(), displayedComponents: [.date])
                                             .opacity(0.02)
+                                            .frame(minHeight:50)
+
                                         Spacer()
                                         Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                                             .foregroundColor(Color("lightGray").opacity(0.5))
 
-                                    }.padding(.horizontal)
+                                    .padding(.horizontal)
+                                    }
                                 })
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                             
@@ -376,11 +464,14 @@ struct EditProfileInfoView: View {
                                     HStack{
                                         DatePicker("", selection: $profileVM.TruckLicenseExpirationDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
                                             .opacity(0.02)
+                                            .frame(minHeight:50)
+
                                         Spacer()
                                         Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                                             .foregroundColor(Color("lightGray").opacity(0.5))
 
-                                    }.padding(.horizontal)
+                                    .padding(.horizontal)
+                                    }
                                 })
                         }
                         
@@ -420,10 +511,13 @@ struct EditProfileInfoView: View {
                 .padding(.horizontal)
                 .onTapGesture(perform: {
                     hideKeyboard()
+                    inFocus = 0
                 })
             
             TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton,trailingButton: taskStatus == .update ? .editButton:Optional.none , trailingAction: {
-                isEditing.toggle()
+                DispatchQueue.main.async(execute: {
+                    isEditing.toggle()
+                })
             })
             
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .white, content: {
@@ -454,7 +548,7 @@ struct EditProfileInfoView: View {
                 profileVM.Drivername = enteredDriverName
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline:.now()+1,execute: {
+            DispatchQueue.main.asyncAfter(deadline:.now()+1.2,execute: {
                 profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
                 profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
             })

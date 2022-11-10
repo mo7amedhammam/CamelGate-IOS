@@ -41,26 +41,134 @@ struct HomeView: View {
                     WalletIcon()
                         .environmentObject(environments)
                     
-                    ScrollView{
+                    List() {
                     if ApprovedShipmentVM.publishedapprovedShipmentModel != nil{
-                        ShipView(ShowMapRedirector:$ShowMapRedirector,longitude:$longitude,latitude:$latitude).shadow(radius: 5)
+                        ShipView(ShowMapRedirector:$ShowMapRedirector,longitude:$longitude,latitude:$latitude)
+                            .shadow(radius: 5)
                             .environmentObject(ApprovedShipmentVM)
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+
                         
                     }
                     FilterHeaderView(action: {
                         showFilter.toggle()
                         FilterTag = .Menu
                     })
-                        .padding(.bottom,-25)
-                                ExtractedView(active: $active, destination: $destination,  selectedShipmentId: $selectedShipmentId)
-                                .environmentObject(ApprovedShipmentVM)
-                                .environmentObject(environments)
-                                .frame( height: (g.size.height / 2)+(hasNotch ? 90:20), alignment: .center)
-                            .padding(.horizontal,-10)
-                    }
-                    .frame( height: (g.size.height / 2)+(hasNotch ? 120:60), alignment: .center)
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
 
-                .padding(.horizontal,10)
+                        .padding(.bottom,-25)
+                        .padding(.horizontal,10)
+//                        ZStack {
+//                            FilteredShipmentsView(active: $active, destination: $destination,  selectedShipmentId: $selectedShipmentId)
+//                                    .environmentObject(ApprovedShipmentVM)
+//                                    .environmentObject(environments)
+//                                    .frame( height: (g.size.height / 2)+(hasNotch ? 90:20), alignment: .center)
+//    //                            .padding(.horizontal,-2)
+//
+//                        }.listRowBackground(Color.clear)
+//                        .listRowSeparator(.hidden)
+                        
+//                        .frame( height: (g.size.height / 2)+(hasNotch ? 120:60), alignment: .center)
+
+                        
+//                        if ApprovedShipmentVM.publishedFilteredShipments.count > ApprovedShipmentVM.MaxResultCount{
+//                            Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
+//                                .frame(height: 1)
+//                                .padding(.horizontal, 5)
+//                                .listRowBackground(Color.clear)
+//                                .listRowSeparator(.hidden)
+//                                .onAppear(perform: {
+//                                    if ApprovedShipmentVM.publishedFilteredShipments.count > 0{
+//                                    ApprovedShipmentVM.SkipCount+=ApprovedShipmentVM.MaxResultCount
+//            //                        ApprovedShipmentVM.GetShipmentsOp = .fetchmoreshipments
+//                                        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
+//                                    }else{
+//
+//                                    }
+//                                })
+//
+//                        }
+            //                    .onChange(of: ApprovedShipmentVM.SkipCount, perform: {newval in
+            //                        ApprovedShipmentVM.SkipCount = newval
+            //                        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
+            //                    })
+
+                        VStack {
+                            
+                            ScrollView(.horizontal , showsIndicators : false) {
+                                HStack {
+                                    if ApprovedShipmentVM.fromCityName != ""{
+                                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) to \(ApprovedShipmentVM.toCityName)", D: {
+                                            ApprovedShipmentVM.fromCityName = ""
+                                            ApprovedShipmentVM.toCityName = ""
+                                            ApprovedShipmentVM.fromCityId = 0
+                                            ApprovedShipmentVM.toCityId = 0
+                                        })
+                                    }
+                                    if ApprovedShipmentVM.fromDateStr != ""{
+                                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format: "dd/MM/yyyy")) to \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: "dd/MM/yyyy"):"")", D: {
+                                            ApprovedShipmentVM.fromDateStr = ""
+                                            ApprovedShipmentVM.toDateStr = ""
+                                            ApprovedShipmentVM.fromDate = Date()
+                                            ApprovedShipmentVM.toDate = Date()
+                                        })
+                                    }
+                                    if ApprovedShipmentVM.shipmentTypesIds != []{
+                                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.shipmentTypesNames.joined(separator: ", "))", D: {
+                                            ApprovedShipmentVM.shipmentTypesIds = []
+                                            ApprovedShipmentVM.shipmentTypesNames = []
+                                        })
+                                    }
+                                }
+                                .padding(.horizontal)
+                            }
+                            
+                            
+                            List($ApprovedShipmentVM.publishedFilteredShipments, id:\.self) { tripItem in
+                                Button(action: {
+                                    active = true
+                                    destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
+                                }, label: {
+                                    tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId)
+                                        .environmentObject(environments)
+                                })
+                                    .onAppear(perform: {
+                                        if tripItem.id == ApprovedShipmentVM.publishedFilteredShipments.last?.id{
+                                            ApprovedShipmentVM.SkipCount+=ApprovedShipmentVM.MaxResultCount
+                                            ApprovedShipmentVM.GetShipmentsOp = .fetchmoreshipments
+                                            ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
+                                        }
+                                    })
+                                
+                                    .buttonStyle(.plain)
+                                    .listRowBackground(Color.clear)
+                                    .listRowSeparator(.hidden)
+                                    .padding(.horizontal,-12)
+                        }
+                            .listStyle(.plain)
+                            .listStyle(.plain)
+                                .refreshable(action: {
+                                    ApprovedShipmentVM.SkipCount = 0
+                                    ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+                            })
+
+                        }
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                        .frame( height: (g.size.height / 2)+(hasNotch ? 120:60), alignment: .center)
+
+                    }
+                    .padding(.vertical,-30)
+                    .padding(.horizontal,-15)
+
+                    .refreshable {
+                        ApprovedShipmentVM.SkipCount = 0
+                        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+                    }
+                    .listStyle(.plain)
+//                    .frame( height: (g.size.height / 2)+(hasNotch ? 120:60), alignment: .center)
                 .overlay(
                     ZStack{
                         if ApprovedShipmentVM.nodata == true {
@@ -87,15 +195,21 @@ struct HomeView: View {
                 }
                 .padding(.bottom,hasNotch ? 50:50)
             }
+            .overlay(content: {
+                // showing loading indicator
+                AnimatingGif(isPresented: $ApprovedShipmentVM.isLoading)
+            })
             .environmentObject(environments)
                     .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             .navigationBarHidden(true)
             .onAppear(perform: {
                 selectedShipmentId = 0
                 ApprovedShipmentVM.GetApprovedShipment()
-                ApprovedShipmentVM.GetFilteredShipments()
+                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
             })
-
+            .onDisappear(perform: {
+                ApprovedShipmentVM.resetFilter()
+            })
             .onChange(of: selectedShipmentId, perform: {newval in
                     active = true
                 destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(environments))
@@ -114,12 +228,10 @@ struct HomeView: View {
                         })
                     }
                     Spacer(minLength: 40)
-                }.padding(.bottom)
+                }
+                    .padding(.bottom)
             )
-            .overlay(content: {
-                // showing loading indicator
-                AnimatingGif(isPresented: $ApprovedShipmentVM.isLoading)
-            })
+
         // Alert with no internet connection
             .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
                 Alert(title: Text(ApprovedShipmentVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {

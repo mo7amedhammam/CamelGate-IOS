@@ -22,7 +22,7 @@ enum EndPoints: String {
     case UploadApprovedShipment = "Shipment/ShipmentUploaded"
     case FinishApprovedShipment = "Shipment/ShipmentDroppedAndFinished"
 
-    case GetFiltered = "Shipment/GetFiltered"
+    case GetFiltered = "Shipment/GetPagedFiltered"
     
     case appliedShipment = "Shipment/GetDriverAppliedShipments"
     case upcomingShipment = "Shipment/GetDriverUpcomingShipments"
@@ -38,5 +38,6 @@ enum EndPoints: String {
     case getNationalities = "Nationality/GetAllForList"
     case ChangePassword = "User/ChangePassword"
     case ChangeForgetPassword = "User/ChangeForgetPassword"
-
+    case GetGaiedWallet = "Wallet/GetWalletGained"
+    case GetWithDrawnWallet = "Wallet/GetWalletWithdrawn"
 }

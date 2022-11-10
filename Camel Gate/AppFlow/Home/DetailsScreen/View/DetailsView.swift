@@ -120,7 +120,7 @@ struct DetailsView: View {
                                 Text("Shipment_ID".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_#")
-                                    Text("\(detailsVM.publishedUserLogedInModel.id ?? 2)")
+                                    Text("\(detailsVM.publishedUserLogedInModel.code ?? "")")
                                         .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                 }
                             }
@@ -220,7 +220,6 @@ struct DetailsView: View {
                                         Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
                                         Text("Location".localized(language)).foregroundColor(Color(#colorLiteral(red: 0.2833708227, green: 0.149017632, blue: 0.4966977239, alpha: 1)))
                                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
-                                        
                                     }.cornerRadius(8)
                                 }
                                 Spacer()

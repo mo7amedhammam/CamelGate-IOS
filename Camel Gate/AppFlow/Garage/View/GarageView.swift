@@ -19,24 +19,69 @@ struct GarageView: View {
     @Binding var FilterTag : FilterCases
     @Binding var showFilter:Bool
     @State var selectedShipmentId = 0
+    @State var topPadding:CGFloat = 90
 
     var body: some View {
         ZStack{
-            
-//            List {
-//                PullToRefreshView(bg:.clear,onRefresh: {
-//                                    ApprovedShipmentVM.GetFilteredShipments()
-//                })
-                ExtractedView(active: $active, destination: $destination, selectedShipmentId: $selectedShipmentId)
-                        .environmentObject(ApprovedShipmentVM)
-                        .padding(.top,hasNotch ? 110:90)
+            VStack {
+                Spacer().frame(height:hasNotch ? checkforpadding()+20:checkforpadding())
+                
+                ScrollView(.horizontal , showsIndicators : false) {
+                    HStack {
+                        if ApprovedShipmentVM.fromCityName != ""{
+                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) to \(ApprovedShipmentVM.toCityName)", D: {
+                                ApprovedShipmentVM.fromCityName = ""
+                                ApprovedShipmentVM.toCityName = ""
+                                ApprovedShipmentVM.fromCityId = 0
+                                ApprovedShipmentVM.toCityId = 0
+                            })
+                        }
+                        if ApprovedShipmentVM.fromDateStr != ""{
+                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format: "dd/MM/yyyy")) to \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: "dd/MM/yyyy"):"")", D: {
+                                ApprovedShipmentVM.fromDateStr = ""
+                                ApprovedShipmentVM.toDateStr = ""
+                                ApprovedShipmentVM.fromDate = Date()
+                                ApprovedShipmentVM.toDate = Date()
+                            })
+                        }
+                        if ApprovedShipmentVM.shipmentTypesIds != []{
+                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.shipmentTypesNames.joined(separator: ", "))", D: {
+                                ApprovedShipmentVM.shipmentTypesIds = []
+                                ApprovedShipmentVM.shipmentTypesNames = []
+                            })
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+                
+                List($ApprovedShipmentVM.publishedFilteredShipments, id:\.self) { tripItem in
+                    Button(action: {
+                        active = true
+                        destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
+                    }, label: {
+                        tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId).environmentObject(imageVM)
+                    })
+                        .onAppear(perform: {
+                            if tripItem.id == ApprovedShipmentVM.publishedFilteredShipments.last?.id{
+                                ApprovedShipmentVM.SkipCount+=ApprovedShipmentVM.MaxResultCount
+                                ApprovedShipmentVM.GetShipmentsOp = .fetchmoreshipments
+                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
+                            }
+                        })
+                    
+                        .buttonStyle(.plain)
+                                                    .listRowBackground(Color.clear)
+                                                    .listRowSeparator(.hidden)
+                        .padding(.horizontal,-12)
+            }
+                .listStyle(.plain)
+                .listStyle(.plain)
+                    .refreshable(action: {
+                        ApprovedShipmentVM.SkipCount = 0
+                        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+                })
 
-//                    .listRowBackground(Color.clear)
-//            }.listStyle(.plain)
-//                .padding(.horizontal,-10)
-//                .refreshable(action: {
-//                ApprovedShipmentVM.GetFilteredShipments()
-//                })
+            }
 
             TitleBar(Title: "Garage_Shipments".localized(language), navBarHidden: true, trailingButton: .filterButton, applyStatus: Optional.none, trailingAction: {
                 showFilter.toggle()
@@ -55,7 +100,11 @@ struct GarageView: View {
 
         .onAppear(perform: {
             selectedShipmentId = 0
-            ApprovedShipmentVM.GetFilteredShipments()
+            ApprovedShipmentVM.SkipCount = 0
+            ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+        })
+        .onDisappear(perform: {
+            ApprovedShipmentVM.resetFilter()
         })
         .onChange(of: selectedShipmentId, perform: {newval in
             if selectedShipmentId == newval{
@@ -85,6 +134,23 @@ struct GarageView: View {
                     ApprovedShipmentVM.isAlert = false
                 }))
             })
+    }
+    func checkforpadding()->CGFloat{
+        if    ApprovedShipmentVM.fromCityId != 0
+                ||                ApprovedShipmentVM.fromCityName != ""
+                ||               ApprovedShipmentVM.toCityId != 0
+                ||             ApprovedShipmentVM.toCityName != ""
+                ||           ApprovedShipmentVM.fromDateStr != ""
+                ||         ApprovedShipmentVM.toDateStr != ""
+                ||       ApprovedShipmentVM.shipmentTypesIds   != []
+                ||     ApprovedShipmentVM.shipmentTypesNames != []{
+            return 140
+//            return true
+        }else{
+//            return false
+            return 120
+        }
+                
     }
 }
 

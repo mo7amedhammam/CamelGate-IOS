@@ -9,6 +9,27 @@ import Foundation
 import SwiftUI
 
 // MARK: - Datum
+struct FilteredShipmentModel: Codable, Hashable {
+    
+    static func == (lhs: FilteredShipmentModel, rhs: FilteredShipmentModel) -> Bool {
+        lhs.items?.first?.id == rhs.items?.first?.id && lhs.items?.first?.code == rhs.items?.first?.code
+    }
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(items?.first?.id)
+            hasher.combine(items?.first?.code)
+        }
+
+    var totalCount: Int?
+    var items: [ShipmentModel]?
+   
+    enum CodingKeys: String, CodingKey {
+        case totalCount = "totalCount"
+        case items = "items"
+    }
+}
+
+
+// MARK: - Datum
 struct ShipmentModel: Codable, Hashable, Identifiable {
     static func == (lhs: ShipmentModel, rhs: ShipmentModel) -> Bool {
         lhs.id == rhs.id && lhs.code == rhs.code
@@ -18,15 +39,14 @@ struct ShipmentModel: Codable, Hashable, Identifiable {
             hasher.combine(code)
         }
 
-    
     var id: Int?
     var code, imageURL: String?
     var estimateTime: String?
     var lowestOffer, offersCount, companyRate, companyRatesCount: Int?
     var totalDistance:Double?
-    var lowestOfferDriverRate, lowestOfferDriverRatesCount, driverOfferStatusID: Int?
+    var lowestOfferDriverRate, lowestOfferDriverRatesCount: Int?
+    var driverOfferID, driverOfferValue,driverOfferStatusID: Int?
     var driverOfferStatusName: String?
-    var driverOfferID, driverOfferValue: Int?
     var shipmentDateFrom: String?
 //    var shipmentTimeFrom: shipmentTimeFrom?
     var shipmentDateTo: String?

@@ -7,18 +7,20 @@
 
 import Foundation
 import SwiftUI
-struct ExtractedView: View {
+struct FilteredShipmentsView: View {
     var language = LocalizationService.shared.language
-
+    
     @EnvironmentObject var imageVM : imageViewModel
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
     @Binding var active : Bool
     @Binding var destination : AnyView
     @Binding var selectedShipmentId : Int
-
+    
     var body: some View {
-        VStack{
+//        List{
+                       VStack {
             ScrollView(.horizontal , showsIndicators : false) {
+                
                 HStack {
                     if ApprovedShipmentVM.fromCityName != ""{
                         FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) to \(ApprovedShipmentVM.toCityName)", D: {
@@ -26,7 +28,6 @@ struct ExtractedView: View {
                             ApprovedShipmentVM.toCityName = ""
                             ApprovedShipmentVM.fromCityId = 0
                             ApprovedShipmentVM.toCityId = 0
-
                         })
                     }
                     if ApprovedShipmentVM.fromDateStr != ""{
@@ -35,7 +36,6 @@ struct ExtractedView: View {
                             ApprovedShipmentVM.toDateStr = ""
                             ApprovedShipmentVM.fromDate = Date()
                             ApprovedShipmentVM.toDate = Date()
-
                         })
                     }
                     if ApprovedShipmentVM.shipmentTypesIds != []{
@@ -44,38 +44,71 @@ struct ExtractedView: View {
                             ApprovedShipmentVM.shipmentTypesNames = []
                         })
                     }
-                    
                 }
-                .padding(.top,25)
+                .padding(.horizontal)
+                                .padding(.top,25)
             }
-            List() {
-                    ForEach($ApprovedShipmentVM.publishedFilteredShipments, id:\.self) { tripItem in
-                            Button(action: {
-                                active = true
-                                destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
-                            }, label: {
-                                tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId).environmentObject(imageVM)
-                            })
-                                .buttonStyle(.plain)
-                                .listRowBackground(Color.clear)
-                            .listRowSeparator(.hidden)
-                        .padding(.horizontal,-10)
-                    }
-            }
-            .refreshable(action: {
-                ApprovedShipmentVM.GetFilteredShipments()
-            })
-                .listStyle(.plain)
-        }        
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+            //            ScrollView {
+            //                LazyVStack {
+//            ForEach($ApprovedShipmentVM.publishedFilteredShipments, id:\.self) { tripItem in
+//                Button(action: {
+//                    active = true
+//                    destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
+//                }, label: {
+//                    tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId).environmentObject(imageVM)
+//                })
+//                    .buttonStyle(.plain)
+//                //                                .listRowBackground(Color.clear)
+//                //                                .listRowSeparator(.hidden)
+//                    .padding(.horizontal,-12)
+                //                                        .onAppear(perform: {
+                //                                            if tripItem.id == ApprovedShipmentVM.publishedFilteredShipments.last?.id{
+                //                                                ApprovedShipmentVM.SkipCount+=ApprovedShipmentVM.MaxResultCount
+                //                                                    ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
+                //                                            }
+                //                                        })
+//            }
+//            .listRowBackground(Color.clear)
+//            .listRowSeparator(.hidden)
+            
+            if ApprovedShipmentVM.publishedFilteredShipments.count > 3{
+                Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
+                    .frame(height: 1)
+                    .padding(.horizontal, 5)
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    .onAppear(perform: {
+                        if ApprovedShipmentVM.publishedFilteredShipments.count > 0{
+                            ApprovedShipmentVM.SkipCount+=ApprovedShipmentVM.MaxResultCount
+                            ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
+                        }else{
+                            
+                        }
+                    })
                 
+            }
+            //                }
+            //            }
+        }
+        .padding(.top,-40)
+        .padding(.horizontal, 5)
+        .refreshable(action: {
+            ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+        })
+        .listStyle(.plain)
+        .onAppear(perform: {
+            ApprovedShipmentVM.SkipCount = 0
+        })
         .onChange(of: ApprovedShipmentVM.fromCityName, perform: {_ in
-            ApprovedShipmentVM.GetFilteredShipments()
+            ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
         })
         .onChange(of: ApprovedShipmentVM.fromDateStr, perform: {_ in
-            ApprovedShipmentVM.GetFilteredShipments()
+            ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
         })
         .onChange(of: ApprovedShipmentVM.shipmentTypesNames, perform: {_ in
-            ApprovedShipmentVM.GetFilteredShipments()
+            ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
         })
     }
 }
@@ -83,10 +116,10 @@ struct ExtractedView: View {
 struct ExtractedView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            ExtractedView(active: .constant(false), destination: .constant(AnyView(ChatsListView())), selectedShipmentId: .constant(0))
+            FilteredShipmentsView(active: .constant(false), destination: .constant(AnyView(ChatsListView())), selectedShipmentId: .constant(0))
                 .environmentObject(imageViewModel())
                 .environmentObject(ApprovedShipmentViewModel())
-
+            
         }
     }
 }

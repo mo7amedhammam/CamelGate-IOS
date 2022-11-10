@@ -30,6 +30,7 @@ extension Font {
         let LightAr22 = Font.custom("GESSUniqueLight-Light", size: 22)
         let LightAr24 = Font.custom("GESSUniqueLight-Light", size: 24)
 //
+        let RegAr9 = Font.custom("GESSTextMedium-Medium", size: 9)
         let RegAr11 = Font.custom("GESSTextMedium-Medium", size: 11)
         let RegAr12 = Font.custom("GESSTextMedium-Medium", size: 12)
         let RegAr14 = Font.custom("GESSTextMedium-Medium", size: 14)
@@ -68,6 +69,7 @@ extension Font {
         let Light22 = Font.custom("MyriadConceptRoman-Light", size: 22)
         let Light24 = Font.custom("MyriadConceptRoman-Light", size: 24)
 
+        let Reg9 = Font.custom("MyriadConceptRoman-Regular", size: 9)
         let Reg11 = Font.custom("MyriadConceptRoman-Regular", size: 11)
         let Reg12 = Font.custom("MyriadConceptRoman-Regular", size: 12)
         let Reg14 = Font.custom("MyriadConceptRoman-Regular", size: 14)

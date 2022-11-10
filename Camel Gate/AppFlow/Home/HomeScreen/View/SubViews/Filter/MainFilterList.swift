@@ -14,7 +14,7 @@ struct MainFilterView: View {
     @EnvironmentObject var shipmentVm : ApprovedShipmentViewModel
     @Binding var FilterTag:FilterCases
     @Binding var showFilter:Bool
-    
+
     var body: some View {
         
         switch FilterTag{

@@ -27,6 +27,7 @@ struct MainTabBar : View {
     @State var tabs = ["Home","Shipments","Garage","Wallet","Profile"]
     @State var FilterTag : FilterCases = .Menu
     @State var showFilter = false
+//    @State var resetFilter = false
     @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
     @StateObject var environments = imageViewModel()
     var body: some View {
@@ -45,7 +46,8 @@ struct MainTabBar : View {
                             .environmentObject(ApprovedShipmentVM)
                         
                     } else if self.selectedTab.localized(language) == "Wallet".localized(language){
-                        WalletView()
+                        WalletView( SelectedTab: $selectedTab)
+                            .environmentObject(environments)
                         
                     }else if self.selectedTab.localized(language) == "Profile".localized(language){
                         ProfileView()

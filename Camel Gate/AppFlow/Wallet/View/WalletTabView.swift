@@ -12,6 +12,9 @@ struct WalletView: View {
     var language = LocalizationService.shared.language
     @State var WalletCategory = ["Gained","Withdrawn"]
     @State var selected = "Gained"
+    @StateObject var WalletVM = WalletViewModel()
+    @EnvironmentObject var environments : imageViewModel
+    @Binding var SelectedTab : String
     var body: some View {
         ZStack{
             VStack{
@@ -23,7 +26,7 @@ struct WalletView: View {
                         Spacer()
                     }
                 }else{
-                    ScrollView {
+//                    ScrollView {
                         VStack{
                             ZStack{
                                 Color(#colorLiteral(red: 0.943169415, green: 0.9325224757, blue: 0.9590196013, alpha: 1))
@@ -31,10 +34,10 @@ struct WalletView: View {
                                     .resizable()
                                 VStack{
                                     HStack(alignment:.bottom){
-                                        Text("17,600")
+                                        Text("\(WalletVM.publishedUserWalletModel.currentBalance ?? 0)")
                                             .fontWeight(.bold)
                                             .foregroundColor(Color("Base_Color"))
-                                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr20:Font.camelfonts.SemiBold20)
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr24:Font.camelfonts.SemiBold24)
 
                                         
                                         Text("SAR".localized(language))
@@ -56,7 +59,13 @@ struct WalletView: View {
                                     Button(action: {
                                         withAnimation{
                                             self.selected = Category
+                                            if selected == "Gained"{
+                                                WalletVM.GetWallet(type: .Gained)
+                                            }else if selected == "Withdrawn"{
+                                                WalletVM.GetWallet(type: .Withdrawn)
+                                            }
                                         }
+                                        print("----\(WalletVM.publishedUserWalletModel.gainedBalance ?? 0)")
                                     }, label: {
                                         HStack(alignment: .center){
                                             Text(Category )
@@ -73,37 +82,85 @@ struct WalletView: View {
                                             RoundedRectangle(cornerRadius: 8)
                                                 .stroke(.blue, lineWidth:self.selected == Category ? 1:0))
                                         }}
-                                        .padding(.top, -30.0)
-//                            HStack{
-//                                Button(action: {}) {
-//                                    Image("ic_pervious")
-//                                }
-//                                Button(action: {}) {
-//                                    Image("ic_next")
-//                                }
-//                            }
+                                        .padding(.top, -60)
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(height: 1)
                             HStack {
                                 Text("Payment_Details".localized(language))
-                                    .font(Font.camelfonts.Bold14)
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                                     .foregroundColor(Color.gray)
                                 Spacer()
+                                Text("Total_:".localized(language))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+                                    .foregroundColor(Color.gray)
+                                
+                               Text("\(WalletVM.publishedUserWalletModel.gainedBalance ?? 0)")
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+                                    .foregroundColor(Color.gray)
                             }
-                            .frame(height: 40)
-                            .padding(.leading , 20.0)
+                            .frame(height: 30)
+                            .padding(.horizontal , 20.0)
+                            Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(height: 1)
+
+                            
+                            if WalletVM.publishedUserWalletModel.shipmentPayments == []{
+                                
+                                VStack(spacing:15){
+                                    Spacer()
+                                    Image("nopayment")
+                                    Text("No_Payment_had_been_done_yet!".localized(language))
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
+                                        .foregroundColor(.black).opacity(0.8)
+
+                                    Text("Get_accepted_at_some_shipments\nand_gain_some_money...".localized(language))
+                                        .multilineTextAlignment(.center)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                        .foregroundColor(.gray)
+
+                                    Button(action: {
+                                        withAnimation{
+                                         SelectedTab = "Shipments".localized(language)
+                                        }
+                                    }, label: {
+                                        HStack {
+                                            Text("Check_Shipments".localized(language))
+                                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+
+                                        }
+                                        .frame(minWidth: 0, maxWidth: .infinity)
+                                        .frame(height:22)
+                                        .padding()
+                                        .foregroundColor(.white)
+                                        .background(
+                                            LinearGradient(
+                                                gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
+                                                startPoint: .trailing,
+                                                endPoint: .leading
+                                            )
+                                        )
+                                        .cornerRadius(12)
+                                        .padding(.horizontal, 100)
+                                    })
+                                    
+                                    Spacer()
+
+                                }
+                                .padding(.bottom,50)
+                                
+                            }else{
                             ScrollView(.vertical , showsIndicators : false){
-                                VStack{
-                                    ForEach(0 ..< 5) { tripItem in
-                                        WalletViewCell(Category: $selected)
-                                            .padding(.horizontal)
+//                                VStack(spacing:0){
+                                    ForEach(WalletVM.publishedUserWalletModel.shipmentPayments ?? [],id:\.self) { walletitem in
+                                        WalletViewCell(Category: $selected,walletitem:walletitem)
+                                            .environmentObject(environments)
+                                            .padding(.horizontal,10)
                                     }
                                 }
                             }
                         }
-                    }
+//                    }
                 }
             }
-            TitleBar(Title: "Wallet", navBarHidden: true, trailingButton: .filterButton ,trailingAction: {
+            TitleBar(Title: "Wallet", navBarHidden: true, trailingButton: TopButtons.none ,trailingAction: {
             })
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
@@ -113,7 +170,7 @@ struct WalletView: View {
 struct WalletView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            WalletView()
+            WalletView( SelectedTab: .constant("Wallet"))
         }
     }
 }

@@ -14,16 +14,24 @@ enum approvedshipmentOperations {
 case start, Upload, finish
 }
 
+enum GetShipmentsOperations{
+    case fetchshipments, fetchmoreshipments
+}
+
 class ApprovedShipmentViewModel: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
     let passthroughModelSubject = PassthroughSubject<BaseResponse<ApprovedShipmentModel>, Error>()
-    let passToFilteredShipmentsObject = PassthroughSubject<BaseResponse<[ShipmentModel]>, Error>()
+    let passToFilteredShipmentsObject = PassthroughSubject<BaseResponse<FilteredShipmentModel>, Error>()
 
     private let authServices = MoyaProvider<HomeServices>()
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
+    @Published var GetShipmentsOp : GetShipmentsOperations = .fetchshipments
+    @Published var MaxResultCount                      :Int = 10
+    @Published var SkipCount                            :Int = 0
+
     @Published var ApprovedshipmentId = 0
     
     @Published var lat = 30.18
@@ -41,7 +49,6 @@ class ApprovedShipmentViewModel: ObservableObject {
     @Published var shipmentTypesIds:[Int] = []
     @Published var shipmentTypesNames:[String] = []
 
-    
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
@@ -68,15 +75,28 @@ class ApprovedShipmentViewModel: ObservableObject {
         } receiveValue: { [self](modeldata) in
             nodata = false
             DispatchQueue.main.async {
-                if modeldata.data?.isEmpty ?? false || modeldata.data == []{
+                if (modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []) && GetShipmentsOp == .fetchshipments{
                     withAnimation{
                         publishedFilteredShipments = []
                     }
                     nodata = true
                 }else{
-                    withAnimation{
-                        publishedFilteredShipments = modeldata.data ?? []
+                    switch self.GetShipmentsOp {
+                    case .fetchshipments:
+                        publishedFilteredShipments = modeldata.data?.items ?? []
+//                        if modeldata.data?.isEmpty ?? false || modeldata.data == []{
+//                            nodata = true
+//                        }
+                    case .fetchmoreshipments:
+                        if modeldata.data?.items?.count ?? 0 > 0{
+                        publishedFilteredShipments.append( contentsOf: modeldata.data?.items ?? [])
+                        }else{
+                        }
                     }
+                    
+//                    withAnimation{
+//                        publishedFilteredShipments = modeldata.data ?? []
+//                    }
                 }
             }
         }.store(in: &cancellables)
@@ -121,9 +141,12 @@ class ApprovedShipmentViewModel: ObservableObject {
     }
     
     // MARK: - API Services
-    func GetFilteredShipments(){
+    func GetFilteredShipments(operation:GetShipmentsOperations){
+        self.GetShipmentsOp = operation
         var params : [String : Any] =
         [
+            "maxResultCount": MaxResultCount,
+            "skipCount":SkipCount,
             "lat"                          : lat ,
             "lang"                         : lang
         ]
@@ -158,7 +181,7 @@ class ApprovedShipmentViewModel: ObservableObject {
             }
             else{
 //                        guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<[ShipmentModel]> = try BGDecoder.decode(data: result.data )
+            let data : BaseResponse<FilteredShipmentModel> = try BGDecoder.decode(data: result.data )
             print(data)
                 if data.messageCode == 200 {
                 DispatchQueue.main.async {
@@ -224,5 +247,18 @@ class ApprovedShipmentViewModel: ObservableObject {
 
         }
     }
-    
+
+    func resetFilter(){
+        fromCityId = 0
+        fromCityName = ""
+        toCityId = 0
+        toCityName = ""
+        fromDate = Date()
+        fromDateStr = ""
+        toDate = Date()
+        toDateStr = ""
+        shipmentTypesIds   = []
+        shipmentTypesNames = []
+        GetFilteredShipments(operation: .fetchshipments)
+    }
 }

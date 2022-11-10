@@ -13,7 +13,7 @@ struct FilterMenu:View{
     
     @Binding var FilterTag:FilterCases
     @Binding var showFilter:Bool
-    
+
     var body: some View{
         VStack{
             Spacer()
@@ -114,8 +114,8 @@ struct FilterMenu:View{
             
             HStack{
                 Button( action: {
-                    
-                    resetFilter()
+//                    resetFilter()
+                    ShipmentVM.resetFilter()
                     showFilter.toggle()
                 }, label: {
                     Text("Reset".localized(language))
@@ -125,7 +125,6 @@ struct FilterMenu:View{
                     .padding(.horizontal,30)
                 
                 Button(action: {
-                    
                     applyFilter()
                     showFilter.toggle()
                 }, label: {
@@ -139,37 +138,42 @@ struct FilterMenu:View{
                     .background(Color("blueColor"))
                     .cornerRadius(12)
                 })
-                
             }
             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-            
             .frame( height: 60)
             .padding(.horizontal)
             .padding(.bottom,10)
         }
         .frame(height:(UIScreen.main.bounds.height/2)-90)
+//        .onChange(of: ShipmentVM.ResetFilter, perform: {newval in
+//            if newval == true{
+//                DispatchQueue.main.async {
+//                resetFilter()
+//                }
+//            }
+//        })
         
     }
     //MARK: --- Functions ----
     
     func applyFilter(){
-        ShipmentVM.GetFilteredShipments()
+        ShipmentVM.GetFilteredShipments(operation: .fetchshipments)
     }
     
-    func resetFilter(){
-        ShipmentVM.fromCityId = 0
-        ShipmentVM.fromCityName = ""
-        
-        ShipmentVM.toCityId = 0
-        ShipmentVM.toCityName = ""
-        ShipmentVM.fromDate = Date()
-        ShipmentVM.fromDateStr = ""
-        ShipmentVM.toDate = Date()
-        ShipmentVM.toDateStr = ""
-        ShipmentVM.shipmentTypesIds   = []
-        ShipmentVM.shipmentTypesNames = []
-        ShipmentVM.GetFilteredShipments()
-    }
+//    func resetFilter(){
+//        ShipmentVM.fromCityId = 0
+//        ShipmentVM.fromCityName = ""
+//
+//        ShipmentVM.toCityId = 0
+//        ShipmentVM.toCityName = ""
+//        ShipmentVM.fromDate = Date()
+//        ShipmentVM.fromDateStr = ""
+//        ShipmentVM.toDate = Date()
+//        ShipmentVM.toDateStr = ""
+//        ShipmentVM.shipmentTypesIds   = []
+//        ShipmentVM.shipmentTypesNames = []
+//        ShipmentVM.GetFilteredShipments()
+//    }
 }
 
 struct FilterMenu_Previews: PreviewProvider {

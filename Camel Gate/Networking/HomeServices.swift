@@ -24,7 +24,7 @@ enum HomeServices {
     case currentShipments
     
     case ShipmentDetails(parameters : [String:Any])
-    case GetCities(parameters:[String:Any])
+    case GetCities
     case GetShipmentTypes
 
     case setOffer(parameters:[String:Any])
@@ -34,6 +34,8 @@ enum HomeServices {
     case ChangePassword(parameters:[String:Any])
     case ChangeForgetPassword(parameters:[String:Any])
 
+    case getGainedWallet
+    case getWithdrawnWallet
 
 }
 extension HomeServices : URLRequestBuilder {
@@ -80,12 +82,16 @@ extension HomeServices : URLRequestBuilder {
         case .ChangeForgetPassword:
             return EndPoints.ChangeForgetPassword.rawValue
 
+        case .getGainedWallet:
+            return EndPoints.GetGaiedWallet.rawValue
+        case .getWithdrawnWallet:
+            return EndPoints.GetWithDrawnWallet.rawValue
         }
     }
     var method: Moya.Method {
         switch self {
 
-        case .Home , .GetApprovedShipment, .StartApprovedShipment, .UploadApprovedShipment, .FinishApprovedShipment , .appliedShipMents , .upComingShipments , .currentShipments:
+        case .Home , .GetApprovedShipment, .StartApprovedShipment, .UploadApprovedShipment, .FinishApprovedShipment , .appliedShipMents , .upComingShipments , .currentShipments, .getGainedWallet, .getWithdrawnWallet:
             return .get
         case .HomeShipmments:
             return .post
@@ -102,7 +108,7 @@ extension HomeServices : URLRequestBuilder {
     }
     var task: Task {
         switch self {
-        case .Home , .appliedShipMents , .upComingShipments , .currentShipments:
+        case .Home , .appliedShipMents , .upComingShipments , .currentShipments, .getGainedWallet, .getWithdrawnWallet:
             return .requestPlain
         case .HomeShipmments(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
@@ -111,9 +117,9 @@ extension HomeServices : URLRequestBuilder {
     
         case .ShipmentDetails(let param):
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
-        case .GetCities(parameters: let parameters):
-            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
-        case .GetShipmentTypes:
+//        case .GetCities(parameters: let parameters):
+//            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        case .GetShipmentTypes,.GetCities:
             return .requestPlain
         case .setOffer( let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)

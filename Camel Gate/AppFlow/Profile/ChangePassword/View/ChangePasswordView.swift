@@ -17,6 +17,7 @@ struct ChangePasswordView: View {
     @State var operation : passwordOperations = .change
     @State var active = false
     @State var destination = AnyView(SignUpView())
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         ZStack{
@@ -118,6 +119,8 @@ struct ChangePasswordView: View {
                                 if operation == .forget {
                                     destination = AnyView(SignInView())
                                     active.toggle()
+                                }else{
+                                    self.presentationMode.wrappedValue.dismiss()
                                 }
                             }
                         }, label: {
