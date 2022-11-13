@@ -102,7 +102,7 @@ struct WalletView: View {
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(height: 1)
 
                             
-                            if WalletVM.publishedUserWalletModel.shipmentPayments == []{
+                            if WalletVM.publishedUserWalletModel.shipmentPayments == [] || WalletVM.publishedUserWalletModel.shipmentPayments == nil{
                                 
                                 VStack(spacing:15){
                                     Spacer()

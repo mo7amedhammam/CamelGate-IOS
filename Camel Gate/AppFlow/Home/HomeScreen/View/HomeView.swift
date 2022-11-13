@@ -238,6 +238,7 @@ struct HomeView: View {
                     if ApprovedShipmentVM.activeAlert == .unauthorized{
                         Helper.logout()
                         LoginManger.removeUser()
+                        Helper.IsLoggedIn(value: false)
                         destination = AnyView(SignInView())
                         active = true
                     }

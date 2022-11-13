@@ -18,6 +18,7 @@ struct ChangePasswordView: View {
     @State var active = false
     @State var destination = AnyView(SignUpView())
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @FocusState var inFocus: Int?
 
     var body: some View {
         ZStack{
@@ -36,9 +37,21 @@ struct ChangePasswordView: View {
                         if ChangePasswordVM.operation == .change{
                         SecureInputTextField("Current_Password".localized(language), text: $ChangePasswordVM.CurrentPassword, iconName: "")
                             .padding(.bottom)
+                            .focused($inFocus,equals: 1)
+                            .onTapGesture(perform: {
+                                inFocus = 1
+                            })
                         }
                         SecureInputTextField("new_Password".localized(language), text: $ChangePasswordVM.NewPassword, iconName: "")
+                            .focused($inFocus,equals: 2)
+                            .onTapGesture(perform: {
+                                inFocus = 2
+                            })
                         SecureInputTextField("Confirm_new_Password".localized(language), text: $ChangePasswordVM.ConfirmNewPassword, iconName: "")
+                            .focused($inFocus,equals: 3)
+                            .onTapGesture(perform: {
+                                inFocus = 3
+                            })
                     }
                     .padding(.horizontal)
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
@@ -58,6 +71,7 @@ struct ChangePasswordView: View {
                 }
                 .onTapGesture(perform: {
                     hideKeyboard()
+                    inFocus = 0
                 })
                 
                 Button(action: {
@@ -120,7 +134,13 @@ struct ChangePasswordView: View {
                                     destination = AnyView(SignInView())
                                     active.toggle()
                                 }else{
-                                    self.presentationMode.wrappedValue.dismiss()
+//                            self.presentationMode.wrappedValue.dismiss() //Go back
+                                    
+                                    LoginManger.removeUser()
+                                    Helper.logout()
+                                    Helper.IsLoggedIn(value: false)
+                                    destination = AnyView(SignInView()) //Logim
+                                    active.toggle()
                                 }
                             }
                         }, label: {

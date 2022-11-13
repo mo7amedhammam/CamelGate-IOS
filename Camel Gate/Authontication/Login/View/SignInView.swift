@@ -14,7 +14,8 @@ struct SignInView: View {
     
     @State var active = false
     @State var destination = AnyView(SignUpView())
-    
+    @FocusState var inFocus: Int?
+
     var body: some View {
         ZStack{
             VStack{
@@ -29,6 +30,10 @@ struct SignInView: View {
                     
                     Group{
                         InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"),fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $SignInVM.phoneNumber)
+                            .focused($inFocus,equals: 1)
+                            .onTapGesture(perform: {
+                                inFocus = 1
+                            })
                             .padding(.horizontal)
                             .keyboardType(.phonePad)
                             .overlay(
@@ -51,6 +56,10 @@ struct SignInView: View {
                         
                         SecureInputTextField("Enter_your_password".localized(language), text: $SignInVM.password,iconName:"lockBlue")
                             .padding(.horizontal)
+                            .focused($inFocus,equals: 2)
+                            .onTapGesture(perform: {
+                                inFocus = 2
+                            })
                     }
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
@@ -68,12 +77,12 @@ struct SignInView: View {
                     })
                 }
                 .padding(.top,hasNotch ? -15:-30)
-
                 Spacer()
             }
             .edgesIgnoringSafeArea(.bottom)
             .onTapGesture(perform: {
                 hideKeyboard()
+                inFocus = 0
             })
             
             
@@ -105,7 +114,6 @@ struct SignInView: View {
                         .padding(.horizontal, -30)
                         .padding(.bottom,hasNotch ? -25:-25)
                 )
-                
             })
             
                 .overlay(content: {
@@ -131,7 +139,6 @@ struct SignInView: View {
                         SignInVM.isAlert = false
                     }))
                 })
-            
                 .navigationViewStyle(StackNavigationViewStyle())
                 .navigationBarHidden(true)
             

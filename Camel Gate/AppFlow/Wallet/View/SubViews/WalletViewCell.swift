@@ -26,9 +26,10 @@ struct WalletViewCell : View {
                     Category == "Gained" ? Color( #colorLiteral(red: 0.2599548995, green: 0.8122869134, blue: 0.005582589656, alpha: 1)):Color("withdrawn")
                     VStack() {
                         //                            Text("\( walletitem?.date?.replacingOccurrences(of: "-", with: "\n") ?? "")".components(separatedBy: "T").first ?? "")
-                        Text("\( "\("\(walletitem?.date?.components(separatedBy: "T").first ?? "")".components(separatedBy: "-").last ?? "")" .components(separatedBy: "-").last ?? "")")
+                        Text("\( "\("\(walletitem?.date?.components(separatedBy: "T").first ?? "")".components(separatedBy: "-").last ?? "")" )")
+// .components(separatedBy: "-").last ?? "")")
                         
-                        Text("\( "\("\(walletitem?.date?.components(separatedBy: "T").first ?? "")".components(separatedBy: "-").last ?? "")" .components(separatedBy: "-").first ?? "")")
+//                        Text("\( "\("\(walletitem?.date?.components(separatedBy: "T").first ?? "")".components(separatedBy: "-").last ?? "")" .components(separatedBy: "-").first ?? "")")
                         
                         Text( "\("\(walletitem?.date?.components(separatedBy: "T").first ?? "")".components(separatedBy: "-").first ?? "")" )
                         
@@ -67,9 +68,7 @@ struct WalletViewCell : View {
                         Text("Offered".localized(language))
                             .foregroundColor(Category == "Gained" ? Color( #colorLiteral(red: 0.2599548995, green: 0.8122869134, blue: 0.005582589656, alpha: 1)) : Color("withdrawn"))
                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                        
-                    }
-                    
+                    }                    
                 }
                 .padding(.vertical)
                 Spacer()

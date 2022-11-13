@@ -112,6 +112,7 @@ struct ShipmentsView: View {
                     if shipmentsViewModel.activeAlert == .unauthorized{
                         Helper.logout()
                         LoginManger.removeUser()
+                        Helper.IsLoggedIn(value: false)
                         destination = AnyView(SignInView())
                         active = true
                     }

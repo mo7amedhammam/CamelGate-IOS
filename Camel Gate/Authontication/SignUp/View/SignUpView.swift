@@ -13,6 +13,7 @@ struct SignUpView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var SignUpVM = SignUpViewModel()
     @State var presentPhoneVerify = false
+    @FocusState var inFocus: Int?
 
     var body: some View {
         ZStack{
@@ -28,9 +29,17 @@ struct SignUpView: View {
                     
                     Group{
                         InputTextField(iconName: "person",iconColor: Color("blueColor"), placeholder: "Enter_your_name".localized(language), text: $SignUpVM.Drivername)
+                            .focused($inFocus,equals:1)
+                            .onTapGesture(perform: {
+                                inFocus = 1
+                            })
                         
                         InputTextField(iconName: "phoneBlue",iconColor: Color("blueColor"),fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $SignUpVM.phoneNumber)
                             .keyboardType(.phonePad)
+                            .focused($inFocus,equals:2)
+                            .onTapGesture(perform: {
+                                inFocus = 2
+                            })
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.red, lineWidth:SignUpVM.validations == .PhoneNumber ? 1:0))
@@ -49,7 +58,15 @@ struct SignUpView: View {
                         }
                         
                         SecureInputTextField("Enter_your_password".localized(language), text: $SignUpVM.password, iconName: "lockBlue")
+                            .focused($inFocus,equals: 3)
+                            .onTapGesture(perform: {
+                                inFocus = 3
+                            })
                         SecureInputTextField("Confirm_your_password".localized(language), text: $SignUpVM.confirmpassword, iconName: "lockBlue")
+                            .focused($inFocus,equals:4)
+                            .onTapGesture(perform: {
+                                inFocus = 4
+                            })
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.red, lineWidth:SignUpVM.validations == .ConfirmPassword ? 1:0))
@@ -75,6 +92,7 @@ struct SignUpView: View {
             }
 //            .edgesIgnoringSafeArea(.bottom)
             .onTapGesture(perform: {
+                inFocus = 0
                 hideKeyboard()
             })
             //            .padding(.horizontal,-30)

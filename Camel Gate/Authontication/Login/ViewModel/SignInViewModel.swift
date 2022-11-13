@@ -113,12 +113,14 @@ class SignInViewModel: ObservableObject {
             }else {
                 if data.messageCode == 400{
                 message = data.message ?? "error 400"
+                    isAlert = true
+
                 }else if data.messageCode == 401{
                     message = "unauthorized"
                 }else{
                     message = "Bad Request"
+                    isAlert = true
                 }
-                isAlert = true
                 isLoading = false
             }
 
