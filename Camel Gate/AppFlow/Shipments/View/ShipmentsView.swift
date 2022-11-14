@@ -30,7 +30,8 @@ struct ShipmentsView: View {
                         Button(action: {
                             withAnimation{
                                 self.selected = Category
-                                getshipments()
+                                shipmentsViewModel.SkipCount = 0
+                                getshipments(operation: .fetchshipments)
                             }
                         }, label: {
                             HStack(alignment: .center){
@@ -47,28 +48,34 @@ struct ShipmentsView: View {
                                     .stroke(.blue, lineWidth:self.selected == Category ? 1:0))
                         
                     }}
-                List() {
-                    ForEach($shipmentsViewModel.publishedUserLogedInModel, id:\.self) { tripItem in
+//                List() {
+                    List($shipmentsViewModel.publishedShipmentsArr, id:\.self) { tripItem in
                         Button(action: {
-                            
                             active = true
                             destination = AnyView(DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
                         }, label: {
                             tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId)
                         }).buttonStyle(.plain)
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.clear)
-                    }
-                    ZStack{}
+//                            .listRowSeparator(.hidden)
+//                            .listRowBackground(Color.clear)
+//                    }
+//                    ZStack{}
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
-                    .frame( maxHeight: 2)
-                    .foregroundColor(.black)
+//                    .frame( maxHeight: 2)
+//                    .foregroundColor(.black)
                     .onAppear(perform: {
                         // pagination
+                        if tripItem.id == shipmentsViewModel.publishedShipmentsArr.last?.id{
+                            shipmentsViewModel.SkipCount+=shipmentsViewModel.MaxResultCount
+//                            shipmentsViewModel.GetShipmentsOp = .fetchmoreshipments
+                            getshipments(operation: .fetchmoreshipments)
+                            
+                        }
                     })
                 }.refreshable(action: {
-                    getshipments()
+                    shipmentsViewModel.SkipCount = 0
+                    getshipments(operation:.fetchshipments)
                 })
 //                    .frame(width: UIScreen.main.bounds.width)
                     .listStyle(.plain)
@@ -96,7 +103,8 @@ struct ShipmentsView: View {
         
         .onAppear(perform: {
             selectedShipmentId = 0
-            getshipments()
+            shipmentsViewModel.SkipCount = 0
+            getshipments(operation: .fetchshipments)
         })
             .onChange(of: selectedShipmentId, perform: {newval in
                 active = true
@@ -132,13 +140,13 @@ struct ShipmentsView_Previews: PreviewProvider {
 }
 
 extension ShipmentsView{
-    func getshipments() {
+    func getshipments(operation:GetShipmentsOperations) {
         if selected == "Applied" {
-            shipmentsViewModel.GetShipment(type: .applied)
+            shipmentsViewModel.GetShipment(type: .applied, operation: operation)
         }else if selected == "Upcoming" {
-            shipmentsViewModel.GetShipment(type: .Upcomming)
+            shipmentsViewModel.GetShipment(type: .Upcomming, operation: operation)
         }else if selected == "Current"{
-            shipmentsViewModel.GetShipment(type: .current)
+            shipmentsViewModel.GetShipment(type: .current, operation: operation)
         }
     }
 }

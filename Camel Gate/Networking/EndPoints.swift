@@ -24,9 +24,9 @@ enum EndPoints: String {
 
     case GetFiltered = "Shipment/GetPagedFiltered"
     
-    case appliedShipment = "Shipment/GetDriverAppliedShipments"
-    case upcomingShipment = "Shipment/GetDriverUpcomingShipments"
-    case currentShipment = "Shipment/GetDriverCurrentShipments"
+    case appliedShipment = "Shipment/GetDriverPagedAppliedShipments"
+    case upcomingShipment = "Shipment/GetDriverPagedUpcomingShipments"
+    case currentShipment = "Shipment/GetDriverPagedCurrentShipments"
     case ShipmentDetails = "Shipment/GetShipment"
     case GetCities = "City/Get"
     case GetShipmentTypes = "ShipmentType/GetAllForList"

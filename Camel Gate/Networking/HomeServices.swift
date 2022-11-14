@@ -19,9 +19,9 @@ enum HomeServices {
 
     case HomeShipmments(parameters : [String:Any])
 
-    case appliedShipMents
-    case upComingShipments
-    case currentShipments
+    case appliedShipMents(parameters : [String:Any])
+    case upComingShipments(parameters : [String:Any])
+    case currentShipments(parameters : [String:Any])
     
     case ShipmentDetails(parameters : [String:Any])
     case GetCities
@@ -91,9 +91,9 @@ extension HomeServices : URLRequestBuilder {
     var method: Moya.Method {
         switch self {
 
-        case .Home , .GetApprovedShipment, .StartApprovedShipment, .UploadApprovedShipment, .FinishApprovedShipment , .appliedShipMents , .upComingShipments , .currentShipments, .getGainedWallet, .getWithdrawnWallet:
+        case .Home , .GetApprovedShipment, .StartApprovedShipment, .UploadApprovedShipment, .FinishApprovedShipment , .getGainedWallet, .getWithdrawnWallet:
             return .get
-        case .HomeShipmments:
+        case .HomeShipmments, .appliedShipMents, .upComingShipments, .currentShipments:
             return .post
 
         case .ShipmentDetails, .GetShipmentTypes, .GetCities, .CancelationReasons:
@@ -108,13 +108,16 @@ extension HomeServices : URLRequestBuilder {
     }
     var task: Task {
         switch self {
-        case .Home , .appliedShipMents , .upComingShipments , .currentShipments, .getGainedWallet, .getWithdrawnWallet:
+        case .Home , .getGainedWallet, .getWithdrawnWallet:
             return .requestPlain
         case .HomeShipmments(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .GetApprovedShipment:
             return .requestPlain
     
+        case  .appliedShipMents(let param) , .upComingShipments(let param) , .currentShipments(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+
         case .ShipmentDetails(let param):
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
 //        case .GetCities(parameters: let parameters):

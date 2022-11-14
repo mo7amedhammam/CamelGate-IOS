@@ -25,22 +25,12 @@ struct WalletViewCell : View {
                 ZStack{
                     Category == "Gained" ? Color( #colorLiteral(red: 0.2599548995, green: 0.8122869134, blue: 0.005582589656, alpha: 1)):Color("withdrawn")
                     VStack() {
-                        //                            Text("\( walletitem?.date?.replacingOccurrences(of: "-", with: "\n") ?? "")".components(separatedBy: "T").first ?? "")
-                        Text("\( "\("\(walletitem?.date?.components(separatedBy: "T").first ?? "")".components(separatedBy: "-").last ?? "")" )")
-// .components(separatedBy: "-").last ?? "")")
-                        
-//                        Text("\( "\("\(walletitem?.date?.components(separatedBy: "T").first ?? "")".components(separatedBy: "-").last ?? "")" .components(separatedBy: "-").first ?? "")")
-                        
-                        Text( "\("\(walletitem?.date?.components(separatedBy: "T").first ?? "")".components(separatedBy: "-").first ?? "")" )
-                        
-                        //                            Text("\( (walletitem?.date?.components(separatedBy: "T").first ?? "".components(separatedBy: "-").first) ?? "")")
-                        
+                        Text("\( ConvertStringDate(inp: walletitem?.date ?? "", FormatFrom: "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS", FormatTo: "dd MMM") )")
+
+                        Text("\( ConvertStringDate(inp: walletitem?.date ?? "", FormatFrom: "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS", FormatTo: "yyyy") )")
                     }
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .foregroundColor(Color.white)
-                    
-                    
-                    
                 }.frame(width: 80, height: 80).cornerRadius(10)
                 VStack(alignment : .leading ){
                     HStack{

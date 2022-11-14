@@ -30,6 +30,28 @@ struct FilteredShipmentModel: Codable, Hashable {
 
 
 // MARK: - Datum
+struct PagedShipmentModel: Codable, Hashable {
+    
+    static func == (lhs: PagedShipmentModel, rhs: PagedShipmentModel) -> Bool {
+        lhs.items?.first?.id == rhs.items?.first?.id && lhs.items?.first?.code == rhs.items?.first?.code
+    }
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(items?.first?.id)
+            hasher.combine(items?.first?.code)
+        }
+
+    var totalCount: Int?
+    var items: [ShipmentModel]?
+   
+    enum CodingKeys: String, CodingKey {
+        case totalCount = "totalCount"
+        case items = "items"
+    }
+}
+
+
+
+// MARK: - Datum
 struct ShipmentModel: Codable, Hashable, Identifiable {
     static func == (lhs: ShipmentModel, rhs: ShipmentModel) -> Bool {
         lhs.id == rhs.id && lhs.code == rhs.code

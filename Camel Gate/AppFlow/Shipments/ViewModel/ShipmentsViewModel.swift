@@ -17,17 +17,21 @@ enum DriverShipments{
 class ShipmentsViewModel : ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<BaseResponse<[ShipmentModel]>, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<FilteredShipmentModel>, Error>()
     private let Services = MoyaProvider<HomeServices>()
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
-    
+    @Published var GetShipmentsOp : GetShipmentsOperations = .fetchshipments
+
+    @Published var MaxResultCount                      :Int = 10
+    @Published var SkipCount                            :Int = 0
+
     
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
-    @Published var publishedUserLogedInModel: [ShipmentModel] = []
+    @Published var publishedShipmentsArr: [ShipmentModel] = []
     @Published var UserCreated = false
     @Published var nodata = false
     @Published var shipmentscount = 0
@@ -42,29 +46,50 @@ class ShipmentsViewModel : ObservableObject {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
             nodata = false
-            withAnimation{
-                publishedUserLogedInModel = []
-            }
+//            withAnimation{
+//                publishedShipmentsArr = []
+//            }
             DispatchQueue.main.async {
-                if modeldata.data?.isEmpty ?? false || modeldata.data == []{
+                if modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []{
                     nodata = true
                 }else{
-                    withAnimation{
-                        publishedUserLogedInModel = modeldata.data ?? []
-                        shipmentscount = modeldata.data?.count ?? 0
+                    switch self.GetShipmentsOp {
+                    case .fetchshipments:
+                        if modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []{
+                            nodata = true
+                        }else{
+                            publishedShipmentsArr = modeldata.data?.items ?? []
+                        }
+                    case .fetchmoreshipments:
+                        if modeldata.data?.items?.count ?? 0 > 0{
+                            publishedShipmentsArr.append( contentsOf: modeldata.data?.items ?? [])
+                        }else{
+                        }
                     }
+                    
+//                    withAnimation{
+//                        publishedUserLogedInModel = modeldata.data ?? []
+//                        shipmentscount = modeldata.data?.count ?? 0
+//                    }
                     UserCreated = true
-                    print(publishedUserLogedInModel )
+                    print(publishedShipmentsArr )
                 }
             }
         }.store(in: &cancellables)
     }
     
-    func GetShipment(type:DriverShipments){
-        print("here is current")
+    func GetShipment(type:DriverShipments,operation:GetShipmentsOperations){
+        self.GetShipmentsOp = operation
+        print("here is \(type)")
+        let param = [
+            "maxResultCount":MaxResultCount,
+            "skipCount" : SkipCount
+//            ,"offerStatusId":offerStatusId
+        ]
+
         firstly { () -> Promise<Any> in
             isLoading = true
-            return BGServicesManager.CallApi(self.Services, type == .current ?  HomeServices.currentShipments : type == .Upcomming ? HomeServices.upComingShipments : HomeServices.appliedShipMents )
+            return BGServicesManager.CallApi(self.Services, type == .current ?  HomeServices.currentShipments(parameters: param) : type == .Upcomming ? HomeServices.upComingShipments(parameters: param) : HomeServices.appliedShipMents(parameters: param) )
         }.done({ [self] response in
             let result = response as! Response
             
@@ -74,7 +99,7 @@ class ShipmentsViewModel : ObservableObject {
                 isAlert = true
             }else{
                 //            guard BGNetworkHelper.validateResponse(response: result) else{return}
-                let data : BaseResponse<[ShipmentModel]> = try BGDecoder.decode(data: result.data )
+                let data : BaseResponse<FilteredShipmentModel> = try BGDecoder.decode(data: result.data )
                 if data.messageCode == 200 {
                     DispatchQueue.main.async {
                         passthroughModelSubject.send(data)
