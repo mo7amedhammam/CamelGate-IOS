@@ -24,7 +24,6 @@ class SignInViewModel: ObservableObject {
     // ------- input
     @Published  var phoneNumber: String = "" {
         didSet{
-            
             let filtered = phoneNumber.filter {$0.isNumber}
             if phoneNumber != filtered {
                 phoneNumber = filtered
@@ -65,23 +64,23 @@ class SignInViewModel: ObservableObject {
     init() {
         
         passthroughModelSubject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
+        } receiveValue: { [weak self](modeldata) in
             DispatchQueue.main.async {
-                publishedUserLogedInModel = modeldata.data
-                if publishedUserLogedInModel?.profileStatusId == 1 {
-                    destination = AnyView(EditProfileInfoView(taskStatus: .create,enteredDriverName: modeldata.data?.name ?? "")
+                self?.publishedUserLogedInModel = modeldata.data
+                if self?.publishedUserLogedInModel?.profileStatusId == 1 {
+                    self?.destination = AnyView(EditProfileInfoView(taskStatus: .create,enteredDriverName: modeldata.data?.name ?? "")
                                             .navigationBarHidden(true))
 
-                }else if publishedUserLogedInModel?.profileStatusId == 2{
-                    destination = AnyView(TabBarView()
+                }else if self?.publishedUserLogedInModel?.profileStatusId == 2{
+                    self?.destination = AnyView(TabBarView()
                                             .navigationBarHidden(true))
-                    Helper.setUserData( DriverName: publishedUserLogedInModel?.name ?? "", DriverImage: publishedUserLogedInModel?.image ?? "" )
+                    Helper.setUserData( DriverName: self?.publishedUserLogedInModel?.name ?? "", DriverImage: self?.publishedUserLogedInModel?.image ?? "" )
                     LoginManger.saveUser(modeldata.data)
                     Helper.IsLoggedIn(value: true)
                 }
-                Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.token ?? "")" )
-                    isLoading = false
-                isLogedin = true
+                Helper.setAccessToken(access_token: "Bearer " + "\(self?.publishedUserLogedInModel?.token ?? "")" )
+                self?.isLoading = false
+                self?.isLogedin = true
             }
             
         }.store(in: &cancellables)
@@ -149,6 +148,21 @@ public extension String {
                "٧": "7",
                "٨": "8",
                "٩": "9"]
+    map.forEach { str = str.replacingOccurrences(of: $0, with: $1) }
+    return str
+}
+    var replacedEnglishDigitsWithArabic: String {
+    var str = self
+    let map = ["0": "٠",
+               "1": "١",
+               "2": "٢",
+               "3": "٣",
+               "4": "٤",
+               "5": "٥",
+               "6": "٦",
+               "7": "٧",
+               "8": "٨",
+               "9": "٩"]
     map.forEach { str = str.replacingOccurrences(of: $0, with: $1) }
     return str
 }

@@ -340,6 +340,7 @@ class DriverInfoViewModel: ObservableObject {
 
                     Birthdate = convDateToDate(input: data.data?.birthdate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
                     BirthdateStr = Birthdate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
+  
                 if data.data?.citizenId != nil{
                     citizenId = data.data?.citizenId ?? ""
                     RedisentOptions = 1

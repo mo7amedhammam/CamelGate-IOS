@@ -66,10 +66,12 @@ struct ShipmentsView: View {
 //                    .foregroundColor(.black)
                     .onAppear(perform: {
                         // pagination
-                        if tripItem.id == shipmentsViewModel.publishedShipmentsArr.last?.id{
+                        if shipmentsViewModel.publishedShipmentsArr.count >=  shipmentsViewModel.MaxResultCount && (tripItem.id == shipmentsViewModel.publishedShipmentsArr.last?.id){
                             shipmentsViewModel.SkipCount+=shipmentsViewModel.MaxResultCount
 //                            shipmentsViewModel.GetShipmentsOp = .fetchmoreshipments
                             getshipments(operation: .fetchmoreshipments)
+                            
+                        }else{
                             
                         }
                     })
@@ -100,12 +102,13 @@ struct ShipmentsView: View {
         .overlay(content: {
             AnimatingGif(isPresented: $shipmentsViewModel.isLoading)
         })
-        
         .onAppear(perform: {
-            selectedShipmentId = 0
-            shipmentsViewModel.SkipCount = 0
-            getshipments(operation: .fetchshipments)
+            getDate()
         })
+//        .task {
+//            await getDate()
+//        }
+      
             .onChange(of: selectedShipmentId, perform: {newval in
                 active = true
                 destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
@@ -128,6 +131,11 @@ struct ShipmentsView: View {
                 }))
             })
         
+    }
+    func getDate() {
+        selectedShipmentId = 0
+        shipmentsViewModel.SkipCount = 0
+//        getshipments(operation: .fetchshipments)
     }
 }
 

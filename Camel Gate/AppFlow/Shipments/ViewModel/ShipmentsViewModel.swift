@@ -5,7 +5,7 @@
 //  Created by Tawfik Sweedy✌️ on 8/7/22.
 //
 
-import Foundation
+//import Foundation
 import SwiftUI
 import Combine
 import Moya
@@ -43,36 +43,39 @@ class ShipmentsViewModel : ObservableObject {
     
     @Published var destination = AnyView(TabBarView())
     init() {
+        GetShipment(type: .applied, operation: .fetchshipments)
         passthroughModelSubject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
-            nodata = false
+        } receiveValue: { [weak self](modeldata) in
+            self?.nodata = false
 //            withAnimation{
 //                publishedShipmentsArr = []
 //            }
             DispatchQueue.main.async {
                 if modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []{
-                    nodata = true
+                    self?.nodata = true
                 }else{
-                    switch self.GetShipmentsOp {
+                    switch self?.GetShipmentsOp {
                     case .fetchshipments:
                         if modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []{
-                            nodata = true
+                            self?.nodata = true
                         }else{
-                            publishedShipmentsArr = modeldata.data?.items ?? []
+                            self?.publishedShipmentsArr = modeldata.data?.items ?? []
                         }
                     case .fetchmoreshipments:
                         if modeldata.data?.items?.count ?? 0 > 0{
-                            publishedShipmentsArr.append( contentsOf: modeldata.data?.items ?? [])
+                            self?.publishedShipmentsArr.append( contentsOf: modeldata.data?.items ?? [])
                         }else{
                         }
+                    case .none:
+                        return
                     }
                     
 //                    withAnimation{
 //                        publishedUserLogedInModel = modeldata.data ?? []
 //                        shipmentscount = modeldata.data?.count ?? 0
 //                    }
-                    UserCreated = true
-                    print(publishedShipmentsArr )
+                    self?.UserCreated = true
+                    print(self?.publishedShipmentsArr )
                 }
             }
         }.store(in: &cancellables)

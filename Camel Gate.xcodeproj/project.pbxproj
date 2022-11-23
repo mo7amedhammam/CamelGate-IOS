@@ -64,6 +64,7 @@
 		C88F948328969317008B6AD0 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F948228969317008B6AD0 /* SignUpView.swift */; };
 		C88F94852896946D008B6AD0 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F94842896946D008B6AD0 /* GradientButton.swift */; };
 		C88F94882896C67D008B6AD0 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F94872896C67D008B6AD0 /* SignInView.swift */; };
+		C891C435292E5C2E009CD089 /* newSplash9-19.json in Resources */ = {isa = PBXBuildFile; fileRef = C891C431292E5C2E009CD089 /* newSplash9-19.json */; };
 		C8A07810288D5CDA0084C0A6 /* EditProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0780F288D5CDA0084C0A6 /* EditProfileInfoView.swift */; };
 		C8A07814288D61140084C0A6 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07813288D61140084C0A6 /* InputTextField.swift */; };
 		C8A07816288D61610084C0A6 /* SecureInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07815288D61610084C0A6 /* SecureInputTextField.swift */; };
@@ -201,6 +202,7 @@
 		C88F948228969317008B6AD0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C88F94842896946D008B6AD0 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		C88F94872896C67D008B6AD0 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		C891C431292E5C2E009CD089 /* newSplash9-19.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "newSplash9-19.json"; sourceTree = "<group>"; };
 		C8A0780F288D5CDA0084C0A6 /* EditProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileInfoView.swift; sourceTree = "<group>"; };
 		C8A07813288D61140084C0A6 /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		C8A07815288D61610084C0A6 /* SecureInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputTextField.swift; sourceTree = "<group>"; };
@@ -1062,6 +1064,7 @@
 				FAEADEA02884D3C0004535CE /* Fonts */,
 				FAEADE422884BDC9004535CE /* Assets.xcassets */,
 				C87CAC7128B3CBB100A4F8EC /* App-Loading2.json */,
+				C891C431292E5C2E009CD089 /* newSplash9-19.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1257,6 +1260,7 @@
 				C81FA28A28AD23A90012D823 /* GESSTextMedium-Medium.otf in Resources */,
 				FAEADEB52884D3D0004535CE /* SFUIText-Semibold.ttf in Resources */,
 				FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */,
+				C891C435292E5C2E009CD089 /* newSplash9-19.json in Resources */,
 				FAEADEB42884D3D0004535CE /* SFUIText-Regular.ttf in Resources */,
 				FAEADEB02884D3D0004535CE /* SFUIText-Light.ttf in Resources */,
 				FAEADEAE2884D3D0004535CE /* SFUIText-Medium.ttf in Resources */,

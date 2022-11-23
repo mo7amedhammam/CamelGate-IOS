@@ -67,6 +67,7 @@ struct ShipView: View {
 
                             }.cornerRadius(8)
                         }
+                        .buttonStyle(.plain)
                     }
                     .padding(.horizontal)
                     .padding(.top)

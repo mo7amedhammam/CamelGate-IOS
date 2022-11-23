@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WalletIcon: View {
     @EnvironmentObject var environments : imageViewModel
+    var language = LocalizationService.shared.language
 
     var body: some View {
         HStack{
@@ -23,15 +24,15 @@ struct WalletIcon: View {
                     Image("ic_back_wallet").resizable().scaledToFit()
                     VStack(spacing: 8 ){
                         Image("ic_wallet")
-                        Text("Wallet").foregroundColor(Color.white.opacity(0.7))
-                        Text("12,400").foregroundColor(Color.white)
+                        Text("Wallet1".localized(language)).foregroundColor(Color.white.opacity(0.7))
+                        Text(language.rawValue == "ar" ? "12,400".replacedEnglishDigitsWithArabic:"12,400".replacedArabicDigitsWithEnglish).foregroundColor(Color.white)
                     }.padding()
           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
 
                 }.frame(height: 140)
-            }).buttonStyle(.plain)
+            })
+                .buttonStyle(.plain)
                 .disabled(LoginManger.getUser()?.isDriverInCompany ?? false)
-            
             
             
             ZStack(alignment: .leading ){
@@ -39,9 +40,9 @@ struct WalletIcon: View {
                     HStack{
                         Image("ic_car_track")
                         VStack(alignment: .leading ){
-                            Text("21").foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
+                            Text(language.rawValue == "ar" ? "21".replacedEnglishDigitsWithArabic:"21".replacedArabicDigitsWithEnglish).foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
 .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr20:Font.camelfonts.Bold20)
-                            Text("Upcoming Trips")
+                            Text("Upcoming_Trips".localized(language))
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
 .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
                         }
@@ -55,7 +56,7 @@ struct WalletIcon: View {
                         VStack(alignment: .leading ){
                             Text("6,700").foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
 .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr20:Font.camelfonts.Bold20)
-                            Text("This Month Money")
+                            Text("This_Month_Money".localized(language))
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
 .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
                         }

@@ -62,7 +62,7 @@ struct GarageView: View {
                         tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId).environmentObject(imageVM)
                     })
                         .onAppear(perform: {
-                            if tripItem.id == ApprovedShipmentVM.publishedFilteredShipments.last?.id{
+                            if ApprovedShipmentVM.publishedFilteredShipments.count >= ApprovedShipmentVM.MaxResultCount && (tripItem.id == ApprovedShipmentVM.publishedFilteredShipments.last?.id){
                                 ApprovedShipmentVM.SkipCount+=ApprovedShipmentVM.MaxResultCount
                                 ApprovedShipmentVM.GetShipmentsOp = .fetchmoreshipments
                                 ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
@@ -99,10 +99,11 @@ struct GarageView: View {
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
         .onAppear(perform: {
-            selectedShipmentId = 0
-            ApprovedShipmentVM.SkipCount = 0
-            ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+            getDate()
         })
+//        .task {
+//            await getDate()
+//        }
         .onDisappear(perform: {
             ApprovedShipmentVM.resetFilter()
         })
@@ -152,6 +153,11 @@ struct GarageView: View {
             return 120
         }
                 
+    }
+    func getDate() {
+        selectedShipmentId = 0
+        ApprovedShipmentVM.SkipCount = 0
+//        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
     }
 }
 

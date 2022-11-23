@@ -39,7 +39,7 @@ struct ContentView: View {
     
     private func delaySegue() {
         // Delay of 3 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             // first check in its the first time
             guard Helper.checkOnBoard() else {
                 withAnimation{

@@ -65,33 +65,38 @@ class ApprovedShipmentViewModel: ObservableObject {
     
     @Published var destination = AnyView(TabBarView())
     init() {
+        
+        GetApprovedShipment()
+        GetFilteredShipments(operation: .fetchshipments)
         passthroughModelSubject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
-            publishedapprovedShipmentModel = modeldata.data
-            ApprovedshipmentId = publishedapprovedShipmentModel?.id ?? 0
+        } receiveValue: { [weak self](modeldata) in
+            self?.publishedapprovedShipmentModel = modeldata.data
+            self?.ApprovedshipmentId = self?.publishedapprovedShipmentModel?.id ?? 0
         }.store(in: &cancellables)
         
         passToFilteredShipmentsObject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
-            nodata = false
+        } receiveValue: { [weak self](modeldata) in
+            self?.nodata = false
             DispatchQueue.main.async {
-                if (modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []) && GetShipmentsOp == .fetchshipments{
+                if (modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []) && self?.GetShipmentsOp == .fetchshipments{
                     withAnimation{
-                        publishedFilteredShipments = []
+                        self?.publishedFilteredShipments = []
                     }
-                    nodata = true
+                    self?.nodata = true
                 }else{
-                    switch self.GetShipmentsOp {
+                    switch self?.GetShipmentsOp {
                     case .fetchshipments:
-                        publishedFilteredShipments = modeldata.data?.items ?? []
+                        self?.publishedFilteredShipments = modeldata.data?.items ?? []
 //                        if modeldata.data?.isEmpty ?? false || modeldata.data == []{
 //                            nodata = true
 //                        }
                     case .fetchmoreshipments:
                         if modeldata.data?.items?.count ?? 0 > 0{
-                        publishedFilteredShipments.append( contentsOf: modeldata.data?.items ?? [])
+                            self?.publishedFilteredShipments.append( contentsOf: modeldata.data?.items ?? [])
                         }else{
                         }
+                    case .none:
+                        return
                     }
                     
 //                    withAnimation{
@@ -106,7 +111,7 @@ class ApprovedShipmentViewModel: ObservableObject {
     // MARK: - API Services
     func GetApprovedShipment(){
         firstly { () -> Promise<Any> in
-            isLoading = true
+//            isLoading = true
             return BGServicesManager.CallApi(self.authServices,HomeServices.GetApprovedShipment)
         }.done({ [self] response in
             let result = response as! Response

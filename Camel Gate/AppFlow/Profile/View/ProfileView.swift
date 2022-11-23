@@ -30,7 +30,8 @@ struct ProfileView: View {
                             Group{
                                 Button(action: {
                                     active = true
-                                    destination = AnyView(EditProfileInfoView(taskStatus: .update).environmentObject(imageVM))
+                                    destination = AnyView(EditProfileInfoView(taskStatus: .update)
+                                                            .environmentObject(imageVM))
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "person.fill")
@@ -104,9 +105,11 @@ struct ProfileView: View {
                                     Group{
                                         Button(action:{
                                             withAnimation {
+                                                DispatchQueue.main.async(execute: {
                                                 LocalizationService.shared.language = .english_us
                                                 Helper.setLanguage(currentLanguage: "en")
-                                            }
+                                                })
+                                                }
                                         },label:{
                                             HStack(spacing: 10){
                                                 Image("usaFlag")
@@ -122,8 +125,10 @@ struct ProfileView: View {
                                         
                                         Button(action:{
                                             withAnimation {
+                                                DispatchQueue.main.async(execute: {
                                                 LocalizationService.shared.language = .arabic
                                                 Helper.setLanguage(currentLanguage: "ar")
+                                            })
                                             }
                                         },label:{
                                             HStack(spacing: 10){

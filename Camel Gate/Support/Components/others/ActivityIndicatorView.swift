@@ -44,7 +44,8 @@ struct ActivityIndicatorView_Previews: PreviewProvider {
 
 struct AnimatingGif: View {
     @Binding var isPresented:Bool?
-//    @State var loadingTitle : LoadingType?
+    @State var jsonFileName : String = "App-Loading2"
+    
      var body: some View {
          if isPresented ?? false{
             ZStack {
@@ -52,7 +53,7 @@ struct AnimatingGif: View {
                 ZStack{
 //                    GifImage( name: "App-Loading")
                     
-                    LottieView(lottieFile: "App-Loading2")
+                    LottieView(lottieFile: jsonFileName)
                         .scaleEffect(0.7)
 //                        .frame(width: 200, height: 200)
             }
@@ -70,38 +71,38 @@ struct AnimatingGif_Previews: PreviewProvider {
 }
 
 
-import WebKit
-struct GifImage: UIViewRepresentable {
-//    @Binding var isPresented:Bool?
-
-    private let name : String
-    init( name:String) {
-        self.name = name
-    }
-    func makeUIView(context: Context) -> WKWebView {
-        
-        let webView = WKWebView()
-        let url = Bundle.main.url(forResource: name, withExtension: "gif")!
-        let data =  try! Data(contentsOf: url)
-        webView.load(
-            data,
-            mimeType: "image/gif",
-            characterEncodingName: "UTF-8",
-            baseURL: url.deletingLastPathComponent()
-            )
-        return webView
-    }
-    
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.reload()
-    }
-}
-
-struct GifImage_Previews: PreviewProvider {
-    static var previews: some View {
-        GifImage( name: "App-Loading")
-    }
-}
+//import WebKit
+//struct GifImage: UIViewRepresentable {
+////    @Binding var isPresented:Bool?
+//
+//    private let name : String
+//    init( name:String) {
+//        self.name = name
+//    }
+//    func makeUIView(context: Context) -> WKWebView {
+//        
+//        let webView = WKWebView()
+//        let url = Bundle.main.url(forResource: name, withExtension: "gif")!
+//        let data =  try! Data(contentsOf: url)
+//        webView.load(
+//            data,
+//            mimeType: "image/gif",
+//            characterEncodingName: "UTF-8",
+//            baseURL: url.deletingLastPathComponent()
+//            )
+//        return webView
+//    }
+//    
+//    func updateUIView(_ uiView: WKWebView, context: Context) {
+//        uiView.reload()
+//    }
+//}
+//
+//struct GifImage_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GifImage( name: "App-Loading")
+//    }
+//}
 
 
 

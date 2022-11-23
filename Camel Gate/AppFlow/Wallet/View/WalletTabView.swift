@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftUICharts
+//import SwiftUICharts
 
 struct WalletView: View {
     var language = LocalizationService.shared.language
@@ -68,7 +68,7 @@ struct WalletView: View {
                                         print("----\(WalletVM.publishedUserWalletModel.gainedBalance ?? 0)")
                                     }, label: {
                                         HStack(alignment: .center){
-                                            Text(Category )
+                                            Text(Category.localized(language) )
                                                 .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                                 .foregroundColor(self.selected == Category ? Color.white : Color("lightGray"))
                                         }
@@ -107,7 +107,7 @@ struct WalletView: View {
                                 VStack(spacing:15){
                                     Spacer()
                                     Image("nopayment")
-                                    Text("No_Payment_had_been_done_yet!".localized(language))
+                                    Text("No_Payment_had_been_done_yet".localized(language))
                                         .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
                                         .foregroundColor(.black).opacity(0.8)
 
@@ -160,9 +160,13 @@ struct WalletView: View {
 //                    }
                 }
             }
-            TitleBar(Title: "Wallet", navBarHidden: true, trailingButton: TopButtons.none ,trailingAction: {
+            TitleBar(Title: "Wallet".localized(language), navBarHidden: true, trailingButton: TopButtons.none ,trailingAction: {
             })
         }
+        .overlay(content: {
+            // showing loading indicator
+            AnimatingGif(isPresented: $WalletVM.isLoading)
+        })
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
     }
 }

@@ -71,11 +71,11 @@ final class Helper{
         return userDef.integer(forKey: "clinicId")
     }
     class func setLanguage(currentLanguage: String) {
-    userDef.set(currentLanguage, forKey: "currentLanguage")
+    userDef.set(currentLanguage, forKey: "language")
     userDef.synchronize()
     }
     class func getLanguage()->String{
-    return userDef.string(forKey: "currentLanguage") ?? "en"
+    return userDef.string(forKey: "language") ?? "en"
     }
     
     //save access token
@@ -114,7 +114,7 @@ final class Helper{
     }
     
     class func changeLang() {
-        userDef.removeObject(forKey:"currentLanguage"  )
+        userDef.removeObject(forKey:"language"  )
     }
 
     class func setUserLocation(
@@ -203,11 +203,11 @@ final class Helper{
 //var language = LocalizationService.shared.language
 
 func ChangeFormate( NewFormat:String) -> DateFormatter {
-    @AppStorage("language")
+//    @AppStorage("language")
     var language = LocalizationService.shared.language
     let df = DateFormatter()
     df.dateFormat = NewFormat
-    df.locale = Locale(identifier: language.rawValue == "en" ? "en_US_POSIX":"ar")
+    df.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
     return df
 }
 
@@ -218,7 +218,7 @@ func ConvertStringDate(inp:String, FormatFrom:String, FormatTo:String) -> String
     
     var newdate = ""
     let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: language.rawValue == "en" ? "en_US_POSIX":"ar")
+    formatter.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
 
     formatter.dateFormat = FormatFrom
     if let date = formatter.date(from: inp) {
@@ -237,7 +237,7 @@ func ConvertDateFormat(inp:Date, FormatTo:String) -> Date {
     var newdate = Date()
         let formatter = DateFormatter()
     let date = formatter.string(from: inp )
-    formatter.locale = Locale(identifier: language.rawValue == "en" ? "en_US_POSIX":"ar")
+    formatter.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
         formatter.dateFormat = FormatTo
         newdate = formatter.date(from: date) ?? Date()
     
@@ -275,7 +275,7 @@ func convDateToDate(input: String, format:String) -> Date {
     var newdate = Date()
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = format
-    dateFormatter.locale = Locale(identifier: language.rawValue == "en" ? "en_US_POSIX":"ar")
+    dateFormatter.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
 
     if let newDate = dateFormatter.date(from: input) {
         newdate = newDate

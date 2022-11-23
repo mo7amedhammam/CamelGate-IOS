@@ -41,14 +41,14 @@ class WalletViewModel : ObservableObject {
     init() {
         GetWallet(type: .Gained)
         passthroughModelSubject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
-            nodata = false
+        } receiveValue: { [weak self](modeldata) in
+            self?.nodata = false
             withAnimation{
-                publishedUserWalletModel.shipmentPayments = []
+                self?.publishedUserWalletModel.shipmentPayments = []
             }
             DispatchQueue.main.async {
                     withAnimation{
-                        publishedUserWalletModel = modeldata.data ?? WalletModel.init()
+                        self?.publishedUserWalletModel = modeldata.data ?? WalletModel.init()
                     }
             }
         }.store(in: &cancellables)

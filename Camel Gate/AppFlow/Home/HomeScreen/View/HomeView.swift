@@ -48,6 +48,7 @@ struct HomeView: View {
                             .environmentObject(ApprovedShipmentVM)
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
+                            .padding(.horizontal)
 
                         
                     }
@@ -135,7 +136,7 @@ struct HomeView: View {
                                         .environmentObject(environments)
                                 })
                                     .onAppear(perform: {
-                                        if tripItem.id == ApprovedShipmentVM.publishedFilteredShipments.last?.id{
+                                        if ApprovedShipmentVM.publishedFilteredShipments.count >= ApprovedShipmentVM.MaxResultCount && (tripItem.id == ApprovedShipmentVM.publishedFilteredShipments.last?.id){
                                             ApprovedShipmentVM.SkipCount+=ApprovedShipmentVM.MaxResultCount
                                             ApprovedShipmentVM.GetShipmentsOp = .fetchmoreshipments
                                             ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
@@ -149,7 +150,7 @@ struct HomeView: View {
                         }
                             .listStyle(.plain)
                             .listStyle(.plain)
-                                .refreshable(action: {
+                            .refreshable(action: {
                                     ApprovedShipmentVM.SkipCount = 0
                                     ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
                             })
@@ -160,6 +161,7 @@ struct HomeView: View {
                         .frame( height: (g.size.height / 2)+(hasNotch ? 120:60), alignment: .center)
 
                     }
+                    .padding(.top,8)
                     .padding(.vertical,-30)
                     .padding(.horizontal,-15)
 
@@ -203,10 +205,12 @@ struct HomeView: View {
                     .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             .navigationBarHidden(true)
             .onAppear(perform: {
-                selectedShipmentId = 0
-                ApprovedShipmentVM.GetApprovedShipment()
-                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+                getDate()
             })
+//            .task {
+//                await getDate()
+//            }
+            
             .onDisappear(perform: {
                 ApprovedShipmentVM.resetFilter()
             })
@@ -245,6 +249,11 @@ struct HomeView: View {
                     ApprovedShipmentVM.isAlert = false
                 }))
             })
+    }
+    func getDate(){
+        selectedShipmentId = 0
+//        ApprovedShipmentVM.GetApprovedShipment()
+//        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
     }
 }
 

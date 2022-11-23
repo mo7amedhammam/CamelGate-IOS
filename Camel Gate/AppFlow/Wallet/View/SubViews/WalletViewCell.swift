@@ -7,6 +7,9 @@
 
 import SwiftUI
 struct WalletViewCell : View {
+    var language = LocalizationService.shared.language
+
+    
     @Binding var Category : String
     var walletitem:ShipmentPayment? = ShipmentPayment.init()
     @State var active = false

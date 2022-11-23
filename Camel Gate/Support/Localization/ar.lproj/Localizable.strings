@@ -228,3 +228,18 @@
 
 //MARK: -- Wallet Tab --
 "you_Can't_See_Wallet" = "لا يمكنك رؤية المحفظة";
+"Gained" = "مكتسب";
+"Withdrawn" = "مستحق";
+"Current_Balance" = "الرصيد الحالى";
+"Payment_Details" = "تفاصيل الدفع";
+"Total_:" = "اجمالى :";
+"No_Payment_had_been_done_yet" = "لم تتم تعامالات حتى الان!";
+"Get_accepted_at_some_shipments\nand_gain_some_money..." = "انجز بعض الشحنات, وحقق ارباح...";
+"Check_Shipments" = "فحص الشحنات";
+
+"Offered" = "معروض";
+"View_Shipment" = "رؤية الشحنة";
+
+"Wallet1" = "المحفظة";
+"Upcoming_Trips" = "رحله قادمة";
+"This_Month_Money" = "مكسب هذا الشهر";

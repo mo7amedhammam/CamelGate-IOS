@@ -231,3 +231,20 @@
 
 //MARK: -- Wallet Tab --
 "you_Can't_See_Wallet" = "you Can't See Wallet";
+
+"Gained" = "Gained";
+"Withdrawn" = "Withdrawn";
+"Current_Balance" = "Current Balance";
+"Payment_Details" = "Payment Details";
+"Total_:" = "Total :";
+"No_Payment_had_been_done_yet" = "No Payment had been done yet!";
+"Get_accepted_at_some_shipments\nand_gain_some_money..." = "Get accepted at some shipments\nand gain some money...";
+"Check_Shipments" = "Check Shipments";
+
+"Offered" = "Offered";
+"View_Shipment" = "View Shipment";
+
+
+"Wallet1" = "Wallet";
+"Upcoming_Trips" = "Upcoming Trips";
+"This_Month_Money" = "This Month Money";

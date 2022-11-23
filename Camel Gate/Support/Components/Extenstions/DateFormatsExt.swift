@@ -9,7 +9,7 @@ import Foundation
 
 extension String{
     func StrToDate(format:String = "yyyy/MM/dd HH:mm:ss")->Date{
-        var language = LocalizationService.shared.language
+//        var language = LocalizationService.shared.language
 
         var cbDate:Date = Date()
         if(!self.isEmpty){
@@ -26,10 +26,10 @@ extension String{
 
 extension Date{
     func DateToStr(format:String = "yyyy/MM/dd HH:mm:ss",isPost:Bool=false)->String{
-        var language = LocalizationService.shared.language
+//        var language = LocalizationService.shared.language
 
         let timeFormatter = DateFormatter()
-        timeFormatter.locale = Locale(identifier: language.rawValue == "en" ? "en_US_POSIX":isPost==true ? "en_US_POSIX": "ar")
+        timeFormatter.locale = Locale(identifier: LocalizationService.shared.language == .english_us ? "en_US_POSIX":isPost==true ? "en_US_POSIX": "ar")
 
 //        timeFormatter.locale = Locale.current
 //        timeFormatter.timeZone = TimeZone.current

@@ -18,7 +18,7 @@ enum ProfileStep{
 
 
 struct EditProfileInfoView: View {
-    @AppStorage("language")
+//    @AppStorage("language")
     var language = LocalizationService.shared.language
     
     @StateObject var profileVM = DriverInfoViewModel()
@@ -146,13 +146,11 @@ struct EditProfileInfoView: View {
                                                 .foregroundColor(                                    Color("lightGray").opacity(0.5))
                                                 .padding(.horizontal)
                 //                                .frame(width:20)
-
                                         }
                 //                        .frame(minWidth:g.size.width)
 
                                 })
                             }
-                            
                             
                             InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male".localized(language)):.constant("Female".localized(language)))
                                 .frame(width:130)
@@ -268,7 +266,7 @@ struct EditProfileInfoView: View {
                                     Spacer()
                                 }
                             }
-                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber)
+                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text:.constant(language.rawValue == "ar" ?  profileVM.LicenseNumber.replacedEnglishDigitsWithArabic:profileVM.LicenseNumber.replacedArabicDigitsWithEnglish) )
                                 .onChange(of: profileVM.LicenseNumber  ){ newval in
                                     profileVM.LicenseNumber =  String(newval.prefix(profileVM.LicenseNumLength))
                             }
@@ -367,11 +365,11 @@ struct EditProfileInfoView: View {
                                     
                                 })
                             
-                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text: $profileVM.TruckManfactureYear)
+                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text:.constant( language.rawValue == "ar" ? profileVM.TruckManfactureYear.replacedEnglishDigitsWithArabic:profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish))
                                 .disabled(true)
                                 .overlay(content: {
                                     Menu {
-                                        ForEach(getYearsArr(),id:\.self){ year1 in
+                                        ForEach(getYearsArr().reversed(),id:\.self){ year1 in
                                             Button(year1, action: {
                                                 profileVM.TruckManfactureYear = "\(year1)"
                                             })
@@ -391,7 +389,7 @@ struct EditProfileInfoView: View {
                         
                         //MARK: - AXE number and Plate number -
                         HStack{
-                            InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text: $profileVM.NumberofAxe)
+                            InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text:.constant(language.rawValue == "ar" ? profileVM.NumberofAxe.replacedEnglishDigitsWithArabic:profileVM.NumberofAxe.replacedArabicDigitsWithEnglish))
                                 .disabled(true)
                                 .overlay(content: {
                                     Menu {
@@ -413,7 +411,7 @@ struct EditProfileInfoView: View {
                                 })
                             
                             
-                            InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: $profileVM.TruckPlate)
+                            InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: .constant(language.rawValue == "ar" ? profileVM.TruckPlate.replacedEnglishDigitsWithArabic:profileVM.TruckPlate.replacedArabicDigitsWithEnglish))
                                 .focused($inFocus,equals:5)
                                 .onTapGesture(perform: {
                                     inFocus = 5
@@ -429,7 +427,7 @@ struct EditProfileInfoView: View {
                                     Spacer()
                                 }
                             }
-                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
+                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: .constant(language.rawValue == "ar" ? profileVM.TruckLicense.replacedEnglishDigitsWithArabic:profileVM.TruckLicense.replacedArabicDigitsWithEnglish))
                                 .onChange(of: profileVM.TruckLicense  ){ newval in
                                     profileVM.TruckLicense =  String(newval.prefix(profileVM.LicenseNumLength))
                             }
@@ -548,11 +546,20 @@ struct EditProfileInfoView: View {
                 profileVM.Drivername = enteredDriverName
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline:.now()+1.2,execute: {
-                profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
-                profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
-            })
+//            DispatchQueue.main.asyncAfter(deadline:.now()+1.5,execute: {
+//                profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
+//                profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
+//            })
         })
+        .onChange(of: profileVM.TruckTypeId, perform: {newval in
+            profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(newval) ?? 0))"
+
+        })
+        .onChange(of: profileVM.TruckManfacturerId, perform: {newval in
+            profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(newval) ?? 0))"
+
+        })
+
         .onChange(of: profileVM.DriverImageStr, perform: {newval in
             print(newval)
             DispatchQueue.main.async( execute: {
@@ -713,6 +720,7 @@ extension EditProfileInfoView{
         }
         print(id)
         print(truckName)
+        
         return truckName
     }
     
