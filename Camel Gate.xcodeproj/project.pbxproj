@@ -53,6 +53,8 @@
 		C85D7DA3289BD2F60088227D /* ImageDataExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */; };
 		C85D7DA6289C0B5D0088227D /* DriverInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA5289C0B5D0088227D /* DriverInfoModel.swift */; };
 		C85E829F28D88053004361B0 /* LocationAddressVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E829E28D88053004361B0 /* LocationAddressVM.swift */; };
+		C8640ECE292F9940007A4E99 /* HomeWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8640ECD292F9940007A4E99 /* HomeWalletViewModel.swift */; };
+		C8640ED0292F9B88007A4E99 /* HomePageWalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8640ECF292F9B88007A4E99 /* HomePageWalletModel.swift */; };
 		C8691FFD28ABD7A2002201F3 /* RedirectToGMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8691FFC28ABD7A2002201F3 /* RedirectToGMaps.swift */; };
 		C870F89828901D9100CCFD9B /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89728901D9100CCFD9B /* OnBoardingView.swift */; };
 		C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */; };
@@ -191,6 +193,8 @@
 		C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataExtenstion.swift; sourceTree = "<group>"; };
 		C85D7DA5289C0B5D0088227D /* DriverInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoModel.swift; sourceTree = "<group>"; };
 		C85E829E28D88053004361B0 /* LocationAddressVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAddressVM.swift; sourceTree = "<group>"; };
+		C8640ECD292F9940007A4E99 /* HomeWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWalletViewModel.swift; sourceTree = "<group>"; };
+		C8640ECF292F9B88007A4E99 /* HomePageWalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageWalletModel.swift; sourceTree = "<group>"; };
 		C8691FFC28ABD7A2002201F3 /* RedirectToGMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectToGMaps.swift; sourceTree = "<group>"; };
 		C870F89728901D9100CCFD9B /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtenstions.swift; sourceTree = "<group>"; };
@@ -837,6 +841,7 @@
 			isa = PBXGroup;
 			children = (
 				C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */,
+				C8640ECF292F9B88007A4E99 /* HomePageWalletModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -845,6 +850,7 @@
 			isa = PBXGroup;
 			children = (
 				C82EC8F6289EACC90042A27F /* ApprovedShipmentViewModel.swift */,
+				C8640ECD292F9940007A4E99 /* HomeWalletViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1402,6 +1408,7 @@
 				C81B21FC28A3B19100816ECF /* CityViewModel.swift in Sources */,
 				C88F948328969317008B6AD0 /* SignUpView.swift in Sources */,
 				C8A07822288DA4CD0084C0A6 /* StarsView.swift in Sources */,
+				C8640ECE292F9940007A4E99 /* HomeWalletViewModel.swift in Sources */,
 				C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */,
 				C8C9496728897D110057EE7E /* TitleBar.swift in Sources */,
 				C84EFE8428B0FC8100399C78 /* ChangePasswordView.swift in Sources */,
@@ -1426,6 +1433,7 @@
 				C84EFE1F28A7FEB700302F7F /* TruckManfacturerModel.swift in Sources */,
 				FA57BDE828A1A968007E5329 /* HelpOnRoadView.swift in Sources */,
 				C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */,
+				C8640ED0292F9B88007A4E99 /* HomePageWalletModel.swift in Sources */,
 				C84EAC85288C47BE000AB6AD /* ProfileInfoView.swift in Sources */,
 				FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */,
 				C8C9494128895A360057EE7E /* WalletIcon.swift in Sources */,

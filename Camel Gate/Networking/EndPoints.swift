@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 enum EndPoints: String {
     // MARK: - Auth
@@ -40,4 +39,5 @@ enum EndPoints: String {
     case ChangeForgetPassword = "User/ChangeForgetPassword"
     case GetGaiedWallet = "Wallet/GetWalletGained"
     case GetWithDrawnWallet = "Wallet/GetWalletWithdrawn"
+    case GetHomePageWallet = "Wallet/GetHomePageWallet"
 }

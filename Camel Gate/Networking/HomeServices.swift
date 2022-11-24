@@ -36,6 +36,7 @@ enum HomeServices {
 
     case getGainedWallet
     case getWithdrawnWallet
+    case getHomePageWallet
 
 }
 extension HomeServices : URLRequestBuilder {
@@ -86,12 +87,14 @@ extension HomeServices : URLRequestBuilder {
             return EndPoints.GetGaiedWallet.rawValue
         case .getWithdrawnWallet:
             return EndPoints.GetWithDrawnWallet.rawValue
+        case .getHomePageWallet:
+            return EndPoints.GetHomePageWallet.rawValue
         }
     }
     var method: Moya.Method {
         switch self {
 
-        case .Home , .GetApprovedShipment, .StartApprovedShipment, .UploadApprovedShipment, .FinishApprovedShipment , .getGainedWallet, .getWithdrawnWallet:
+        case .Home , .GetApprovedShipment, .StartApprovedShipment, .UploadApprovedShipment, .FinishApprovedShipment , .getGainedWallet, .getWithdrawnWallet, .getHomePageWallet:
             return .get
         case .HomeShipmments, .appliedShipMents, .upComingShipments, .currentShipments:
             return .post
@@ -108,40 +111,15 @@ extension HomeServices : URLRequestBuilder {
     }
     var task: Task {
         switch self {
-        case .Home , .getGainedWallet, .getWithdrawnWallet:
+        case .Home, .GetApprovedShipment, .getGainedWallet, .getWithdrawnWallet, .getHomePageWallet, .CancelationReasons, .GetShipmentTypes, .GetCities:
             return .requestPlain
-        case .HomeShipmments(let param):
-            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
-        case .GetApprovedShipment:
-            return .requestPlain
-    
-        case  .appliedShipMents(let param) , .upComingShipments(let param) , .currentShipments(let param):
+      
+        case .HomeShipmments(let param), .appliedShipMents(let param) , .upComingShipments(let param) , .currentShipments(let param), .setOffer( let param), .CancelOffer( let param), .ChangePassword(parameters: let param), .ChangeForgetPassword(parameters: let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
 
-        case .ShipmentDetails(let param):
-            return .requestParameters(parameters: param, encoding: URLEncoding.default)
-//        case .GetCities(parameters: let parameters):
-//            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
-        case .GetShipmentTypes,.GetCities:
-            return .requestPlain
-        case .setOffer( let parameters):
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .CancelOffer( let parameters):
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-
-        case .CancelationReasons:
-            return .requestPlain
-        case .StartApprovedShipment(let param):
+        case .ShipmentDetails(let param), .StartApprovedShipment(let param), .UploadApprovedShipment(let param), .FinishApprovedShipment(let param):
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
 
-        case .UploadApprovedShipment(let param):
-            return .requestParameters(parameters: param, encoding: URLEncoding.default)
-
-        case .FinishApprovedShipment(let param):
-            return .requestParameters(parameters: param, encoding: URLEncoding.default)
-
-        case .ChangePassword(parameters: let param), .ChangeForgetPassword(parameters: let param):
-            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
 
         }
     }

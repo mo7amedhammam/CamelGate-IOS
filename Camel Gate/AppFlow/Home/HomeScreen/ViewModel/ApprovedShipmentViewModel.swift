@@ -66,8 +66,9 @@ class ApprovedShipmentViewModel: ObservableObject {
     @Published var destination = AnyView(TabBarView())
     init() {
         
-        GetApprovedShipment()
-        GetFilteredShipments(operation: .fetchshipments)
+//        GetApprovedShipment()
+//        GetFilteredShipments(operation: .fetchshipments)
+        
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [weak self](modeldata) in
             self?.publishedapprovedShipmentModel = modeldata.data

@@ -58,43 +58,8 @@ struct HomeView: View {
                     })
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
-
                         .padding(.bottom,-25)
                         .padding(.horizontal,10)
-//                        ZStack {
-//                            FilteredShipmentsView(active: $active, destination: $destination,  selectedShipmentId: $selectedShipmentId)
-//                                    .environmentObject(ApprovedShipmentVM)
-//                                    .environmentObject(environments)
-//                                    .frame( height: (g.size.height / 2)+(hasNotch ? 90:20), alignment: .center)
-//    //                            .padding(.horizontal,-2)
-//
-//                        }.listRowBackground(Color.clear)
-//                        .listRowSeparator(.hidden)
-                        
-//                        .frame( height: (g.size.height / 2)+(hasNotch ? 120:60), alignment: .center)
-
-                        
-//                        if ApprovedShipmentVM.publishedFilteredShipments.count > ApprovedShipmentVM.MaxResultCount{
-//                            Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
-//                                .frame(height: 1)
-//                                .padding(.horizontal, 5)
-//                                .listRowBackground(Color.clear)
-//                                .listRowSeparator(.hidden)
-//                                .onAppear(perform: {
-//                                    if ApprovedShipmentVM.publishedFilteredShipments.count > 0{
-//                                    ApprovedShipmentVM.SkipCount+=ApprovedShipmentVM.MaxResultCount
-//            //                        ApprovedShipmentVM.GetShipmentsOp = .fetchmoreshipments
-//                                        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
-//                                    }else{
-//
-//                                    }
-//                                })
-//
-//                        }
-            //                    .onChange(of: ApprovedShipmentVM.SkipCount, perform: {newval in
-            //                        ApprovedShipmentVM.SkipCount = newval
-            //                        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
-            //                    })
 
                         VStack {
                             
@@ -125,8 +90,6 @@ struct HomeView: View {
                                 }
                                 .padding(.horizontal)
                             }
-                            
-                            
                             List($ApprovedShipmentVM.publishedFilteredShipments, id:\.self) { tripItem in
                                 Button(action: {
                                     active = true
@@ -142,29 +105,26 @@ struct HomeView: View {
                                             ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
                                         }
                                     })
-                                
                                     .buttonStyle(.plain)
                                     .listRowBackground(Color.clear)
                                     .listRowSeparator(.hidden)
                                     .padding(.horizontal,-12)
                         }
-                            .listStyle(.plain)
+                            .padding(.bottom,25)
                             .listStyle(.plain)
                             .refreshable(action: {
                                     ApprovedShipmentVM.SkipCount = 0
                                     ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
                             })
-
+                            Spacer().frame(height:30)
                         }
                         .listRowBackground(Color.clear)
                         .listRowSeparator(.hidden)
                         .frame( height: (g.size.height / 2)+(hasNotch ? 120:60), alignment: .center)
-
                     }
                     .padding(.top,8)
                     .padding(.vertical,-30)
                     .padding(.horizontal,-15)
-
                     .refreshable {
                         ApprovedShipmentVM.SkipCount = 0
                         ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
@@ -211,9 +171,9 @@ struct HomeView: View {
 //                await getDate()
 //            }
             
-            .onDisappear(perform: {
-                ApprovedShipmentVM.resetFilter()
-            })
+//            .onDisappear(perform: {
+//                ApprovedShipmentVM.resetFilter()
+//            })
             .onChange(of: selectedShipmentId, perform: {newval in
                     active = true
                 destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(environments))
@@ -250,9 +210,13 @@ struct HomeView: View {
                 }))
             })
     }
+        
     func getDate(){
+        ApprovedShipmentVM.resetFilter()
+        ApprovedShipmentVM.SkipCount = 0
+
         selectedShipmentId = 0
-//        ApprovedShipmentVM.GetApprovedShipment()
+        ApprovedShipmentVM.GetApprovedShipment()
 //        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
     }
 }
