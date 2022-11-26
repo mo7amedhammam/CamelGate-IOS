@@ -109,7 +109,6 @@ struct tripCellView: View {
                                     Text("\( String(format: "%.1f", shipmentModel.totalDistance ?? 22.00)) "+"KM".localized(language))
                                         .foregroundColor(.black.opacity(0.7))
                                         .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
-
                                     Spacer()
                                 }
                                 HStack{
@@ -122,7 +121,7 @@ struct tripCellView: View {
                                         .foregroundColor(.secondary)
                                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
 
-                                    Text("\(shipmentModel.companyRate ?? 0) / 5")
+                                    Text("\(String(format: "%.1f", shipmentModel.companyRate ?? 0)) / 5")
                                         .foregroundColor(.black.opacity(0.7))
                                         .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
 

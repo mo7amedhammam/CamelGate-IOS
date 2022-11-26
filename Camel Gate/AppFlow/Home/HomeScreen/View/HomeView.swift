@@ -12,7 +12,8 @@ struct HomeView: View {
     var language = LocalizationService.shared.language
 
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
-  
+    @EnvironmentObject var environments : imageViewModel
+
     @State var active = false
     @State var destination = AnyView(ChatsListView())
     
@@ -23,7 +24,6 @@ struct HomeView: View {
     @State var longitude:Double = 0
     @State var latitude:Double = 0
     @State var selectedShipmentId = 0
-    @EnvironmentObject var environments : imageViewModel
 
     var body: some View {
         GeometryReader { g in
@@ -62,7 +62,6 @@ struct HomeView: View {
                         .padding(.horizontal,10)
 
                         VStack {
-                            
                             ScrollView(.horizontal , showsIndicators : false) {
                                 HStack {
                                     if ApprovedShipmentVM.fromCityName != ""{

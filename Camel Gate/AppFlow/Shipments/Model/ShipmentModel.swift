@@ -64,8 +64,8 @@ struct ShipmentModel: Codable, Hashable, Identifiable {
     var id: Int?
     var code, imageURL: String?
     var estimateTime: String?
-    var lowestOffer, offersCount, companyRate, companyRatesCount: Int?
-    var totalDistance:Double?
+    var lowestOffer, offersCount, companyRatesCount: Int?
+    var companyRate, totalDistance:Double?
     var lowestOfferDriverRate, lowestOfferDriverRatesCount: Int?
     var driverOfferID, driverOfferValue,driverOfferStatusID: Int?
     var driverOfferStatusName: String?
