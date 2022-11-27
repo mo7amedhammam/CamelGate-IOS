@@ -214,7 +214,7 @@ struct tripCellView: View {
 
                         Text("Driver_Rate_:_".localized(language)).foregroundColor(.secondary)
 
-                        Text("\(shipmentModel.lowestOfferDriverRate ?? 0) / 5")
+                        Text("\(String(format: "%.1f", shipmentModel.lowestOfferDriverRate ?? 0)) / 5")
                             .foregroundColor(Color.black.opacity(0.7))
                             Spacer()
                         Text("\(shipmentModel.offersCount ?? 0)")

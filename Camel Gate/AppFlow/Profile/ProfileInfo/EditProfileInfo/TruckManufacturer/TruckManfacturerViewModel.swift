@@ -7,11 +7,11 @@
 
 
 import Foundation
-import SwiftUI
+//import SwiftUI
 import Combine
 import Moya
 import PromiseKit
-import Alamofire
+//import Alamofire
 
 class TruckManfacturerViewModel: ObservableObject {
     
@@ -34,10 +34,10 @@ class TruckManfacturerViewModel: ObservableObject {
     init() {
         GetTruckManfacturers()
         passthroughModelSubject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
-            DispatchQueue.main.async {
-                publishedManfacturersArray = modeldata.data ?? []
-            }
+        } receiveValue: { [weak self](modeldata) in
+//            DispatchQueue.main.async {
+            self?.publishedManfacturersArray = modeldata.data ?? []
+//            }
         }.store(in: &cancellables)
     }
     

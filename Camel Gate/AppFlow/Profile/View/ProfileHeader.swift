@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ProfileHeader: View {
-    @State var name : String?
-    @State var rate : String?
-    @State var tolatrate : String?
+//    @State var name : String?
+//    @State var rate : String?
+//    @State var tolatrate : String?
     @EnvironmentObject var imageVM : camelEnvironments
 
     var body: some View {
@@ -52,9 +52,8 @@ struct ProfileHeader: View {
                     HStack(){
                         HStack(){
                             Image(systemName:"star.fill").foregroundColor(.orange)
-                            Text(rate ?? "4.5")
-                                                                               .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                            Text("\(String(format:"%.1f", LoginManger.getUser()?.rate?.rate ?? 0 )) ")
+                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                                 .foregroundColor(Color.white)
                             
                         } .padding(.horizontal)
@@ -62,9 +61,9 @@ struct ProfileHeader: View {
                             .background(.white.opacity(0.35))
                             .cornerRadius(8)
                         
-                        Text(tolatrate ?? "( 250 Reviews )")
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                        Text("("+" \(LoginManger.getUser()?.rate?.ratesCount ?? 0 ) "+"\("Reviews".localized(language))"+" )")
+                                                                
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)
                     }
                     .padding(.top,-10)

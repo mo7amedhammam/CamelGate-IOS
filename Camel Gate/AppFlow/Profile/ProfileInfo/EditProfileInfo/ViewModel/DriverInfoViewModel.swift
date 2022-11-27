@@ -19,7 +19,7 @@ class DriverInfoViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     let PhoneNumLength: Int = 9
     let LicenseNumLength: Int = 10
-
+    
     
     // ------- input
     @Published  var Drivername: String = ""
@@ -49,18 +49,18 @@ class DriverInfoViewModel: ObservableObject {
     }
     @Published  var DriverImage = UIImage()
     @Published  var DriverImageStr = Helper.getDriverimage()
-
+    
     @Published  var Birthdate = Date()
     @Published  var BirthdateStr = ""
     @Published  var gender = 1
     @Published  var NationalityId = 1
     @Published  var nationalityName = ""
-
+    
     @Published  var RedisentOptions = 1 // 1: CitizenId, 2:ResidentId , 3: Border
     @Published  var RedisentNumLength: Int = 10 //10:CitizenId(start by 1), 16:ResidentId(start by 2), 16:Border(start by 5)
     @Published  var RedisentHint = "Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers"
     @Published  var LicenseHint = "Hint:_License_Number_should_Be_10_Numbers"
-
+    
     @Published  var citizenId = ""{
         didSet{
             let filtered = citizenId.filter {$0.isNumber}
@@ -158,13 +158,13 @@ class DriverInfoViewModel: ObservableObject {
     
     @Published  var LicenseExpireDate = Date()
     @Published  var LicenseExpireDateStr = ""
-
+    
     @Published  var TruckTypeId = ""
     @Published  var TruckTypeName = ""
     @Published  var TruckManfacturerId = ""
     @Published  var TruckManfacturerName = ""
     @Published  var TruckManfactureYear = ""
-
+    
     @Published  var NumberofAxe = ""
     @Published  var TruckPlate = ""
     @Published  var TruckLicense = ""{
@@ -193,12 +193,12 @@ class DriverInfoViewModel: ObservableObject {
     }
     @Published  var TruckLicenseIssueDate = Date()
     @Published  var TruckLicenseIssueDateStr = ""
-
+    
     @Published  var TruckLicenseExpirationDate = Date()
     @Published  var TruckLicenseExpirationDateStr = ""
     
     @Published var IsTermsAgreed = false
-
+    
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
@@ -212,12 +212,12 @@ class DriverInfoViewModel: ObservableObject {
     
     @Published var destination = AnyView(TabBarView())
     init() {
-//        GetDriverInfo()
+        GetDriverInfo()
         passthroughModelSubject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
-            publishedUserLogedInModel = modeldata.data
-            UserCreated = true
-                Helper.setUserData(DriverName: publishedUserLogedInModel?.name ?? "", DriverImage: publishedUserLogedInModel?.image ?? "")
+        } receiveValue: { [weak self](modeldata) in
+            self?.publishedUserLogedInModel = modeldata.data
+            self?.UserCreated = true
+            Helper.setUserData(DriverName: self?.publishedUserLogedInModel?.name ?? "", DriverImage: self?.publishedUserLogedInModel?.image ?? "")
             Helper.IsLoggedIn(value: true)
         }.store(in: &cancellables)
     }
@@ -271,8 +271,8 @@ class DriverInfoViewModel: ObservableObject {
             let result = response as! Response
             guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<DriverInfoModel> = try BGDecoder.decode(data: result.data )
-            print(result)
-            print(data)
+//            print(result)
+//            print(data)
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
@@ -308,64 +308,64 @@ class DriverInfoViewModel: ObservableObject {
                 message = "You_have_To_Login_Again".localized(language)
                 isAlert = true
             }else{
-//                        guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<DriverInfoModel> = try BGDecoder.decode(data: result.data )
-            print(result)
-            print(data)
-            if data.success == true {
-
-//                    DispatchQueue.main.async { [self] in
-                Drivername = data.data?.name ?? ""
-                DriverImageStr = data.data?.image ?? ""
-                    LicenseNumber = data.data?.drivingLicense ?? ""
-                    Email = data.data?.email ?? ""
-                    gender =  data.data?.gender ?? 1
-                    TruckPlate = "\( data.data?.truckInfo?.plate ?? "")"
-                    TruckTypeId = "\( data.data?.truckInfo?.truckTypeId ?? 0)"
-                    TruckManfacturerId = "\( data.data?.truckInfo?.truckManufacturerId ?? 0)"
-                    TruckManfactureYear = "\( data.data?.truckInfo?.productionYear ?? 0)"
-                NationalityId = data.data?.nationalityId ?? 0
-                nationalityName = data.data?.nationalityName ?? ""
-                    NumberofAxe = "\( data.data?.truckInfo?.numberofAxe ?? 0)"
-                    TruckLicense = "\( data.data?.truckInfo?.license ?? 0)"
-                      
-                    LicenseExpireDate = convDateToDate(input: data.data?.drivingLicenseExpirationDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
-                    LicenseExpireDateStr = LicenseExpireDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
+                //                        guard BGNetworkHelper.validateResponse(response: result) else{return}
+                let data : BaseResponse<DriverInfoModel> = try BGDecoder.decode(data: result.data )
+//                print(result)
+                print(data)
+                if data.success == true {
+                    DispatchQueue.main.async { [self] in
+                        Drivername = data.data?.name ?? ""
+                        DriverImageStr = data.data?.image ?? ""
+                        LicenseNumber = data.data?.drivingLicense ?? ""
+                        Email = data.data?.email ?? ""
+                        gender =  data.data?.gender ?? 1
+                        TruckPlate = "\( data.data?.truckInfo?.plate ?? "")"
+                        TruckTypeId = "\( data.data?.truckInfo?.truckTypeId ?? 0)"
+                        TruckManfacturerId = "\( data.data?.truckInfo?.truckManufacturerId ?? 0)"
+                        TruckManfactureYear = "\( data.data?.truckInfo?.productionYear ?? 0)"
+                        NationalityId = data.data?.nationalityId ?? 0
+                        nationalityName = data.data?.nationalityName ?? ""
+                        NumberofAxe = "\( data.data?.truckInfo?.numberofAxe ?? 0)"
+                        TruckLicense = "\( data.data?.truckInfo?.license ?? 0)"
+                        
+                        LicenseExpireDate = convDateToDate(input: data.data?.drivingLicenseExpirationDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
+                        LicenseExpireDateStr = LicenseExpireDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
+                        
+                        TruckLicenseIssueDate = convDateToDate(input: data.data?.truckInfo?.licenseIssueDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
+                        TruckLicenseIssueDateStr = TruckLicenseIssueDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
+                        
+                        TruckLicenseExpirationDate = convDateToDate(input: data.data?.truckInfo?.licenseExpirationDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
+                        TruckLicenseExpirationDateStr = TruckLicenseExpirationDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
+                        
+                        Birthdate = convDateToDate(input: data.data?.birthdate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
+                        BirthdateStr = Birthdate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
+                        
+                        if data.data?.citizenId != nil{
+//                            RedisentNumLength = 10
+                            RedisentOptions = 1
+                            citizenId = data.data?.citizenId ?? ""
+                        } else if data.data?.residentId != nil{
+//                            RedisentNumLength = 10
+                            RedisentOptions = 2
+                            residentId = data.data?.residentId ?? ""
+                        } else if data.data?.borderId != nil{
+//                            RedisentNumLength = 16
+                            RedisentOptions = 3
+                            borderId = data.data?.borderId ?? ""
+                        }
+                        
+                    }
                     
-                    TruckLicenseIssueDate = convDateToDate(input: data.data?.truckInfo?.licenseIssueDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
-                    TruckLicenseIssueDateStr = TruckLicenseIssueDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
-                
-                    TruckLicenseExpirationDate = convDateToDate(input: data.data?.truckInfo?.licenseExpirationDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
-                    TruckLicenseExpirationDateStr = TruckLicenseExpirationDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
-
-                    Birthdate = convDateToDate(input: data.data?.birthdate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
-                    BirthdateStr = Birthdate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
-  
-                if data.data?.citizenId != nil{
-                    citizenId = data.data?.citizenId ?? ""
-                    RedisentOptions = 1
+                }else {
+                    //                if data.messageCode == 400{
+                    //                    message = data.message ?? "error 400"
+                    //                }else if data.messageCode == 401{
+                    //                    message = "unauthorized"
+                    //                }else{
+                    message = data.message ?? "Bad Request"
+                    //                }
+                    isAlert = true
                 }
-                if data.data?.residentId != nil{
-                    citizenId = data.data?.residentId ?? ""
-                    RedisentOptions = 2
-                }
-                if data.data?.borderId != nil{
-                    citizenId = data.data?.borderId ?? ""
-                    RedisentOptions = 3
-                }
-                    
-//                    }
-                
-            }else {
-//                if data.messageCode == 400{
-//                    message = data.message ?? "error 400"
-//                }else if data.messageCode == 401{
-//                    message = "unauthorized"
-//                }else{
-                message = data.message ?? "Bad Request"
-//                }
-                isAlert = true
-            }
             }
         }).ensure { [self] in
             isLoading = false

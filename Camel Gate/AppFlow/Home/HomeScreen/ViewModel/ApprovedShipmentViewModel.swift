@@ -5,7 +5,7 @@
 //  Created by wecancity on 06/08/2022.
 //
 import Foundation
-import SwiftUI
+//import SwiftUI
 import Combine
 import Moya
 import PromiseKit
@@ -29,13 +29,17 @@ class ApprovedShipmentViewModel: ObservableObject {
     
     // ------- input
     @Published var GetShipmentsOp : GetShipmentsOperations = .fetchshipments
+    @Published var ApprovedShipmentsOp : approvedshipmentOperations = .start
+
     @Published var MaxResultCount                      :Int = 10
     @Published var SkipCount                            :Int = 0
 
     @Published var ApprovedshipmentId = 0
+    @Published var CanRateApprovedshipment = false
     
-    @Published var lat = 30.18
-    @Published var lang = 31.2
+    
+    @Published var lat = 0.0
+    @Published var lang = 0.0
     @Published var fromCityId = 0
     @Published var fromCityName = ""
 
@@ -63,7 +67,7 @@ class ApprovedShipmentViewModel: ObservableObject {
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
     
-    @Published var destination = AnyView(TabBarView())
+//    @Published var destination = AnyView(TabBarView())
     init() {
         
 //        GetApprovedShipment()
@@ -73,6 +77,9 @@ class ApprovedShipmentViewModel: ObservableObject {
         } receiveValue: { [weak self](modeldata) in
             self?.publishedapprovedShipmentModel = modeldata.data
             self?.ApprovedshipmentId = self?.publishedapprovedShipmentModel?.id ?? 0
+            if modeldata.success ?? false && self?.ApprovedShipmentsOp == .finish{
+                self?.CanRateApprovedshipment = true
+            }
         }.store(in: &cancellables)
         
         passToFilteredShipmentsObject.sink { (completion) in
@@ -80,9 +87,9 @@ class ApprovedShipmentViewModel: ObservableObject {
             self?.nodata = false
             DispatchQueue.main.async {
                 if (modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []) && self?.GetShipmentsOp == .fetchshipments{
-                    withAnimation{
+//                    withAnimation{
                         self?.publishedFilteredShipments = []
-                    }
+//                    }
                     self?.nodata = true
                 }else{
                     switch self?.GetShipmentsOp {
@@ -145,6 +152,50 @@ class ApprovedShipmentViewModel: ObservableObject {
 
         }
     }
+
+    //MARK: ------ approved shipment operation -----
+    func ApprovedAction(operation: approvedshipmentOperations){
+        self.ApprovedShipmentsOp = operation
+        let params : [String : Any] =
+        [
+            "shipmentId"                          : ApprovedshipmentId
+        ]
+        firstly { () -> Promise<Any> in
+            isLoading = true
+            print(operation)
+            print(params)
+            return BGServicesManager.CallApi(self.authServices, operation == .Upload ? HomeServices.UploadApprovedShipment(parameters: params): operation == .finish ? HomeServices.FinishApprovedShipment(parameters: params): HomeServices.StartApprovedShipment(parameters: params))
+        }.done({ [self] response in
+            let result = response as! Response
+            
+//                        guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<ApprovedShipmentModel> = try BGDecoder.decode(data: result.data )
+            print(result)
+            print(data)
+            if data.success == true {
+//                DispatchQueue.main.async {
+                    passthroughModelSubject.send(data)
+//                }
+            }else {
+                if data.messageCode == 400{
+                    message = data.message ?? "error 400"
+                }else if data.messageCode == 401{
+                    message = "unauthorized"
+                }else{
+                    message = "Bad Request"
+                }
+                isAlert = true
+            }
+            
+        }).ensure { [self] in
+            isLoading = false
+        }.catch { [self] (error) in
+//            isAlert = true
+//            message = "\(error)"
+            isLoading = false
+
+        }
+    }
     
     // MARK: - API Services
     func GetFilteredShipments(operation:GetShipmentsOperations){
@@ -152,11 +203,14 @@ class ApprovedShipmentViewModel: ObservableObject {
         var params : [String : Any] =
         [
             "maxResultCount": MaxResultCount,
-            "skipCount":SkipCount,
-            "lat"                          : lat ,
-            "lang"                         : lang
+            "skipCount":SkipCount
         ]
-        
+        if lat != 0.0{
+            params["lat"] = lat
+        }
+        if lang != 0.0{
+            params["lang"] = lang
+        }
         if fromCityId != 0{
             params["fromCityId"] = fromCityId
         }
@@ -210,49 +264,7 @@ class ApprovedShipmentViewModel: ObservableObject {
         }
     }
     
-    //MARK: ------ approved shipment operation -----
-    // MARK: - API Services
-    func ApprovedAction(operation: approvedshipmentOperations){
-        let params : [String : Any] =
-        [
-            "shipmentId"                          : ApprovedshipmentId
-        ]
-        firstly { () -> Promise<Any> in
-            isLoading = true
-            print(operation)
-            print(params)
-            return BGServicesManager.CallApi(self.authServices, operation == .Upload ? HomeServices.UploadApprovedShipment(parameters: params): operation == .finish ? HomeServices.FinishApprovedShipment(parameters: params): HomeServices.StartApprovedShipment(parameters: params))
-        }.done({ [self] response in
-            let result = response as! Response
-            
-//                        guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<ApprovedShipmentModel> = try BGDecoder.decode(data: result.data )
-            print(result)
-            print(data)
-            if data.success == true {
-//                DispatchQueue.main.async {
-                    passthroughModelSubject.send(data)
-//                }
-            }else {
-                if data.messageCode == 400{
-                    message = data.message ?? "error 400"
-                }else if data.messageCode == 401{
-                    message = "unauthorized"
-                }else{
-                    message = "Bad Request"
-                }
-                isAlert = true
-            }
-            
-        }).ensure { [self] in
-            isLoading = false
-        }.catch { [self] (error) in
-//            isAlert = true
-//            message = "\(error)"
-            isLoading = false
 
-        }
-    }
 
     func resetFilter(){
         fromCityId = 0

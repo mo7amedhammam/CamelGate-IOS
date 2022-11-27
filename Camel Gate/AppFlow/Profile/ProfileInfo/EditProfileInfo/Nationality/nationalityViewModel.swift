@@ -5,11 +5,11 @@
 //  Created by wecancity on 18/09/2022.
 //
 import Foundation
-import SwiftUI
+//import SwiftUI
 import Combine
 import Moya
 import PromiseKit
-import Alamofire
+//import Alamofire
 
 class nationalityViewModel: ObservableObject {
     
@@ -31,10 +31,10 @@ class nationalityViewModel: ObservableObject {
     init() {
         GetNationality()
         passthroughModelSubject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
-            DispatchQueue.main.async {
-                publishedNationalitiesArray = modeldata.data ?? []
-            }
+        } receiveValue: { [weak self](modeldata) in
+//            DispatchQueue.main.async {
+            self?.publishedNationalitiesArray = modeldata.data ?? []
+//            }
         }.store(in: &cancellables)
     }
     

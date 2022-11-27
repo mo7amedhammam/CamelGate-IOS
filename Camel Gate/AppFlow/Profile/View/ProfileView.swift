@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProfileView: View {
-    //    @State var rootView = AnyView(ProfileView())
     @State var islogout:Bool = false
     @State var goToLogin:Bool = false
     
@@ -37,12 +36,9 @@ struct ProfileView: View {
                                         Image(systemName: "person.fill")
                                             .font(.system(size:20))
                                             .foregroundColor(Color("blueColor"))
-                                        
                                         Text("Profile_info".localized(language))
                                             .foregroundColor(Color("lightGray"))
-                                        
                                         Spacer()
-                                        
                                         Image(systemName: "chevron.forward")
                                             .foregroundColor(Color("lightGray"))
                                             .font(.system(size:15))

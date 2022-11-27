@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Alamofire
+//import Alamofire
 
 enum ProfileStep{
     case create, update
@@ -33,7 +33,6 @@ struct EditProfileInfoView: View {
     @State private var imgsource = ""
     
     @State var enteredDriverName = ""
-
     @State var ageeTerms = false
     @State var showsheet = false
     @State var ShowCalendar  = false
@@ -217,9 +216,15 @@ struct EditProfileInfoView: View {
                                     .disabled(true)
                                     .overlay(content: {
                                         Menu {
-                                            Button("Citizen_Id".localized(language), action: {profileVM.RedisentOptions = 1 })
-                                            Button("Resident_Id".localized(language), action: {profileVM.RedisentOptions = 2})
-                                            Button("Border_Id".localized(language), action: {profileVM.RedisentOptions = 3})
+                                            Button("Citizen_Id".localized(language), action: {profileVM.RedisentOptions = 1
+//                                                profileVM.RedisentNumLength = 10
+                                            })
+                                            Button("Resident_Id".localized(language), action: {profileVM.RedisentOptions = 2
+//                                                profileVM.RedisentNumLength = 16
+                                            })
+                                            Button("Border_Id".localized(language), action: {profileVM.RedisentOptions = 3
+//                                                profileVM.RedisentNumLength = 10
+                                            })
                                             
                                         } label: {
                                             HStack{
@@ -236,12 +241,15 @@ struct EditProfileInfoView: View {
                                 
                                 InputTextField(iconName: "", placeholder: "Id".localized(language), placeholderColor:(profileVM.validations == .ResidentId && profileVM.ValidationMessage != "") ? .red:.gray.opacity(0.5), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
                                     .onChange(of: profileVM.citizenId  ){ newval in
+                                        profileVM.RedisentNumLength = 10
                                         profileVM.citizenId =  String(newval.prefix(profileVM.RedisentNumLength))
                                     }
                                     .onChange(of: profileVM.residentId  ){ newval in
+                                        profileVM.RedisentNumLength = 16
                                         profileVM.residentId =  String(newval.prefix(profileVM.RedisentNumLength))
                                     }
                                     .onChange(of: profileVM.borderId  ){ newval in
+                                        profileVM.RedisentNumLength = 16
                                         profileVM.borderId =  String(newval.prefix(profileVM.RedisentNumLength))
                                     }
                                     .focused($inFocus,equals:2)
@@ -540,33 +548,44 @@ struct EditProfileInfoView: View {
         .navigationBarHidden(true)
         .onAppear(perform: {
             if taskStatus == .update{
-                profileVM.GetDriverInfo()
+//                profileVM.GetDriverInfo()
             }else{
                 if enteredDriverName != ""{
                 profileVM.Drivername = enteredDriverName
                 }
             }
+//            setresidentNumLength()
+            
 //            DispatchQueue.main.asyncAfter(deadline:.now()+1.5,execute: {
 //                profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
 //                profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
 //            })
+//            profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
+//            profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
         })
+        
         .onChange(of: profileVM.TruckTypeId, perform: {newval in
             profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(newval) ?? 0))"
-
         })
+        
         .onChange(of: profileVM.TruckManfacturerId, perform: {newval in
             profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(newval) ?? 0))"
-
         })
+        
+//        .task{
+//             print(profileVM.TruckTypeId)
+//            await profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
+//
+//            await profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
+//        }
 
-        .onChange(of: profileVM.DriverImageStr, perform: {newval in
-            print(newval)
-            DispatchQueue.main.async( execute: {
-                profileVM.DriverImageStr = newval
-                print( profileVM.DriverImageStr)
-            })
-        })
+//        .onChange(of: profileVM.DriverImageStr, perform: {newval in
+//            print(newval)
+////            DispatchQueue.main.async( execute: {
+//                profileVM.DriverImageStr = newval
+////                print( profileVM.DriverImageStr)
+////            })
+//        })
         .onChange(of: profileVM.UserCreated, perform: {newval in
             if newval == true{
                 switch taskStatus {
@@ -580,17 +599,14 @@ struct EditProfileInfoView: View {
         })
         .onChange(of: profileVM.RedisentOptions, perform: {newval in
             if newval == 1 {
-                profileVM.RedisentNumLength = 10
                 profileVM.RedisentHint = "Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers"
                 profileVM.residentId = ""
                 profileVM.citizenId = ""
             }else if newval == 2{
-                profileVM.RedisentNumLength = 16
                 profileVM.RedisentHint = "Hint:_Resident_ID_should_start_with_2_with_maximum_16_Numbers"
                 profileVM.citizenId = ""
                 profileVM.borderId = ""
             }else if newval == 3{
-                profileVM.RedisentNumLength = 16
                 profileVM.RedisentHint = "Hint:_Border_ID_should_start_with_5_with_maximum_16_Numbers"
                 profileVM.residentId = ""
                 profileVM.citizenId = ""
@@ -718,8 +734,8 @@ extension EditProfileInfoView{
                 truckName = truck.title ?? ""
             }
         }
-        print(id)
-        print(truckName)
+//        print(id)
+//        print(truckName)
         
         return truckName
     }
@@ -731,8 +747,8 @@ extension EditProfileInfoView{
                 ManfacrurerName = Manfacrurer.title ?? ""
             }
         }
-        print(id)
-        print(ManfacrurerName)
+//        print(id)
+//        print(ManfacrurerName)
         return ManfacrurerName
     }
     
@@ -741,6 +757,19 @@ extension EditProfileInfoView{
         let calendar = Calendar.current
         let currentYear = calendar.component(.year, from: currentDate)
         return (1950...currentYear).map { String($0) }
+    }
+    
+    func setresidentNumLength(){
+        if profileVM.citizenId != nil{
+            profileVM.RedisentNumLength = 10
+            profileVM.RedisentOptions = 1
+        } else if profileVM.residentId != nil{
+            profileVM.RedisentNumLength = 10
+            profileVM.RedisentOptions = 2
+        } else if profileVM.borderId != nil{
+            profileVM.RedisentNumLength = 16
+            profileVM.RedisentOptions = 3
+        }
     }
     
     

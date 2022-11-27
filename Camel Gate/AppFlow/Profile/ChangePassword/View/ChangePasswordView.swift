@@ -171,6 +171,9 @@ struct ChangePasswordView: View {
             ChangePasswordVM.operation = operation
             ChangePasswordVM.phoneNumber = phoneNumber
         })
+        .onTapGesture(perform: {
+            hideKeyboard()
+        })
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
 //        .padding(.bottom, keyboard.currentHeight)

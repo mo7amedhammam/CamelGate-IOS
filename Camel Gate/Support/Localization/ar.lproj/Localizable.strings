@@ -248,3 +248,14 @@
 
 //MARK:  --  Rate shipment --
 "Shipment_Done!" = "لقت اتممت الشحنه!";
+"Shipment_Done2!" = "قيُم الشحنة";
+"You_just_have_gained" = "لقد ربحت الآن ";
+"Rate_The_Company" = "تقييم الشركة";
+"Rate_The_Company2" = "إرسال";
+
+"Send_Rate" = "تقييم";
+"are_you_sure_To_Start_now?" = "هل انت متأكد من بداية الشحنة ؟";
+"are_you_sure_To_Upload_now?" = "هل قمت بتحميل الشحنة ؟";
+"Did_you_realy_Finish_Shipment?" = "هل اتممت الشحنة ؟";
+"Not_now" = " ليس الآن";
+"yes_" = "نعم";

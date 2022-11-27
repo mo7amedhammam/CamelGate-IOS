@@ -22,7 +22,7 @@ struct PhoneVerificationView: View{
 
     @StateObject var SignUpVM : SignUpViewModel = SignUpViewModel()
     @StateObject var changePasswordVM : ChangePasswordViewModel = ChangePasswordViewModel()
-    @StateObject var resendOTPVM = ResendOTPViewModel()
+    @EnvironmentObject var resendOTPVM : ResendOTPViewModel
 
     @State var gotonewpassword = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -45,7 +45,6 @@ struct PhoneVerificationView: View{
     
     var body: some View {
         ZStack{
-            
             VStack {
                 ScrollView{
                     Spacer().frame(height:120)

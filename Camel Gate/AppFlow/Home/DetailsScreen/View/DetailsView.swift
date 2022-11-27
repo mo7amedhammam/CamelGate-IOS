@@ -13,10 +13,10 @@ struct DetailsView: View {
     @StateObject var detailsVM = ShipmentDetailsViewModel()
     @State var ShowSetOffer:Bool = false
     @State var OfferCase:OfferCases = .set
-    @State var ShowMapRedirector:Bool = false
-    @State var longitude:Double = 0
-    @State var latitude:Double = 0
-    @EnvironmentObject var imageVM : camelEnvironments
+//    @State var ShowMapRedirector:Bool = false
+//    @State var longitude:Double = 0
+//    @State var latitude:Double = 0
+    @EnvironmentObject var environments : camelEnvironments
     var body: some View {
         ZStack {
             ScrollView {
@@ -28,8 +28,8 @@ struct DetailsView: View {
                             AsyncImage(url: URL(string: Constants.baseURL + "\(detailsVM.publishedUserLogedInModel.imageURL ?? "")".replacingOccurrences(of: "\\",with: "/"))) { image in
                                 image.resizable()
                                     .onTapGesture(perform: {
-                                        imageVM.isPresented = true
-                                        imageVM.imageUrl = Constants.baseURL + "\(detailsVM.publishedUserLogedInModel.imageURL ?? "")".replacingOccurrences(of: "\\",with: "/")
+                                        environments.isPresented = true
+                                        environments.imageUrl = Constants.baseURL + "\(detailsVM.publishedUserLogedInModel.imageURL ?? "")".replacingOccurrences(of: "\\",with: "/")
                                     })
                             } placeholder: {
                                 Image("cover_vector")
@@ -212,9 +212,9 @@ struct DetailsView: View {
                             Spacer()
                             VStack {
                                 Button(action: {
-                                    longitude = Double(detailsVM.publishedUserLogedInModel.fromLang ?? 0)
-                                    latitude = Double(detailsVM.publishedUserLogedInModel.fromLat ?? 0)
-                                    ShowMapRedirector = true
+                                    environments.Destinationlongitude = Double(detailsVM.publishedUserLogedInModel.fromLang ?? 0)
+                                    environments.Destinationlatitude = Double(detailsVM.publishedUserLogedInModel.fromLat ?? 0)
+                                    environments.ShowMapRedirector = true
                                 }) {
                                     ZStack{
                                         Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
@@ -224,9 +224,9 @@ struct DetailsView: View {
                                 }
                                 Spacer()
                                 Button(action: {
-                                    longitude = Double(detailsVM.publishedUserLogedInModel.toLang ?? 0)
-                                    latitude = Double(detailsVM.publishedUserLogedInModel.toLat ?? 0)
-                                    ShowMapRedirector = true
+                                    environments.Destinationlongitude = Double(detailsVM.publishedUserLogedInModel.toLang ?? 0)
+                                    environments.Destinationlatitude = Double(detailsVM.publishedUserLogedInModel.toLat ?? 0)
+                                    environments.ShowMapRedirector = true
                                 }) {
                                     ZStack{
                                         Color("Second_Color").opacity(0.2).frame(width : 100 , height: 40)
@@ -363,9 +363,9 @@ struct DetailsView: View {
         })
         .overlay(
             VStack{
-                if ShowMapRedirector{
-                    BottomSheetView(IsPresented: $ShowMapRedirector, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
-                        RedirectToGMaps(ShowRedirector: $ShowMapRedirector, Long: longitude, Lat: latitude)
+                if environments.ShowMapRedirector{
+                    BottomSheetView(IsPresented: $environments.ShowMapRedirector, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
+                        RedirectToGMaps(ShowRedirector: $environments.ShowMapRedirector, Long: environments.Destinationlongitude, Lat: environments.Destinationlatitude)
                             .padding()
                             .frame( height: 190)
                     })

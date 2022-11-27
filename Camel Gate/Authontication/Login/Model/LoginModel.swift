@@ -16,6 +16,7 @@ struct LoginModel : Codable{
     let statusId : Int?
     let profileStatusId :Int?
     let isDriverInCompany : Bool?
+    let rate : ratemodel?
     enum CodingKeys: String, CodingKey {
         case token = "token"
         case name = "name"
@@ -25,5 +26,11 @@ struct LoginModel : Codable{
         case statusId = "statusId"
         case profileStatusId = "profileStatusId"
         case isDriverInCompany = "isDriverInCompany"
+        case rate = "rate"
     }
+}
+
+struct ratemodel:Codable{
+    let ratesCount : Int?
+    let rate : Double?
 }

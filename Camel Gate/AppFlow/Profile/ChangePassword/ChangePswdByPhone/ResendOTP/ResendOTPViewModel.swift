@@ -67,10 +67,10 @@ class ResendOTPViewModel: ObservableObject {
     @Published var destination = AnyView(TabBarView())
     init() {
         passthroughModelSubject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
+        } receiveValue: { [weak self](modeldata) in
 //            publishedOTPModel = modeldata.data
-            NewCode = modeldata.data?.otp ?? 0
-            NewSecondsCount = modeldata.data?.secondsCount ?? 0
+            self?.NewCode = modeldata.data?.otp ?? 0
+            self?.NewSecondsCount = modeldata.data?.secondsCount ?? 0
             
 //            verifyUser = true
         }.store(in: &cancellables)

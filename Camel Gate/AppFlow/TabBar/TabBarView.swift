@@ -30,6 +30,7 @@ struct MainTabBar : View {
     //    @State var resetFilter = false
     @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
     @StateObject var environments = camelEnvironments()
+
     var body: some View {
         VStack(spacing: 0){
             GeometryReader{_ in
@@ -38,6 +39,7 @@ struct MainTabBar : View {
                         HomeView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
                             .environmentObject(environments)
+                        
                     } else if self.selectedTab.localized(language) == "Shipments".localized(language){
                         ShipmentsView()
                         
@@ -51,7 +53,6 @@ struct MainTabBar : View {
                         
                     }else if self.selectedTab.localized(language) == "Profile".localized(language){
                         ProfileView()
-                        
                     }
                 }.environmentObject(environments)
                     .navigationViewStyle(StackNavigationViewStyle())
@@ -97,17 +98,13 @@ struct MainTabBar : View {
                             .padding()
                             .frame(height: 190)
                     })
-                }else if environments.ShowRatingSheet{
-                    
-                    BottomSheetView(IsPresented: $environments.ShowRatingSheet, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
+                }else if ApprovedShipmentVM.CanRateApprovedshipment{
+                    BottomSheetView(IsPresented: $ApprovedShipmentVM.CanRateApprovedshipment, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
                        RateSheetView()
-                            .environmentObject(environments)
+                            .environmentObject(ApprovedShipmentVM)
                             .padding(.horizontal)
                             .padding(.bottom,hasNotch ? 0:-10)
-//                            .frame(height: 300)
-
                     })
-                    
                 }
             }.padding(.bottom, hasNotch ? 0:-20)
         )

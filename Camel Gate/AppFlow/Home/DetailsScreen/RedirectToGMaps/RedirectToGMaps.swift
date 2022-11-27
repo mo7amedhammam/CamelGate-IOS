@@ -63,7 +63,9 @@ struct RedirectToGMaps:View{
         .onAppear(perform: {
             locationVM.lat = "\(Lat)"
             locationVM.long = "\(Long)"
-            locationVM.getAddressFromLatLon()
+            locationVM.getAddressFromLatLon(completion: {address in
+                locationVM.Publishedaddress = address
+            })
         })
         
 //        .frame(height:180)

@@ -47,7 +47,6 @@ struct NoteScreenView: View {
                         }
 
                 GradientButton(action: {
-                                            resendOTPVM.phoneNumber = phoneNumber
                                             resendOTPVM.SendOTP()
                 }, Title: "Send_OTP".localized(language),IsDisabled:.constant(resendOTPVM.phoneNumber == "" || resendOTPVM.ValidationMessage != "") )
                     .padding(.top,50)
@@ -56,6 +55,9 @@ struct NoteScreenView: View {
             TitleBar(Title: "Change_Password".localized(language), navBarHidden: true, leadingButton: .backButton ,trailingAction: {
             })
         }
+        .overlay(content: {
+            AnimatingGif(isPresented: $resendOTPVM.isLoading)
+        })
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         
         .onChange(of: resendOTPVM.verifyUser , perform: {newval in
@@ -66,6 +68,17 @@ struct NoteScreenView: View {
         .onAppear(perform: {
             resendOTPVM.phoneNumber = phoneNumber
         })
+        .onTapGesture(perform: {
+            hideKeyboard()
+        })
+        .toolbar{
+            ToolbarItemGroup(placement: .keyboard ){
+                Spacer()
+                Button("Done".localized(language)){
+                    hideKeyboard()
+                }
+            }
+        }
         
         .fullScreenCover(isPresented: $presentPhoneVerify , onDismiss: {
             if resendOTPVM.isMatchedOTP == true {
@@ -73,11 +86,21 @@ struct NoteScreenView: View {
             }
         }, content: {
             PhoneVerificationView(op: .password, phoneNumber: $phoneNumber, CurrentOTP: $resendOTPVM.NewCode ,validFor: $resendOTPVM.NewSecondsCount , matchedOTP: $resendOTPVM.isMatchedOTP, isPresented: $presentPhoneVerify)
+                .environmentObject(resendOTPVM)
         })
         
         
         NavigationLink(destination: ChangePasswordView(phoneNumber:resendOTPVM.phoneNumber,operation: .forget),isActive:$gotonewpassword, label: {
                 })
+        
+        
+        // Alert with no internet connection
+            .alert(isPresented: $resendOTPVM.isAlert, content: {
+                Alert(title: Text(resendOTPVM.message.localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    resendOTPVM.isAlert = false
+                }))
+            })
+
     }
 }
 

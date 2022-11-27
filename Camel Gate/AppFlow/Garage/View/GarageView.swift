@@ -99,7 +99,7 @@ struct GarageView: View {
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
         .onAppear(perform: {
-//            getDate()
+            getDate()
         })
 //        .task {
 //            await getDate()
@@ -155,11 +155,14 @@ struct GarageView: View {
                 
     }
     func getDate() {
+        ApprovedShipmentVM.lang = 0
+        ApprovedShipmentVM.lat = 0
+
         ApprovedShipmentVM.resetFilter()
 
         selectedShipmentId = 0
         ApprovedShipmentVM.SkipCount = 0
-        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+//        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
     }
 }
 

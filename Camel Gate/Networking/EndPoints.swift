@@ -20,6 +20,7 @@ enum EndPoints: String {
     case startApprovedShipment = "Shipment/StartShipment"
     case UploadApprovedShipment = "Shipment/ShipmentUploaded"
     case FinishApprovedShipment = "Shipment/ShipmentDroppedAndFinished"
+    case RateApprovedShipment = "ShipmentRate/Rate"
 
     case GetFiltered = "Shipment/GetPagedFiltered"
     

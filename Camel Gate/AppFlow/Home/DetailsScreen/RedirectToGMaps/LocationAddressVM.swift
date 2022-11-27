@@ -15,6 +15,9 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
     private let locationManager = CLLocationManager()
         @Published var locationStatus: CLAuthorizationStatus?
         @Published var lastLocation: CLLocation?
+
+    @Published var Currentlong: Double?
+    @Published var Currentlat: String?
     
     override init() {
             super.init()
@@ -47,7 +50,9 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
     }
 
         func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            locationStatus = status
+            DispatchQueue.main.async { [self] in
+                locationStatus = status
+            }
             print(#function, statusString)
         }
 
@@ -55,8 +60,9 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
             guard let location = locations.last else { return }
             lastLocation = location
             print(#function, location)
-//            self.Currentlong = "\(location.coordinate.longitude)"
-//            self.Currentlat = "\(location.coordinate.latitude)"
+            
+            self.Currentlong = locations.last?.coordinate.longitude
+            self.Currentlat = "\(location.coordinate.latitude)"
         }
     
     
@@ -65,48 +71,126 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
     @Published var long = ""
     @Published var Publishedaddress = ""
 
-    func getAddressFromLatLon() {
+    func getAddressFromLatLon(completion: @escaping (String) -> Void) {
 //            var Address = ""
             var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-            let lat: Double = Double("\(lat)")!           //21.228124
-            let lon: Double = Double("\(long)")!          //72.833770
+        let lat: Double = Double("\(lat)") ?? Double(lastLocation?.coordinate.latitude ?? 0 )          //21.228124
+        let long: Double = Double("\(long)") ?? Double(lastLocation?.coordinate.longitude ?? 0)     //72.833770
             let ceo: CLGeocoder = CLGeocoder()
             center.latitude = lat
-            center.longitude = lon
+            center.longitude = long
+        
+        
+        
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        let location = CLLocation.init(latitude: coordinate.latitude, longitude: coordinate.longitude)
 
-            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-        ceo.reverseGeocodeLocation(loc) { placemarks, error in
-                            if (error != nil)
-                            {
-                                print("reverse geodcode fail: \(error!.localizedDescription)")
-                            }
-                             let pm = placemarks! as [CLPlacemark]
-                            if pm.count > 0 {
-                                let pm = placemarks![0]
-            
-                                var addressString : String = ""
-                                if pm.subLocality != nil {
-                                    addressString = addressString + pm.subLocality! + ", "
-                                }
-                                if pm.thoroughfare != nil {
-                                    addressString = addressString + pm.thoroughfare! + ", "
-                                }
-                                if pm.locality != nil {
-                                    addressString = addressString + pm.locality! + ", "
-                                }
-                                if pm.country != nil {
-                                    addressString = addressString + pm.country! + ", "
-                                }
-                                if pm.postalCode != nil {
-                                    addressString = addressString + pm.postalCode! + " "
-                                }
-                                print(addressString)
-//                                Address = addressString
-                                self.Publishedaddress = addressString
-                                Helper.setUseraddress(CurrentAddress: addressString)
-                          }
-        }
+        
+        let geoCoder = CLGeocoder()
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+                   
+                   // check for errors
+                   guard let placeMarkArr = placemarks else {
+                       completion("")
+                       debugPrint(error ?? "")
+                       return
+                   }
+                   // check placemark data existence
+                   
+                   guard let placemark = placeMarkArr.first, !placeMarkArr.isEmpty else {
+                       completion("")
+                       return
+                   }
+                   // create address string
+                   
+                   let outputString = [placemark.locality,
+                                       placemark.subLocality,
+                                       placemark.thoroughfare,
+                                       placemark.postalCode,
+                                       placemark.subThoroughfare,
+                                       placemark.country].compactMap { $0 }.joined(separator: ", ")
+                   
+                   completion(outputString)
+
+               })
+        
+//            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
+//        ceo.reverseGeocodeLocation(loc) { placemarks, error in
+//                            if (error != nil)
+//                            {
+//                                print("reverse geodcode fail: \(error!.localizedDescription)")
+//                            }
+//                             let pm = placemarks! as [CLPlacemark]
+//                            if pm.count > 0 {
+//                                let pm = placemarks![0]
+//
+//                                var addressString : String = ""
+//                                if pm.subLocality != nil {
+//                                    addressString = addressString + pm.subLocality! + ", "
+//                                }
+//                                if pm.thoroughfare != nil {
+//                                    addressString = addressString + pm.thoroughfare! + ", "
+//                                }
+//                                if pm.locality != nil {
+//                                    addressString = addressString + pm.locality! + ", "
+//                                }
+//                                if pm.country != nil {
+//                                    addressString = addressString + pm.country! + ", "
+//                                }
+//                                if pm.postalCode != nil {
+//                                    addressString = addressString + pm.postalCode! + " "
+//                                }
+//                                print(addressString)
+////                                Address = addressString
+//                                self.Publishedaddress = addressString
+//                                Helper.setUseraddress(CurrentAddress: addressString)
+//                          }
+//        }
 //        return Address
         }
+    
+//    func getAddressFromLatLon() {
+////            var Address = ""
+//            var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
+//            let lat: Double = Double("\(lat)")!           //21.228124
+//            let lon: Double = Double("\(long)")!          //72.833770
+//            let ceo: CLGeocoder = CLGeocoder()
+//            center.latitude = lat
+//            center.longitude = lon
+//
+//            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
+//        ceo.reverseGeocodeLocation(loc) { placemarks, error in
+//                            if (error != nil)
+//                            {
+//                                print("reverse geodcode fail: \(error!.localizedDescription)")
+//                            }
+//                             let pm = placemarks! as [CLPlacemark]
+//                            if pm.count > 0 {
+//                                let pm = placemarks![0]
+//
+//                                var addressString : String = ""
+//                                if pm.subLocality != nil {
+//                                    addressString = addressString + pm.subLocality! + ", "
+//                                }
+//                                if pm.thoroughfare != nil {
+//                                    addressString = addressString + pm.thoroughfare! + ", "
+//                                }
+//                                if pm.locality != nil {
+//                                    addressString = addressString + pm.locality! + ", "
+//                                }
+//                                if pm.country != nil {
+//                                    addressString = addressString + pm.country! + ", "
+//                                }
+//                                if pm.postalCode != nil {
+//                                    addressString = addressString + pm.postalCode! + " "
+//                                }
+//                                print(addressString)
+////                                Address = addressString
+//                                self.Publishedaddress = addressString
+//                                Helper.setUseraddress(CurrentAddress: addressString)
+//                          }
+//        }
+////        return Address
+//        }
 }
 

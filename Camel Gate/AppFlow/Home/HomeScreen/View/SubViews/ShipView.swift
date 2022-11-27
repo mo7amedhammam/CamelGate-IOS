@@ -12,6 +12,9 @@ struct ShipView: View {
 
     @EnvironmentObject var ApprovedShipmentVM:ApprovedShipmentViewModel
     @EnvironmentObject var environments : camelEnvironments
+    @State var confirmAlert = false
+    @State var confirmMessage = ""
+
 //    @Binding var ShowMapRedirector:Bool
 //    @Binding var longitude:Double
 //    @Binding var latitude:Double
@@ -21,7 +24,7 @@ struct ShipView: View {
                 Image("ic_ship_purple").resizable()
                 HStack(spacing: 10){
                     Text("Shipment".localized(language)).foregroundColor(Color.white)
-                    Text("#\(ApprovedShipmentVM.publishedapprovedShipmentModel?.code ?? "1215")")
+                    Text("#\(ApprovedShipmentVM.publishedapprovedShipmentModel?.code ?? "")")
                         .foregroundColor(Color.white)
                     Spacer()
                 }
@@ -40,13 +43,10 @@ struct ShipView: View {
                                     ConvertStringDate(inp:ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentDateTo ?? "2022-08-17T00:00:00",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss",FormatTo:"E. dd/MM/yyyy . h:m aa")
                                 )
                             }
-                            
                         }
 .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-
                         Spacer()
                         Button(action: {
-                            
                             if ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2{
                                 environments.Destinationlongitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLang ?? 0)
                                 environments.Destinationlatitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLat ?? 0)
@@ -57,9 +57,7 @@ struct ShipView: View {
                                 environments.Destinationlongitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLang ?? 0)
                                 environments.Destinationlatitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLat ?? 0)
                             }
-                            
                             environments.ShowMapRedirector = true
-
                         }) {
                             ZStack{
                                 Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)
@@ -93,18 +91,25 @@ struct ShipView: View {
                     .padding(.bottom,-5)
 
                 Button(action: {
-                    
-                    ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ?
-                    ApprovedShipmentVM.ApprovedAction(operation: .start) :ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? ApprovedShipmentVM.ApprovedAction(operation: .Upload):ApprovedShipmentVM.ApprovedAction(operation: .finish)
-                    
+                        showConfirmAlert()
                 }, label: {
                     HStack {
                         Text(ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? "Start_Shipment".localized(language):ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? "Uploaded".localized(language):"Dropped_&_Finished".localized(language))
                             .foregroundColor(Color.white)
-                        
                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     }
-                })
+                })                
+                    .alert("\(confirmMessage)".localized(language), isPresented: $confirmAlert, actions: {
+                        Button("yes_".localized(language), action: {
+                                ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ?
+                                ApprovedShipmentVM.ApprovedAction(operation: .start) :ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? ApprovedShipmentVM.ApprovedAction(operation: .Upload):ApprovedShipmentVM.ApprovedAction(operation: .finish)
+                        })
+                        Button("Not_now".localized(language), action: {
+                            confirmAlert = false
+                            confirmMessage = ""
+                        })
+                    })
+                
             }
             .frame(height: 50)
         }
@@ -112,6 +117,25 @@ struct ShipView: View {
         .cornerRadius(10)
 //        .padding()
     }
+    
+    func showConfirmAlert() {
+        
+        switch   ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId {
+        case 2:
+            confirmMessage="are_you_sure_To_Start_now?"
+        case 3:
+            confirmMessage="are_you_sure_To_Upload_now?"
+        case 4:
+            confirmMessage="Did_you_realy_Finish_Shipment?"
+        default:
+            return
+        }
+//        DispatchQueue.main.async(execute: {
+        confirmAlert = true
+//        })
+        //        ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? confirmMessage="are_you_sure_To_Start_now?":ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? confirmMessage = "are_you_sure_To_Upload_now?":confirmMessage = "Did_you_realy_Finish_Shipment?"
+    }
+    
 }
 
 struct ShipView_Previews: PreviewProvider {

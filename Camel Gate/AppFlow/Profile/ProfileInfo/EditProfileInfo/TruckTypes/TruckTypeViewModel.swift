@@ -5,11 +5,11 @@
 //  Created by wecancity on 13/08/2022.
 //
 import Foundation
-import SwiftUI
+//import SwiftUI
 import Combine
 import Moya
 import PromiseKit
-import Alamofire
+//import Alamofire
 
 class TruckTypeViewModel: ObservableObject {
     
@@ -31,10 +31,10 @@ class TruckTypeViewModel: ObservableObject {
     init() {
         GetTruckTypes()
         passthroughModelSubject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
-            DispatchQueue.main.async {
-                publishedTypesArray = modeldata.data ?? []
-            }
+        } receiveValue: { [weak self](modeldata) in
+//            DispatchQueue.main.async {
+            self?.publishedTypesArray = modeldata.data ?? []
+//            }
         }.store(in: &cancellables)
     }
     

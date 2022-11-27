@@ -7,7 +7,7 @@
 
 import Foundation
 import Moya
-import SwiftUI
+//import SwiftUI
 
 enum HomeServices {
     
@@ -16,6 +16,7 @@ enum HomeServices {
     case StartApprovedShipment(parameters : [String:Any])
     case UploadApprovedShipment(parameters : [String:Any])
     case FinishApprovedShipment(parameters : [String:Any])
+    case RateApprovedShipment(parameters:[String:Any])
 
     case HomeShipmments(parameters : [String:Any])
 
@@ -48,6 +49,8 @@ extension HomeServices : URLRequestBuilder {
             return EndPoints.GetFiltered.rawValue
         case .GetApprovedShipment:
             return EndPoints.GetApprovedShipment.rawValue
+        case .RateApprovedShipment:
+            return EndPoints.RateApprovedShipment.rawValue
 
         case .appliedShipMents :
             return EndPoints.appliedShipment.rawValue
@@ -93,17 +96,22 @@ extension HomeServices : URLRequestBuilder {
     }
     var method: Moya.Method {
         switch self {
-
-        case .Home , .GetApprovedShipment, .StartApprovedShipment, .UploadApprovedShipment, .FinishApprovedShipment , .getGainedWallet, .getWithdrawnWallet, .getHomePageWallet:
+        case .Home,
+                .GetApprovedShipment,
+                .StartApprovedShipment,
+                .UploadApprovedShipment,
+                .FinishApprovedShipment,
+                .getGainedWallet,
+                .getWithdrawnWallet,
+                .getHomePageWallet,
+                .ShipmentDetails,
+                .GetShipmentTypes,
+                .GetCities,
+                .CancelationReasons:
             return .get
-        case .HomeShipmments, .appliedShipMents, .upComingShipments, .currentShipments:
-            return .post
-
-        case .ShipmentDetails, .GetShipmentTypes, .GetCities, .CancelationReasons:
-            return .get
-   
-        case .setOffer,.CancelOffer,.ChangePassword, .ChangeForgetPassword:
-            return .post
+            
+        case .HomeShipmments, .appliedShipMents, .upComingShipments, .currentShipments, .RateApprovedShipment,.setOffer,.CancelOffer,.ChangePassword, .ChangeForgetPassword:
+            return .post   
         }
     }
     var sampleData: Data {
@@ -114,7 +122,15 @@ extension HomeServices : URLRequestBuilder {
         case .Home, .GetApprovedShipment, .getGainedWallet, .getWithdrawnWallet, .getHomePageWallet, .CancelationReasons, .GetShipmentTypes, .GetCities:
             return .requestPlain
       
-        case .HomeShipmments(let param), .appliedShipMents(let param) , .upComingShipments(let param) , .currentShipments(let param), .setOffer( let param), .CancelOffer( let param), .ChangePassword(parameters: let param), .ChangeForgetPassword(parameters: let param):
+        case .HomeShipmments(let param),
+                .appliedShipMents(let param),
+                .upComingShipments(let param),
+                .currentShipments(let param),
+                .setOffer( let param),
+                .CancelOffer( let param),
+                .ChangePassword(parameters: let param),
+                .ChangeForgetPassword(parameters: let param),
+                .RateApprovedShipment(parameters: let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
 
         case .ShipmentDetails(let param), .StartApprovedShipment(let param), .UploadApprovedShipment(let param), .FinishApprovedShipment(let param):

@@ -11,7 +11,7 @@ import SwiftUI
 struct HeaderView: View {
     @State var active = false
     @State var destination = AnyView(NotificationsView())
-    @StateObject var locationVM = LocationAddressVM()
+    @EnvironmentObject var locationVM : LocationAddressVM
     @EnvironmentObject var imageVM : camelEnvironments
     var body: some View {
         HStack {
@@ -33,10 +33,10 @@ struct HeaderView: View {
                     Text(LoginManger.getUser()?.name ?? "")
                         .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
                         .foregroundColor(Color.white)
-                    HStack{
+                    HStack(alignment:.center){
                         Text("")
                         Image("ic_star")
-                        Text("4.5  ")
+                        Text("\(String(format:"%.1f", LoginManger.getUser()?.rate?.rate ?? 0 ))  ")
                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)
                     }
@@ -65,7 +65,9 @@ struct HeaderView: View {
             DispatchQueue.main.asyncAfter(deadline: .now(), execute: { [self] in
                 locationVM.lat = "\(locationVM.lastLocation?.coordinate.latitude ?? 0.0)"
                 locationVM.long = "\(locationVM.lastLocation?.coordinate.longitude ?? 0.0)"
-                locationVM.getAddressFromLatLon()
+                locationVM.getAddressFromLatLon(completion: {address in
+                    locationVM.Publishedaddress = address
+                })
             })
         })
         NavigationLink(destination: destination,isActive:$active , label: {
@@ -76,5 +78,6 @@ struct HeaderView: View {
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
         HeaderView().environmentObject(camelEnvironments())
+            .environmentObject(LocationAddressVM())
     }
 }
