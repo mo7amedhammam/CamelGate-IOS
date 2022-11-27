@@ -42,7 +42,7 @@ struct EditProfileInfoView: View {
     @State var selectedDate:Date?
     @State var active = false
     @State var destination = AnyView( TabBarView().navigationBarHidden(true))
-    @EnvironmentObject var imageVM : imageViewModel
+    @EnvironmentObject var imageVM : camelEnvironments
   
     var years:[String] = []
     @FocusState var inFocus: Int?
@@ -696,13 +696,13 @@ struct EditProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             EditProfileInfoView(taskStatus: .create)
-                .environmentObject(imageViewModel())
+                .environmentObject(camelEnvironments())
         }
         .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
 
         ZStack {
             EditProfileInfoView(taskStatus: .update)
-                .environmentObject(imageViewModel())
+                .environmentObject(camelEnvironments())
         }
         .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
 

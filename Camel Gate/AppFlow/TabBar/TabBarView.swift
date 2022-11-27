@@ -20,16 +20,16 @@ struct TabBarView: View {
 struct MainTabBar : View {
     @AppStorage("language")
     var language = LocalizationService.shared.language
-
+    
     @State var selectedTab = "Home"
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
     @Namespace var animation
     @State var tabs = ["Home","Shipments","Garage","Wallet","Profile"]
     @State var FilterTag : FilterCases = .Menu
     @State var showFilter = false
-//    @State var resetFilter = false
+    //    @State var resetFilter = false
     @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
-    @StateObject var environments = imageViewModel()
+    @StateObject var environments = camelEnvironments()
     var body: some View {
         VStack(spacing: 0){
             GeometryReader{_ in
@@ -54,8 +54,8 @@ struct MainTabBar : View {
                         
                     }
                 }.environmentObject(environments)
-                .navigationViewStyle(StackNavigationViewStyle())
-                .ignoresSafeArea()
+                    .navigationViewStyle(StackNavigationViewStyle())
+                    .ignoresSafeArea()
             }
             HStack(spacing: 0){
                 ForEach(tabs , id : \.self){tab in
@@ -83,6 +83,7 @@ struct MainTabBar : View {
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .overlay(
             VStack{
+                //                MARK: -- filter sheet --
                 if showFilter{
                     BottomSheetView(IsPresented: $showFilter, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
                         MainFilterView(FilterTag: $FilterTag, showFilter: $showFilter)
@@ -90,6 +91,23 @@ struct MainTabBar : View {
                             .padding()
                             .padding(.bottom,hasNotch ? 0:-10)
                     })
+                }else if environments.ShowMapRedirector {
+                    BottomSheetView(IsPresented: $environments.ShowMapRedirector, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
+                        RedirectToGMaps(ShowRedirector: $environments.ShowMapRedirector, Long: environments.Destinationlongitude, Lat: environments.Destinationlongitude)
+                            .padding()
+                            .frame(height: 190)
+                    })
+                }else if environments.ShowRatingSheet{
+                    
+                    BottomSheetView(IsPresented: $environments.ShowRatingSheet, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
+                       RateSheetView()
+                            .environmentObject(environments)
+                            .padding(.horizontal)
+                            .padding(.bottom,hasNotch ? 0:-10)
+//                            .frame(height: 300)
+
+                    })
+                    
                 }
             }.padding(.bottom, hasNotch ? 0:-20)
         )

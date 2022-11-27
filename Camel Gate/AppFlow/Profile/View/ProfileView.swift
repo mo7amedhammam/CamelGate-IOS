@@ -20,7 +20,7 @@ struct ProfileView: View {
     
     @AppStorage("language")
     var language = LocalizationService.shared.language
-    @EnvironmentObject var imageVM : imageViewModel
+    @EnvironmentObject var imageVM : camelEnvironments
     var body: some View {
         NavigationView {
             ZStack{
@@ -156,7 +156,8 @@ struct ProfileView: View {
                             }
                             Group{
                                 Button(action: {
-                                    Helper.MakePhoneCall(PhoneNumber: "00000000")
+//                                    Helper.MakePhoneCall(PhoneNumber: "00000000")
+                                    openWhatsApp(number:nil)
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "phone.fill")
@@ -173,6 +174,7 @@ struct ProfileView: View {
                                 })
                                 
                                 Button(action: {
+                                    openWhatsApp(number:nil)
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "exclamationmark.circle.fill")
@@ -264,10 +266,10 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            ProfileView().environmentObject(imageViewModel())
+            ProfileView().environmentObject(camelEnvironments())
         }
         ZStack {
-            ProfileView().environmentObject(imageViewModel())
+            ProfileView().environmentObject(camelEnvironments())
         }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }

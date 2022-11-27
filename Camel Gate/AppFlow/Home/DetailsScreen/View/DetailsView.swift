@@ -16,7 +16,7 @@ struct DetailsView: View {
     @State var ShowMapRedirector:Bool = false
     @State var longitude:Double = 0
     @State var latitude:Double = 0
-    @EnvironmentObject var imageVM : imageViewModel
+    @EnvironmentObject var imageVM : camelEnvironments
     var body: some View {
         ZStack {
             ScrollView {
@@ -96,7 +96,7 @@ struct DetailsView: View {
                                 Text("Driver's_Rate".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_star")
-                                    Text("\(detailsVM.publishedUserLogedInModel.lowestOfferDriverRate ?? 2)/5 ")
+                                    Text("\(String(format:"%.1f", detailsVM.publishedUserLogedInModel.lowestOfferDriverRate ?? 2))/5 ")
                                         .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color(#colorLiteral(red: 1, green: 0.5745426416, blue: 0, alpha: 1)))
                                 }
                             }
@@ -140,7 +140,7 @@ struct DetailsView: View {
                                 Text("Company_Rate".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_star")
-                                    Text("\(detailsVM.publishedUserLogedInModel.companyRate ?? 2)/5")
+                                    Text("\(String(format:"%.1f",detailsVM.publishedUserLogedInModel.companyRate ?? 2))/5")
                                         .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color.black)
                                     Text("(\(detailsVM.publishedUserLogedInModel.companyRatesCount ?? 2) "+"Rates".localized(language)+")")
                                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
@@ -391,7 +391,7 @@ struct DetailsView: View {
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         DetailsView(shipmentId: 0)
-            .environmentObject(imageViewModel())
+            .environmentObject(camelEnvironments())
     }
 }
 

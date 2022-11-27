@@ -195,8 +195,50 @@ final class Helper{
         guard let url = URL(string: phoneFormatted) else {return}
         UIApplication.shared.open(url)
     }
+    
+    
+    
 }
 
+
+// navigate to google maps with lond & lat
+func openWhatsApp(number : String?) {
+    var fullMob = number ?? "+966505896222"
+    fullMob = fullMob.replacingOccurrences(of: " ", with: "")
+    fullMob = fullMob.replacingOccurrences(of: "+", with: "")
+    fullMob = fullMob.replacingOccurrences(of: "-", with: "")
+        let appURL = NSURL(string: "whatsapp://send?phone=\(fullMob)")!
+
+        let webURL = NSURL(string: "https://api.whatsapp.com/send?phone=\(fullMob)")!
+    let application = UIApplication.shared
+        if application.canOpenURL(appURL as URL) {
+            application.open(appURL as URL)
+            print(appURL)
+        } else {
+            // if GoogleMaps app is not installed, open URL inside Safari
+            application.open(webURL as URL)
+        }
+       }
+//
+//func openWhatsApp(number : String){
+//        var fullMob = number
+//        fullMob = fullMob.replacingOccurrences(of: " ", with: "")
+//        fullMob = fullMob.replacingOccurrences(of: "+", with: "")
+//        fullMob = fullMob.replacingOccurrences(of: "-", with: "")
+//        let urlWhats = "whatsapp://send?phone=\(fullMob)"
+//
+//        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+//            if let whatsappURL = NSURL(string: urlString) {
+//                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+//                    UIApplication.shared.open(whatsappURL as URL, options: [:], completionHandler: { (Bool) in
+//                    })
+//                } else {
+////                    AppTool.showAlertView(vc: self, titleString: "Error", messageString: "WhatsApp Not Found on your device")
+//                    // Handle a problem
+//                }
+//            }
+//        }
+//    }
 
 
 //@AppStorage("language")
@@ -204,7 +246,7 @@ final class Helper{
 
 func ChangeFormate( NewFormat:String) -> DateFormatter {
 //    @AppStorage("language")
-    var language = LocalizationService.shared.language
+//    var language = LocalizationService.shared.language
     let df = DateFormatter()
     df.dateFormat = NewFormat
     df.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")

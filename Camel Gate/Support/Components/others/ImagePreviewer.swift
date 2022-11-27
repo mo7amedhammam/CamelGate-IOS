@@ -7,11 +7,21 @@
 
 import SwiftUI
 
-class imageViewModel: ObservableObject {
-    @Published var isPresented = false
-    @Published var imageUrl = ""
+class camelEnvironments: ObservableObject {
+    
     @Published var desiredTab = ""
 
+//    MARK:  -- showMap Image preview --
+    @Published var isPresented = false
+    @Published var imageUrl = ""
+    
+//    MARK:  -- showMap Redirector --
+    @Published var ShowMapRedirector = false
+    @Published var Destinationlongitude:Double = 0
+    @Published var Destinationlatitude:Double = 0
+    
+//    MARK:  -- showRating --
+    @Published var  ShowRatingSheet = false
 }
 
 

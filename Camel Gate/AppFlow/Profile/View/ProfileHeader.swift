@@ -11,7 +11,7 @@ struct ProfileHeader: View {
     @State var name : String?
     @State var rate : String?
     @State var tolatrate : String?
-    @EnvironmentObject var imageVM : imageViewModel
+    @EnvironmentObject var imageVM : camelEnvironments
 
     var body: some View {
         VStack{
@@ -79,8 +79,8 @@ struct ProfileHeader: View {
 
 struct ProfileHeader_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileHeader().environmentObject(imageViewModel())
-        ProfileHeader().environmentObject(imageViewModel())
+        ProfileHeader().environmentObject(camelEnvironments())
+        ProfileHeader().environmentObject(camelEnvironments())
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
 
     }

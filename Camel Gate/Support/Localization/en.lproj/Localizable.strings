@@ -248,3 +248,14 @@
 "Wallet1" = "Wallet";
 "Upcoming_Trips" = "Upcoming Trips";
 "This_Month_Money" = "This Month Money";
+
+
+
+//MARK:  --  Rate shipment --
+"Shipment_Done!" = "Shipment Done!";
+"Shipment_Done2!" = "Rate Company";
+"You_just_have_gained" = "You just have gained ";
+"Rate_The_Company" = "Rate The Company";
+"Rate_The_Company2" = "Send";
+
+"Send_Rate" = "Send Rate";

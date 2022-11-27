@@ -10,7 +10,7 @@ import SwiftUI
 struct FilteredShipmentsView: View {
     var language = LocalizationService.shared.language
     
-    @EnvironmentObject var imageVM : imageViewModel
+    @EnvironmentObject var imageVM : camelEnvironments
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
     @Binding var active : Bool
     @Binding var destination : AnyView
@@ -117,7 +117,7 @@ struct ExtractedView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             FilteredShipmentsView(active: .constant(false), destination: .constant(AnyView(ChatsListView())), selectedShipmentId: .constant(0))
-                .environmentObject(imageViewModel())
+                .environmentObject(camelEnvironments())
                 .environmentObject(ApprovedShipmentViewModel())
             
         }

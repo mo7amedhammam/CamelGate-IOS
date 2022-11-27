@@ -75,6 +75,8 @@
 		C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0781E288DA3030084C0A6 /* ShipmentRateCell.swift */; };
 		C8A07822288DA4CD0084C0A6 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07821288DA4CD0084C0A6 /* StarsView.swift */; };
 		C8A8C83128FD99E50031DD70 /* FilteredFhipmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8C83028FD99E50031DD70 /* FilteredFhipmentsView.swift */; };
+		C8AB5EB829322FAD003F7EE4 /* RateSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AB5EB729322FAD003F7EE4 /* RateSheetView.swift */; };
+		C8AB5EBA2932352A003F7EE4 /* SendingRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AB5EB92932352A003F7EE4 /* SendingRateView.swift */; };
 		C8BB855E289AA8210099DE1F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */; };
 		C8BB8561289AAB580099DE1F /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB8560289AAB580099DE1F /* SignUpModel.swift */; };
 		C8C5583F2898118300D46777 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5583E2898118300D46777 /* SplashScreenView.swift */; };
@@ -215,6 +217,8 @@
 		C8A0781E288DA3030084C0A6 /* ShipmentRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentRateCell.swift; sourceTree = "<group>"; };
 		C8A07821288DA4CD0084C0A6 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
 		C8A8C83028FD99E50031DD70 /* FilteredFhipmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredFhipmentsView.swift; sourceTree = "<group>"; };
+		C8AB5EB729322FAD003F7EE4 /* RateSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateSheetView.swift; sourceTree = "<group>"; };
+		C8AB5EB92932352A003F7EE4 /* SendingRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingRateView.swift; sourceTree = "<group>"; };
 		C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		C8BB8560289AAB580099DE1F /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		C8C5583E2898118300D46777 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
@@ -753,6 +757,23 @@
 			path = others;
 			sourceTree = "<group>";
 		};
+		C8AB5EB529322F57003F7EE4 /* RateShipment */ = {
+			isa = PBXGroup;
+			children = (
+				C8AB5EB629322F72003F7EE4 /* View */,
+			);
+			path = RateShipment;
+			sourceTree = "<group>";
+		};
+		C8AB5EB629322F72003F7EE4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8AB5EB729322FAD003F7EE4 /* RateSheetView.swift */,
+				C8AB5EB92932352A003F7EE4 /* SendingRateView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C8BB855F289AAB380099DE1F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,6 +879,7 @@
 		C8C9494228895B620057EE7E /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				C8AB5EB529322F57003F7EE4 /* RateShipment */,
 				FA45B7CE2885155B002A9654 /* HeaderView.swift */,
 				C8C9494028895A360057EE7E /* WalletIcon.swift */,
 				FA4E27AC288C537E0047265D /* ShipView.swift */,
@@ -1382,6 +1404,7 @@
 				C8A07814288D61140084C0A6 /* InputTextField.swift in Sources */,
 				C8C5583F2898118300D46777 /* SplashScreenView.swift in Sources */,
 				C8C94972288992E30057EE7E /* ShareButtonView.swift in Sources */,
+				C8AB5EB829322FAD003F7EE4 /* RateSheetView.swift in Sources */,
 				C0125B0A28993594004B65E5 /* URLRequestBuilder.swift in Sources */,
 				C8C94977288994B20057EE7E /* Helper.swift in Sources */,
 				C837B8BC291908F3009819C7 /* WalletModel.swift in Sources */,
@@ -1394,6 +1417,7 @@
 				C0125B07289934D1004B65E5 /* LoginModel.swift in Sources */,
 				C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */,
 				FA7078012895FD9500879399 /* NotificationsView.swift in Sources */,
+				C8AB5EBA2932352A003F7EE4 /* SendingRateView.swift in Sources */,
 				C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */,
 				FACE3D6C289F3B0500FE9415 /* ShipmentsViewModel.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,

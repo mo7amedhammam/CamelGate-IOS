@@ -14,7 +14,7 @@ struct WalletViewCell : View {
     var walletitem:ShipmentPayment? = ShipmentPayment.init()
     @State var active = false
     @State var destination = AnyView(ChatsListView())
-    @EnvironmentObject var environments : imageViewModel
+    @EnvironmentObject var environments : camelEnvironments
     
     @State var day = ""
     @State var month = ""

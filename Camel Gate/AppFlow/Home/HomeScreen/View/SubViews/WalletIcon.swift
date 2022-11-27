@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct WalletIcon: View {
-    @EnvironmentObject var environments : imageViewModel
+    @EnvironmentObject var environments : camelEnvironments
     var language = LocalizationService.shared.language
     
     @StateObject var HomeWalletVM = HomeWalletViewModel()
     var body: some View {
-        HStack{
+        HStack(alignment:.top){
             Button(action: {
                 //                if LoginManger.getUser()?.isDriverInCompany ?? false {
                 //
@@ -22,17 +22,22 @@ struct WalletIcon: View {
                 //                    }
             }, label: {
                 ZStack(alignment: .leading ){
-                    Image("ic_back_wallet").resizable().scaledToFit()
+                    Image("ic_back_wallet")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 140, height: 125)
+
                     VStack(spacing: 8 ){
                         Image("ic_wallet")
                         Text("Wallet1".localized(language))
                             .foregroundColor(Color.white.opacity(0.7))
                         Text("\(HomeWalletVM.PublishedHomePageWalletModel?.currentBalance ?? 0)")
                             .foregroundColor(Color.white)
-                    }.padding()
+                    }
+                    .padding(.leading)
                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-                    
-                }.frame(height: 140)
+                }
+                .padding(.bottom,-10)
             })
                 .buttonStyle(.plain)
                 .disabled(LoginManger.getUser()?.isDriverInCompany ?? false)
@@ -52,7 +57,7 @@ struct WalletIcon: View {
                         Spacer()
                     }
                     .padding()
-                    .frame(height: 60)
+                    .frame(height: 50)
                     Color(#colorLiteral(red: 0.9281044006, green: 0.9126986861, blue: 0.9479321837, alpha: 1)).frame(height: 2)
                     HStack{
                         Image("ic_money")
@@ -67,9 +72,10 @@ struct WalletIcon: View {
                         Spacer()
                     }
                     .padding()
-                    .frame(height: 60)
+                    .frame(height: 50)
                 }
             }
+            .frame(height: 116)
             .background(Color.white)
             .clipped()
             .overlay(
@@ -78,13 +84,15 @@ struct WalletIcon: View {
             )
             .cornerRadius(12)
             .shadow(color: Color("Base_Color").opacity(0.08), radius: 3.0 , x: 0, y: 4)
-        }.padding()
+        }
+        .padding(.horizontal)
+        .padding(.bottom)
     }
 }
 
 struct WalletIcon_Previews: PreviewProvider {
     static var previews: some View {
         WalletIcon()
-            .environmentObject(imageViewModel())
+            .environmentObject(camelEnvironments())
     }
 }

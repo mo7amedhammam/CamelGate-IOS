@@ -11,7 +11,7 @@ struct GarageView: View {
     var language = LocalizationService.shared.language
 
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
-    @EnvironmentObject var imageVM : imageViewModel
+    @EnvironmentObject var imageVM : camelEnvironments
 
     @State var active = false
     @State var destination = AnyView(DetailsView(shipmentId: 0))
@@ -165,7 +165,7 @@ struct GarageView: View {
 
 struct GarageView_Previews: PreviewProvider {
     static var previews: some View {
-        GarageView(FilterTag: .constant(.Menu), showFilter: .constant(false)).environmentObject(ApprovedShipmentViewModel()).environmentObject(imageViewModel())
+        GarageView(FilterTag: .constant(.Menu), showFilter: .constant(false)).environmentObject(ApprovedShipmentViewModel()).environmentObject(camelEnvironments())
         
     }
 }

@@ -13,7 +13,7 @@ struct WalletView: View {
     @State var WalletCategory = ["Gained","Withdrawn"]
     @State var selected = "Gained"
     @StateObject var WalletVM = WalletViewModel()
-    @EnvironmentObject var environments : imageViewModel
+    @EnvironmentObject var environments : camelEnvironments
     @Binding var SelectedTab : String
     var body: some View {
         ZStack{

@@ -11,9 +11,10 @@ struct ShipView: View {
     var language = LocalizationService.shared.language
 
     @EnvironmentObject var ApprovedShipmentVM:ApprovedShipmentViewModel
-    @Binding var ShowMapRedirector:Bool
-    @Binding var longitude:Double
-    @Binding var latitude:Double
+    @EnvironmentObject var environments : camelEnvironments
+//    @Binding var ShowMapRedirector:Bool
+//    @Binding var longitude:Double
+//    @Binding var latitude:Double
     var body: some View {
         VStack(spacing: 0){
             ZStack{
@@ -47,17 +48,17 @@ struct ShipView: View {
                         Button(action: {
                             
                             if ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2{
-                                longitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLang ?? 0)
-                                latitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLat ?? 0)
+                                environments.Destinationlongitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLang ?? 0)
+                                environments.Destinationlatitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLat ?? 0)
                             } else if ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3{
-                              longitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLang ?? 0)
-                                latitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.fromLat ?? 0)
+                                environments.Destinationlongitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLang ?? 0)
+                                environments.Destinationlatitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLat ?? 0)
                             }else{
-                               longitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLang ?? 0)
-                            latitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLat ?? 0)
+                                environments.Destinationlongitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLang ?? 0)
+                                environments.Destinationlatitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLat ?? 0)
                             }
                             
-                            ShowMapRedirector = true
+                            environments.ShowMapRedirector = true
 
                         }) {
                             ZStack{
@@ -94,8 +95,7 @@ struct ShipView: View {
                 Button(action: {
                     
                     ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ?
-                    ApprovedShipmentVM.ApprovedAction(operation: .start) :ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ?
-                    ApprovedShipmentVM.ApprovedAction(operation: .Upload):ApprovedShipmentVM.ApprovedAction(operation: .finish)
+                    ApprovedShipmentVM.ApprovedAction(operation: .start) :ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? ApprovedShipmentVM.ApprovedAction(operation: .Upload):ApprovedShipmentVM.ApprovedAction(operation: .finish)
                     
                 }, label: {
                     HStack {
@@ -116,6 +116,8 @@ struct ShipView: View {
 
 struct ShipView_Previews: PreviewProvider {
     static var previews: some View {
-        ShipView(ShowMapRedirector: .constant(false), longitude: .constant(0), latitude: .constant(0)).environmentObject(ApprovedShipmentViewModel())
+        ShipView()
+            .environmentObject(ApprovedShipmentViewModel())
+            .environmentObject(camelEnvironments())
     }
 }

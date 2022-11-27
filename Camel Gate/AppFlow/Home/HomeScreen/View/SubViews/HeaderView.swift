@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
-import CoreLocation
+//import CoreLocation
+
 struct HeaderView: View {
     @State var active = false
     @State var destination = AnyView(NotificationsView())
     @StateObject var locationVM = LocationAddressVM()
-    @EnvironmentObject var imageVM : imageViewModel
+    @EnvironmentObject var imageVM : camelEnvironments
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/"))) { image in
@@ -51,12 +52,13 @@ struct HeaderView: View {
                 }
             }
             Spacer()
-            Button(action: {
-                active = true
-                destination = AnyView(NotificationsView())
-            }) {
-                Image("ic_big_notification")
-            }
+//            MARK: -- notification Button on Home top --
+//            Button(action: {
+//                active = true
+//                destination = AnyView(NotificationsView())
+//            }) {
+//                Image("ic_big_notification")
+//            }
         }
         .padding()
         .onAppear(perform: {
@@ -73,6 +75,6 @@ struct HeaderView: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView().environmentObject(imageViewModel())
+        HeaderView().environmentObject(camelEnvironments())
     }
 }

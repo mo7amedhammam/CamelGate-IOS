@@ -12,7 +12,7 @@ struct HomeView: View {
     var language = LocalizationService.shared.language
 
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
-    @EnvironmentObject var environments : imageViewModel
+    @EnvironmentObject var environments : camelEnvironments
 
     @State var active = false
     @State var destination = AnyView(ChatsListView())
@@ -20,9 +20,9 @@ struct HomeView: View {
     @Binding var FilterTag : FilterCases
     @Binding var showFilter:Bool
 
-    @State var ShowMapRedirector:Bool = false
-    @State var longitude:Double = 0
-    @State var latitude:Double = 0
+//    @State var ShowMapRedirector:Bool = false
+//    @State var longitude:Double = 0
+//    @State var latitude:Double = 0
     @State var selectedShipmentId = 0
 
     var body: some View {
@@ -39,13 +39,15 @@ struct HomeView: View {
                 VStack(spacing: 0){
                     HeaderView()
                     WalletIcon()
+                        .padding(.top)
                         .environmentObject(environments)
                     
                     List() {
                     if ApprovedShipmentVM.publishedapprovedShipmentModel != nil{
-                        ShipView(ShowMapRedirector:$ShowMapRedirector,longitude:$longitude,latitude:$latitude)
+                        ShipView()
                             .shadow(radius: 5)
                             .environmentObject(ApprovedShipmentVM)
+                            .environmentObject(environments)
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
                             .padding(.horizontal)
@@ -121,7 +123,7 @@ struct HomeView: View {
                         .listRowSeparator(.hidden)
                         .frame( height: (g.size.height / 2)+(hasNotch ? 120:60), alignment: .center)
                     }
-                    .padding(.top,8)
+                    .padding(.top,20)
                     .padding(.vertical,-30)
                     .padding(.horizontal,-15)
                     .refreshable {
@@ -147,8 +149,10 @@ struct HomeView: View {
                     HStack{
                         Spacer()
                         Button(action: {
-                            active = true
-                            destination = AnyView (ChatsListView())
+//                            active = true
+//                            destination = AnyView (ChatsListView())
+                            
+                            openWhatsApp(number: nil)
                         }, label: {
                             Image("floatingchat")
                         })
@@ -165,6 +169,7 @@ struct HomeView: View {
             .navigationBarHidden(true)
             .onAppear(perform: {
                 getDate()
+//                environments.ShowRatingSheet.toggle()
             })
 //            .task {
 //                await getDate()
@@ -181,19 +186,7 @@ struct HomeView: View {
 
         NavigationLink(destination: destination,isActive:$active , label: {
         })
-            .overlay(
-                VStack{
-                    if ShowMapRedirector{
-                        BottomSheetView(IsPresented: $ShowMapRedirector, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
-                            RedirectToGMaps(ShowRedirector: $ShowMapRedirector, Long: longitude, Lat: latitude)
-                                .padding()
-                                .frame( height: 190)
-                        })
-                    }
-                    Spacer(minLength: 40)
-                }
-                    .padding(.bottom)
-            )
+
 
         // Alert with no internet connection
             .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
@@ -224,11 +217,11 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(FilterTag: .constant(.Menu), showFilter: .constant(false))
             .environmentObject(ApprovedShipmentViewModel())
-            .environmentObject(imageViewModel())
+            .environmentObject(camelEnvironments())
             .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
         HomeView(FilterTag: .constant(.Menu), showFilter: .constant(false))
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
-            .environmentObject(imageViewModel())
+            .environmentObject(camelEnvironments())
             .environmentObject(ApprovedShipmentViewModel())
     }
 }

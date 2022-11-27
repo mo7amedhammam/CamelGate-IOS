@@ -243,3 +243,8 @@
 "Wallet1" = "المحفظة";
 "Upcoming_Trips" = "رحله قادمة";
 "This_Month_Money" = "مكسب هذا الشهر";
+
+
+
+//MARK:  --  Rate shipment --
+"Shipment_Done!" = "لقت اتممت الشحنه!";

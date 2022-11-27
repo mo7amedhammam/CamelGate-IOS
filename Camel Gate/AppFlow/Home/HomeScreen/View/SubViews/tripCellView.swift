@@ -11,7 +11,7 @@ struct tripCellView: View {
     var language = LocalizationService.shared.language
     @Binding var shipmentModel:ShipmentModel
     @Binding var selecteshipmentId:Int
-    @EnvironmentObject var imageVM : imageViewModel
+    @EnvironmentObject var imageVM : camelEnvironments
     var body: some View {
         ZStack{
             Color.white

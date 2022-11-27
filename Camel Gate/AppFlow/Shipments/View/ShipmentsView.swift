@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Alamofire
 
 struct ShipmentsView: View {
     @AppStorage("language")
@@ -20,7 +19,7 @@ struct ShipmentsView: View {
     @State var active = false
     @State var destination = AnyView(DetailsView(shipmentId: 0))
     @State var selectedShipmentId = 0
-    @EnvironmentObject var imageVM : imageViewModel
+    @EnvironmentObject var imageVM : camelEnvironments
     var body: some View {
         ZStack{
             VStack{
@@ -142,7 +141,7 @@ struct ShipmentsView: View {
 struct ShipmentsView_Previews: PreviewProvider {
     static var previews: some View {
         ShipmentsView()
-            .environmentObject(imageViewModel())
+            .environmentObject(camelEnvironments())
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }
