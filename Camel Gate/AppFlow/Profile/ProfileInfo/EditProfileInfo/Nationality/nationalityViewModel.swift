@@ -32,9 +32,9 @@ class nationalityViewModel: ObservableObject {
         GetNationality()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [weak self](modeldata) in
-//            DispatchQueue.main.async {
+            DispatchQueue.main.async {
             self?.publishedNationalitiesArray = modeldata.data ?? []
-//            }
+            }
         }.store(in: &cancellables)
     }
     

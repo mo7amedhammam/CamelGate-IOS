@@ -18,9 +18,10 @@ enum ProfileStep{
 
 
 struct EditProfileInfoView: View {
-//    @AppStorage("language")
+    @AppStorage("language")
     var language = LocalizationService.shared.language
     
+    @EnvironmentObject var imageVM : camelEnvironments
     @StateObject var profileVM = DriverInfoViewModel()
     @StateObject var trucktypesVM = TruckTypeViewModel()
     @StateObject var truckmanfacturersVM = TruckManfacturerViewModel()
@@ -41,11 +42,11 @@ struct EditProfileInfoView: View {
     @State var selectedDate:Date?
     @State var active = false
     @State var destination = AnyView( TabBarView().navigationBarHidden(true))
-    @EnvironmentObject var imageVM : camelEnvironments
   
     var years:[String] = []
     @FocusState var inFocus: Int?
 
+    
     var body: some View {
         ZStack{
             ScrollView(showsIndicators:false){
@@ -242,15 +243,15 @@ struct EditProfileInfoView: View {
                                 InputTextField(iconName: "", placeholder: "Id".localized(language), placeholderColor:(profileVM.validations == .ResidentId && profileVM.ValidationMessage != "") ? .red:.gray.opacity(0.5), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
                                     .onChange(of: profileVM.citizenId  ){ newval in
                                         profileVM.RedisentNumLength = 10
-                                        profileVM.citizenId =  String(newval.prefix(profileVM.RedisentNumLength))
+                                        profileVM.citizenId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedEnglishDigitsWithArabic:String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish
                                     }
                                     .onChange(of: profileVM.residentId  ){ newval in
                                         profileVM.RedisentNumLength = 16
-                                        profileVM.residentId =  String(newval.prefix(profileVM.RedisentNumLength))
+                                        profileVM.residentId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedEnglishDigitsWithArabic:String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish
                                     }
                                     .onChange(of: profileVM.borderId  ){ newval in
                                         profileVM.RedisentNumLength = 16
-                                        profileVM.borderId =  String(newval.prefix(profileVM.RedisentNumLength))
+                                        profileVM.borderId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedEnglishDigitsWithArabic:String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish
                                     }
                                     .focused($inFocus,equals:2)
                                     .onTapGesture(perform: {
@@ -548,36 +549,13 @@ struct EditProfileInfoView: View {
         .navigationBarHidden(true)
         .onAppear(perform: {
             if taskStatus == .update{
-//                profileVM.GetDriverInfo()
             }else{
                 if enteredDriverName != ""{
                 profileVM.Drivername = enteredDriverName
                 }
             }
-//            setresidentNumLength()
-            
-//            DispatchQueue.main.asyncAfter(deadline:.now()+1.5,execute: {
-//                profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
-//                profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
-//            })
-//            profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
-//            profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
         })
-        
-        .onChange(of: profileVM.TruckTypeId, perform: {newval in
-            profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(newval) ?? 0))"
-        })
-        
-        .onChange(of: profileVM.TruckManfacturerId, perform: {newval in
-            profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(newval) ?? 0))"
-        })
-        
-//        .task{
-//             print(profileVM.TruckTypeId)
-//            await profileVM.TruckTypeName = "\(getTruckTypeName(id: Int(profileVM.TruckTypeId) ?? 0))"
-//
-//            await profileVM.TruckManfacturerName = "\(getTruckManfacturerName(id: Int(profileVM.TruckManfacturerId) ?? 0))"
-//        }
+
 
 //        .onChange(of: profileVM.DriverImageStr, perform: {newval in
 //            print(newval)
@@ -701,7 +679,6 @@ struct EditProfileInfoView: View {
                 })
             }))
         })
-        
       
         NavigationLink(destination: destination,isActive:$active , label: {
         })
@@ -727,30 +704,6 @@ struct EditProfileInfoView_Previews: PreviewProvider {
 
 
 extension EditProfileInfoView{
-    func getTruckTypeName(id:Int) -> String {
-        var truckName = ""
-        for truck in trucktypesVM.publishedTypesArray{
-            if truck.id == id{
-                truckName = truck.title ?? ""
-            }
-        }
-//        print(id)
-//        print(truckName)
-        
-        return truckName
-    }
-    
-    func getTruckManfacturerName(id:Int) -> String {
-        var ManfacrurerName = ""
-        for Manfacrurer in truckmanfacturersVM.publishedManfacturersArray{
-            if Manfacrurer.id == id{
-                ManfacrurerName = Manfacrurer.title ?? ""
-            }
-        }
-//        print(id)
-//        print(ManfacrurerName)
-        return ManfacrurerName
-    }
     
     func getYearsArr() -> [String]{
         let currentDate = Date()
@@ -758,20 +711,6 @@ extension EditProfileInfoView{
         let currentYear = calendar.component(.year, from: currentDate)
         return (1950...currentYear).map { String($0) }
     }
-    
-    func setresidentNumLength(){
-        if profileVM.citizenId != nil{
-            profileVM.RedisentNumLength = 10
-            profileVM.RedisentOptions = 1
-        } else if profileVM.residentId != nil{
-            profileVM.RedisentNumLength = 10
-            profileVM.RedisentOptions = 2
-        } else if profileVM.borderId != nil{
-            profileVM.RedisentNumLength = 16
-            profileVM.RedisentOptions = 3
-        }
-    }
-    
     
 }
 

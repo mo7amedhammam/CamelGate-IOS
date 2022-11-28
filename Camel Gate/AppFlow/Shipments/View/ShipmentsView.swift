@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 struct ShipmentsView: View {
     @AppStorage("language")
     var language = LocalizationService.shared.language
@@ -45,7 +44,6 @@ struct ShipmentsView: View {
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.blue, lineWidth:self.selected == Category ? 1:0))
-                        
                     }}
 //                List() {
                     List($shipmentsViewModel.publishedShipmentsArr, id:\.self) { tripItem in
@@ -69,7 +67,6 @@ struct ShipmentsView: View {
                             shipmentsViewModel.SkipCount+=shipmentsViewModel.MaxResultCount
 //                            shipmentsViewModel.GetShipmentsOp = .fetchmoreshipments
                             getshipments(operation: .fetchmoreshipments)
-                            
                         }else{
                             
                         }

@@ -32,9 +32,9 @@ class TruckTypeViewModel: ObservableObject {
         GetTruckTypes()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [weak self](modeldata) in
-//            DispatchQueue.main.async {
+            DispatchQueue.main.async {
             self?.publishedTypesArray = modeldata.data ?? []
-//            }
+            }
         }.store(in: &cancellables)
     }
     

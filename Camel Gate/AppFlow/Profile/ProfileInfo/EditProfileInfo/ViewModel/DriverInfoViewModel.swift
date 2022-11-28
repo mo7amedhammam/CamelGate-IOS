@@ -202,7 +202,7 @@ class DriverInfoViewModel: ObservableObject {
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
-    @Published var publishedUserLogedInModel: DriverInfoModel? = nil
+//    @Published var publishedUserLogedInModel: DriverInfoModel? = nil
     @Published var UserCreated = false
     
     @Published var isLoading:Bool? = false
@@ -215,9 +215,9 @@ class DriverInfoViewModel: ObservableObject {
         GetDriverInfo()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [weak self](modeldata) in
-            self?.publishedUserLogedInModel = modeldata.data
+//            self?.publishedUserLogedInModel = modeldata.data
             self?.UserCreated = true
-            Helper.setUserData(DriverName: self?.publishedUserLogedInModel?.name ?? "", DriverImage: self?.publishedUserLogedInModel?.image ?? "")
+            Helper.setUserData(DriverName: modeldata.data?.name ?? "", DriverImage: modeldata.data?.image ?? "")
             Helper.IsLoggedIn(value: true)
         }.store(in: &cancellables)
     }
@@ -313,7 +313,7 @@ class DriverInfoViewModel: ObservableObject {
 //                print(result)
                 print(data)
                 if data.success == true {
-                    DispatchQueue.main.async { [self] in
+//                    DispatchQueue.main.async { [self] in
                         Drivername = data.data?.name ?? ""
                         DriverImageStr = data.data?.image ?? ""
                         LicenseNumber = data.data?.drivingLicense ?? ""
@@ -321,7 +321,9 @@ class DriverInfoViewModel: ObservableObject {
                         gender =  data.data?.gender ?? 1
                         TruckPlate = "\( data.data?.truckInfo?.plate ?? "")"
                         TruckTypeId = "\( data.data?.truckInfo?.truckTypeId ?? 0)"
+                        TruckTypeName = data.data?.truckInfo?.truckTypeName ?? ""
                         TruckManfacturerId = "\( data.data?.truckInfo?.truckManufacturerId ?? 0)"
+                        TruckManfacturerName = data.data?.truckInfo?.truckManufacturerName ?? ""
                         TruckManfactureYear = "\( data.data?.truckInfo?.productionYear ?? 0)"
                         NationalityId = data.data?.nationalityId ?? 0
                         nationalityName = data.data?.nationalityName ?? ""
@@ -354,7 +356,7 @@ class DriverInfoViewModel: ObservableObject {
                             borderId = data.data?.borderId ?? ""
                         }
                         
-                    }
+//                    }
                     
                 }else {
                     //                if data.messageCode == 400{

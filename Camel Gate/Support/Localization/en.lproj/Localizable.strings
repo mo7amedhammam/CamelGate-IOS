@@ -244,12 +244,9 @@
 "Offered" = "Offered";
 "View_Shipment" = "View Shipment";
 
-
 "Wallet1" = "Wallet";
 "Upcoming_Trips" = "Upcoming Trips";
 "This_Month_Money" = "This Month Money";
-
-
 
 //MARK:  --  Rate shipment --
 "Shipment_Done!" = "Shipment Done!";
@@ -264,3 +261,5 @@
 "Did_you_realy_Finish_Shipment?" = "Did you realy Finish Shipment ?";
 "Not_now" = "Not now";
 "yes_" = "yes";
+
+"Reviews_" = "Reviews";

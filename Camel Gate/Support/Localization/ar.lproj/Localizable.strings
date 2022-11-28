@@ -244,8 +244,6 @@
 "Upcoming_Trips" = "رحله قادمة";
 "This_Month_Money" = "مكسب هذا الشهر";
 
-
-
 //MARK:  --  Rate shipment --
 "Shipment_Done!" = "لقت اتممت الشحنه!";
 "Shipment_Done2!" = "قيُم الشحنة";
@@ -259,3 +257,5 @@
 "Did_you_realy_Finish_Shipment?" = "هل اتممت الشحنة ؟";
 "Not_now" = " ليس الآن";
 "yes_" = "نعم";
+
+"Reviews_" = "تقييم";

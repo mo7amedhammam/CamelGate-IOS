@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct ProfileHeader: View {
-//    @State var name : String?
-//    @State var rate : String?
-//    @State var tolatrate : String?
+
+    var language = LocalizationService.shared.language
     @EnvironmentObject var imageVM : camelEnvironments
 
     var body: some View {
@@ -61,7 +60,7 @@ struct ProfileHeader: View {
                             .background(.white.opacity(0.35))
                             .cornerRadius(8)
                         
-                        Text("("+" \(LoginManger.getUser()?.rate?.ratesCount ?? 0 ) "+"\("Reviews".localized(language))"+" )")
+                        Text("("+" \(LoginManger.getUser()?.rate?.ratesCount ?? 0 ) "+"\("Reviews_".localized(language))"+" )")
                                                                 
                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)

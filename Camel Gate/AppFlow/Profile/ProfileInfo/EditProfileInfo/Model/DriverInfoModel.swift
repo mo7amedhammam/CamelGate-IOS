@@ -5,8 +5,10 @@
 //  Created by wecancity on 04/08/2022.
 //
 
-import Foundation
 import SwiftUI
+
+//import Foundation
+//import SwiftUI
 
 struct DriverInfoModel : Codable {
     let drivingLicenseExpirationDate : String?
@@ -75,7 +77,9 @@ struct TruckInfo : Codable {
     let licenseExpirationDate : String?
     let numberofAxe : Int?
     let truckTypeId : Int?
+    let truckTypeName : String?
     let truckManufacturerId : Int?
+    let truckManufacturerName : String?
     let id : Int?
     let imageUrl : String?
     let creationdate : String?
@@ -89,7 +93,9 @@ struct TruckInfo : Codable {
         case licenseExpirationDate = "licenseExpirationDate"
         case numberofAxe = "numberofAxe"
         case truckTypeId = "truckTypeId"
+        case truckTypeName = "truckTypeName"
         case truckManufacturerId = "truckManufacturerId"
+        case truckManufacturerName = "truckManufacturerName"
         case id = "id"
         case imageUrl = "imageUrl"
         case creationdate = "creationdate"

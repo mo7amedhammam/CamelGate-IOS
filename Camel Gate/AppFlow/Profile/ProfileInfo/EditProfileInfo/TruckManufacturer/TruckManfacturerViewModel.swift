@@ -35,9 +35,9 @@ class TruckManfacturerViewModel: ObservableObject {
         GetTruckManfacturers()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [weak self](modeldata) in
-//            DispatchQueue.main.async {
+            DispatchQueue.main.async {
             self?.publishedManfacturersArray = modeldata.data ?? []
-//            }
+            }
         }.store(in: &cancellables)
     }
     
