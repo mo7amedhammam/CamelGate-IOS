@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftUI
+//import SwiftUI
 import Combine
 import Moya
 import PromiseKit
@@ -41,14 +41,14 @@ class ShipmentDetailsViewModel : ObservableObject {
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
     
-    @Published var destination = AnyView(TabBarView())
+//    @Published var destination = AnyView(TabBarView())
     init() {
         passthroughModelSubject.sink { (completion) in
-        } receiveValue: { [self](modeldata) in
+        } receiveValue: { [weak self](modeldata) in
             DispatchQueue.main.async {
-                publishedUserLogedInModel = modeldata.data ?? ShipmentModel.init()
-                UserCreated = true
-                print(publishedUserLogedInModel )
+                self?.publishedUserLogedInModel = modeldata.data ?? ShipmentModel.init()
+                self?.UserCreated = true
+//                print(self?.publishedUserLogedInModel )
             }
         }.store(in: &cancellables)
     }

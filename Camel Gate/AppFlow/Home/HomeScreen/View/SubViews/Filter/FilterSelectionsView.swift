@@ -16,7 +16,7 @@ struct FilterMenu:View{
 
     var body: some View{
         VStack{
-            Spacer()
+//            Spacer()
             Text("Filter_Shipments".localized(language))
                 .font(Font.camelfonts.SemiBold18)
                 .frame(width:UIScreen.main.bounds.width)
@@ -30,7 +30,8 @@ struct FilterMenu:View{
                             .foregroundColor(.gray.opacity(0.6))
                     })
                 }
-                            .padding()
+                            .padding(.horizontal)
+                            .padding(.bottom)
                 )
             
             ScrollView(){
@@ -144,7 +145,7 @@ struct FilterMenu:View{
             .padding(.horizontal)
             .padding(.bottom,10)
         }
-        .frame(height:(UIScreen.main.bounds.height/2)-90)
+        .frame(height:(UIScreen.main.bounds.height/2)-150)
 //        .onChange(of: ShipmentVM.ResetFilter, perform: {newval in
 //            if newval == true{
 //                DispatchQueue.main.async {

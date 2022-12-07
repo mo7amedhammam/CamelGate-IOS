@@ -13,10 +13,11 @@ struct DetailsView: View {
     @StateObject var detailsVM = ShipmentDetailsViewModel()
     @State var ShowSetOffer:Bool = false
     @State var OfferCase:OfferCases = .set
-//    @State var ShowMapRedirector:Bool = false
+    @State var CommingFromWallet:Bool = false
 //    @State var longitude:Double = 0
 //    @State var latitude:Double = 0
     @EnvironmentObject var environments : camelEnvironments
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -84,7 +85,9 @@ struct DetailsView: View {
                     ZStack{
                         HStack(alignment : .top , spacing : 20){
                             VStack{
-                                Text("Lowest_Offer".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Lowest_Offer".localized(language))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    .foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_green_dollar")
                                     Text("\(detailsVM.publishedUserLogedInModel.lowestOffer ?? 111) "+"SAR".localized(language))
@@ -93,7 +96,9 @@ struct DetailsView: View {
                             }
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(width: 1)
                             VStack{
-                                Text("Driver's_Rate".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Driver's_Rate".localized(language))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    .foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_star")
                                     Text("\(String(format:"%.1f", detailsVM.publishedUserLogedInModel.lowestOfferDriverRate ?? 2))/5 ")
@@ -102,7 +107,9 @@ struct DetailsView: View {
                             }
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(width: 1)
                             VStack{
-                                Text("Total_Offers".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Total_Offers".localized(language))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    .foregroundColor(Color.gray)
                                 Spacer()
                                 HStack{
                                     Text("\(detailsVM.publishedUserLogedInModel.offersCount ?? 3) "+"Offers".localized(language))
@@ -117,7 +124,9 @@ struct DetailsView: View {
                     HStack{
                         VStack {
                             VStack{
-                                Text("Shipment_ID".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Shipment_ID".localized(language))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    .foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_#")
                                     Text("\(detailsVM.publishedUserLogedInModel.code ?? "")")
@@ -126,7 +135,9 @@ struct DetailsView: View {
                             }
                             Spacer()
                             VStack{
-                                Text("Total_Distance".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Total_Distance".localized(language))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    .foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_pin")
                                     Text("\( String(format: "%.1f", detailsVM.publishedUserLogedInModel.totalDistance ?? 22.0011)) "+"KM".localized(language))
@@ -137,7 +148,9 @@ struct DetailsView: View {
                         Spacer()
                         VStack {
                             VStack{
-                                Text("Company_Rate".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Company_Rate".localized(language))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    .foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_star")
                                     Text("\(String(format:"%.1f",detailsVM.publishedUserLogedInModel.companyRate ?? 2))/5")
@@ -149,7 +162,9 @@ struct DetailsView: View {
                             }
                             Spacer()
                             VStack{
-                                Text("Estimated_Time".localized(language)).font(Font.camelfonts.Reg14).foregroundColor(Color.gray)
+                                Text("Estimated_Time".localized(language))
+                                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                    .foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_orange_star")
                                     Text(detailsVM.publishedUserLogedInModel.estimateTime ?? "2-3")
@@ -167,21 +182,25 @@ struct DetailsView: View {
                         
                         HStack {
                             Text("Description".localized(language))
-                                .font(Font.camelfonts.Bold14).foregroundColor(Color.gray)
+                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                .foregroundColor(Color.gray)
                             Spacer()
                         }
                         .frame(height: 40)
                         .padding(.leading , 20.0)
                         Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
                             .frame(height: 1)
-                        Text(detailsVM.publishedUserLogedInModel.description ?? " description will be here ").font(Font.camelfonts.Reg16).padding()
+                        Text(detailsVM.publishedUserLogedInModel.description ?? " description will be here ")
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                            .padding()
                         
                         Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09))
                             .frame(height: 1)
                     }
                     HStack {
                         Text("Shipment_Location".localized(language))
-                            .font(Font.camelfonts.Bold14).foregroundColor(Color.gray)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                            .foregroundColor(Color.gray)
                         Spacer()
                     }
                     .frame(height: 40)
@@ -276,7 +295,7 @@ struct DetailsView: View {
                 //                    .frame(height: 1)
                 //
                 
-                if LoginManger.getUser()?.isDriverInCompany == false{
+                if showApplyButton(){
                 ZStack{
                     Button(action: {
                         if  detailsVM.publishedUserLogedInModel.driverOfferStatusID == 1 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 4 {
@@ -305,7 +324,7 @@ struct DetailsView: View {
                 .frame(height : 120)
                 }
             }
-            TitleBar(Title: "Shipment_Details".localized(language) , navBarHidden: true, leadingButton: .backButton, trailingButton: .shareButton , trailingAction: {
+            TitleBar(Title: "Shipment_Details".localized(language) , navBarHidden: true, leadingButton: .backButton, trailingButton: TopButtons.none , trailingAction: {
             })
         }
         .toolbar{
@@ -385,6 +404,17 @@ struct DetailsView: View {
                 detailsVM.isAlert = false
             }))
         })
+    }
+    
+    
+    func showApplyButton() ->Bool{
+        var returnValue = false
+        if (LoginManger.getUser()?.isDriverInCompany == false && CommingFromWallet == false) && !(detailsVM.publishedUserLogedInModel.driverOfferStatusID == 3 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 5 || detailsVM.publishedUserLogedInModel.driverOfferStatusID == 6) {
+            returnValue = true
+        }else {
+            returnValue = false
+        }
+       return returnValue
     }
 }
 

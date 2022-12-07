@@ -15,7 +15,7 @@ struct DateFromTo:View{
     @State var ShowCalendar = false
     var body: some View{
         VStack{
-            Spacer()
+//            Spacer()
             Text("Date_(from-to)".localized(language))
                 .font(Font.camelfonts.Bold20)
                 .frame(width:UIScreen.main.bounds.width)
@@ -85,7 +85,7 @@ struct DateFromTo:View{
         .onChange(of: ShipmentVM.toDate, perform: {newval in
             ShipmentVM.toDateStr = newval.DateToStr(format: "dd-MM-yyyy")
         })
-        .frame(height:180)
+        .frame(height:150)
 //        .overlay(content: {
             calendarPopUp(selectedDate: $ShipmentVM.fromDate, isPresented: $ShowCalendar)
 //            ZStack{

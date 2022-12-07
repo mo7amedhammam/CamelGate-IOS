@@ -105,11 +105,15 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
                    
                    let outputString = [placemark.locality,
                                        placemark.subLocality,
-                                       placemark.thoroughfare,
-                                       placemark.postalCode,
-                                       placemark.subThoroughfare,
+//                                       placemark.thoroughfare,
+//                                       placemark.postalCode,
+//                                       placemark.subThoroughfare,
                                        placemark.country].compactMap { $0 }.joined(separator: ", ")
-                   
+            print(placemark.locality ?? "1") // subcity
+            print(placemark.subLocality ?? "2") // village
+            print(placemark.thoroughfare ?? "3")
+            print(placemark.subThoroughfare ?? "4")
+            print(placemark.country ?? "5") //country
                    completion(outputString)
 
                })

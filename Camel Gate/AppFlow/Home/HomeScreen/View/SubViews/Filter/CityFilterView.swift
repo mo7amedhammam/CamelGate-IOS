@@ -15,7 +15,7 @@ struct CityFromTo:View{
     
     var body: some View{
         VStack{
-            Spacer()
+//            Spacer()
             Text("Location_(from-to)".localized(language))
                 .font(Font.camelfonts.Bold20)
                 .frame(width:UIScreen.main.bounds.width)
@@ -80,7 +80,7 @@ struct CityFromTo:View{
                 .frame( height: 60)
                 .padding(.bottom,10)
         }
-        .frame(height:180)
+        .frame(height:150)
     }
 }
 

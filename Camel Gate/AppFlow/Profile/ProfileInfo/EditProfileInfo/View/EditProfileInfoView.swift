@@ -41,7 +41,7 @@ struct EditProfileInfoView: View {
     
     @State var selectedDate:Date?
     @State var active = false
-    @State var destination = AnyView( TabBarView().navigationBarHidden(true))
+    @State var destination = AnyView(TabBarView().navigationBarHidden(true))
   
     var years:[String] = []
     @FocusState var inFocus: Int?
@@ -521,7 +521,7 @@ struct EditProfileInfoView: View {
                     inFocus = 0
                 })
             
-            TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton,trailingButton: taskStatus == .update ? .editButton:Optional.none , trailingAction: {
+            TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton,trailingButton: taskStatus == .update ? LoginManger.getUser()?.isDriverInCompany ?? false ? TopButtons.none :.editButton:TopButtons.none , trailingAction: {
                 DispatchQueue.main.async(execute: {
                     isEditing.toggle()
                 })

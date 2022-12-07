@@ -58,6 +58,7 @@ struct ShipView: View {
                                 environments.Destinationlatitude = Double(ApprovedShipmentVM.publishedapprovedShipmentModel?.toLat ?? 0)
                             }
                             environments.ShowMapRedirector = true
+
                         }) {
                             ZStack{
                                 Color(#colorLiteral(red: 0.809019506, green: 0.7819704413, blue: 0.8611868024, alpha: 1)).frame(width : 100 , height: 40)

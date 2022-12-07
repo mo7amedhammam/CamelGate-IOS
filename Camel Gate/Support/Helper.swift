@@ -38,27 +38,15 @@ final class Helper{
         userDef.synchronize()
     }
     
-    
     //for checking if user exist
     class func userExist()->Bool{
         return userDef.string(forKey: "DriverName") != nil || userDef.string(forKey: "DriverName") != ""
     }
     
-//    class func getUserID() ->Int {
-//        return userDef.integer(forKey: "Id")
-//    }
-    
-//    class func getUserPhone() ->String {
-//        return userDef.string(forKey: "PhoneNumber") ?? ""
-//    }
     class func getDriverName() ->String {
         return userDef.string(forKey: "DriverName") ?? ""
     }
     
-//    class func setUserimage(userImage : String) {
-//        userDef.set(userImage, forKey: "Image")
-//        userDef.synchronize()
-//    }
     class func getDriverimage() ->String {
         return userDef.string(forKey: "DriverImage") ?? ""
     }
@@ -116,43 +104,10 @@ final class Helper{
     class func changeLang() {
         userDef.removeObject(forKey:"language"  )
     }
-
-    class func setUserLocation(
-                CurrentLatitude : String,
-                CurrentLongtude : String
-    ){
-        userDef.set(          CurrentLatitude             , forKey:  "CurrentLatitude" )
-        userDef.set(                  CurrentLongtude         , forKey: "CurrentLongtude"  )
-        userDef.synchronize()
-    }
-    class func setUseraddress(
-        CurrentAddress : String
-    ){
-        userDef.set(          CurrentAddress             , forKey:  "CurrentAddress" )
-        userDef.synchronize()
-    }
-    class func getUserLatitude() ->String {
-        return userDef.string(forKey: "CurrentLatitude") ?? "default CurrentLatitude"
-    }
-    class func getUserLongtude() ->String {
-        return userDef.string(forKey: "CurrentLongtude") ?? "default CurrentLongtude"
-    }
-    class func getUserAddress() ->String {
-        return userDef.string(forKey: "CurrentAddress") ?? "address"
-    }
-    //remove data then logout
-    class func removeUserLocation() {
-        userDef.removeObject(forKey:"CurrentLatitude"  )
-        userDef.removeObject(forKey:"CurrentLongtude"  )
-        userDef.removeObject(forKey:"CurrentAddress"  )
-    }
-    
-  
-    
     
     // navigate to google maps with lond & lat
     class func openGoogleMap(longitude: Double, latitude: Double) {
-            let appURL = NSURL(string: "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving")!
+            let appURL = NSURL(string: "comgooglemaps://?daddr=\(latitude),\(longitude)&directionsmode=driving")!
             let webURL = NSURL(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving")!
             let application = UIApplication.shared
             
@@ -219,27 +174,6 @@ func openWhatsApp(number : String?) {
             application.open(webURL as URL)
         }
        }
-//
-//func openWhatsApp(number : String){
-//        var fullMob = number
-//        fullMob = fullMob.replacingOccurrences(of: " ", with: "")
-//        fullMob = fullMob.replacingOccurrences(of: "+", with: "")
-//        fullMob = fullMob.replacingOccurrences(of: "-", with: "")
-//        let urlWhats = "whatsapp://send?phone=\(fullMob)"
-//
-//        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
-//            if let whatsappURL = NSURL(string: urlString) {
-//                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
-//                    UIApplication.shared.open(whatsappURL as URL, options: [:], completionHandler: { (Bool) in
-//                    })
-//                } else {
-////                    AppTool.showAlertView(vc: self, titleString: "Error", messageString: "WhatsApp Not Found on your device")
-//                    // Handle a problem
-//                }
-//            }
-//        }
-//    }
-
 
 //@AppStorage("language")
 //var language = LocalizationService.shared.language
@@ -329,52 +263,3 @@ func convDateToDate(input: String, format:String) -> Date {
 
 
 
-//MARK: --- get addres string from lat & long ---
-func getAddressFromLatLon(Latitude: String, withLongitude Longitude: String) -> String{
-        var Address = ""
-        var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-        let lat: Double = Double("\(Latitude)")!
-        //21.228124
-        let lon: Double = Double("\(Longitude)")!
-        //72.833770
-        let ceo: CLGeocoder = CLGeocoder()
-        center.latitude = lat
-        center.longitude = lon
-
-        let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-
-    ceo.reverseGeocodeLocation(loc) { placemarks, error in
-     
-                        if (error != nil)
-                        {
-                            print("reverse geodcode fail: \(error!.localizedDescription)")
-                        }
-        
-                         let pm = placemarks! as [CLPlacemark]
-        
-                        if pm.count > 0 {
-                            let pm = placemarks![0]
-        
-                            var addressString : String = ""
-                            if pm.subLocality != nil {
-                                addressString = addressString + pm.subLocality! + ", "
-                            }
-                            if pm.thoroughfare != nil {
-                                addressString = addressString + pm.thoroughfare! + ", "
-                            }
-                            if pm.locality != nil {
-                                addressString = addressString + pm.locality! + ", "
-                            }
-                            if pm.country != nil {
-                                addressString = addressString + pm.country! + ", "
-                            }
-                            if pm.postalCode != nil {
-                                addressString = addressString + pm.postalCode! + " "
-                            }
-                            print(addressString)
-                            Address = addressString
-                            Helper.setUseraddress(CurrentAddress: addressString)
-                      }
-    }
-    return Address
-    }

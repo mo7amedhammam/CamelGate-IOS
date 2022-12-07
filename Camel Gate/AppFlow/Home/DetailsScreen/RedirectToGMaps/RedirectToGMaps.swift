@@ -18,7 +18,7 @@ struct RedirectToGMaps:View{
     @StateObject var locationVM = LocationAddressVM()
     var body: some View{
         VStack{
-            Spacer()
+//            Spacer()
             Text("Delivery_Location".localized(language))
                 .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr20:Font.camelfonts.SemiBold20)
                 .frame(width:UIScreen.main.bounds.width)
@@ -60,16 +60,31 @@ struct RedirectToGMaps:View{
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
-        .onAppear(perform: {
-            locationVM.lat = "\(Lat)"
-            locationVM.long = "\(Long)"
-            locationVM.getAddressFromLatLon(completion: {address in
-                locationVM.Publishedaddress = address
-            })
-        })
+//        .onAppear(perform: {
+//            locationVM.lat = "\(Lat)"
+//            locationVM.long = "\(Long)"
+//            locationVM.getAddressFromLatLon(completion: {address in
+//                locationVM.Publishedaddress = address
+//            })
+//        })
+        
+        .task {
+            await getAddress()
+        }
         
 //        .frame(height:180)
     }
+    
+    func getAddress()async{
+        DispatchQueue.main.async {
+        locationVM.lat = "\(Lat)"
+        locationVM.long = "\(Long)"
+        locationVM.getAddressFromLatLon(completion: {address in
+            locationVM.Publishedaddress = address
+        })
+        }
+    }
+    
 }
 
 struct RedirectToGMaps_Previews: PreviewProvider {

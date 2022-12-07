@@ -71,7 +71,7 @@ struct WalletViewCell : View {
                     Spacer()
                     Button(action: {
                         active = true
-                        destination = AnyView (DetailsView(shipmentId: walletitem?.id ?? 0).environmentObject(environments))
+                        destination = AnyView (DetailsView(shipmentId: walletitem?.id ?? 0, CommingFromWallet: true).environmentObject(environments))
                         //                                                    .environmentObject(environments))
                         
                     }) {

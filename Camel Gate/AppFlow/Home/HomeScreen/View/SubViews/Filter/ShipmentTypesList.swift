@@ -105,7 +105,7 @@ struct ShipTypeFilter: View {
 //                .padding(.horizontal)
                 .padding(.bottom,10)
         }
-        .frame(height:(UIScreen.main.bounds.height/2)+90)
+        .frame(height:(UIScreen.main.bounds.height/2))
         .onAppear(perform: {
             ShipTypesVM.GetShipTypes()
         })

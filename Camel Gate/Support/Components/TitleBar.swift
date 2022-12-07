@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TitleBar: View {
+    var language = LocalizationService.shared.language
+
     @State var Title: String?
     @State var navBarHidden: Bool?
     @State var leadingButton: TopButtons? = TopButtons.none

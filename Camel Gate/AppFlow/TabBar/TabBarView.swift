@@ -8,7 +8,7 @@
 import SwiftUI
 var language = LocalizationService.shared.language
 
-var tabs = ["Home","Shipments","Garage","Wallet","Profile"]
+//var tabs = ["Home","Shipments","Garage","Wallet","Profile"]
 struct TabBarView: View {
     var body: some View {
         NavigationView{
@@ -80,6 +80,9 @@ struct MainTabBar : View {
         .onChange(of: environments.desiredTab, perform: {newval in
             selectedTab = newval
         })
+        .task{
+            await removaWallet()
+        }
         .ignoresSafeArea(.all, edges: .bottom)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .overlay(
@@ -94,8 +97,8 @@ struct MainTabBar : View {
                     })
                 }else if environments.ShowMapRedirector {
                     BottomSheetView(IsPresented: $environments.ShowMapRedirector, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
-                        RedirectToGMaps(ShowRedirector: $environments.ShowMapRedirector, Long: environments.Destinationlongitude, Lat: environments.Destinationlongitude)
-                            .padding()
+                        RedirectToGMaps(ShowRedirector: $environments.ShowMapRedirector, Long: environments.Destinationlongitude, Lat: environments.Destinationlatitude)
+                            .padding(.horizontal)
                             .frame(height: 190)
                     })
                 }else if ApprovedShipmentVM.CanRateApprovedshipment{
@@ -108,7 +111,19 @@ struct MainTabBar : View {
                 }
             }.padding(.bottom, hasNotch ? 0:-20)
         )
+        
     }
+        func removaWallet() async  {
+//            do {
+                if LoginManger.getUser()?.isDriverInCompany ?? false{
+//                    tabs = tabs.removeAll{ $0 == "Wallet" }
+                    tabs = tabs.filter({$0 != "Wallet"})
+            }
+//            }catch{
+//
+//            }
+        }
+    
 }
 
 struct TabBarView_Previews: PreviewProvider {
