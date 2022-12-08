@@ -76,7 +76,7 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
             var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
         let lat: Double = Double("\(lat)") ?? Double(lastLocation?.coordinate.latitude ?? 0 )          //21.228124
         let long: Double = Double("\(long)") ?? Double(lastLocation?.coordinate.longitude ?? 0)     //72.833770
-            let ceo: CLGeocoder = CLGeocoder()
+//            let ceo: CLGeocoder = CLGeocoder()
             center.latitude = lat
             center.longitude = long
         

@@ -253,6 +253,9 @@
 "Shipment_Done2!" = "Rate Company";
 "You_just_have_gained" = "You just have gained ";
 "Rate_The_Company" = "Rate The Company";
+"You_just_finished_shipment" = "You just finished shipment";
+"Bad_" = "Bad";
+"Perfect_" = "Perfect";
 "Rate_The_Company2" = "Send";
 
 "Send_Rate" = "Send Rate";

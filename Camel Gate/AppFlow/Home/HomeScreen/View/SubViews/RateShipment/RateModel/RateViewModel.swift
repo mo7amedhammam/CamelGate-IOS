@@ -58,9 +58,10 @@ class RateViewModel: ObservableObject {
 //                        guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<rateModel> = try BGDecoder.decode(data: result.data )
             print(result)
-            print(data)
+
             if data.success == true {
 //                DispatchQueue.main.async {
+                print(data)
                     passthroughModelSubject.send(data)
 //                }
             }else {

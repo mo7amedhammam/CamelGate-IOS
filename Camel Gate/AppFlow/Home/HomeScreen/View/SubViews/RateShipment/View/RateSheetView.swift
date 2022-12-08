@@ -38,7 +38,6 @@ struct RateSheetView:View{
                         )
                         .padding(.top)
                     
-                    
                     Image("rateShipmentIcon")
                         .resizable()
                         .scaledToFit()
@@ -49,7 +48,6 @@ struct RateSheetView:View{
                         .lineLimit(.bitWidth)
                     
                     //                NavigationLink(destination:  SendingRateView().environmentObject(environments)   , label: {
-                    
                     
                     Button(action: {
                         //                ShowRedirector = false

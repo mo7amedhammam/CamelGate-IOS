@@ -249,6 +249,9 @@
 "Shipment_Done2!" = "قيُم الشحنة";
 "You_just_have_gained" = "لقد ربحت الآن ";
 "Rate_The_Company" = "تقييم الشركة";
+"You_just_finished_shipment" = "تهانينا, لقت اتممت شحنة";
+"Bad_" = "سئ";
+"Perfect_" = "ممتاز";
 "Rate_The_Company2" = "إرسال";
 
 "Send_Rate" = "تقييم";

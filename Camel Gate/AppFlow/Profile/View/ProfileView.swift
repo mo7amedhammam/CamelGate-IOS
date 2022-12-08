@@ -20,6 +20,8 @@ struct ProfileView: View {
     @AppStorage("language")
     var language = LocalizationService.shared.language
     @EnvironmentObject var imageVM : camelEnvironments
+    @EnvironmentObject var driverRate : DriverRateViewModel
+
     var body: some View {
         NavigationView {
             ZStack{
@@ -29,8 +31,7 @@ struct ProfileView: View {
                             Group{
                                 Button(action: {
                                     active = true
-                                    destination = AnyView(EditProfileInfoView(taskStatus: .update)
-                                                            .environmentObject(imageVM))
+                                    destination = AnyView(EditProfileInfoView(taskStatus: .update).environmentObject(imageVM))
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "person.fill")
@@ -65,7 +66,6 @@ struct ProfileView: View {
                                 
                                 Button(action: {
                                     active = true
-//                                    destination = AnyView(NoteScreenView()) //verification
                                     destination = AnyView(ChangePasswordView())
                                 }, label: {
                                     HStack(spacing: 10){
@@ -186,13 +186,8 @@ struct ProfileView: View {
                                     }
                                 })
                                 Button(action: {
-                                    //                                    if Helper.userExist(){
                                     Helper.logout()
                                     Helper.IsLoggedIn(value: false)
-                                    //                                        islogout = true
-                                    //                                    }else{
-                                    //                                        goToLogin = true
-                                    //                                    }
                                     LoginManger.removeUser()
                                     active = true
                                     destination = AnyView(SignInView())
@@ -226,7 +221,6 @@ struct ProfileView: View {
                     }
                 }
                 .background(Color.clear)
-                //                .padding(.bottom,20)
                 .padding(.top,hasNotch ? 240:230 )
                 ProfileHeader()
                     .padding(.top,hasNotch ? -20:-30 )
@@ -236,14 +230,9 @@ struct ProfileView: View {
             .edgesIgnoringSafeArea(.vertical)
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         }
-//        .onChange(of: LocalizationService.shared.language, perform: {newval in
-//            print(Helper.getLanguage())
-//print(newval)
-//            DispatchQueue.main.async(execute: {
-//                Helper.setLanguage(currentLanguage: newval.rawValue)
-//            })
-//            print(Helper.getLanguage())
-//        })
+        .onAppear(perform: {
+            driverRate.GetDriverRate()
+        })
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
@@ -263,9 +252,11 @@ struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             ProfileView().environmentObject(camelEnvironments())
+                .environmentObject(DriverRateViewModel())
         }
         ZStack {
             ProfileView().environmentObject(camelEnvironments())
+                .environmentObject(DriverRateViewModel())
         }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }

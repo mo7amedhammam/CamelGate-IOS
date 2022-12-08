@@ -13,7 +13,7 @@ struct HomeView: View {
     @StateObject var locationVM = LocationAddressVM()
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
     @EnvironmentObject var environments : camelEnvironments
-    
+    @EnvironmentObject var driverRate : DriverRateViewModel
     @State var active = false
     @State var destination = AnyView(ChatsListView())
     
@@ -36,6 +36,7 @@ struct HomeView: View {
                 VStack(spacing: 0){
                     HeaderView()
                         .environmentObject(locationVM)
+                        .environmentObject(driverRate)
                     WalletIcon()
                         .padding(.top)
                         .environmentObject(environments)
@@ -60,11 +61,18 @@ struct HomeView: View {
                                         .environmentObject(environments)
                                 })
                                     .onAppear(perform: {
-                                        if ApprovedShipmentVM.publishedFilteredShipments.count >= ApprovedShipmentVM.MaxResultCount && (tripItem.id == ApprovedShipmentVM.publishedFilteredShipments.last?.id){
+//                                       if ApprovedShipmentVM.nomoredata == false{
+                                           if ApprovedShipmentVM.publishedFilteredShipments.count >= ApprovedShipmentVM.MaxResultCount && (tripItem.id == ApprovedShipmentVM.publishedFilteredShipments.last?.id){
                                             ApprovedShipmentVM.SkipCount+=ApprovedShipmentVM.MaxResultCount
                                             ApprovedShipmentVM.GetShipmentsOp = .fetchmoreshipments
                                             ApprovedShipmentVM.GetFilteredShipments(operation: .fetchmoreshipments)
+                                        }else{
+//                                            ApprovedShipmentVM.SkipCount = 0
+                                            
                                         }
+//                                       }else{
+//
+//                                       }
                                     })
                                     .buttonStyle(.plain)
                                     .listRowBackground(Color.clear)
@@ -170,7 +178,6 @@ struct HomeView: View {
             .onAppear(perform: {
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     getDate()
-                    
                 })
             })
             
@@ -199,11 +206,13 @@ struct HomeView: View {
     }
     
     func getDate(){
+        driverRate.GetDriverRate()
+        ApprovedShipmentVM.nomoredata = false
+        ApprovedShipmentVM.SkipCount = 0
+        selectedShipmentId = 0
         ApprovedShipmentVM.lang = Double(locationVM.lastLocation?.coordinate.longitude ?? 0)
         ApprovedShipmentVM.lat = Double(locationVM.lastLocation?.coordinate.latitude ?? 0)
         ApprovedShipmentVM.resetFilter()
-        ApprovedShipmentVM.SkipCount = 0
-        selectedShipmentId = 0
         ApprovedShipmentVM.GetApprovedShipment()
         //        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
     }
@@ -214,11 +223,13 @@ struct HomeView_Previews: PreviewProvider {
         HomeView(FilterTag: .constant(.Menu), showFilter: .constant(false))
             .environmentObject(ApprovedShipmentViewModel())
             .environmentObject(camelEnvironments())
+            .environmentObject(DriverRateViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
         HomeView(FilterTag: .constant(.Menu), showFilter: .constant(false))
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
             .environmentObject(camelEnvironments())
             .environmentObject(ApprovedShipmentViewModel())
+            .environmentObject(DriverRateViewModel())
     }
 }
 

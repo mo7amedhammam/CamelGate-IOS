@@ -6,19 +6,21 @@
 //
 
 import SwiftUI
-import Combine
-import PromiseKit
+//import Combine
+//import PromiseKit
 
 struct calendarPopUp:View{
+    
     @Binding var selectedDate : Date
     @Binding var isPresented : Bool
-
+    var displayedcomponent : DatePickerComponents?
+    
     var body: some View{
         if isPresented{
             ZStack {
                 ZStack {
-                    DatePicker("", selection: $selectedDate, in: Date()..., displayedComponents: .date )
-                        .datePickerStyle(.graphical)
+                    DatePicker("", selection: $selectedDate, in: Date()..., displayedComponents: DatePickerComponents(rawValue: (displayedcomponent  ?? .date).rawValue ))
+//                        .datePickerStyle(.graphical)
                         .background(.white)
                         .cornerRadius(22)
                         .padding()
@@ -108,13 +110,17 @@ struct DatePickerTextField: UIViewRepresentable {
 //    public var format = "yyyy/MM/dd"
 
     public var placeholder: String
+    public var datePickerMode:UIDatePicker.Mode?
+    public var datePickerStyle:UIDatePickerStyle?
+
     @Binding public var date: Date?
     
     func makeUIView(context: Context) -> some UITextField {
         
-        self.datePicker.datePickerMode = .date
-        self.datePicker.preferredDatePickerStyle = .wheels
+        self.datePicker.datePickerMode = datePickerMode ?? .date
+        self.datePicker.preferredDatePickerStyle = datePickerStyle ?? .wheels
         self.datePicker.addTarget(self.helper, action: #selector(self.helper.dateValueChanged), for: .valueChanged)
+        
         self.textField.placeholder = self.placeholder
         self.textField.inputView = self.datePicker
         let toolbar = UIToolbar()

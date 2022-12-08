@@ -61,6 +61,7 @@ class ApprovedShipmentViewModel: ObservableObject {
 
     @Published var UserCreated = false
     @Published var nodata = false
+    @Published var nomoredata = false
 
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -102,6 +103,8 @@ class ApprovedShipmentViewModel: ObservableObject {
                         if modeldata.data?.items?.count ?? 0 > 0{
                             self?.publishedFilteredShipments.append( contentsOf: modeldata.data?.items ?? [])
                         }else{
+                            self?.nomoredata = true
+//                            self?.SkipCount = self?.publishedFilteredShipments.count ?? 0
                         }
                     case .none:
                         return

@@ -33,6 +33,8 @@
 		C83C4D4A28B2949300208751 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C83C4D4928B2949300208751 /* Lottie */; };
 		C83DBD76293392DF00C43F14 /* rateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83DBD75293392DF00C43F14 /* rateModel.swift */; };
 		C83DBD782933940400C43F14 /* RateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83DBD772933940400C43F14 /* RateViewModel.swift */; };
+		C840BC552941FEB0001D88D2 /* DriverRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840BC542941FEB0001D88D2 /* DriverRateViewModel.swift */; };
+		C840BC572941FED0001D88D2 /* DriverRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840BC562941FED0001D88D2 /* DriverRateModel.swift */; };
 		C845FAB72892AEA000B803FD /* ChatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB62892AEA000B803FD /* ChatHeader.swift */; };
 		C845FAB92892B99000B803FD /* XButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FAB82892B99000B803FD /* XButton.swift */; };
 		C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845FABC2892BB6D00B803FD /* ChatsListView.swift */; };
@@ -177,6 +179,8 @@
 		C837B8BB291908F3009819C7 /* WalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
 		C83DBD75293392DF00C43F14 /* rateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rateModel.swift; sourceTree = "<group>"; };
 		C83DBD772933940400C43F14 /* RateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewModel.swift; sourceTree = "<group>"; };
+		C840BC542941FEB0001D88D2 /* DriverRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRateViewModel.swift; sourceTree = "<group>"; };
+		C840BC562941FED0001D88D2 /* DriverRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRateModel.swift; sourceTree = "<group>"; };
 		C845FAB62892AEA000B803FD /* ChatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeader.swift; sourceTree = "<group>"; };
 		C845FAB82892B99000B803FD /* XButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XButton.swift; sourceTree = "<group>"; };
 		C845FABC2892BB6D00B803FD /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
@@ -418,6 +422,15 @@
 				C83DBD75293392DF00C43F14 /* rateModel.swift */,
 			);
 			path = RateViewModel;
+			sourceTree = "<group>";
+		};
+		C840BC532941FE6D001D88D2 /* DriverRate */ = {
+			isa = PBXGroup;
+			children = (
+				C840BC542941FEB0001D88D2 /* DriverRateViewModel.swift */,
+				C840BC562941FED0001D88D2 /* DriverRateModel.swift */,
+			);
+			path = DriverRate;
 			sourceTree = "<group>";
 		};
 		C845FAB42892AB9900B803FD /* Chat */ = {
@@ -934,6 +947,7 @@
 		C8C94949288977160057EE7E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C840BC532941FE6D001D88D2 /* DriverRate */,
 				C8C9494A2889772B0057EE7E /* ProfileView.swift */,
 				C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */,
 			);
@@ -1392,6 +1406,7 @@
 				C8C94969288980AB0057EE7E /* BackButtonView.swift in Sources */,
 				C84EFE8828B0FE7100399C78 /* ChangePasswordModel.swift in Sources */,
 				C88E8B4628D74100006CCCE3 /* nationalityViewModel.swift in Sources */,
+				C840BC552941FEB0001D88D2 /* DriverRateViewModel.swift in Sources */,
 				C85E829F28D88053004361B0 /* LocationAddressVM.swift in Sources */,
 				C0125B1828993991004B65E5 /* Decoder.swift in Sources */,
 				C82EC8F5289EAB090042A27F /* ApprovedShipmentModel.swift in Sources */,
@@ -1470,6 +1485,7 @@
 				C0125B12289936B5004B65E5 /* EndPoints.swift in Sources */,
 				C84899EB28E44F900013685A /* ResendOTPViewModel.swift in Sources */,
 				C8481CC9289FFF9300B6675D /* ShipmentDetailsViewModel.swift in Sources */,
+				C840BC572941FED0001D88D2 /* DriverRateModel.swift in Sources */,
 				FA626CE028A7F3FD00714C67 /* HelpRequestSentView.swift in Sources */,
 				FA7077FD28935B9300879399 /* DetailsView.swift in Sources */,
 				C8D82A3528A46C060081E620 /* CityFilterView.swift in Sources */,

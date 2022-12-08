@@ -30,6 +30,7 @@ struct MainTabBar : View {
     //    @State var resetFilter = false
     @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
     @StateObject var environments = camelEnvironments()
+    @StateObject var DriverRate = DriverRateViewModel()
 
     var body: some View {
         VStack(spacing: 0){
@@ -39,13 +40,18 @@ struct MainTabBar : View {
                         HomeView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
                             .environmentObject(environments)
-                        
+                            .environmentObject(DriverRate)
+
                     } else if self.selectedTab.localized(language) == "Shipments".localized(language){
                         ShipmentsView()
+                            .environmentObject(environments)
+
                         
                     }  else if self.selectedTab.localized(language) == "Garage".localized(language){
                         GarageView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
+                            .environmentObject(environments)
+
                         
                     } else if self.selectedTab.localized(language) == "Wallet".localized(language){
                         WalletView( SelectedTab: $selectedTab)
@@ -53,8 +59,10 @@ struct MainTabBar : View {
                         
                     }else if self.selectedTab.localized(language) == "Profile".localized(language){
                         ProfileView()
+                            .environmentObject(DriverRate)
+                            .environmentObject(environments)
                     }
-                }.environmentObject(environments)
+                }
                     .navigationViewStyle(StackNavigationViewStyle())
                     .ignoresSafeArea()
             }
@@ -114,14 +122,9 @@ struct MainTabBar : View {
         
     }
         func removaWallet() async  {
-//            do {
                 if LoginManger.getUser()?.isDriverInCompany ?? false{
-//                    tabs = tabs.removeAll{ $0 == "Wallet" }
                     tabs = tabs.filter({$0 != "Wallet"})
             }
-//            }catch{
-//
-//            }
         }
     
 }

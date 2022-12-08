@@ -13,6 +13,7 @@ struct HeaderView: View {
     @State var destination = AnyView(NotificationsView())
     @EnvironmentObject var locationVM : LocationAddressVM
     @EnvironmentObject var imageVM : camelEnvironments
+    @EnvironmentObject var driverRate : DriverRateViewModel
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: Constants.baseURL + Helper.getDriverimage().replacingOccurrences(of: "\\",with: "/"))) { image in
@@ -36,7 +37,7 @@ struct HeaderView: View {
                     HStack(alignment:.center){
                         Text("")
                         Image("ic_star")
-                        Text("\(String(format:"%.1f", LoginManger.getUser()?.rate?.rate ?? 0 ))  ")
+                        Text("\(String(format:"%.1f", driverRate.DriverRate))  ")
                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)
                     }
@@ -79,5 +80,6 @@ struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
         HeaderView().environmentObject(camelEnvironments())
             .environmentObject(LocationAddressVM())
+            .environmentObject(DriverRateViewModel())
     }
 }

@@ -71,7 +71,7 @@ struct SendingRateView:View{
             //                }.padding(.horizontal)
             
             Button(action: {
-                rateVM.shipmentId = ApprovedShipmentVM.publishedapprovedShipmentModel?.id ?? 0
+                rateVM.shipmentId = ApprovedShipmentVM.ApprovedshipmentId 
                 rateVM.shipmentOfferId = ApprovedShipmentVM.publishedapprovedShipmentModel?.driverOfferID ?? 0
                 rateVM.sendRate()
             }, label: {
@@ -93,7 +93,10 @@ struct SendingRateView:View{
         .padding(.bottom,5)
         .onChange(of: rateVM.rateSentSucces, perform: {newval in
             if newval == true{
+                DispatchQueue.main.async {
+                    ApprovedShipmentVM.ApprovedShipmentsOp = .start
                 ApprovedShipmentVM.CanRateApprovedshipment = false
+                }
             }
         })
     }
@@ -104,7 +107,6 @@ struct SendingRateView_Previews: PreviewProvider {
         ZStack {
             SendingRateView()
                 .environmentObject(ApprovedShipmentViewModel())
-            
         }
     }
 }

@@ -11,7 +11,7 @@ struct ProfileHeader: View {
 
     var language = LocalizationService.shared.language
     @EnvironmentObject var imageVM : camelEnvironments
-
+    @EnvironmentObject var driverRate : DriverRateViewModel
     var body: some View {
         VStack{
             ZStack (){
@@ -31,17 +31,11 @@ struct ProfileHeader: View {
                                 image.resizable()
                             } placeholder: {
                                 Image("face_vector")
-
                             }
                             .overlay(Circle().stroke(.white.opacity(0.7), lineWidth: 4))
                         })
                             .clipShape(Circle())
                             .frame(width: 95, height: 95, alignment: .center)
-//                            .cornerRadius(10)
-                        
-//                        CircularButton(ButtonImage:Image("pencil") , forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
-                            //                                                    self.showImageSheet = true
-//                        }
                     }
                     
                     Text(LoginManger.getUser()?.name ?? "")
@@ -51,7 +45,7 @@ struct ProfileHeader: View {
                     HStack(){
                         HStack(){
                             Image(systemName:"star.fill").foregroundColor(.orange)
-                            Text("\(String(format:"%.1f", LoginManger.getUser()?.rate?.rate ?? 0 )) ")
+                            Text("\(String(format:"%.1f", driverRate.DriverRate)) ")
                                 .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                                 .foregroundColor(Color.white)
                             
@@ -60,7 +54,7 @@ struct ProfileHeader: View {
                             .background(.white.opacity(0.35))
                             .cornerRadius(8)
                         
-                        Text("("+" \(LoginManger.getUser()?.rate?.ratesCount ?? 0 ) "+"\("Reviews_".localized(language))"+" )")
+                        Text("("+" \(driverRate.DriverRatesCount) "+"\("Reviews_".localized(language))"+" )")
                                                                 
                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)
@@ -78,7 +72,9 @@ struct ProfileHeader: View {
 struct ProfileHeader_Previews: PreviewProvider {
     static var previews: some View {
         ProfileHeader().environmentObject(camelEnvironments())
+            .environmentObject(DriverRateViewModel())
         ProfileHeader().environmentObject(camelEnvironments())
+            .environmentObject(DriverRateViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
 
     }

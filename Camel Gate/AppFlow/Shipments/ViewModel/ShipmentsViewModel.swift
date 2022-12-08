@@ -51,12 +51,12 @@ class ShipmentsViewModel : ObservableObject {
 //                publishedShipmentsArr = []
 //            }
             DispatchQueue.main.async {
-                if modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []{
+                if (modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []) && self?.publishedShipmentsArr == [] {
                     self?.nodata = true
                 }else{
                     switch self?.GetShipmentsOp {
                     case .fetchshipments:
-                        if modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []{
+                        if (modeldata.data?.items?.isEmpty ?? false || modeldata.data?.items == []) && self?.publishedShipmentsArr == []{
                             self?.nodata = true
                         }else{
                             self?.publishedShipmentsArr = modeldata.data?.items ?? []
@@ -65,6 +65,7 @@ class ShipmentsViewModel : ObservableObject {
                         if modeldata.data?.items?.count ?? 0 > 0{
                             self?.publishedShipmentsArr.append( contentsOf: modeldata.data?.items ?? [])
                         }else{
+                            
                         }
                     case .none:
                         return
@@ -75,7 +76,7 @@ class ShipmentsViewModel : ObservableObject {
 //                        shipmentscount = modeldata.data?.count ?? 0
 //                    }
                     self?.UserCreated = true
-                    print(self?.publishedShipmentsArr )
+                    print(self?.publishedShipmentsArr ?? [] )
                 }
             }
         }.store(in: &cancellables)
