@@ -55,6 +55,9 @@ class WalletViewModel : ObservableObject {
     }
     
     func GetWallet(type:WalletTypes){
+        if Helper.isConnectedToNetwork(){
+        
+        
         firstly { () -> Promise<Any> in
             isLoading = true
             return BGServicesManager.CallApi(self.Services, type == .Gained ?  HomeServices.getGainedWallet : HomeServices.getWithdrawnWallet )
@@ -84,6 +87,12 @@ class WalletViewModel : ObservableObject {
         }.catch { [self] (error) in
             isAlert = true
             message = "\(error)"
+        }
+        }else{
+            message =  "Not_Connected".localized(language)
+
+            activeAlert = .NetworkError
+            isAlert = true
         }
     }
 }

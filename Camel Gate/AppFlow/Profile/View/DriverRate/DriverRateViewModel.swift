@@ -26,9 +26,9 @@ class DriverRateViewModel: ObservableObject {
 //    @Published var isLogedin = false
     
 //    @Published var isLoading:Bool? = false
-//    @Published var isAlert = false
-//    @Published var activeAlert: ActiveAlert = .NetworkError
-//    @Published var message = ""
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
+    @Published var message = ""
     
     init() {
 //        GetDriverRate()
@@ -44,6 +44,7 @@ class DriverRateViewModel: ObservableObject {
     
     // MARK: - API Services
     func GetDriverRate(){
+        if Helper.isConnectedToNetwork(){
         firstly { () -> Promise<Any> in
 //            isLoading = true
             return BGServicesManager.CallApi(self.authServices,AuthServices.GetDriverRate)
@@ -80,5 +81,12 @@ class DriverRateViewModel: ObservableObject {
 //            isAlert = true
 //            message = "\(error)"
         }
+        }else{
+            message =  "Not_Connected".localized(language)
+
+            activeAlert = .NetworkError
+            isAlert = true
+
+            }
     }
 }

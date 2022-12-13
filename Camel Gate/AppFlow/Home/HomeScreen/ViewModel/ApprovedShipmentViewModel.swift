@@ -121,6 +121,7 @@ class ApprovedShipmentViewModel: ObservableObject {
     
     // MARK: - API Services
     func GetApprovedShipment(){
+//        if Helper.isConnectedToNetwork(){
         firstly { () -> Promise<Any> in
 //            isLoading = true
             return BGServicesManager.CallApi(self.authServices,HomeServices.GetApprovedShipment)
@@ -154,6 +155,12 @@ class ApprovedShipmentViewModel: ObservableObject {
             isLoading = false
 
         }
+//        }else{
+//            message =  "Not_Connected".localized(language)
+
+//            activeAlert = .NetworkError
+//            isAlert = true
+//        }
     }
 
     //MARK: ------ approved shipment operation -----
@@ -202,6 +209,9 @@ class ApprovedShipmentViewModel: ObservableObject {
     
     // MARK: - API Services
     func GetFilteredShipments(operation:GetShipmentsOperations){
+        if Helper.isConnectedToNetwork(){
+        
+        
         self.GetShipmentsOp = operation
         var params : [String : Any] =
         [
@@ -263,11 +273,13 @@ class ApprovedShipmentViewModel: ObservableObject {
 //            isAlert = true
 //            message = "\(error)"
             isLoading = false
-
         }
+    }else{
+        message =  "Not_Connected".localized(language)
+        activeAlert = .NetworkError
+        isAlert = true
     }
-    
-
+    }
 
     func resetFilter(){
         fromCityId = 0

@@ -123,6 +123,15 @@ struct SignUpView: View {
                         .padding(.bottom,-250)
                 )
             })
+                .fullScreenCover(isPresented: $presentPhoneVerify , onDismiss: {
+                    SignUpVM.verifyUser = false
+                    if SignUpVM.isMatchedOTP {
+                    SignUpVM.CreateAccount()
+                    }
+                }, content: {
+                    PhoneVerificationView(op: .signup, phoneNumber: $SignUpVM.phoneNumber, CurrentOTP: $SignUpVM.currentOTP ,validFor: $SignUpVM.SecondsCount , matchedOTP: $SignUpVM.isMatchedOTP, isPresented: $presentPhoneVerify)
+                        .environmentObject(ResendOTPViewModel())
+                })
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         
@@ -151,15 +160,7 @@ struct SignUpView: View {
                 presentPhoneVerify.toggle()
             }
         })
-        
-        .fullScreenCover(isPresented: $presentPhoneVerify , onDismiss: {
-            SignUpVM.verifyUser = false
-            if SignUpVM.isMatchedOTP {
-            SignUpVM.CreateAccount()
-            }
-        }, content: {
-            PhoneVerificationView(op: .signup, phoneNumber: $SignUpVM.phoneNumber, CurrentOTP: $SignUpVM.currentOTP ,validFor: $SignUpVM.SecondsCount , matchedOTP: $SignUpVM.isMatchedOTP, isPresented: $presentPhoneVerify)
-        })
+    
         NavigationLink(destination: EditProfileInfoView(taskStatus: .create,enteredDriverName: SignUpVM.Drivername, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.isUserCreated , label: {
         })
         

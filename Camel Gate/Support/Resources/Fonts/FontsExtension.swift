@@ -8,6 +8,35 @@
 import SwiftUI
 
 extension Font {
+    
+    static func camelLightAr(of size: CGFloat) -> Self {
+         Font.custom("GESSUniqueLight-Light", size: size)
+     }
+
+    static func camelRegularAr(of size: CGFloat) -> Self {
+         Font.custom("GESSTextMedium-Medium", size: size)
+     }
+    static func camelsemiBoldAr(of size: CGFloat) -> Self {
+         Font.custom("GESSUniqueBold-Bold", size: size)
+     }
+    static func camelBoldAr(of size: CGFloat) -> Self {
+         Font.custom("GESSUniqueBold-Bold", size: size)
+     }
+
+    static func camelLightEn(of size: CGFloat) -> Self {
+         Font.custom("MyriadConceptRoman-Light", size: size)
+     }
+    static func camelRegularEn(of size: CGFloat) -> Self {
+         Font.custom("MyriadConceptRoman-Regular", size: size)
+     }
+    static func camelsemiBoldEn(of size: CGFloat) -> Self {
+         Font.custom("MyriadConceptRoman-Semibold", size: size)
+     }
+    static func camelBoldEn(of size: CGFloat) -> Self {
+         Font.custom("MyriadConceptRoman-Bold", size: size)
+     }
+    
+    
     struct CamelFonts {
 
 //        MARK: -- arabic --

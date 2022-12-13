@@ -258,23 +258,23 @@ struct PhoneVerificationView: View{
                     errorMessage = "Incorrect_Code"
                 }
             }
-            
         })
-                .onChange(of: resendOTPVM.NewCode, perform: {newval in
-                    CurrentOTP = newval
+        .onChange(of: resendOTPVM.NewCode, perform: {newval in
+//                   print(newval)
+                CurrentOTP = resendOTPVM.NewCode
                     validFor = resendOTPVM.NewSecondsCount
                     DynamicTimer(sentTimer: validFor)
                     errorMessage = ""
                 })
-        NavigationLink(destination: NewPasswordView(),isActive:$gotonewpassword , label: {
-        })
+        
+//        NavigationLink(destination: NewPasswordView(),isActive:$gotonewpassword , label: {
+//        })
         // Alert with no internet connection
         //        .alert(isPresented: $CreateUserVM.isAlert, content: {
         //            Alert(title: Text(CreateUserVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
         //                CreateUserVM.isAlert = false
         //            }))
         //        })
-        
         
     }
     private func otpText(text: String) -> some View {

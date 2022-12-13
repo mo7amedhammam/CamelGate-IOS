@@ -64,17 +64,18 @@ struct SignInView: View {
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
                     
+                    HStack{
+                        Spacer()
                     Button(action: {
                         destination = AnyView(NoteScreenView(phoneNumber: SignInVM.phoneNumber))
                         active.toggle()
                     }, label: {
-                        HStack{
-                            Spacer()
+
                             Text("Forgot_Password?".localized(language))
                                 .foregroundColor(.red)
                                 .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                        }.padding(.horizontal)
                     })
+                        }.padding(.horizontal)
                 }
                 .padding(.top,hasNotch ? -15:-30)
                 Spacer()

@@ -83,6 +83,7 @@ class ShipmentsViewModel : ObservableObject {
     }
     
     func GetShipment(type:DriverShipments,operation:GetShipmentsOperations){
+        if Helper.isConnectedToNetwork(){
         self.GetShipmentsOp = operation
         print("here is \(type)")
         let param = [
@@ -119,7 +120,13 @@ class ShipmentsViewModel : ObservableObject {
             isAlert = true
             message = "\(error)"
         }
+        }else{
+            message =  "Not_Connected".localized(language)
+            activeAlert = .NetworkError
+            isAlert = true
+        }
     }
+        
 }
 
 

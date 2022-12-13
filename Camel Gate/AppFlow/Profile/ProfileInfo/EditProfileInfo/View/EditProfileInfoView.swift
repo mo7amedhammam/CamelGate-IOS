@@ -275,9 +275,10 @@ struct EditProfileInfoView: View {
                                     Spacer()
                                 }
                             }
-                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text:.constant(language.rawValue == "ar" ?  profileVM.LicenseNumber.replacedEnglishDigitsWithArabic:profileVM.LicenseNumber.replacedArabicDigitsWithEnglish) )
+                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber )
                                 .onChange(of: profileVM.LicenseNumber  ){ newval in
                                     profileVM.LicenseNumber =  String(newval.prefix(profileVM.LicenseNumLength))
+                                    profileVM.LicenseNumber = language.rawValue == "ar" ?  newval.replacedEnglishDigitsWithArabic:newval.replacedArabicDigitsWithEnglish
                             }
                                 .focused($inFocus,equals:4)
                                 .onTapGesture(perform: {
@@ -420,7 +421,11 @@ struct EditProfileInfoView: View {
                                 })
                             
                             
-                            InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text: .constant(language.rawValue == "ar" ? profileVM.TruckPlate.replacedEnglishDigitsWithArabic:profileVM.TruckPlate.replacedArabicDigitsWithEnglish))
+                            InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text:$profileVM.TruckPlate)
+                                .onChange(of: profileVM.TruckPlate, perform: {newval in
+                                    profileVM.TruckPlate = language.rawValue == "ar" ?
+                                    newval.replacedEnglishDigitsWithArabic:newval.replacedArabicDigitsWithEnglish
+                                })
                                 .focused($inFocus,equals:5)
                                 .onTapGesture(perform: {
                                     inFocus = 5
@@ -436,9 +441,11 @@ struct EditProfileInfoView: View {
                                     Spacer()
                                 }
                             }
-                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: .constant(language.rawValue == "ar" ? profileVM.TruckLicense.replacedEnglishDigitsWithArabic:profileVM.TruckLicense.replacedArabicDigitsWithEnglish))
+                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
                                 .onChange(of: profileVM.TruckLicense  ){ newval in
                                     profileVM.TruckLicense =  String(newval.prefix(profileVM.LicenseNumLength))
+                                    profileVM.TruckLicense = language.rawValue == "ar" ? newval.replacedEnglishDigitsWithArabic:newval.replacedArabicDigitsWithEnglish
+                                    
                             }
                                 .focused($inFocus,equals:6)
                                 .onTapGesture(perform: {

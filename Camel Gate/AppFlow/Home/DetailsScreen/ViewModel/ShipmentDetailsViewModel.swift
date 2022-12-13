@@ -55,7 +55,7 @@ class ShipmentDetailsViewModel : ObservableObject {
     
     // MARK: - API Services
     func GetShipmentDetails(){
-        
+        if Helper.isConnectedToNetwork(){
         let param = ["shipmentId":shipmentId]
         print("Details")
         firstly { () -> Promise<Any> in
@@ -87,6 +87,12 @@ class ShipmentDetailsViewModel : ObservableObject {
         }.catch { [self] (error) in
             isAlert = true
             message = "\(error)"
+        }
+        }else{
+            message =  "Not_Connected".localized(language)
+
+            activeAlert = .NetworkError
+            isAlert = true
         }
     }
     
@@ -154,4 +160,5 @@ class ShipmentDetailsViewModel : ObservableObject {
             message = "\(error)"
         }
     }
+        
 }

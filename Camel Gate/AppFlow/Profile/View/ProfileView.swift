@@ -231,6 +231,7 @@ struct ProfileView: View {
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         }
         .onAppear(perform: {
+           // fatalError("Crash was triggered")
             driverRate.GetDriverRate()
         })
         .navigationBarHidden(true)
@@ -239,6 +240,11 @@ struct ProfileView: View {
         .alert(isPresented: $islogout, content: {
             Alert(title: Text("you_signed_out".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                 islogout = false
+            }))
+        })
+        .alert(isPresented: $driverRate.isAlert, content: {
+            Alert(title: Text(driverRate.message.localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                driverRate.isAlert = false
             }))
         })
         

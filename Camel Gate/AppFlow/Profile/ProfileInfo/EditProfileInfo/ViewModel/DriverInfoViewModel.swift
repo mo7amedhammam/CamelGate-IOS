@@ -224,6 +224,7 @@ class DriverInfoViewModel: ObservableObject {
     
     // MARK: - API Services
     func CompleteProfile(){
+        if Helper.isConnectedToNetwork(){
         var params : [String : Any] =
         [
             "StatusId"                         :"\(LoginManger.getUser()?.profileStatusId ?? 0)",
@@ -294,10 +295,16 @@ class DriverInfoViewModel: ObservableObject {
             isAlert = true
             message = "\(error)"
         }
+    }else{
+        message =  "Not_Connected"
+        activeAlert = .NetworkError
+        isAlert = true
+    }
     }
     
     // MARK: - API Services
     func GetDriverInfo(){
+        if Helper.isConnectedToNetwork(){
         firstly { () -> Promise<Any> in
             isLoading = true
             return BGServicesManager.CallApi(self.authServices,AuthServices.GetDriverinfo)
@@ -374,6 +381,12 @@ class DriverInfoViewModel: ObservableObject {
         }.catch { [self] (error) in
             isAlert = true
             message = "\(error)"
+        }
+        }else{
+            message =  "Not_Connected".localized(language)
+
+            activeAlert = .NetworkError
+            isAlert = true
         }
     }
 }

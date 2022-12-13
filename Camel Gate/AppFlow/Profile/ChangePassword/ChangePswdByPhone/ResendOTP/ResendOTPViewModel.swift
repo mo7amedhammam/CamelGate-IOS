@@ -69,9 +69,10 @@ class ResendOTPViewModel: ObservableObject {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [weak self](modeldata) in
 //            publishedOTPModel = modeldata.data
+            DispatchQueue.main.async {
             self?.NewCode = modeldata.data?.otp ?? 0
             self?.NewSecondsCount = modeldata.data?.secondsCount ?? 0
-            
+            }
 //            verifyUser = true
         }.store(in: &cancellables)
 
