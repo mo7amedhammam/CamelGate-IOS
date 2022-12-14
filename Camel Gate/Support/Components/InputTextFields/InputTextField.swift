@@ -15,51 +15,56 @@ struct InputTextField: View {
     @State var placeholderColor : Color? = .gray.opacity(0.5)
 
     @Binding var text: String
+    var Disabled : Bool?
+
     let screenWidth = UIScreen.main.bounds.size.width - 55
     
     var body: some View {
-        HStack{
-            if iconName != "" || iconName != nil{
-                Image(iconName ?? "")
-                    .renderingMode( iconColor != .clear ? .template:.original)
-                    .foregroundColor(iconColor == .clear ? .clear:iconColor)
-                    .font(.system(size: 15))
-            }else{
-            }
-            
-            ZStack (alignment:.leading){
-                Text(placeholder)
-                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                    .foregroundColor(placeholderColor == .red ?  .red:placeholderColor)
-                    .offset(y: text.isEmpty ? 0 : -20)
-                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
-                    .padding(.leading,fieldType == .Phone ? text.isEmpty ? 55:0:0)
+        ZStack {
+            HStack{
+                if iconName != "" || iconName != nil{
+                    Image(iconName ?? "")
+                        .renderingMode( iconColor != .clear ? .template:.original)
+                        .foregroundColor(iconColor == .clear ? .clear:iconColor)
+                        .font(.system(size: 15))
+                }else{
+                }
                 
-                HStack{
-                    if fieldType == .Phone{
-                        Text("+966 |")
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                        .foregroundColor(.gray.opacity(0.5))
-                    }
-                TextField("",text:$text)
-                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-                    .autocapitalization(.none)
-                    .textInputAutocapitalization(.never)
-                    .frame( minHeight: 50)
+                ZStack (alignment:.leading){
+                    Text(placeholder)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                        .foregroundColor(placeholderColor == .red ?  .red:placeholderColor)
+                        .offset(y: text.isEmpty ? 0 : -20)
+                        .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+                        .padding(.leading,fieldType == .Phone ? text.isEmpty ? 55:0:0)
                     
+                    HStack{
+                        if fieldType == .Phone{
+                            Text("+966 |")
+                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                            .foregroundColor(.gray.opacity(0.5))
+                        }
+                    TextField("",text:$text)
+                            .disabled(Disabled ?? false)
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                        .autocapitalization(.none)
+                        .textInputAutocapitalization(.never)
+                        .frame( minHeight: 50)
+                        
 
-             }
+                 }
+                }
             }
-        }
-        .frame( height: 50)
-        .padding(.horizontal,10)
-//        .padding(.vertical,5)
-        .disableAutocorrection(true)
-        .background(
-            Color.white
-        )
-            .cornerRadius(5)
+            .frame( height: 50)
+            .padding(.horizontal,10)
+    //        .padding(.vertical,5)
+            .disableAutocorrection(true)
+            .background(
+                Color.white
+            )
+                .cornerRadius(5)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
+        }
         
     }
 }

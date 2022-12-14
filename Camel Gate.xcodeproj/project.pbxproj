@@ -115,6 +115,7 @@
 		C8D82A3B28A46C970081E620 /* ShipmentTypesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D82A3A28A46C970081E620 /* ShipmentTypesList.swift */; };
 		C8D82A3D28A46CE20081E620 /* DateFormatsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D82A3C28A46CE20081E620 /* DateFormatsExt.swift */; };
 		C8DB51A9288CB45F004521C8 /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB51A8288CB45F004521C8 /* FontsExtension.swift */; };
+		C8DF8F032949EBFD0026F6B8 /* BindingExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF8F022949EBFD0026F6B8 /* BindingExt.swift */; };
 		C8E4C309288F0406005FDB7C /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C308288F0406005FDB7C /* PhoneVerificationView.swift */; };
 		C8E4C30B288F0429005FDB7C /* NewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C30A288F0429005FDB7C /* NewPasswordView.swift */; };
 		C8E4C30E288F1C7E005FDB7C /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C30D288F1C7D005FDB7C /* OTPViewModel.swift */; };
@@ -264,6 +265,7 @@
 		C8D82A3C28A46CE20081E620 /* DateFormatsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatsExt.swift; sourceTree = "<group>"; };
 		C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Camel-Gate-Info.plist"; path = "../Camel-Gate-Info.plist"; sourceTree = "<group>"; };
 		C8DB51A8288CB45F004521C8 /* FontsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
+		C8DF8F022949EBFD0026F6B8 /* BindingExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExt.swift; sourceTree = "<group>"; };
 		C8E4C308288F0406005FDB7C /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationView.swift; sourceTree = "<group>"; };
 		C8E4C30A288F0429005FDB7C /* NewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordView.swift; sourceTree = "<group>"; };
 		C8E4C30D288F1C7D005FDB7C /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 				C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */,
 				C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */,
 				C8D82A3C28A46CE20081E620 /* DateFormatsExt.swift */,
+				C8DF8F022949EBFD0026F6B8 /* BindingExt.swift */,
 			);
 			path = Extenstions;
 			sourceTree = "<group>";
@@ -1443,6 +1446,7 @@
 				C85D7DA6289C0B5D0088227D /* DriverInfoModel.swift in Sources */,
 				C85D7DA3289BD2F60088227D /* ImageDataExtenstion.swift in Sources */,
 				FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */,
+				C8DF8F032949EBFD0026F6B8 /* BindingExt.swift in Sources */,
 				C82DBDEF28A54D3000F2A9AB /* CancelReasonsModel.swift in Sources */,
 				FA4E27B1288C53D10047265D /* FilterView.swift in Sources */,
 				C8D82A3728A46C4B0081E620 /* CitiesListView.swift in Sources */,
@@ -1680,7 +1684,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
@@ -1716,7 +1720,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;

@@ -11,10 +11,9 @@ import SwiftUI
 enum ProfileStep{
     case create, update
 }
-//enum FocusElement: Hashable {
-//    case name
-//    case email
-//}
+enum datesource: Hashable {
+    case birthDate,liceseExpire,truckStart,truckEnd,none
+}
 
 
 struct EditProfileInfoView: View {
@@ -26,7 +25,7 @@ struct EditProfileInfoView: View {
     @StateObject var trucktypesVM = TruckTypeViewModel()
     @StateObject var truckmanfacturersVM = TruckManfacturerViewModel()
     @StateObject var nationalityVM = nationalityViewModel()
-
+    
     var taskStatus:ProfileStep
     @State private var isEditing = false
     @State private var showImageSheet = false
@@ -38,14 +37,18 @@ struct EditProfileInfoView: View {
     @State var showsheet = false
     @State var ShowCalendar  = false
     @State var showBottomSheet  = false
-    
-    @State var selectedDate:Date?
+
+    @State var dateSorceinput:datesource = .none
+    @State var selectedDate:Date = Date()
+    @State var startingDate = Date()
+    @State var endingDate = Date()
+
     @State var active = false
     @State var destination = AnyView(TabBarView().navigationBarHidden(true))
-  
+    
     var years:[String] = []
     @FocusState var inFocus: Int?
-
+    @State var activepicker = false
     
     var body: some View {
         ZStack{
@@ -92,69 +95,49 @@ struct EditProfileInfoView: View {
                         }
                         
                         VStack{
-                        InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
+                            InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
                                 .focused($inFocus,equals:1)
                                 .onTapGesture(perform: {
                                     inFocus = 1
                                 })
-//                                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-//                        InputTextField1(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
-                            
-//                            InputTextField1(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
-//                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr24:Font.camelfonts.Reg24)
-//
-//                            InputTextField1(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
-//                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr24:Font.camelfonts.Reg24)
-
-//                        InputTextField22(iconName: "person",iconColor: Color("OrangColor"), placeholder: "name".localized(language), text: $profileVM.Drivername)
                         }
                         
                         //MARK: - birthdate and gender -
                         HStack{
-//                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr)
-//                                                    .disabled(true)
-//                                .overlay(content: {
-//                                    HStack{
-//                                        DatePicker("           ", selection: $profileVM.Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
+
+                            
+                            
+                                InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr,Disabled:true)
+                                    .overlay(content: {
+//                                        DatePicker("            ", selection: $profileVM.Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
 //                                            .opacity(0.02)
 //                                            .labelsHidden()
 //                                            .frame(minHeight:50)
-////                                        Spacer()
-//                                        Image(systemName:language.rawValue == "en" ? "chevron.right":"chevron.left")
-//                                            .foregroundColor(                                    Color("lightGray").opacity(0.5))
-//                                            .padding(.horizontal)
-//                                    }
-////                                    .frame(minHeight:50)
-//
-//                                })
-                            
-                            
-                            
-                            GeometryReader {g in
-                                InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr)
-                                                        .disabled(true)
-                                    .overlay(content: {
-                                        DatePicker("", selection: $profileVM.Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
-                                            .opacity(0.02)
-                                            .labelsHidden()
-                                            .frame(minHeight:50)
-                                            .frame(minWidth:g.size.width)
-                                        HStack{
-                                                            Spacer()
-                                            Image(systemName:language.rawValue == "en" ? "chevron.right":"chevron.left")
-                                                .foregroundColor(                                    Color("lightGray").opacity(0.5))
-                                                .padding(.horizontal)
-                //                                .frame(width:20)
-                                        }
-                //                        .frame(minWidth:g.size.width)
+//                                            .frame(minWidth:g.size.width)
+//                                            .frame(minWidth:(UIScreen.main.bounds.width-150))
 
-                                })
-                            }
+//                                            .background(
+                                                HStack{
+                                                    Spacer()
+                                                    Image(systemName:language.rawValue == "en" ? "chevron.right":"chevron.left")
+                                                        .foregroundColor(                                    Color("lightGray").opacity(0.5))
+                                                        .padding(.horizontal)
+                                                }
+//                                            )
+                                        //                        .frame(minWidth:g.size.width)
+                                    })
+                                    .onTapGesture(perform: {
+//                                        DispatchQueue.main.async(execute: {
+//                                            selectedDate = profileVM.Birthdate
+                                        dateSorceinput = .birthDate
+//                                        startingDate = (Calendar.current.date(byAdding: .year, value: -50, to: Date()) ?? Date())
+//                                        endingDate = (Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date())
+//                                        })
+//                                        ShowCalendar = true
+                                    })
                             
-                            InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male".localized(language)):.constant("Female".localized(language)))
+                            InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Gender".localized(language), text: profileVM.gender == 1 ? .constant("Male".localized(language)):.constant("Female".localized(language)),Disabled:true)
                                 .frame(width:130)
-                                .disabled(true)
                                 .overlay(content: {
                                     Menu {
                                         Button("Male".localized(language), action: {profileVM.gender = 1})
@@ -165,27 +148,25 @@ struct EditProfileInfoView: View {
                                             Image(systemName: "chevron.down")
                                                 .foregroundColor(                                    Color("lightGray").opacity(0.5))
                                                 .padding(.trailing)
-
                                         }
+                                        //                                        .padding(.vertical,-20)
+                                        .frame(minHeight:50)
 
-//                                        .padding(.vertical,-20)
                                     }
                                     .frame(minHeight:50)
-
                                 })
                         }
                         
-                        InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Nationality".localized(language), text: $profileVM.nationalityName)
-                            .disabled(true)
+                        InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Nationality".localized(language), text: $profileVM.nationalityName,Disabled:true)
                             .overlay(content: {
                                 Menu {
                                     ForEach(nationalityVM.publishedNationalitiesArray ,id:\.self){nationality in
                                         Button(
                                             nationality.title ?? ""
                                             , action: {
-                                            profileVM.NationalityId = nationality.id ?? 0
-                                            profileVM.nationalityName = nationality.title ?? ""
-                                        })
+                                                profileVM.NationalityId = nationality.id ?? 0
+                                                profileVM.nationalityName = nationality.title ?? ""
+                                            })
                                     }
                                 } label: {
                                     HStack{
@@ -194,37 +175,37 @@ struct EditProfileInfoView: View {
                                             .foregroundColor(                                    Color("lightGray").opacity(0.5))
                                             .padding(.trailing)
                                     }
+                                    .frame(minHeight:50)
+
                                 }
                                 .frame(minHeight:50)
-
                             })
                         
                         //MARK: - resident and Id -
                         VStack {
                             if taskStatus == .create || isEditing{
                                 withAnimation{
-                            HStack {
-                                Text(profileVM.RedisentHint.localized(language))
-                                    .foregroundColor(.red)
-                                .font(.system(size:11))
-                                Spacer()
-                            }
-                            }
+                                    HStack {
+                                        Text(profileVM.RedisentHint.localized(language))
+                                            .foregroundColor(.red)
+                                            .font(.system(size:11))
+                                        Spacer()
+                                    }
+                                }
                             }
                             HStack{
-                                InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text: profileVM.RedisentOptions == 1 ? .constant("Citizen".localized(language)):profileVM.RedisentOptions == 2 ? .constant("Resident".localized(language)):.constant("Border".localized(language))  )
+                                InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "resident".localized(language), text: profileVM.RedisentOptions == 1 ? .constant("Citizen".localized(language)):profileVM.RedisentOptions == 2 ? .constant("Resident".localized(language)):.constant("Border".localized(language))  ,Disabled:true)
                                     .frame(width:130)
-                                    .disabled(true)
                                     .overlay(content: {
                                         Menu {
                                             Button("Citizen_Id".localized(language), action: {profileVM.RedisentOptions = 1
-//                                                profileVM.RedisentNumLength = 10
+                                                //                                                profileVM.RedisentNumLength = 10
                                             })
                                             Button("Resident_Id".localized(language), action: {profileVM.RedisentOptions = 2
-//                                                profileVM.RedisentNumLength = 16
+                                                //                                                profileVM.RedisentNumLength = 16
                                             })
                                             Button("Border_Id".localized(language), action: {profileVM.RedisentOptions = 3
-//                                                profileVM.RedisentNumLength = 10
+                                                //                                                profileVM.RedisentNumLength = 10
                                             })
                                             
                                         } label: {
@@ -234,10 +215,12 @@ struct EditProfileInfoView: View {
                                                     .foregroundColor(Color("lightGray").opacity(0.5))
                                                     .padding(.trailing)
                                             }
-                                        
-                                    }
-                                    .frame(minHeight:50)
+                                            .frame(minHeight:50)
 
+                                            
+                                        }
+                                        .frame(minHeight:50)
+                                        
                                     })
                                 
                                 InputTextField(iconName: "", placeholder: "Id".localized(language), placeholderColor:(profileVM.validations == .ResidentId && profileVM.ValidationMessage != "") ? .red:.gray.opacity(0.5), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
@@ -271,34 +254,43 @@ struct EditProfileInfoView: View {
                                     Text(profileVM.ValidationMessage.localized(language))
                                         .foregroundColor(.red)
                                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                                    
                                     Spacer()
                                 }
                             }
                             InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber )
                                 .onChange(of: profileVM.LicenseNumber  ){ newval in
-                                    profileVM.LicenseNumber =  String(newval.prefix(profileVM.LicenseNumLength))
                                     profileVM.LicenseNumber = language.rawValue == "ar" ?  newval.replacedEnglishDigitsWithArabic:newval.replacedArabicDigitsWithEnglish
-                            }
+                                    profileVM.LicenseNumber =  String(newval.prefix(profileVM.LicenseNumLength))
+
+                                }
                                 .focused($inFocus,equals:4)
                                 .onTapGesture(perform: {
                                     inFocus = 4
                                 })
                         }
                         
-                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: $profileVM.LicenseExpireDateStr)
-                            .disabled(true)
-                            .overlay(content: {
+                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: $profileVM.LicenseExpireDateStr,Disabled:true)
+                            .overlay(
+//                                    DatePicker("", selection: $profileVM.LicenseExpireDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
+//                                        .labelsHidden()
+//                                        .opacity(0.02)
+//                                        .frame(minHeight:50)
+//                                        .frame(width:UIScreen.main.bounds.width)
+////                                        .clipped()
+//                                        .background(
                                 HStack(){
-                                    DatePicker("", selection: $profileVM.LicenseExpireDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
-                                        .opacity(0.02)
-                                        .frame(minHeight:50)
-
-                                    Spacer().frame(minWidth:200)
+                                    Spacer()
                                     Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                                         .foregroundColor(Color("lightGray").opacity(0.5))
                                         .padding(.horizontal)
                                 }
+//                                )
+                            )
+                            .onTapGesture(perform: {
+                                dateSorceinput = .liceseExpire
+//                                selectedDate = profileVM.LicenseExpireDate
+//                                ShowCalendar = true
                             })
                         
                         //                    InputTextField(iconName: "ic_pin_orange",iconColor: Color("OrangColor"), placeholder: "Location".localized(language), text: .constant("25 ehsan st., Aggamy, Alexandria"))
@@ -329,8 +321,7 @@ struct EditProfileInfoView: View {
                             .foregroundColor(Color("blueColor"))
                             .padding(.vertical,10)
                         
-                        InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: $profileVM.TruckTypeName)
-                            .disabled(true)
+                        InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: $profileVM.TruckTypeName,Disabled:true)
                             .overlay(content: {
                                 Menu {
                                     ForEach(trucktypesVM.publishedTypesArray,id:\.self){type in
@@ -345,16 +336,17 @@ struct EditProfileInfoView: View {
                                         Image(systemName: "chevron.down")
                                             .foregroundColor(Color("lightGray").opacity(0.5))
                                             .padding(.trailing)
-
+                                        
                                     }
+                                    .frame(minHeight:50)
+
                                 }
                                 .frame(minHeight:50)
                             })
                         
                         //MARK: - truck manfacturer and model -
                         HStack{
-                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Manfacturer".localized(language), text: $profileVM.TruckManfacturerName)
-                                .disabled(true)
+                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Manfacturer".localized(language), text: $profileVM.TruckManfacturerName,Disabled:true)
                                 .overlay(content: {
                                     Menu {
                                         ForEach(truckmanfacturersVM.publishedManfacturersArray,id:\.self){Manfacturer in
@@ -370,13 +362,14 @@ struct EditProfileInfoView: View {
                                                 .foregroundColor(Color("lightGray").opacity(0.5))
                                                 .padding(.trailing)
                                         }
+                                        .frame(minHeight:50)
+
                                     }
                                     .frame(minHeight:50)
                                     
                                 })
                             
-                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text:.constant( language.rawValue == "ar" ? profileVM.TruckManfactureYear.replacedEnglishDigitsWithArabic:profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish))
-                                .disabled(true)
+                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text:.constant( language.rawValue == "ar" ? profileVM.TruckManfactureYear.replacedEnglishDigitsWithArabic:profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish),Disabled:true)
                                 .overlay(content: {
                                     Menu {
                                         ForEach(getYearsArr().reversed(),id:\.self){ year1 in
@@ -391,16 +384,15 @@ struct EditProfileInfoView: View {
                                                 .foregroundColor(Color("lightGray").opacity(0.5))
                                                 .padding(.trailing)
                                         }
+                                        .frame(minHeight:50)
                                     }
                                     .frame(minHeight:50)
-
                                 })
                         }
                         
                         //MARK: - AXE number and Plate number -
                         HStack{
-                            InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text:.constant(language.rawValue == "ar" ? profileVM.NumberofAxe.replacedEnglishDigitsWithArabic:profileVM.NumberofAxe.replacedArabicDigitsWithEnglish))
-                                .disabled(true)
+                            InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text:.constant(language.rawValue == "ar" ? profileVM.NumberofAxe.replacedEnglishDigitsWithArabic:profileVM.NumberofAxe.replacedArabicDigitsWithEnglish),Disabled:true)
                                 .overlay(content: {
                                     Menu {
                                         ForEach(1..<5,id:\.self){ AxeNum in
@@ -413,13 +405,13 @@ struct EditProfileInfoView: View {
                                             Spacer()
                                             Image(systemName: "chevron.down")
                                                 .foregroundColor(Color("lightGray").opacity(0.5))
-
+                                            
                                                 .padding(.trailing)
-                                    }
+                                        }
+                                        .frame(minHeight:50)
                                     }
                                     .frame(minHeight:50)
                                 })
-                            
                             
                             InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text:$profileVM.TruckPlate)
                                 .onChange(of: profileVM.TruckPlate, perform: {newval in
@@ -437,56 +429,67 @@ struct EditProfileInfoView: View {
                                     Text(profileVM.ValidationMessage.localized(language))
                                         .foregroundColor(.red)
                                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                                    
                                     Spacer()
                                 }
                             }
                             InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
+                                
                                 .onChange(of: profileVM.TruckLicense  ){ newval in
-                                    profileVM.TruckLicense =  String(newval.prefix(profileVM.LicenseNumLength))
                                     profileVM.TruckLicense = language.rawValue == "ar" ? newval.replacedEnglishDigitsWithArabic:newval.replacedArabicDigitsWithEnglish
-                                    
-                            }
+                                    profileVM.TruckLicense =  String(newval.prefix( profileVM.LicenseNumLength))
+                                }
                                 .focused($inFocus,equals:6)
                                 .onTapGesture(perform: {
                                     inFocus = 6
                                 })
                         }
-                       
                         
                         //MARK: -- truck license start and expire date --
-                        HStack{
-                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Start_Date".localized(language), text: $profileVM.TruckLicenseIssueDateStr)
-                            //                        .disabled(true)
-                                .overlay(content: {
-                                    HStack{
-                                        DatePicker("", selection: $profileVM.TruckLicenseIssueDate,in: ...Date(), displayedComponents: [.date])
-                                            .opacity(0.02)
-                                            .frame(minHeight:50)
-
-                                        Spacer()
-                                        Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
-                                            .foregroundColor(Color("lightGray").opacity(0.5))
-
-                                    .padding(.horizontal)
-                                    }
-                                })
+                        HStack(){
+                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Start_Date".localized(language), text: $profileVM.TruckLicenseIssueDateStr,Disabled:true)
+                                    .overlay(
+//                                        DatePicker("", selection: $profileVM.TruckLicenseIssueDate,in: ...Date(), displayedComponents: [.date])
+//                                            .labelsHidden()
+//                                            .opacity(0.02)
+//                                            .frame(minHeight:50)
+//                                            .frame(minWidth:UIScreen.main.bounds.width/2)
+//
+//                                            .background(
+                                                HStack{
+                                                    Spacer()
+                                                    Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
+                                                        .foregroundColor(Color("lightGray").opacity(0.5))
+                                                        .padding(.horizontal)
+                                                }
+//                                            )
+                                    )
+                                    .onTapGesture(perform: {
+                                        dateSorceinput = .truckStart
+                                    })
+                                
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                            
-                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Expiration_Date".localized(language), text: $profileVM.TruckLicenseExpirationDateStr)
-                                .overlay(content: {
-                                    HStack{
-                                        DatePicker("", selection: $profileVM.TruckLicenseExpirationDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
-                                            .opacity(0.02)
-                                            .frame(minHeight:50)
 
-                                        Spacer()
-                                        Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
-                                            .foregroundColor(Color("lightGray").opacity(0.5))
-
-                                    .padding(.horizontal)
-                                    }
-                                })
+                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Expiration_Date".localized(language), text: $profileVM.TruckLicenseExpirationDateStr,Disabled:true)
+                                   
+                                    .overlay(
+//                                        DatePicker("", selection: $profileVM.TruckLicenseExpirationDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
+//                                            .opacity(0.02)
+//                                            .frame(minHeight:50)
+//                                            .labelsHidden()
+//                                            .frame(minWidth:UIScreen.main.bounds.width/2)
+//                                            .background(
+                                                HStack{
+                                                    Spacer()
+                                                    Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
+                                                        .foregroundColor(Color("lightGray").opacity(0.5))
+                                                        .padding(.horizontal)
+                                                }
+//                                            )
+                                    )
+                                    .onTapGesture(perform: {
+                                        dateSorceinput = .truckEnd
+                                    })
                         }
                         
                         //                        InputTextField(iconName: "ic_box",iconColor: Color("OrangColor"), placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
@@ -521,20 +524,20 @@ struct EditProfileInfoView: View {
                 .disabled((taskStatus == .update && isEditing == false) ? true:false)
             }
             .padding(.top,hasNotch ? 140:130)
-                .padding(.bottom, 90)
-                .padding(.horizontal)
-                .onTapGesture(perform: {
-                    hideKeyboard()
-                    inFocus = 0
-                })
+            .padding(.bottom, 90)
+            .padding(.horizontal)
+            .onTapGesture(perform: {
+                hideKeyboard()
+                inFocus = 0
+            })
             
             TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton,trailingButton: taskStatus == .update ? LoginManger.getUser()?.isDriverInCompany ?? false ? TopButtons.none :.editButton:TopButtons.none , trailingAction: {
                 DispatchQueue.main.async(execute: {
                     isEditing.toggle()
                 })
             })
-
-//            if (taskStatus == .update && LoginManger.getUser()?.isDriverInCompany == false){
+            
+            //            if (taskStatus == .update && LoginManger.getUser()?.isDriverInCompany == false){
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false, forgroundColor: .white, content: {
                 GradientButton(action: {
                     DispatchQueue.main.async{
@@ -543,14 +546,6 @@ struct EditProfileInfoView: View {
                 },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant( ((profileVM.Drivername == "" || profileVM.BirthdateStr == "" || (profileVM.validations != .none && profileVM.ValidationMessage != "") || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "")) || !(taskStatus == .create && profileVM.IsTermsAgreed)) && (!(taskStatus == .update && isEditing) || (taskStatus == .update && (profileVM.Drivername == "" || profileVM.BirthdateStr == "" || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "") || (profileVM.validations != .none && profileVM.ValidationMessage != "")))))
                 )
             })
-//            }
-            //
-            //            if ShowCalendar == true{
-            //                ZStack{
-            //                    calendarPopUp( selectedDate: $selectedDate, isPresented: $ShowCalendar)
-            //                        }
-            //            }
-            
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
@@ -559,19 +554,86 @@ struct EditProfileInfoView: View {
             if taskStatus == .update{
             }else{
                 if enteredDriverName != ""{
-                profileVM.Drivername = enteredDriverName
+                    profileVM.Drivername = enteredDriverName
                 }
             }
         })
+       
+        .overlay(
+            ZStack{
+            if ShowCalendar == true{
+                calendarPopUp( selectedDate: $selectedDate, isPresented: $ShowCalendar,startingDate:startingDate,endingDate:endingDate)
+                        }
+            }
+        )
+        .onChange(of: dateSorceinput , perform: {newval in
+            switch newval{
+            case .birthDate:
+                DispatchQueue.main.async(execute: {
+                selectedDate = profileVM.Birthdate
+                startingDate = (Calendar.current.date(byAdding: .year, value: -50, to: Date()) ?? Date())
+                endingDate = (Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date())
+                    ShowCalendar = true
+                })
+            case .liceseExpire:
+                startingDate = (Calendar.current.date(byAdding: .day, value: +1 , to: Date()) ?? Date())
+                endingDate = (Calendar.current.date(byAdding: .year, value: +10, to: Date()) ?? Date())
+                selectedDate = profileVM.LicenseExpireDate
+                ShowCalendar = true
+            case .truckStart:
+                startingDate = (Calendar.current.date(byAdding: .year, value: -10 , to: Date()) ?? Date())
+                endingDate = (Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date())
+                selectedDate = profileVM.TruckLicenseIssueDate
+                ShowCalendar = true
+            case .truckEnd:
+                startingDate = (Calendar.current.date(byAdding: .day, value: +1 , to: Date()) ?? Date())
+                endingDate = (Calendar.current.date(byAdding: .year, value: +10, to: Date()) ?? Date())
+                selectedDate = profileVM.TruckLicenseExpirationDate
+                ShowCalendar = true
+            case .none:
+                print("none")
+            }
+            
+        })
+        .onChange(of: ShowCalendar, perform: {newval in
+            if newval == false{
+                dateSorceinput = .none
+            }
+        })
+        .onChange(of: selectedDate, perform: {newval in
+            switch dateSorceinput{
+            case .birthDate:
+                print(newval)
+                profileVM.Birthdate = newval
+//                dateSorceinput = .none
+            case .liceseExpire:
+                print(newval)
+                profileVM.LicenseExpireDate = newval
+//                dateSorceinput = .none
 
+            case .truckStart:
+                print(newval)
+                profileVM.TruckLicenseIssueDate = newval
+//                dateSorceinput = .none
 
-//        .onChange(of: profileVM.DriverImageStr, perform: {newval in
-//            print(newval)
-////            DispatchQueue.main.async( execute: {
-//                profileVM.DriverImageStr = newval
-////                print( profileVM.DriverImageStr)
-////            })
-//        })
+            case .truckEnd:
+                print(newval)
+                profileVM.TruckLicenseExpirationDate = newval
+//                dateSorceinput = .none
+
+            case .none:
+                print(newval)
+            }
+            
+        })
+        
+        //        .onChange(of: profileVM.DriverImageStr, perform: {newval in
+        //            print(newval)
+        ////            DispatchQueue.main.async( execute: {
+        //                profileVM.DriverImageStr = newval
+        ////                print( profileVM.DriverImageStr)
+        ////            })
+        //        })
         .onChange(of: profileVM.UserCreated, perform: {newval in
             if newval == true{
                 switch taskStatus {
@@ -597,7 +659,7 @@ struct EditProfileInfoView: View {
                 profileVM.residentId = ""
                 profileVM.citizenId = ""
             }
-            })
+        })
         .onChange(of: profileVM.Birthdate, perform: {newval in
             profileVM.BirthdateStr = newval.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
         })
@@ -687,7 +749,7 @@ struct EditProfileInfoView: View {
                 })
             }))
         })
-      
+        
         NavigationLink(destination: destination,isActive:$active , label: {
         })
     }
@@ -700,13 +762,13 @@ struct EditProfileInfoView_Previews: PreviewProvider {
                 .environmentObject(camelEnvironments())
         }
         .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-
-        ZStack {
-            EditProfileInfoView(taskStatus: .update)
-                .environmentObject(camelEnvironments())
-        }
-        .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
-
+        
+//        ZStack {
+//            EditProfileInfoView(taskStatus: .update)
+//                .environmentObject(camelEnvironments())
+//        }
+//        .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+        
     }
 }
 
@@ -720,57 +782,4 @@ extension EditProfileInfoView{
         return (1950...currentYear).map { String($0) }
     }
     
-}
-
-
-
-
-
-extension Binding where Value: Equatable {
-    
-    
-    /// Given a binding to an optional value, creates a non-optional binding that projects
-    /// the unwrapped value. If the given optional binding contains `nil`, then the supplied
-    /// value is assigned to it before the projected binding is generated.
-    ///
-    /// This allows for one-line use of optional bindings, which is very useful for CoreData types
-    /// which are non-optional in the model schema but which are still declared nullable and may
-    /// be nil at runtime before an initial value has been set.
-    ///
-    ///     class Thing: NSManagedObject {
-    ///         @NSManaged var name: String?
-    ///     }
-    ///     struct MyView: View {
-    ///         @State var thing = Thing(name: "Bob")
-    ///         var body: some View {
-    ///             TextField("Name", text: .bind($thing.name, ""))
-    ///         }
-    ///     }
-    ///
-    /// - note: From experimentation, it seems that a binding created from an `@State` variable
-    /// is not immediately 'writable'. There is seemingly some work done by SwiftUI following the render pass
-    /// to make newly-created or assigned bindings modifiable, so simply assigning to
-    /// `source.wrappedValue` inside `init` is not likely to have any effect. The implementation
-    /// has been designed to work around this (we don't assume that we can unsafely-unwrap even after
-    /// assigning a non-`nil` value), but a side-effect is that if the binding is never written to outside of
-    /// the getter, then there is no guarantee that the underlying value will become non-`nil`.
-    @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-    static func bindOptional(_ source: Binding<Value?>, _ defaultValue: Value) -> Binding<Value> {
-        self.init(get: {
-            source.wrappedValue ?? defaultValue
-        }, set: {
-            source.wrappedValue = ($0 as? Date) == Date() ? nil : $0
-        })
-    }
-}
-
-
-extension Binding where Value == Int {
-    public func string() -> Binding<String> {
-        return Binding<String>(get:{ "\(self.wrappedValue)" },
-                               set: {
-            guard $0.count > 0 else { return }
-            self.wrappedValue = Int(Double($0) ?? 0 )
-        })
-    }
 }
