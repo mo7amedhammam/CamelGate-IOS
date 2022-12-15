@@ -63,7 +63,7 @@
 "Camera" = "إلتقاط صورة";
 "Cancel" = "إلغاء";
 
-"Enter_a_valid_License_number" = "ادخل رقم رخصة صحيح";
+"Enter_a_valid_License_number" = "رقم الرخصة يبدأ ب١ وبحد اقصى ١٠ ارقام";
 
 "Profile_Updated" = "تم تحديث الحساب";
 "You_just_updated_your_Info" = "لقد قمت الآن بتحديث بياناتك";

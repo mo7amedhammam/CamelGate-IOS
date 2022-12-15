@@ -63,7 +63,7 @@
 "Camera" = "Camera";
 "Cancel" = "Cancel";
 
-"Enter_a_valid_License_number" = "Enter a valid License number";
+"Enter_a_valid_License_number" = "License number should start with 1 with maximum 10 Numbers";
 
 "Profile_Updated" = "Profile Updated";
 "You_just_updated_your_Info" = "You just updated your Info";

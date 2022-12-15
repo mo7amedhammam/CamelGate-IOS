@@ -39,10 +39,10 @@ struct EditProfileInfoView: View {
     @State var showBottomSheet  = false
 
     @State var dateSorceinput:datesource = .none
+    @State var rangeType:dateRange = .open
     @State var selectedDate:Date = Date()
     @State var startingDate = Date()
     @State var endingDate = Date()
-
     @State var active = false
     @State var destination = AnyView(TabBarView().navigationBarHidden(true))
     
@@ -104,9 +104,6 @@ struct EditProfileInfoView: View {
                         
                         //MARK: - birthdate and gender -
                         HStack{
-
-                            
-                            
                                 InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr,Disabled:true)
                                     .overlay(content: {
 //                                        DatePicker("            ", selection: $profileVM.Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
@@ -188,7 +185,7 @@ struct EditProfileInfoView: View {
                                     HStack {
                                         Text(profileVM.RedisentHint.localized(language))
                                             .foregroundColor(.red)
-                                            .font(.system(size:11))
+                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
                                         Spacer()
                                     }
                                 }
@@ -253,8 +250,8 @@ struct EditProfileInfoView: View {
                                 HStack{
                                     Text(profileVM.ValidationMessage.localized(language))
                                         .foregroundColor(.red)
-                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                                    
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
+
                                     Spacer()
                                 }
                             }
@@ -428,7 +425,7 @@ struct EditProfileInfoView: View {
                                 HStack{
                                     Text(profileVM.ValidationMessage.localized(language))
                                         .foregroundColor(.red)
-                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
                                     
                                     Spacer()
                                 }
@@ -491,8 +488,6 @@ struct EditProfileInfoView: View {
                                         dateSorceinput = .truckEnd
                                     })
                         }
-                        
-                        //                        InputTextField(iconName: "ic_box",iconColor: Color("OrangColor"), placeholder: "Cargos_I_Can_Handle".localized(language), text: .constant("Metals, Cleaning materials, Wood, M... +12"))
                     }
                     if taskStatus == .create{
                         HStack{
@@ -551,44 +546,53 @@ struct EditProfileInfoView: View {
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .navigationBarHidden(true)
         .onAppear(perform: {
+
             if taskStatus == .update{
             }else{
                 if enteredDriverName != ""{
                     profileVM.Drivername = enteredDriverName
                 }
+//                profileVM.Birthdate = (Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date())
             }
         })
        
         .overlay(
             ZStack{
             if ShowCalendar == true{
-                calendarPopUp( selectedDate: $selectedDate, isPresented: $ShowCalendar,startingDate:startingDate,endingDate:endingDate)
+                calendarPopUp( selectedDate: $selectedDate, isPresented: $ShowCalendar,rangeType:rangeType,startingDate:startingDate,endingDate:endingDate)
                         }
             }
         )
         .onChange(of: dateSorceinput , perform: {newval in
             switch newval{
             case .birthDate:
-                DispatchQueue.main.async(execute: {
+//                if taskStatus == .update{
                 selectedDate = profileVM.Birthdate
+//                }
+                rangeType = .withend
                 startingDate = (Calendar.current.date(byAdding: .year, value: -50, to: Date()) ?? Date())
                 endingDate = (Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date())
                     ShowCalendar = true
-                })
+                
             case .liceseExpire:
+                selectedDate = profileVM.LicenseExpireDate
+                rangeType = .withstart
                 startingDate = (Calendar.current.date(byAdding: .day, value: +1 , to: Date()) ?? Date())
                 endingDate = (Calendar.current.date(byAdding: .year, value: +10, to: Date()) ?? Date())
-                selectedDate = profileVM.LicenseExpireDate
                 ShowCalendar = true
+                
             case .truckStart:
+                selectedDate = profileVM.TruckLicenseIssueDate
+                rangeType = .withend
                 startingDate = (Calendar.current.date(byAdding: .year, value: -10 , to: Date()) ?? Date())
                 endingDate = (Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date())
-                selectedDate = profileVM.TruckLicenseIssueDate
                 ShowCalendar = true
+                
             case .truckEnd:
+                selectedDate = profileVM.TruckLicenseExpirationDate
+                rangeType = .withstart
                 startingDate = (Calendar.current.date(byAdding: .day, value: +1 , to: Date()) ?? Date())
                 endingDate = (Calendar.current.date(byAdding: .year, value: +10, to: Date()) ?? Date())
-                selectedDate = profileVM.TruckLicenseExpirationDate
                 ShowCalendar = true
             case .none:
                 print("none")
@@ -604,36 +608,26 @@ struct EditProfileInfoView: View {
             switch dateSorceinput{
             case .birthDate:
                 print(newval)
+//                if taskStatus == .update{
                 profileVM.Birthdate = newval
-//                dateSorceinput = .none
+//                }
             case .liceseExpire:
                 print(newval)
                 profileVM.LicenseExpireDate = newval
-//                dateSorceinput = .none
 
             case .truckStart:
                 print(newval)
                 profileVM.TruckLicenseIssueDate = newval
-//                dateSorceinput = .none
 
             case .truckEnd:
                 print(newval)
                 profileVM.TruckLicenseExpirationDate = newval
-//                dateSorceinput = .none
 
             case .none:
                 print(newval)
             }
-            
         })
-        
-        //        .onChange(of: profileVM.DriverImageStr, perform: {newval in
-        //            print(newval)
-        ////            DispatchQueue.main.async( execute: {
-        //                profileVM.DriverImageStr = newval
-        ////                print( profileVM.DriverImageStr)
-        ////            })
-        //        })
+
         .onChange(of: profileVM.UserCreated, perform: {newval in
             if newval == true{
                 switch taskStatus {

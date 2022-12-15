@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
-//import Combine
-//import PromiseKit
+
+enum dateRange {
+    case open, withstart, withend, close
+}
 
 struct calendarPopUp:View{
     
     @Binding var selectedDate : Date
     @Binding var isPresented : Bool
     var displayedcomponent : DatePickerComponents?
+    var rangeType:dateRange = .open
     var startingDate = Date()
     var endingDate = Date()
-    
+
     var body: some View{
         if isPresented{
             ZStack {
@@ -34,7 +37,23 @@ struct calendarPopUp:View{
                 })
                 .overlay(
                     VStack {
-                        DatePicker("", selection: $selectedDate, in: startingDate...endingDate, displayedComponents: [.date])
+//                        DatePicker("", selection: $selectedDate, in: startingDate...endingDate, displayedComponents: [.date])
+                        
+                        Group{
+                        switch rangeType {
+                        case .open:
+                            DatePicker("", selection: $selectedDate, displayedComponents: [.date])
+
+                        case .withstart:
+                            DatePicker("", selection: $selectedDate, in: startingDate... , displayedComponents: [.date])
+                        case .withend:
+                            DatePicker("", selection: $selectedDate, in: ...endingDate, displayedComponents: [.date])
+
+                        case .close:
+                            DatePicker("", selection: $selectedDate, in:  startingDate...endingDate , displayedComponents: [.date])
+
+                        }
+                        }
                             .datePickerStyle(WheelDatePickerStyle())
                             .background(.white)
                             .cornerRadius(22)

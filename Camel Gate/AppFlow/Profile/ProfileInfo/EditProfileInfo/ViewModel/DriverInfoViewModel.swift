@@ -137,7 +137,7 @@ class DriverInfoViewModel: ObservableObject {
             if LicenseNumber != filtered {
                 LicenseNumber = filtered
             }
-            if self.LicenseNumber != "" && ( self.LicenseNumber.count < LicenseNumLength || self.LicenseNumber.count > LicenseNumLength) {
+            if (self.LicenseNumber != "" && ( self.LicenseNumber.count < LicenseNumLength || self.LicenseNumber.count > LicenseNumLength)) || self.LicenseNumber.prefix(1) != "1" {
                 validations = .DriverLicense
                 self.ValidationMessage = "Enter_a_valid_License_number"
             }
@@ -173,7 +173,7 @@ class DriverInfoViewModel: ObservableObject {
             if TruckLicense != filtered {
                 TruckLicense = filtered
             }
-            if self.TruckLicense != "" && ( self.TruckLicense.count < LicenseNumLength || self.TruckLicense.count > LicenseNumLength) {
+            if (self.TruckLicense != "" && ( self.TruckLicense.count < LicenseNumLength || self.TruckLicense.count > LicenseNumLength)) || self.TruckLicense.prefix(1) != "1" {
                 validations = .TruckLicense
                 self.ValidationMessage = "Enter_a_valid_License_number"
             }

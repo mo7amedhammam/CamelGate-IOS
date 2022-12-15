@@ -100,8 +100,8 @@ struct MainTabBar : View {
                     BottomSheetView(IsPresented: $showFilter, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
                         MainFilterView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
-                            .padding()
-                            .padding(.bottom,hasNotch ? 0:-10)
+                            .padding(.horizontal)
+//                            .padding(.bottom,hasNotch ? 0:-10)
                     })
                 }else if environments.ShowMapRedirector {
                     BottomSheetView(IsPresented: $environments.ShowMapRedirector, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
