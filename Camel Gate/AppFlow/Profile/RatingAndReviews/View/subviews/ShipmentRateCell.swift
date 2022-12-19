@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct ShipmentRateCell: View {
+    var language = LocalizationService.shared.language
+
+    
+    var rate = DriverRatesModel.init(id: 2954, rate: 5, shipmentCode: "SH-08122022-2", date: "2022-12-08T16:26:33.2233445")
+    @State var active = false
+    @State var destination = AnyView(ChatsListView())
+    @EnvironmentObject var environments : camelEnvironments
     var body: some View {
         ZStack {
             VStack{
@@ -17,15 +24,14 @@ struct ShipmentRateCell: View {
                         .frame(width: 35, height: 30)
                     
                     VStack(alignment:.leading){
-                        Text("#DRE132312")
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                        Text(rate.shipmentCode ?? "")
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color("blueColor"))
                         HStack{
-                            StarsView(rating: 4.5)
+                            StarsView(rating: Float(rate.rate ?? 0))
                             
                             Spacer()
-                            Text("26/02/2019")
+                            Text(ConvertStringDate(inp: rate.date ?? "",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss.SS",FormatTo:  language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd"))
                                 .font(Font.camelfonts.Reg11)
                                 .foregroundColor(.secondary)
                         }
@@ -34,14 +40,14 @@ struct ShipmentRateCell: View {
                 }
                 .padding()
                 Button(action: {
-                    DispatchQueue.main.async{
-                        // Action
-                    }
+//                    DispatchQueue.main.async{
+                        destination = AnyView (DetailsView(shipmentId: rate.id ?? 0, CommingFromWallet: true).environmentObject(environments))
+                    active = true
+//                    }
                 }, label: {
                     HStack {
                         Text("Shipment_Details".localized(language))
-                                                                           .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color("blueColor"))
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -64,6 +70,9 @@ struct ShipmentRateCell: View {
         .cornerRadius(12)
         .padding(.horizontal)
         .shadow(radius: 4)
+        NavigationLink(destination: destination,isActive:$active , label: {
+        })
+        
     }
 }
 

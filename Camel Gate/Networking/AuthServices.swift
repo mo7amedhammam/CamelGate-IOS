@@ -14,7 +14,7 @@ enum AuthServices {
     case createAccount(parameters : [String:Any])
     case ResendOTP(parameters : [String:Any])
 
-    case GetDriverRate
+    case GetDriverOverAllRate, GetDriverRates
     case GetDriverinfo
     case UpdateDriverInfo(parameters : [String:Any] , images : [String : Image?])
     case GetTruckType
@@ -33,8 +33,10 @@ extension AuthServices : URLRequestBuilder {
             return EndPoints.VerifyAccount.rawValue
         case .ResendOTP:
             return EndPoints.resendOTP.rawValue
-        case .GetDriverRate:
-            return EndPoints.GetDriverRate.rawValue
+        case .GetDriverOverAllRate:
+            return EndPoints.GetDriverOverallRate.rawValue
+        case .GetDriverRates:
+            return EndPoints.GetDriverRates.rawValue
         case .GetDriverinfo:
             return EndPoints.GetDriverInfoById.rawValue
         case .UpdateDriverInfo:
@@ -51,7 +53,7 @@ extension AuthServices : URLRequestBuilder {
         switch self {
         case  .Login, .VerifyAccount, .createAccount, .ResendOTP, .UpdateDriverInfo :
             return .post
-        case .GetDriverRate, .GetDriverinfo, .GetTruckType, .GetTruckManfacture, .GetNationalityies :
+        case .GetDriverOverAllRate, .GetDriverRates, .GetDriverinfo, .GetTruckType, .GetTruckManfacture, .GetNationalityies :
             return .get
         }
     }
@@ -64,7 +66,7 @@ extension AuthServices : URLRequestBuilder {
         case .Login(let parameters), .VerifyAccount(parameters: let parameters), .createAccount(parameters: let parameters),.ResendOTP(parameters: let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
  
-        case .GetDriverRate,.GetDriverinfo, .GetTruckType, .GetTruckManfacture, .GetNationalityies:
+        case .GetDriverOverAllRate, .GetDriverRates,.GetDriverinfo, .GetTruckType, .GetTruckManfacture, .GetNationalityies:
             return .requestPlain
             
         case .UpdateDriverInfo(let param,let images):

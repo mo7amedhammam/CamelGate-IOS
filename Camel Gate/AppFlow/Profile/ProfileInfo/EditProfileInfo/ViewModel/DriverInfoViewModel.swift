@@ -227,27 +227,27 @@ class DriverInfoViewModel: ObservableObject {
         if Helper.isConnectedToNetwork(){
         var params : [String : Any] =
         [
-            "StatusId"                         :"\(LoginManger.getUser()?.profileStatusId ?? 0)",
+//            "StatusId"                         :"\(LoginManger.getUser()?.profileStatusId ?? 0)",
             "DrivingLicense"                       : LicenseNumber,
             "Email"                                : Email,
             "Name"                                : Drivername,
             "Birthdate"                            :
-                Birthdate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
+                Birthdate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss",isPost: true)
             ,
             "Gender"                               : gender,
             "NationalityId"                        : NationalityId,
-            "CreateTruckDto.Plate"                 : "\(Int(TruckPlate) ?? 0)",
+            "CreateTruckDto.Plate"                 : "\(TruckPlate)",
             "CreateTruckDto.License"               : Int(TruckLicense) ?? 0,
             "CreateTruckDto.LicenseIssueDate"      :
-                TruckLicenseIssueDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
+                TruckLicenseIssueDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss",isPost: true)
             ,
             "CreateTruckDto.LicenseExpirationDate" :
-                TruckLicenseExpirationDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
+                TruckLicenseExpirationDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss",isPost: true)
             ,
             "CreateTruckDto.NumberofAxe"           : Int( NumberofAxe ) ?? 0,
             "CreateTruckDto.TruckTypeId"           : Int( TruckTypeId ) ?? 0,
             "DrivingLicenseExpirationDate"         :
-                LicenseExpireDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
+                LicenseExpireDate.DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss",isPost: true)
             ,
             "CreateTruckDto.ProductionYear"        : TruckManfactureYear,
             "CreateTruckDto.TruckManufacturerId"   : Int( TruckManfacturerId ) ?? 0
@@ -346,7 +346,7 @@ class DriverInfoViewModel: ObservableObject {
                         TruckLicenseExpirationDate = convDateToDate(input: data.data?.truckInfo?.licenseExpirationDate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
                         TruckLicenseExpirationDateStr = TruckLicenseExpirationDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
                         
-                        Birthdate = convDateToDate(input: data.data?.birthdate ?? "" , format: "yyyy-MM-dd'T'HH:mm:ss")
+                    Birthdate = convDateToDate(input: data.data?.birthdate ?? (Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()).DateToStr(format: "yyyy-MM-dd'T'HH:mm:ss", isPost: false) , format: "yyyy-MM-dd'T'HH:mm:ss")
                         BirthdateStr = Birthdate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
                         
                         if data.data?.citizenId != nil{

@@ -54,10 +54,10 @@ struct ProfileHeader: View {
                             .background(.white.opacity(0.35))
                             .cornerRadius(8)
                         
-                        Text("("+" \(driverRate.DriverRatesCount) "+"\("Reviews_".localized(language))"+" )")
-                                                                
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                            .foregroundColor(Color.white)
+//                        Text("("+" \(driverRate.DriverRatesCount) "+"\("Reviews_".localized(language))"+" )")
+//                                                                
+//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+//                            .foregroundColor(Color.white)
                     }
                     .padding(.top,-10)
                 }

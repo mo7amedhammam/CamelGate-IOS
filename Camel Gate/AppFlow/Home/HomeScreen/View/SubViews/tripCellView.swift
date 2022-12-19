@@ -34,20 +34,27 @@ struct tripCellView: View {
                                 VStack{
 //                                    Image("ic_ship_box")
                                     AsyncImage(url: URL(string: Constants.baseURL + "\(shipmentModel.imageURL ?? "")".replacingOccurrences(of: "\\",with: "/"))) { image in
-                                        image.resizable()
+                                        image
+                                            .resizable()
+
                                     } placeholder: {
                                         Image("cover_vector")
                                             .resizable()
-                                            .cornerRadius(8)
+//                                            .cornerRadius(8)
+////                                            .scaledToFill()
+//                                            .aspectRatio(contentMode: .fill)
+//
+//                                            .frame(width: 100, height: 90)
+
          
                                     }
-//                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 100, height: 90)
+//                                    .resizable()
+                                    .frame(width: 100, height: 90)
+                                    .aspectRatio(contentMode: .fit)
+
 //                                        .overlay(
 //                                            RoundedRectangle(cornerRadius: 8)
 //                                                .stroke(Color(#colorLiteral(red: 0.8797428608, green: 0.8797428012, blue: 0.8797428608, alpha: 1)).opacity(0.60), lineWidth: 2.0)
-//
 //                                        )
                                         .cornerRadius(8)
                                         .padding(.horizontal,8)
@@ -57,7 +64,7 @@ struct tripCellView: View {
                                     Spacer()
                                     VStack(){
                                         HStack(alignment:.bottom, spacing: 3){
-                                            Text("\(shipmentModel.lowestOffer ?? 1200)").foregroundColor(Color.white)
+                                            Text("\(String(format:"%.2f",Float(shipmentModel.lowestOffer ?? 1200)))").foregroundColor(Color.white)
                                                 .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr16:Font.camelfonts.Bold18)
                                                 .fontWeight(.medium)
 
@@ -79,19 +86,18 @@ struct tripCellView: View {
                             )
 //                                .padding(.vertical,0)
 //                            .frame(height: 100)
-                            Spacer()
-                            HStack{
-                                Text("\(shipmentModel.offersCount ?? 0)")
-                                    .foregroundColor(Color.black.opacity(0.7))
-                                Text("Offers".localized(language))
-                                    .foregroundColor(.secondary)
-
-                            }
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+//                            Spacer()
+//                            HStack{
+//                                Text("\(shipmentModel.offersCount ?? 0)")
+//                                    .foregroundColor(Color.black.opacity(0.7))
+//                                Text("Offers".localized(language))
+//                                    .foregroundColor(.secondary)
+//                            }.font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
 
                         }
-                        .frame(height: 150)
-                        .offset( y: -20)
+                        .frame(height: 110)
+//                        .offset( y: -20)
+                        .padding(.bottom,20)
                         Spacer()
                         VStack{
                             VStack {
@@ -180,8 +186,10 @@ struct tripCellView: View {
                                 Spacer()
                                 Text("")
                             }
-                        }.padding(.top , -30)
-                    }.padding()
+                        }
+//                        .padding(.top , -20)
+                    }
+                    .padding()
                         .overlay(content: {
                             if shipmentModel.driverOfferStatusID != nil {
                             
@@ -240,12 +248,12 @@ struct tripCellView: View {
             selecteshipmentId = shipmentModel.id ?? 0
         }
 
-        .frame(height: 240)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(#colorLiteral(red: 0.6138994098, green: 0.6338609457, blue: 0.6889666915, alpha: 1)), lineWidth: 2.0)
         )
         .cornerRadius(10)
+        .frame(height: 200)
     }
 }
 

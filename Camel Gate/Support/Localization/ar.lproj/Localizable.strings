@@ -242,7 +242,7 @@
 
 "Wallet1" = "المحفظة";
 "Upcoming_Trips" = "رحله قادمة";
-"This_Month_Money" = "مكسب هذا الشهر";
+"Gained_Money" = "النقود المكتسبه";
 
 //MARK:  --  Rate shipment --
 "Shipment_Done!" = "لقت اتممت الشحنه!";
@@ -263,3 +263,7 @@
 
 "Reviews_" = "تقييم";
 "Not_Connected" = "لا يوجد إتصال بالإنترنت";
+
+//MARK:  -- Driver Rates --
+"Rating_&_Reviews" = "التقييمات";
+"No_Reviews_To_Show" = "لا يوجد تقييمات لعرضها";

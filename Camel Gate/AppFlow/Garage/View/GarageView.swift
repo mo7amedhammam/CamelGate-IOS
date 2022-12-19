@@ -11,7 +11,7 @@ struct GarageView: View {
     var language = LocalizationService.shared.language
 
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
-    @EnvironmentObject var imageVM : camelEnvironments
+    @EnvironmentObject var environments : camelEnvironments
 
     @State var active = false
     @State var destination = AnyView(DetailsView(shipmentId: 0))
@@ -29,25 +29,28 @@ struct GarageView: View {
                 ScrollView(.horizontal , showsIndicators : false) {
                     HStack {
                         if ApprovedShipmentVM.fromCityName != ""{
-                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) to \(ApprovedShipmentVM.toCityName)", D: {
+                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toCityName)", D: {
                                 ApprovedShipmentVM.fromCityName = ""
                                 ApprovedShipmentVM.toCityName = ""
                                 ApprovedShipmentVM.fromCityId = 0
                                 ApprovedShipmentVM.toCityId = 0
+                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
                             })
                         }
                         if ApprovedShipmentVM.fromDateStr != ""{
-                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format: "dd/MM/yyyy")) to \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: "dd/MM/yyyy"):"")", D: {
+                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format:language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd")) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd"):"")", D: {
                                 ApprovedShipmentVM.fromDateStr = ""
                                 ApprovedShipmentVM.toDateStr = ""
                                 ApprovedShipmentVM.fromDate = Date()
                                 ApprovedShipmentVM.toDate = Date()
+                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
                             })
                         }
                         if ApprovedShipmentVM.shipmentTypesIds != []{
                             FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.shipmentTypesNames.joined(separator: ", "))", D: {
                                 ApprovedShipmentVM.shipmentTypesIds = []
                                 ApprovedShipmentVM.shipmentTypesNames = []
+                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
                             })
                         }
                     }
@@ -59,7 +62,7 @@ struct GarageView: View {
                         active = true
                         destination = AnyView(DetailsView(shipmentId: selectedShipmentId))
                     }, label: {
-                        tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId).environmentObject(imageVM)
+                        tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId).environmentObject(environments)
                     })
                         .onAppear(perform: {
                             if ApprovedShipmentVM.publishedFilteredShipments.count >= ApprovedShipmentVM.MaxResultCount && (tripItem.id == ApprovedShipmentVM.publishedFilteredShipments.last?.id){
@@ -69,10 +72,11 @@ struct GarageView: View {
                             }
                         })
                     
-                        .buttonStyle(.plain)
-                                                    .listRowBackground(Color.clear)
-                                                    .listRowSeparator(.hidden)
-                        .padding(.horizontal,-12)
+                            .buttonStyle(.plain)
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                            .padding(.horizontal,-8)
+                            .padding(.bottom,8)
             }
                 .listStyle(.plain)
                 .listStyle(.plain)
@@ -96,6 +100,31 @@ struct GarageView: View {
                }
            }
        )
+        .overlay(
+            ZStack{
+            if ApprovedShipmentVM.isAlert{
+                CustomAlert(presentAlert: $ApprovedShipmentVM.isAlert,alertType: .error(title: "", message: ApprovedShipmentVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+                    if ApprovedShipmentVM.activeAlert == .unauthorized{
+                        Helper.logout()
+                        LoginManger.removeUser()
+                        Helper.IsLoggedIn(value: false)
+                        destination = AnyView(SignInView())
+                        active = true
+                    }
+                    ApprovedShipmentVM.isAlert = false
+                    environments.isError = false
+                })
+                }
+            }.ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
+                .onChange(of: ApprovedShipmentVM.isAlert, perform: {newval in
+                    DispatchQueue.main.async {
+                    if newval == true{
+                    environments.isError = true
+                    }
+                    }
+                })
+        )
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
         .onAppear(perform: {
@@ -110,10 +139,10 @@ struct GarageView: View {
         .onChange(of: selectedShipmentId, perform: {newval in
             if selectedShipmentId == newval{
             active = true
-            destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
+            destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(environments))
             }else{
                 active = true
-                destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
+                destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(environments))
             }
         })
         .overlay(content: {
@@ -123,19 +152,21 @@ struct GarageView: View {
         NavigationLink(destination: destination,isActive:$active , label: {
         })
         
+
+        
         // Alert with no internet connection
-            .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
-                Alert(title: Text(ApprovedShipmentVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    if ApprovedShipmentVM.activeAlert == .unauthorized{
-                        Helper.logout()
-                        LoginManger.removeUser()
-                        Helper.IsLoggedIn(value: false)
-                        destination = AnyView(SignInView())
-                        active = true
-                    }
-                    ApprovedShipmentVM.isAlert = false
-                }))
-            })
+//            .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
+//                Alert(title: Text(ApprovedShipmentVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                    if ApprovedShipmentVM.activeAlert == .unauthorized{
+//                        Helper.logout()
+//                        LoginManger.removeUser()
+//                        Helper.IsLoggedIn(value: false)
+//                        destination = AnyView(SignInView())
+//                        active = true
+//                    }
+//                    ApprovedShipmentVM.isAlert = false
+//                }))
+//            })
     }
     func checkforpadding()->CGFloat{
         if    ApprovedShipmentVM.fromCityId != 0

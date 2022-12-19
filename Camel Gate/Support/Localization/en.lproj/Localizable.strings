@@ -246,7 +246,7 @@
 
 "Wallet1" = "Wallet";
 "Upcoming_Trips" = "Upcoming Trips";
-"This_Month_Money" = "This Month Money";
+"Gained_Money" = "Gained Money";
 
 //MARK:  --  Rate shipment --
 "Shipment_Done!" = "Shipment Done!";
@@ -267,3 +267,7 @@
 
 "Reviews_" = "Reviews";
 "Not_Connected" = "No Internet connection";
+
+//MARK:  -- Driver Rates --
+"Rating_&_Reviews" = "Rating & Reviews";
+"No_Reviews_To_Show" = "No Reviews To Show";

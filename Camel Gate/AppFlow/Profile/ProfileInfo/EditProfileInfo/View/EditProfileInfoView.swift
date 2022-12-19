@@ -546,13 +546,12 @@ struct EditProfileInfoView: View {
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .navigationBarHidden(true)
         .onAppear(perform: {
-
             if taskStatus == .update{
             }else{
                 if enteredDriverName != ""{
                     profileVM.Drivername = enteredDriverName
                 }
-//                profileVM.Birthdate = (Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date())
+
             }
         })
        
@@ -608,9 +607,8 @@ struct EditProfileInfoView: View {
             switch dateSorceinput{
             case .birthDate:
                 print(newval)
-//                if taskStatus == .update{
                 profileVM.Birthdate = newval
-//                }
+
             case .liceseExpire:
                 print(newval)
                 profileVM.LicenseExpireDate = newval
@@ -655,7 +653,10 @@ struct EditProfileInfoView: View {
             }
         })
         .onChange(of: profileVM.Birthdate, perform: {newval in
+            print("\(profileVM.Birthdate)")
             profileVM.BirthdateStr = newval.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
+            print("\(profileVM.BirthdateStr)")
+
         })
         .onChange(of: profileVM.LicenseExpireDate, perform: {newval in
             profileVM.LicenseExpireDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd")
@@ -729,20 +730,53 @@ struct EditProfileInfoView: View {
         .overlay(content: {
             AnimatingGif(isPresented: $profileVM.isLoading)
         })
-        // Alert with no internet connection
-        .alert(isPresented: $profileVM.isAlert, content: {
-            Alert(title: Text(profileVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                if profileVM.activeAlert == .unauthorized{
-                    Helper.logout()
-                    LoginManger.removeUser()
-                    destination = AnyView(SignInView())
-                    active = true
-                }
-                DispatchQueue.main.async(execute: {
-                    profileVM.isAlert = false
+        .overlay(
+            ZStack{
+            if profileVM.isAlert{
+                CustomAlert(presentAlert: $profileVM.isAlert,alertType: .error(title: "", message: profileVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+                    if profileVM.activeAlert == .unauthorized{
+                        Helper.logout()
+                        LoginManger.removeUser()
+                        destination = AnyView(SignInView())
+                        active = true
+                    }
+                    DispatchQueue.main.async(execute: {
+                        profileVM.isAlert = false
+//                        environments.isError = false
+                    })
                 })
-            }))
-        })
+                }
+            }.ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
+//                .onChange(of: profileVM.isAlert, perform: {newval in
+//                    DispatchQueue.main.async {
+//                        if newval == true{
+////                    environments.isError = true
+//                    }
+//                    }
+//                })
+//                .onAppear(perform: {
+//                    if environments.isError == false && WalletVM.isAlert == true{
+////                        environments.isError = true
+//                    }
+//                })
+
+        )
+        
+        // Alert with no internet connection
+//        .alert(isPresented: $profileVM.isAlert, content: {
+//            Alert(title: Text(profileVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                if profileVM.activeAlert == .unauthorized{
+//                    Helper.logout()
+//                    LoginManger.removeUser()
+//                    destination = AnyView(SignInView())
+//                    active = true
+//                }
+//                DispatchQueue.main.async(execute: {
+//                    profileVM.isAlert = false
+//                })
+//            }))
+//        })
         
         NavigationLink(destination: destination,isActive:$active , label: {
         })

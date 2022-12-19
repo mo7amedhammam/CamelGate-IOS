@@ -77,7 +77,8 @@ struct HomeView: View {
                                     .buttonStyle(.plain)
                                     .listRowBackground(Color.clear)
                                     .listRowSeparator(.hidden)
-                                    .padding(.horizontal,-12)
+                                    .padding(.horizontal,-8)
+                                    .padding(.bottom,8)
                             }
                             //                            .padding(.bottom,25)
                             .listStyle(.plain)
@@ -106,31 +107,33 @@ struct HomeView: View {
                                 ScrollView(.horizontal , showsIndicators : false) {
                                     HStack {
                                         if ApprovedShipmentVM.fromCityName != ""{
-                                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) to \(ApprovedShipmentVM.toCityName)", D: {
+                                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toCityName)", D: {
                                                 ApprovedShipmentVM.fromCityName = ""
                                                 ApprovedShipmentVM.toCityName = ""
                                                 ApprovedShipmentVM.fromCityId = 0
                                                 ApprovedShipmentVM.toCityId = 0
+                                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
                                             })
                                         }
                                         if ApprovedShipmentVM.fromDateStr != ""{
-                                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format: "dd/MM/yyyy")) to \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: "dd/MM/yyyy"):"")", D: {
+                                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd")) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd"):"")", D: {
                                                 ApprovedShipmentVM.fromDateStr = ""
                                                 ApprovedShipmentVM.toDateStr = ""
                                                 ApprovedShipmentVM.fromDate = Date()
                                                 ApprovedShipmentVM.toDate = Date()
+                                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
                                             })
                                         }
                                         if ApprovedShipmentVM.shipmentTypesIds != []{
                                             FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.shipmentTypesNames.joined(separator: ", "))", D: {
                                                 ApprovedShipmentVM.shipmentTypesIds = []
                                                 ApprovedShipmentVM.shipmentTypesNames = []
+                                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
                                             })
                                         }
                                     }
                                     .padding(.horizontal)
                                 }
-                                
                             }
                         }
                         .listRowBackground(Color.clear)
@@ -176,9 +179,9 @@ struct HomeView: View {
             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             .navigationBarHidden(true)
             .onAppear(perform: {
-                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+//                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     getDate()
-                })
+//                })
             })
             
             .onChange(of: selectedShipmentId, perform: {newval in
@@ -186,13 +189,10 @@ struct HomeView: View {
                 destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(environments))
             })
         }
-        
-        NavigationLink(destination: destination,isActive:$active , label: {
-        })
-        
-        // Alert with no internet connection
-            .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
-                Alert(title: Text(ApprovedShipmentVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+        .overlay(
+            ZStack{
+            if ApprovedShipmentVM.isAlert{
+                CustomAlert(presentAlert: $ApprovedShipmentVM.isAlert,alertType: .error(title: "", message: ApprovedShipmentVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
                     if ApprovedShipmentVM.activeAlert == .unauthorized{
                         Helper.logout()
                         LoginManger.removeUser()
@@ -201,8 +201,39 @@ struct HomeView: View {
                         active = true
                     }
                     ApprovedShipmentVM.isAlert = false
-                }))
-            })
+                })
+                }
+            }.ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
+                .onChange(of: ApprovedShipmentVM.isAlert, perform: {newval in
+                    DispatchQueue.main.async {
+                    environments.isError = newval
+                    }
+                })
+                .onAppear(perform: {
+                    if environments.isError == false && ApprovedShipmentVM.isAlert == true{
+                        environments.isError = true
+                    }
+                })
+
+        )
+        
+        NavigationLink(destination: destination,isActive:$active , label: {
+        })
+        
+        // Alert with no internet connection
+//            .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
+//                Alert(title: Text(ApprovedShipmentVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                    if ApprovedShipmentVM.activeAlert == .unauthorized{
+//                        Helper.logout()
+//                        LoginManger.removeUser()
+//                        Helper.IsLoggedIn(value: false)
+//                        destination = AnyView(SignInView())
+//                        active = true
+//                    }
+//                    ApprovedShipmentVM.isAlert = false
+//                }))
+//            })
     }
     
     func getDate(){

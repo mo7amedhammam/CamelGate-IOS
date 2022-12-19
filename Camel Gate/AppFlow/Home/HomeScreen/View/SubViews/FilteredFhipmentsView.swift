@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 struct FilteredShipmentsView: View {
+//    @AppStorage("language")
+
     var language = LocalizationService.shared.language
     
     @EnvironmentObject var imageVM : camelEnvironments
@@ -23,7 +25,7 @@ struct FilteredShipmentsView: View {
                 
                 HStack {
                     if ApprovedShipmentVM.fromCityName != ""{
-                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) to \(ApprovedShipmentVM.toCityName)", D: {
+                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName)" + "\("To".localized(language))" + "\(ApprovedShipmentVM.toCityName)", D: {
                             ApprovedShipmentVM.fromCityName = ""
                             ApprovedShipmentVM.toCityName = ""
                             ApprovedShipmentVM.fromCityId = 0
@@ -31,7 +33,7 @@ struct FilteredShipmentsView: View {
                         })
                     }
                     if ApprovedShipmentVM.fromDateStr != ""{
-                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format: "dd/MM/yyyy")) to \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: "dd/MM/yyyy"):"")", D: {
+                        FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format: "dd/MM/yyyy")) " + "To".localized(language) + " \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format:"yyyy/MM/dd"):"")", D: {
                             ApprovedShipmentVM.fromDateStr = ""
                             ApprovedShipmentVM.toDateStr = ""
                             ApprovedShipmentVM.fromDate = Date()
@@ -92,6 +94,8 @@ struct FilteredShipmentsView: View {
             //                }
             //            }
         }
+//                       .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         .padding(.top,-40)
         .padding(.horizontal, 5)
         .refreshable(action: {

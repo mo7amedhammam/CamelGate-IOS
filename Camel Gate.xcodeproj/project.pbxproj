@@ -60,6 +60,7 @@
 		C8640ECE292F9940007A4E99 /* HomeWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8640ECD292F9940007A4E99 /* HomeWalletViewModel.swift */; };
 		C8640ED0292F9B88007A4E99 /* HomePageWalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8640ECF292F9B88007A4E99 /* HomePageWalletModel.swift */; };
 		C8691FFD28ABD7A2002201F3 /* RedirectToGMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8691FFC28ABD7A2002201F3 /* RedirectToGMaps.swift */; };
+		C86D717529506CF2005AA23A /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D717429506CF2005AA23A /* CustomAlert.swift */; };
 		C870F89828901D9100CCFD9B /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89728901D9100CCFD9B /* OnBoardingView.swift */; };
 		C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */; };
 		C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21428915519002D115A /* KeyboardHandler.swift */; };
@@ -120,6 +121,8 @@
 		C8E4C30B288F0429005FDB7C /* NewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C30A288F0429005FDB7C /* NewPasswordView.swift */; };
 		C8E4C30E288F1C7E005FDB7C /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C30D288F1C7D005FDB7C /* OTPViewModel.swift */; };
 		C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C30F288F729B005FDB7C /* NoteScreenView.swift */; };
+		C8E8EC84294F3E3B004B1C61 /* DriverRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E8EC83294F3E3B004B1C61 /* DriverRatesModel.swift */; };
+		C8E8EC86294F3E4D004B1C61 /* DriverRatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E8EC85294F3E4D004B1C61 /* DriverRatesViewModel.swift */; };
 		FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA45B7CE2885155B002A9654 /* HeaderView.swift */; };
 		FA4E27AD288C537E0047265D /* ShipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AC288C537E0047265D /* ShipView.swift */; };
 		FA4E27AF288C53A20047265D /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AE288C53A20047265D /* FilterHeaderView.swift */; };
@@ -209,6 +212,7 @@
 		C8640ECD292F9940007A4E99 /* HomeWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWalletViewModel.swift; sourceTree = "<group>"; };
 		C8640ECF292F9B88007A4E99 /* HomePageWalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageWalletModel.swift; sourceTree = "<group>"; };
 		C8691FFC28ABD7A2002201F3 /* RedirectToGMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectToGMaps.swift; sourceTree = "<group>"; };
+		C86D717429506CF2005AA23A /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		C870F89728901D9100CCFD9B /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtenstions.swift; sourceTree = "<group>"; };
 		C87BD21428915519002D115A /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
@@ -270,6 +274,8 @@
 		C8E4C30A288F0429005FDB7C /* NewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordView.swift; sourceTree = "<group>"; };
 		C8E4C30D288F1C7D005FDB7C /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
 		C8E4C30F288F729B005FDB7C /* NoteScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteScreenView.swift; sourceTree = "<group>"; };
+		C8E8EC83294F3E3B004B1C61 /* DriverRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRatesModel.swift; sourceTree = "<group>"; };
+		C8E8EC85294F3E4D004B1C61 /* DriverRatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRatesViewModel.swift; sourceTree = "<group>"; };
 		FA45B7CE2885155B002A9654 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		FA4E27AC288C537E0047265D /* ShipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipView.swift; sourceTree = "<group>"; };
 		FA4E27AE288C53A20047265D /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
@@ -494,6 +500,8 @@
 		C84EAC80288C460A000AB6AD /* RatingAndReviews */ = {
 			isa = PBXGroup;
 			children = (
+				C8E8EC82294F3E13004B1C61 /* ViewModel */,
+				C8E8EC81294F3E0C004B1C61 /* Model */,
 				C8A0781A288D9B470084C0A6 /* View */,
 			);
 			path = RatingAndReviews;
@@ -764,6 +772,7 @@
 			isa = PBXGroup;
 			children = (
 				C8A07818288D8A4C0084C0A6 /* BottomPopupView.swift */,
+				C86D717429506CF2005AA23A /* CustomAlert.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -1043,6 +1052,22 @@
 			isa = PBXGroup;
 			children = (
 				C8E4C30D288F1C7D005FDB7C /* OTPViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C8E8EC81294F3E0C004B1C61 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8E8EC83294F3E3B004B1C61 /* DriverRatesModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C8E8EC82294F3E13004B1C61 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C8E8EC85294F3E4D004B1C61 /* DriverRatesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1461,6 +1486,7 @@
 				C8C949652889791F0057EE7E /* LocalizationService.swift in Sources */,
 				FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */,
 				C837B8B929190787009819C7 /* WalletViewModel.swift in Sources */,
+				C8E8EC84294F3E3B004B1C61 /* DriverRatesModel.swift in Sources */,
 				C845FABD2892BB6D00B803FD /* ChatsListView.swift in Sources */,
 				C8C9496E28898D030057EE7E /* ShipmentsView.swift in Sources */,
 				C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */,
@@ -1523,7 +1549,9 @@
 				C8D82A3528A46C060081E620 /* CityFilterView.swift in Sources */,
 				C835E5E02901918400B252D1 /* WalletViewCell.swift in Sources */,
 				C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */,
+				C86D717529506CF2005AA23A /* CustomAlert.swift in Sources */,
 				C8691FFD28ABD7A2002201F3 /* RedirectToGMaps.swift in Sources */,
+				C8E8EC86294F3E4D004B1C61 /* DriverRatesViewModel.swift in Sources */,
 				FAEADE502884C064004535CE /* ContentView.swift in Sources */,
 				C8C9494428895B7B0057EE7E /* HomeView.swift in Sources */,
 				C84EFE1F28A7FEB700302F7F /* TruckManfacturerModel.swift in Sources */,
@@ -1684,7 +1712,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
@@ -1720,7 +1748,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;

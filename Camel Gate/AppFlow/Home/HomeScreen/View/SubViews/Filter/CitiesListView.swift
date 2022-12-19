@@ -61,17 +61,17 @@ struct LocationFilter: View {
                             Button(action: {
                                 if FilterTag == .CityFrom{
                                 self.ShipmentVM.fromCityId = button.id ?? 0
-                                self.ShipmentVM.fromCityName = button.title ?? ""
+                                self.ShipmentVM.fromCityName = language.rawValue == "en" ? button.title ?? "":button.titleAr ?? ""
                                 }else if FilterTag == .CityTo {
                                     self.ShipmentVM.toCityId = button.id ?? 0
-                                    self.ShipmentVM.toCityName = button.title ?? ""
+                                    self.ShipmentVM.toCityName =  language.rawValue == "en" ? button.title ?? "":button.titleAr ?? ""
                                 }
                             }, label: {
                                 HStack{
                                     Image(systemName: FilterTag == .CityFrom ? (self.ShipmentVM.fromCityId == button.id ? "checkmark.circle.fill" :"circle"):FilterTag == .CityTo ? (self.ShipmentVM.toCityId == button.id ? "checkmark.circle.fill" :"circle"):"circle")
                                         .font(.system(size: 20))
                                         .foregroundColor(FilterTag == .CityFrom ? (self.ShipmentVM.fromCityId == button.id ? Color("blueColor") : .gray.opacity(0.5)):FilterTag == .CityTo ? (self.ShipmentVM.toCityId == button.id ? Color("blueColor") : .gray.opacity(0.5)) : .gray.opacity(0.5) )
-                                    Text(button.title ?? "")
+                                    Text( language.rawValue == "en" ? button.title ?? "" : button.titleAr ?? "")
                                         .padding()
                                         .foregroundColor(FilterTag == .CityFrom ? (self.ShipmentVM.fromCityId == button.id ? Color("blueColor") : .gray.opacity(0.5)) : FilterTag == .CityTo ? (self.ShipmentVM.toCityId == button.id ? Color("blueColor") : .gray.opacity(0.5)):.gray.opacity(0.5))
                                     Spacer()
@@ -104,11 +104,16 @@ struct LocationFilter: View {
                 .frame( height: 60)
                 .padding(.bottom,10)
         }
+        .overlay(
+            AnimatingGif(isPresented: $CitiesVM.isLoading)
+        )
         .frame(height:(UIScreen.main.bounds.height/2)+90)
         .onAppear(perform: {
             CitiesVM.GovernorateId = 1
             CitiesVM.GetCiities()
         })
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
     }
 }
 

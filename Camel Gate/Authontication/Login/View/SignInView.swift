@@ -134,12 +134,35 @@ struct SignInView: View {
                 .overlay(content: {
                     AnimatingGif(isPresented: $SignInVM.isLoading)
                 })
+            
+                .overlay(
+                    ZStack{
+                    if SignInVM.isAlert{
+                        CustomAlert(presentAlert: $SignInVM.isAlert,alertType: .error(title: "", message: SignInVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+    //                        if ApprovedShipmentVM.activeAlert == .unauthorized{
+    //                            Helper.logout()
+    //                            LoginManger.removeUser()
+    //                            Helper.IsLoggedIn(value: false)
+    //                            destination = AnyView(SignInView())
+    //                            active = true
+    //                        }
+                            SignInVM.isAlert = false
+                        })
+                        }
+                    }.ignoresSafeArea()
+                        .edgesIgnoringSafeArea(.all)
+    //                    .onChange(of: SignUpVM.isAlert, perform: {newval in
+    //                        DispatchQueue.main.async {
+//                    environments.isError = newval
+//                    }
+    //                    })
+                )
             // Alert with no internet connection
-                .alert(isPresented: $SignInVM.isAlert, content: {
-                    Alert(title: Text(SignInVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                        SignInVM.isAlert = false
-                    }))
-                })
+//                .alert(isPresented: $SignInVM.isAlert, content: {
+//                    Alert(title: Text(SignInVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                        SignInVM.isAlert = false
+//                    }))
+//                })
                 .navigationViewStyle(StackNavigationViewStyle())
                 .navigationBarHidden(true)
             

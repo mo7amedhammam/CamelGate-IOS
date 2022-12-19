@@ -41,7 +41,7 @@ struct CityFromTo:View{
                         .overlay(content: {
                             HStack{
                                 Spacer()
-                                Image(systemName: "chevron.right")
+                                Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                             }
                             .padding(.horizontal)
                         })
@@ -56,7 +56,7 @@ struct CityFromTo:View{
                         .overlay(content: {
                             HStack{
                                 Spacer()
-                                Image(systemName: "chevron.right")
+                                Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                             }
                             .padding(.horizontal)
                         })
@@ -81,6 +81,7 @@ struct CityFromTo:View{
                 .padding(.bottom,10)
         }
         .frame(height:150)
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
     }
 }
 

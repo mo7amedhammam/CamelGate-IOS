@@ -142,7 +142,7 @@ struct FilterMenu:View{
 //            .frame(height:g.size.height)
 
             .frame(height:(UIScreen.main.bounds.height/2) - (hasNotch ? 150:50))
-//        }
+            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
     }
     

@@ -1,76 +1,78 @@
 //
-//  DriverRateViewModel.swift
+//  DriverRatesViewModel.swift
 //  Camel Gate
 //
-//  Created by wecancity on 08/12/2022.
+//  Created by wecancity on 18/12/2022.
 //
 
 import Combine
 import Moya
 import PromiseKit
 
-class DriverRateViewModel: ObservableObject {
+class DriverRatesViewModel: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<BaseResponse<DriverRateModel>, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<[DriverRatesModel]>, Error>()
     private let authServices = MoyaProvider<AuthServices>()
     private var cancellables: Set<AnyCancellable> = []
 
     // ------- input
-    @Published  var DriverRate = 0.0
-    @Published  var DriverRatesCount = 0
+
     //------- output
 //    @Published var validations: InvalidFields = .none
 //    @Published var ValidationMessage = ""
-//    @Published var publishedUserLogedInModel: LoginModel? = nil
-//    @Published var isLogedin = false
+    @Published var publishedRatesModel: [DriverRatesModel] = []
+    @Published var noReviews = false
     
-//    @Published var isLoading:Bool? = false
+    @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
     
     init() {
-//        GetDriverRate()
+        GetDriverRates()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [weak self](modeldata) in
             DispatchQueue.main.async {
-                self?.DriverRate = modeldata.data?.rate ?? 0
-                self?.DriverRatesCount = modeldata.data?.ratesCount ?? 0
-                }
+//                self?.DriverRate = modeldata.data?.rate ?? 0
+                self?.publishedRatesModel = modeldata.data ?? []
+            }
+            if modeldata.data == []{
+                self?.noReviews = true
+            }
             
         }.store(in: &cancellables)
     }
     
     // MARK: - API Services
-    func GetDriverRate(){
+    func GetDriverRates(){
         if Helper.isConnectedToNetwork(){
         firstly { () -> Promise<Any> in
-//            isLoading = true
-            return BGServicesManager.CallApi(self.authServices,AuthServices.GetDriverOverAllRate)
+            isLoading = true
+            return BGServicesManager.CallApi(self.authServices,AuthServices.GetDriverRates)
         }.done({ [self] response in
             let result = response as! Response
 
 //            guard BGNetworkHelper.validateResponse(response: result) else{return}
-            let data : BaseResponse<DriverRateModel> = try BGDecoder.decode(data: result.data )
+            let data : BaseResponse<[DriverRatesModel]> = try BGDecoder.decode(data: result.data )
             print(data)
             if data.success == true {
 //                DispatchQueue.main.async {
-                    passthroughModelSubject.send(data)
+                passthroughModelSubject.send(data)
 //                    LoginManger.saveUser(data.data)
 //                }
             }else {
                 if data.messageCode == 400{
-//                message = data.message ?? "error 400"
-//                    isAlert = true
+                message = data.message ?? "error 400"
+                    isAlert = true
 
                 }else if data.messageCode == 401{
-//                    message = "unauthorized"
+                    message = "unauthorized"
                 }else{
 //                    message = "Bad Request"
 //                    isAlert = true
                 }
-//                isLoading = false
+                isLoading = false
             }
 
 

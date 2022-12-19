@@ -14,7 +14,8 @@ enum EndPoints: String {
     case VerifyAccount = "User/VefiryUser"
     case resendOTP = "User/SendOTP"
 
-    case GetDriverRate = "ShipmentRate/GetDriverOverallRate"
+    case GetDriverOverallRate = "ShipmentRate/GetDriverOverallRate"
+    case GetDriverRates = "ShipmentRate/GetDriverRates"
     case GetDriverInfoById = "Driver/GetById"
     case UpdateDriverInfo = "Driver/Update"
     case GetApprovedShipment = "Shipment/GetDriverCurrentApprovedShipment"

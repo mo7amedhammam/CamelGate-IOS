@@ -38,7 +38,7 @@ struct WalletViewCell : View {
                 VStack(alignment : .leading ){
                     HStack{
                         HStack(spacing:2){
-                            Text("\(walletitem?.gainedValue ?? 0)")
+                            Text("\(String(format:"%.2f",Float(walletitem?.gainedValue ?? 0)))")
                                 .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                             
                             Text("SAR".localized(language))
@@ -52,7 +52,7 @@ struct WalletViewCell : View {
                     Spacer()
                     HStack{
                         HStack(spacing:2){
-                            Text("\(walletitem?.offerValue ?? 0)")
+                            Text("\(String(format:"%.2f",Float(walletitem?.offerValue ?? 0)))")
                                 .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                             
                             Text("SAR".localized(language))
@@ -82,7 +82,6 @@ struct WalletViewCell : View {
                             .frame(height:40)
                             .background(
                                 Category == "Gained" ?   Color(#colorLiteral(red: 0.92371732, green: 0.9792584777, blue: 0.9036960006, alpha: 1)):Color("withdrawn").opacity(0.2)
-                                
                             )
                             .cornerRadius(8)
                     }

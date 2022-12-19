@@ -187,12 +187,34 @@ struct ChangePasswordView: View {
         .overlay(content: {
             AnimatingGif(isPresented: $ChangePasswordVM.isLoading)
         })
+        
+        .overlay(
+            ZStack{
+            if ChangePasswordVM.isAlert{
+                CustomAlert(presentAlert: $ChangePasswordVM.isAlert,alertType: .error(title: "", message: ChangePasswordVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+//                    if RatesVM.activeAlert == .unauthorized{
+//                        Helper.logout()
+//                        LoginManger.removeUser()
+//                        destination = AnyView(SignInView())
+//                        active = true
+//                    }
+                        ChangePasswordVM.isAlert = false
+                })
+                }
+            }.ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
+//                .onChange(of: ChangePasswordVM.isAlert, perform: {newval in
+//                    DispatchQueue.main.async {
+//                    environments.isError = newval
+//                    }
+//                })
+        )
     // Alert with no internet connection
-        .alert(isPresented: $ChangePasswordVM.isAlert, content: {
-            Alert(title: Text(ChangePasswordVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                ChangePasswordVM.isAlert = false
-            }))
-        })
+//        .alert(isPresented: $ChangePasswordVM.isAlert, content: {
+//            Alert(title: Text(ChangePasswordVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                ChangePasswordVM.isAlert = false
+//            }))
+//        })
         NavigationLink(destination: destination.navigationBarHidden(true),isActive:$active , label: {
         })
 

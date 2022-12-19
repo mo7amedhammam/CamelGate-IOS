@@ -14,18 +14,8 @@ struct SplashScreenView: View {
         }
         .frame( maxWidth: .infinity, maxHeight: .infinity)
         .background(
-//            Image("splashScreen")
-//                .resizable()
-//            AnimatingGif(isPresented: .constant(true), jsonFileName: "4 - 5.lottie")
-
-//            "newSplash9-19" , "3-4.lottie" , "4 - 5.lottie" , "9 - 16.lottie" , "9 - 19,5.lottie"
             LottieView(lottieFile: "newSplash")
-//                .scaleEffect(0.7)
-//                .aspectRatio( contentMode: .fit)
-            
-//        .ignoresSafeArea()
-//                .frame( maxWidth: .infinity, maxHeight: .infinity)
-
+                .padding(.vertical, hasNotch ? 0:-70)
         )
         .ignoresSafeArea()
 

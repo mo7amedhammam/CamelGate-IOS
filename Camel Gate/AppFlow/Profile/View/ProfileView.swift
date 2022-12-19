@@ -19,7 +19,7 @@ struct ProfileView: View {
     
     @AppStorage("language")
     var language = LocalizationService.shared.language
-    @EnvironmentObject var imageVM : camelEnvironments
+    @EnvironmentObject var environments : camelEnvironments
     @EnvironmentObject var driverRate : DriverRateViewModel
 
     var body: some View {
@@ -31,7 +31,7 @@ struct ProfileView: View {
                             Group{
                                 Button(action: {
                                     active = true
-                                    destination = AnyView(EditProfileInfoView(taskStatus: .update).environmentObject(imageVM))
+                                    destination = AnyView(EditProfileInfoView(taskStatus: .update).environmentObject(environments))
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "person.fill")
@@ -48,7 +48,9 @@ struct ProfileView: View {
                                 
                                 Button(action: {
                                     active = true
-                                    destination = AnyView(RatingView())
+                                    destination = AnyView(RatingView()
+                                                            .environmentObject(environments)
+                                                            .environmentObject(driverRate))
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "star.fill")
@@ -214,7 +216,7 @@ struct ProfileView: View {
                                 .cornerRadius(5)
                                 .shadow(color: Color.black.opacity(0.099), radius: 8)
                         }
-                        .environmentObject(imageVM)
+                        .environmentObject(environments)
 
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding()
@@ -242,12 +244,43 @@ struct ProfileView: View {
                 islogout = false
             }))
         })
-        .alert(isPresented: $driverRate.isAlert, content: {
-            Alert(title: Text(driverRate.message.localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                driverRate.isAlert = false
-            }))
-        })
         
+//        .alert(isPresented: $driverRate.isAlert, content: {
+//            Alert(title: Text(driverRate.message.localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                driverRate.isAlert = false
+//            }))
+//        })
+        .overlay(
+            ZStack{
+            if driverRate.isAlert{
+                CustomAlert(presentAlert: $driverRate.isAlert,alertType: .error(title: "", message: driverRate.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+//                    if ApprovedShipmentVM.activeAlert == .unauthorized{
+//                        Helper.logout()
+//                        LoginManger.removeUser()
+//                        Helper.IsLoggedIn(value: false)
+//                        destination = AnyView(SignInView())
+//                        active = true
+//                    }
+                    driverRate.isAlert = false
+                    environments.isError = false
+                })
+                }
+            }.ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
+                .onChange(of: driverRate.isAlert, perform: {newval in
+                    DispatchQueue.main.async {
+                        if newval == true{
+                    environments.isError = true
+                    }
+                    }
+                })
+                .onAppear(perform: {
+                    if environments.isError == false && driverRate.isAlert == true{
+                        environments.isError = true
+                    }
+                })
+
+        )
         NavigationLink(destination: destination,isActive:$active , label: {
         })
         

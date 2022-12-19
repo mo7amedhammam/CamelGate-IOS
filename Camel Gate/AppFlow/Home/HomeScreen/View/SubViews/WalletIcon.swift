@@ -31,7 +31,7 @@ struct WalletIcon: View {
                         Image("ic_wallet")
                         Text("Wallet1".localized(language))
                             .foregroundColor(Color.white.opacity(0.7))
-                        Text("\(HomeWalletVM.PublishedHomePageWalletModel?.currentBalance ?? 0)")
+                        Text("\(String(format:"%.2f",Float(HomeWalletVM.PublishedHomePageWalletModel?.currentBalance ?? 0)))")
                             .foregroundColor(Color.white)
                     }
                     .padding(.leading)
@@ -62,10 +62,10 @@ struct WalletIcon: View {
                     HStack{
                         Image("ic_money")
                         VStack(alignment: .leading ){
-                            Text("\(HomeWalletVM.PublishedHomePageWalletModel?.gainedBalance ?? 0)")
+                            Text("\(String(format:"%.2f",Float(HomeWalletVM.PublishedHomePageWalletModel?.gainedBalance ?? 0)))")
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
                                 .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr20:Font.camelfonts.Bold20)
-                            Text("This_Month_Money".localized(language))
+                            Text("Gained_Money".localized(language))
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
                                 .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
                         }

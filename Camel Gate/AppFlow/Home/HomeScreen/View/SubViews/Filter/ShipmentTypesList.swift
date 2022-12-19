@@ -105,10 +105,16 @@ struct ShipTypeFilter: View {
 //                .padding(.horizontal)
                 .padding(.bottom,10)
         }
+        .overlay(
+            AnimatingGif(isPresented: $ShipTypesVM.isLoading)
+        )
+
         .frame(height:(UIScreen.main.bounds.height/2))
         .onAppear(perform: {
             ShipTypesVM.GetShipTypes()
         })
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
     }
 }
 

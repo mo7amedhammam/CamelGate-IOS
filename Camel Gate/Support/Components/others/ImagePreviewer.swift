@@ -22,6 +22,10 @@ class camelEnvironments: ObservableObject {
     
 //    MARK:  -- showRating --
     @Published var  ShowRatingSheet = false
+    
+    
+    @Published var isError = false
+
 }
 
 

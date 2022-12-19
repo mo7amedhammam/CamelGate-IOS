@@ -52,7 +52,8 @@ struct DetailsView: View {
                                 Color(#colorLiteral(red: 0.2969967723, green: 0.8283568025, blue: 0, alpha: 0.2))
                                 HStack(alignment:.bottom,spacing:10){
                                     HStack(alignment:.bottom,spacing:2){
-                                        Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1250)")
+                                        
+                                        Text("\(String(format: "%.2f", Float(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1250)))")
                                             .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr18:Font.camelfonts.SemiBold18)
                                             .foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
                                         
@@ -90,7 +91,7 @@ struct DetailsView: View {
                                     .foregroundColor(Color.gray)
                                 HStack{
                                     Image("ic_green_dollar")
-                                    Text("\(detailsVM.publishedUserLogedInModel.lowestOffer ?? 111) "+"SAR".localized(language))
+                                    Text("\(String(format:"%.2f",Float(detailsVM.publishedUserLogedInModel.lowestOffer ?? 111))) "+"SAR".localized(language))
                                         .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16).foregroundColor(Color(#colorLiteral(red: 0.2314580083, green: 0.6560779214, blue: 0, alpha: 1)))
                                 }
                             }
@@ -392,18 +393,47 @@ struct DetailsView: View {
                 Spacer(minLength: 40)
             }.padding(.bottom)
         )
-        // Alert with no internet connection
-        .alert(isPresented: $detailsVM.isAlert, content: {
-            Alert(title: Text(detailsVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                if detailsVM.activeAlert == .unauthorized{
-                    Helper.logout()
-                    LoginManger.removeUser()
-                    //                    destination = AnyView(SignInView())
-                    //                    active = true
+        
+        .overlay(
+            ZStack{
+            if detailsVM.isAlert{
+                CustomAlert(presentAlert: $detailsVM.isAlert,alertType: .error(title: "", message: detailsVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+                    if detailsVM.activeAlert == .unauthorized{
+                        Helper.logout()
+                        LoginManger.removeUser()
+                        //                    destination = AnyView(SignInView())
+                        //                    active = true
+                    }
+                    detailsVM.isAlert = false
+                })
                 }
-                detailsVM.isAlert = false
-            }))
-        })
+            }.ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
+                .onChange(of: detailsVM.isAlert, perform: {newval in
+                    DispatchQueue.main.async {
+                    environments.isError = newval
+                    }
+                })
+                .onAppear(perform: {
+                    if environments.isError == false && detailsVM.isAlert == true{
+                        environments.isError = true
+                    }
+                })
+
+        )
+
+//        // Alert with no internet connection
+//        .alert(isPresented: $detailsVM.isAlert, content: {
+//            Alert(title: Text(detailsVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                if detailsVM.activeAlert == .unauthorized{
+//                    Helper.logout()
+//                    LoginManger.removeUser()
+//                    //                    destination = AnyView(SignInView())
+//                    //                    active = true
+//                }
+//                detailsVM.isAlert = false
+//            }))
+//        })
     }
     
     

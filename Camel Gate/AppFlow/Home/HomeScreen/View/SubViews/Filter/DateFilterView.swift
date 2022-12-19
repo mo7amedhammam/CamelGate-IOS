@@ -40,7 +40,7 @@ struct DateFromTo:View{
                                 DatePicker("", selection: $ShipmentVM.fromDate, displayedComponents: [.date])
                                     .opacity(0.04)
                                 Spacer()
-                                Image(systemName: "chevron.right")
+                                Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                             }                        .padding(.horizontal)
 
                         })
@@ -51,7 +51,7 @@ struct DateFromTo:View{
                                 DatePicker("", selection: $ShipmentVM.toDate, displayedComponents: [.date])
                                     .opacity(0.04)
                                 Spacer()
-                                Image(systemName: "chevron.right")
+                                Image(systemName: language.rawValue == "en" ? "chevron.right":"chevron.left")
                             }
                             .padding(.horizontal)
 
@@ -79,15 +79,17 @@ struct DateFromTo:View{
                 .frame( height: 60)
                 .padding(.bottom,10)
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         .onChange(of: ShipmentVM.fromDate, perform: {newval in
-            ShipmentVM.fromDateStr = newval.DateToStr(format: "dd-MM-yyyy")
+            ShipmentVM.fromDateStr = newval.DateToStr(format: "dd-MM-yyyy",isPost: true)
         })
         .onChange(of: ShipmentVM.toDate, perform: {newval in
-            ShipmentVM.toDateStr = newval.DateToStr(format: "dd-MM-yyyy")
+            ShipmentVM.toDateStr = newval.DateToStr(format: "dd-MM-yyyy",isPost: true)
         })
         .frame(height:150)
 //        .overlay(content: {
-            calendarPopUp(selectedDate: $ShipmentVM.fromDate, isPresented: $ShowCalendar)
+//            calendarPopUp(selectedDate: $ShipmentVM.fromDate, isPresented: $ShowCalendar)
 //            ZStack{
 //                if ShowCalendar == true{
                    

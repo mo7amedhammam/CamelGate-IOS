@@ -231,10 +231,10 @@ class ApprovedShipmentViewModel: ObservableObject {
             params["toCityId"] = toCityId
         }
         if fromDateStr != "" {
-            params["fromDate"] = fromDate.DateToStr(format:"yyy-MM-dd'T'HH:mm:ss.sss")
+            params["fromDate"] = fromDate.DateToStr(format:"yyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
         }
         if toDateStr != "" {
-            params["toDate"] = toDate.DateToStr(format:"yyy-MM-dd'T'HH:mm:ss.sss")
+            params["toDate"] = toDate.DateToStr(format:"yyy-MM-dd'T'HH:mm:ss.sss",isPost: true)
         }
         if !shipmentTypesIds.isEmpty{
             params["shipmentTypes"] = shipmentTypesIds

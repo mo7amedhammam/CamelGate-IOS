@@ -34,7 +34,7 @@ struct WalletView: View {
                                     .resizable()
                                 VStack{
                                     HStack(alignment:.bottom){
-                                        Text("\(WalletVM.publishedUserWalletModel.currentBalance ?? 0)")
+                                        Text("\(String(format: "%.2f", Float(WalletVM.publishedUserWalletModel.currentBalance ?? 1250)))")
                                             .fontWeight(.bold)
                                             .foregroundColor(Color("Base_Color"))
                                             .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr24:Font.camelfonts.SemiBold24)
@@ -93,7 +93,7 @@ struct WalletView: View {
                                     .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                                     .foregroundColor(Color.gray)
                                 
-                               Text("\(WalletVM.publishedUserWalletModel.gainedBalance ?? 0)")
+                                Text("\(selected == "Gained" ? "\(String(format:"%.2f",Float(WalletVM.publishedUserWalletModel.gainedBalance ?? 0)))" : "\(String(format:"%.2f",Float(WalletVM.publishedUserWalletModel.currentBalance ?? 0)))" )")
                                     .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                                     .foregroundColor(Color.gray)
                             }
@@ -101,9 +101,7 @@ struct WalletView: View {
                             .padding(.horizontal , 20.0)
                             Color(#colorLiteral(red: 0.3571086526, green: 0.2268399, blue: 0.5710855126, alpha: 0.09)).frame(height: 1)
 
-                            
                             if WalletVM.publishedUserWalletModel.shipmentPayments == [] || WalletVM.publishedUserWalletModel.shipmentPayments == nil{
-                                
                                 VStack(spacing:15){
                                     Spacer()
                                     Image("nopayment")
@@ -163,15 +161,10 @@ struct WalletView: View {
             TitleBar(Title: "Wallet".localized(language), navBarHidden: true, trailingButton: TopButtons.none ,trailingAction: {
             })
         }
-        .overlay(content: {
-            // showing loading indicator
-            AnimatingGif(isPresented: $WalletVM.isLoading)
-        })
-        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-        
-        // Alert with no internet connection
-            .alert(isPresented: $WalletVM.isAlert, content: {
-                Alert(title: Text(WalletVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+        .overlay(
+            ZStack{
+            if WalletVM.isAlert{
+                CustomAlert(presentAlert: $WalletVM.isAlert,alertType: .error(title: "", message: WalletVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
                     if WalletVM.activeAlert == .unauthorized{
                         Helper.logout()
                         LoginManger.removeUser()
@@ -180,8 +173,44 @@ struct WalletView: View {
 //                        active = true
                     }
                     WalletVM.isAlert = false
-                }))
-            })
+                    environments.isError = false
+                })
+                }
+            }.ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
+                .onChange(of: WalletVM.isAlert, perform: {newval in
+                    DispatchQueue.main.async {
+                        if newval == true{
+                    environments.isError = true
+                    }
+                    }
+                })
+                .onAppear(perform: {
+                    if environments.isError == false && WalletVM.isAlert == true{
+                        environments.isError = true
+                    }
+                })
+        )
+        .overlay(content: {
+            // showing loading indicator
+            AnimatingGif(isPresented: $WalletVM.isLoading)
+        })
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+        
+        
+        // Alert with no internet connection
+//            .alert(isPresented: $WalletVM.isAlert, content: {
+//                Alert(title: Text(WalletVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                    if WalletVM.activeAlert == .unauthorized{
+//                        Helper.logout()
+//                        LoginManger.removeUser()
+//                        Helper.IsLoggedIn(value: false)
+////                        destination = AnyView(SignInView())
+////                        active = true
+//                    }
+//                    WalletVM.isAlert = false
+//                }))
+//            })
     }
 }
 

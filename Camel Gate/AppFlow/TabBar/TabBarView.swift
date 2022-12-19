@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 var language = LocalizationService.shared.language
 
 //var tabs = ["Home","Shipments","Garage","Wallet","Profile"]
@@ -39,30 +40,25 @@ struct MainTabBar : View {
                     if self.selectedTab.localized(language) == "Home".localized(language){
                         HomeView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
-                            .environmentObject(environments)
                             .environmentObject(DriverRate)
 
                     } else if self.selectedTab.localized(language) == "Shipments".localized(language){
                         ShipmentsView()
-                            .environmentObject(environments)
-
                         
                     }  else if self.selectedTab.localized(language) == "Garage".localized(language){
                         GarageView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
-                            .environmentObject(environments)
-
                         
                     } else if self.selectedTab.localized(language) == "Wallet".localized(language){
                         WalletView( SelectedTab: $selectedTab)
-                            .environmentObject(environments)
+
                         
                     }else if self.selectedTab.localized(language) == "Profile".localized(language){
                         ProfileView()
                             .environmentObject(DriverRate)
-                            .environmentObject(environments)
                     }
                 }
+                .environmentObject(environments)
                     .navigationViewStyle(StackNavigationViewStyle())
                     .ignoresSafeArea()
             }
@@ -80,7 +76,18 @@ struct MainTabBar : View {
                 RoundedCornersShape(radius: 30, corners: [.topLeft,.topRight])
                     .foregroundColor(.white)
             )
+            .overlay(
+                ZStack{
+                if environments.isError{
+                    ZStack{
+                        Color.black.opacity(0.7)
+                    }.ignoresSafeArea()
+                    }
+                }
+            )
+            
         }
+//        .disabled(environments.isError)
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .sheet(isPresented: $environments.isPresented){
             ImagePreviewer(IsPresented: $environments.isPresented, imageUrl: $environments.imageUrl)
@@ -94,6 +101,7 @@ struct MainTabBar : View {
         .ignoresSafeArea(.all, edges: .bottom)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .overlay(
+
             VStack{
                 //                MARK: -- filter sheet --
                 if showFilter{
@@ -101,7 +109,6 @@ struct MainTabBar : View {
                         MainFilterView(FilterTag: $FilterTag, showFilter: $showFilter)
                             .environmentObject(ApprovedShipmentVM)
                             .padding(.horizontal)
-//                            .padding(.bottom,hasNotch ? 0:-10)
                     })
                 }else if environments.ShowMapRedirector {
                     BottomSheetView(IsPresented: $environments.ShowMapRedirector, withcapsule: true, bluryBackground: true,  forgroundColor: .white, content: {
@@ -116,6 +123,9 @@ struct MainTabBar : View {
                             .padding(.horizontal)
                             .padding(.bottom,hasNotch ? 0:-10)
                     })
+                        .onDisappear(perform: {
+                            ApprovedShipmentVM.GetApprovedShipment()
+                        })
                 }
             }.padding(.bottom, hasNotch ? 0:-20)
         )

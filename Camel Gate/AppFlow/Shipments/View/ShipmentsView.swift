@@ -18,7 +18,7 @@ struct ShipmentsView: View {
     @State var active = false
     @State var destination = AnyView(DetailsView(shipmentId: 0))
     @State var selectedShipmentId = 0
-    @EnvironmentObject var imageVM : camelEnvironments
+    @EnvironmentObject var environments : camelEnvironments
     var body: some View {
         ZStack{
             VStack{
@@ -49,7 +49,7 @@ struct ShipmentsView: View {
                     List($shipmentsViewModel.publishedShipmentsArr, id:\.self) { tripItem in
                         Button(action: {
                             active = true
-                            destination = AnyView(DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
+                            destination = AnyView(DetailsView(shipmentId: selectedShipmentId).environmentObject(environments))
                         }, label: {
                             tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId)
                         }).buttonStyle(.plain)
@@ -78,7 +78,8 @@ struct ShipmentsView: View {
 //                    .frame(width: UIScreen.main.bounds.width)
                     .listStyle(.plain)
                     .padding(.vertical,0)
-                    .padding(.horizontal,-10)
+                    .padding(.horizontal,-8)
+                    .padding(.bottom,8)
                     .overlay(
                         ZStack{
                             if shipmentsViewModel.nodata == true {
@@ -98,6 +99,38 @@ struct ShipmentsView: View {
         .overlay(content: {
             AnimatingGif(isPresented: $shipmentsViewModel.isLoading)
         })
+        .overlay(
+            ZStack{
+            if shipmentsViewModel.isAlert{
+                CustomAlert(presentAlert: $shipmentsViewModel.isAlert,alertType: .error(title: "", message: shipmentsViewModel.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+                    if shipmentsViewModel.activeAlert == .unauthorized{
+                        Helper.logout()
+                        LoginManger.removeUser()
+                        Helper.IsLoggedIn(value: false)
+                        destination = AnyView(SignInView())
+                        active = true
+                    }
+                    shipmentsViewModel.isAlert = false
+                    environments.isError = false
+
+                })
+                }
+            }.ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
+                .onChange(of: shipmentsViewModel.isAlert, perform: {newval in
+                    DispatchQueue.main.async {
+                    if newval == true{
+                    environments.isError = true
+                    }
+                    }
+                })
+                .onAppear(perform: {
+                    if environments.isError == false && shipmentsViewModel.isAlert == true{
+                        environments.isError = true
+                    }
+                })
+
+        )
         .onAppear(perform: {
             getDate()
         })
@@ -107,25 +140,27 @@ struct ShipmentsView: View {
       
             .onChange(of: selectedShipmentId, perform: {newval in
                 active = true
-                destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(imageVM))
+                destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(environments))
             })
         
         NavigationLink(destination: destination,isActive:$active , label: {
         })
 
+
+        
         // Alert with no internet connection
-            .alert(isPresented: $shipmentsViewModel.isAlert, content: {
-                Alert(title: Text(shipmentsViewModel.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    if shipmentsViewModel.activeAlert == .unauthorized{
-                        Helper.logout()
-                        LoginManger.removeUser()
-                        Helper.IsLoggedIn(value: false)
-                        destination = AnyView(SignInView())
-                        active = true
-                    }
-                    shipmentsViewModel.isAlert = false
-                }))
-            })
+//            .alert(isPresented: $shipmentsViewModel.isAlert, content: {
+//                Alert(title: Text(shipmentsViewModel.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                    if shipmentsViewModel.activeAlert == .unauthorized{
+//                        Helper.logout()
+//                        LoginManger.removeUser()
+//                        Helper.IsLoggedIn(value: false)
+//                        destination = AnyView(SignInView())
+//                        active = true
+//                    }
+//                    shipmentsViewModel.isAlert = false
+//                }))
+//            })
         
     }
     func getDate() {

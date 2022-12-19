@@ -164,12 +164,35 @@ struct SignUpView: View {
         NavigationLink(destination: EditProfileInfoView(taskStatus: .create,enteredDriverName: SignUpVM.Drivername, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.isUserCreated , label: {
         })
         
+            .overlay(
+                ZStack{
+                if SignUpVM.isAlert{
+                    CustomAlert(presentAlert: $SignUpVM.isAlert,alertType: .error(title: "", message: SignUpVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+//                        if ApprovedShipmentVM.activeAlert == .unauthorized{
+//                            Helper.logout()
+//                            LoginManger.removeUser()
+//                            Helper.IsLoggedIn(value: false)
+//                            destination = AnyView(SignInView())
+//                            active = true
+//                        }
+                        SignUpVM.isAlert = false
+                    })
+                    }
+                }.ignoresSafeArea()
+                    .edgesIgnoringSafeArea(.all)
+//                    .onChange(of: SignUpVM.isAlert, perform: {newval in
+//                        DispatchQueue.main.async {
+//                    environments.isError = newval
+//                    }
+//                    })
+            )
+        
         // Alert with no internet connection
-            .alert(isPresented: $SignUpVM.isAlert, content: {
-                Alert(title: Text(SignUpVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    SignUpVM.isAlert = false
-                }))
-            })
+//            .alert(isPresented: $SignUpVM.isAlert, content: {
+//                Alert(title: Text(SignUpVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                    SignUpVM.isAlert = false
+//                }))
+//            })
     }
 }
 
