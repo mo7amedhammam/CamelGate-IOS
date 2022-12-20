@@ -15,6 +15,10 @@ struct WalletView: View {
     @StateObject var WalletVM = WalletViewModel()
     @EnvironmentObject var environments : camelEnvironments
     @Binding var SelectedTab : String
+    
+    
+   
+
     var body: some View {
         ZStack{
             VStack{
@@ -93,7 +97,7 @@ struct WalletView: View {
                                     .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                                     .foregroundColor(Color.gray)
                                 
-                                Text("\(selected == "Gained" ? "\(String(format:"%.2f",Float(WalletVM.publishedUserWalletModel.gainedBalance ?? 0)))" : "\(String(format:"%.2f",Float(WalletVM.publishedUserWalletModel.currentBalance ?? 0)))" )")
+                                Text("\(selected == "Gained" ? "\(String(format:"%.2f",Float(WalletVM.publishedUserWalletModel.gainedBalance ?? 0)))" : "\(String(format:"%.2f",Float(WalletVM.publishedUserWalletModel.currentBalance ?? 0)))" )" )
                                     .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                                     .foregroundColor(Color.gray)
                             }
@@ -223,3 +227,45 @@ struct WalletView_Previews: PreviewProvider {
 }
 
 
+public extension String {
+    /// Removes any appearance of any characters in the character set.
+    /// - Parameter characterSet: Characters to be removed.
+    /// - Returns: Removed characters version of the string
+    func clippingCharacters(in characterSet: CharacterSet) -> String {
+        components(separatedBy: characterSet).joined()
+    }
+}
+public extension String {
+    private static let formatter = NumberFormatter()
+
+    /// Converts any digit in any language represented in the string and returns the converted string.
+    /// - Parameter locale: Destination locale.
+    /// - Returns: Converted string.
+    func convertedDigitsToLocale(_ locale: Locale = .current) -> String {
+        let digits = Set(clippingCharacters(in: CharacterSet.decimalDigits.inverted))
+        guard !digits.isEmpty else { return self }
+
+        Self.formatter.locale = locale
+        /// Find all digits and build a map table for them.
+        let maps: [(original: String, converted: String)] = digits.map {
+            let original = String($0)
+            // NumberFormatter can always create a number form decimalDigits characterSet. No need for check.
+            let digit = Self.formatter.number(from: original)!
+
+            // A digit that created from a string can always convert back to string. No need for check.
+            let localized = Self.formatter.string(from: digit)!
+            return (original, localized)
+        }
+
+        return maps.reduce(self) { converted, map in
+            converted.replacingOccurrences(of: map.original, with: map.converted)
+        }
+    }
+
+    /// Converts any digit in any language represented in the string and returns the converted string.
+    /// - Parameter identifier: Destination locale identifier.
+    /// - Returns: Converted string.
+    func convertedDigitsToLocale(identifier: String = Locale.current.identifier) -> String {
+        convertedDigitsToLocale(Locale(identifier: identifier))
+    }
+}

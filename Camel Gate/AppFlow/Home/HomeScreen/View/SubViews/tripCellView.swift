@@ -18,16 +18,16 @@ struct tripCellView: View {
             VStack(spacing: 0){
                 Color(#colorLiteral(red: 0.3697291017, green: 0.2442134917, blue: 0.5784509778, alpha: 1)).frame(height : 10)
                 ZStack {
-                    VStack {
-                        Text("")
-                        Spacer()
-                        HStack {
-                            Text("")
-                            Spacer()
-//                            Image("ic_gray_camel")
-                            
-                        }.padding()
-                    }
+//                    VStack {
+//                        Text("")
+//                        Spacer()
+//                        HStack {
+//                            Text("")
+//                            Spacer()
+////                            Image("ic_gray_camel")
+//                            
+//                        }.padding()
+//                    }
                     HStack{
                         VStack {
                             ZStack{
@@ -207,7 +207,7 @@ struct tripCellView: View {
                                     Spacer()
                                 }
                                 Spacer()
-                            }.offset(y:-15)
+                            }.offset(y:-10)
                             }
                         })
                 }

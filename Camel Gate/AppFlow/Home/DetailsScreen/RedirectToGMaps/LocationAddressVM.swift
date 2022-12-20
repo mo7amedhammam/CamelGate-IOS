@@ -80,15 +80,12 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
             center.latitude = lat
             center.longitude = long
         
-        
-        
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         let location = CLLocation.init(latitude: coordinate.latitude, longitude: coordinate.longitude)
-
         
         let geoCoder = CLGeocoder()
-        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-                   
+//        geoCoder.accessibilityLanguage = "AR"
+        geoCoder.reverseGeocodeLocation(location,preferredLocale: Locale(identifier: Helper.getLanguage()) ,completionHandler: { (placemarks, error) -> Void in
                    // check for errors
                    guard let placeMarkArr = placemarks else {
                        completion("")
@@ -96,24 +93,23 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
                        return
                    }
                    // check placemark data existence
-                   
                    guard let placemark = placeMarkArr.first, !placeMarkArr.isEmpty else {
                        completion("")
                        return
                    }
                    // create address string
-                   
-                   let outputString = [placemark.locality,
-                                       placemark.subLocality,
+                   let outputString = [
+                    placemark.subLocality,
+                    placemark.locality,
 //                                       placemark.thoroughfare,
 //                                       placemark.postalCode,
 //                                       placemark.subThoroughfare,
                                        placemark.country].compactMap { $0 }.joined(separator: ", ")
-            print(placemark.locality ?? "1") // subcity
-            print(placemark.subLocality ?? "2") // village
-            print(placemark.thoroughfare ?? "3")
-            print(placemark.subThoroughfare ?? "4")
-            print(placemark.country ?? "5") //country
+//            print(placemark.locality ?? "1") // subcity
+//            print(placemark.subLocality ?? "2") // village
+//            print(placemark.thoroughfare ?? "3")
+//            print(placemark.subThoroughfare ?? "4")
+//            print(placemark.country ?? "5") //country
                    completion(outputString)
 
                })

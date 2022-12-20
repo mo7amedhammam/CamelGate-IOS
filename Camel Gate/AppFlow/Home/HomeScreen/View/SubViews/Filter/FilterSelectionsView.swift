@@ -37,7 +37,7 @@ struct FilterMenu:View{
                     )
                 
                 ScrollView(){
-                    VStack(spacing:20){
+                    VStack(spacing:15){
                         Button(action: {
                             print("sel location")
                             FilterTag = .City
@@ -54,7 +54,8 @@ struct FilterMenu:View{
                                 }
                                 Spacer()
                                 
-                                CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.22), Buttonwidth: 15, Buttonheight: 15){}
+                                    .disabled(true)
                                 
                             }
                             .padding(.top)
@@ -79,6 +80,8 @@ struct FilterMenu:View{
                                 Spacer()
                                 
                                 CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                .disabled(true)
+
                             }
                             .padding(.horizontal,5)
                             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
@@ -100,7 +103,8 @@ struct FilterMenu:View{
                                 Spacer()
                                 
                                 CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color.gray.opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
-                                
+                                .disabled(true)
+
                             }
                             .padding(.horizontal,5)
                             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)

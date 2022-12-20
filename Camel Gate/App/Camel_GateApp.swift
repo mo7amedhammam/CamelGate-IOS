@@ -13,12 +13,21 @@ struct Camel_GateApp: App {
     
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    var language = LocalizationService.shared.language
 
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
             }.navigationViewStyle(.stack)
+            
+            
+//                .environment(\.locale, Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX"))
+//                .environment(\.layoutDirection, .rightToLeft)
+//                .onAppear(perform: {
+//                    print(language.rawValue)
+//                    print("local\(Locale.preferredLanguages)")
+//                })
         }
     }
 }

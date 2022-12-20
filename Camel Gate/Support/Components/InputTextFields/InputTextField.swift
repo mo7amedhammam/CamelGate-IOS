@@ -18,7 +18,12 @@ struct InputTextField: View {
     var Disabled : Bool?
 
     let screenWidth = UIScreen.main.bounds.size.width - 55
-    
+    let numformatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+//        formatter.numberStyle = .decimal
+        formatter.locale = NSLocale(localeIdentifier: "EN") as Locale?
+        return formatter
+    }()
     var body: some View {
         ZStack {
             HStack{
@@ -44,14 +49,12 @@ struct InputTextField: View {
                                 .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(.gray.opacity(0.5))
                         }
-                    TextField("",text:$text)
+                        TextField("",text:$text)
                             .disabled(Disabled ?? false)
                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .autocapitalization(.none)
                         .textInputAutocapitalization(.never)
                         .frame( minHeight: 50)
-                        
-
                  }
                 }
             }

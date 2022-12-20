@@ -86,6 +86,7 @@
 		C8AB5EBA2932352A003F7EE4 /* SendingRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AB5EB92932352A003F7EE4 /* SendingRateView.swift */; };
 		C8BB855E289AA8210099DE1F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */; };
 		C8BB8561289AAB580099DE1F /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB8560289AAB580099DE1F /* SignUpModel.swift */; };
+		C8C4A11F2952180D006E1935 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8C4A1212952180D006E1935 /* InfoPlist.strings */; };
 		C8C5583F2898118300D46777 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5583E2898118300D46777 /* SplashScreenView.swift */; };
 		C8C5584228981E9800D46777 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5584128981E9800D46777 /* SignInViewModel.swift */; };
 		C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C558442898322000D46777 /* SignUpViewModel.swift */; };
@@ -237,6 +238,8 @@
 		C8AB5EB92932352A003F7EE4 /* SendingRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingRateView.swift; sourceTree = "<group>"; };
 		C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		C8BB8560289AAB580099DE1F /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		C8C4A1202952180D006E1935 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C8C4A12229521814006E1935 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8C5583E2898118300D46777 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		C8C5584128981E9800D46777 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		C8C558442898322000D46777 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -977,6 +980,7 @@
 				C8C9495C2889791F0057EE7E /* Localizable.strings */,
 				C8C9495F2889791F0057EE7E /* Language.swift */,
 				C8C949602889791F0057EE7E /* LocalizationService.swift */,
+				C8C4A1212952180D006E1935 /* InfoPlist.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -1366,6 +1370,7 @@
 				FAEADEAF2884D3D0004535CE /* SFUIText-BoldItalic.ttf in Resources */,
 				FAEADEB22884D3D0004535CE /* SFUIText-Heavy.ttf in Resources */,
 				FAEADEB62884D3D0004535CE /* SFUIText-RegularItalic.ttf in Resources */,
+				C8C4A11F2952180D006E1935 /* InfoPlist.strings in Resources */,
 				FAEADEB12884D3D0004535CE /* SFUIText-SemiboldItalic.ttf in Resources */,
 				FAEADEB72884D3D0004535CE /* SFUIText-Bold.ttf in Resources */,
 				C8C949632889791F0057EE7E /* Localizable.strings in Resources */,
@@ -1577,6 +1582,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		C8C4A1212952180D006E1935 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C8C4A1202952180D006E1935 /* en */,
+				C8C4A12229521814006E1935 /* ar */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		C8C9495C2889791F0057EE7E /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1712,7 +1726,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
@@ -1748,7 +1762,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;

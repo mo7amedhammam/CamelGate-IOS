@@ -45,7 +45,7 @@ struct ProfileHeader: View {
                     HStack(){
                         HStack(){
                             Image(systemName:"star.fill").foregroundColor(.orange)
-                            Text("\(String(format:"%.1f", driverRate.DriverRate)) ")
+                            Text("\(String(format:"%.1f", driverRate.DriverRate)) ".replacedArabicDigitsWithEnglish)
                                 .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                                 .foregroundColor(Color.white)
                             

@@ -9,7 +9,6 @@ import SwiftUI
 struct WalletViewCell : View {
     var language = LocalizationService.shared.language
 
-    
     @Binding var Category : String
     var walletitem:ShipmentPayment? = ShipmentPayment.init()
     @State var active = false
@@ -38,7 +37,7 @@ struct WalletViewCell : View {
                 VStack(alignment : .leading ){
                     HStack{
                         HStack(spacing:2){
-                            Text("\(String(format:"%.2f",Float(walletitem?.gainedValue ?? 0)))")
+                            Text("\(String(format:"%.2f",Float(walletitem?.gainedValue ?? 0)))".replacedArabicDigitsWithEnglish)
                                 .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
                             
                             Text("SAR".localized(language))
@@ -47,7 +46,6 @@ struct WalletViewCell : View {
                         Text("Gained".localized(language))
                             .foregroundColor(Category == "Gained" ? Color( #colorLiteral(red: 0.2599548995, green: 0.8122869134, blue: 0.005582589656, alpha: 1)) : Color("withdrawn"))
                             .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                        
                     }
                     Spacer()
                     HStack{
@@ -73,7 +71,6 @@ struct WalletViewCell : View {
                         active = true
                         destination = AnyView (DetailsView(shipmentId: walletitem?.id ?? 0, CommingFromWallet: true).environmentObject(environments))
                         //                                                    .environmentObject(environments))
-                        
                     }) {
                         Text("View_Shipment".localized(language))
                             .foregroundColor(Category == "Gained" ? Color( #colorLiteral(red: 0.2599548995, green: 0.8122869134, blue: 0.005582589656, alpha: 1)) : Color("withdrawn")).cornerRadius(10)
@@ -81,7 +78,7 @@ struct WalletViewCell : View {
                             .padding(.horizontal,10)
                             .frame(height:40)
                             .background(
-                                Category == "Gained" ?   Color(#colorLiteral(red: 0.92371732, green: 0.9792584777, blue: 0.9036960006, alpha: 1)):Color("withdrawn").opacity(0.2)
+                                Category == "Gained" ?  Color(#colorLiteral(red: 0.92371732, green: 0.9792584777, blue: 0.9036960006, alpha: 1)):Color("withdrawn").opacity(0.2)
                             )
                             .cornerRadius(8)
                     }

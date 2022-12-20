@@ -52,13 +52,17 @@ struct ShipmentsView: View {
                             destination = AnyView(DetailsView(shipmentId: selectedShipmentId).environmentObject(environments))
                         }, label: {
                             tripCellView(shipmentModel: tripItem, selecteshipmentId: $selectedShipmentId)
-                        }).buttonStyle(.plain)
+                        })
+                            .buttonStyle(.plain)
 //                            .listRowSeparator(.hidden)
 //                            .listRowBackground(Color.clear)
 //                    }
 //                    ZStack{}
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
+                    .padding(.horizontal,-8)
+                    .padding(.bottom,8)
+
 //                    .frame( maxHeight: 2)
 //                    .foregroundColor(.black)
                     .onAppear(perform: {
@@ -78,8 +82,8 @@ struct ShipmentsView: View {
 //                    .frame(width: UIScreen.main.bounds.width)
                     .listStyle(.plain)
                     .padding(.vertical,0)
-                    .padding(.horizontal,-8)
-                    .padding(.bottom,8)
+//                    .padding(.horizontal,-8)
+//                    .padding(.bottom,8)
                     .overlay(
                         ZStack{
                             if shipmentsViewModel.nodata == true {
