@@ -117,7 +117,7 @@ struct CustomAlert: View {
                     ZStack {
                         Image("CancelledX")
                             .renderingMode(.template)
-                            .foregroundColor(                        Color(#colorLiteral(red: 0.3697291017, green: 0.2442134917, blue: 0.5784509778, alpha: 1)))
+                            .foregroundColor(Color(#colorLiteral(red: 0.3697291017, green: 0.2442134917, blue: 0.5784509778, alpha: 1)))
                             .padding(.top,alertType.title() == "" ? 5:0)
                         .padding(.bottom, 8)
                         Image(alertType.image())
@@ -129,7 +129,7 @@ struct CustomAlert: View {
                 // alert message
                 Text(alertType.message())
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    .font(.system(size: 14))
+                    .font(.camelRegular(of: 14))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 16)
@@ -149,7 +149,7 @@ struct CustomAlert: View {
                                 leftButtonAction?()
                             } label: {
                                 Text(alertType.leftActionText)
-                                    .font(.system(size: 16, weight: .bold))
+                                    .font(.camelBold(of: 16))
                                     .foregroundColor(.black)
                                     .multilineTextAlignment(.center)
                                     .padding()
@@ -164,9 +164,9 @@ struct CustomAlert: View {
                             rightButtonAction?()
                         } label: {
                             Text(alertType.rightActionText)
-                                .font(.system(size: 16, weight: .bold))
+                                .font(.camelBold(of: 16))
                                 .foregroundColor(.white)
-                                                                .multilineTextAlignment(.center)
+                                .multilineTextAlignment(.center)
                                 .padding(15)
                                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                                 .background(
@@ -191,7 +191,7 @@ struct CustomAlert: View {
                             leftButtonAction?()
                         } label: {
                             Text(alertType.leftActionText)
-                                .font(.system(size: 16, weight: .bold))
+                                .font(.camelBold(of: 16))
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.center)
                                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)

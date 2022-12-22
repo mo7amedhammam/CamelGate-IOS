@@ -37,6 +37,8 @@ struct HomeView: View {
                     HeaderView()
                         .environmentObject(locationVM)
                         .environmentObject(driverRate)
+                        .environmentObject(environments)
+
                     WalletIcon()
                         .padding(.top)
                         .environmentObject(environments)

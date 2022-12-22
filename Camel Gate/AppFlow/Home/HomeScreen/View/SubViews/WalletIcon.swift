@@ -67,7 +67,9 @@ struct WalletIcon: View {
                                 .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr20:Font.camelfonts.Bold20)
                             Text("Gained_Money".localized(language))
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
-                                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
+                                .font(.camelRegular(of: 14))
+
+//                                .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
                         }
                         Spacer()
                     }

@@ -18,7 +18,8 @@ class LocalizationService {
                 return .english_us
             }
             return Language(rawValue: languageString) ?? .english_us
-        } set {
+        }
+        set {
             if newValue != language {
                 UserDefaults.standard.setValue(newValue.rawValue, forKey: "language")
                 NotificationCenter.default.post(name: LocalizationService.changedLanguage, object: nil)

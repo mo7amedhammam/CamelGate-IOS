@@ -69,7 +69,7 @@ struct CityFromTo:View{
             }, label: {
                 HStack {
                     Text("Done".localized(language))
-.font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
+                        .font(.camelBold(of: 18))
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()

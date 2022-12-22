@@ -9,6 +9,8 @@ import SwiftUI
 //import CoreLocation
 
 struct HeaderView: View {
+    var language = LocalizationService.shared.language
+
     @State var active = false
     @State var destination = AnyView(NotificationsView())
     @EnvironmentObject var locationVM : LocationAddressVM
@@ -38,7 +40,8 @@ struct HeaderView: View {
                         Text("")
                         Image("ic_star")
                         Text("\(String(format:"%.1f", driverRate.DriverRate))  ")
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                            .font(.camelRegular(of: 14))
+//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)
                     }
                     .padding(3.0)

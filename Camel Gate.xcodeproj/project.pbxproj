@@ -1338,8 +1338,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				ar,
+				Base,
 			);
 			mainGroup = FAEADE322884BDC7004535CE;
 			packageReferences = (

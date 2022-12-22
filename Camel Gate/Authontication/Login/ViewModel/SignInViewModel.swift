@@ -137,7 +137,7 @@ class SignInViewModel: ObservableObject {
 
 public extension String {
     
-    var replacedArabicDigitsWithEnglish: String{
+    func replacedArabicDigitsWithEnglish()-> String{
         let numberFormatter = NumberFormatter()
         numberFormatter.locale = Locale(identifier: "EN")
         let engNumber = numberFormatter.number(from: self)
@@ -146,7 +146,7 @@ public extension String {
 
     /// To convert English numbers to Arabic / Persian
     /// - Returns: returns Arabic number
-    var replacedEnglishDigitsWithArabic: String{
+    func replacedEnglishDigitsWithArabic()-> String{
         let numberFormatter = NumberFormatter()
         numberFormatter.locale = Locale(identifier: "ar")
         let arabicNumber = numberFormatter.number(from: self)

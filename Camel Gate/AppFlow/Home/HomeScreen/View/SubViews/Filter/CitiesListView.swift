@@ -17,7 +17,7 @@ struct LocationFilter: View {
     var body: some View {
         VStack{
             Text(FilterTag == .CityFrom ? "From_(Choose_City)".localized(language):"To_(Choose_City)".localized(language))
-                .font(.system(size: 18))
+                .font(.camelRegular(of: 18))
                 .fontWeight(.bold)
                 .frame(width:UIScreen.main.bounds.width)
                 .overlay(HStack{
@@ -45,9 +45,10 @@ struct LocationFilter: View {
                     }, label: {
                         HStack{
                             Image(systemName: FilterTag == .CityFrom ? (self.ShipmentVM.fromCityId == 0 ? "checkmark.circle.fill" :"circle"):FilterTag == .CityTo ? (self.ShipmentVM.toCityId == 0 ? "checkmark.circle.fill" :"circle"):"circle")
-                                .font(.system(size: 20))
+                                .font(.camelRegular(of: 20))
                                 .foregroundColor(FilterTag == .CityFrom ? (self.ShipmentVM.fromCityId == 0 ? Color("blueColor") : .gray.opacity(0.5)):FilterTag == .CityTo ? (self.ShipmentVM.toCityId == 0 ? Color("blueColor") : .gray.opacity(0.5)) : .gray.opacity(0.5) )
                             Text("Any".localized(language))
+                                .font(.camelRegular(of: 14))
                                 .padding()
                                 .foregroundColor(FilterTag == .CityFrom ? (self.ShipmentVM.fromCityId == 0 ? Color("blueColor") : .gray.opacity(0.5)) : FilterTag == .CityTo ? (self.ShipmentVM.toCityId == 0 ? Color("blueColor") : .gray.opacity(0.5)):.gray.opacity(0.5))
                             Spacer()
@@ -72,6 +73,7 @@ struct LocationFilter: View {
                                         .font(.system(size: 20))
                                         .foregroundColor(FilterTag == .CityFrom ? (self.ShipmentVM.fromCityId == button.id ? Color("blueColor") : .gray.opacity(0.5)):FilterTag == .CityTo ? (self.ShipmentVM.toCityId == button.id ? Color("blueColor") : .gray.opacity(0.5)) : .gray.opacity(0.5) )
                                     Text( language.rawValue == "en" ? button.title ?? "" : button.titleAr ?? "")
+                                        .font(.camelRegular(of: 14))
                                         .padding()
                                         .foregroundColor(FilterTag == .CityFrom ? (self.ShipmentVM.fromCityId == button.id ? Color("blueColor") : .gray.opacity(0.5)) : FilterTag == .CityTo ? (self.ShipmentVM.toCityId == button.id ? Color("blueColor") : .gray.opacity(0.5)):.gray.opacity(0.5))
                                     Spacer()
@@ -90,8 +92,7 @@ struct LocationFilter: View {
             }, label: {
                 HStack {
                     Text("Confirm".localized(language))
-                        .fontWeight(.semibold)
-                        .font(.title3)
+                        .font(.camelBold(of: 18))
                 }
                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 

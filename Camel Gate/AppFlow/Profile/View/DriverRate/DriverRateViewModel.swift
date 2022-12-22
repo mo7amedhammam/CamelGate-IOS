@@ -18,17 +18,7 @@ class DriverRateViewModel: ObservableObject {
 
     // ------- input
     @Published  var DriverRate = 0.0
-//    {
-//        didSet{
-//            let numberStr: String = "٨٦٩١٢٨٨١٠"
-//        let formatter: NumberFormatter = NumberFormatter()
-//            formatter.locale = NSLocale(localeIdentifier: "EN") as Locale?
-//            let final = formatter.number(from: numberStr)
-//            let doubleNumber = Double(final!)
-//            print(doubleNumber)
-//            DriverRate = Double(truncating: final ?? 0)
-//        }
-//    }
+    
     @Published  var DriverRatesCount = 0
     //------- output
 //    @Published var validations: InvalidFields = .none

@@ -8,33 +8,37 @@
 import SwiftUI
 
 extension Font {
-    
-    static func camelLightAr(of size: CGFloat) -> Self {
-         Font.custom("GESSUniqueLight-Light", size: size)
+
+    static func camelLight(of size: CGFloat) -> Self {
+        var language = LocalizationService.shared.language
+        return Font.custom(language.rawValue == "en" ? "MyriadConceptRoman-Light":"GESSUniqueLight-Light", size: size)
      }
 
-    static func camelRegularAr(of size: CGFloat) -> Self {
-         Font.custom("GESSTextMedium-Medium", size: size)
+    static func camelRegular(of size: CGFloat) -> Self {
+        var language = LocalizationService.shared.language
+        return Font.custom(language.rawValue == "en" ? "MyriadConceptRoman-Regular":"GESSTextMedium-Medium", size: size)
      }
-    static func camelsemiBoldAr(of size: CGFloat) -> Self {
-         Font.custom("GESSUniqueBold-Bold", size: size)
+    static func camelsemiBold(of size: CGFloat) -> Self {
+        var language = LocalizationService.shared.language
+        return Font.custom(language.rawValue == "en" ? "MyriadConceptRoman-Semibold":"GESSUniqueBold-Bold", size: size)
      }
-    static func camelBoldAr(of size: CGFloat) -> Self {
-         Font.custom("GESSUniqueBold-Bold", size: size)
+    static func camelBold(of size: CGFloat) -> Self {
+        var language = LocalizationService.shared.language
+        return Font.custom(language.rawValue == "en" ? "MyriadConceptRoman-Bold":"GESSUniqueBold-Bold", size: size)
      }
 
-    static func camelLightEn(of size: CGFloat) -> Self {
-         Font.custom("MyriadConceptRoman-Light", size: size)
-     }
-    static func camelRegularEn(of size: CGFloat) -> Self {
-         Font.custom("MyriadConceptRoman-Regular", size: size)
-     }
-    static func camelsemiBoldEn(of size: CGFloat) -> Self {
-         Font.custom("MyriadConceptRoman-Semibold", size: size)
-     }
-    static func camelBoldEn(of size: CGFloat) -> Self {
-         Font.custom("MyriadConceptRoman-Bold", size: size)
-     }
+//    static func camelLightEn(of size: CGFloat) -> Self {
+//         Font.custom("MyriadConceptRoman-Light", size: size)
+//     }
+//    static func camelRegularEn(of size: CGFloat) -> Self {
+//         Font.custom("MyriadConceptRoman-Regular", size: size)
+//     }
+//    static func camelsemiBoldEn(of size: CGFloat) -> Self {
+//         Font.custom("MyriadConceptRoman-Semibold", size: size)
+//     }
+//    static func camelBoldEn(of size: CGFloat) -> Self {
+//         Font.custom("MyriadConceptRoman-Bold", size: size)
+//     }
     
     
     struct CamelFonts {

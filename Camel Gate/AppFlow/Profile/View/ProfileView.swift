@@ -84,7 +84,7 @@ struct ProfileView: View {
                                     }
                                 })
                             }
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                            .font(.camelRegular(of: 16))
                             .frame(height:33)
                             .padding(12)
                                 .disableAutocorrection(true)
@@ -96,18 +96,18 @@ struct ProfileView: View {
                                 .shadow(color: Color.black.opacity(0.099), radius: 8)
                             
                             Section(header: Text("Change_Language".localized(language))
-                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                                        .font(.camelRegular(of: 16))
                                         .foregroundColor(Color("lightGray"))
                             ){
                                 HStack(spacing:15){
                                     Group{
                                         Button(action:{
-                                            withAnimation {
+//                                            withAnimation {
                                                 DispatchQueue.main.async(execute: {
                                                 LocalizationService.shared.language = .english_us
                                                 Helper.setLanguage(currentLanguage: "en")
                                                 })
-                                                }
+//                                                }
                                         },label:{
                                             HStack(spacing: 10){
                                                 Image("usaFlag")
@@ -122,12 +122,12 @@ struct ProfileView: View {
                                         })
                                         
                                         Button(action:{
-                                            withAnimation {
+//                                            withAnimation {
                                                 DispatchQueue.main.async(execute: {
                                                 LocalizationService.shared.language = .arabic
                                                 Helper.setLanguage(currentLanguage: "ar")
                                             })
-                                            }
+//                                            }
                                         },label:{
                                             HStack(spacing: 10){
                                                 Image("saudiFlag")
@@ -205,7 +205,7 @@ struct ProfileView: View {
                                     }
                                 })
                             }
-    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                            .font(.camelRegular(of: 16))
                             .frame(height:33)
                             .padding(12)
                             .disableAutocorrection(true)

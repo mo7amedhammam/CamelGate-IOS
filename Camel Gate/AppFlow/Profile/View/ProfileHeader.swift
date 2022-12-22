@@ -39,14 +39,16 @@ struct ProfileHeader: View {
                     }
                     
                     Text(LoginManger.getUser()?.name ?? "")
-                        .font(Font.camelfonts.Bold20)
+                        .font(.camelBold(of: 20))
                         .foregroundColor(.white)
                     
                     HStack(){
                         HStack(){
                             Image(systemName:"star.fill").foregroundColor(.orange)
-                            Text("\(String(format:"%.1f", driverRate.DriverRate)) ".replacedArabicDigitsWithEnglish)
-                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                            Text("\(String(format:"%.1f", driverRate.DriverRate)) ")
+//                            Text("\(String(format:"%.1f", locale:Locale(identifier: "en_US_POSIX"), driverRate.DriverRate)) ")
+
+                                .font(.camelRegular(of: 14))
                                 .foregroundColor(Color.white)
                             
                         } .padding(.horizontal)

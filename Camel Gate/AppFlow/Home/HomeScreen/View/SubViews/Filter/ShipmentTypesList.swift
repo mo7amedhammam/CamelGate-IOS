@@ -43,6 +43,7 @@ struct ShipTypeFilter: View {
                                 .font(.system(size: 20))
                                 .foregroundColor(ShipmentVM.shipmentTypesIds == [] ? Color("blueColor") : .gray.opacity(0.5) )
                             Text("Any".localized(language))
+                                .font(.camelRegular(of: 14))
                                 .padding()
                                 .foregroundColor(ShipmentVM.shipmentTypesIds == [] ? Color("blueColor") : .gray.opacity(0.5))
                             Spacer()
@@ -72,6 +73,8 @@ struct ShipTypeFilter: View {
                                         .font(.system(size: 20))
                                         .foregroundColor(ShipmentVM.shipmentTypesIds.contains(button.id ?? 0) ? Color("blueColor") : .gray.opacity(0.5))
                                     Text(button.title ?? "")
+                                        .font(.camelRegular(of: 14))
+
                                         .padding()
                                         .foregroundColor(ShipmentVM.shipmentTypesIds.contains(button.id ?? 0) ? Color("blueColor") : .gray.opacity(0.5))
                                     Spacer()
@@ -89,8 +92,10 @@ struct ShipTypeFilter: View {
             }, label: {
                 HStack {
                     Text("Confirm".localized(language))
-                        .fontWeight(.semibold)
-                        .font(.title3)
+                        .font(.camelBold(of: 18))
+
+//                        .fontWeight(.semibold)
+//                        .font(.title3)
                 }
                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 

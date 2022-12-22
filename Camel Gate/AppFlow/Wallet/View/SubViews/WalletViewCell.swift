@@ -31,35 +31,35 @@ struct WalletViewCell : View {
 
                         Text("\( ConvertStringDate(inp: walletitem?.date ?? "", FormatFrom: "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS", FormatTo: "yyyy") )")
                     }
-                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                    .font(.camelRegular(of: 16))
                     .foregroundColor(Color.white)
                 }.frame(width: 80, height: 80).cornerRadius(10)
                 VStack(alignment : .leading ){
                     HStack{
                         HStack(spacing:2){
-                            Text("\(String(format:"%.2f",Float(walletitem?.gainedValue ?? 0)))".replacedArabicDigitsWithEnglish)
-                                .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
-                            
+                            Text("\(String(format:"%.2f",Float(walletitem?.gainedValue ?? 0)).convertedDigitsToLocale(Locale(identifier: "EN")))")
+                                .font(.camelBold(of: 14))
+
                             Text("SAR".localized(language))
-                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
+                                .font(.camelRegular(of: 11))
                         }
                         Text("Gained".localized(language))
                             .foregroundColor(Category == "Gained" ? Color( #colorLiteral(red: 0.2599548995, green: 0.8122869134, blue: 0.005582589656, alpha: 1)) : Color("withdrawn"))
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                            .font(.camelRegular(of: 14))
                     }
                     Spacer()
                     HStack{
                         HStack(spacing:2){
                             Text("\(String(format:"%.2f",Float(walletitem?.offerValue ?? 0)))")
-                                .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
-                            
+                                .font(.camelBold(of: 14))
+
                             Text("SAR".localized(language))
-                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
+                                .font(.camelRegular(of: 11))
                         }
                         Text("Offered".localized(language))
                             .foregroundColor(Category == "Gained" ? Color( #colorLiteral(red: 0.2599548995, green: 0.8122869134, blue: 0.005582589656, alpha: 1)) : Color("withdrawn"))
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-                    }                    
+                            .font(.camelRegular(of: 14))
+                    }
                 }
                 .padding(.vertical)
                 Spacer()
@@ -74,7 +74,7 @@ struct WalletViewCell : View {
                     }) {
                         Text("View_Shipment".localized(language))
                             .foregroundColor(Category == "Gained" ? Color( #colorLiteral(red: 0.2599548995, green: 0.8122869134, blue: 0.005582589656, alpha: 1)) : Color("withdrawn")).cornerRadius(10)
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr12:Font.camelfonts.Reg12)
+                            .font(.camelRegular(of: 12))
                             .padding(.horizontal,10)
                             .frame(height:40)
                             .background(

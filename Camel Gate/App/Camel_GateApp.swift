@@ -8,6 +8,9 @@
 import SwiftUI
 import FirebaseCore
 
+let GbaseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
+let Gapikey = "AIzaSyAy8wLUdHfHVmzlWLNPVF96SO0GY1gP4Po"
+
 @main
 struct Camel_GateApp: App {
     
@@ -22,7 +25,7 @@ struct Camel_GateApp: App {
             }.navigationViewStyle(.stack)
             
             
-//                .environment(\.locale, Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX"))
+//                .environment(\.locale, Locale(identifier: language.rawValue == "ar" ? "ar":"EN"))
 //                .environment(\.layoutDirection, .rightToLeft)
 //                .onAppear(perform: {
 //                    print(language.rawValue)
@@ -36,6 +39,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
+      
+//      UserDefaults.standard.set("EN", forKey: "AppleLanguage")
+
     return true
   }
 }

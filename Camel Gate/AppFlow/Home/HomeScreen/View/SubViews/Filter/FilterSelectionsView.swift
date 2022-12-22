@@ -20,7 +20,7 @@ struct FilterMenu:View{
             VStack{
 //                Spacer()
                 Text("Filter_Shipments".localized(language))
-                    .font(Font.camelfonts.SemiBold18)
+                    .font(.camelsemiBold(of: 18))
                     .frame(width:UIScreen.main.bounds.width)
                     .overlay(HStack{
                         Spacer()
@@ -45,11 +45,11 @@ struct FilterMenu:View{
                             HStack{
                                 VStack(alignment:.leading,spacing:5){
                                     Text("Location_(From-To)".localized(language))
-                                        .font(Font.camelfonts.Reg18)
+                                        .font(.camelRegular(of: 18))
                                         .foregroundColor(.black)
                                     
                                     Text(ShipmentVM.fromCityName == "" ? "Any".localized(language):"\(ShipmentVM.fromCityName)-\(ShipmentVM.toCityName)" )
-                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                                        .font(.camelRegular(of: 16))
                                         .foregroundColor(.gray)
                                 }
                                 Spacer()
@@ -70,10 +70,10 @@ struct FilterMenu:View{
                             HStack{
                                 VStack(alignment:.leading,spacing:5){
                                     Text("Date_(From-To)".localized(language))
-                                        .font(Font.camelfonts.Reg18)
+                                        .font(.camelRegular(of: 18))
                                         .foregroundColor(.black)
                                     Text(ShipmentVM.fromDateStr == "" ? "Any".localized(language):"\(ShipmentVM.fromDateStr ) - \(ShipmentVM.toDateStr )")
-                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                                        .font(.camelRegular(of: 16))
                                         .foregroundColor(.gray)
                                 }
                                 
@@ -93,10 +93,10 @@ struct FilterMenu:View{
                             HStack{
                                 VStack(alignment:.leading,spacing:5){
                                     Text("Shipment_types".localized(language))
-                                        .font(Font.camelfonts.Reg18)
+                                        .font(.camelRegular(of: 18))
                                         .foregroundColor(.black)
                                     Text(ShipmentVM.shipmentTypesNames == [] ? "Any".localized(language): ShipmentVM.shipmentTypesNames.joined(separator:", "))
-                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                                        .font(.camelRegular(of: 16))
                                         .foregroundColor(.gray)
                                 }
                                 
@@ -118,7 +118,7 @@ struct FilterMenu:View{
                         showFilter.toggle()
                     }, label: {
                         Text("Reset".localized(language))
-            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
+                            .font(.camelRegular(of: 16))
                             .foregroundColor(.black.opacity(0.5))
                     })
                         .padding(.horizontal,30)
@@ -129,7 +129,7 @@ struct FilterMenu:View{
                     }, label: {
                         HStack {
                             Text("Apply_Filter".localized(language))
-        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
+                                .font(.camelBold(of: 18))
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()

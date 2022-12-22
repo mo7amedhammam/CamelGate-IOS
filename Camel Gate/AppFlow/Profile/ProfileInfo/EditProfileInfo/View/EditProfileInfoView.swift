@@ -223,15 +223,15 @@ struct EditProfileInfoView: View {
                                 InputTextField(iconName: "", placeholder: "Id".localized(language), placeholderColor:(profileVM.validations == .ResidentId && profileVM.ValidationMessage != "") ? .red:.gray.opacity(0.5), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
                                     .onChange(of: profileVM.citizenId  ){ newval in
                                         profileVM.RedisentNumLength = 10
-                                        profileVM.citizenId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish:String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish
+                                        profileVM.citizenId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish():String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish()
                                     }
                                     .onChange(of: profileVM.residentId  ){ newval in
                                         profileVM.RedisentNumLength = 16
-                                        profileVM.residentId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish:String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish
+                                        profileVM.residentId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish():String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish()
                                     }
                                     .onChange(of: profileVM.borderId  ){ newval in
                                         profileVM.RedisentNumLength = 16
-                                        profileVM.borderId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish:String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish
+                                        profileVM.borderId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish():String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish()
                                     }
                                     .focused($inFocus,equals:2)
                                     .onTapGesture(perform: {
@@ -257,7 +257,7 @@ struct EditProfileInfoView: View {
                             }
                             InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber )
                                 .onChange(of: profileVM.LicenseNumber  ){ newval in
-                                    profileVM.LicenseNumber = language.rawValue == "ar" ?  newval.replacedArabicDigitsWithEnglish:newval.replacedArabicDigitsWithEnglish
+                                    profileVM.LicenseNumber = language.rawValue == "ar" ?  newval.replacedArabicDigitsWithEnglish():newval.replacedArabicDigitsWithEnglish()
                                     profileVM.LicenseNumber =  String(newval.prefix(profileVM.LicenseNumLength))
 
                                 }
@@ -366,7 +366,7 @@ struct EditProfileInfoView: View {
                                     
                                 })
                             
-                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text:.constant( language.rawValue == "ar" ? profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish:profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish),Disabled:true)
+                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text:.constant( language.rawValue == "ar" ? profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish():profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish()),Disabled:true)
                                 .overlay(content: {
                                     Menu {
                                         ForEach(getYearsArr().reversed(),id:\.self){ year1 in
@@ -389,7 +389,7 @@ struct EditProfileInfoView: View {
                         
                         //MARK: - AXE number and Plate number -
                         HStack{
-                            InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text:.constant(language.rawValue == "ar" ? profileVM.NumberofAxe.replacedArabicDigitsWithEnglish:profileVM.NumberofAxe.replacedArabicDigitsWithEnglish),Disabled:true)
+                            InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text:.constant(language.rawValue == "ar" ? profileVM.NumberofAxe.replacedArabicDigitsWithEnglish():profileVM.NumberofAxe.replacedArabicDigitsWithEnglish()),Disabled:true)
                                 .overlay(content: {
                                     Menu {
                                         ForEach(1..<5,id:\.self){ AxeNum in
@@ -413,7 +413,7 @@ struct EditProfileInfoView: View {
                             InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text:$profileVM.TruckPlate)
                                 .onChange(of: profileVM.TruckPlate, perform: {newval in
                                     profileVM.TruckPlate = language.rawValue == "ar" ?
-                                    newval.replacedArabicDigitsWithEnglish:newval.replacedArabicDigitsWithEnglish
+                                    newval.replacedArabicDigitsWithEnglish():newval.replacedArabicDigitsWithEnglish()
                                 })
                                 .focused($inFocus,equals:5)
                                 .onTapGesture(perform: {
@@ -433,7 +433,7 @@ struct EditProfileInfoView: View {
                             InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
                                 
                                 .onChange(of: profileVM.TruckLicense  ){ newval in
-                                    profileVM.TruckLicense = language.rawValue == "ar" ? newval.replacedArabicDigitsWithEnglish:newval.replacedArabicDigitsWithEnglish
+                                    profileVM.TruckLicense = language.rawValue == "ar" ? newval.replacedArabicDigitsWithEnglish():newval.replacedArabicDigitsWithEnglish()
                                     profileVM.TruckLicense =  String(newval.prefix( profileVM.LicenseNumLength))
                                 }
                                 .focused($inFocus,equals:6)
@@ -653,10 +653,14 @@ struct EditProfileInfoView: View {
             }
         })
         .onChange(of: profileVM.Birthdate, perform: {newval in
-            print("\(profileVM.Birthdate)")
             profileVM.BirthdateStr = newval.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd",isPost: true)
-            print("\(profileVM.BirthdateStr)")
 
+            print("\(newval.formatted(.dateTime))") // 12/31/1998, 2:00 AM
+            print("\(newval.formatted(.dateTime.hour()))") // 2 AM
+            print("\(newval.formatted(.dateTime.hour().minute()))") // 2:00 AM
+            print("\(newval.formatted(.dateTime.day()))") // 31
+            print("\(newval.formatted(.dateTime.month()))") // Dec
+            print("\(newval.formatted(.dateTime.year().month().day()))") //  Dec 31, 1998
         })
         .onChange(of: profileVM.LicenseExpireDate, perform: {newval in
             profileVM.LicenseExpireDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd",isPost: true)

@@ -58,13 +58,14 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
 
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             guard let location = locations.last else { return }
+//            if lastLocation == nil || lastLocation!.distance(from: location) > 10{
             lastLocation = location
             print(#function, location)
             
             self.Currentlong = locations.last?.coordinate.longitude
             self.Currentlat = "\(location.coordinate.latitude)"
+//            }
         }
-    
     
     //MARK: --- get addres string from lat & long ---
     @Published var lat = ""
@@ -72,19 +73,13 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
     @Published var Publishedaddress = ""
 
     func getAddressFromLatLon(completion: @escaping (String) -> Void) {
-//            var Address = ""
-            var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
         let lat: Double = Double("\(lat)") ?? Double(lastLocation?.coordinate.latitude ?? 0 )          //21.228124
         let long: Double = Double("\(long)") ?? Double(lastLocation?.coordinate.longitude ?? 0)     //72.833770
-//            let ceo: CLGeocoder = CLGeocoder()
-            center.latitude = lat
-            center.longitude = long
         
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         let location = CLLocation.init(latitude: coordinate.latitude, longitude: coordinate.longitude)
         
         let geoCoder = CLGeocoder()
-//        geoCoder.accessibilityLanguage = "AR"
         geoCoder.reverseGeocodeLocation(location,preferredLocale: Locale(identifier: Helper.getLanguage()) ,completionHandler: { (placemarks, error) -> Void in
                    // check for errors
                    guard let placeMarkArr = placemarks else {
@@ -99,98 +94,40 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
                    }
                    // create address string
                    let outputString = [
-                    placemark.subLocality,
-                    placemark.locality,
+                    placemark.subLocality, // village
+                    placemark.subAdministrativeArea, // subcity
+                    placemark.administrativeArea, // city
+                    placemark.country, // country
+//                                      placemark.locality,    // subcity
 //                                       placemark.thoroughfare,
 //                                       placemark.postalCode,
 //                                       placemark.subThoroughfare,
-                                       placemark.country].compactMap { $0 }.joined(separator: ", ")
+//                                       placemark.country
+                   ].compactMap { $0 }.joined(separator: ", ")
+            
 //            print(placemark.locality ?? "1") // subcity
 //            print(placemark.subLocality ?? "2") // village
 //            print(placemark.thoroughfare ?? "3")
-//            print(placemark.subThoroughfare ?? "4")
+//            print(placemark.postalCode ?? "3")
+//            print(placemark.subAdministrativeArea ?? "4")
+//            print(placemark.administrativeArea ?? "4")
 //            print(placemark.country ?? "5") //country
                    completion(outputString)
 
                })
-        
-//            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-//        ceo.reverseGeocodeLocation(loc) { placemarks, error in
-//                            if (error != nil)
-//                            {
-//                                print("reverse geodcode fail: \(error!.localizedDescription)")
-//                            }
-//                             let pm = placemarks! as [CLPlacemark]
-//                            if pm.count > 0 {
-//                                let pm = placemarks![0]
-//
-//                                var addressString : String = ""
-//                                if pm.subLocality != nil {
-//                                    addressString = addressString + pm.subLocality! + ", "
-//                                }
-//                                if pm.thoroughfare != nil {
-//                                    addressString = addressString + pm.thoroughfare! + ", "
-//                                }
-//                                if pm.locality != nil {
-//                                    addressString = addressString + pm.locality! + ", "
-//                                }
-//                                if pm.country != nil {
-//                                    addressString = addressString + pm.country! + ", "
-//                                }
-//                                if pm.postalCode != nil {
-//                                    addressString = addressString + pm.postalCode! + " "
-//                                }
-//                                print(addressString)
-////                                Address = addressString
-//                                self.Publishedaddress = addressString
-//                                Helper.setUseraddress(CurrentAddress: addressString)
-//                          }
-//        }
-//        return Address
         }
     
-//    func getAddressFromLatLon() {
-////            var Address = ""
-//            var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-//            let lat: Double = Double("\(lat)")!           //21.228124
-//            let lon: Double = Double("\(long)")!          //72.833770
-//            let ceo: CLGeocoder = CLGeocoder()
-//            center.latitude = lat
-//            center.longitude = lon
-//
-//            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-//        ceo.reverseGeocodeLocation(loc) { placemarks, error in
-//                            if (error != nil)
-//                            {
-//                                print("reverse geodcode fail: \(error!.localizedDescription)")
-//                            }
-//                             let pm = placemarks! as [CLPlacemark]
-//                            if pm.count > 0 {
-//                                let pm = placemarks![0]
-//
-//                                var addressString : String = ""
-//                                if pm.subLocality != nil {
-//                                    addressString = addressString + pm.subLocality! + ", "
-//                                }
-//                                if pm.thoroughfare != nil {
-//                                    addressString = addressString + pm.thoroughfare! + ", "
-//                                }
-//                                if pm.locality != nil {
-//                                    addressString = addressString + pm.locality! + ", "
-//                                }
-//                                if pm.country != nil {
-//                                    addressString = addressString + pm.country! + ", "
-//                                }
-//                                if pm.postalCode != nil {
-//                                    addressString = addressString + pm.postalCode! + " "
-//                                }
-//                                print(addressString)
-////                                Address = addressString
-//                                self.Publishedaddress = addressString
-//                                Helper.setUseraddress(CurrentAddress: addressString)
-//                          }
-//        }
-////        return Address
-//        }
+    
+    //MARK: --- using googlemap ---
+//    func getAddressForLatLng(latitude: String, longitude: String) {
+//           let url = URL(string: "\(GbaseUrl)latlng=\(latitude),\(longitude)&key=\(Gapikey)")
+//           let data = try! Data(contentsOf: url!)
+//           let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
+//           if let result = json["results"] as? [[String: Any]] {
+//               if let address = result[0]["formatted_address"] as? String {
+//                   print(address)
+//               }
+//           }
+//       }
 }
 
