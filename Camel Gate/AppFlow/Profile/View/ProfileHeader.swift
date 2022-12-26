@@ -12,6 +12,7 @@ struct ProfileHeader: View {
     var language = LocalizationService.shared.language
     @EnvironmentObject var imageVM : camelEnvironments
     @EnvironmentObject var driverRate : DriverRateViewModel
+
     var body: some View {
         VStack{
             ZStack (){
@@ -45,9 +46,18 @@ struct ProfileHeader: View {
                     HStack(){
                         HStack(){
                             Image(systemName:"star.fill").foregroundColor(.orange)
-                            Text("\(String(format:"%.1f", driverRate.DriverRate)) ")
-//                            Text("\(String(format:"%.1f", locale:Locale(identifier: "en_US_POSIX"), driverRate.DriverRate)) ")
+//                            Text("\(String(format:"%.1f", driverRate.DriverRate)) ")
 
+
+// api returnes 5
+//                            Text("\(String(format:"%.1f", locale:Locale(identifier: "en_US_POSIX"), driverRate.DriverRate)) ")
+// this shows 5.0 in en and ٥٫٠ in ar
+                            // wanted to show as 5.0 in both ar & en
+                            //                            Text(verbatim: "\(driverRate.DriverRate)" )
+
+                            
+                            
+                            Text(NSNumber(value: driverRate.DriverRate) , formatter: numberformatter)
                                 .font(.camelRegular(of: 14))
                                 .foregroundColor(Color.white)
                             
@@ -68,7 +78,19 @@ struct ProfileHeader: View {
             Spacer()
         }.ignoresSafeArea()
             .navigationBarHidden(true)
+
+            .onAppear(perform: {
+                print("pref lang:\(Locale.current.languageCode ?? "")")
+                print("pref lang:\(Locale.preferredLanguages[0])")
+                print("lang:\(language.rawValue)")
+                print("\(String(format:"%.1f", locale:Locale(identifier: "en_US_POSIX"), driverRate.DriverRate)) ")
+                
+                print("\(String(format:"%.1f", locale:Locale(identifier: "en_US"), driverRate.DriverRate)) ")
+                
+                print("\(String(format:"%.1f", locale:Locale(identifier: "EN"), driverRate.DriverRate)) ")
+            })
     }
+
 }
 
 struct ProfileHeader_Previews: PreviewProvider {

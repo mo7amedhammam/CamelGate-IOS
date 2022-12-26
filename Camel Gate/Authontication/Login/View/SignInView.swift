@@ -181,15 +181,15 @@ struct SignInView_Previews: PreviewProvider {
     }
 }
 
-public extension UITextField
-{
-    override var textInputMode: UITextInputMode?
-    {
-        let locale = Locale(identifier: "en-US")
-        
-        return
-        UITextInputMode.activeInputModes.first(where: { $0.primaryLanguage == locale.identifier })
-        ??
-        super.textInputMode
-    }
-}
+//public extension UITextField
+//{
+//    override var textInputMode: UITextInputMode?
+//    {
+//        let locale = Locale(identifier: "en-US")
+//
+//        return
+//        UITextInputMode.activeInputModes.first(where: { $0.primaryLanguage == locale.identifier })
+//        ??
+//        super.textInputMode
+//    }
+//}

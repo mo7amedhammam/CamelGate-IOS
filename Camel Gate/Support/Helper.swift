@@ -183,7 +183,7 @@ func ChangeFormate( NewFormat:String) -> DateFormatter {
 //    var language = LocalizationService.shared.language
     let df = DateFormatter()
     df.dateFormat = NewFormat
-    df.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
+//    df.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
     return df
 }
 
@@ -194,7 +194,7 @@ func ConvertStringDate(inp:String, FormatFrom:String, FormatTo:String) -> String
     
     var newdate = ""
     let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
+//    formatter.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
 
     formatter.dateFormat = FormatFrom
     if let date = formatter.date(from: inp) {
@@ -213,7 +213,7 @@ func ConvertDateFormat(inp:Date, FormatTo:String) -> Date {
     var newdate = Date()
         let formatter = DateFormatter()
     let date = formatter.string(from: inp )
-    formatter.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
+//    formatter.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
         formatter.dateFormat = FormatTo
         newdate = formatter.date(from: date) ?? Date()
     
@@ -251,7 +251,7 @@ func convDateToDate(input: String, format:String) -> Date {
     var newdate = Date()
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = format
-    dateFormatter.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
+//    dateFormatter.locale = Locale(identifier: language.rawValue == "ar" ? "ar":"en_US_POSIX")
 
     if let newDate = dateFormatter.date(from: input) {
         newdate = newDate

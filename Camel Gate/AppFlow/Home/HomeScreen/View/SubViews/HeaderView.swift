@@ -39,7 +39,7 @@ struct HeaderView: View {
                     HStack(alignment:.center){
                         Text("")
                         Image("ic_star")
-                        Text("\(String(format:"%.1f", driverRate.DriverRate))  ")
+                        Text(NSNumber(value: driverRate.DriverRate) , formatter: numberformatter)
                             .font(.camelRegular(of: 14))
 //                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)

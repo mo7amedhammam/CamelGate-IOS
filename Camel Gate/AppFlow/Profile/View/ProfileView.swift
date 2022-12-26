@@ -232,6 +232,8 @@ struct ProfileView: View {
             .edgesIgnoringSafeArea(.vertical)
             .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         }
+//        .environment(\.locale, Locale(identifier : "en"))
+
         .onAppear(perform: {
            // fatalError("Crash was triggered")
             driverRate.GetDriverRate()

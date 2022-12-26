@@ -29,7 +29,7 @@ extension Date{
 //        var language = LocalizationService.shared.language
 
         let timeFormatter = DateFormatter()
-        timeFormatter.locale = Locale(identifier: LocalizationService.shared.language == .english_us ? "en_US_POSIX":isPost==true ? "en_US_POSIX": "ar")
+//        timeFormatter.locale = Locale(identifier: LocalizationService.shared.language == .english_us ? "en_US_POSIX":isPost==true ? "en_US_POSIX": "ar")
 
 //        timeFormatter.locale = Locale.current
 //        timeFormatter.timeZone = TimeZone.current

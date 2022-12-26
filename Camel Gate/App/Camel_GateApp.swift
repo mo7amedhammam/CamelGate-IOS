@@ -11,26 +11,27 @@ import FirebaseCore
 let GbaseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
 let Gapikey = "AIzaSyAy8wLUdHfHVmzlWLNPVF96SO0GY1gP4Po"
 
+let numberformatter : NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.minimumFractionDigits = 1
+//    formatter.locale =  Locale(identifier: "en_US")
+    return formatter
+}()
+
 @main
 struct Camel_GateApp: App {
-    
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var language = LocalizationService.shared.language
-
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
             }.navigationViewStyle(.stack)
-            
-            
-//                .environment(\.locale, Locale(identifier: language.rawValue == "ar" ? "ar":"EN"))
-//                .environment(\.layoutDirection, .rightToLeft)
-//                .onAppear(perform: {
-//                    print(language.rawValue)
-//                    print("local\(Locale.preferredLanguages)")
-//                })
+//                .environment(\.locale, Locale(identifier : "en_US_POSIX"))
+//                .environment(\.locale, .init(identifier: "en"))
+//                .environment(\.locale, .init(identifier: "ar"))
+
         }
     }
 }

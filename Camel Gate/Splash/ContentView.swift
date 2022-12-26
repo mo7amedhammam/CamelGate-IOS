@@ -19,9 +19,14 @@ struct ContentView: View {
         ZStack {
             displayedView.navigationBarHidden(true)
         }
+//        .environment(\.locale, Locale(identifier : "en_US"))
+
         .onAppear {
             delaySegue()
 //            setFirstLanguage()
+            print("pref lang:\(Locale.preferredLanguages)")
+            print("lang:\(language.rawValue)")
+
         }
         
         .onChange(of: scenePhase, perform: { newPhase in

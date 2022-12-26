@@ -542,10 +542,14 @@ struct EditProfileInfoView: View {
                 )
             })
         }
+//        .environment(\.locale, Locale(identifier : "en_US_POSIX"))
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .navigationBarHidden(true)
         .onAppear(perform: {
+            print("pref lang:\(Locale.current.languageCode)")
+            print("pref lang:\(Locale.preferredLanguages[0])")
+            print("lang:\(language.rawValue)")
             if taskStatus == .update{
             }else{
                 if enteredDriverName != ""{

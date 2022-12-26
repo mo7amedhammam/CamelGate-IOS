@@ -5,12 +5,12 @@
 //  Created by wecancity on 24/07/2022.
 //
 import SwiftUI
-let numformatter: NumberFormatter = {
-    let formatter = NumberFormatter()
-//        formatter.numberStyle = .decimal
-    formatter.locale =  Locale(identifier: "EN")
-    return formatter
-}()
+//let numformatter: NumberFormatter = {
+//    let formatter = NumberFormatter()
+////        formatter.numberStyle = .decimal
+//    formatter.locale =  Locale(identifier: "EN")
+//    return formatter
+//}()
 
 struct InputTextField: View {
     @State var iconName : String? = ""

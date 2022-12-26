@@ -21,12 +21,6 @@ class DriverRateViewModel: ObservableObject {
     
     @Published  var DriverRatesCount = 0
     //------- output
-//    @Published var validations: InvalidFields = .none
-//    @Published var ValidationMessage = ""
-//    @Published var publishedUserLogedInModel: LoginModel? = nil
-//    @Published var isLogedin = false
-    
-//    @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
