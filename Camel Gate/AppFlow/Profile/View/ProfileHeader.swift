@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProfileHeader: View {
-
+    
+    @AppStorage("language")
     var language = LocalizationService.shared.language
     @EnvironmentObject var imageVM : camelEnvironments
     @EnvironmentObject var driverRate : DriverRateViewModel
@@ -46,7 +47,7 @@ struct ProfileHeader: View {
                     HStack(){
                         HStack(){
                             Image(systemName:"star.fill").foregroundColor(.orange)
-//                            Text("\(String(format:"%.1f", driverRate.DriverRate)) ")
+//                            Text( language.rawValue == "ar" ? String(driverRate.DriverRate).replacedArabicDigitsWithEnglish():String(driverRate.DriverRate).replacedArabicDigitsWithEnglish() )
 
 
 // api returnes 5
@@ -58,6 +59,10 @@ struct ProfileHeader: View {
                             
                             
                             Text(NSNumber(value: driverRate.DriverRate) , formatter: numberformatter)
+                            
+
+//                            Text("\(String(format:"%.1f", locale:Locale(identifier: "en"), driverRate.DriverRate)) ")
+                                                        
                                 .font(.camelRegular(of: 14))
                                 .foregroundColor(Color.white)
                             
@@ -66,17 +71,15 @@ struct ProfileHeader: View {
                             .background(.white.opacity(0.35))
                             .cornerRadius(8)
                         
-//                        Text("("+" \(driverRate.DriverRatesCount) "+"\("Reviews_".localized(language))"+" )")
-//                                                                
-//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-//                            .foregroundColor(Color.white)
                     }
                     .padding(.top,-10)
                 }
                 
             }
             Spacer()
-        }.ignoresSafeArea()
+        }
+        .environment(\.locale, .init(identifier: "en"))
+        .ignoresSafeArea()
             .navigationBarHidden(true)
 
             .onAppear(perform: {
@@ -87,8 +90,13 @@ struct ProfileHeader: View {
                 
                 print("\(String(format:"%.1f", locale:Locale(identifier: "en_US"), driverRate.DriverRate)) ")
                 
-                print("\(String(format:"%.1f", locale:Locale(identifier: "EN"), driverRate.DriverRate)) ")
+                print("\(String(format:"%.1f", locale:Locale(identifier: "ar"), driverRate.DriverRate)) ")
             })
+    }
+    func checkLocal(){
+        if language.rawValue == "en" {
+            
+        }
     }
 
 }

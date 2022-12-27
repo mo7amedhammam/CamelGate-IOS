@@ -49,8 +49,9 @@ extension Binding where Value: Equatable {
 
 extension Binding where Value == Int {
     public func string() -> Binding<String> {
-        return Binding<String>(get:{ "\(self.wrappedValue)" },
-                               set: {
+        return Binding<String>(
+            get:{ "\(self.wrappedValue)" },
+            set: {
             guard $0.count > 0 else { return }
             self.wrappedValue = Int(Double($0) ?? 0 )
         })

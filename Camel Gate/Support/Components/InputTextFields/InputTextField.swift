@@ -153,7 +153,6 @@ struct InputDateField: View {
     @Binding var text: String
     @Binding var date: Date
 
-    
     let screenWidth = UIScreen.main.bounds.size.width - 55
     var body: some View {
         
@@ -181,7 +180,6 @@ struct InputDateField: View {
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                     .autocapitalization(.none)
                     .textInputAutocapitalization(.never)
-  
             }
             if TrailingiconName != "" || TrailingiconName != nil{
                 Image(TrailingiconName ?? "")
@@ -190,7 +188,6 @@ struct InputDateField: View {
                     .font(.system(size: 15))
             }else{
             }
-
         }
         .overlay(content: {
             DatePicker("", selection: $date, displayedComponents: [.date])
@@ -206,13 +203,11 @@ struct InputDateField: View {
         )
             .cornerRadius(5)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
-        
     }
 }
 struct InputDateField_Previews: PreviewProvider {
     static var previews: some View {
         InputDateField(LeadingiconName:"x321gray",placeholder: "Name", text: .constant("Mohamed Hammam"), date: .constant(Date()))
-        
     }
 }
 

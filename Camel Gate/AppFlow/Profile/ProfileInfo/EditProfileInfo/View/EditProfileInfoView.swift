@@ -259,7 +259,6 @@ struct EditProfileInfoView: View {
                                 .onChange(of: profileVM.LicenseNumber  ){ newval in
                                     profileVM.LicenseNumber = language.rawValue == "ar" ?  newval.replacedArabicDigitsWithEnglish():newval.replacedArabicDigitsWithEnglish()
                                     profileVM.LicenseNumber =  String(newval.prefix(profileVM.LicenseNumLength))
-
                                 }
                                 .focused($inFocus,equals:4)
                                 .onTapGesture(perform: {

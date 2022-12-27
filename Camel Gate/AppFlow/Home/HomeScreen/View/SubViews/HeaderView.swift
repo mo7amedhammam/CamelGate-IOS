@@ -41,7 +41,6 @@ struct HeaderView: View {
                         Image("ic_star")
                         Text(NSNumber(value: driverRate.DriverRate) , formatter: numberformatter)
                             .font(.camelRegular(of: 14))
-//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                             .foregroundColor(Color.white)
                     }
                     .padding(3.0)

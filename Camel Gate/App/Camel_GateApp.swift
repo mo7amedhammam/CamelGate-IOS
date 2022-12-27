@@ -29,7 +29,7 @@ struct Camel_GateApp: App {
                 ContentView()
             }.navigationViewStyle(.stack)
 //                .environment(\.locale, Locale(identifier : "en_US_POSIX"))
-//                .environment(\.locale, .init(identifier: "en"))
+                .environment(\.locale, .init(identifier: "en"))
 //                .environment(\.locale, .init(identifier: "ar"))
 
         }

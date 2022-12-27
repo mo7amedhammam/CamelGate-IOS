@@ -87,6 +87,7 @@ struct MainTabBar : View {
             )
             
         }
+        .environment(\.locale, .init(identifier: "en"))
 //        .disabled(environments.isError)
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .sheet(isPresented: $environments.isPresented){

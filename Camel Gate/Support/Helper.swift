@@ -59,11 +59,11 @@ final class Helper{
         return userDef.integer(forKey: "clinicId")
     }
     class func setLanguage(currentLanguage: String) {
-    userDef.set(currentLanguage, forKey: "language")
+    userDef.set(currentLanguage, forKey: "languagekey")
     userDef.synchronize()
     }
     class func getLanguage()->String{
-    return userDef.string(forKey: "language") ?? "en"
+    return userDef.string(forKey: "languagekey") ?? "en"
     }
     
     //save access token
@@ -164,7 +164,7 @@ func openWhatsApp(number : String?) {
     fullMob = fullMob.replacingOccurrences(of: "-", with: "")
         let appURL = NSURL(string: "whatsapp://send?phone=\(fullMob)")!
 
-        let webURL = NSURL(string: "https://api.whatsapp.com/send?phone=\(fullMob)")!
+        let webURL = NSURL(string: "https://web.whatsapp.com/send?phone=\(fullMob)")!
     let application = UIApplication.shared
         if application.canOpenURL(appURL as URL) {
             application.open(appURL as URL)

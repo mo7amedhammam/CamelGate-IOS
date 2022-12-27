@@ -223,19 +223,6 @@ struct HomeView: View {
         NavigationLink(destination: destination,isActive:$active , label: {
         })
         
-        // Alert with no internet connection
-//            .alert(isPresented: $ApprovedShipmentVM.isAlert, content: {
-//                Alert(title: Text(ApprovedShipmentVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                    if ApprovedShipmentVM.activeAlert == .unauthorized{
-//                        Helper.logout()
-//                        LoginManger.removeUser()
-//                        Helper.IsLoggedIn(value: false)
-//                        destination = AnyView(SignInView())
-//                        active = true
-//                    }
-//                    ApprovedShipmentVM.isAlert = false
-//                }))
-//            })
     }
     
     func getDate(){

@@ -37,7 +37,7 @@ struct WalletViewCell : View {
                 VStack(alignment : .leading ){
                     HStack{
                         HStack(spacing:2){
-                            Text("\(String(format:"%.2f",Float(walletitem?.gainedValue ?? 0)).convertedDigitsToLocale(Locale(identifier: "en_US")))")
+                            Text("\(String(format:"%.2f",Float(walletitem?.gainedValue ?? 0)))")
                                 .font(.camelBold(of: 14))
 
                             Text("SAR".localized(language))

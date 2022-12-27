@@ -205,13 +205,13 @@ struct calendarPopUp_Previews: PreviewProvider {
 //}
 
 
-extension Date {
-        func formatDate() -> String {
-                let dateFormatter = DateFormatter()
-            dateFormatter.setLocalizedDateFormatFromTemplate("yyyy/mm/dd")
-            return dateFormatter.string(from: self)
-        }
-}
+//extension Date {
+//        func formatDate() -> String {
+//                let dateFormatter = DateFormatter()
+//            dateFormatter.setLocalizedDateFormatFromTemplate("yyyy/mm/dd")
+//            return dateFormatter.string(from: self)
+//        }
+//}
 
 
 

@@ -19,13 +19,13 @@ struct ContentView: View {
         ZStack {
             displayedView.navigationBarHidden(true)
         }
-//        .environment(\.locale, Locale(identifier : "en_US"))
+        .environment(\.locale, .init(identifier: "en"))
 
         .onAppear {
             delaySegue()
 //            setFirstLanguage()
-            print("pref lang:\(Locale.preferredLanguages)")
-            print("lang:\(language.rawValue)")
+//            print("pref lang:\(Locale.preferredLanguages)")
+//            print("lang:\(language.rawValue)")
 
         }
         
@@ -67,15 +67,15 @@ struct ContentView: View {
     }
     
     
-    private func setFirstLanguage()  {
-            if Helper.getLanguage() != ""{
-                print(Helper.getLanguage())
-//                LocalizationService.shared.language =  Language( rawValue: Locale.current.languageCode ?? "en" ) ?? .english_us
-                language = Language( rawValue: Locale.current.languageCode ?? "en" ) ?? .english_us
-                Helper.setLanguage(currentLanguage: Locale.current.languageCode ?? "en")
-          }
-            print(Helper.getLanguage())
-        }
+//    private func setFirstLanguage()  {
+//            if Helper.getLanguage() != ""{
+//                print(Helper.getLanguage())
+////                LocalizationService.shared.language =  Language( rawValue: Locale.current.languageCode ?? "en" ) ?? .english_us
+//                language = Language( rawValue: Locale.current.languageCode ?? "en" ) ?? .english_us
+//                Helper.setLanguage(currentLanguage: Locale.current.languageCode ?? "en")
+//          }
+//            print(Helper.getLanguage())
+//        }
 }
 
 struct SplashView_Previews: PreviewProvider {

@@ -18,7 +18,6 @@ class DriverRateViewModel: ObservableObject {
 
     // ------- input
     @Published  var DriverRate = 0.0
-    
     @Published  var DriverRatesCount = 0
     //------- output
     @Published var isAlert = false
@@ -29,11 +28,10 @@ class DriverRateViewModel: ObservableObject {
 //        GetDriverRate()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [weak self](modeldata) in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 self?.DriverRate = modeldata.data?.rate ?? 0
                 self?.DriverRatesCount = modeldata.data?.ratesCount ?? 0
-                }
-            
+//                }
         }.store(in: &cancellables)
     }
     
@@ -45,7 +43,6 @@ class DriverRateViewModel: ObservableObject {
             return BGServicesManager.CallApi(self.authServices,AuthServices.GetDriverOverAllRate)
         }.done({ [self] response in
             let result = response as! Response
-
 //            guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<DriverRateModel> = try BGDecoder.decode(data: result.data )
             print(data)
