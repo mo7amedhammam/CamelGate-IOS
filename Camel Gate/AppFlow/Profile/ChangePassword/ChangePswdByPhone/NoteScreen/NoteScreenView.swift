@@ -90,9 +90,8 @@ struct NoteScreenView: View {
         })
         
         
-        NavigationLink(destination: ChangePasswordView(phoneNumber:resendOTPVM.phoneNumber,operation: .forget),isActive:$gotonewpassword, label: {
+        NavigationLink(destination: ChangePasswordView(otp:$resendOTPVM.NewCode, phoneNumber:resendOTPVM.phoneNumber,operation: .forget),isActive:$gotonewpassword, label: {
                 })
-        
         
         // Alert with no internet connection
             .alert(isPresented: $resendOTPVM.isAlert, content: {

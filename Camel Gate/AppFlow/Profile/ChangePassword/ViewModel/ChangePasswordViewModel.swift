@@ -23,6 +23,7 @@ class ChangePasswordViewModel: ObservableObject {
     // ------- input
     @Published var operation : passwordOperations = .change
     @Published  var phoneNumber = ""
+    @Published  var Otp = 0
 
     @Published  var CurrentPassword = ""
     @Published  var NewPassword = ""
@@ -62,7 +63,8 @@ class ChangePasswordViewModel: ObservableObject {
             "newPassword"                    : NewPassword
         ]:[
             "mobile"               : phoneNumber ,
-            "newPassword"                    : NewPassword
+            "newPassword"                    : NewPassword,
+            "otp"       :       String(Otp)
         ]
         firstly { () -> Promise<Any> in
             isLoading = true
@@ -73,6 +75,7 @@ class ChangePasswordViewModel: ObservableObject {
             guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<ChangePasswordModel> = try BGDecoder.decode(data: result.data )
             print(data)
+            print(params)
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)

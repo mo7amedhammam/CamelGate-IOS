@@ -20,7 +20,7 @@ struct NewPasswordView: View {
     @State var operation : passwordOperations = .change
     @State var active = false
     @State var destination = AnyView(SignInView())
-
+    var otp : Int
     var body: some View {
         ZStack{
             Group{
@@ -143,7 +143,6 @@ struct NewPasswordView: View {
             }
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//        .padding(.bottom, keyboard.currentHeight)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         
         NavigationLink(destination: destination.navigationBarHidden(true),isActive:$active , label: {
@@ -154,7 +153,7 @@ struct NewPasswordView: View {
 
 struct NewPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        NewPasswordView()
+        NewPasswordView( otp: 0)
     }
 }
 

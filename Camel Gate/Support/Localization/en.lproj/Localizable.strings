@@ -21,6 +21,7 @@
 "Get_in_Touch" = "Get in Touch";
 "Help" = "Help";
 "Logout" = "Logout";
+"Delete_Account" = "Delete Account";
 "you_signed_out" = "you signed out";
 "OK" = "OK";
 
@@ -221,7 +222,7 @@
 
 //MARK: -- reset Password --
 "We_have_to_confirm_your\n_identity_by_sending_a_code_to_\nyour_phone_number" = "We have to confirm your\nidentity by sending a code to \nyour phone number";
-"Code_will_be_sent_to_+699" = "Code will be sent to +699";
+"Code_will_be_sent_to_+699" = "Code will be sent to +966";
 "Send_OTP" = "Send Code";
 "Change_your_phone_number" = "change your phone number";
 
@@ -271,3 +272,9 @@
 //MARK:  -- Driver Rates --
 "Rating_&_Reviews" = "Rating & Reviews";
 "No_Reviews_To_Show" = "No Reviews To Show";
+
+"AreyouSureToDelete_" = "Are you Sure To Delete Account ?";
+"NotNow_" = "Not Now";
+"Delete_" = "Delete";
+"Approve_" = "Ok";
+//"DisApprove_" = "Disagree";

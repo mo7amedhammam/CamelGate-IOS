@@ -190,6 +190,7 @@ struct HomeView: View {
                 active = true
                 destination = AnyView (DetailsView(shipmentId: selectedShipmentId).environmentObject(environments))
             })
+
         }
         .overlay(
             ZStack{

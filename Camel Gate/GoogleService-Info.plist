@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>468820248954-jjgnmvfrtp39b826n4tih8l3lbui34jn.apps.googleusercontent.com</string>
+	<string>468820248954-tcnuku299qq9fv91pbab43bg3o7ttvob.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.468820248954-jjgnmvfrtp39b826n4tih8l3lbui34jn</string>
+	<string>com.googleusercontent.apps.468820248954-tcnuku299qq9fv91pbab43bg3o7ttvob</string>
 	<key>API_KEY</key>
 	<string>AIzaSyD6xPQb70D6vca85voucgTVvStFHBTZCXI</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>wecancity-com.Camel-Gate</string>
+	<string>wecancity-Otaibi-com.Camel-Gate</string>
 	<key>PROJECT_ID</key>
 	<string>camelgate-a71ec</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:468820248954:ios:fe936f5d8233f6af40aec3</string>
+	<string>1:468820248954:ios:12b8e7f0965e239940aec3</string>
 </dict>
 </plist>

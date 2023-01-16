@@ -21,6 +21,10 @@
 		C81FA28628AD12F20012D823 /* GESSUniqueBold-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */; };
 		C81FA28A28AD23A90012D823 /* GESSTextMedium-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81FA28928AD23A90012D823 /* GESSTextMedium-Medium.otf */; };
 		C81FA2AE28AD275E0012D823 /* ImagePreviewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81FA2AD28AD275E0012D823 /* ImagePreviewer.swift */; };
+		C821CF3F29741683003F75ED /* DeleteAcoountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C821CF3E29741683003F75ED /* DeleteAcoountViewModel.swift */; };
+		C821CF412974189E003F75ED /* RemoveAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C821CF402974189E003F75ED /* RemoveAccountModel.swift */; };
+		C821CF4329742F94003F75ED /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C821CF4229742F94003F75ED /* WebView.swift */; };
+		C821CF4629744399003F75ED /* AbleToDeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C821CF4529744399003F75ED /* AbleToDeleteModel.swift */; };
 		C82DBDEF28A54D3000F2A9AB /* CancelReasonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */; };
 		C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */; };
 		C82EC8F5289EAB090042A27F /* ApprovedShipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */; };
@@ -79,7 +83,6 @@
 		C8A0781C288D9B670084C0A6 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0781B288D9B670084C0A6 /* RatingView.swift */; };
 		C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0781E288DA3030084C0A6 /* ShipmentRateCell.swift */; };
 		C8A07822288DA4CD0084C0A6 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07821288DA4CD0084C0A6 /* StarsView.swift */; };
-		C8A551CA2948BFB500C9D4A6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8A551C92948BFB500C9D4A6 /* GoogleService-Info.plist */; };
 		C8A551CD2948C1D100C9D4A6 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C8A551CC2948C1D100C9D4A6 /* FirebaseCrashlytics */; };
 		C8A8C83128FD99E50031DD70 /* FilteredFhipmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8C83028FD99E50031DD70 /* FilteredFhipmentsView.swift */; };
 		C8AB5EB829322FAD003F7EE4 /* RateSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AB5EB729322FAD003F7EE4 /* RateSheetView.swift */; };
@@ -124,6 +127,7 @@
 		C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C30F288F729B005FDB7C /* NoteScreenView.swift */; };
 		C8E8EC84294F3E3B004B1C61 /* DriverRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E8EC83294F3E3B004B1C61 /* DriverRatesModel.swift */; };
 		C8E8EC86294F3E4D004B1C61 /* DriverRatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E8EC85294F3E4D004B1C61 /* DriverRatesViewModel.swift */; };
+		C8F34F5B29757F160047FC1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8F34F5A29757F160047FC1C /* GoogleService-Info.plist */; };
 		FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA45B7CE2885155B002A9654 /* HeaderView.swift */; };
 		FA4E27AD288C537E0047265D /* ShipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AC288C537E0047265D /* ShipView.swift */; };
 		FA4E27AF288C53A20047265D /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AE288C53A20047265D /* FilterHeaderView.swift */; };
@@ -175,6 +179,10 @@
 		C81FA28528AD12F20012D823 /* GESSUniqueBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GESSUniqueBold-Bold.otf"; sourceTree = "<group>"; };
 		C81FA28928AD23A90012D823 /* GESSTextMedium-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GESSTextMedium-Medium.otf"; sourceTree = "<group>"; };
 		C81FA2AD28AD275E0012D823 /* ImagePreviewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewer.swift; sourceTree = "<group>"; };
+		C821CF3E29741683003F75ED /* DeleteAcoountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAcoountViewModel.swift; sourceTree = "<group>"; };
+		C821CF402974189E003F75ED /* RemoveAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountModel.swift; sourceTree = "<group>"; };
+		C821CF4229742F94003F75ED /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		C821CF4529744399003F75ED /* AbleToDeleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbleToDeleteModel.swift; sourceTree = "<group>"; };
 		C82DBDEE28A54D3000F2A9AB /* CancelReasonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasonsModel.swift; sourceTree = "<group>"; };
 		C82DBDF028A54D4A00F2A9AB /* CancelReasonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasonsViewModel.swift; sourceTree = "<group>"; };
 		C82EC8F4289EAB090042A27F /* ApprovedShipmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedShipmentModel.swift; sourceTree = "<group>"; };
@@ -232,7 +240,6 @@
 		C8A0781B288D9B670084C0A6 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		C8A0781E288DA3030084C0A6 /* ShipmentRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentRateCell.swift; sourceTree = "<group>"; };
 		C8A07821288DA4CD0084C0A6 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
-		C8A551C92948BFB500C9D4A6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8A8C83028FD99E50031DD70 /* FilteredFhipmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredFhipmentsView.swift; sourceTree = "<group>"; };
 		C8AB5EB729322FAD003F7EE4 /* RateSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateSheetView.swift; sourceTree = "<group>"; };
 		C8AB5EB92932352A003F7EE4 /* SendingRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingRateView.swift; sourceTree = "<group>"; };
@@ -279,6 +286,7 @@
 		C8E4C30F288F729B005FDB7C /* NoteScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteScreenView.swift; sourceTree = "<group>"; };
 		C8E8EC83294F3E3B004B1C61 /* DriverRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRatesModel.swift; sourceTree = "<group>"; };
 		C8E8EC85294F3E4D004B1C61 /* DriverRatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRatesViewModel.swift; sourceTree = "<group>"; };
+		C8F34F5A29757F160047FC1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA45B7CE2885155B002A9654 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		FA4E27AC288C537E0047265D /* ShipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipView.swift; sourceTree = "<group>"; };
 		FA4E27AE288C53A20047265D /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
@@ -388,6 +396,24 @@
 				C81B21FB28A3B19100816ECF /* CityViewModel.swift */,
 			);
 			path = City;
+			sourceTree = "<group>";
+		};
+		C821CF3D29741667003F75ED /* DeleteAccount */ = {
+			isa = PBXGroup;
+			children = (
+				C821CF4429744368003F75ED /* availableTodelete */,
+				C821CF3E29741683003F75ED /* DeleteAcoountViewModel.swift */,
+				C821CF402974189E003F75ED /* RemoveAccountModel.swift */,
+			);
+			path = DeleteAccount;
+			sourceTree = "<group>";
+		};
+		C821CF4429744368003F75ED /* availableTodelete */ = {
+			isa = PBXGroup;
+			children = (
+				C821CF4529744399003F75ED /* AbleToDeleteModel.swift */,
+			);
+			path = availableTodelete;
 			sourceTree = "<group>";
 		};
 		C82DBDED28A54D0200F2A9AB /* CancelReasons */ = {
@@ -966,6 +992,7 @@
 		C8C94949288977160057EE7E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C821CF3D29741667003F75ED /* DeleteAccount */,
 				C840BC532941FE6D001D88D2 /* DriverRate */,
 				C8C9494A2889772B0057EE7E /* ProfileView.swift */,
 				C84EAC7D288C44EB000AB6AD /* ProfileHeader.swift */,
@@ -1086,6 +1113,7 @@
 				C8A07811288D60CF0084C0A6 /* Buttons */,
 				C8A07820288DA4A80084C0A6 /* others */,
 				C87BD21428915519002D115A /* KeyboardHandler.swift */,
+				C821CF4229742F94003F75ED /* WebView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1191,7 +1219,7 @@
 			isa = PBXGroup;
 			children = (
 				C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */,
-				C8A551C92948BFB500C9D4A6 /* GoogleService-Info.plist */,
+				C8F34F5A29757F160047FC1C /* GoogleService-Info.plist */,
 				C0125B082899356E004B65E5 /* Networking */,
 				FAEADE512884C094004535CE /* Support */,
 				FAEADE4D2884C044004535CE /* App */,
@@ -1363,6 +1391,7 @@
 			files = (
 				C81FA28A28AD23A90012D823 /* GESSTextMedium-Medium.otf in Resources */,
 				FAEADEB52884D3D0004535CE /* SFUIText-Semibold.ttf in Resources */,
+				C8F34F5B29757F160047FC1C /* GoogleService-Info.plist in Resources */,
 				FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */,
 				FAEADEB42884D3D0004535CE /* SFUIText-Regular.ttf in Resources */,
 				FAEADEB02884D3D0004535CE /* SFUIText-Light.ttf in Resources */,
@@ -1381,7 +1410,6 @@
 				C82FD99D28AD2F75003DC739 /* GESSUniqueLight.otf in Resources */,
 				FAEADEB82884D3D0004535CE /* SFUIText-HeavyItalic.ttf in Resources */,
 				FAEADEAD2884D3D0004535CE /* SFUIText-LightItalic.ttf in Resources */,
-				C8A551CA2948BFB500C9D4A6 /* GoogleService-Info.plist in Resources */,
 				C82FD99F28AD3190003DC739 /* MyriadVariableConcept-Roman.otf in Resources */,
 				C81FA28628AD12F20012D823 /* GESSUniqueBold-Bold.otf in Resources */,
 			);
@@ -1415,7 +1443,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			outputFileListPaths = (
@@ -1512,6 +1540,7 @@
 				C8C949622889791F0057EE7E /* Strings.swift in Sources */,
 				FA9CC383289ECFD500A56055 /* HomeServices.swift in Sources */,
 				C8D82A2F28A4625C0081E620 /* ShipTypeViewModel.swift in Sources */,
+				C821CF4629744399003F75ED /* AbleToDeleteModel.swift in Sources */,
 				C0125B102899369C004B65E5 /* BGServicesManager.swift in Sources */,
 				C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */,
 				C0125B07289934D1004B65E5 /* LoginModel.swift in Sources */,
@@ -1520,6 +1549,7 @@
 				C8AB5EBA2932352A003F7EE4 /* SendingRateView.swift in Sources */,
 				C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */,
 				FACE3D6C289F3B0500FE9415 /* ShipmentsViewModel.swift in Sources */,
+				C821CF4329742F94003F75ED /* WebView.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
 				C8481CC6289FE4DB00B6675D /* ShipmentModel.swift in Sources */,
 				C85D7DA1289BCB460088227D /* ImagePicker.swift in Sources */,
@@ -1536,6 +1566,7 @@
 				C83DBD782933940400C43F14 /* RateViewModel.swift in Sources */,
 				C8640ECE292F9940007A4E99 /* HomeWalletViewModel.swift in Sources */,
 				C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */,
+				C821CF412974189E003F75ED /* RemoveAccountModel.swift in Sources */,
 				C8C9496728897D110057EE7E /* TitleBar.swift in Sources */,
 				C84EFE8428B0FC8100399C78 /* ChangePasswordView.swift in Sources */,
 				C8A07810288D5CDA0084C0A6 /* EditProfileInfoView.swift in Sources */,
@@ -1554,6 +1585,7 @@
 				C8D82A3528A46C060081E620 /* CityFilterView.swift in Sources */,
 				C835E5E02901918400B252D1 /* WalletViewCell.swift in Sources */,
 				C82DBDF128A54D4A00F2A9AB /* CancelReasonsViewModel.swift in Sources */,
+				C821CF3F29741683003F75ED /* DeleteAcoountViewModel.swift in Sources */,
 				C86D717529506CF2005AA23A /* CustomAlert.swift in Sources */,
 				C8691FFD28ABD7A2002201F3 /* RedirectToGMaps.swift in Sources */,
 				C8E8EC86294F3E4D004B1C61 /* DriverRatesViewModel.swift in Sources */,
@@ -1726,10 +1758,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
-				DEVELOPMENT_TEAM = 23H4SBD5QL;
+				DEVELOPMENT_TEAM = T3T996UQKK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Camel-Gate-Info.plist";
@@ -1747,7 +1779,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "wecancity-com.Camel-Gate";
+				PRODUCT_BUNDLE_IDENTIFIER = "wecancity-Otaibi-com.Camel-Gate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1762,9 +1794,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
-				DEVELOPMENT_TEAM = 23H4SBD5QL;
+				DEVELOPMENT_TEAM = T3T996UQKK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Camel-Gate-Info.plist";
@@ -1782,7 +1814,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "wecancity-com.Camel-Gate";
+				PRODUCT_BUNDLE_IDENTIFIER = "wecancity-Otaibi-com.Camel-Gate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

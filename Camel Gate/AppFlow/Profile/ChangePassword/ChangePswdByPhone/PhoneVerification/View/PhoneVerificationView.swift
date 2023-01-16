@@ -55,10 +55,11 @@ struct PhoneVerificationView: View{
                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
-                    Text("\(String(CurrentOTP))")
-                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
+                    
+//                    Text("\(String(CurrentOTP))")
+//                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+//                        .foregroundColor(.secondary)
+//                        .multilineTextAlignment(.center)
 
                     ZStack {
                         HStack (spacing: spaceBetweenBoxes){
@@ -157,56 +158,13 @@ struct PhoneVerificationView: View{
                     
                     Spacer()
                 }
-                //MARK: --  verify button --
-//                Button(action: {
-//                    // send code action
-//                    //                    gotonewpassword = true
-//                    let otp = otpVM.otp1+otpVM.otp2+otpVM.otp3+otpVM.otp4+otpVM.otp5+otpVM.otp6
-//                    if checkOTP(sentOTP: CurrentOTP , TypedOTP: Int(otp) ?? 0000) && (minutes > 0 || seconds > 0){
-//                        if op == .signup {
-//                            matchedOTP.toggle()
-//                            isPresented.toggle()
-//                        }else if  op == .password{
-//                            matchedOTP.toggle()
-//                            isPresented.toggle()
-//                        }
-//                    }else{
-//                        if (minutes == 0 && seconds == 0) {
-//                            errorMessage = "Time_is_Out"
-//                        }else{
-//                            errorMessage = "Incorrect_Code"
-//                        }
-//                    }
-//
-//                }, label: {
-//                    HStack {
-//                        Text("Send_Code".localized(language))
-//                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
-//
-//                    }
-//                    .frame(minWidth: 0, maxWidth: .infinity)
-//                    .frame(height:22)
-//                    .padding()
-//                    .foregroundColor(.white)
-//                    .background(
-//                        LinearGradient(
-//                            gradient: .init(colors: [Color("linearstart"), Color("linearend")]),
-//                            startPoint: .trailing,
-//                            endPoint: .leading
-//                        )
-//                            .opacity(otpVM.otp6 == "" || (minutes == 00 && seconds == 00) ? 0.5:1)
-//                    )
-//                    .cornerRadius(12)
-//                    .padding(.horizontal, 25)
-//                })
-//                    .disabled(otpVM.otp6 == "" || (minutes == 00 && seconds == 00))
             }
             .padding(.bottom)
 
             TitleBar(Title: "Verify_Mobile".localized(language), navBarHidden: true, leadingButton: .backButton ,trailingAction: {
             })
             
-            NavigationLink(destination: NewPasswordView(),isActive:$gotonewpassword , label: {
+            NavigationLink(destination: NewPasswordView(otp:CurrentOTP),isActive:$gotonewpassword , label: {
             })
                 .toolbar{
                     ToolbarItemGroup(placement: .keyboard ){
@@ -218,8 +176,8 @@ struct PhoneVerificationView: View{
                     }
                 }
             
-            NavigationLink(destination: NewPasswordView(),isActive:$gotonewpassword , label: {
-            })
+//            NavigationLink(destination: NewPasswordView(),isActive:$gotonewpassword , label: {
+//            })
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         
@@ -266,16 +224,7 @@ struct PhoneVerificationView: View{
                     DynamicTimer(sentTimer: validFor)
                     errorMessage = ""
                 })
-        
-//        NavigationLink(destination: NewPasswordView(),isActive:$gotonewpassword , label: {
-//        })
-        // Alert with no internet connection
-        //        .alert(isPresented: $CreateUserVM.isAlert, content: {
-        //            Alert(title: Text(CreateUserVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-        //                CreateUserVM.isAlert = false
-        //            }))
-        //        })
-        
+                
     }
     private func otpText(text: String) -> some View {
         return Text(text)
@@ -320,10 +269,13 @@ struct PhoneVerificationView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             PhoneVerificationView( op: .signup, phoneNumber: .constant(""), CurrentOTP: .constant(0), validFor: .constant(88), matchedOTP: .constant(false), isPresented: .constant(false))
+                .environmentObject(ResendOTPViewModel())
         }
         
         ZStack {
             PhoneVerificationView(op:.signup, phoneNumber: .constant(""), CurrentOTP: .constant(0), validFor: .constant(88), matchedOTP: .constant(false), isPresented: .constant(false))
+                .environmentObject(ResendOTPViewModel())
+
         }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }

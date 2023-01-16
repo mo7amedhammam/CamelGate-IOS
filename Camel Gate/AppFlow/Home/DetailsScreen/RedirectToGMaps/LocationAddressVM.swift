@@ -51,7 +51,13 @@ class LocationAddressVM : NSObject, ObservableObject, CLLocationManagerDelegate 
 
         func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
             DispatchQueue.main.async { [self] in
+
+                if status == .authorizedAlways || status == .authorizedWhenInUse{
                 locationStatus = status
+                    locationManager.startUpdatingLocation()
+                }else{
+                    locationManager.requestLocation()
+                }
             }
             print(#function, statusString)
         }

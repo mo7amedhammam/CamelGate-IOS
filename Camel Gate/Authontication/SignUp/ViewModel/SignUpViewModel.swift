@@ -70,6 +70,7 @@ class SignUpViewModel: ObservableObject {
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
+    @Published var IsTermsAgreed = false
 //    @Published var inlineErrorPassword = ""
     @Published var publishedUserLogedInModel: SignUpPhoneVerify? = nil
     @Published var publishedUserCreatedModel: SignUpModel? = nil

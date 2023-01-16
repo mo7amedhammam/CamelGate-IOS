@@ -38,7 +38,7 @@ struct WalletView: View {
                                     .resizable()
                                 VStack{
                                     HStack(alignment:.bottom){
-                                        Text("\(String(format: "%.2f", Float(WalletVM.publishedUserWalletModel.currentBalance ?? 1250)))")
+                                        Text("\(String(format: "%.2f", Float(WalletVM.publishedUserWalletModel.currentBalance ?? 0)))")
                                             .fontWeight(.bold)
                                             .foregroundColor(Color("Base_Color"))
                                             .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr24:Font.camelfonts.SemiBold24)

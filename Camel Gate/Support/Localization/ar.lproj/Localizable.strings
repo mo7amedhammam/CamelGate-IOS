@@ -21,6 +21,8 @@
 "Get_in_Touch" = "تواصل معنا";
 "Help" = "مساعده";
 "Logout" = "تسجيل خروج";
+"Delete_Account" = "حذف الحساب";
+
 "you_signed_out" = "تم تسجيل خروجك";
 "OK" = "موافق";
 
@@ -218,7 +220,7 @@
 
 //MARK: -- reset Password --
 "We_have_to_confirm_your\n_identity_by_sending_a_code_to_\nyour_phone_number" = "يجب تأكيد هويتك من خلال\n إرسال كود إلى رقم هاتفك";
-"Code_will_be_sent_to_+699" = "سوف يتم إرسال كود الى رقم +٦٩٩";
+"Code_will_be_sent_to_+699" = "سوف يتم إرسال كود الى رقم +٩٦٦";
 "Send_OTP" = "أرسل الكود";
 "Change_your_phone_number" = "تغيير رقم الهاتف";
 
@@ -267,3 +269,9 @@
 //MARK:  -- Driver Rates --
 "Rating_&_Reviews" = "التقييمات";
 "No_Reviews_To_Show" = "لا يوجد تقييمات لعرضها";
+
+"AreyouSureToDelete_" = "هل انت متاكد من حذف الحساب ؟";
+"NotNow_" = "ليس الآن";
+"Delete_" = "حذف";
+"Approve_" = "اخفاء";
+//"DisApprove_" = "غير موافق";

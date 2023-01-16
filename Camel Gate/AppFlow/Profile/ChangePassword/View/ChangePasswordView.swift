@@ -10,7 +10,7 @@ import SwiftUI
 struct ChangePasswordView: View {
     var language = LocalizationService.shared.language
     @StateObject var ChangePasswordVM = ChangePasswordViewModel()
-
+    @Binding var otp : Int
     @State var showBottomSheet = false
 //    @ObservedObject private var keyboard = KeyboardResponder()
     @State var phoneNumber = ""
@@ -170,6 +170,7 @@ struct ChangePasswordView: View {
         .onAppear(perform: {
             ChangePasswordVM.operation = operation
             ChangePasswordVM.phoneNumber = phoneNumber
+            ChangePasswordVM.Otp = otp
         })
         .onTapGesture(perform: {
             hideKeyboard()
@@ -223,6 +224,6 @@ struct ChangePasswordView: View {
 
 struct ChangePasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        ChangePasswordView()
+        ChangePasswordView( otp: .constant(0))
     }
 }

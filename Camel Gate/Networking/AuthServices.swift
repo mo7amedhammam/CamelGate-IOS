@@ -14,7 +14,7 @@ enum AuthServices {
     case createAccount(parameters : [String:Any])
     case ResendOTP(parameters : [String:Any])
 
-    case GetDriverOverAllRate, GetDriverRates
+    case GetDriverOverAllRate, GetDriverRates,CanDeleteAccount,DeleteAccount
     case GetDriverinfo
     case UpdateDriverInfo(parameters : [String:Any] , images : [String : Image?])
     case GetTruckType
@@ -47,13 +47,17 @@ extension AuthServices : URLRequestBuilder {
             return EndPoints.GetTruckManfacture.rawValue
         case .GetNationalityies:
             return EndPoints.getNationalities.rawValue
+        case .CanDeleteAccount:
+            return EndPoints.CanDeleteAccount.rawValue
+        case .DeleteAccount:
+            return EndPoints.DeleteAccount.rawValue
                 }
     }
     var method: Moya.Method {
         switch self {
         case  .Login, .VerifyAccount, .createAccount, .ResendOTP, .UpdateDriverInfo :
             return .post
-        case .GetDriverOverAllRate, .GetDriverRates, .GetDriverinfo, .GetTruckType, .GetTruckManfacture, .GetNationalityies :
+        case .GetDriverOverAllRate, .GetDriverRates, .GetDriverinfo, .GetTruckType, .GetTruckManfacture, .GetNationalityies, .CanDeleteAccount,.DeleteAccount :
             return .get
         }
     }
@@ -66,7 +70,7 @@ extension AuthServices : URLRequestBuilder {
         case .Login(let parameters), .VerifyAccount(parameters: let parameters), .createAccount(parameters: let parameters),.ResendOTP(parameters: let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
  
-        case .GetDriverOverAllRate, .GetDriverRates,.GetDriverinfo, .GetTruckType, .GetTruckManfacture, .GetNationalityies:
+        case .GetDriverOverAllRate, .GetDriverRates,.GetDriverinfo, .GetTruckType, .GetTruckManfacture, .GetNationalityies,.CanDeleteAccount,.DeleteAccount:
             return .requestPlain
             
         case .UpdateDriverInfo(let param,let images):

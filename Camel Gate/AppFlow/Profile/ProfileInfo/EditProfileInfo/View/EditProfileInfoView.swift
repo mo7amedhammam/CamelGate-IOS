@@ -34,7 +34,7 @@ struct EditProfileInfoView: View {
     
     @State var enteredDriverName = ""
     @State var ageeTerms = false
-    @State var showsheet = false
+//    @State var showsheet = false
     @State var ShowCalendar  = false
     @State var showBottomSheet  = false
 
@@ -411,8 +411,8 @@ struct EditProfileInfoView: View {
                             
                             InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text:$profileVM.TruckPlate)
                                 .onChange(of: profileVM.TruckPlate, perform: {newval in
-                                    profileVM.TruckPlate = language.rawValue == "ar" ?
-                                    newval.replacedArabicDigitsWithEnglish():newval.replacedArabicDigitsWithEnglish()
+//                                    profileVM.TruckPlate = language.rawValue == "ar" ?
+//                                    newval.replacedArabicDigitsWithEnglish():newval.replacedArabicDigitsWithEnglish()
                                 })
                                 .focused($inFocus,equals:5)
                                 .onTapGesture(perform: {
@@ -488,31 +488,31 @@ struct EditProfileInfoView: View {
                                     })
                         }
                     }
-                    if taskStatus == .create{
-                        HStack{
-                            Image(systemName: ageeTerms ?  "checkmark.square.fill":"square")
-                                .font(.system(size: 20))
-                                .foregroundColor(Color("blueColor"))
-                                .onTapGesture(perform: {
-                                    ageeTerms .toggle()
-                                    profileVM.IsTermsAgreed.toggle()
-                                })
-                            
-                            Text("I_agree_all".localized(language))
-                            
-                            Button(action: {
-                                showsheet = true
-                            }, label: {
-                                Text("Terms_&_Conditions".localized(language))
-                                    .underline()
-                                    .foregroundColor(Color("blueColor"))
-                            })
-                                .sheet(isPresented: $showsheet){
-                                    // Terms and Conditions here
-                                }
-                            Spacer()
-                        }.padding(.vertical)
-                    }
+//                    if taskStatus == .create{
+//                        HStack{
+//                            Image(systemName: ageeTerms ?  "checkmark.square.fill":"square")
+//                                .font(.system(size: 20))
+//                                .foregroundColor(Color("blueColor"))
+//                                .onTapGesture(perform: {
+//                                    ageeTerms .toggle()
+//                                    profileVM.IsTermsAgreed.toggle()
+//                                })
+//
+//                            Text("I_agree_all".localized(language))
+//
+//                            Button(action: {
+//                                showsheet = true
+//                            }, label: {
+//                                Text("Terms_&_Conditions".localized(language))
+//                                    .underline()
+//                                    .foregroundColor(Color("blueColor"))
+//                            })
+//                                .sheet(isPresented: $showsheet){
+//                                    // Terms and Conditions here
+//                                }
+//                            Spacer()
+//                        }.padding(.vertical)
+//                    }
                     Spacer(minLength: 30)
                 }
                 .disabled((taskStatus == .update && isEditing == false) ? true:false)
@@ -537,24 +537,19 @@ struct EditProfileInfoView: View {
                     DispatchQueue.main.async{
                         profileVM.CompleteProfile()
                     }
-                },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant( ((profileVM.Drivername == "" || profileVM.BirthdateStr == "" || (profileVM.validations != .none && profileVM.ValidationMessage != "") || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "")) || !(taskStatus == .create && profileVM.IsTermsAgreed)) && (!(taskStatus == .update && isEditing) || (taskStatus == .update && (profileVM.Drivername == "" || profileVM.BirthdateStr == "" || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "") || (profileVM.validations != .none && profileVM.ValidationMessage != "")))))
+                },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant( ((profileVM.Drivername == "" || profileVM.BirthdateStr == "" || (profileVM.validations != .none && profileVM.ValidationMessage != "") || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == ""))) && (!(taskStatus == .update && isEditing) || (taskStatus == .update && (profileVM.Drivername == "" || profileVM.BirthdateStr == "" || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "") || (profileVM.validations != .none && profileVM.ValidationMessage != "")))))
                 )
             })
         }
-//        .environment(\.locale, Locale(identifier : "en_US_POSIX"))
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))
         .navigationBarHidden(true)
         .onAppear(perform: {
-            print("pref lang:\(Locale.current.languageCode)")
-            print("pref lang:\(Locale.preferredLanguages[0])")
-            print("lang:\(language.rawValue)")
             if taskStatus == .update{
             }else{
                 if enteredDriverName != ""{
                     profileVM.Drivername = enteredDriverName
                 }
-
             }
         })
        
@@ -568,9 +563,7 @@ struct EditProfileInfoView: View {
         .onChange(of: dateSorceinput , perform: {newval in
             switch newval{
             case .birthDate:
-//                if taskStatus == .update{
                 selectedDate = profileVM.Birthdate
-//                }
                 rangeType = .withend
                 startingDate = (Calendar.current.date(byAdding: .year, value: -50, to: Date()) ?? Date())
                 endingDate = (Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date())

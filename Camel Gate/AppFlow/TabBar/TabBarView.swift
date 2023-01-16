@@ -32,6 +32,7 @@ struct MainTabBar : View {
     @StateObject var ApprovedShipmentVM = ApprovedShipmentViewModel()
     @StateObject var environments = camelEnvironments()
     @StateObject var DriverRate = DriverRateViewModel()
+    @StateObject var DeleteAccount = DeleteAcoountViewModel()
 
     var body: some View {
         VStack(spacing: 0){
@@ -56,6 +57,7 @@ struct MainTabBar : View {
                     }else if self.selectedTab.localized(language) == "Profile".localized(language){
                         ProfileView()
                             .environmentObject(DriverRate)
+                            .environmentObject(DeleteAccount)
                     }
                 }
                 .environmentObject(environments)

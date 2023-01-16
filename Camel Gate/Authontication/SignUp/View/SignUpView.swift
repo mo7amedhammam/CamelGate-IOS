@@ -14,6 +14,7 @@ struct SignUpView: View {
     @StateObject var SignUpVM = SignUpViewModel()
     @State var presentPhoneVerify = false
     @FocusState var inFocus: Int?
+    @State var showsheet = false
 
     var body: some View {
         ZStack{
@@ -21,7 +22,7 @@ struct SignUpView: View {
                 Image("signupheaderpng")
                     .resizable()
                     .padding(.top,hasNotch ? -50:-80)
-                    .frame(height:hasNotch ? 320:250)
+                    .frame(height:hasNotch ? 300:250)
                 
                 ScrollView{
                     Image("LOGO")
@@ -79,11 +80,43 @@ struct SignUpView: View {
                                 Spacer()
                             }.padding(.horizontal)
                         }
+               
+                            HStack{
+                                Image(systemName: SignUpVM.IsTermsAgreed ?  "checkmark.square.fill":"square")
+                                    .font(.system(size: 20))
+                                    .foregroundColor(Color("blueColor"))
+                                    .onTapGesture(perform: {
+                                        SignUpVM.IsTermsAgreed.toggle()
+                                    })
+                                
+                                Text("I_agree_all".localized(language))
+                                Button(action: {
+                                    showsheet = true
+                                }, label: {
+                                    Text("Terms_&_Conditions".localized(language))
+                                        .underline()
+                                        .foregroundColor(Color("blueColor"))
+                                })
+                                    .sheet(isPresented: $showsheet){
+                                        // Terms and Conditions here
+                                        ZStack {
+                                            CamelWebView(url: URL(string:Constants().TermsAndConditionsURL)!, isPresented: $showsheet)
+                                            
+                                            VStack {
+                                                Spacer()
+                                                GradientButton(action: {
+//                                                    SignUpVM.IsTermsAgreed.toggle()
+                                                    showsheet = false
+                                                }, Title:"Approve_".localized(language), IsDisabled: .constant(false))
+                                            }
+                                        }
+                                    }
+                                Spacer()
+                            }.padding(.vertical)
                     }
                     .padding(.horizontal)
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
-                    
                 }
                 .keyboardSpace()
 
@@ -100,7 +133,7 @@ struct SignUpView: View {
                 VStack{
                     GradientButton(action: {
                         SignUpVM.VerifyAccount()
-                    }, Title: "Create_account".localized(language), IsDisabled: .constant(  !((SignUpVM.Drivername != "" && SignUpVM.phoneNumber != "" && SignUpVM.password != "" && SignUpVM.confirmpassword != "")&&SignUpVM.ValidationMessage == "")))
+                    }, Title: "Create_account".localized(language), IsDisabled: .constant(  !((SignUpVM.Drivername != "" && SignUpVM.phoneNumber != "" && SignUpVM.password != "" && SignUpVM.confirmpassword != "" && SignUpVM.IsTermsAgreed)&&SignUpVM.ValidationMessage == "")))
                         .padding(.top)
                     
                     HStack {
@@ -198,6 +231,8 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        ZStack {
+            SignUpView()
+        }
     }
 }

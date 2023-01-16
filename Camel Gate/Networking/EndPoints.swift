@@ -13,6 +13,9 @@ enum EndPoints: String {
     case CreateAccount = "User/SignUp"
     case VerifyAccount = "User/VefiryUser"
     case resendOTP = "User/SendOTP"
+    
+    case CanDeleteAccount = "Lookups/GetSetting"
+    case DeleteAccount = "User/RemoveAccount"
 
     case GetDriverOverallRate = "ShipmentRate/GetDriverOverallRate"
     case GetDriverRates = "ShipmentRate/GetDriverRates"
@@ -39,7 +42,8 @@ enum EndPoints: String {
     case GetTruckManfacture = "TruckManfacture/GetAllForList"
     case getNationalities = "Nationality/GetAllForList"
     case ChangePassword = "User/ChangePassword"
-    case ChangeForgetPassword = "User/ChangeForgetPassword"
+    case ChangeForgetPassword = "User/ResetPassword"
+//            "User/ChangeForgetPassword" // ""
     case GetGaiedWallet = "Wallet/GetWalletGained"
     case GetWithDrawnWallet = "Wallet/GetWalletWithdrawn"
     case GetHomePageWallet = "Wallet/GetHomePageWallet"

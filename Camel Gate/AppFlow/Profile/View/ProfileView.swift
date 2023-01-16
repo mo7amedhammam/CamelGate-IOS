@@ -21,6 +21,7 @@ struct ProfileView: View {
     var language = LocalizationService.shared.language
     @EnvironmentObject var environments : camelEnvironments
     @EnvironmentObject var driverRate : DriverRateViewModel
+    @EnvironmentObject var DeleteAccount : DeleteAcoountViewModel
 
     var body: some View {
         NavigationView {
@@ -68,7 +69,7 @@ struct ProfileView: View {
                                 
                                 Button(action: {
                                     active = true
-                                    destination = AnyView(ChangePasswordView())
+                                    destination = AnyView(ChangePasswordView( otp: .constant(0)))
                                 }, label: {
                                     HStack(spacing: 10){
                                         Image(systemName: "lock.fill")
@@ -154,7 +155,6 @@ struct ProfileView: View {
                             }
                             Group{
                                 Button(action: {
-//                                    Helper.MakePhoneCall(PhoneNumber: "00000000")
                                     openWhatsApp(number:nil)
                                 }, label: {
                                     HStack(spacing: 10){
@@ -204,6 +204,22 @@ struct ProfileView: View {
                                         Spacer()
                                     }
                                 })
+                                
+                                if DeleteAccount.CanDeleteaccount{
+                                Button(action: {
+//                                    environments.isError = true
+                                    DeleteAccount.message = "AreyouSureToDelete_"
+                                    DeleteAccount.isAlert = true
+                                }, label: {
+                                    HStack(spacing: 10){
+                                        Spacer()
+                                        Text( "Delete_Account".localized(language))
+                                            .foregroundColor(.red)
+                                            .font(.camelBold(of: 16))
+                                        Spacer()
+                                    }
+                                })
+                                }
                             }
                             .font(.camelRegular(of: 16))
                             .frame(height:33)
@@ -256,9 +272,18 @@ struct ProfileView: View {
 //                        active = true
 //                    }
                     driverRate.isAlert = false
-                    environments.isError = false
+//                    environments.isError = false
                 })
-                }
+            }else if DeleteAccount.isAlert{
+                CustomAlert(presentAlert: $DeleteAccount.isAlert,alertType: .error(title: "", message: DeleteAccount.message.localized(language), lefttext: "NotNow_".localized(language), righttext: "Delete_".localized(language)),leftButtonAction:{
+                    environments.isError = true
+                    DeleteAccount.isAlert = false
+                    DeleteAccount.message = ""
+                }, rightButtonAction: {
+                    DeleteAccount.DeleteAccount()
+                })
+            }
+
             }.ignoresSafeArea()
                 .edgesIgnoringSafeArea(.all)
                 .onChange(of: driverRate.isAlert, perform: {newval in
@@ -273,8 +298,19 @@ struct ProfileView: View {
                         environments.isError = true
                     }
                 })
-
         )
+        .overlay(content: {
+            AnimatingGif(isPresented: $DeleteAccount.isLoading)
+        })
+        .onChange(of: DeleteAccount.DriverDeleted, perform: {newval in
+            if newval == true{
+                Helper.logout()
+                Helper.IsLoggedIn(value: false)
+                LoginManger.removeUser()
+                active = true
+                destination = AnyView(SignInView())
+            }
+        })
         NavigationLink(destination: destination,isActive:$active , label: {
         })
         
@@ -283,13 +319,16 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
+//        ZStack {
+//            ProfileView()
+//                .environmentObject(camelEnvironments())
+//                .environmentObject(DriverRateViewModel())
+//        }
         ZStack {
-            ProfileView().environmentObject(camelEnvironments())
+            ProfileView()
+                .environmentObject(camelEnvironments())
                 .environmentObject(DriverRateViewModel())
-        }
-        ZStack {
-            ProfileView().environmentObject(camelEnvironments())
-                .environmentObject(DriverRateViewModel())
+                .environmentObject(DeleteAcoountViewModel())
         }.previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }
