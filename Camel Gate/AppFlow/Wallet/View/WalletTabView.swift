@@ -15,10 +15,6 @@ struct WalletView: View {
     @StateObject var WalletVM = WalletViewModel()
     @EnvironmentObject var environments : camelEnvironments
     @Binding var SelectedTab : String
-    
-    
-   
-
     var body: some View {
         ZStack{
             VStack{

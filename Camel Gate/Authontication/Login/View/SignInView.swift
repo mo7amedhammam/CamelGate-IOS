@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SignInView: View {
+        @AppStorage("language")
     var language = LocalizationService.shared.language
-    
     @StateObject var SignInVM = SignInViewModel()
     
     @State var active = false
@@ -107,8 +107,11 @@ struct SignInView: View {
                         .foregroundColor(Color("blueColor"))
                     }
                     .padding(.top,-10)
+                    
+                    SwitchLanguageButton()
+                    
                 }
-                .padding(.bottom,30)
+                .padding(.bottom,10)
                 .background(
                     Image("bottomBackimg")
                         .resizable()
@@ -177,19 +180,9 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        ZStack {
+            SignInView()
+        }
     }
 }
 
-//public extension UITextField
-//{
-//    override var textInputMode: UITextInputMode?
-//    {
-//        let locale = Locale(identifier: "en-US")
-//
-//        return
-//        UITextInputMode.activeInputModes.first(where: { $0.primaryLanguage == locale.identifier })
-//        ??
-//        super.textInputMode
-//    }
-//}

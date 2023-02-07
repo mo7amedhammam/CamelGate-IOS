@@ -87,6 +87,7 @@
 		C8A8C83128FD99E50031DD70 /* FilteredFhipmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8C83028FD99E50031DD70 /* FilteredFhipmentsView.swift */; };
 		C8AB5EB829322FAD003F7EE4 /* RateSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AB5EB729322FAD003F7EE4 /* RateSheetView.swift */; };
 		C8AB5EBA2932352A003F7EE4 /* SendingRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AB5EB92932352A003F7EE4 /* SendingRateView.swift */; };
+		C8AC4FD22992628B0004D1B6 /* SwitchLanguageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC4FD12992628B0004D1B6 /* SwitchLanguageButton.swift */; };
 		C8BB855E289AA8210099DE1F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */; };
 		C8BB8561289AAB580099DE1F /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB8560289AAB580099DE1F /* SignUpModel.swift */; };
 		C8C4A11F2952180D006E1935 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8C4A1212952180D006E1935 /* InfoPlist.strings */; };
@@ -243,6 +244,7 @@
 		C8A8C83028FD99E50031DD70 /* FilteredFhipmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredFhipmentsView.swift; sourceTree = "<group>"; };
 		C8AB5EB729322FAD003F7EE4 /* RateSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateSheetView.swift; sourceTree = "<group>"; };
 		C8AB5EB92932352A003F7EE4 /* SendingRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingRateView.swift; sourceTree = "<group>"; };
+		C8AC4FD12992628B0004D1B6 /* SwitchLanguageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchLanguageButton.swift; sourceTree = "<group>"; };
 		C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		C8BB8560289AAB580099DE1F /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		C8C4A1202952180D006E1935 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1114,6 +1116,7 @@
 				C8A07820288DA4A80084C0A6 /* others */,
 				C87BD21428915519002D115A /* KeyboardHandler.swift */,
 				C821CF4229742F94003F75ED /* WebView.swift */,
+				C8AC4FD12992628B0004D1B6 /* SwitchLanguageButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1552,6 +1555,7 @@
 				C821CF4329742F94003F75ED /* WebView.swift in Sources */,
 				FAEADE6F2884C803004535CE /* TabBarView.swift in Sources */,
 				C8481CC6289FE4DB00B6675D /* ShipmentModel.swift in Sources */,
+				C8AC4FD22992628B0004D1B6 /* SwitchLanguageButton.swift in Sources */,
 				C85D7DA1289BCB460088227D /* ImagePicker.swift in Sources */,
 				FA9CC385289ED1AE00A56055 /* LoginManager.swift in Sources */,
 				C8C9497A28899DA80057EE7E /* WalletTabView.swift in Sources */,
@@ -1758,7 +1762,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
 				DEVELOPMENT_TEAM = T3T996UQKK;
@@ -1794,7 +1798,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
 				DEVELOPMENT_TEAM = T3T996UQKK;
 				ENABLE_PREVIEWS = YES;

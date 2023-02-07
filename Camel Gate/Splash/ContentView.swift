@@ -26,7 +26,6 @@ struct ContentView: View {
 //            setFirstLanguage()
 //            print("pref lang:\(Locale.preferredLanguages)")
 //            print("lang:\(language.rawValue)")
-
         }
         
         .onChange(of: scenePhase, perform: { newPhase in

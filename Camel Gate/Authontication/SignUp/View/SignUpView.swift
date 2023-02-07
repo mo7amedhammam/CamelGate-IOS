@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @AppStorage("language")
     var language = LocalizationService.shared.language
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -117,18 +118,97 @@ struct SignUpView: View {
                     .padding(.horizontal)
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     .ignoresSafeArea(.keyboard)
+                    
+                    Spacer().frame(height:30)
                 }
-                .keyboardSpace()
+//                .keyboardSpace()
 
                 .padding(.top,hasNotch ? -15:-30)
-                Spacer()
+                
+//                Spacer(minLength: 150)
             }
+            .padding(.bottom,120)
 //            .edgesIgnoringSafeArea(.bottom)
             .onTapGesture(perform: {
                 inFocus = 0
                 hideKeyboard()
             })
             //            .padding(.horizontal,-30)
+            
+//            BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false,  forgroundColor: .clear, content: {
+//                VStack{
+//                    GradientButton(action: {
+//                        SignUpVM.VerifyAccount()
+//                    }, Title: "Create_account".localized(language), IsDisabled: .constant(  !((SignUpVM.Drivername != "" && SignUpVM.phoneNumber != "" && SignUpVM.password != "" && SignUpVM.confirmpassword != "" && SignUpVM.IsTermsAgreed)&&SignUpVM.ValidationMessage == "")))
+//                        .padding(.top)
+//
+//                    HStack {
+//                        Text("have_an_Account?".localized(language)).foregroundColor(.secondary)
+//                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
+//
+//                        Button("Sign_In".localized(language)) {
+//                            self.presentationMode.wrappedValue.dismiss()
+//                        }
+//                        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+//                        .foregroundColor(Color("blueColor"))
+//                    }
+//                    .padding(.top,-10)
+//                    SwitchLanguageButton()
+//                }
+//                .padding(.bottom,10)
+//                .background(
+//                    Image("bottomBackimg")
+//                        .resizable()
+//                        .padding(.horizontal, -30)
+//                        .padding(.bottom,-250)
+//                )
+//            })
+
+            .fullScreenCover(isPresented: $presentPhoneVerify , onDismiss: {
+                    SignUpVM.verifyUser = false
+                    if SignUpVM.isMatchedOTP {
+                    SignUpVM.CreateAccount()
+                    }
+                }, content: {
+                    PhoneVerificationView(op: .signup, phoneNumber: $SignUpVM.phoneNumber, CurrentOTP: $SignUpVM.currentOTP ,validFor: $SignUpVM.SecondsCount , matchedOTP: $SignUpVM.isMatchedOTP, isPresented: $presentPhoneVerify)
+                        .environmentObject(ResendOTPViewModel())
+                })
+       
+//            ZStack{
+//            VStack{
+//                Spacer()
+//                GradientButton(action: {
+//                    SignUpVM.VerifyAccount()
+//                }, Title: "Create_account".localized(language), IsDisabled: .constant(  !((SignUpVM.Drivername != "" && SignUpVM.phoneNumber != "" && SignUpVM.password != "" && SignUpVM.confirmpassword != "" && SignUpVM.IsTermsAgreed)&&SignUpVM.ValidationMessage == "")))
+//                    .padding(.top)
+//
+//                HStack {
+//                    Text("have_an_Account?".localized(language)).foregroundColor(.secondary)
+//                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
+//
+//                    Button("Sign_In".localized(language)) {
+//                        self.presentationMode.wrappedValue.dismiss()
+//                    }
+//                    .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+//                    .foregroundColor(Color("blueColor"))
+//                }
+//                .padding(.top,-10)
+//                SwitchLanguageButton()
+//                    .padding(.bottom,5)
+//            }
+//            .padding(.bottom,10)
+//            .background(
+//                Image("bottomBackimg")
+//                    .resizable()
+////                    .frame(height:120)
+//                    .padding(.horizontal, -30)
+//                    .padding(.bottom,-250)
+//            )
+//            .frame(height:180)
+//            }
+//            .ignoresSafeArea(.keyboard)
+            //            .ignoresSafeArea( edges: .bottom)
+        
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false,  forgroundColor: .clear, content: {
                 VStack{
                     GradientButton(action: {
@@ -147,8 +227,9 @@ struct SignUpView: View {
                         .foregroundColor(Color("blueColor"))
                     }
                     .padding(.top,-10)
+                    SwitchLanguageButton()
                 }
-                .padding(.bottom,hasNotch ? 30:15)
+                .padding(.bottom,10)
                 .background(
                     Image("bottomBackimg")
                         .resizable()
@@ -156,15 +237,8 @@ struct SignUpView: View {
                         .padding(.bottom,-250)
                 )
             })
-                .fullScreenCover(isPresented: $presentPhoneVerify , onDismiss: {
-                    SignUpVM.verifyUser = false
-                    if SignUpVM.isMatchedOTP {
-                    SignUpVM.CreateAccount()
-                    }
-                }, content: {
-                    PhoneVerificationView(op: .signup, phoneNumber: $SignUpVM.phoneNumber, CurrentOTP: $SignUpVM.currentOTP ,validFor: $SignUpVM.SecondsCount , matchedOTP: $SignUpVM.isMatchedOTP, isPresented: $presentPhoneVerify)
-                        .environmentObject(ResendOTPViewModel())
-                })
+        
+        
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         
@@ -211,7 +285,8 @@ struct SignUpView: View {
                         SignUpVM.isAlert = false
                     })
                     }
-                }.ignoresSafeArea()
+                }
+                    .ignoresSafeArea()
                     .edgesIgnoringSafeArea(.all)
 //                    .onChange(of: SignUpVM.isAlert, perform: {newval in
 //                        DispatchQueue.main.async {

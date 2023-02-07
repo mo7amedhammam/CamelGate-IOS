@@ -82,7 +82,34 @@ struct BottomSheetView <Content: View>: View {
 
 struct PopUpView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheetView(IsPresented: .constant(true), withcapsule: true, bluryBackground: true, forgroundColor: .white, content: {})
+        BottomSheetView(IsPresented: .constant(true), withcapsule: true, bluryBackground: true, forgroundColor: .white, content: {
+            VStack{
+                GradientButton(action: {
+//                    SignUpVM.VerifyAccount()
+                }, Title: "Create_account".localized(language), IsDisabled: .constant(false))
+                    .padding(.top)
+                
+                HStack {
+                    Text("have_an_Account?".localized(language)).foregroundColor(.secondary)
+                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
+                    
+                    Button("Sign_In".localized(language)) {
+//                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                    .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+                    .foregroundColor(Color("blueColor"))
+                }
+                .padding(.top,-10)
+                SwitchLanguageButton()
+            }
+            .padding(.bottom,10)
+            .background(
+                Image("bottomBackimg")
+                    .resizable()
+                    .padding(.horizontal, -30)
+                    .padding(.bottom,-250)
+            )
+        })
     }
 }
 

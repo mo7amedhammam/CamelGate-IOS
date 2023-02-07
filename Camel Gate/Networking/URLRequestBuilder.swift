@@ -81,6 +81,4 @@ extension URLRequestBuilder {
         return UIDevice.current.identifierForVendor?.uuidString ?? ""
     }
 
-
-
 }
