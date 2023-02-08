@@ -253,13 +253,13 @@ class DriverInfoViewModel: ObservableObject {
             "CreateTruckDto.TruckManufacturerId"   : Int( TruckManfacturerId ) ?? 0
         ]
         // optional
-        if citizenId != ""{
+        if citizenId != "" && citizenId != "0"{
             params["CitizenId"] = citizenId
         }
-        if residentId != ""{
+        if residentId != "" && residentId != "0"{
             params["ResidentId"] = residentId
         }
-        if borderId != ""{
+        if borderId != "" && borderId != "0"{
             params["BorderId"] = borderId
         }
         let imgs = ["Image":DriverImage]
