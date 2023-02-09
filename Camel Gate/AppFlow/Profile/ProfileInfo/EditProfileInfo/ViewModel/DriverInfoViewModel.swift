@@ -197,6 +197,8 @@ class DriverInfoViewModel: ObservableObject {
     @Published  var TruckLicenseExpirationDate = Date()
     @Published  var TruckLicenseExpirationDateStr = ""
     
+    @Published var IsDropDownChange = false
+
     @Published var IsTermsAgreed = false
     
     //------- output

@@ -137,8 +137,14 @@ struct EditProfileInfoView: View {
                                 .frame(width:130)
                                 .overlay(content: {
                                     Menu {
-                                        Button("Male".localized(language), action: {profileVM.gender = 1})
-                                        Button("Female".localized(language), action: {profileVM.gender = 2})
+                                        Button("Male".localized(language), action: {
+                                            profileVM.gender = 1
+                                            profileVM.IsDropDownChange = true
+                                        })
+                                        Button("Female".localized(language), action: {
+                                            profileVM.gender = 2
+                                            profileVM.IsDropDownChange = true
+                                        })
                                     } label: {
                                         HStack{
                                             Spacer()
@@ -163,6 +169,7 @@ struct EditProfileInfoView: View {
                                             , action: {
                                                 profileVM.NationalityId = nationality.id ?? 0
                                                 profileVM.nationalityName = nationality.title ?? ""
+                                                profileVM.IsDropDownChange = true
                                             })
                                     }
                                 } label: {
@@ -185,7 +192,7 @@ struct EditProfileInfoView: View {
                                     HStack {
                                         Text(profileVM.RedisentHint.localized(language))
                                             .foregroundColor(.red)
-                                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
+                                            .font(language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
                                         Spacer()
                                     }
                                 }
@@ -195,14 +202,23 @@ struct EditProfileInfoView: View {
                                     .frame(width:130)
                                     .overlay(content: {
                                         Menu {
-                                            Button("Citizen_Id".localized(language), action: {profileVM.RedisentOptions = 1
+                                            Button("Citizen_Id".localized(language), action: {
+                                                profileVM.RedisentOptions = 1
                                                 //                                                profileVM.RedisentNumLength = 10
+                                                profileVM.IsDropDownChange = true
+
                                             })
-                                            Button("Resident_Id".localized(language), action: {profileVM.RedisentOptions = 2
+                                            Button("Resident_Id".localized(language), action: {
+                                                profileVM.RedisentOptions = 2
                                                 //                                                profileVM.RedisentNumLength = 16
+                                                profileVM.IsDropDownChange = true
+
                                             })
-                                            Button("Border_Id".localized(language), action: {profileVM.RedisentOptions = 3
+                                            Button("Border_Id".localized(language), action: {
+                                                profileVM.RedisentOptions = 3
                                                 //                                                profileVM.RedisentNumLength = 10
+                                                profileVM.IsDropDownChange = true
+
                                             })
                                             
                                         } label: {
@@ -222,14 +238,17 @@ struct EditProfileInfoView: View {
                                 
                                 InputTextField(iconName: "", placeholder: "Id".localized(language), placeholderColor:(profileVM.validations == .ResidentId && profileVM.ValidationMessage != "") ? .red:.gray.opacity(0.5), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
                                     .onChange(of: profileVM.citizenId  ){ newval in
+                                        profileVM.IsDropDownChange = true
                                         profileVM.RedisentNumLength = 10
                                         profileVM.citizenId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish():String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish()
                                     }
                                     .onChange(of: profileVM.residentId  ){ newval in
+                                        profileVM.IsDropDownChange = true
                                         profileVM.RedisentNumLength = 16
                                         profileVM.residentId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish():String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish()
                                     }
                                     .onChange(of: profileVM.borderId  ){ newval in
+                                        profileVM.IsDropDownChange = true
                                         profileVM.RedisentNumLength = 16
                                         profileVM.borderId = language.rawValue == "ar" ? String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish():String(newval.prefix(profileVM.RedisentNumLength)).replacedArabicDigitsWithEnglish()
                                     }
@@ -324,6 +343,7 @@ struct EditProfileInfoView: View {
                                         Button(type.title ?? "", action: {
                                             profileVM.TruckTypeId = "\(type.id ?? 0)"
                                             profileVM.TruckTypeName = "\(type.title ?? "")"
+                                            profileVM.IsDropDownChange = true
                                         })
                                     }
                                 } label: {
@@ -349,6 +369,7 @@ struct EditProfileInfoView: View {
                                             Button(Manfacturer.title ?? "", action: {
                                                 profileVM.TruckManfacturerId = "\(Manfacturer.id ?? 0)"
                                                 profileVM.TruckManfacturerName = "\(Manfacturer.title ?? "")"
+                                                profileVM.IsDropDownChange = true
                                             })
                                         }
                                     } label: {
@@ -371,6 +392,7 @@ struct EditProfileInfoView: View {
                                         ForEach(getYearsArr().reversed(),id:\.self){ year1 in
                                             Button(year1, action: {
                                                 profileVM.TruckManfactureYear = "\(year1)"
+                                                profileVM.IsDropDownChange = true
                                             })
                                         }
                                     } label: {
@@ -394,6 +416,7 @@ struct EditProfileInfoView: View {
                                         ForEach(1..<5,id:\.self){ AxeNum in
                                             Button("\(AxeNum)", action: {
                                                 profileVM.NumberofAxe = "\(AxeNum)"
+                                                profileVM.IsDropDownChange = true
                                             })
                                         }
                                     } label: {
@@ -411,6 +434,7 @@ struct EditProfileInfoView: View {
                             
                             InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text:$profileVM.TruckPlate)
                                 .onChange(of: profileVM.TruckPlate, perform: {newval in
+                                    profileVM.IsDropDownChange = true
 //                                    profileVM.TruckPlate = language.rawValue == "ar" ?
 //                                    newval.replacedArabicDigitsWithEnglish():newval.replacedArabicDigitsWithEnglish()
                                 })
@@ -432,6 +456,7 @@ struct EditProfileInfoView: View {
                             InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
                                 
                                 .onChange(of: profileVM.TruckLicense  ){ newval in
+                                    profileVM.IsDropDownChange = true
                                     profileVM.TruckLicense = language.rawValue == "ar" ? newval.replacedArabicDigitsWithEnglish():newval.replacedArabicDigitsWithEnglish()
                                     profileVM.TruckLicense =  String(newval.prefix( profileVM.LicenseNumLength))
                                 }
@@ -537,7 +562,23 @@ struct EditProfileInfoView: View {
                     DispatchQueue.main.async{
                         profileVM.CompleteProfile()
                     }
-                },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant( ((profileVM.Drivername == "" || profileVM.BirthdateStr == "" || (profileVM.validations != .none && profileVM.ValidationMessage != "") || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == ""))) && (!(taskStatus == .update && isEditing) || (taskStatus == .update && (profileVM.Drivername == "" || profileVM.BirthdateStr == "" || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "") || (profileVM.validations != .none && profileVM.ValidationMessage != "")))))
+                },Title: taskStatus == .create ? "Create_account".localized(language): "Save_Changes".localized(language) , IsDisabled:.constant(
+                    
+                    self.taskStatus == .create ? IsClearinputs() : !(isEditing && !IsValidinputs())
+                    
+//                    (
+//                        (
+////                            taskStatus == .create && IsClearinputs()
+//                            false
+//                     )
+//                     ||
+//                     (
+////                        !(taskStatus == .update && isEditing) ||
+//                        ((taskStatus == .update && !isEditing) && (profileVM.Drivername == "" || profileVM.BirthdateStr == "" || profileVM.LicenseNumber == "" || profileVM.LicenseExpireDateStr == "" || profileVM.TruckTypeName == "" || profileVM.TruckManfacturerName == "" || profileVM.TruckLicense == "" || profileVM.TruckLicenseIssueDateStr == "" || profileVM.TruckLicenseExpirationDateStr == "" || profileVM.TruckPlate == "" || profileVM.TruckManfactureYear == "" || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "") || (profileVM.validations != .none && profileVM.ValidationMessage != "") || profileVM.IsDropDownChange == false))
+//                     )
+//                    )
+//                    || (taskStatus == .update && isEditing == false)
+                )
                 )
             })
         }
@@ -551,6 +592,10 @@ struct EditProfileInfoView: View {
                     profileVM.Drivername = enteredDriverName
                 }
             }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                profileVM.IsDropDownChange = false
+            })
         })
        
         .overlay(
@@ -600,6 +645,7 @@ struct EditProfileInfoView: View {
             }
         })
         .onChange(of: selectedDate, perform: {newval in
+            profileVM.IsDropDownChange = true
             switch dateSorceinput{
             case .birthDate:
                 print(newval)
@@ -634,6 +680,7 @@ struct EditProfileInfoView: View {
             }
         })
         .onChange(of: profileVM.RedisentOptions, perform: {newval in
+//            profileVM.IsDropDownChange = true
             if newval == 1 {
                 profileVM.RedisentHint = "Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers"
                 profileVM.residentId = ""
@@ -649,22 +696,26 @@ struct EditProfileInfoView: View {
             }
         })
         .onChange(of: profileVM.Birthdate, perform: {newval in
+//            profileVM.IsDropDownChange = true
             profileVM.BirthdateStr = newval.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd",isPost: true)
 
-            print("\(newval.formatted(.dateTime))") // 12/31/1998, 2:00 AM
-            print("\(newval.formatted(.dateTime.hour()))") // 2 AM
-            print("\(newval.formatted(.dateTime.hour().minute()))") // 2:00 AM
-            print("\(newval.formatted(.dateTime.day()))") // 31
-            print("\(newval.formatted(.dateTime.month()))") // Dec
-            print("\(newval.formatted(.dateTime.year().month().day()))") //  Dec 31, 1998
+//            print("\(newval.formatted(.dateTime))") // 12/31/1998, 2:00 AM
+//            print("\(newval.formatted(.dateTime.hour()))") // 2 AM
+//            print("\(newval.formatted(.dateTime.hour().minute()))") // 2:00 AM
+//            print("\(newval.formatted(.dateTime.day()))") // 31
+//            print("\(newval.formatted(.dateTime.month()))") // Dec
+//            print("\(newval.formatted(.dateTime.year().month().day()))") //  Dec 31, 1998
         })
         .onChange(of: profileVM.LicenseExpireDate, perform: {newval in
+            profileVM.IsDropDownChange = true
             profileVM.LicenseExpireDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd",isPost: true)
         })
         .onChange(of: profileVM.TruckLicenseIssueDate, perform: {newval in
+            profileVM.IsDropDownChange = true
             profileVM.TruckLicenseIssueDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd",isPost: true)
         })
         .onChange(of: profileVM.TruckLicenseExpirationDate, perform: {newval in
+            profileVM.IsDropDownChange = true
             profileVM.TruckLicenseExpirationDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd",isPost: true)
         })
         
@@ -685,6 +736,7 @@ struct EditProfileInfoView: View {
                             showBottomSheet.toggle()
                             DispatchQueue.main.async(execute: {
                                 profileVM.UserCreated = false
+                                profileVM.IsDropDownChange = false
                             })
                         }
                     }, label: {
@@ -808,6 +860,45 @@ extension EditProfileInfoView{
         let calendar = Calendar.current
         let currentYear = calendar.component(.year, from: currentDate)
         return (1950...currentYear).map { String($0) }
+    }
+    
+    
+    func IsClearinputs() -> Bool {
+        return (
+            profileVM.Drivername == ""
+            || profileVM.BirthdateStr == ""
+            || profileVM.LicenseNumber == ""
+            || profileVM.LicenseExpireDateStr == ""
+            || profileVM.TruckTypeName == ""
+            || profileVM.TruckManfacturerName == ""
+            || profileVM.TruckLicense == ""
+            || profileVM.TruckLicenseIssueDateStr == ""
+            || profileVM.TruckLicenseExpirationDateStr == ""
+            || profileVM.TruckPlate == ""
+            || profileVM.TruckManfactureYear == ""
+            || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "")
+            || (profileVM.validations != .none && profileVM.ValidationMessage != "")
+        )
+    }
+    
+    func IsValidinputs() -> Bool {
+        return ( (
+            profileVM.Drivername == ""
+            || profileVM.BirthdateStr == ""
+            || profileVM.LicenseNumber == ""
+            || profileVM.LicenseExpireDateStr == ""
+            || profileVM.TruckTypeName == ""
+            || profileVM.TruckManfacturerName == ""
+            || profileVM.TruckLicense == ""
+            || profileVM.TruckLicenseIssueDateStr == ""
+            || profileVM.TruckLicenseExpirationDateStr == ""
+            || profileVM.TruckPlate == ""
+            || profileVM.TruckManfactureYear == ""
+            || (profileVM.citizenId == "" && profileVM.residentId == "" && profileVM.borderId == "")
+            || (profileVM.validations != .none && profileVM.ValidationMessage != "")
+            || profileVM.IsDropDownChange == false
+        )
+        )
     }
     
 }
