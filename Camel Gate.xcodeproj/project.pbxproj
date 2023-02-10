@@ -55,6 +55,8 @@
 		C84EFE8428B0FC8100399C78 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EFE8328B0FC8100399C78 /* ChangePasswordView.swift */; };
 		C84EFE8628B0FE1000399C78 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EFE8528B0FE1000399C78 /* ChangePasswordViewModel.swift */; };
 		C84EFE8828B0FE7100399C78 /* ChangePasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EFE8728B0FE7100399C78 /* ChangePasswordModel.swift */; };
+		C85166A82995EF4600CE8E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8F34F5A29757F160047FC1C /* GoogleService-Info.plist */; };
+		C8577E5B29965F6A009CBA6E /* stringsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8577E5A29965F6A009CBA6E /* stringsExtension.swift */; };
 		C85D7D9C289B66D80088227D /* calendarPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7D9B289B66D80088227D /* calendarPopUp.swift */; };
 		C85D7D9F289B74C90088227D /* DriverInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7D9E289B74C90088227D /* DriverInfoViewModel.swift */; };
 		C85D7DA1289BCB460088227D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA0289BCB460088227D /* ImagePicker.swift */; };
@@ -67,6 +69,7 @@
 		C86D717529506CF2005AA23A /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D717429506CF2005AA23A /* CustomAlert.swift */; };
 		C870F89828901D9100CCFD9B /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89728901D9100CCFD9B /* OnBoardingView.swift */; };
 		C870F89B28901F4100CCFD9B /* AnimationExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C870F89A28901F4100CCFD9B /* AnimationExtenstions.swift */; };
+		C8725E8D2995E69B0045225F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8C4A1212952180D006E1935 /* InfoPlist.strings */; };
 		C87BD21528915519002D115A /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21428915519002D115A /* KeyboardHandler.swift */; };
 		C87BD21928917AC2002D115A /* ChangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87BD21828917AC1002D115A /* ChangeLanguageView.swift */; };
 		C87CAC7228B3CBB100A4F8EC /* App-Loading2.json in Resources */ = {isa = PBXBuildFile; fileRef = C87CAC7128B3CBB100A4F8EC /* App-Loading2.json */; };
@@ -90,7 +93,6 @@
 		C8AC4FD22992628B0004D1B6 /* SwitchLanguageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC4FD12992628B0004D1B6 /* SwitchLanguageButton.swift */; };
 		C8BB855E289AA8210099DE1F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */; };
 		C8BB8561289AAB580099DE1F /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB8560289AAB580099DE1F /* SignUpModel.swift */; };
-		C8C4A11F2952180D006E1935 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8C4A1212952180D006E1935 /* InfoPlist.strings */; };
 		C8C5583F2898118300D46777 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5583E2898118300D46777 /* SplashScreenView.swift */; };
 		C8C5584228981E9800D46777 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5584128981E9800D46777 /* SignInViewModel.swift */; };
 		C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C558442898322000D46777 /* SignUpViewModel.swift */; };
@@ -128,14 +130,12 @@
 		C8E4C310288F729B005FDB7C /* NoteScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4C30F288F729B005FDB7C /* NoteScreenView.swift */; };
 		C8E8EC84294F3E3B004B1C61 /* DriverRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E8EC83294F3E3B004B1C61 /* DriverRatesModel.swift */; };
 		C8E8EC86294F3E4D004B1C61 /* DriverRatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E8EC85294F3E4D004B1C61 /* DriverRatesViewModel.swift */; };
-		C8F34F5B29757F160047FC1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8F34F5A29757F160047FC1C /* GoogleService-Info.plist */; };
 		FA45B7CF2885155B002A9654 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA45B7CE2885155B002A9654 /* HeaderView.swift */; };
 		FA4E27AD288C537E0047265D /* ShipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AC288C537E0047265D /* ShipView.swift */; };
 		FA4E27AF288C53A20047265D /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27AE288C53A20047265D /* FilterHeaderView.swift */; };
 		FA4E27B1288C53D10047265D /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27B0288C53D10047265D /* FilterView.swift */; };
 		FA4E27B3288C540F0047265D /* tripCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E27B2288C540F0047265D /* tripCellView.swift */; };
 		FA57BDE828A1A968007E5329 /* HelpOnRoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57BDE728A1A968007E5329 /* HelpOnRoadView.swift */; };
-		FA5DBAE3289B4EE700C62105 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = FA5DBAE2289B4EE700C62105 /* SwiftUICharts */; };
 		FA626CE028A7F3FD00714C67 /* HelpRequestSentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA626CDF28A7F3FD00714C67 /* HelpRequestSentView.swift */; };
 		FA7077FD28935B9300879399 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7077FC28935B9300879399 /* DetailsView.swift */; };
 		FA7078012895FD9500879399 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7078002895FD9500879399 /* NotificationsView.swift */; };
@@ -213,6 +213,7 @@
 		C84EFE8328B0FC8100399C78 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		C84EFE8528B0FE1000399C78 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		C84EFE8728B0FE7100399C78 /* ChangePasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordModel.swift; sourceTree = "<group>"; };
+		C8577E5A29965F6A009CBA6E /* stringsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stringsExtension.swift; sourceTree = "<group>"; };
 		C85D7D9B289B66D80088227D /* calendarPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarPopUp.swift; sourceTree = "<group>"; };
 		C85D7D9E289B74C90088227D /* DriverInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoViewModel.swift; sourceTree = "<group>"; };
 		C85D7DA0289BCB460088227D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -328,7 +329,6 @@
 			files = (
 				FBEC1DE8FACEF97DC7759D67 /* Pods_Camel_Gate.framework in Frameworks */,
 				C8A551CD2948C1D100C9D4A6 /* FirebaseCrashlytics in Frameworks */,
-				FA5DBAE3289B4EE700C62105 /* SwiftUICharts in Frameworks */,
 				C83C4D4A28B2949300208751 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -694,6 +694,7 @@
 				C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */,
 				C8D82A3C28A46CE20081E620 /* DateFormatsExt.swift */,
 				C8DF8F022949EBFD0026F6B8 /* BindingExt.swift */,
+				C8577E5A29965F6A009CBA6E /* stringsExtension.swift */,
 			);
 			path = Extenstions;
 			sourceTree = "<group>";
@@ -1340,7 +1341,6 @@
 			);
 			name = "Camel Gate";
 			packageProductDependencies = (
-				FA5DBAE2289B4EE700C62105 /* SwiftUICharts */,
 				C83C4D4928B2949300208751 /* Lottie */,
 				C8A551CC2948C1D100C9D4A6 /* FirebaseCrashlytics */,
 			);
@@ -1374,7 +1374,6 @@
 			);
 			mainGroup = FAEADE322884BDC7004535CE;
 			packageReferences = (
-				FA5DBAE1289B4EE700C62105 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 				C83C4D4828B2949300208751 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				C8A551CB2948C1D100C9D4A6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
@@ -1392,9 +1391,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C85166A82995EF4600CE8E85 /* GoogleService-Info.plist in Resources */,
+				C8725E8D2995E69B0045225F /* InfoPlist.strings in Resources */,
 				C81FA28A28AD23A90012D823 /* GESSTextMedium-Medium.otf in Resources */,
 				FAEADEB52884D3D0004535CE /* SFUIText-Semibold.ttf in Resources */,
-				C8F34F5B29757F160047FC1C /* GoogleService-Info.plist in Resources */,
 				FAEADE462884BDC9004535CE /* Preview Assets.xcassets in Resources */,
 				FAEADEB42884D3D0004535CE /* SFUIText-Regular.ttf in Resources */,
 				FAEADEB02884D3D0004535CE /* SFUIText-Light.ttf in Resources */,
@@ -1402,7 +1402,6 @@
 				FAEADEAF2884D3D0004535CE /* SFUIText-BoldItalic.ttf in Resources */,
 				FAEADEB22884D3D0004535CE /* SFUIText-Heavy.ttf in Resources */,
 				FAEADEB62884D3D0004535CE /* SFUIText-RegularItalic.ttf in Resources */,
-				C8C4A11F2952180D006E1935 /* InfoPlist.strings in Resources */,
 				FAEADEB12884D3D0004535CE /* SFUIText-SemiboldItalic.ttf in Resources */,
 				FAEADEB72884D3D0004535CE /* SFUIText-Bold.ttf in Resources */,
 				C8C949632889791F0057EE7E /* Localizable.strings in Resources */,
@@ -1504,6 +1503,7 @@
 				C82EC8F5289EAB090042A27F /* ApprovedShipmentModel.swift in Sources */,
 				C82EC8F7289EACC90042A27F /* ApprovedShipmentViewModel.swift in Sources */,
 				C8C5584228981E9800D46777 /* SignInViewModel.swift in Sources */,
+				C8577E5B29965F6A009CBA6E /* stringsExtension.swift in Sources */,
 				C85D7DA6289C0B5D0088227D /* DriverInfoModel.swift in Sources */,
 				C85D7DA3289BD2F60088227D /* ImageDataExtenstion.swift in Sources */,
 				FAEADE3F2884BDC7004535CE /* Camel_GateApp.swift in Sources */,
@@ -1866,14 +1866,6 @@
 				version = 9.6.0;
 			};
 		};
-		FA5DBAE1289B4EE700C62105 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/willdale/SwiftUICharts";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1886,11 +1878,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C8A551CB2948C1D100C9D4A6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
-		};
-		FA5DBAE2289B4EE700C62105 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FA5DBAE1289B4EE700C62105 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

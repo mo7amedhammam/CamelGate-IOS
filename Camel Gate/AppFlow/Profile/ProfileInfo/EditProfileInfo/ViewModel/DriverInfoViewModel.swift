@@ -131,6 +131,21 @@ class DriverInfoViewModel: ObservableObject {
     }
     
     @Published  var Email = ""
+    {
+        didSet{
+            if self.Email.isEmpty{
+                self.ValidationMessage = ""
+                validations = .none
+            } else if !self.Email.isValidEmail(){
+                self.ValidationMessage = "Invalid_Email"
+                validations = .Email
+            } else {
+                self.ValidationMessage = ""
+                validations = .none
+            }
+        }
+    }
+
     @Published  var LicenseNumber = ""{
         didSet{
             let filtered = LicenseNumber.filter {$0.isNumber}
@@ -392,4 +407,6 @@ class DriverInfoViewModel: ObservableObject {
         }
     }
 }
+
+
 

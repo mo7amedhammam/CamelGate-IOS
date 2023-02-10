@@ -44,8 +44,8 @@ struct RateSheetView:View{
                         .frame( height: 100)
                         .padding(.vertical,10)
                     
-                    Text("You_just_have_gained".localized(language)+"\(ApprovedShipmentVM.publishedapprovedShipmentModel?.driverOfferValue ?? 0)")
-                        .lineLimit(.bitWidth)
+//                    Text("You_just_have_gained".localized(language)+"\(ApprovedShipmentVM.publishedapprovedShipmentModel?.driverOfferValue ?? 0)")
+//                        .lineLimit(.bitWidth)
                     
                     //                NavigationLink(destination:  SendingRateView().environmentObject(environments)   , label: {
                     

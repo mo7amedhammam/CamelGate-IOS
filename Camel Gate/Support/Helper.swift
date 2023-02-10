@@ -241,7 +241,7 @@ enum ActiveAlert {
 }
 
 enum InvalidFields {
-    case none, PhoneNumber, Password, ConfirmPassword, Name, unauthorized, DriverLicense, TruckLicense, ResidentId
+    case none, PhoneNumber, Password, ConfirmPassword, Name, Email, unauthorized, DriverLicense, TruckLicense, ResidentId
 }
 
 
@@ -260,6 +260,3 @@ func convDateToDate(input: String, format:String) -> Date {
     }
     return newdate
 }
-
-
-

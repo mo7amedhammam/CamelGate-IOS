@@ -117,15 +117,6 @@
           "revision": "ab3a58b7209a17d781c0d1dbb3e1ff3da306bae8",
           "version": "1.20.3"
         }
-      },
-      {
-        "package": "SwiftUICharts",
-        "repositoryURL": "https://github.com/willdale/SwiftUICharts",
-        "state": {
-          "branch": null,
-          "revision": "9a71bffb72c35960c6836891ca1e13e089532991",
-          "version": "2.10.1"
-        }
       }
     ]
   },

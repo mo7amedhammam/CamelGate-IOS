@@ -258,12 +258,22 @@ struct EditProfileInfoView: View {
                                     })
                             }
                         }
-                        
+                     
+                        VStack{
+                            if profileVM.validations == .Email{
+                                HStack{
+                                    Text(profileVM.ValidationMessage.localized(language))
+                                        .foregroundColor(.red)
+                                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr11:Font.camelfonts.Reg11)
+                                    Spacer()
+                                }
+                            }
                         InputTextField(iconName: "Shipments",iconColor: Color("OrangColor"), placeholder: "Email".localized(language), text:$profileVM.Email)
                             .focused($inFocus,equals:3)
                             .onTapGesture(perform: {
                                 inFocus = 3
                             })
+                    }
                         VStack {
                             if profileVM.validations == .DriverLicense {
                                 HStack{
@@ -553,6 +563,7 @@ struct EditProfileInfoView: View {
             TitleBar(Title: taskStatus == .create ? "Create_an_account".localized(language) : "Profile_info".localized(language), navBarHidden: true, leadingButton: .backButton,trailingButton: taskStatus == .update ? LoginManger.getUser()?.isDriverInCompany ?? false ? TopButtons.none :.editButton:TopButtons.none , trailingAction: {
                 DispatchQueue.main.async(execute: {
                     isEditing.toggle()
+                    profileVM.IsDropDownChange = false
                 })
             })
             
@@ -593,9 +604,9 @@ struct EditProfileInfoView: View {
                 }
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
-                profileVM.IsDropDownChange = false
-            })
+//            DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+//                profileVM.IsDropDownChange = false
+//            })
         })
        
         .overlay(
@@ -605,6 +616,15 @@ struct EditProfileInfoView: View {
                         }
             }
         )
+        .onChange(of: profileVM.DriverImage, perform: {newval in
+            profileVM.IsDropDownChange = true
+        })
+        .onChange(of: profileVM.Drivername, perform: {newval in
+            profileVM.IsDropDownChange = true
+        })
+        .onChange(of: profileVM.Email, perform: {newval in
+            profileVM.IsDropDownChange = true
+        })
         .onChange(of: dateSorceinput , perform: {newval in
             switch newval{
             case .birthDate:
@@ -667,7 +687,6 @@ struct EditProfileInfoView: View {
                 print(newval)
             }
         })
-
         .onChange(of: profileVM.UserCreated, perform: {newval in
             if newval == true{
                 switch taskStatus {
@@ -717,6 +736,9 @@ struct EditProfileInfoView: View {
         .onChange(of: profileVM.TruckLicenseExpirationDate, perform: {newval in
             profileVM.IsDropDownChange = true
             profileVM.TruckLicenseExpirationDateStr = newval.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy": "yyyy/MM/dd",isPost: true)
+        })
+        .onChange(of: profileVM.Drivername, perform: {newval in
+            profileVM.IsDropDownChange = true
         })
         
         //MARK: -- updated popup --
