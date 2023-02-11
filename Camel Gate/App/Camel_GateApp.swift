@@ -6,7 +6,10 @@
 //
 
 import SwiftUI
-import FirebaseCore
+import Firebase
+import FirebaseMessaging
+import UserNotifications
+
 
 let GbaseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
 let Gapikey = "AIzaSyAy8wLUdHfHVmzlWLNPVF96SO0GY1gP4Po"
@@ -37,15 +40,123 @@ struct Camel_GateApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
+    let gcmMessageIDKey = "gcm.Message_ID"
+
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
+
+      //    MARK: ------ Notifications setup -------
+      if #available(iOS 10.0, *) {
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+          options: authOptions,
+          completionHandler: {_, _ in })
+      } else {
+        let settings: UIUserNotificationSettings =
+        UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+      }
+      application.registerForRemoteNotifications()
+
       
 //      UserDefaults.standard.set("EN", forKey: "AppleLanguage")
 
     return true
   }
+    
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+      Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    
+    //    MARK: ------ Notifications Messaging -------
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+            if let messageID = userInfo[gcmMessageIDKey] {
+                print("Message ID: \(messageID)")
+            }
+            print(userInfo)
+        }
+
+        func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+            if let messageID = userInfo[gcmMessageIDKey] {
+                print("Message ID: \(messageID)")
+            }
+            print(userInfo)
+            completionHandler(UIBackgroundFetchResult.newData)
+        }
+    
+    
 }
+
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+      print("Firebase registration token: \(fcmToken ?? "")")
+
+      let dataDict:[String: String] = ["token": fcmToken ?? ""]
+      NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+    }
+}
+
+
+@available(iOS 10, *)
+extension AppDelegate : UNUserNotificationCenterDelegate {
+
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              willPresent notification: UNNotification,
+    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    let userInfo = notification.request.content.userInfo
+    print(userInfo)
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
+      completionHandler([[.banner, .sound]])
+  }
+
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              didReceive response: UNNotificationResponse,
+                              withCompletionHandler completionHandler: @escaping () -> Void) {
+   // completionHandler()
+      
+      let userInfo = response.notification.request.content.userInfo
+            if let messageID = userInfo[gcmMessageIDKey] {
+                print("Message ID: \(messageID)")
+            }
+      
+      // action here  ..,  if  you want to print object from firebase
+      print(" infoooooooooooooooooo : \(userInfo)")
+//              print(" titleeeeeeeeeeeeeeee : \(userInfo["title"] as! String)") // title or description or image
+
+      if userInfo[""] as! String == "" {
+//          MARK: --- user action ----
+          
+//          if userInfo["red"] as! Int == 0 {
+          
+          
+//                        let mainSB = UIStoryboard(name: "Main", bundle: nil)
+//                        if let RootVc = mainSB.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
+//                            RootVc.Revision_Id             = Int(userInfo["item_id"] as? String ?? "0")!
+//                            RootVc.TypeFrom = "notification"
+//                            UIWindow.key.rootViewController = RootVc
+//                        }
+//                    }
+          
+          
+          
+      }
+      
+      
+      
+  }
+}
+
+
 
 #if canImport(UIKit)
 extension View {

@@ -62,6 +62,9 @@
 		C85D7DA1289BCB460088227D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA0289BCB460088227D /* ImagePicker.swift */; };
 		C85D7DA3289BD2F60088227D /* ImageDataExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */; };
 		C85D7DA6289C0B5D0088227D /* DriverInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7DA5289C0B5D0088227D /* DriverInfoModel.swift */; };
+		C85DD8C829980951004DCADE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C85DD8C729980951004DCADE /* FirebaseAnalytics */; };
+		C85DD8CA29980951004DCADE /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C85DD8C929980951004DCADE /* FirebaseCrashlytics */; };
+		C85DD8CC29980951004DCADE /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C85DD8CB29980951004DCADE /* FirebaseMessaging */; };
 		C85E829F28D88053004361B0 /* LocationAddressVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E829E28D88053004361B0 /* LocationAddressVM.swift */; };
 		C8640ECE292F9940007A4E99 /* HomeWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8640ECD292F9940007A4E99 /* HomeWalletViewModel.swift */; };
 		C8640ED0292F9B88007A4E99 /* HomePageWalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8640ECF292F9B88007A4E99 /* HomePageWalletModel.swift */; };
@@ -86,7 +89,6 @@
 		C8A0781C288D9B670084C0A6 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0781B288D9B670084C0A6 /* RatingView.swift */; };
 		C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0781E288DA3030084C0A6 /* ShipmentRateCell.swift */; };
 		C8A07822288DA4CD0084C0A6 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A07821288DA4CD0084C0A6 /* StarsView.swift */; };
-		C8A551CD2948C1D100C9D4A6 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C8A551CC2948C1D100C9D4A6 /* FirebaseCrashlytics */; };
 		C8A8C83128FD99E50031DD70 /* FilteredFhipmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8C83028FD99E50031DD70 /* FilteredFhipmentsView.swift */; };
 		C8AB5EB829322FAD003F7EE4 /* RateSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AB5EB729322FAD003F7EE4 /* RateSheetView.swift */; };
 		C8AB5EBA2932352A003F7EE4 /* SendingRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AB5EB92932352A003F7EE4 /* SendingRateView.swift */; };
@@ -219,6 +221,7 @@
 		C85D7DA0289BCB460088227D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C85D7DA2289BD2F60088227D /* ImageDataExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataExtenstion.swift; sourceTree = "<group>"; };
 		C85D7DA5289C0B5D0088227D /* DriverInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoModel.swift; sourceTree = "<group>"; };
+		C85DD8C52997FF0C004DCADE /* Camel Gate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Camel Gate.entitlements"; sourceTree = "<group>"; };
 		C85E829E28D88053004361B0 /* LocationAddressVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAddressVM.swift; sourceTree = "<group>"; };
 		C8640ECD292F9940007A4E99 /* HomeWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWalletViewModel.swift; sourceTree = "<group>"; };
 		C8640ECF292F9B88007A4E99 /* HomePageWalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageWalletModel.swift; sourceTree = "<group>"; };
@@ -328,8 +331,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBEC1DE8FACEF97DC7759D67 /* Pods_Camel_Gate.framework in Frameworks */,
-				C8A551CD2948C1D100C9D4A6 /* FirebaseCrashlytics in Frameworks */,
+				C85DD8CA29980951004DCADE /* FirebaseCrashlytics in Frameworks */,
+				C85DD8CC29980951004DCADE /* FirebaseMessaging in Frameworks */,
 				C83C4D4A28B2949300208751 /* Lottie in Frameworks */,
+				C85DD8C829980951004DCADE /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1222,6 +1227,7 @@
 		FAEADE3D2884BDC7004535CE /* Camel Gate */ = {
 			isa = PBXGroup;
 			children = (
+				C85DD8C52997FF0C004DCADE /* Camel Gate.entitlements */,
 				C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */,
 				C8F34F5A29757F160047FC1C /* GoogleService-Info.plist */,
 				C0125B082899356E004B65E5 /* Networking */,
@@ -1342,7 +1348,9 @@
 			name = "Camel Gate";
 			packageProductDependencies = (
 				C83C4D4928B2949300208751 /* Lottie */,
-				C8A551CC2948C1D100C9D4A6 /* FirebaseCrashlytics */,
+				C85DD8C729980951004DCADE /* FirebaseAnalytics */,
+				C85DD8C929980951004DCADE /* FirebaseCrashlytics */,
+				C85DD8CB29980951004DCADE /* FirebaseMessaging */,
 			);
 			productName = "Camel Gate";
 			productReference = FAEADE3B2884BDC7004535CE /* Camel Gate.app */;
@@ -1375,7 +1383,7 @@
 			mainGroup = FAEADE322884BDC7004535CE;
 			packageReferences = (
 				C83C4D4828B2949300208751 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				C8A551CB2948C1D100C9D4A6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C85DD8C629980951004DCADE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = FAEADE3C2884BDC7004535CE /* Products */;
 			projectDirPath = "";
@@ -1761,6 +1769,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Camel Gate/Camel Gate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1797,6 +1806,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Camel Gate/Camel Gate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
@@ -1858,7 +1868,7 @@
 				version = 3.4.2;
 			};
 		};
-		C8A551CB2948C1D100C9D4A6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		C85DD8C629980951004DCADE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -1874,10 +1884,20 @@
 			package = C83C4D4828B2949300208751 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
-		C8A551CC2948C1D100C9D4A6 /* FirebaseCrashlytics */ = {
+		C85DD8C729980951004DCADE /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C8A551CB2948C1D100C9D4A6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = C85DD8C629980951004DCADE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		C85DD8C929980951004DCADE /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C85DD8C629980951004DCADE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		C85DD8CB29980951004DCADE /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C85DD8C629980951004DCADE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

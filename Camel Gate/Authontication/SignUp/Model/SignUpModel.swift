@@ -32,3 +32,9 @@ struct SignUpModel : Codable{
 //        case isDriverInCompany = "isDriverInCompany"
     }
 }
+
+
+
+struct NotificationModel:Codable{
+    let title, description : String?
+}
