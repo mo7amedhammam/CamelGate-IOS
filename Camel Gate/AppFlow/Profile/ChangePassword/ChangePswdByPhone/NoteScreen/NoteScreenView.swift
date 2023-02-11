@@ -33,9 +33,8 @@ struct NoteScreenView: View {
                 
                 HStack{
                     Text("Code_will_be_sent_to_+699".localized(language))
-                                        
-                    Text(resendOTPVM.phoneNumber)
-                        .foregroundColor(Color("Second_Color"))
+                        Text("Country_Code".localized(language) + resendOTPVM.phoneNumber)
+                            .foregroundColor(Color("Second_Color"))
                 }
                 .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
                 .multilineTextAlignment(.center)
@@ -44,6 +43,7 @@ struct NoteScreenView: View {
                         .padding(.horizontal)
                         .onChange(of: resendOTPVM.phoneNumber){ newval in
                             resendOTPVM.phoneNumber =  String(newval.prefix(resendOTPVM.PhoneNumLength))
+                            phoneNumber = newval
                         }
 
                 GradientButton(action: {
@@ -105,6 +105,8 @@ struct NoteScreenView: View {
 
 struct NoteScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        NoteScreenView( phoneNumber: "")
+        ZStack {
+            NoteScreenView( phoneNumber: "")
+        }
     }
 }

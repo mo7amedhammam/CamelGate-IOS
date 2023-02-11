@@ -211,7 +211,8 @@
 "Please_enter_the_Verification_Code_\nwe_sent_to_your_mobile" = "ادخل كود التأكيد \nالذى تم ارسلناه إلى رقم هاتفك";
 "This_code_will_be_expired_within" = "صلاحية الكود سوف تنتهى خلال";
 "expired_or_Tomeout_codeMessage" = "كود غير صالح او وقت انتهى";
-"Code_sent_to_+966" = "تم إرسال الكود إلى +٩٦٦";
+"Code_sent_to_+966" = "تم إرسال الكود إلى";
+"Country_Code" = "+٩٦٦";
 "Error_Code" = "كود خطأ";
 "Resend_Code" = "إرسال مره أخرى";
 "Send_Code" = "تأكيد";
@@ -220,7 +221,7 @@
 
 //MARK: -- reset Password --
 "We_have_to_confirm_your\n_identity_by_sending_a_code_to_\nyour_phone_number" = "يجب تأكيد هويتك من خلال\n إرسال كود إلى رقم هاتفك";
-"Code_will_be_sent_to_+699" = "سوف يتم إرسال كود الى رقم +٩٦٦";
+"Code_will_be_sent_to_+699" = "سوف يتم إرسال كود الى رقم";
 "Send_OTP" = "أرسل الكود";
 "Change_your_phone_number" = "تغيير رقم الهاتف";
 

@@ -83,7 +83,7 @@ class DeleteAcoountViewModel: ObservableObject {
         }else{
             message =  "Not_Connected".localized(language)
             activeAlert = .NetworkError
-            isAlert = true
+//            isAlert = true
 
             }
     }

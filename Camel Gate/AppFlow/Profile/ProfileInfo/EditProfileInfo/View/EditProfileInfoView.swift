@@ -15,11 +15,11 @@ enum datesource: Hashable {
     case birthDate,liceseExpire,truckStart,truckEnd,none
 }
 
-
 struct EditProfileInfoView: View {
     @AppStorage("language")
     var language = LocalizationService.shared.language
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @EnvironmentObject var imageVM : camelEnvironments
     @StateObject var profileVM = DriverInfoViewModel()
     @StateObject var trucktypesVM = TruckTypeViewModel()
@@ -160,7 +160,7 @@ struct EditProfileInfoView: View {
                                 })
                         }
                         
-                        InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Nationality".localized(language), text: $profileVM.nationalityName,Disabled:true)
+                        InputTextField(iconName: "person",iconColor: Color("OrangColor"), placeholder: "Nationality".localized(language), text: .constant(getNationalityName(nationalityId: profileVM.NationalityId)) ,Disabled:true)
                             .overlay(content: {
                                 Menu {
                                     ForEach(nationalityVM.publishedNationalitiesArray ,id:\.self){nationality in
@@ -168,7 +168,7 @@ struct EditProfileInfoView: View {
                                             nationality.title ?? ""
                                             , action: {
                                                 profileVM.NationalityId = nationality.id ?? 0
-                                                profileVM.nationalityName = nationality.title ?? ""
+//                                                profileVM.nationalityName = nationality.title ?? ""
                                                 profileVM.IsDropDownChange = true
                                             })
                                     }
@@ -598,6 +598,7 @@ struct EditProfileInfoView: View {
         .navigationBarHidden(true)
         .onAppear(perform: {
             if taskStatus == .update{
+
             }else{
                 if enteredDriverName != ""{
                     profileVM.Drivername = enteredDriverName
@@ -759,6 +760,7 @@ struct EditProfileInfoView: View {
                             DispatchQueue.main.async(execute: {
                                 profileVM.UserCreated = false
                                 profileVM.IsDropDownChange = false
+                                self.presentationMode.wrappedValue.dismiss()
                             })
                         }
                     }, label: {
@@ -923,4 +925,13 @@ extension EditProfileInfoView{
         )
     }
     
+    func getNationalityName(nationalityId:Int) -> String {
+        var name = ""
+        for n in nationalityVM.publishedNationalitiesArray {
+            if n.id == nationalityId {
+                name = n.title ?? ""
+            }
+        }
+       return name
+    }
 }

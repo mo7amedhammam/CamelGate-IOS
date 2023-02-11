@@ -213,7 +213,9 @@
 "Please_enter_the_Verification_Code_\nwe_sent_to_your_mobile" = "Please enter the Verification Code \nwe sent to your mobile";
 "This_code_will_be_expired_within" = "This code will be expired within";
 "expired_or_Tomeout_codeMessage" = "expired Code or Time Out";
-"Code_sent_to_+966" = "Code sent to +966";
+"Code_sent_to_+966" = "Code sent to ";
+"Country_Code" = "+966";
+
 "Error_Code" = "Error Code";
 "Resend_Code" = "Resend Code";
 "Send_Code" = "Verify";
@@ -222,7 +224,7 @@
 
 //MARK: -- reset Password --
 "We_have_to_confirm_your\n_identity_by_sending_a_code_to_\nyour_phone_number" = "We have to confirm your\nidentity by sending a code to \nyour phone number";
-"Code_will_be_sent_to_+699" = "Code will be sent to +966";
+"Code_will_be_sent_to_+699" = "Code will be sent to";
 "Send_OTP" = "Send Code";
 "Change_your_phone_number" = "change your phone number";
 

@@ -112,8 +112,8 @@ struct PhoneVerificationView: View{
                     Group{
                         HStack {
                             Text("Code_sent_to_+966".localized(language))
-                            Text(phoneNumber)
-                                .foregroundColor(Color("blueColor"))
+                                Text("Country_Code".localized(language) + phoneNumber)
+                                    .foregroundColor(Color("blueColor"))
                         }
                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .foregroundColor(.black)
