@@ -47,4 +47,6 @@ enum EndPoints: String {
     case GetGaiedWallet = "Wallet/GetWalletGained"
     case GetWithDrawnWallet = "Wallet/GetWalletWithdrawn"
     case GetHomePageWallet = "Wallet/GetHomePageWallet"
+    
+    case FirebaseNotifications = "User/UpdateFirebaseDeviceToken"
 }

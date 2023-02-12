@@ -20,7 +20,6 @@ class SignInViewModel: ObservableObject {
     private let authServices = MoyaProvider<AuthServices>()
     private var cancellables: Set<AnyCancellable> = []
     let PhoneNumLength: Int = 9
-
     // ------- input
     @Published  var phoneNumber: String = "" {
         didSet{
@@ -59,7 +58,7 @@ class SignInViewModel: ObservableObject {
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
-    
+//    let firebasetoken = ViewModelSendFirebaseToken()
     @Published var destination = AnyView(EditProfileInfoView(taskStatus: .create, selectedDate: Date()))
     init() {
         
@@ -76,9 +75,15 @@ class SignInViewModel: ObservableObject {
                                             .navigationBarHidden(true))
                     Helper.setUserData( DriverName: self?.publishedUserLogedInModel?.name ?? "", DriverImage: self?.publishedUserLogedInModel?.image ?? "" )
                     LoginManger.saveUser(modeldata.data)
+                    Helper.setAccessToken(access_token: "Bearer " + "\(self?.publishedUserLogedInModel?.token ?? "")" )
+
                     Helper.IsLoggedIn(value: true)
+
+                    ViewModelSendFirebaseToken.shared.SendFirebaseToken()
+//                    self?.firebasetoken.SendFirebaseToken()
+//                    self?.sendTokenToFirebaseVM.firebaseDeviceToken = modeldata.data?.token ?? ""
+                    
                 }
-                Helper.setAccessToken(access_token: "Bearer " + "\(self?.publishedUserLogedInModel?.token ?? "")" )
                 self?.isLoading = false
                 self?.isLogedin = true
             }
@@ -123,7 +128,6 @@ class SignInViewModel: ObservableObject {
                 isLoading = false
             }
 
-
         }).ensure {
 //            isLoading = false
 //            message = "success"
@@ -132,60 +136,6 @@ class SignInViewModel: ObservableObject {
             message = "\(error)"
         }
     }
-}
-
-
-public extension String {
-    
-    func replacedArabicDigitsWithEnglish()-> String{
-        let numberFormatter = NumberFormatter()
-        numberFormatter.locale = Locale(identifier: "en")
-        let engNumber = numberFormatter.number(from: self)
-        print("\(engNumber ?? 0)")
-        return "\(engNumber ?? 0)"
-    }
-//
-//    /// To convert English numbers to Arabic / Persian
-//    /// - Returns: returns Arabic number
-    func replacedEnglishDigitsWithArabic()-> String{
-        let numberFormatter = NumberFormatter()
-        numberFormatter.locale = Locale(identifier: "ar")
-        let arabicNumber = numberFormatter.number(from: self)
-        print("\(arabicNumber ?? 0)")
-        return "\(arabicNumber ?? 0)"
-    }
-    
-    
-    
-//    func replacedArabicDigitsWithEnglish() -> String {
-//    var str = self
-//    let map = ["٠": "0",
-//               "١": "1",
-//               "٢": "2",
-//               "٣": "3",
-//               "٤": "4",
-//               "٥": "5",
-//               "٦": "6",
-//               "٧": "7",
-//               "٨": "8",
-//               "٩": "9"]
-//    map.forEach { str = str.replacingOccurrences(of: $0, with: $1) }
-//    return str
-//}
-//    func replacedEnglishDigitsWithArabic() -> String {
-//    var str = self
-//    let map = ["0": "٠",
-//               "1": "١",
-//               "2": "٢",
-//               "3": "٣",
-//               "4": "٤",
-//               "5": "٥",
-//               "6": "٦",
-//               "7": "٧",
-//               "8": "٨",
-//               "9": "٩"]
-//    map.forEach { str = str.replacingOccurrences(of: $0, with: $1) }
-//    return str
-//}
     
 }
+

@@ -7,8 +7,6 @@
 
 import Foundation
 import Moya
-//import SwiftUI
-
 enum HomeServices {
     
     case Home
@@ -38,7 +36,7 @@ enum HomeServices {
     case getGainedWallet
     case getWithdrawnWallet
     case getHomePageWallet
-
+    case sendFirebaseToken(parameters:[String:Any])
 }
 extension HomeServices : URLRequestBuilder {
     var path: String {
@@ -92,6 +90,9 @@ extension HomeServices : URLRequestBuilder {
             return EndPoints.GetWithDrawnWallet.rawValue
         case .getHomePageWallet:
             return EndPoints.GetHomePageWallet.rawValue
+        
+        case .sendFirebaseToken:
+            return EndPoints.FirebaseNotifications.rawValue
         }
     }
     var method: Moya.Method {
@@ -110,7 +111,7 @@ extension HomeServices : URLRequestBuilder {
                 .CancelationReasons:
             return .get
             
-        case .HomeShipmments, .appliedShipMents, .upComingShipments, .currentShipments, .RateApprovedShipment,.setOffer,.CancelOffer,.ChangePassword, .ChangeForgetPassword:
+        case .HomeShipmments, .appliedShipMents, .upComingShipments, .currentShipments, .RateApprovedShipment,.setOffer,.CancelOffer,.ChangePassword, .ChangeForgetPassword, .sendFirebaseToken:
             return .post   
         }
     }
@@ -130,7 +131,8 @@ extension HomeServices : URLRequestBuilder {
                 .CancelOffer( let param),
                 .ChangePassword(parameters: let param),
                 .ChangeForgetPassword(parameters: let param),
-                .RateApprovedShipment(parameters: let param):
+                .RateApprovedShipment(parameters: let param),
+                .sendFirebaseToken(parameters: let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
 
         case .ShipmentDetails(let param), .StartApprovedShipment(let param), .UploadApprovedShipment(let param), .FinishApprovedShipment(let param):

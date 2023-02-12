@@ -25,6 +25,7 @@ final class Helper{
     var currentLanguage = ""
     private static let onBoardKey = "onBoard"
     private static let LoggedInKey = "LoggedId"
+    private static let firebaseTokenKey = "firebaseTokenKey"
 
     class func setUserData(
 //        Id : Int,
@@ -78,7 +79,8 @@ final class Helper{
     //remove data then logout
     class func logout() {
 //        userDef.removeObject(forKey:"Id"  )
-        Helper.IsLoggedIn(value: false)
+        IsLoggedIn(value: false)
+        IsFirebaseTokenSent(value: false)
         userDef.removeObject(forKey:"DriverName"  )
         userDef.removeObject(forKey:"DriverImage"  )
         userDef.removeObject(forKey:"Image"  )
@@ -99,6 +101,12 @@ final class Helper{
 
     static func CheckIfLoggedIn() -> Bool {
         return UserDefaults.standard.bool(forKey: LoggedInKey)
+    }
+    static func IsFirebaseTokenSent(value:Bool) {
+        UserDefaults.standard.set(true, forKey: firebaseTokenKey)
+    }
+    static func CheckIfFirebaseTokenSent() ->Bool{
+        return UserDefaults.standard.bool(forKey: firebaseTokenKey)
     }
     
     class func changeLang() {

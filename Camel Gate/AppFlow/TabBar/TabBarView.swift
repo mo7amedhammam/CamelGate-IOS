@@ -138,6 +138,9 @@ struct MainTabBar : View {
                 if LoginManger.getUser()?.isDriverInCompany ?? false{
                     tabs = tabs.filter({$0 != "Wallet"})
             }
+            if Helper.CheckIfFirebaseTokenSent() == false{
+                ViewModelSendFirebaseToken.shared.SendFirebaseToken()
+            }
         }
     
 }

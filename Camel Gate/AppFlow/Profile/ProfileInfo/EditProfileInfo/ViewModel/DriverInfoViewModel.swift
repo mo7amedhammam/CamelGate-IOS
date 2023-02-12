@@ -235,6 +235,7 @@ class DriverInfoViewModel: ObservableObject {
 //            self?.publishedUserLogedInModel = modeldata.data
             self?.UserCreated = true
             Helper.setUserData(DriverName: modeldata.data?.name ?? "", DriverImage: modeldata.data?.image ?? "")
+            ViewModelSendFirebaseToken.shared.SendFirebaseToken()
             Helper.IsLoggedIn(value: true)
         }.store(in: &cancellables)
     }

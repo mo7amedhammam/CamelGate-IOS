@@ -55,7 +55,6 @@
 		C84EFE8428B0FC8100399C78 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EFE8328B0FC8100399C78 /* ChangePasswordView.swift */; };
 		C84EFE8628B0FE1000399C78 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EFE8528B0FE1000399C78 /* ChangePasswordViewModel.swift */; };
 		C84EFE8828B0FE7100399C78 /* ChangePasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84EFE8728B0FE7100399C78 /* ChangePasswordModel.swift */; };
-		C85166A82995EF4600CE8E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8F34F5A29757F160047FC1C /* GoogleService-Info.plist */; };
 		C8577E5B29965F6A009CBA6E /* stringsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8577E5A29965F6A009CBA6E /* stringsExtension.swift */; };
 		C85D7D9C289B66D80088227D /* calendarPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7D9B289B66D80088227D /* calendarPopUp.swift */; };
 		C85D7D9F289B74C90088227D /* DriverInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85D7D9E289B74C90088227D /* DriverInfoViewModel.swift */; };
@@ -95,6 +94,9 @@
 		C8AC4FD22992628B0004D1B6 /* SwitchLanguageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC4FD12992628B0004D1B6 /* SwitchLanguageButton.swift */; };
 		C8BB855E289AA8210099DE1F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */; };
 		C8BB8561289AAB580099DE1F /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BB8560289AAB580099DE1F /* SignUpModel.swift */; };
+		C8BE1B132998EFFE0095F40E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8BE1B122998EFFE0095F40E /* GoogleService-Info.plist */; };
+		C8BE1B1629990F1A0095F40E /* ModelFirebaseToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BE1B1529990F1A0095F40E /* ModelFirebaseToken.swift */; };
+		C8BE1B1829990F390095F40E /* ViewModelSendFirebaseToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BE1B1729990F390095F40E /* ViewModelSendFirebaseToken.swift */; };
 		C8C5583F2898118300D46777 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5583E2898118300D46777 /* SplashScreenView.swift */; };
 		C8C5584228981E9800D46777 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5584128981E9800D46777 /* SignInViewModel.swift */; };
 		C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C558442898322000D46777 /* SignUpViewModel.swift */; };
@@ -251,6 +253,9 @@
 		C8AC4FD12992628B0004D1B6 /* SwitchLanguageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchLanguageButton.swift; sourceTree = "<group>"; };
 		C8BB855D289AA8210099DE1F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		C8BB8560289AAB580099DE1F /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		C8BE1B122998EFFE0095F40E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C8BE1B1529990F1A0095F40E /* ModelFirebaseToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFirebaseToken.swift; sourceTree = "<group>"; };
+		C8BE1B1729990F390095F40E /* ViewModelSendFirebaseToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSendFirebaseToken.swift; sourceTree = "<group>"; };
 		C8C4A1202952180D006E1935 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8C4A12229521814006E1935 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8C5583E2898118300D46777 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
@@ -292,7 +297,6 @@
 		C8E4C30F288F729B005FDB7C /* NoteScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteScreenView.swift; sourceTree = "<group>"; };
 		C8E8EC83294F3E3B004B1C61 /* DriverRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRatesModel.swift; sourceTree = "<group>"; };
 		C8E8EC85294F3E4D004B1C61 /* DriverRatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRatesViewModel.swift; sourceTree = "<group>"; };
-		C8F34F5A29757F160047FC1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA45B7CE2885155B002A9654 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		FA4E27AC288C537E0047265D /* ShipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipView.swift; sourceTree = "<group>"; };
 		FA4E27AE288C53A20047265D /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
@@ -732,6 +736,7 @@
 		C88F947E28969251008B6AD0 /* Authontication */ = {
 			isa = PBXGroup;
 			children = (
+				C8BE1B1429990D790095F40E /* FirebaseToken */,
 				C88F94802896926A008B6AD0 /* SignUp */,
 				C88F947F28969262008B6AD0 /* Login */,
 			);
@@ -868,6 +873,15 @@
 				C8BB8560289AAB580099DE1F /* SignUpModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C8BE1B1429990D790095F40E /* FirebaseToken */ = {
+			isa = PBXGroup;
+			children = (
+				C8BE1B1529990F1A0095F40E /* ModelFirebaseToken.swift */,
+				C8BE1B1729990F390095F40E /* ViewModelSendFirebaseToken.swift */,
+			);
+			path = FirebaseToken;
 			sourceTree = "<group>";
 		};
 		C8C5584028981E6700D46777 /* ViewModel */ = {
@@ -1229,7 +1243,7 @@
 			children = (
 				C85DD8C52997FF0C004DCADE /* Camel Gate.entitlements */,
 				C8DB51A7288CB1D8004521C8 /* Camel-Gate-Info.plist */,
-				C8F34F5A29757F160047FC1C /* GoogleService-Info.plist */,
+				C8BE1B122998EFFE0095F40E /* GoogleService-Info.plist */,
 				C0125B082899356E004B65E5 /* Networking */,
 				FAEADE512884C094004535CE /* Support */,
 				FAEADE4D2884C044004535CE /* App */,
@@ -1399,7 +1413,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C85166A82995EF4600CE8E85 /* GoogleService-Info.plist in Resources */,
 				C8725E8D2995E69B0045225F /* InfoPlist.strings in Resources */,
 				C81FA28A28AD23A90012D823 /* GESSTextMedium-Medium.otf in Resources */,
 				FAEADEB52884D3D0004535CE /* SFUIText-Semibold.ttf in Resources */,
@@ -1419,6 +1432,7 @@
 				FAEADE432884BDC9004535CE /* Assets.xcassets in Resources */,
 				C82FD99D28AD2F75003DC739 /* GESSUniqueLight.otf in Resources */,
 				FAEADEB82884D3D0004535CE /* SFUIText-HeavyItalic.ttf in Resources */,
+				C8BE1B132998EFFE0095F40E /* GoogleService-Info.plist in Resources */,
 				FAEADEAD2884D3D0004535CE /* SFUIText-LightItalic.ttf in Resources */,
 				C82FD99F28AD3190003DC739 /* MyriadVariableConcept-Roman.otf in Resources */,
 				C81FA28628AD12F20012D823 /* GESSUniqueBold-Bold.otf in Resources */,
@@ -1499,6 +1513,7 @@
 				C84EFE1D28A7FE7B00302F7F /* TruckTypeModel.swift in Sources */,
 				C8D82A3B28A46C970081E620 /* ShipmentTypesList.swift in Sources */,
 				C84EFE2128A7FF7700302F7F /* TruckManfacturerViewModel.swift in Sources */,
+				C8BE1B1629990F1A0095F40E /* ModelFirebaseToken.swift in Sources */,
 				C8A0781C288D9B670084C0A6 /* RatingView.swift in Sources */,
 				FA4E27AD288C537E0047265D /* ShipView.swift in Sources */,
 				C8C9494B2889772B0057EE7E /* ProfileView.swift in Sources */,
@@ -1555,6 +1570,7 @@
 				C0125B102899369C004B65E5 /* BGServicesManager.swift in Sources */,
 				C8A0781F288DA3030084C0A6 /* ShipmentRateCell.swift in Sources */,
 				C0125B07289934D1004B65E5 /* LoginModel.swift in Sources */,
+				C8BE1B1829990F390095F40E /* ViewModelSendFirebaseToken.swift in Sources */,
 				C84EAC7E288C44EB000AB6AD /* ProfileHeader.swift in Sources */,
 				FA7078012895FD9500879399 /* NotificationsView.swift in Sources */,
 				C8AB5EBA2932352A003F7EE4 /* SendingRateView.swift in Sources */,
