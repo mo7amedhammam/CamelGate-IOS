@@ -91,6 +91,17 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             completionHandler(UIBackgroundFetchResult.newData)
         }
     
+//    private func process(_ notification: UNNotification) {
+//      // 1
+//      let userInfo = notification.request.content.userInfo
+//      // 2
+//      UIApplication.shared.applicationIconBadgeNumber = 0
+//      if let newsTitle = userInfo["newsTitle"] as? String,
+//        let newsBody = userInfo["newsBody"] as? String {
+//        let newsItem = NewsItem(title: newsTitle, body: newsBody, date: Date())
+//        NewsModel.shared.add([newsItem])
+//      }
+//    }
     
 }
 
@@ -137,8 +148,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 //          MARK: --- user action ----
           
 //          if userInfo["red"] as! Int == 0 {
-          
-          
 //                        let mainSB = UIStoryboard(name: "Main", bundle: nil)
 //                        if let RootVc = mainSB.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
 //                            RootVc.Revision_Id             = Int(userInfo["item_id"] as? String ?? "0")!
@@ -146,12 +155,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 //                            UIWindow.key.rootViewController = RootVc
 //                        }
 //                    }
-          
-          
-          
       }
       
-      
+      completionHandler()
       
   }
 }

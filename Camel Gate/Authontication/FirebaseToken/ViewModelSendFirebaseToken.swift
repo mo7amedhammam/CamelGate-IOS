@@ -71,16 +71,13 @@ extension ViewModelSendFirebaseToken{
 //        }
 //    }
     
-    
     // MARK: - API Services
     func SendFirebaseToken(){
         // Register to receive notification in your class
-         
         let params : [String : Any] =
         [
             "firebaseDeviceToken"                       : firebaseDeviceToken,
         ]
-        print(params)
         firstly { () -> Promise<Any> in
             isLoading = true
             return BGServicesManager.CallApi(self.authServices,HomeServices.sendFirebaseToken(parameters: params))
@@ -89,6 +86,7 @@ extension ViewModelSendFirebaseToken{
 
             guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<ModelFirebaseToken> = try BGDecoder.decode(data: result.data )
+            print(params)
             print(data)
             if data.success == true {
                 DispatchQueue.main.async {

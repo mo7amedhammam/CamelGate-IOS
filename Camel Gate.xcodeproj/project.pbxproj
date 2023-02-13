@@ -97,6 +97,9 @@
 		C8BE1B132998EFFE0095F40E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8BE1B122998EFFE0095F40E /* GoogleService-Info.plist */; };
 		C8BE1B1629990F1A0095F40E /* ModelFirebaseToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BE1B1529990F1A0095F40E /* ModelFirebaseToken.swift */; };
 		C8BE1B1829990F390095F40E /* ViewModelSendFirebaseToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BE1B1729990F390095F40E /* ViewModelSendFirebaseToken.swift */; };
+		C8C29AA0299A4C7200F1A47E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C29A9F299A4C7200F1A47E /* NotificationService.swift */; };
+		C8C29AA4299A4C7200F1A47E /* Good News Notifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C8C29A9D299A4C7200F1A47E /* Good News Notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C8C29AAA299A4CE800F1A47E /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C8C29AA9299A4CE800F1A47E /* FirebaseMessaging */; };
 		C8C5583F2898118300D46777 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5583E2898118300D46777 /* SplashScreenView.swift */; };
 		C8C5584228981E9800D46777 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5584128981E9800D46777 /* SignInViewModel.swift */; };
 		C8C558452898322000D46777 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C558442898322000D46777 /* SignUpViewModel.swift */; };
@@ -165,6 +168,30 @@
 		FAEADEB82884D3D0004535CE /* SFUIText-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEADEAC2884D3D0004535CE /* SFUIText-HeavyItalic.ttf */; };
 		FBEC1DE8FACEF97DC7759D67 /* Pods_Camel_Gate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6981EFE87114E4A9DDB2A0CE /* Pods_Camel_Gate.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C8C29AA2299A4C7200F1A47E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAEADE332884BDC7004535CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8C29A9C299A4C7200F1A47E;
+			remoteInfo = "Good News Notifications";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C8C29AA5299A4C7200F1A47E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C8C29AA4299A4C7200F1A47E /* Good News Notifications.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3FF2C598AE9DC61C2869B627 /* Pods-Camel Gate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camel Gate.debug.xcconfig"; path = "Target Support Files/Pods-Camel Gate/Pods-Camel Gate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -256,6 +283,9 @@
 		C8BE1B122998EFFE0095F40E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8BE1B1529990F1A0095F40E /* ModelFirebaseToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFirebaseToken.swift; sourceTree = "<group>"; };
 		C8BE1B1729990F390095F40E /* ViewModelSendFirebaseToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSendFirebaseToken.swift; sourceTree = "<group>"; };
+		C8C29A9D299A4C7200F1A47E /* Good News Notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Good News Notifications.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8C29A9F299A4C7200F1A47E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		C8C29AA1299A4C7200F1A47E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8C4A1202952180D006E1935 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8C4A12229521814006E1935 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8C5583E2898118300D46777 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
@@ -330,6 +360,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C8C29A9A299A4C7200F1A47E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8C29AAA299A4CE800F1A47E /* FirebaseMessaging in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAEADE382884BDC7004535CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -884,6 +922,15 @@
 			path = FirebaseToken;
 			sourceTree = "<group>";
 		};
+		C8C29A9E299A4C7200F1A47E /* Good News Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				C8C29A9F299A4C7200F1A47E /* NotificationService.swift */,
+				C8C29AA1299A4C7200F1A47E /* Info.plist */,
+			);
+			path = "Good News Notifications";
+			sourceTree = "<group>";
+		};
 		C8C5584028981E6700D46777 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1224,6 +1271,7 @@
 			isa = PBXGroup;
 			children = (
 				FAEADE3D2884BDC7004535CE /* Camel Gate */,
+				C8C29A9E299A4C7200F1A47E /* Good News Notifications */,
 				FAEADE3C2884BDC7004535CE /* Products */,
 				5F5423A5F7B552F33544C6A1 /* Pods */,
 				AB6CD85AAFF80FDADA3D7633 /* Frameworks */,
@@ -1234,6 +1282,7 @@
 			isa = PBXGroup;
 			children = (
 				FAEADE3B2884BDC7004535CE /* Camel Gate.app */,
+				C8C29A9D299A4C7200F1A47E /* Good News Notifications.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1344,6 +1393,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C8C29A9C299A4C7200F1A47E /* Good News Notifications */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8C29AA8299A4C7200F1A47E /* Build configuration list for PBXNativeTarget "Good News Notifications" */;
+			buildPhases = (
+				C8C29A99299A4C7200F1A47E /* Sources */,
+				C8C29A9A299A4C7200F1A47E /* Frameworks */,
+				C8C29A9B299A4C7200F1A47E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Good News Notifications";
+			packageProductDependencies = (
+				C8C29AA9299A4CE800F1A47E /* FirebaseMessaging */,
+			);
+			productName = "Good News Notifications";
+			productReference = C8C29A9D299A4C7200F1A47E /* Good News Notifications.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		FAEADE3A2884BDC7004535CE /* Camel Gate */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAEADE492884BDC9004535CE /* Build configuration list for PBXNativeTarget "Camel Gate" */;
@@ -1354,10 +1423,12 @@
 				FAEADE392884BDC7004535CE /* Resources */,
 				612707D4CD00861D37E0D75C /* [CP] Embed Pods Frameworks */,
 				C8A551CE2948C3F300C9D4A6 /* ShellScript */,
+				C8C29AA5299A4C7200F1A47E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C8C29AA3299A4C7200F1A47E /* PBXTargetDependency */,
 			);
 			name = "Camel Gate";
 			packageProductDependencies = (
@@ -1377,9 +1448,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					C8C29A9C299A4C7200F1A47E = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					FAEADE3A2884BDC7004535CE = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -1404,11 +1478,19 @@
 			projectRoot = "";
 			targets = (
 				FAEADE3A2884BDC7004535CE /* Camel Gate */,
+				C8C29A9C299A4C7200F1A47E /* Good News Notifications */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C8C29A9B299A4C7200F1A47E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAEADE392884BDC7004535CE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1503,6 +1585,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C8C29A99299A4C7200F1A47E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8C29AA0299A4C7200F1A47E /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAEADE372884BDC7004535CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1641,6 +1731,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C8C29AA3299A4C7200F1A47E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8C29A9C299A4C7200F1A47E /* Good News Notifications */;
+			targetProxy = C8C29AA2299A4C7200F1A47E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		C8C4A1212952180D006E1935 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -1663,6 +1761,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C8C29AA6299A4C7200F1A47E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T3T996UQKK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Good News Notifications/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Good News Notifications";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "wecancity-Otaibi-com.Camel-Gate.Good-News-Notifications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C8C29AA7299A4C7200F1A47E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T3T996UQKK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Good News Notifications/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Good News Notifications";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "wecancity-Otaibi-com.Camel-Gate.Good-News-Notifications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		FAEADE472884BDC9004535CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1783,6 +1933,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3FF2C598AE9DC61C2869B627 /* Pods-Camel Gate.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Camel Gate/Camel Gate.entitlements";
@@ -1820,6 +1971,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B85608AFEF5CE600792E1847 /* Pods-Camel Gate.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Camel Gate/Camel Gate.entitlements";
@@ -1855,6 +2007,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C8C29AA8299A4C7200F1A47E /* Build configuration list for PBXNativeTarget "Good News Notifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8C29AA6299A4C7200F1A47E /* Debug */,
+				C8C29AA7299A4C7200F1A47E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FAEADE362884BDC7004535CE /* Build configuration list for PBXProject "Camel Gate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1911,6 +2072,11 @@
 			productName = FirebaseCrashlytics;
 		};
 		C85DD8CB29980951004DCADE /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C85DD8C629980951004DCADE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		C8C29AA9299A4CE800F1A47E /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C85DD8C629980951004DCADE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;

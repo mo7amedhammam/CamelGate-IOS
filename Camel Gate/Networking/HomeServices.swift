@@ -131,14 +131,17 @@ extension HomeServices : URLRequestBuilder {
                 .CancelOffer( let param),
                 .ChangePassword(parameters: let param),
                 .ChangeForgetPassword(parameters: let param),
-                .RateApprovedShipment(parameters: let param),
-                .sendFirebaseToken(parameters: let param):
+                .RateApprovedShipment(parameters: let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
 
-        case .ShipmentDetails(let param), .StartApprovedShipment(let param), .UploadApprovedShipment(let param), .FinishApprovedShipment(let param):
+        case .ShipmentDetails(let param),
+                .StartApprovedShipment(let param),
+                .UploadApprovedShipment(let param),
+                .FinishApprovedShipment(let param):
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
 
-
+        case .sendFirebaseToken(let param):
+            return .requestCompositeData(bodyData: sampleData, urlParameters: param)
         }
     }
 }
