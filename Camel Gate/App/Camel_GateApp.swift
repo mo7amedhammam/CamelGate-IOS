@@ -144,23 +144,26 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
       print(" infoooooooooooooooooo : \(userInfo)")
 //              print(" titleeeeeeeeeeeeeeee : \(userInfo["title"] as! String)") // title or description or image
 
-      if userInfo[""] as! String == "" {
-//          MARK: --- user action ----
-          
-//          if userInfo["red"] as! Int == 0 {
-//                        let mainSB = UIStoryboard(name: "Main", bundle: nil)
-//                        if let RootVc = mainSB.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
-//                            RootVc.Revision_Id             = Int(userInfo["item_id"] as? String ?? "0")!
-//                            RootVc.TypeFrom = "notification"
-//                            UIWindow.key.rootViewController = RootVc
-//                        }
-//                    }
-      }
+//      if userInfo[""] as? String == "" {
+////          MARK: --- user action ----
+////          if userInfo["red"] as! Int == 0 {
+////                        let mainSB = UIStoryboard(name: "Main", bundle: nil)
+////                        if let RootVc = mainSB.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
+////                            RootVc.Revision_Id             = Int(userInfo["item_id"] as? String ?? "0")!
+////                            RootVc.TypeFrom = "notification"
+////                            UIWindow.key.rootViewController = RootVc
+////                        }
+////                    }
+//      }
       
       completionHandler()
       
   }
 }
+extension Notification.Name {
+    static let FirebaseTokenName = Notification.Name("FCMToken")
+}
+
 
 
 

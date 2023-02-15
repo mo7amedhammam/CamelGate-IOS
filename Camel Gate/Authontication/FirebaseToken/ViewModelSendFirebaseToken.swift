@@ -6,12 +6,10 @@
 //
 
 import Foundation
-//import SwiftUI
 import Combine
 import Moya
 import PromiseKit
 import Alamofire
-import UserNotifications
 import FirebaseMessaging
 
 
@@ -30,7 +28,6 @@ class ViewModelSendFirebaseToken: ObservableObject {
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
-//    @Published var publishedUserLogedInModel: ModelFirebaseToken? = nil
     @Published var FirebaseTokensent = false
     
     @Published var isLogedin = false
@@ -39,11 +36,7 @@ class ViewModelSendFirebaseToken: ObservableObject {
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
-    
     init() {
-        // Register to receive notification in your class
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.getToken(_:)), name: .FirebaseTokenName, object: nil)
-
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [weak self](modeldata) in
                 if modeldata.success == true{
@@ -53,24 +46,11 @@ class ViewModelSendFirebaseToken: ObservableObject {
             
         }.store(in: &cancellables)
     }
-    
-}
-
-extension Notification.Name {
-    static let FirebaseTokenName = Notification.Name("FCMToken")
 }
 
 
 extension ViewModelSendFirebaseToken{
-    
-//    @objc func getToken(_ notification: NSNotification) {
-//        if let token = notification.userInfo?["FCMToken"] as? String {
-//              // do something with your image
-//            print(token)
-//            firebaseDeviceToken = token
-//        }
-//    }
-    
+        
     // MARK: - API Services
     func SendFirebaseToken(){
         // Register to receive notification in your class
@@ -83,7 +63,6 @@ extension ViewModelSendFirebaseToken{
             return BGServicesManager.CallApi(self.authServices,HomeServices.sendFirebaseToken(parameters: params))
         }.done({ [self] response in
             let result = response as! Response
-
             guard BGNetworkHelper.validateResponse(response: result) else{return}
             let data : BaseResponse<ModelFirebaseToken> = try BGDecoder.decode(data: result.data )
             print(params)
@@ -98,7 +77,6 @@ extension ViewModelSendFirebaseToken{
                 if data.messageCode == 400{
                 message = data.message ?? "error 400"
                     isAlert = true
-
                 }else if data.messageCode == 401{
                     message = "unauthorized"
                 }else{
@@ -107,8 +85,42 @@ extension ViewModelSendFirebaseToken{
                 }
                 isLoading = false
             }
+        }).ensure {
+//            isLoading = false
+//            message = "success"
+        }.catch { [self] (error) in
+            isAlert = true
+            message = "\(error)"
+        }
+    }
+    
+    func RemoveFirebaseToken(){
+        // Register to receive notification in your class
+        firstly { () -> Promise<Any> in
+            isLoading = true
+            return BGServicesManager.CallApi(self.authServices,HomeServices.removeFirebaseToken)
+        }.done({ [self] response in
+            let result = response as! Response
 
-
+            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<ModelFirebaseToken> = try BGDecoder.decode(data: result.data )
+            print(data)
+            if data.success == true {
+                DispatchQueue.main.async {
+//                    passthroughModelSubject.send(data)
+                }
+            }else {
+                if data.messageCode == 400{
+                message = data.message ?? "error 400"
+                    isAlert = true
+                }else if data.messageCode == 401{
+                    message = "unauthorized"
+                }else{
+                    message = "Bad Request"
+                    isAlert = true
+                }
+                isLoading = false
+            }
         }).ensure {
 //            isLoading = false
 //            message = "success"

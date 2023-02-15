@@ -61,7 +61,6 @@ extension URLRequestBuilder {
         return header
     }
 
-
     var encoding: ParameterEncoding {
         switch method {
         case .get:

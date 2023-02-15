@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+import SwiftUI
 enum HomeServices {
     
     case Home
@@ -37,6 +38,7 @@ enum HomeServices {
     case getWithdrawnWallet
     case getHomePageWallet
     case sendFirebaseToken(parameters:[String:Any])
+    case removeFirebaseToken
 }
 extension HomeServices : URLRequestBuilder {
     var path: String {
@@ -93,6 +95,8 @@ extension HomeServices : URLRequestBuilder {
         
         case .sendFirebaseToken:
             return EndPoints.FirebaseNotifications.rawValue
+        case .removeFirebaseToken:
+            return EndPoints.removeFirebaseNotifications.rawValue
         }
     }
     var method: Moya.Method {
@@ -108,7 +112,8 @@ extension HomeServices : URLRequestBuilder {
                 .ShipmentDetails,
                 .GetShipmentTypes,
                 .GetCities,
-                .CancelationReasons:
+                .CancelationReasons,
+                .removeFirebaseToken:
             return .get
             
         case .HomeShipmments, .appliedShipMents, .upComingShipments, .currentShipments, .RateApprovedShipment,.setOffer,.CancelOffer,.ChangePassword, .ChangeForgetPassword, .sendFirebaseToken:
@@ -120,7 +125,15 @@ extension HomeServices : URLRequestBuilder {
     }
     var task: Task {
         switch self {
-        case .Home, .GetApprovedShipment, .getGainedWallet, .getWithdrawnWallet, .getHomePageWallet, .CancelationReasons, .GetShipmentTypes, .GetCities:
+        case .Home,
+                .GetApprovedShipment,
+                .getGainedWallet,
+                .getWithdrawnWallet,
+                .getHomePageWallet,
+                .CancelationReasons,
+                .GetShipmentTypes,
+                .GetCities,
+                .removeFirebaseToken:
             return .requestPlain
       
         case .HomeShipmments(let param),

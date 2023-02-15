@@ -206,6 +206,20 @@ struct HomeView: View {
                     ApprovedShipmentVM.isAlert = false
                 })
                 }
+                if environments.confirmAlert{
+                    CustomAlert(presentAlert: $environments.confirmAlert,alertType: .question(title: "", message: "\(environments.confirmMessage)".localized(language), lefttext: "NotNow_".localized(language), righttext: "yes_".localized(language)),leftButtonAction:{
+                        environments.confirmAlert = false
+//                        environments.confirmMessage = ""
+                        environments.isError = false
+                        
+                    }, rightButtonAction: {
+                                ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ?
+                                ApprovedShipmentVM.ApprovedAction(operation: .start) :ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? ApprovedShipmentVM.ApprovedAction(operation: .Upload):ApprovedShipmentVM.ApprovedAction(operation: .finish)
+                                    environments.confirmAlert = false
+                                    environments.isError = false
+                            })
+                        }
+                                        
             }.ignoresSafeArea()
                 .edgesIgnoringSafeArea(.all)
                 .onChange(of: ApprovedShipmentVM.isAlert, perform: {newval in
@@ -216,6 +230,11 @@ struct HomeView: View {
                 .onAppear(perform: {
                     if environments.isError == false && ApprovedShipmentVM.isAlert == true{
                         environments.isError = true
+                    }
+                })
+                .onChange(of: environments.confirmAlert, perform: {newval in
+                    if newval {
+                        showConfirmAlert()
                     }
                 })
 
@@ -237,6 +256,28 @@ struct HomeView: View {
         ApprovedShipmentVM.GetApprovedShipment()
         //        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
     }
+    
+    
+    func showConfirmAlert() {
+        
+        switch   ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId {
+        case 2:
+            environments.confirmMessage="are_you_sure_To_Start_now?"
+        case 3:
+            environments.confirmMessage="are_you_sure_To_Upload_now?"
+        case 4:
+            environments.confirmMessage="Did_you_realy_Finish_Shipment?"
+        default:
+            return
+        }
+//        DispatchQueue.main.async(execute: {
+        environments.confirmAlert = true
+        environments.isError = true
+//        })
+        //        ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? confirmMessage="are_you_sure_To_Start_now?":ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? confirmMessage = "are_you_sure_To_Upload_now?":confirmMessage = "Did_you_realy_Finish_Shipment?"
+    }
+    
+    
 }
 
 struct HomeView_Previews: PreviewProvider {

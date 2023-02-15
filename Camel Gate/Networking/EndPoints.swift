@@ -49,4 +49,7 @@ enum EndPoints: String {
     case GetHomePageWallet = "Wallet/GetHomePageWallet"
     
     case FirebaseNotifications = "User/UpdateFirebaseDeviceToken"
+    case removeFirebaseNotifications = "User/RemoveFirebaseDeviceToken"
+
+    
 }

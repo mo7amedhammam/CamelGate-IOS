@@ -12,8 +12,8 @@ struct ShipView: View {
 
     @EnvironmentObject var ApprovedShipmentVM:ApprovedShipmentViewModel
     @EnvironmentObject var environments : camelEnvironments
-    @State var confirmAlert = false
-    @State var confirmMessage = ""
+//    @State var confirmAlert = false
+//    @State var confirmMessage = "are_you_sure_To_Start_now?"
 
 //    @Binding var ShowMapRedirector:Bool
 //    @Binding var longitude:Double
@@ -92,24 +92,26 @@ struct ShipView: View {
                     .padding(.bottom,-5)
 
                 Button(action: {
-                        showConfirmAlert()
+                    environments.confirmAlert = true
                 }, label: {
                     HStack {
                         Text(ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? "Start_Shipment".localized(language):ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? "Uploaded".localized(language):"Dropped_&_Finished".localized(language))
                             .foregroundColor(Color.white)
                         .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     }
+                    .padding()
+                    .frame(minWidth: 0, maxWidth: .infinity)
                 })                
-                    .alert("\(confirmMessage)".localized(language), isPresented: $confirmAlert, actions: {
-                        Button("yes_".localized(language), action: {
-                                ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ?
-                                ApprovedShipmentVM.ApprovedAction(operation: .start) :ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? ApprovedShipmentVM.ApprovedAction(operation: .Upload):ApprovedShipmentVM.ApprovedAction(operation: .finish)
-                        })
-                        Button("Not_now".localized(language), action: {
-                            confirmAlert = false
-                            confirmMessage = ""
-                        })
-                    })
+//                    .alert("\(confirmMessage)".localized(language), isPresented: $confirmAlert, actions: {
+//                        Button("yes_".localized(language), action: {
+//                                ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ?
+//                                ApprovedShipmentVM.ApprovedAction(operation: .start) :ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? ApprovedShipmentVM.ApprovedAction(operation: .Upload):ApprovedShipmentVM.ApprovedAction(operation: .finish)
+//                        })
+//                        Button("Not_now".localized(language), action: {
+//                            confirmAlert = false
+//                            confirmMessage = ""
+//                        })
+//                    })
                 
             }
             .frame(height: 50)
@@ -117,26 +119,41 @@ struct ShipView: View {
 //        .frame(height: 280)
         .cornerRadius(10)
 //        .padding()
-    }
     
-    func showConfirmAlert() {
-        
-        switch   ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId {
-        case 2:
-            confirmMessage="are_you_sure_To_Start_now?"
-        case 3:
-            confirmMessage="are_you_sure_To_Upload_now?"
-        case 4:
-            confirmMessage="Did_you_realy_Finish_Shipment?"
-        default:
-            return
-        }
-//        DispatchQueue.main.async(execute: {
-        confirmAlert = true
-//        })
-        //        ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? confirmMessage="are_you_sure_To_Start_now?":ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? confirmMessage = "are_you_sure_To_Upload_now?":confirmMessage = "Did_you_realy_Finish_Shipment?"
-    }
     
+//        .overlay{
+//            ZStack{
+//                if confirmAlert{
+//                CustomAlert(presentAlert: $confirmAlert,alertType: .question(title: "", message: "\(confirmMessage)".localized(language), lefttext: "NotNow_".localized(language), righttext: "yes_".localized(language)),leftButtonAction:{
+//                    confirmAlert = false
+//                    confirmMessage = ""
+//                    }, rightButtonAction: {
+//                    ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ?
+//                    ApprovedShipmentVM.ApprovedAction(operation: .start) :ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? ApprovedShipmentVM.ApprovedAction(operation: .Upload):ApprovedShipmentVM.ApprovedAction(operation: .finish)
+//                })
+//            }
+//            }
+//        }
+    }
+//    
+//    func showConfirmAlert() {
+//        
+//        switch   ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId {
+//        case 2:
+//            confirmMessage="are_you_sure_To_Start_now?"
+//        case 3:
+//            confirmMessage="are_you_sure_To_Upload_now?"
+//        case 4:
+//            confirmMessage="Did_you_realy_Finish_Shipment?"
+//        default:
+//            return
+//        }
+////        DispatchQueue.main.async(execute: {
+//        confirmAlert = true
+////        })
+//        //        ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? confirmMessage="are_you_sure_To_Start_now?":ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? confirmMessage = "are_you_sure_To_Upload_now?":confirmMessage = "Did_you_realy_Finish_Shipment?"
+//    }
+//    
 }
 
 struct ShipView_Previews: PreviewProvider {

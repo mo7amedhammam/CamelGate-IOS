@@ -23,8 +23,11 @@ class camelEnvironments: ObservableObject {
 //    MARK:  -- showRating --
     @Published var  ShowRatingSheet = false
     
-    
     @Published var isError = false
+    
+    @Published var confirmAlert = false
+    @Published var confirmMessage = "are_you_sure_To_Start_now?"
+
 
 }
 

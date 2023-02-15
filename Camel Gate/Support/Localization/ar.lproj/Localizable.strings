@@ -261,7 +261,7 @@
 "are_you_sure_To_Start_now?" = "هل انت متأكد من بداية الشحنة ؟";
 "are_you_sure_To_Upload_now?" = "هل قمت بتحميل الشحنة ؟";
 "Did_you_realy_Finish_Shipment?" = "هل اتممت الشحنة ؟";
-"Not_now" = " ليس الآن";
+"Not_now" = "لا";
 "yes_" = "نعم";
 
 "Reviews_" = "تقييم";
@@ -272,8 +272,8 @@
 "No_Reviews_To_Show" = "لا يوجد تقييمات لعرضها";
 
 "AreyouSureToDelete_" = "هل انت متاكد من حذف الحساب ؟";
-"NotNow_" = "ليس الآن";
-"Delete_" = "حذف";
+"NotNow_" = "لا";
+"Delete_" = "نعم";
 "Approve_" = "اخفاء";
 //"DisApprove_" = "غير موافق";
 "Invalid_Email" = "الإيميل ليس بالصيغة المطلوبة";

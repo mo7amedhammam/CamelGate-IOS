@@ -188,6 +188,7 @@ struct ProfileView: View {
                                     }
                                 })
                                 Button(action: {
+                                    ViewModelSendFirebaseToken.shared.RemoveFirebaseToken()
                                     Helper.logout()
                                     Helper.IsLoggedIn(value: false)
                                     LoginManger.removeUser()
@@ -207,7 +208,7 @@ struct ProfileView: View {
                                 
                                 if DeleteAccount.CanDeleteaccount{
                                 Button(action: {
-//                                    environments.isError = true
+                                    environments.isError = true
                                     DeleteAccount.message = "AreyouSureToDelete_"
                                     DeleteAccount.isAlert = true
                                 }, label: {
@@ -264,19 +265,11 @@ struct ProfileView: View {
             ZStack{
             if driverRate.isAlert{
                 CustomAlert(presentAlert: $driverRate.isAlert,alertType: .error(title: "", message: driverRate.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
-//                    if ApprovedShipmentVM.activeAlert == .unauthorized{
-//                        Helper.logout()
-//                        LoginManger.removeUser()
-//                        Helper.IsLoggedIn(value: false)
-//                        destination = AnyView(SignInView())
-//                        active = true
-//                    }
                     driverRate.isAlert = false
-//                    environments.isError = false
                 })
             }else if DeleteAccount.isAlert{
-                CustomAlert(presentAlert: $DeleteAccount.isAlert,alertType: .error(title: "", message: DeleteAccount.message.localized(language), lefttext: "NotNow_".localized(language), righttext: "Delete_".localized(language)),leftButtonAction:{
-                    environments.isError = true
+                CustomAlert(presentAlert: $DeleteAccount.isAlert,alertType: .question(title: "", message: DeleteAccount.message.localized(language), lefttext: "NotNow_".localized(language), righttext: "Delete_".localized(language)),leftButtonAction:{
+                    environments.isError = false
                     DeleteAccount.isAlert = false
                     DeleteAccount.message = ""
                 }, rightButtonAction: {
