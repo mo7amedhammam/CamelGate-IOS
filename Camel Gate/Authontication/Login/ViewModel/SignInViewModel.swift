@@ -73,15 +73,11 @@ class SignInViewModel: ObservableObject {
                 }else if self?.publishedUserLogedInModel?.profileStatusId == 2{
                     self?.destination = AnyView(TabBarView()
                                             .navigationBarHidden(true))
-                    Helper.setUserData( DriverName: self?.publishedUserLogedInModel?.name ?? "", DriverImage: self?.publishedUserLogedInModel?.image ?? "" )
+                    Helper.setUserData( DriverName: modeldata.data?.name ?? "", DriverImage: modeldata.data?.image ?? "" )
                     LoginManger.saveUser(modeldata.data)
-                    Helper.setAccessToken(access_token: "Bearer " + "\(self?.publishedUserLogedInModel?.token ?? "")" )
-
+                    Helper.setAccessToken(access_token: "Bearer " + "\(modeldata.data?.token ?? "")" )
                     Helper.IsLoggedIn(value: true)
-
                     ViewModelSendFirebaseToken.shared.SendFirebaseToken()
-//                    self?.firebasetoken.SendFirebaseToken()
-//                    self?.sendTokenToFirebaseVM.firebaseDeviceToken = modeldata.data?.token ?? ""
                     
                 }
                 self?.isLoading = false

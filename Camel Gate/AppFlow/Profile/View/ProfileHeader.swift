@@ -40,7 +40,7 @@ struct ProfileHeader: View {
                             .frame(width: 95, height: 95, alignment: .center)
                     }
                     
-                    Text(LoginManger.getUser()?.name ?? "")
+                    Text(Helper.getDriverName())
                         .font(.camelBold(of: 20))
                         .foregroundColor(.white)
                     

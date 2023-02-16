@@ -33,7 +33,7 @@ struct HeaderView: View {
             
             VStack(alignment: .leading ){
                 HStack{
-                    Text(LoginManger.getUser()?.name ?? "")
+                    Text(Helper.getDriverName())
                         .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr18:Font.camelfonts.Bold18)
                         .foregroundColor(Color.white)
                     HStack(alignment:.center){
