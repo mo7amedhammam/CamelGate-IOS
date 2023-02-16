@@ -35,10 +35,10 @@
 "resident" = "resident";
 "Citizen" = "Citizen";
 "Resident" = "Resident";
-"Border" = "Border";
+"Border" = "Hodod";
 "Citizen_Id" = "Citizen Id";
 "Resident_Id" = "Resident Id";
-"Border_Id" = "Border Id";
+"Border_Id" = "Hodod Id";
 "Id" = "Id";
 "Nationality" = "Nationality";
 "Email" = "Email";
@@ -74,6 +74,7 @@
 "Password_Changed" = "Password Changed";
 "You_just_changed_your_password" = "You just changed your password";
 "Passwords_does_not_match" = "Passwords does not match";
+"Password_Empty" = "Password is empty";
 "Please_enter_the_new_password_\nand_remember_that_it_needs_to_be_\ndifferent_from_the_last_one" = "Please enter the new password \nand remember that it needs to be \ndifferent from the last one";
 "Current_Password" = "Current Password";
 "new_Password" = "new Password";

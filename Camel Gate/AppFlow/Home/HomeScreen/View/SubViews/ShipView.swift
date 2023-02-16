@@ -92,7 +92,8 @@ struct ShipView: View {
                     .padding(.bottom,-5)
 
                 Button(action: {
-                    environments.confirmAlert = true
+                    showConfirmAlert()
+//                    environments.confirmAlert = true
                 }, label: {
                     HStack {
                         Text(ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? "Start_Shipment".localized(language):ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? "Uploaded".localized(language):"Dropped_&_Finished".localized(language))
@@ -136,23 +137,25 @@ struct ShipView: View {
 //        }
     }
 //    
-//    func showConfirmAlert() {
-//        
-//        switch   ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId {
-//        case 2:
-//            confirmMessage="are_you_sure_To_Start_now?"
-//        case 3:
-//            confirmMessage="are_you_sure_To_Upload_now?"
-//        case 4:
-//            confirmMessage="Did_you_realy_Finish_Shipment?"
-//        default:
-//            return
-//        }
-////        DispatchQueue.main.async(execute: {
-//        confirmAlert = true
-////        })
-//        //        ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? confirmMessage="are_you_sure_To_Start_now?":ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? confirmMessage = "are_you_sure_To_Upload_now?":confirmMessage = "Did_you_realy_Finish_Shipment?"
-//    }
+    func showConfirmAlert() {
+        
+        switch   ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId {
+        case 2:
+            environments.confirmMessage="are_you_sure_To_Start_now?"
+        case 3:
+            environments.confirmMessage="are_you_sure_To_Upload_now?"
+        case 4:
+            environments.confirmMessage="Did_you_realy_Finish_Shipment?"
+        default:
+            return
+        }
+//        DispatchQueue.main.async(execute: {
+        environments.confirmAlert = true
+        environments.isError = true
+
+//        })
+        //        ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? confirmMessage="are_you_sure_To_Start_now?":ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? confirmMessage = "are_you_sure_To_Upload_now?":confirmMessage = "Did_you_realy_Finish_Shipment?"
+    }
 //    
 }
 

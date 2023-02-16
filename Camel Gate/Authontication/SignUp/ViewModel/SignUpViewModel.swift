@@ -51,15 +51,32 @@ class SignUpViewModel: ObservableObject {
         }
     }
     
-    @Published  var password = ""
+    @Published  var password = ""{
+        didSet{
+            if confirmpassword != "" {
+                if password !=  confirmpassword {
+                    validations = .ConfirmPassword
+                    self.ValidationMessage = "Passwords_does_not_match"
+                }else{
+                    validations = .none
+                    self.ValidationMessage = ""
+                }
+            }
+        }
+    }
     @Published  var confirmpassword = "" {
         didSet{
+            if password != "" {
             if confirmpassword != "" && ( password !=  confirmpassword) {
                 validations = .ConfirmPassword
                 self.ValidationMessage = "Passwords_does_not_match"
             }else{
                 validations = .none
                 self.ValidationMessage = ""
+            }
+            }else{
+                validations = .Password
+                self.ValidationMessage = "Password_Empty"
             }
         }
      }

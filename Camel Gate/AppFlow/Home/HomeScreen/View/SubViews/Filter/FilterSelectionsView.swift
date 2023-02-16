@@ -48,7 +48,7 @@ struct FilterMenu:View{
                                         .font(.camelRegular(of: 18))
                                         .foregroundColor(.black)
                                     
-                                    Text(ShipmentVM.fromCityName == "" ? "Any".localized(language):"\(ShipmentVM.fromCityName)-\(ShipmentVM.toCityName)" )
+                                    Text((ShipmentVM.fromCityName == "" && ShipmentVM.toCityName == "") ? "Any".localized(language):"\(ShipmentVM.fromCityName)-\(ShipmentVM.toCityName)" )
                                         .font(.camelRegular(of: 16))
                                         .foregroundColor(.gray)
                                 }
@@ -72,7 +72,7 @@ struct FilterMenu:View{
                                     Text("Date_(From-To)".localized(language))
                                         .font(.camelRegular(of: 18))
                                         .foregroundColor(.black)
-                                    Text(ShipmentVM.fromDateStr == "" ? "Any".localized(language):"\(ShipmentVM.fromDateStr ) - \(ShipmentVM.toDateStr )")
+                                    Text((ShipmentVM.fromDateStr == "" && ShipmentVM.toDateStr == "") ? "Any".localized(language):"\(ShipmentVM.fromDateStr ) - \(ShipmentVM.toDateStr )")
                                         .font(.camelRegular(of: 16))
                                         .foregroundColor(.gray)
                                 }

@@ -106,36 +106,38 @@ struct HomeView: View {
                                 //                                        .listRowSeparator(.hidden)
                                 //                                    .padding(.bottom,-25)
                                 //                                    .padding(.horizontal,10)
-                                ScrollView(.horizontal , showsIndicators : false) {
-                                    HStack {
-                                        if ApprovedShipmentVM.fromCityName != ""{
-                                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toCityName)", D: {
-                                                ApprovedShipmentVM.fromCityName = ""
-                                                ApprovedShipmentVM.toCityName = ""
-                                                ApprovedShipmentVM.fromCityId = 0
-                                                ApprovedShipmentVM.toCityId = 0
-                                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
-                                            })
-                                        }
-                                        if ApprovedShipmentVM.fromDateStr != ""{
-                                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd")) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd"):"")", D: {
-                                                ApprovedShipmentVM.fromDateStr = ""
-                                                ApprovedShipmentVM.toDateStr = ""
-                                                ApprovedShipmentVM.fromDate = Date()
-                                                ApprovedShipmentVM.toDate = Date()
-                                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
-                                            })
-                                        }
-                                        if ApprovedShipmentVM.shipmentTypesIds != []{
-                                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.shipmentTypesNames.joined(separator: ", "))", D: {
-                                                ApprovedShipmentVM.shipmentTypesIds = []
-                                                ApprovedShipmentVM.shipmentTypesNames = []
-                                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
-                                            })
-                                        }
-                                    }
-                                    .padding(.horizontal)
-                                }
+                                FilterCapsules()
+                                    .environmentObject(ApprovedShipmentVM)
+//                                ScrollView(.horizontal , showsIndicators : false) {
+//                                    HStack {
+//                                        if (ApprovedShipmentVM.fromCityName != "" || ApprovedShipmentVM.toCityName != ""){
+//                                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toCityName)", D: {
+//                                                ApprovedShipmentVM.fromCityName = ""
+//                                                ApprovedShipmentVM.toCityName = ""
+//                                                ApprovedShipmentVM.fromCityId = 0
+//                                                ApprovedShipmentVM.toCityId = 0
+//                                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+//                                            })
+//                                        }
+//                                        if (ApprovedShipmentVM.fromDateStr != "" || ApprovedShipmentVM.toDateStr != ""){
+//                                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd")) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format:  language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd"):"")", D: {
+//                                                ApprovedShipmentVM.fromDateStr = ""
+//                                                ApprovedShipmentVM.toDateStr = ""
+//                                                ApprovedShipmentVM.fromDate = Date()
+//                                                ApprovedShipmentVM.toDate = Date()
+//                                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+//                                            })
+//                                        }
+//                                        if ApprovedShipmentVM.shipmentTypesIds != []{
+//                                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.shipmentTypesNames.joined(separator: ", "))", D: {
+//                                                ApprovedShipmentVM.shipmentTypesIds = []
+//                                                ApprovedShipmentVM.shipmentTypesNames = []
+//                                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+//                                            })
+//                                        }
+//                                    }
+//                                    .padding(.horizontal)
+//                                }
                             }
                         }
                         .listRowBackground(Color.clear)
@@ -207,7 +209,7 @@ struct HomeView: View {
                 })
                 }
                 if environments.confirmAlert{
-                    CustomAlert(presentAlert: $environments.confirmAlert,alertType: .question(title: "", message: "\(environments.confirmMessage)".localized(language), lefttext: "NotNow_".localized(language), righttext: "yes_".localized(language)),leftButtonAction:{
+                    CustomAlert(presentAlert: $environments.confirmAlert,alertType: .question(title: "", message: environments.confirmMessage.localized(language), lefttext: "NotNow_".localized(language), righttext: "yes_".localized(language)),leftButtonAction:{
                         environments.confirmAlert = false
 //                        environments.confirmMessage = ""
                         environments.isError = false
@@ -232,11 +234,11 @@ struct HomeView: View {
                         environments.isError = true
                     }
                 })
-                .onChange(of: environments.confirmAlert, perform: {newval in
-                    if newval {
-                        showConfirmAlert()
-                    }
-                })
+//                .onChange(of: environments.confirmAlert, perform: {newval in
+//                    if newval {
+//                        showConfirmAlert()
+//                    }
+//                })
 
         )
         
@@ -258,24 +260,24 @@ struct HomeView: View {
     }
     
     
-    func showConfirmAlert() {
-        
-        switch   ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId {
-        case 2:
-            environments.confirmMessage="are_you_sure_To_Start_now?"
-        case 3:
-            environments.confirmMessage="are_you_sure_To_Upload_now?"
-        case 4:
-            environments.confirmMessage="Did_you_realy_Finish_Shipment?"
-        default:
-            return
-        }
-//        DispatchQueue.main.async(execute: {
-        environments.confirmAlert = true
-        environments.isError = true
-//        })
-        //        ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? confirmMessage="are_you_sure_To_Start_now?":ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? confirmMessage = "are_you_sure_To_Upload_now?":confirmMessage = "Did_you_realy_Finish_Shipment?"
-    }
+//    func showConfirmAlert() {
+//
+//        switch   ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId {
+//        case 2:
+//            environments.confirmMessage="are_you_sure_To_Start_now?"
+//        case 3:
+//            environments.confirmMessage="are_you_sure_To_Upload_now?"
+//        case 4:
+//            environments.confirmMessage="Did_you_realy_Finish_Shipment?"
+//        default:
+//            return
+//        }
+////        DispatchQueue.main.async(execute: {
+//        environments.confirmAlert = true
+//        environments.isError = true
+////        })
+//        //        ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2 ? confirmMessage="are_you_sure_To_Start_now?":ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 3 ? confirmMessage = "are_you_sure_To_Upload_now?":confirmMessage = "Did_you_realy_Finish_Shipment?"
+//    }
     
     
 }

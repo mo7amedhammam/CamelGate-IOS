@@ -64,6 +64,11 @@ struct SignUpView: View {
                             .onTapGesture(perform: {
                                 inFocus = 3
                             })
+//                            .onChange(of: SignUpVM.password, perform: {newval in
+//                                if SignUpVM.confirmpassword != "" {
+//
+//                                }
+//                            })
                         SecureInputTextField("Confirm_your_password".localized(language), text: $SignUpVM.confirmpassword, iconName: "lockBlue")
                             .focused($inFocus,equals:4)
                             .onTapGesture(perform: {
@@ -72,7 +77,7 @@ struct SignUpView: View {
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.red, lineWidth:SignUpVM.validations == .ConfirmPassword ? 1:0))
-                        if SignUpVM.validations == .ConfirmPassword{
+                        if SignUpVM.validations == .ConfirmPassword || SignUpVM.validations == .Password{
                             HStack{
                                 Text(SignUpVM.ValidationMessage.localized(language))
                                     .foregroundColor(.red)
@@ -244,6 +249,7 @@ struct SignUpView: View {
         
         .navigationBarHidden(true)
         .overlay(content: {
+            
             VStack{
                 HStack{
                     BackButtonView()
@@ -258,9 +264,27 @@ struct SignUpView: View {
                 .padding(.top,hasNotch ? 20:10)
                 Spacer()
             }
+            
+            
         })
         .overlay(content: {
             AnimatingGif(isPresented: $SignUpVM.isLoading)
+            
+            
+            ZStack{
+            if SignUpVM.isAlert{
+                CustomAlert(presentAlert: $SignUpVM.isAlert,alertType: .error(title: "", message: SignUpVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+//                        if ApprovedShipmentVM.activeAlert == .unauthorized{
+//                            Helper.logout()
+//                            LoginManger.removeUser()
+//                            Helper.IsLoggedIn(value: false)
+//                            destination = AnyView(SignInView())
+//                            active = true
+//                        }
+                    SignUpVM.isAlert = false
+                })
+                }
+            }
         })
         .onChange(of: SignUpVM.verifyUser , perform: {newval in
             if newval == true{
@@ -271,29 +295,29 @@ struct SignUpView: View {
         NavigationLink(destination: EditProfileInfoView(taskStatus: .create,enteredDriverName: SignUpVM.Drivername, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.isUserCreated , label: {
         })
         
-            .overlay(
-                ZStack{
-                if SignUpVM.isAlert{
-                    CustomAlert(presentAlert: $SignUpVM.isAlert,alertType: .error(title: "", message: SignUpVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
-//                        if ApprovedShipmentVM.activeAlert == .unauthorized{
-//                            Helper.logout()
-//                            LoginManger.removeUser()
-//                            Helper.IsLoggedIn(value: false)
-//                            destination = AnyView(SignInView())
-//                            active = true
-//                        }
-                        SignUpVM.isAlert = false
-                    })
-                    }
-                }
-                    .ignoresSafeArea()
-                    .edgesIgnoringSafeArea(.all)
-//                    .onChange(of: SignUpVM.isAlert, perform: {newval in
-//                        DispatchQueue.main.async {
-//                    environments.isError = newval
-//                    }
+//            .overlay(
+//                ZStack{
+//                if SignUpVM.isAlert || true{
+//                    CustomAlert(presentAlert: $SignUpVM.isAlert,alertType: .error(title: "", message: SignUpVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+////                        if ApprovedShipmentVM.activeAlert == .unauthorized{
+////                            Helper.logout()
+////                            LoginManger.removeUser()
+////                            Helper.IsLoggedIn(value: false)
+////                            destination = AnyView(SignInView())
+////                            active = true
+////                        }
+//                        SignUpVM.isAlert = false
 //                    })
-            )
+//                    }
+//                }
+//                    .ignoresSafeArea()
+//                    .edgesIgnoringSafeArea(.all)
+////                    .onChange(of: SignUpVM.isAlert, perform: {newval in
+////                        DispatchQueue.main.async {
+////                    environments.isError = newval
+////                    }
+////                    })
+//            )
         
         // Alert with no internet connection
 //            .alert(isPresented: $SignUpVM.isAlert, content: {

@@ -203,22 +203,16 @@ struct EditProfileInfoView: View {
                                     .overlay(content: {
                                         Menu {
                                             Button("Citizen_Id".localized(language), action: {
-                                                profileVM.RedisentOptions = 1
-                                                //                                                profileVM.RedisentNumLength = 10
                                                 profileVM.IsDropDownChange = true
-
+                                                profileVM.RedisentOptions = 1
                                             })
                                             Button("Resident_Id".localized(language), action: {
-                                                profileVM.RedisentOptions = 2
-                                                //                                                profileVM.RedisentNumLength = 16
                                                 profileVM.IsDropDownChange = true
-
+                                                profileVM.RedisentOptions = 2
                                             })
                                             Button("Border_Id".localized(language), action: {
-                                                profileVM.RedisentOptions = 3
-                                                //                                                profileVM.RedisentNumLength = 10
                                                 profileVM.IsDropDownChange = true
-
+                                                profileVM.RedisentOptions = 3
                                             })
                                             
                                         } label: {
@@ -346,7 +340,7 @@ struct EditProfileInfoView: View {
                             .foregroundColor(Color("blueColor"))
                             .padding(.vertical,10)
                         
-                        InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: $profileVM.TruckTypeName,Disabled:true)
+                        InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Truck_Type".localized(language), text: .constant(getTruckTypeName(TypeId: Int(profileVM.TruckTypeId) ?? 0)),Disabled:true)
                             .overlay(content: {
                                 Menu {
                                     ForEach(trucktypesVM.publishedTypesArray,id:\.self){type in
@@ -372,7 +366,7 @@ struct EditProfileInfoView: View {
                         
                         //MARK: - truck manfacturer and model -
                         HStack{
-                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Manfacturer".localized(language), text: $profileVM.TruckManfacturerName,Disabled:true)
+                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Manfacturer".localized(language), text: .constant(getManfacturerName(ManfacturerId: Int(profileVM.TruckManfacturerId) ?? 0)),Disabled:true)
                                 .overlay(content: {
                                     Menu {
                                         ForEach(truckmanfacturersVM.publishedManfacturersArray,id:\.self){Manfacturer in
@@ -929,6 +923,25 @@ extension EditProfileInfoView{
         var name = ""
         for n in nationalityVM.publishedNationalitiesArray {
             if n.id == nationalityId {
+                name = n.title ?? ""
+            }
+        }
+       return name
+    }
+    
+    func getTruckTypeName(TypeId:Int) -> String {
+        var name = ""
+        for n in trucktypesVM.publishedTypesArray {
+            if n.id == TypeId {
+                name = n.title ?? ""
+            }
+        }
+       return name
+    }
+    func getManfacturerName(ManfacturerId:Int) -> String {
+        var name = ""
+        for n in truckmanfacturersVM.publishedManfacturersArray {
+            if n.id == ManfacturerId {
                 name = n.title ?? ""
             }
         }

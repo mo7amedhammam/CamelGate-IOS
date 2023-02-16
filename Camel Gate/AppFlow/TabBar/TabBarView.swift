@@ -80,12 +80,8 @@ struct MainTabBar : View {
             )
             .overlay(
                 ZStack{
-//                if environments.isError{
-//                    ZStack{
                     Color.black.opacity(environments.isError ? 0.7:0)
-//                    }
                         .ignoresSafeArea()
-//                    }
                 }
             )
             

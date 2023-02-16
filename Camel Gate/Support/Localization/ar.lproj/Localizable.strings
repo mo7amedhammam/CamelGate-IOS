@@ -34,10 +34,10 @@
 "Male" = "ذكر";
 "Female" = "أنثى";
 "resident" = "الإقامة";
-"Citizen" = "مواطن";
+"Citizen" = "هوية";
 "Resident" = "مقيم";
 "Border" = "حدود";
-"Citizen_Id" = "رقم المواطنة";
+"Citizen_Id" = "رقم الهوية";
 "Resident_Id" = "رقم الاقامة";
 "Border_Id" = "رقم الحدود";
 "Id" = "الرقم";
@@ -75,6 +75,8 @@
 "Password_Changed" = "تم تغيير كلمة المرور";
 "You_just_changed_your_password" = "لقد قمت الأن بتغيير \nكلمة المرور الخاصة بك";
 "Passwords_does_not_match" = "كلمة المرور غير متطابقة";
+"Password_Empty" = "أدخل كلمة المرور";
+
 "Please_enter_the_new_password_\nand_remember_that_it_needs_to_be_\ndifferent_from_the_last_one" = "برجاء إدخال كلمة مرور جديدة, \nولكن تذكر ان تكون \nمختلفة عن كلمة المرور السابقة";
 "Current_Password" = "كلمة المرور الحالية";
 "new_Password" = "كلمة المرور الجديدة";

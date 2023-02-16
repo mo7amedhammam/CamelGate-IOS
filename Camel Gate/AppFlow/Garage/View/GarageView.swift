@@ -26,36 +26,8 @@ struct GarageView: View {
             VStack {
                 Spacer().frame(height:hasNotch ? checkforpadding()+20:checkforpadding())
                 
-                ScrollView(.horizontal , showsIndicators : false) {
-                    HStack {
-                        if ApprovedShipmentVM.fromCityName != ""{
-                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toCityName)", D: {
-                                ApprovedShipmentVM.fromCityName = ""
-                                ApprovedShipmentVM.toCityName = ""
-                                ApprovedShipmentVM.fromCityId = 0
-                                ApprovedShipmentVM.toCityId = 0
-                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
-                            })
-                        }
-                        if ApprovedShipmentVM.fromDateStr != ""{
-                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format:language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd")) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd"):"")", D: {
-                                ApprovedShipmentVM.fromDateStr = ""
-                                ApprovedShipmentVM.toDateStr = ""
-                                ApprovedShipmentVM.fromDate = Date()
-                                ApprovedShipmentVM.toDate = Date()
-                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
-                            })
-                        }
-                        if ApprovedShipmentVM.shipmentTypesIds != []{
-                            FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.shipmentTypesNames.joined(separator: ", "))", D: {
-                                ApprovedShipmentVM.shipmentTypesIds = []
-                                ApprovedShipmentVM.shipmentTypesNames = []
-                                ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
-                            })
-                        }
-                    }
-                    .padding(.horizontal)
-                }
+                FilterCapsules()
+                    .environmentObject(ApprovedShipmentVM)
                 
                 List($ApprovedShipmentVM.publishedFilteredShipments, id:\.self) { tripItem in
                     Button(action: {
@@ -201,5 +173,42 @@ struct GarageView_Previews: PreviewProvider {
     static var previews: some View {
         GarageView(FilterTag: .constant(.Menu), showFilter: .constant(false)).environmentObject(ApprovedShipmentViewModel()).environmentObject(camelEnvironments())
         
+    }
+}
+
+struct FilterCapsules: View {
+    @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
+
+    var body: some View {
+        ScrollView(.horizontal , showsIndicators : false) {
+            HStack {
+                if (ApprovedShipmentVM.fromCityName != "" || ApprovedShipmentVM.toCityName != ""){
+                    FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromCityName) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toCityName)", D: {
+                        ApprovedShipmentVM.fromCityName = ""
+                        ApprovedShipmentVM.toCityName = ""
+                        ApprovedShipmentVM.fromCityId = 0
+                        ApprovedShipmentVM.toCityId = 0
+                        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+                    })
+                }
+                if (ApprovedShipmentVM.fromDateStr != "" || ApprovedShipmentVM.toDateStr != ""){
+                    FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format:language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd")) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd"):"")", D: {
+                        ApprovedShipmentVM.fromDateStr = ""
+                        ApprovedShipmentVM.toDateStr = ""
+                        ApprovedShipmentVM.fromDate = Date()
+                        ApprovedShipmentVM.toDate = Date()
+                        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+                    })
+                }
+                if ApprovedShipmentVM.shipmentTypesIds != []{
+                    FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.shipmentTypesNames.joined(separator: ", "))", D: {
+                        ApprovedShipmentVM.shipmentTypesIds = []
+                        ApprovedShipmentVM.shipmentTypesNames = []
+                        ApprovedShipmentVM.GetFilteredShipments(operation: .fetchshipments)
+                    })
+                }
+            }
+            .padding(.horizontal)
+        }
     }
 }
