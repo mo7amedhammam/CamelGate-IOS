@@ -37,7 +37,7 @@ struct WalletView: View {
                                         Text("\(String(format: "%.2f", Float(WalletVM.publishedUserWalletModel.currentBalance ?? 0)))")
                                             .fontWeight(.bold)
                                             .foregroundColor(Color("Base_Color"))
-                                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr24:Font.camelfonts.SemiBold24)
+                                            .font(Font.camelfonts.SemiBold24)
 
                                         
                                         Text("SAR".localized(language))
@@ -94,7 +94,7 @@ struct WalletView: View {
                                     .foregroundColor(Color.gray)
                                 
                                 Text("\(selected == "Gained" ? "\(String(format:"%.2f",Float(WalletVM.publishedUserWalletModel.gainedBalance ?? 0)))" : "\(String(format:"%.2f",Float(WalletVM.publishedUserWalletModel.currentBalance ?? 0)))" )" )
-                                    .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
+                                    .font(Font.camelfonts.Bold14)
                                     .foregroundColor(Color.gray)
                             }
                             .frame(height: 30)

@@ -92,7 +92,7 @@
 "Uploaded" = "تم التحميل";
 "Dropped_&_Finished" = "تم التنزيل والإنتهاء";
 
-"SAR" = "ر٫س";
+"SAR" = "ر.س";
 "LowestOffer" = "أقل عرض";
 "Offers" = "عرض";
 "Distance_:_" = "المسافة";
@@ -160,7 +160,7 @@
 "Lowest_Osser_is" = "أقل عرض هو";
 "Send_Offer" = "إرسال العرض";
 "Offer_Applied" = "تم تقديم العرض";
-"You_have_applied_for_this_shipment_\nsuccessfully" = "لقم قمت الآن بتقديم طلب لهذه الشحنة بنجاح";
+"You_have_applied_for_this_shipment_\nsuccessfully" = "لقد قمت الآن بتقديم طلب لهذه الشحنة بنجاح";
 "Check_other_shipments" = "عرض شحنات أخرى";
 "Confirm_cancelation" = "تأكيد الإلغاء";
 "Reason" = "السبب";
@@ -227,7 +227,7 @@
 "Send_OTP" = "أرسل الكود";
 "Change_your_phone_number" = "تغيير رقم الهاتف";
 
-"Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers" = "رقم المواطنه يبدأ ب١ وبحد اقصى ١٠ ارقام";
+"Hint:_Citizen_ID_should_start_with_1_with_maximum_10_Numbers" = "رقم الهوية يبدأ ب١ وبحد اقصى ١٠ ارقام";
 "Hint:_Resident_ID_should_start_with_2_with_maximum_16_Numbers" = "رقم المقيم يبدأ ب٢ وبحد اقصى ١٦ ارقام";
 "Hint:_Border_ID_should_start_with_5_with_maximum_16_Numbers" = "رقم الحدود يبدأ ب٥ وبحد اقصى ١٦ ارقام";
 
@@ -279,3 +279,6 @@
 "Approve_" = "اخفاء";
 //"DisApprove_" = "غير موافق";
 "Invalid_Email" = "الإيميل ليس بالصيغة المطلوبة";
+
+"(" = ")";
+")" = "(";

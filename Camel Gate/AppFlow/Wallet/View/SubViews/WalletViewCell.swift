@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 struct WalletViewCell : View {
     var language = LocalizationService.shared.language
 
@@ -31,14 +32,14 @@ struct WalletViewCell : View {
 
                         Text("\( ConvertStringDate(inp: walletitem?.date ?? "", FormatFrom: "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS", FormatTo: "yyyy") )")
                     }
-                    .font(.camelRegular(of: 16))
+                    .font(Font.camelfonts.Reg16)
                     .foregroundColor(Color.white)
                 }.frame(width: 80, height: 80).cornerRadius(10)
                 VStack(alignment : .leading ){
                     HStack{
                         HStack(spacing:2){
                             Text("\(String(format:"%.2f",Float(walletitem?.gainedValue ?? 0)))")
-                                .font(.camelBold(of: 14))
+                                .font(Font.camelfonts.Bold14)
 
                             Text("SAR".localized(language))
                                 .font(.camelRegular(of: 11))
@@ -51,7 +52,7 @@ struct WalletViewCell : View {
                     HStack{
                         HStack(spacing:2){
                             Text("\(String(format:"%.2f",Float(walletitem?.offerValue ?? 0)))")
-                                .font(.camelBold(of: 14))
+                                .font(Font.camelfonts.Bold14)
 
                             Text("SAR".localized(language))
                                 .font(.camelRegular(of: 11))

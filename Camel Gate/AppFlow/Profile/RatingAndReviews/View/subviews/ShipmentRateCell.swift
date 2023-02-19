@@ -25,7 +25,7 @@ struct ShipmentRateCell: View {
                     
                     VStack(alignment:.leading){
                         Text(rate.shipmentCode ?? "")
-                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr14:Font.camelfonts.Reg14)
+                            .font(Font.camelfonts.Reg14)
                             .foregroundColor(Color("blueColor"))
                         HStack{
                             StarsView(rating: Float(rate.rate ?? 0))

@@ -31,11 +31,14 @@ struct WalletIcon: View {
                         Image("ic_wallet")
                         Text("Wallet1".localized(language))
                             .foregroundColor(Color.white.opacity(0.7))
+                            .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+
                         Text("\(String(format:"%.2f",Float(HomeWalletVM.PublishedHomePageWalletModel?.currentBalance ?? 0)))")
                             .foregroundColor(Color.white)
+                            .font(Font.camelfonts.Reg16)
+
                     }
                     .padding(.leading)
-                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                 }
                 .padding(.bottom,-10)
             })
@@ -49,7 +52,7 @@ struct WalletIcon: View {
                         VStack(alignment: .leading ){
                             Text( "\(HomeWalletVM.PublishedHomePageWalletModel?.totalUpcomingTrips ?? 0)")
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
-                                .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr20:Font.camelfonts.Bold20)
+                                .font(Font.camelfonts.Bold20)
                             Text("Upcoming_Trips".localized(language))
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
                                 .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr11:Font.camelfonts.SemiBold11)
@@ -64,7 +67,7 @@ struct WalletIcon: View {
                         VStack(alignment: .leading ){
                             Text("\(String(format:"%.2f",Float(HomeWalletVM.PublishedHomePageWalletModel?.gainedBalance ?? 0)))")
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
-                                .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr20:Font.camelfonts.Bold20)
+                                .font(Font.camelfonts.Bold20)
                             Text("Gained_Money".localized(language))
                                 .foregroundColor(Color(#colorLiteral(red: 0.356864363, green: 0.3568614721, blue: 0.2826236188, alpha: 1)))
                                 .font(.camelRegular(of: 14))

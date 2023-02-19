@@ -42,8 +42,8 @@ struct NoteScreenView: View {
                     InputTextField(iconName: "phoneBlue", fieldType: .Phone, placeholder: "Enter_your_phone_number".localized(language), text: $resendOTPVM.phoneNumber)
                         .padding(.horizontal)
                         .onChange(of: resendOTPVM.phoneNumber){ newval in
-                            resendOTPVM.phoneNumber =  String(newval.prefix(resendOTPVM.PhoneNumLength))
-                            phoneNumber = newval
+                            resendOTPVM.phoneNumber =  String(newval.prefix(resendOTPVM.PhoneNumLength)).convertedDigitsToLocale(identifier: "en_US")
+                            phoneNumber = newval.convertedDigitsToLocale(identifier: "en_US")
                         }
 
                 GradientButton(action: {

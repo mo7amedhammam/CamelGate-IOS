@@ -33,7 +33,7 @@ struct DateFromTo:View{
                 )
             
             HStack{
-                    InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "From".localized(language), text: $ShipmentVM.fromDateStr)
+                    InputTextField(iconName: "",iconColor: Color("OrangColor"),fieldType:.number, placeholder: "From".localized(language), text: $ShipmentVM.fromDateStr)
 //                        .disabled(true)
                         .overlay(content: {
                             HStack{
@@ -45,7 +45,7 @@ struct DateFromTo:View{
 
                         })
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                    InputTextField(iconName: "",iconColor: Color("OrangColor"), placeholder: "To".localized(language), text:$ShipmentVM.toDateStr)
+                    InputTextField(iconName: "",iconColor: Color("OrangColor"),fieldType:.number, placeholder: "To".localized(language), text:$ShipmentVM.toDateStr)
                         .overlay(content: {
                             HStack{
                                 DatePicker("", selection: $ShipmentVM.toDate, displayedComponents: [.date])

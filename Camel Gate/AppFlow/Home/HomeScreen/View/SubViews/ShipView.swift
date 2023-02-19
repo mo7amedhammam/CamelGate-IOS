@@ -38,13 +38,15 @@ struct ShipView: View {
                     HStack(){
                         VStack(alignment: .leading){
                             Text("Delivery".localized(language))
+                                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+
                             HStack{
                                 Text(
                                     ConvertStringDate(inp:ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentDateTo ?? "2022-08-17T00:00:00",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss",FormatTo:"E. dd/MM/yyyy . h:m aa")
-                                )
+                                )                                        .font(Font.camelfonts.Reg16)
+
                             }
                         }
-.font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         Spacer()
                         Button(action: {
                             if ApprovedShipmentVM.publishedapprovedShipmentModel?.shipmentStatusId == 2{

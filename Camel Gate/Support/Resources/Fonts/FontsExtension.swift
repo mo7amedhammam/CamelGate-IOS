@@ -53,7 +53,7 @@ extension Font {
 //        "MyriadConceptRoman-Light"
 //        "MyriadConceptRoman-Semibold"
 //        "MyriadConceptRoman-Bold"
-//
+static let shared = CamelFonts()
         let LightAr11 = Font.custom("GESSUniqueLight-Light", size: 11)
         let LightAr12 = Font.custom("GESSUniqueLight-Light", size: 12)
         let LightAr14 = Font.custom("GESSUniqueLight-Light", size: 14)

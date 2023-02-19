@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
-        @AppStorage("language")
+    @AppStorage("language")
     var language = LocalizationService.shared.language
     @StateObject var SignInVM = SignInViewModel()
     
@@ -41,7 +41,15 @@ struct SignInView: View {
                                     .stroke(.red, lineWidth:SignInVM.validations == .PhoneNumber ? 1:0).padding(.horizontal)
                             )
                             .onChange(of: SignInVM.phoneNumber){ newval in
+//                                print(newval.convertedDigitsToLocale(identifier: "en"))
+//                                print(newval.convertedDigitsToLocale(identifier: "en_US"))
+//                                print(newval.convertedDigitsToLocale(identifier: "en"))
+//                                print(newval.convertedDigitsToLocale(identifier: "en_US"))
+//                                DispatchQueue.main.async(execute: {
+//                                }) {
                                 SignInVM.phoneNumber =  String(newval.prefix(SignInVM.PhoneNumLength))
+                                    .convertedDigitsToLocale(identifier: "en_US")
+//                            })
                             }
                         
                         if SignInVM.validations == .PhoneNumber{

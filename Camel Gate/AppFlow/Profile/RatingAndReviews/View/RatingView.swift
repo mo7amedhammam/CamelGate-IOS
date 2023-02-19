@@ -29,9 +29,8 @@ struct RatingView: View {
                 Text("No_Reviews_To_Show".localized(language))
             }
             
-            TitleBar(Title: "Rating_&_Reviews".localized(language), navBarHidden: true, leadingButton: .backButton, IsSubTextRate: true,subText: "\(OverAllRate.DriverRate )", trailingAction: {})
+            TitleBar(Title: "Rating_&_Reviews".localized(language), navBarHidden: true, leadingButton: .backButton, IsSubTextRate: true,subText: "\(OverAllRate.DriverRate )".convertedDigitsToLocale(identifier: "en_US"), fielsType: .number, trailingAction: {})
         }
-        
         
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .background(Color.black.opacity(0.06).ignoresSafeArea(.all, edges: .all))

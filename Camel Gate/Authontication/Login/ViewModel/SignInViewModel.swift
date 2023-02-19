@@ -12,7 +12,6 @@ import Moya
 import PromiseKit
 import Alamofire
 
-
 class SignInViewModel: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
@@ -65,25 +64,23 @@ class SignInViewModel: ObservableObject {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [weak self](modeldata) in
             DispatchQueue.main.async {
+                Helper.setAccessToken(access_token: "Bearer " + "\(modeldata.data?.token ?? "")" )
+
                 self?.publishedUserLogedInModel = modeldata.data
                 if self?.publishedUserLogedInModel?.profileStatusId == 1 {
                     self?.destination = AnyView(EditProfileInfoView(taskStatus: .create,enteredDriverName: modeldata.data?.name ?? "")
                                             .navigationBarHidden(true))
-
                 }else if self?.publishedUserLogedInModel?.profileStatusId == 2{
                     self?.destination = AnyView(TabBarView()
                                             .navigationBarHidden(true))
                     Helper.setUserData( DriverName: modeldata.data?.name ?? "", DriverImage: modeldata.data?.image ?? "" )
                     LoginManger.saveUser(modeldata.data)
-                    Helper.setAccessToken(access_token: "Bearer " + "\(modeldata.data?.token ?? "")" )
                     Helper.IsLoggedIn(value: true)
                     ViewModelSendFirebaseToken.shared.SendFirebaseToken()
-                    
                 }
                 self?.isLoading = false
                 self?.isLogedin = true
             }
-            
         }.store(in: &cancellables)
     }
     

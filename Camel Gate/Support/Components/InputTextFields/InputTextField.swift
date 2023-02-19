@@ -47,12 +47,14 @@ struct InputTextField: View {
                     HStack{
                         if fieldType == .Phone{
                             Text("+966 |")
-                                .font(.camelRegular(of: 14))
+                                .font(Font.camelfonts.Reg14)
+//                                .font(.camelRegular(of: 14))
                             .foregroundColor(.gray.opacity(0.5))
                         }
                         TextField("",text:$text)
                             .disabled(Disabled ?? false)
-                            .font(.camelRegular(of: 16))
+                            .font(fieldType == .Phone || fieldType == .number ? Font.CamelFonts.shared.Reg16 : .camelRegular(of: 16))
+//                            .font(.camelRegular(of: 16))
                         .autocapitalization(.none)
                         .textInputAutocapitalization(.never)
                         .frame( minHeight: 50)
@@ -80,7 +82,7 @@ struct InputTextField_Previews: PreviewProvider {
 }
 
 enum inputfields {
-    case Phone, Default, Password
+    case Phone,number, Default, Password
 }
 //struct PhoneInputField: View {
 //    @State var iconName : String? = ""

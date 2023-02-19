@@ -104,7 +104,7 @@ struct EditProfileInfoView: View {
                         
                         //MARK: - birthdate and gender -
                         HStack{
-                                InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr,Disabled:true)
+                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"),fieldType:.number ,placeholder: "BirthDate".localized(language), text: $profileVM.BirthdateStr,Disabled:true)
                                     .overlay(content: {
 //                                        DatePicker("            ", selection: $profileVM.Birthdate,in: ...(Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()) ,displayedComponents: [.date])
 //                                            .opacity(0.02)
@@ -230,7 +230,7 @@ struct EditProfileInfoView: View {
                                         
                                     })
                                 
-                                InputTextField(iconName: "", placeholder: "Id".localized(language), placeholderColor:(profileVM.validations == .ResidentId && profileVM.ValidationMessage != "") ? .red:.gray.opacity(0.5), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
+                                InputTextField(iconName: "",fieldType:.number, placeholder: "Id".localized(language), placeholderColor:(profileVM.validations == .ResidentId && profileVM.ValidationMessage != "") ? .red:.gray.opacity(0.5), text: profileVM.RedisentOptions == 1 ? $profileVM.citizenId:profileVM.RedisentOptions == 2 ? $profileVM.residentId : $profileVM.borderId)
                                     .onChange(of: profileVM.citizenId  ){ newval in
                                         profileVM.IsDropDownChange = true
                                         profileVM.RedisentNumLength = 10
@@ -278,8 +278,9 @@ struct EditProfileInfoView: View {
                                     Spacer()
                                 }
                             }
-                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber )
+                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"),fieldType:.number, placeholder: "Driving_Licence".localized(language), text: $profileVM.LicenseNumber )
                                 .onChange(of: profileVM.LicenseNumber  ){ newval in
+                                    profileVM.IsDropDownChange = true
                                     profileVM.LicenseNumber = language.rawValue == "ar" ?  newval.replacedArabicDigitsWithEnglish():newval.replacedArabicDigitsWithEnglish()
                                     profileVM.LicenseNumber =  String(newval.prefix(profileVM.LicenseNumLength))
                                 }
@@ -289,7 +290,7 @@ struct EditProfileInfoView: View {
                                 })
                         }
                         
-                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Licence_Expiration_Date".localized(language), text: $profileVM.LicenseExpireDateStr,Disabled:true)
+                        InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"),fieldType:.number, placeholder: "Licence_Expiration_Date".localized(language), text: $profileVM.LicenseExpireDateStr,Disabled:true)
                             .overlay(
 //                                    DatePicker("", selection: $profileVM.LicenseExpireDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])
 //                                        .labelsHidden()
@@ -390,7 +391,7 @@ struct EditProfileInfoView: View {
                                     
                                 })
                             
-                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"), placeholder: "Model".localized(language), text:.constant( language.rawValue == "ar" ? profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish():profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish()),Disabled:true)
+                            InputTextField(iconName: "truckgray",iconColor: Color("OrangColor"),fieldType:.number, placeholder: "Model".localized(language), text:.constant( language.rawValue == "ar" ? profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish():profileVM.TruckManfactureYear.replacedArabicDigitsWithEnglish()),Disabled:true)
                                 .overlay(content: {
                                     Menu {
                                         ForEach(getYearsArr().reversed(),id:\.self){ year1 in
@@ -414,7 +415,7 @@ struct EditProfileInfoView: View {
                         
                         //MARK: - AXE number and Plate number -
                         HStack{
-                            InputTextField(iconName: "X321Orange2", placeholder: "AXE_Number".localized(language), text:.constant(language.rawValue == "ar" ? profileVM.NumberofAxe.replacedArabicDigitsWithEnglish():profileVM.NumberofAxe.replacedArabicDigitsWithEnglish()),Disabled:true)
+                            InputTextField(iconName: "X321Orange2",fieldType:.number, placeholder: "AXE_Number".localized(language), text:.constant(language.rawValue == "ar" ? profileVM.NumberofAxe.replacedArabicDigitsWithEnglish():profileVM.NumberofAxe.replacedArabicDigitsWithEnglish()),Disabled:true)
                                 .overlay(content: {
                                     Menu {
                                         ForEach(1..<5,id:\.self){ AxeNum in
@@ -457,7 +458,7 @@ struct EditProfileInfoView: View {
                                     Spacer()
                                 }
                             }
-                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"), placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
+                            InputTextField(iconName: "IdCardOrange",iconColor: Color("OrangColor"),fieldType:.number, placeholder: "License_Number".localized(language), text: $profileVM.TruckLicense)
                                 
                                 .onChange(of: profileVM.TruckLicense  ){ newval in
                                     profileVM.IsDropDownChange = true
@@ -472,7 +473,7 @@ struct EditProfileInfoView: View {
                         
                         //MARK: -- truck license start and expire date --
                         HStack(){
-                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Start_Date".localized(language), text: $profileVM.TruckLicenseIssueDateStr,Disabled:true)
+                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"),fieldType:.number, placeholder: "Start_Date".localized(language), text: $profileVM.TruckLicenseIssueDateStr,Disabled:true)
                                     .overlay(
 //                                        DatePicker("", selection: $profileVM.TruckLicenseIssueDate,in: ...Date(), displayedComponents: [.date])
 //                                            .labelsHidden()
@@ -495,7 +496,7 @@ struct EditProfileInfoView: View {
                                 
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
-                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"), placeholder: "Expiration_Date".localized(language), text: $profileVM.TruckLicenseExpirationDateStr,Disabled:true)
+                            InputTextField(iconName: "CalendarOrange",iconColor: Color("OrangColor"),fieldType:.number, placeholder: "Expiration_Date".localized(language), text: $profileVM.TruckLicenseExpirationDateStr,Disabled:true)
                                    
                                     .overlay(
 //                                        DatePicker("", selection: $profileVM.TruckLicenseExpirationDate,in: (Calendar.current.date(byAdding: .day, value: +1, to: Date()) ?? Date())..., displayedComponents: [.date])

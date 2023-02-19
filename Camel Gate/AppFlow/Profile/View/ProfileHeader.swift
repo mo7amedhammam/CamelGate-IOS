@@ -63,7 +63,7 @@ struct ProfileHeader: View {
 
 //                            Text("\(String(format:"%.1f", locale:Locale(identifier: "en"), driverRate.DriverRate)) ")
                                                         
-                                .font(.camelRegular(of: 14))
+                                .font(Font.camelfonts.Reg14)
                                 .foregroundColor(Color.white)
                             
                         } .padding(.horizontal)

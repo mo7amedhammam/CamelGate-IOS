@@ -64,8 +64,10 @@ struct tripCellView: View {
                                     Spacer()
                                     VStack(){
                                         HStack(alignment:.bottom, spacing: 3){
-                                            Text("\(String(format:"%.2f",Float(shipmentModel.lowestOffer ?? 1200)))").foregroundColor(Color.white)
-                                                .font(.camelsemiBold(of: 16))
+                                            Text("\(String(format:"%.2f",Float(shipmentModel.lowestOffer ?? 1200)))")
+                                                .foregroundColor(Color.white)
+                                                .font(Font.camelfonts.SemiBold16)
+//                                                .font(.camelsemiBold(of: 16))
                                                 .fontWeight(.medium)
 
                                             Text("SAR".localized(language)).foregroundColor(Color.white.opacity(0.99))
@@ -114,7 +116,7 @@ struct tripCellView: View {
 
                                     Text("\( String(format: "%.1f", shipmentModel.totalDistance ?? 22.00)) "+"KM".localized(language))
                                         .foregroundColor(.black.opacity(0.7))
-                                        .font(.camelsemiBold(of: 11))
+                                        .font(Font.camelfonts.SemiBold11)
                                     Spacer()
                                 }
                                 HStack{
@@ -129,7 +131,7 @@ struct tripCellView: View {
 
                                     Text("\(String(format: "%.1f", shipmentModel.companyRate ?? 0)) / 5")
                                         .foregroundColor(.black.opacity(0.7))
-                                        .font(.camelsemiBold(of: 11))
+                                        .font(Font.camelfonts.SemiBold11)
 
                                     Spacer()
                                 }
@@ -163,7 +165,7 @@ struct tripCellView: View {
                                                     .foregroundColor(.secondary)
                                             }
                                             .padding(.top,-6)
-                                            .font(.camelRegular(of: 12))
+                                            .font(Font.camelfonts.Reg12)
                                         }
                                         VStack(alignment: .leading){
                                             Text(shipmentModel.toCityName ??  "Alexandria").foregroundColor(Color("Second_Color"))
@@ -177,8 +179,7 @@ struct tripCellView: View {
                                                 
                                             }
                                             .padding(.top,-6)
-                                            .font(.camelRegular(of: 12))
-
+                                            .font(Font.camelfonts.Reg12)
                                             
                                         }
                                     }
@@ -220,13 +221,19 @@ struct tripCellView: View {
                             .frame(width: 15, height: 15)
                             .foregroundColor(Color.black.opacity(0.7))
 
-                        Text("Driver_Rate_:_".localized(language)).foregroundColor(.secondary)
+                        Text("Driver_Rate_:_".localized(language))
+                            .foregroundColor(.secondary)
+                            .font(.camelRegular(of: 12))
 
                         Text("\(String(format: "%.1f", shipmentModel.lowestOfferDriverRate ?? 0)) / 5")
                             .foregroundColor(Color.black.opacity(0.7))
+                            .font(Font.camelfonts.Reg12)
+
                             Spacer()
                         Text("\(shipmentModel.offersCount ?? 0)")
                             .foregroundColor(Color.black.opacity(0.7))
+                            .font(Font.camelfonts.Reg12)
+
                         Text("Offers".localized(language)).foregroundColor(.secondary)
 
 //                            Button(action: {}) {
@@ -236,7 +243,6 @@ struct tripCellView: View {
 //                            }
 
                     }
-                    .font(.camelRegular(of: 12))
                     .padding(.horizontal)
                 }
                 .frame(height: 40)

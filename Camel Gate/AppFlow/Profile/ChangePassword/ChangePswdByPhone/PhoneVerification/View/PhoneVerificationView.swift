@@ -109,6 +109,8 @@ struct PhoneVerificationView: View{
                             .keyboardType(.numberPad)
                     }
                     .padding(.vertical, 22)
+                    .environment(\.layoutDirection, .leftToRight)
+
                     Group{
                         HStack {
                             Text("Code_sent_to_+966".localized(language))
@@ -119,7 +121,6 @@ struct PhoneVerificationView: View{
                         .foregroundColor(.black)
                         .frame( alignment: .center)
                         .multilineTextAlignment(.center)
-                        
                         if errorMessage != "" {
                             Text(errorMessage.localized(language))
                             .padding(.top,2)
@@ -128,7 +129,7 @@ struct PhoneVerificationView: View{
                     }
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     
-                    Text("\(minutes):\(seconds)")
+                    Text("\(minutes):\(seconds)".convertedDigitsToLocale(identifier: "en_US"))
                         .font(.subheadline)
                         .onReceive(timer) { time in
                             updateTimer()
@@ -141,6 +142,7 @@ struct PhoneVerificationView: View{
                                 .fill(Color.black)
                                 .opacity(0.2)
                         )
+                        .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                         .keyboardSpace()
                     
                     //MARK: --  Resend code button --
@@ -155,7 +157,6 @@ struct PhoneVerificationView: View{
                             .padding()
                             .foregroundColor( (minutes == 00 && seconds == 00) ? Color("blueColor") : Color(uiColor: .lightGray))
                     }).disabled(minutes != 00 && seconds != 00)
-                    
                     Spacer()
                 }
             }
@@ -197,7 +198,7 @@ struct PhoneVerificationView: View{
         })
         
         .onChange(of: otpVM.otp6, perform: {newval in
-            let otp = otpVM.otp1+otpVM.otp2+otpVM.otp3+otpVM.otp4+otpVM.otp5+newval
+            let otp = "\(otpVM.otp1+otpVM.otp2+otpVM.otp3+otpVM.otp4+otpVM.otp5+newval)".convertedDigitsToLocale(identifier: "en_US")
             if checkOTP(sentOTP: CurrentOTP , TypedOTP: Int(otp) ?? 0000) && (minutes > 0 || seconds > 0){
                 if op == .signup {
                     matchedOTP.toggle()
@@ -227,7 +228,7 @@ struct PhoneVerificationView: View{
                 
     }
     private func otpText(text: String) -> some View {
-        return Text(text)
+        return Text(text.convertedDigitsToLocale(identifier: "en_US"))
             .font(Font.camelfonts.SemiBold24)
             .foregroundColor(Color("blueColor"))
             .frame(width: textBoxWidth, height: textBoxHeight)

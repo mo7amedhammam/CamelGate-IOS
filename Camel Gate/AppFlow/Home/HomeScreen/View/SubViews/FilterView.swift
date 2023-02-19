@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FilterView: View {
+    @State var fieldType:inputfields? = .Default
     var language = LocalizationService.shared.language
     var delete : Bool
     let filterTitle : String
@@ -17,7 +18,7 @@ struct FilterView: View {
             ZStack{
                 HStack{
                     Text(filterTitle)
-                       .font( language.rawValue == "ar" ? Font.camelfonts.LightAr16:Font.camelfonts.Light16)
+                        .font( fieldType == .number ? Font.camelfonts.Light16 : language.rawValue == "ar" ? Font.camelfonts.LightAr16:Font.camelfonts.Light16)
                     Spacer()
                     Button(action: {
                         D?()

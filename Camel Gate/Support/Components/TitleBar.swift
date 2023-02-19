@@ -18,6 +18,7 @@ struct TitleBar: View {
     @State var IsSubTextRate: Bool? = false
 
     @State var subText: String?
+    @State var fielsType:inputfields? = .Default
     var trailingAction : () -> Void
     var body: some View {
         VStack {
@@ -68,7 +69,7 @@ struct TitleBar: View {
                         }
                         
                         Text(subText ?? "")
-    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+                            .font(fielsType == .number ? Font.camelfonts.Reg16 : language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                     }
                             .foregroundColor(Color.white)
                             .padding(.horizontal)
