@@ -35,13 +35,15 @@ struct SendingRateView:View{
             VStack {
                 Text("You_just_finished_shipment".localized(language))
                     .padding(.bottom,3)
-                
+                    .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
+
                 Text(ApprovedShipmentVM.publishedapprovedShipmentModel?.code ?? "")
                     .bold()
+                    .font(Font.camelfonts.Reg16)
+
                 
             }  .lineLimit(.bitWidth)
                 .multilineTextAlignment(.center)
-                .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                 .padding(.top,10)
             
             //                VStack{

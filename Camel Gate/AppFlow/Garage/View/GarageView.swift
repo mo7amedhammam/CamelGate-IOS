@@ -177,6 +177,7 @@ struct GarageView_Previews: PreviewProvider {
 }
 
 struct FilterCapsules: View {
+    var language = LocalizationService.shared.language
     @EnvironmentObject var ApprovedShipmentVM : ApprovedShipmentViewModel
 
     var body: some View {
@@ -192,7 +193,7 @@ struct FilterCapsules: View {
                     })
                 }
                 if (ApprovedShipmentVM.fromDateStr != "" || ApprovedShipmentVM.toDateStr != ""){
-                    FilterView(delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format:language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd")) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd"):"")", D: {
+                    FilterView(fieldType:.number,delete: true, filterTitle: "\(ApprovedShipmentVM.fromDate.DateToStr(format:language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd")) " + "\("To".localized(language))" + " \(ApprovedShipmentVM.toDateStr != "" ? ApprovedShipmentVM.toDate.DateToStr(format: language.rawValue == "en" ? "dd/MM/yyyy":"yyyy/MM/dd"):"")", D: {
                         ApprovedShipmentVM.fromDateStr = ""
                         ApprovedShipmentVM.toDateStr = ""
                         ApprovedShipmentVM.fromDate = Date()

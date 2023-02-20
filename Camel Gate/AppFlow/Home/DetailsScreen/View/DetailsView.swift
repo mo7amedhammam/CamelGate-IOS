@@ -695,7 +695,7 @@ struct CancelOfferView:View{
                     .font( language.rawValue == "ar" ? Font.camelfonts.RegAr16:Font.camelfonts.Reg16)
                 
                     .multilineTextAlignment(.center)
-                Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1400) SAR")
+                Text("\(detailsVM.publishedUserLogedInModel.driverOfferValue ?? 1400) "+"SAR".localized(language))
                     .font(Font.camelfonts.Reg16)
 
                     .foregroundColor(.red)

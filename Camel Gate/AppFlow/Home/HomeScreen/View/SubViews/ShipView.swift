@@ -28,7 +28,7 @@ struct ShipView: View {
                         .foregroundColor(Color.white)
                     Spacer()
                 }
-.font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr16:Font.camelfonts.SemiBold16)
+                .font(Font.camelfonts.SemiBold16)
                 .padding(.leading)
             }
             .frame(height: 50)

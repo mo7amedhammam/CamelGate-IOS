@@ -440,8 +440,7 @@ struct EditProfileInfoView: View {
                             InputTextField(iconName: "X321Orange2", placeholder: "Plate_Number".localized(language), text:$profileVM.TruckPlate)
                                 .onChange(of: profileVM.TruckPlate, perform: {newval in
                                     profileVM.IsDropDownChange = true
-//                                    profileVM.TruckPlate = language.rawValue == "ar" ?
-//                                    newval.replacedArabicDigitsWithEnglish():newval.replacedArabicDigitsWithEnglish()
+                                    profileVM.TruckPlate = newval.convertedDigitsToLocale(identifier: "en_US")
                                 })
                                 .focused($inFocus,equals:5)
                                 .onTapGesture(perform: {
