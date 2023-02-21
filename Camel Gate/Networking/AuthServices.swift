@@ -10,8 +10,8 @@ import Moya
 
 enum AuthServices {
     case Login(parameters : [String:Any])
-    case VerifyAccount(parameters : [String:Any])
-    case createAccount(parameters : [String:Any])
+    case CreateUser(parameters : [String:Any])
+    case VerifyUser(parameters : [String:Any])
     case ResendOTP(parameters : [String:Any])
 
     case GetDriverOverAllRate, GetDriverRates,CanDeleteAccount,DeleteAccount
@@ -27,10 +27,10 @@ extension AuthServices : URLRequestBuilder {
         switch self {
         case .Login:
             return EndPoints.Login.rawValue
-        case .VerifyAccount:
+        case .CreateUser:
             return EndPoints.CreateAccount.rawValue
-        case .createAccount:
-            return EndPoints.VerifyAccount.rawValue
+        case .VerifyUser:
+            return EndPoints.VerifyUser.rawValue
         case .ResendOTP:
             return EndPoints.resendOTP.rawValue
         case .GetDriverOverAllRate:
@@ -55,7 +55,7 @@ extension AuthServices : URLRequestBuilder {
     }
     var method: Moya.Method {
         switch self {
-        case  .Login, .VerifyAccount, .createAccount, .ResendOTP, .UpdateDriverInfo :
+        case  .Login, .CreateUser, .VerifyUser, .ResendOTP, .UpdateDriverInfo :
             return .post
         case .GetDriverOverAllRate, .GetDriverRates, .GetDriverinfo, .GetTruckType, .GetTruckManfacture, .GetNationalityies, .CanDeleteAccount,.DeleteAccount :
             return .get
@@ -67,7 +67,7 @@ extension AuthServices : URLRequestBuilder {
     var task: Task {
         switch self {
     
-        case .Login(let parameters), .VerifyAccount(parameters: let parameters), .createAccount(parameters: let parameters),.ResendOTP(parameters: let parameters):
+        case .Login(let parameters), .CreateUser(parameters: let parameters), .VerifyUser(parameters: let parameters),.ResendOTP(parameters: let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
  
         case .GetDriverOverAllRate, .GetDriverRates,.GetDriverinfo, .GetTruckType, .GetTruckManfacture, .GetNationalityies,.CanDeleteAccount,.DeleteAccount:

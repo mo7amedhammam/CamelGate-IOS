@@ -8,12 +8,12 @@
 import SwiftUI
 import PromiseKit
 enum operations {
-    case signup,password
+    case signup,password, none
 }
 
 struct PhoneVerificationView: View{
     var language = LocalizationService.shared.language
-    var op : operations
+    var op : operations = .none
     @Binding var phoneNumber : String
     @Binding var CurrentOTP : Int
     @Binding var validFor : Int
@@ -182,6 +182,23 @@ struct PhoneVerificationView: View{
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         
+        .overlay(
+            ZStack{
+            if SignUpVM.isAlert{
+                CustomAlert(presentAlert: $SignUpVM.isAlert,alertType: .error(title: "", message: SignUpVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+                        SignUpVM.isAlert = false
+                })
+                }
+                
+                if changePasswordVM.isAlert{
+                    CustomAlert(presentAlert: $changePasswordVM.isAlert,alertType: .error(title: "", message: changePasswordVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
+                        changePasswordVM.isAlert = false
+                    })
+                    }
+            }.ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
+        )
+        
         .onAppear(perform: {
             DynamicTimer(sentTimer: validFor)
             
@@ -198,25 +215,36 @@ struct PhoneVerificationView: View{
         })
         
         .onChange(of: otpVM.otp6, perform: {newval in
+            guard newval != "" else {return}
+            
             let otp = "\(otpVM.otp1+otpVM.otp2+otpVM.otp3+otpVM.otp4+otpVM.otp5+newval)".convertedDigitsToLocale(identifier: "en_US")
-            if checkOTP(sentOTP: CurrentOTP , TypedOTP: Int(otp) ?? 0000) && (minutes > 0 || seconds > 0){
+                        
+//            if checkOTP(sentOTP: CurrentOTP , TypedOTP: Int(otp) ?? 0000) && (minutes > 0 || seconds > 0){
                 if op == .signup {
-                    matchedOTP.toggle()
-                    isPresented.toggle()
+                    SignUpVM.phoneNumber = phoneNumber
+                    SignUpVM.typedOtp = otp
+                    SignUpVM.VerifyUser()
+
+//                    matchedOTP.toggle()
+//                    isPresented.toggle()
                 }else if  op == .password{
-                    matchedOTP.toggle()
-                    isPresented.toggle()
+                    changePasswordVM.phoneNumber = phoneNumber
+                    changePasswordVM.typedOtp = otp
+                    changePasswordVM.VerifyOTP()
+//                    matchedOTP.toggle()
+//                    isPresented.toggle()
+                    
                 }
-            }else{
+//            }else{
                 if (minutes == 0 && seconds == 0) {
                     errorMessage = "Time_is_Out"
                 }else if newval == "" && (minutes > 0 || seconds > 0){
                     errorMessage = "This_code_will_be_expired_within"
                 }
                 else{
-                    errorMessage = "Incorrect_Code"
+//                    errorMessage = "Incorrect_Code"
                 }
-            }
+//            }
         })
         .onChange(of: resendOTPVM.NewCode, perform: {newval in
 //                   print(newval)
@@ -225,7 +253,20 @@ struct PhoneVerificationView: View{
                     DynamicTimer(sentTimer: validFor)
                     errorMessage = ""
                 })
-                
+        
+        .onChange(of: SignUpVM.accountVerified, perform: {newval in
+            if newval == true{
+                matchedOTP.toggle()
+                isPresented.toggle()
+            }
+        })
+        .onChange(of: changePasswordVM.otpVerified, perform: {newval in
+            if newval == true{
+                matchedOTP.toggle()
+                isPresented.toggle()
+            }
+        })
+
     }
     private func otpText(text: String) -> some View {
         return Text(text.convertedDigitsToLocale(identifier: "en_US"))
@@ -250,13 +291,13 @@ struct PhoneVerificationView: View{
     }
     
     //MARK: validOTP
-    func checkOTP(sentOTP:Int, TypedOTP:Int ) -> Bool{
-        if sentOTP == TypedOTP {
-            return true
-        }else{
-            return false
-        }
-    }
+//    func checkOTP(sentOTP:Int, TypedOTP:Int ) -> Bool{
+//        if sentOTP == TypedOTP {
+//            return true
+//        }else{
+//            return false
+//        }
+//    }
     
     //MARK: validOTP
     func DynamicTimer(sentTimer:Int ){

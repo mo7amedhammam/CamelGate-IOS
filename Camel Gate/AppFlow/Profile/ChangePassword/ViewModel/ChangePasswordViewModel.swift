@@ -23,7 +23,8 @@ class ChangePasswordViewModel: ObservableObject {
     // ------- input
     @Published var operation : passwordOperations = .change
     @Published  var phoneNumber = ""
-    @Published  var Otp = 0
+    @Published  var typedOtp = ""
+    @Published  var otpVerified = false
 
     @Published  var CurrentPassword = ""
     @Published  var NewPassword = ""
@@ -58,13 +59,12 @@ class ChangePasswordViewModel: ObservableObject {
     func ChangePassword(){
         let params : [String : Any] = operation == .change ?
         [
-//            "id"                              : 8,
             "currentPassword"               : CurrentPassword ,
             "newPassword"                    : NewPassword
         ]:[
             "mobile"               : phoneNumber ,
             "newPassword"                    : NewPassword,
-            "otp"       :       String(Otp)
+            "otp"       :      typedOtp
         ]
         firstly { () -> Promise<Any> in
             isLoading = true
@@ -96,6 +96,47 @@ class ChangePasswordViewModel: ObservableObject {
         }).ensure { [self] in
             isLoading = false
 
+        }.catch { [self] (error) in
+            isAlert = true
+            message = "\(error)"
+        }
+    }
+    
+    
+    // MARK: - API Services
+    func VerifyOTP(){
+        let params : [String : Any] =
+        [
+            "otp"                       : typedOtp ,
+            "mobile"                       : phoneNumber
+        ]
+        firstly { () -> Promise<Any> in
+            isLoading = true
+            return BGServicesManager.CallApi(self.authServices, HomeServices.VerifyOtp(parameters: params))
+        }.done({ [self] response in
+            let result = response as! Response
+//            guard BGNetworkHelper.validateResponse(response: result) else{return}
+            let data : BaseResponse<ModelVerifyOtp> = try BGDecoder.decode(data: result.data )
+            print(params)
+            print(data)
+            if data.success == true {
+                DispatchQueue.main.async {
+//                    passthroughModelSubject.send(data)
+                    otpVerified = true
+                }
+            }else {
+                if data.messageCode == 400{
+                message = data.message ?? "error 400"
+                }else if data.messageCode == 401{
+                    message = "unauthorized"
+                }else{
+                    message = "Bad Request"
+                }
+                isAlert = true
+            }
+
+        }).ensure { [self] in
+            isLoading = false
         }.catch { [self] (error) in
             isAlert = true
             message = "\(error)"

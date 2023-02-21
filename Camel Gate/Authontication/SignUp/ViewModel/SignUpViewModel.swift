@@ -83,18 +83,19 @@ class SignUpViewModel: ObservableObject {
 
     @Published  var currentOTP = 0
     @Published  var SecondsCount = 0
+    var typedOtp = ""
 
     //------- output
     @Published var validations: InvalidFields = .none
     @Published var ValidationMessage = ""
     @Published var IsTermsAgreed = false
 //    @Published var inlineErrorPassword = ""
-    @Published var publishedUserLogedInModel: SignUpPhoneVerify? = nil
-    @Published var publishedUserCreatedModel: SignUpModel? = nil
+//    @Published var publishedUserLogedInModel: SignUpPhoneVerify? = nil
+//    @Published var publishedUserCreatedModel: SignUpModel? = nil
 
-    @Published var verifyUser = false
+    @Published var accountCreated = false
     @Published var isMatchedOTP = false
-    @Published var isUserCreated = false
+    @Published var accountVerified = false
 
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -106,28 +107,26 @@ class SignUpViewModel: ObservableObject {
 
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { [self](modeldata) in
-            publishedUserLogedInModel = modeldata.data
-            currentOTP = publishedUserLogedInModel?.otp ?? 0
-            SecondsCount = publishedUserLogedInModel?.secondsCount ?? 0
+//            publishedUserLogedInModel = modeldata.data
+            currentOTP = modeldata.data?.otp ?? 0
+            SecondsCount = modeldata.data?.secondsCount ?? 0
 
             DispatchQueue.main.async {
-//                passthroughModelSubject.send(data)
-                verifyUser = true
+                accountCreated = true
             }
-//            verifyUser = true
         }.store(in: &cancellables)
         
         passthroughCreateModel.sink { (completion) in
         } receiveValue: { [self](modeldata) in
-            publishedUserCreatedModel = modeldata.data
-            isUserCreated = true
-            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserCreatedModel?.token ?? "")" )
+//            publishedUserCreatedModel = modeldata.data
+            accountVerified = true
+            Helper.setAccessToken(access_token: "Bearer " + "\(modeldata.data?.token ?? "")" )
 //            Helper.setUserData(DriverName: modeldata.data?.name ?? "", DriverImage: modeldata.data?.image ?? "")
         }.store(in: &cancellables)
     }
 
     // MARK: - API Services
-    func VerifyAccount(){
+    func CreateUser(){
         let params : [String : Any] =
         [
             "roleId"                       : 8,
@@ -137,7 +136,7 @@ class SignUpViewModel: ObservableObject {
         ]
         firstly { () -> Promise<Any> in
             isLoading = true
-            return BGServicesManager.CallApi(self.authServices,AuthServices.VerifyAccount(parameters: params))
+            return BGServicesManager.CallApi(self.authServices,AuthServices.CreateUser(parameters: params))
         }.done({ [self] response in
             let result = response as! Response
 //            guard BGNetworkHelper.validateResponse(response: result) else{return}
@@ -147,7 +146,7 @@ class SignUpViewModel: ObservableObject {
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughModelSubject.send(data)
-                    verifyUser = true
+                    accountCreated = true
                 }
             }else {
                 if data.messageCode == 400{
@@ -159,8 +158,6 @@ class SignUpViewModel: ObservableObject {
                 }
                 isAlert = true
             }
-
-
         }).ensure { [self] in
             isLoading = false
         }.catch { [self] (error) in
@@ -170,17 +167,15 @@ class SignUpViewModel: ObservableObject {
     }
     
     // MARK: - API Services
-    func CreateAccount(){
+    func VerifyUser(){
         let params : [String : Any] =
         [
-            "otp"                       : String(currentOTP),
-//            "name"                          : Drivername,
+            "otp"                       : typedOtp ,
             "mobile"                       : phoneNumber
-//           , "password"                    : password
         ]
         firstly { () -> Promise<Any> in
             isLoading = true
-            return BGServicesManager.CallApi(self.authServices, AuthServices.createAccount(parameters: params))
+            return BGServicesManager.CallApi(self.authServices, AuthServices.VerifyUser(parameters: params))
         }.done({ [self] response in
             let result = response as! Response
 //            guard BGNetworkHelper.validateResponse(response: result) else{return}
@@ -190,7 +185,7 @@ class SignUpViewModel: ObservableObject {
             if data.success == true {
                 DispatchQueue.main.async {
                     passthroughCreateModel.send(data)
-                    isUserCreated = true
+                    accountVerified = true
                 }
             }else {
                 if data.messageCode == 400{
@@ -202,7 +197,6 @@ class SignUpViewModel: ObservableObject {
                 }
                 isAlert = true
             }
-
 
         }).ensure { [self] in
             isLoading = false

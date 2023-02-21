@@ -170,7 +170,7 @@ struct ChangePasswordView: View {
         .onAppear(perform: {
             ChangePasswordVM.operation = operation
             ChangePasswordVM.phoneNumber = phoneNumber
-            ChangePasswordVM.Otp = otp
+            ChangePasswordVM.typedOtp = "\(otp)"
         })
         .onTapGesture(perform: {
             hideKeyboard()

@@ -47,7 +47,7 @@ struct NoteScreenView: View {
                         }
 
                 GradientButton(action: {
-                                            resendOTPVM.SendOTP()
+                    resendOTPVM.SendOTP()
                 }, Title: "Send_OTP".localized(language),IsDisabled:.constant(resendOTPVM.phoneNumber == "" || resendOTPVM.ValidationMessage != "") )
                     .padding(.top,50)
             }

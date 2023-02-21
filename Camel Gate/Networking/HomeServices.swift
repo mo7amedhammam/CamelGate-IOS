@@ -33,6 +33,7 @@ enum HomeServices {
     
     case ChangePassword(parameters:[String:Any])
     case ChangeForgetPassword(parameters:[String:Any])
+    case VerifyOtp(parameters : [String:Any])
 
     case getGainedWallet
     case getWithdrawnWallet
@@ -85,6 +86,8 @@ extension HomeServices : URLRequestBuilder {
             return EndPoints.ChangePassword.rawValue
         case .ChangeForgetPassword:
             return EndPoints.ChangeForgetPassword.rawValue
+        case .VerifyOtp:
+            return EndPoints.VerifyOtp.rawValue
 
         case .getGainedWallet:
             return EndPoints.GetGaiedWallet.rawValue
@@ -116,7 +119,7 @@ extension HomeServices : URLRequestBuilder {
                 .removeFirebaseToken:
             return .get
             
-        case .HomeShipmments, .appliedShipMents, .upComingShipments, .currentShipments, .RateApprovedShipment,.setOffer,.CancelOffer,.ChangePassword, .ChangeForgetPassword, .sendFirebaseToken:
+        case .HomeShipmments, .appliedShipMents, .upComingShipments, .currentShipments, .RateApprovedShipment,.setOffer,.CancelOffer,.ChangePassword, .ChangeForgetPassword, .sendFirebaseToken, .VerifyOtp:
             return .post   
         }
     }
@@ -144,7 +147,8 @@ extension HomeServices : URLRequestBuilder {
                 .CancelOffer( let param),
                 .ChangePassword(parameters: let param),
                 .ChangeForgetPassword(parameters: let param),
-                .RateApprovedShipment(parameters: let param):
+                .RateApprovedShipment(parameters: let param),
+                .VerifyOtp(parameters: let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
 
         case .ShipmentDetails(let param),

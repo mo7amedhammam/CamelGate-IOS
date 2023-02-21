@@ -24,3 +24,14 @@ struct ChangePasswordModel: Codable {
         case passwordHash, creationDate
     }
 }
+
+// MARK: - verify otp
+struct ModelVerifyOtp: Codable {
+    var otp: String?
+    var mobile : String?
+
+    enum CodingKeys: String, CodingKey {
+        case otp = "otp"
+        case mobile = "mobile"
+    }
+}

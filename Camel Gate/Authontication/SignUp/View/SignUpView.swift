@@ -14,6 +14,7 @@ struct SignUpView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var SignUpVM = SignUpViewModel()
     @State var presentPhoneVerify = false
+    @State var gotoCompleteProfile = false
     @FocusState var inFocus: Int?
     @State var showsheet = false
 
@@ -126,98 +127,29 @@ struct SignUpView: View {
                     
                     Spacer().frame(height:30)
                 }
-//                .keyboardSpace()
-
                 .padding(.top,hasNotch ? -15:-30)
-                
-//                Spacer(minLength: 150)
             }
             .padding(.bottom,120)
-//            .edgesIgnoringSafeArea(.bottom)
             .onTapGesture(perform: {
                 inFocus = 0
                 hideKeyboard()
             })
-            //            .padding(.horizontal,-30)
-            
-//            BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false,  forgroundColor: .clear, content: {
-//                VStack{
-//                    GradientButton(action: {
-//                        SignUpVM.VerifyAccount()
-//                    }, Title: "Create_account".localized(language), IsDisabled: .constant(  !((SignUpVM.Drivername != "" && SignUpVM.phoneNumber != "" && SignUpVM.password != "" && SignUpVM.confirmpassword != "" && SignUpVM.IsTermsAgreed)&&SignUpVM.ValidationMessage == "")))
-//                        .padding(.top)
-//
-//                    HStack {
-//                        Text("have_an_Account?".localized(language)).foregroundColor(.secondary)
-//                            .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
-//
-//                        Button("Sign_In".localized(language)) {
-//                            self.presentationMode.wrappedValue.dismiss()
-//                        }
-//                        .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
-//                        .foregroundColor(Color("blueColor"))
-//                    }
-//                    .padding(.top,-10)
-//                    SwitchLanguageButton()
-//                }
-//                .padding(.bottom,10)
-//                .background(
-//                    Image("bottomBackimg")
-//                        .resizable()
-//                        .padding(.horizontal, -30)
-//                        .padding(.bottom,-250)
-//                )
-//            })
-
+         
             .fullScreenCover(isPresented: $presentPhoneVerify , onDismiss: {
-                    SignUpVM.verifyUser = false
-                    if SignUpVM.isMatchedOTP {
-                    SignUpVM.CreateAccount()
-                    }
+//                    SignUpVM.accountCreated = false
+//                    if SignUpVM.isMatchedOTP {
+//                    SignUpVM.VerifyUser()
+//                    }
+                gotoCompleteProfile = true
                 }, content: {
                     PhoneVerificationView(op: .signup, phoneNumber: $SignUpVM.phoneNumber, CurrentOTP: $SignUpVM.currentOTP ,validFor: $SignUpVM.SecondsCount , matchedOTP: $SignUpVM.isMatchedOTP, isPresented: $presentPhoneVerify)
                         .environmentObject(ResendOTPViewModel())
                 })
-       
-//            ZStack{
-//            VStack{
-//                Spacer()
-//                GradientButton(action: {
-//                    SignUpVM.VerifyAccount()
-//                }, Title: "Create_account".localized(language), IsDisabled: .constant(  !((SignUpVM.Drivername != "" && SignUpVM.phoneNumber != "" && SignUpVM.password != "" && SignUpVM.confirmpassword != "" && SignUpVM.IsTermsAgreed)&&SignUpVM.ValidationMessage == "")))
-//                    .padding(.top)
-//
-//                HStack {
-//                    Text("have_an_Account?".localized(language)).foregroundColor(.secondary)
-//                        .font( language.rawValue == "ar" ? Font.camelfonts.SemiBoldAr14:Font.camelfonts.SemiBold14)
-//
-//                    Button("Sign_In".localized(language)) {
-//                        self.presentationMode.wrappedValue.dismiss()
-//                    }
-//                    .font( language.rawValue == "ar" ? Font.camelfonts.BoldAr14:Font.camelfonts.Bold14)
-//                    .foregroundColor(Color("blueColor"))
-//                }
-//                .padding(.top,-10)
-//                SwitchLanguageButton()
-//                    .padding(.bottom,5)
-//            }
-//            .padding(.bottom,10)
-//            .background(
-//                Image("bottomBackimg")
-//                    .resizable()
-////                    .frame(height:120)
-//                    .padding(.horizontal, -30)
-//                    .padding(.bottom,-250)
-//            )
-//            .frame(height:180)
-//            }
-//            .ignoresSafeArea(.keyboard)
-            //            .ignoresSafeArea( edges: .bottom)
         
             BottomSheetView(IsPresented: .constant(true), withcapsule: false, bluryBackground: false,  forgroundColor: .clear, content: {
                 VStack{
                     GradientButton(action: {
-                        SignUpVM.VerifyAccount()
+                        SignUpVM.CreateUser()
                     }, Title: "Create_account".localized(language), IsDisabled: .constant(  !((SignUpVM.Drivername != "" && SignUpVM.phoneNumber != "" && SignUpVM.password != "" && SignUpVM.confirmpassword != "" && SignUpVM.IsTermsAgreed)&&SignUpVM.ValidationMessage == "")))
                         .padding(.top)
                     
@@ -242,8 +174,6 @@ struct SignUpView: View {
                         .padding(.bottom,-250)
                 )
             })
-        
-        
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         
@@ -264,67 +194,27 @@ struct SignUpView: View {
                 .padding(.top,hasNotch ? 20:10)
                 Spacer()
             }
-            
-            
         })
         .overlay(content: {
             AnimatingGif(isPresented: $SignUpVM.isLoading)
             
-            
             ZStack{
             if SignUpVM.isAlert{
                 CustomAlert(presentAlert: $SignUpVM.isAlert,alertType: .error(title: "", message: SignUpVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
-//                        if ApprovedShipmentVM.activeAlert == .unauthorized{
-//                            Helper.logout()
-//                            LoginManger.removeUser()
-//                            Helper.IsLoggedIn(value: false)
-//                            destination = AnyView(SignInView())
-//                            active = true
-//                        }
                     SignUpVM.isAlert = false
                 })
                 }
             }
         })
-        .onChange(of: SignUpVM.verifyUser , perform: {newval in
+        .onChange(of: SignUpVM.accountCreated , perform: {newval in
             if newval == true{
                 presentPhoneVerify.toggle()
             }
         })
     
-        NavigationLink(destination: EditProfileInfoView(taskStatus: .create,enteredDriverName: SignUpVM.Drivername, selectedDate: Date()) .navigationBarHidden(true),isActive:$SignUpVM.isUserCreated , label: {
+        NavigationLink(destination: EditProfileInfoView(taskStatus: .create,enteredDriverName: SignUpVM.Drivername, selectedDate: Date()) .navigationBarHidden(true),isActive:$gotoCompleteProfile , label: {
         })
-        
-//            .overlay(
-//                ZStack{
-//                if SignUpVM.isAlert || true{
-//                    CustomAlert(presentAlert: $SignUpVM.isAlert,alertType: .error(title: "", message: SignUpVM.message, lefttext: "", righttext: "OK".localized(language)),rightButtonAction: {
-////                        if ApprovedShipmentVM.activeAlert == .unauthorized{
-////                            Helper.logout()
-////                            LoginManger.removeUser()
-////                            Helper.IsLoggedIn(value: false)
-////                            destination = AnyView(SignInView())
-////                            active = true
-////                        }
-//                        SignUpVM.isAlert = false
-//                    })
-//                    }
-//                }
-//                    .ignoresSafeArea()
-//                    .edgesIgnoringSafeArea(.all)
-////                    .onChange(of: SignUpVM.isAlert, perform: {newval in
-////                        DispatchQueue.main.async {
-////                    environments.isError = newval
-////                    }
-////                    })
-//            )
-        
-        // Alert with no internet connection
-//            .alert(isPresented: $SignUpVM.isAlert, content: {
-//                Alert(title: Text(SignUpVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                    SignUpVM.isAlert = false
-//                }))
-//            })
+  
     }
 }
 

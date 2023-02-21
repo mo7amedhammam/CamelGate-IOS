@@ -11,7 +11,7 @@ enum EndPoints: String {
     // MARK: - Auth
     case Login = "User/Login"
     case CreateAccount = "User/SignUp"
-    case VerifyAccount = "User/VefiryUser"
+    case VerifyUser = "User/VefiryUser"
     case resendOTP = "User/SendOTP"
     
     case CanDeleteAccount = "Lookups/GetSetting"
@@ -43,7 +43,7 @@ enum EndPoints: String {
     case getNationalities = "Nationality/GetAllForList"
     case ChangePassword = "User/ChangePassword"
     case ChangeForgetPassword = "User/ResetPassword"
-//            "User/ChangeForgetPassword" // ""
+    case VerifyOtp = "User/VefiryOTP"
     case GetGaiedWallet = "Wallet/GetWalletGained"
     case GetWithDrawnWallet = "Wallet/GetWalletWithdrawn"
     case GetHomePageWallet = "Wallet/GetHomePageWallet"
