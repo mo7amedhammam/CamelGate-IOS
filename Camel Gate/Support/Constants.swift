@@ -8,7 +8,10 @@
 
 /*
  app bundel id on wecancity testflight : wecancity-com.Camel-Gate
+  version 2.0 build  1
+ 
  app bundel id on camelgate testflight : wecancity-Otaibi-com.Camel-Gate
+ version 2.0 build  1
  */
 
 import Foundation
