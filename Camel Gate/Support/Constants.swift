@@ -5,6 +5,12 @@
 //  Created by Tawfik Sweedy✌️ on 02/08/2022.
 //
 
+
+/*
+ app bundel id on wecancity testflight : wecancity-com.Camel-Gate
+ app bundel id on camelgate testflight : wecancity-Otaibi-com.Camel-Gate
+ */
+
 import Foundation
 
 struct Constants {
@@ -28,7 +34,10 @@ struct Constants {
 
     // MARK: - APIs Constants
 //    static var baseURL:String {return "https://camelgateapi.wecancity.com/"} //TEST
-    static var baseURL:String {return "https://camelgatedashboard.azurewebsites.net/"} //LIVE
+//    static var baseURL:String {return "https://camelgatedashboard.azurewebsites.net/"} //LIVE
+
+        static var baseURL:String {return "https://camelgateapi.azurewebsites.net/"} //TEST on
+    
 
     static var apiURL:String {return "\(baseURL)api/\(Helper.getLanguage())"}
 //    static var imagesURL:String {return "http://camelgateapi.wecancity.com/"}

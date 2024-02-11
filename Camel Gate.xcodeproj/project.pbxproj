@@ -1941,7 +1941,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
-				DEVELOPMENT_TEAM = T3T996UQKK;
+				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Camel-Gate-Info.plist";
@@ -1959,7 +1959,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "wecancity-Otaibi-com.Camel-Gate";
+				PRODUCT_BUNDLE_IDENTIFIER = "wecancity-com.Camel-Gate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1978,7 +1978,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Camel Gate/Preview Content\"";
-				DEVELOPMENT_TEAM = T3T996UQKK;
+				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Camel-Gate-Info.plist";
@@ -1996,7 +1996,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "wecancity-Otaibi-com.Camel-Gate";
+				PRODUCT_BUNDLE_IDENTIFIER = "wecancity-com.Camel-Gate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
